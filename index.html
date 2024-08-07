@@ -1,21 +1,79 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Título da Página</title>
+    <title>Alex Schimitz</title>
+
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <header>
-        <h1>Título Principal</h1>
+    
+    <header class="header">
+        <a href="https://thebigdk.github.io/" class="logo">Portfolio Alexsander Schimitz</a>
+
+        <i class='bx bx-menu' id="menu-icon"></i>
+
+        <nav class="navbar">
+            <a href="#inicio" class="active">INICIO</a>
+        </nav>
     </header>
-    <main>
-        <p>Conteúdo</p>
-    </main>
-    <footer>
-        <p>&copy; Ano Nome da Empresa</p>
+
+    
+
+    <section class="inicio" id="inicio">
+        <div class="inicio-content">
+            <h3>Olá eu me chamo</h3>
+            <h1>Alexsander Schimitz</h1>
+            <h3>Sou um <span class="multiple-text"></span></h3>
+            <p>Seja bem-vindo ao meu site pessoal. Aqui reuni informações sobre mim e um pouco do meu trabalho na aréa da Tecnologia da Informação(T.I).</p>
+            <div class="social-media">
+                <a href="https://github.com/thebigdk"><i class='bx bxl-github' ></i></a>
+                <a href="https://www.instagram.com/alexsanderschimitz/"><i class='bx bxl-instagram' ></i></a>
+            </div>
+            
+        </div>
+        
+    </section>
+
+    
+
+
+    <section class="portfolio" id="portfolio">
+        <h2 class="heading">Meus <span>Projetos</span></h2>
+
+        <div class="ptf_c">
+            <div class="portfolio-box">
+                <img src="imagens/portfolio1.jpg" alt="">
+                <div class="portfolio-layer">
+                <h4>Estudos</h4>
+                <p>Aqui os código-fonte de todos os meus projetos de estudos!</p>
+                    <a href="#"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-text">
+            <p>2024 &copy; Por Alexsander Schimitz | Todos os direitos reservados.</p>
+        </div>
+
+        <div class="footer-icontop">
+            <a href="#inicio"><i class='bx bx-up-arrow-alt' ></i></a>
+        </div>
     </footer>
-    <script src="script.js"></script>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+    
+    <script src="scripts/main.js"></script>
 </body>
 </html>
