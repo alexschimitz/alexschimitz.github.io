@@ -517,45 +517,23 @@
         <i class='bx bx-menu' id="menu-icon"></i>
 
         <nav class="navbar">
-            <a href="#inicio" class="active">INICIO</a>
-            <a href="pokedex.html">POKEDEX</a>
+            <a href="index.html">INICIO</a>
+            <a href="pokedex.html" class="active" >POKEDEX</a>
         </nav>
     </header>
 
-    <section class="inicio" id="inicio">
-        <div class="inicio-content">
-            <h3>Olá eu me chamo</h3>
-            <h1>Alexsander Schimitz</h1>
-            <h3>Sou um <span class="multiple-text"></span></h3>
-            <p>Seja bem-vindo ao meu site pessoal. Aqui reuni informações sobre mim e um pouco do meu trabalho na aréa da Tecnologia da Informação(T.I).</p>
-            <div class="social-media">
-                <a href="https://github.com/thebigdk"><i class='bx bxl-github' ></i></a>
-                <a href="https://www.instagram.com/alexsanderschimitz/"><i class='bx bxl-instagram' ></i></a>
-            </div>
-            
-        </div>
-        
-    </section>
-
-    
-
-
     <section class="portfolio" id="portfolio">
-        <h2 class="heading">Meus <span>Projetos</span></h2>
+        <h2 class="heading"><span>Pokedex</span></h2>
 
         <div class="ptf_c">
-            <div class="portfolio-box">
-                <img src="imagens/portfolio1.jpg" alt="">
-                <div class="portfolio-layer">
-                <h4>Estudos</h4>
-                <p>Aqui os código-fonte de todos os meus projetos de estudos!</p>
-                    <a href="https://github.com/alexschimitz/Meus-Estudos"><i class='bx bx-link-external'></i></a>
-                </div>
-            </div>
+            <h1>Busca de Pokémon</h1>
+            <input type="text" id="searchInput" placeholder="Digite o nome ou o número do Pokémon">
+            <button onclick="searchPokemon()">Buscar</button>
+            <div id="result"></div>
         </div>
     </section>
 
-    
+
     <footer class="footer">
         <div class="footer-text">
             <p>2024 &copy; Por Alexsander Schimitz | Todos os direitos reservados.</p>
