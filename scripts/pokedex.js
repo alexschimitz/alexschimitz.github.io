@@ -157,10 +157,11 @@ function toLowerCase(str) {
     return str.toLowerCase();
 }
 
+// Função para buscar Pokémon
 function searchPokemon() {
     const query = document.getElementById('searchInput').value.trim();
     const resultDiv = document.getElementById('result');
-    resultDiv.innerHTML = ''; // Clear previous results
+    resultDiv.innerHTML = ''; // Limpar resultados anteriores
 
     if (!isNaN(query)) {
         const numero = parseInt(query, 10);
@@ -196,7 +197,6 @@ function searchPokemon() {
         }
     }
 }
-
 
 
 
