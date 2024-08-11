@@ -153,24 +153,33 @@ const Pokedex = [
     { nome: "Mew", tipo: "Psiquico", indice_original: 151 }
 ];
 
+let currentIndex = 0;
+
 function toLowerCase(str) {
     return str.toLowerCase();
+}
+
+function displayPokemon(index) {
+    const resultDiv = document.getElementById('result');
+    const pokemon = Pokedex[index];
+    const imagePath = `imagens/Pokemon/${pokemon.nome}.png`;
+
+    resultDiv.innerHTML = `
+        <p>Pokémon encontrado: ${pokemon.nome}, Tipo: ${pokemon.tipo}, Índice Original: ${pokemon.indice_original}</p>
+        <img src="${imagePath}" alt="${pokemon.nome}" style="max-width: 100px; max-height: 100px; position: relative; top: -50px; left: -20px;">
+    `;
 }
 
 function searchPokemon() {
     const query = document.getElementById('searchInput').value.trim();
     const resultDiv = document.getElementById('result');
-    resultDiv.innerHTML = ''; // Clear previous results
+    resultDiv.innerHTML = ''; // Limpar resultados anteriores
 
     if (!isNaN(query)) {
         const numero = parseInt(query, 10);
         if (numero > 0 && numero <= NUM_POKEMON) {
-            const pokemon = Pokedex[numero - 1];
-            const imagePath = `imagens/Pokemon/${pokemon.nome.toLowerCase()}.png`;
-            resultDiv.innerHTML = `
-                <p>Pokémon encontrado: ${pokemon.nome}, Tipo: ${pokemon.tipo}, Índice Original: ${pokemon.indice_original}</p>
-                <img src="${imagePath}" alt="${pokemon.nome}" style="max-width: 200px; max-height: 200px;">
-            `;
+            currentIndex = numero - 1;
+            displayPokemon(currentIndex);
         } else {
             resultDiv.innerHTML = 'Número de Pokémon inválido.';
         }
@@ -178,14 +187,11 @@ function searchPokemon() {
         const queryLower = toLowerCase(query);
         let encontrado = false;
 
-        Pokedex.forEach(pokemon => {
+        Pokedex.forEach((pokemon, index) => {
             const nomeLower = toLowerCase(pokemon.nome);
             if (nomeLower.includes(queryLower)) {
-                const imagePath = `imagens/Pokemon/${pokemon.nome.toLowerCase()}.png`;
-                resultDiv.innerHTML += `
-                    <p>Pokémon encontrado: ${pokemon.nome}, Tipo: ${pokemon.tipo}, Índice Original: ${pokemon.indice_original}</p>
-                    <img src="${imagePath}" alt="${pokemon.nome}" style="max-width: 200px; max-height: 200px;"><br>
-                `;
+                currentIndex = index;
+                displayPokemon(currentIndex);
                 encontrado = true;
             }
         });
@@ -196,3 +202,22 @@ function searchPokemon() {
     }
 }
 
+function handleEnter(event) {
+    if (event.key === 'Enter') {
+        searchPokemon();
+    }
+}
+
+function previousPokemon() {
+    if (currentIndex > 0) {
+        currentIndex--;
+        displayPokemon(currentIndex);
+    }
+}
+
+function nextPokemon() {
+    if (currentIndex < NUM_POKEMON - 1) {
+        currentIndex++;
+        displayPokemon(currentIndex);
+    }
+}
