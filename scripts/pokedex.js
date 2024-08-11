@@ -157,7 +157,6 @@ function toLowerCase(str) {
     return str.toLowerCase();
 }
 
-
 // Função para buscar Pokémon com base no nome ou número
 function searchPokemon() {
     const searchInput = document.getElementById('searchInput').value.toLowerCase();
@@ -174,7 +173,7 @@ function searchPokemon() {
         filteredPokemon.forEach(pokemon => {
             const pokemonDiv = document.createElement('div');
             pokemonDiv.classList.add('pokemon-image');
-            pokemonDiv.dataset.image = pokemon.nome; // Adiciona o nome do Pokémon como um atributo de dados
+            pokemonDiv.style.backgroundImage = `url('./imagens/Pokemon/${pokemon.nome}.png')`;
             pokemonDiv.title = `${pokemon.nome} - #${pokemon.indice_original}`;
             resultDiv.appendChild(pokemonDiv);
         });
@@ -182,5 +181,4 @@ function searchPokemon() {
         resultDiv.innerHTML = '<p>Nenhum Pokémon encontrado.</p>';
     }
 }
-
 
