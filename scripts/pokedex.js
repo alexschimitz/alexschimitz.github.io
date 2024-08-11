@@ -174,7 +174,7 @@ function searchPokemon() {
         filteredPokemon.forEach(pokemon => {
             const pokemonDiv = document.createElement('div');
             pokemonDiv.classList.add('pokemon-image');
-            pokemonDiv.style.backgroundImage = `url('./imagens/Pokemon/${pokemon.nome}.png')`;
+            pokemonDiv.dataset.image = pokemon.nome; // Adiciona o nome do Pokémon como um atributo de dados
             pokemonDiv.title = `${pokemon.nome} - #${pokemon.indice_original}`;
             resultDiv.appendChild(pokemonDiv);
         });

@@ -513,13 +513,17 @@
         }
 
         .pokemon-image {
-            width: 200px;
-            height: 200px;
-            background-size: cover; /* Ajusta a imagem para cobrir o contêiner */
-            background-repeat: no-repeat;
+            width: 100px; /* Ajuste conforme necessário */
+            height: 100px; /* Ajuste conforme necessário */
+            background-size: cover;
             background-position: center;
-            border: 1px solid #ccc;
-            margin-bottom: 10px;
+            border: 1px solid #ddd; /* Opcional: apenas para visualização */
+            margin: 5px; /* Opcional: apenas para espaçamento */
+        }
+
+        /* Usando o atributo data-image para definir a imagem de fundo */
+        .pokemon-image[data-image] {
+            background-image: url('./imagens/Pokemon/' attr(data-image) '.png');
         }
 
     </style>
