@@ -166,7 +166,7 @@ function searchPokemon() {
         const numero = parseInt(query, 10);
         if (numero > 0 && numero <= NUM_POKEMON) {
             const pokemon = Pokedex[numero - 1];
-            const imagePath = `../imagens/pokemon/${pokemon.nome.toLowerCase()}.png`;
+            const imagePath = `imagens/Pokemon/${pokemon.nome.toLowerCase()}.png`;
             resultDiv.innerHTML = `
                 <p>Pokémon encontrado: ${pokemon.nome}, Tipo: ${pokemon.tipo}, Índice Original: ${pokemon.indice_original}</p>
                 <img src="${imagePath}" alt="${pokemon.nome}" style="max-width: 200px; max-height: 200px;">
@@ -181,7 +181,7 @@ function searchPokemon() {
         Pokedex.forEach(pokemon => {
             const nomeLower = toLowerCase(pokemon.nome);
             if (nomeLower.includes(queryLower)) {
-                const imagePath = `../imagens/Pokemon/${pokemon.nome.toLowerCase()}.png`;
+                const imagePath = `imagens/Pokemon/${pokemon.nome.toLowerCase()}.png`;
                 resultDiv.innerHTML += `
                     <p>Pokémon encontrado: ${pokemon.nome}, Tipo: ${pokemon.tipo}, Índice Original: ${pokemon.indice_original}</p>
                     <img src="${imagePath}" alt="${pokemon.nome}" style="max-width: 200px; max-height: 200px;"><br>
