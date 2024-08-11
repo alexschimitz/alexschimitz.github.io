@@ -158,46 +158,29 @@ function toLowerCase(str) {
 }
 
 
-// Função para buscar Pokémon
+// Função para buscar Pokémon com base no nome ou número
 function searchPokemon() {
-    const query = document.getElementById('searchInput').value.trim();
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = ''; // Limpar resultados anteriores
 
-    if (!isNaN(query)) {
-        const numero = parseInt(query, 10);
-        if (numero > 0 && numero <= NUM_POKEMON) {
-            const pokemon = Pokedex[numero - 1];
-            const imagePath = `https://alexschimitz.github.io/imagens/Pokemon/${pokemon.nome}.png`; // Caminho completo
-            resultDiv.innerHTML = `
-                <div class="pokemon-image" style="background-image: url('${imagePath}');"></div>
-                <p>Pokémon encontrado: ${pokemon.nome}, Tipo: ${pokemon.tipo}, Índice Original: ${pokemon.indice_original}</p>
-            `;
-        } else {
-            resultDiv.innerHTML = 'Número de Pokémon inválido.';
-        }
-    } else {
-        const queryLower = toLowerCase(query);
-        let encontrado = false;
+    const filteredPokemon = Pokedex.filter(pokemon => {
+        const nameMatches = pokemon.nome.toLowerCase().includes(searchInput);
+        const numberMatches = pokemon.indice_original.toString().includes(searchInput);
+        return nameMatches || numberMatches;
+    });
 
-        Pokedex.forEach(pokemon => {
-            const nomeLower = toLowerCase(pokemon.nome);
-            if (nomeLower.includes(queryLower)) {
-                const imagePath = `https://alexschimitz.github.io/imagens/Pokemon/${pokemon.nome}.png`; // Caminho completo
-                resultDiv.innerHTML += `
-                    <div class="pokemon-image" style="background-image: url('${imagePath}');"></div>
-                    <p>Pokémon encontrado: ${pokemon.nome}, Tipo: ${pokemon.tipo}, Índice Original: ${pokemon.indice_original}</p>
-                    <br>
-                `;
-                encontrado = true;
-            }
+    if (filteredPokemon.length > 0) {
+        filteredPokemon.forEach(pokemon => {
+            const pokemonDiv = document.createElement('div');
+            pokemonDiv.classList.add('pokemon-image');
+            pokemonDiv.style.backgroundImage = `url('imagens/Pokemon/${pokemon.nome}.png')`;
+            pokemonDiv.title = `${pokemon.nome} - #${pokemon.indice_original}`;
+            resultDiv.appendChild(pokemonDiv);
         });
-
-        if (!encontrado) {
-            resultDiv.innerHTML = 'Nenhum Pokémon encontrado.';
-        }
+    } else {
+        resultDiv.innerHTML = '<p>Nenhum Pokémon encontrado.</p>';
     }
 }
-
 
 
