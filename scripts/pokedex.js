@@ -168,8 +168,8 @@ function searchPokemon() {
             const pokemon = Pokedex[numero - 1];
             const imagePath = `imagens/Pokemon/${pokemon.nome}.png`;
             resultDiv.innerHTML = `
+                <div class="pokemon-image" style="background-image: url('${imagePath}');"></div>
                 <p>Pokémon encontrado: ${pokemon.nome}, Tipo: ${pokemon.tipo}, Índice Original: ${pokemon.indice_original}</p>
-                <img src="${imagePath}" alt="${pokemon.nome}" style="max-width: 200px; max-height: 200px;">
             `;
         } else {
             resultDiv.innerHTML = 'Número de Pokémon inválido.';
@@ -183,8 +183,9 @@ function searchPokemon() {
             if (nomeLower.includes(queryLower)) {
                 const imagePath = `imagens/Pokemon/${pokemon.nome}.png`;
                 resultDiv.innerHTML += `
+                    <div class="pokemon-image" style="background-image: url('${imagePath}');"></div>
                     <p>Pokémon encontrado: ${pokemon.nome}, Tipo: ${pokemon.tipo}, Índice Original: ${pokemon.indice_original}</p>
-                    <img src="${imagePath}" alt="${pokemon.nome}" style="max-width: 200px; max-height: 200px;"><br>
+                    <br>
                 `;
                 encontrado = true;
             }
@@ -195,6 +196,7 @@ function searchPokemon() {
         }
     }
 }
+
 
 
 
