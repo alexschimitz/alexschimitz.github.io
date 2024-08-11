@@ -157,28 +157,42 @@ function toLowerCase(str) {
     return str.toLowerCase();
 }
 
-// Função para buscar Pokémon com base no nome ou número
 function searchPokemon() {
-    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const query = document.getElementById('searchInput').value.trim();
     const resultDiv = document.getElementById('result');
-    resultDiv.innerHTML = ''; // Limpar resultados anteriores
+    resultDiv.innerHTML = ''; // Clear previous results
 
-    const filteredPokemon = Pokedex.filter(pokemon => {
-        const nameMatches = pokemon.nome.toLowerCase().includes(searchInput);
-        const numberMatches = pokemon.indice_original.toString().includes(searchInput);
-        return nameMatches || numberMatches;
-    });
-
-    if (filteredPokemon.length > 0) {
-        filteredPokemon.forEach(pokemon => {
-            const pokemonDiv = document.createElement('div');
-            pokemonDiv.classList.add('pokemon-image');
-            pokemonDiv.style.backgroundImage = `url('./imagens/Pokemon/${pokemon.nome}.png')`;
-            pokemonDiv.title = `${pokemon.nome} - #${pokemon.indice_original}`;
-            resultDiv.appendChild(pokemonDiv);
-        });
+    if (!isNaN(query)) {
+        const numero = parseInt(query, 10);
+        if (numero > 0 && numero <= NUM_POKEMON) {
+            const pokemon = Pokedex[numero - 1];
+            const imagePath = `../imagens/pokemon/${pokemon.nome.toLowerCase()}.png`;
+            resultDiv.innerHTML = `
+                <p>Pokémon encontrado: ${pokemon.nome}, Tipo: ${pokemon.tipo}, Índice Original: ${pokemon.indice_original}</p>
+                <img src="${imagePath}" alt="${pokemon.nome}" style="max-width: 200px; max-height: 200px;">
+            `;
+        } else {
+            resultDiv.innerHTML = 'Número de Pokémon inválido.';
+        }
     } else {
-        resultDiv.innerHTML = '<p>Nenhum Pokémon encontrado.</p>';
+        const queryLower = toLowerCase(query);
+        let encontrado = false;
+
+        Pokedex.forEach(pokemon => {
+            const nomeLower = toLowerCase(pokemon.nome);
+            if (nomeLower.includes(queryLower)) {
+                const imagePath = `../imagens/Pokemon/${pokemon.nome.toLowerCase()}.png`;
+                resultDiv.innerHTML += `
+                    <p>Pokémon encontrado: ${pokemon.nome}, Tipo: ${pokemon.tipo}, Índice Original: ${pokemon.indice_original}</p>
+                    <img src="${imagePath}" alt="${pokemon.nome}" style="max-width: 200px; max-height: 200px;"><br>
+                `;
+                encontrado = true;
+            }
+        });
+
+        if (!encontrado) {
+            resultDiv.innerHTML = 'Nenhum Pokémon encontrado.';
+        }
     }
 }
 
