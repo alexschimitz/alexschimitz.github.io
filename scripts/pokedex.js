@@ -157,6 +157,7 @@ function toLowerCase(str) {
     return str.toLowerCase();
 }
 
+
 // Função para buscar Pokémon
 function searchPokemon() {
     const query = document.getElementById('searchInput').value.trim();
@@ -167,7 +168,7 @@ function searchPokemon() {
         const numero = parseInt(query, 10);
         if (numero > 0 && numero <= NUM_POKEMON) {
             const pokemon = Pokedex[numero - 1];
-            const imagePath = `imagens/Pokemon/${pokemon.nome}.png`;
+            const imagePath = `https://alexschimitz.github.io/imagens/Pokemon/${pokemon.nome}.png`; // Caminho completo
             resultDiv.innerHTML = `
                 <div class="pokemon-image" style="background-image: url('${imagePath}');"></div>
                 <p>Pokémon encontrado: ${pokemon.nome}, Tipo: ${pokemon.tipo}, Índice Original: ${pokemon.indice_original}</p>
@@ -182,7 +183,7 @@ function searchPokemon() {
         Pokedex.forEach(pokemon => {
             const nomeLower = toLowerCase(pokemon.nome);
             if (nomeLower.includes(queryLower)) {
-                const imagePath = `imagens/Pokemon/${pokemon.nome}.png`;
+                const imagePath = `https://alexschimitz.github.io/imagens/Pokemon/${pokemon.nome}.png`; // Caminho completo
                 resultDiv.innerHTML += `
                     <div class="pokemon-image" style="background-image: url('${imagePath}');"></div>
                     <p>Pokémon encontrado: ${pokemon.nome}, Tipo: ${pokemon.tipo}, Índice Original: ${pokemon.indice_original}</p>
