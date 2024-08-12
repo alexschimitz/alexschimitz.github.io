@@ -506,7 +506,7 @@ span {
     position: relative;
     max-width: 300px; /* Ajuste conforme o tamanho da imagem */
     height: auto; /* Ajuste conforme o tamanho da imagem */
-    background-image: url('imagens/Pokemon/pokedex.png');
+    background-image: url('./imagens/Pokemon/pokedex.png');
     background-size: cover;
     background-position: center;
 }
