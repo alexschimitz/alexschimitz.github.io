@@ -165,9 +165,10 @@ function displayPokemon(index) {
     const imagePath = `/imagens/Pokemon/${toLowerCase(pokemon.nome)}.png`;
 
     resultDiv.innerHTML = `
-        <p>Pokémon encontrado: ${pokemon.nome}, Tipo: ${pokemon.tipo}, Índice Original: ${pokemon.indice_original}</p>
-        <img src="${imagePath}" alt="${pokemon.nome}" style="max-width: 100px; max-height: 100px; position: relative; top: -0px; left: -20px;">
-    `;
+    <img src="${imagePath}" alt="${pokemon.nome}" style="max-width: 100px; max-height: 100px; position: relative; top: -0px; left: -20px;">
+    <p class="pokemon-name">${pokemon.nome}</p>
+    <p class="pokemon-tipo">${pokemon.tipo}</p>
+`;
 }
 
 function searchPokemon() {

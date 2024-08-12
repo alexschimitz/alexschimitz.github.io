@@ -567,3 +567,25 @@ span {
     background-color: green;
 }
 
+.pokemon-name {
+    font-family: 'Press Start 2P', cursive; /* Fonte personalizada */
+    font-size: 24px; /* Tamanho da fonte */
+    font-weight: bold; /* Negrito */
+    color: #f1c40f; /* Cor dourada */
+    text-align: center; /* Centraliza o texto */
+    margin-top: 50px; /* Adiciona margem superior para mover o texto para baixo */
+    margin-bottom: 0; /* Remove margem inferior */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Sombra para efeito de profundidade */
+}
+
+.pokemon-tipo {
+    font-family: 'Press Start 2P', cursive; /* Fonte personalizada */
+    font-size: 24px; /* Tamanho da fonte */
+    font-weight: bold; /* Negrito */
+    color: #f1c40f; /* Cor dourada */
+    text-align: center; /* Centraliza o texto */
+    margin-top: 20px; /* Adiciona margem superior para mover o texto para baixo */
+    margin-bottom: 0; /* Remove margem inferior */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Sombra para efeito de profundidade */
+}
+
