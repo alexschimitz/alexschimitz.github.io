@@ -164,10 +164,7 @@ function displayPokemon(index) {
     const pokemon = Pokedex[index];
     const imagePath = `./imagens/Pokemon/${pokemon.nome}.png`;
 
-    resultDiv.innerHTML = `
-        <p>Pokémon encontrado: ${pokemon.nome}, Tipo: ${pokemon.tipo}, Índice Original: ${pokemon.indice_original}</p>
-        <img src="${imagePath}" alt="${pokemon.nome}" style="max-width: 100px; max-height: 100px; position: relative; top: -50px; left: -20px;">
-    `;
+    resultDiv.style.backgroundImage = `url(${imagePath})`;
 }
 
 function searchPokemon() {
