@@ -162,7 +162,7 @@ function toLowerCase(str) {
 function displayPokemon(index) {
     const resultDiv = document.getElementById('result');
     const pokemon = Pokedex[index];
-    const imagePath = `./imagens/Pokemon/${pokemon.nome}.png`;
+    const imagePath = `imagens/Pokemon/${pokemon.nome}.png`;
 
     resultDiv.innerHTML = `
         <p>Pokémon encontrado: ${pokemon.nome}, Tipo: ${pokemon.tipo}, Índice Original: ${pokemon.indice_original}</p>
