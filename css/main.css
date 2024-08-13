@@ -361,16 +361,127 @@ span {
     font-size: 2.4rem;
     color: var(--second-bg-color);
 }
+#DEX {
+    position: relative;
+    max-width: 300px; /* Ajuste conforme o tamanho da imagem */
+    height: auto; /* Ajuste conforme o tamanho da imagem */
+    background-image: url('./imagens/Pokemon/pokedex.png');
+    background-size: cover;
+    background-position: center;
+}
 
+.pokemon-name {
+    font-family: 'Press Start 2P', cursive; /* Fonte personalizada */
+    font-size: 24px; /* Tamanho da fonte */
+    font-weight: bold; /* Negrito */
+    color: #f1c40f; /* Cor dourada */
+    text-align: center; /* Centraliza o texto */
+    margin-top: 0px; /* Adiciona margem superior para mover o texto para baixo */
+    margin-bottom: 0; /* Remove margem inferior */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Sombra para efeito de profundidade */
+}
+
+.pokemon-tipo {
+    font-family: 'Press Start 2P', cursive; /* Fonte personalizada */
+    font-size: 24px; /* Tamanho da fonte */
+    font-weight: bold; /* Negrito */
+    color: #f1c40f; /* Cor dourada */
+    text-align: center; /* Centraliza o texto */
+    margin-top: 10px; /* Adiciona margem superior para mover o texto para baixo */
+    margin-bottom: 0; /* Remove margem inferior */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Sombra para efeito de profundidade */
+}
+
+@media (min-width: 1280px){
+    #DEX {
+        width: 300px; /* Ajuste a largura conforme necessário */
+        margin: 0 auto; /* Centraliza horizontalmente */
+        max-width: 100%; /* Ajuste conforme o tamanho da imagem */
+        height: auto; /* Ajuste conforme o tamanho da imagem */
+        background-image: url('./imagens/Pokemon/pokedex.png');
+        background-size: cover;
+        background-position: center;
+        left: 100%;
+    }
+
+    #searchInput {
+        position: relative;
+        top: -20px; /* Valor negativo move o elemento para cima */
+        margin-left: -30px;
+        max-width: 80%;
+        margin-bottom: 10px;
+    }
+    #procurar .button-container {
+        position: relative;
+        display: flex; /* Organiza os botões em linha */
+        gap: 10px; /* Espaço entre os botões */
+        top: -25px;
+        left:-10px;
+        padding: 8px;
+        background-color: #f0f0f0; /* Cor de fundo suave */
+        border: 1px solid #3b4cca; /* Borda azul escura inspirada na paleta Pokémon */
+        border-radius: 10px; /* Bordas ligeiramente arredondadas */
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1); /* Sombra leve para um toque sutil */
+        font-family: Arial, sans-serif; /* Fonte padrão e limpa */
+        text-align: center;
+        color: #3b4cca; /* Cor do texto azul escuro */
+        transition: all 0.3s ease; /* Transição suave para o hover */
+    }
+}
 @media (max-width: 1200px) {
     html {
         font-size: 55%;
     }
+    #searchInput {
+        position: relative;
+        top: -20px; /* Valor negativo move o elemento para cima */
+        margin-left: -30px;
+        max-width: 80%;
+        margin-bottom: 10px;
+    }
+    #procurar .button-container {
+        position: relative;
+        display: flex; /* Organiza os botões em linha */
+        gap: 10px; /* Espaço entre os botões */
+        top: -25px;
+        left:-10px;
+        padding: 8px;
+        background-color: #f0f0f0; /* Cor de fundo suave */
+        border: 1px solid #3b4cca; /* Borda azul escura inspirada na paleta Pokémon */
+        border-radius: 10px; /* Bordas ligeiramente arredondadas */
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1); /* Sombra leve para um toque sutil */
+        font-family: Arial, sans-serif; /* Fonte padrão e limpa */
+        text-align: center;
+        color: #3b4cca; /* Cor do texto azul escuro */
+        transition: all 0.3s ease; /* Transição suave para o hover */
+    }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 991px){
     html {
         padding: 2rem 3%;
+    }
+    
+
+    .inicio {
+        flex-direction: column;
+    }
+
+    .inicio-content h3 {
+        font-size: 2.6rem;
+    }
+
+    .inicio-content h1 {
+        font-size: 5rem;
+    }
+
+    .inicio-img img {
+        width: 70vw;
+        margin-top: 4rem;
+    }
+
+    .ptf_c {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     section {
@@ -394,7 +505,10 @@ span {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 617px){
+    .ptf_c {
+        grid-template-columns: 1fr;
+    }
     #menu-icon {
         display: block;
     }
@@ -420,70 +534,97 @@ span {
         font-size: 2rem;
         margin: 3rem 0;
     }
-
-    .inicio {
-        flex-direction: column;
-    }
-
-    .inicio-content h3 {
-        font-size: 2.6rem;
-    }
-
-    .inicio-content h1 {
-        font-size: 5rem;
-    }
-
-    .inicio-img img {
-        width: 70vw;
-        margin-top: 4rem;
-    }
-
-    .about {
-        flex-direction: column-reverse;
-    }
-
-    .about img {
-        width: 70vw;
-        margin-top: 4rem;
-    }
-
-    .services h2 {
-        margin-bottom: 3rem;
-    }
-
-    .portfolio h2 {
-        margin-bottom: 3rem;
-    }
-
-    .ptf_c {
-        grid-template-columns: repeat(2, 1fr);
-    }
 }
 
-@media (max-width: 617px) {
-    .ptf_c {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 450px) {
+@media (max-width: 450px){
     html {
         font-size: 50%;
     }
 
-    .contact form .input-box {
-        width: 100%;
+    #DEX {
+        position: relative;
+        max-width: 100%; /* Ajuste conforme o tamanho da imagem */
+        height: auto; /* Ajuste conforme o tamanho da imagem */
+        background-image: url('./imagens/Pokemon/pokedex.png');
+        background-size: cover;
+        background-position: center;
     }
+
+    #searchInput {
+        position: relative;
+        top: -35px; /* Valor negativo move o elemento para cima */
+        margin-left: -30px;
+        max-width: 80%;
+        margin-bottom: 10px;
+    }
+
+    .pokemon-name {
+        position: relative; /* ou absolute, dependendo do layout */
+        left: -10px; /* Mova para a esquerda */
+        top: 25px;
+    }    
+    .pokemon-tipo {
+        position: relative; /* ou absolute, dependendo do layout */
+        left: -12px; /* Mova para a esquerda */
+        top: 30px;
+    } 
 }
 
-@media (max-width: 365px) {
+@media (max-width: 430px){
+    html {
+        font-size: 50%;
+    }
+    .pokemon-name {
+        position: relative; /* ou absolute, dependendo do layout */
+        left: -10px; /* Mova para a esquerda */
+        top: 30px;
+    }    
+    .pokemon-tipo {
+        position: relative; /* ou absolute, dependendo do layout */
+        left: -12px; /* Mova para a esquerda */
+        top: 40px;
+    } 
+}
+
+@media (max-width: 380px){
     .inicio-img img {
         width: 90vw;
     }
+    .pokemon-name {
+        position: relative; /* ou absolute, dependendo do layout */
+        left: -10px; /* Mova para a esquerda */
+        top: 10px;
+    }    
+    .pokemon-tipo {
+        position: relative; /* ou absolute, dependendo do layout */
+        left: -12px; /* Mova para a esquerda */
+        top: 10px;
+    }    
+    .footer {
+        flex-direction: column-reverse;
+    }
 
-    .about-img img {
+    .footer p {
+        text-align: center;
+        margin: 2rem;
+    }
+}
+
+@media (max-width: 365px){
+    .inicio-img img {
         width: 90vw;
     }
+    .pokemon-name {
+        position: relative; /* ou absolute, dependendo do layout */
+        left: -10px; /* Mova para a esquerda */
+        top: 10px;
+    }    
+    .pokemon-tipo {
+        position: relative; /* ou absolute, dependendo do layout */
+        left: -12px; /* Mova para a esquerda */
+        top: 10px;
+    }    
+    
 
     .footer {
         flex-direction: column-reverse;
@@ -495,14 +636,59 @@ span {
     }
 }
 
-#DEX {
-    position: relative;
-    max-width: 300px; /* Ajuste conforme o tamanho da imagem */
-    height: auto; /* Ajuste conforme o tamanho da imagem */
-    background-image: url('./imagens/Pokemon/pokedex.png');
-    background-size: cover;
-    background-position: center;
+@media (max-width: 325px){
+    .inicio-img img {
+        width: 90vw;
+    }
+    #searchInput {
+        position: relative;
+        top: -35px; /* Valor negativo move o elemento para cima */
+        margin-left: -30px;
+        max-width: 80%;
+        margin-bottom: 10px;
+    }
+    #procurar .button-container {
+        position: relative;
+        display: flex; /* Organiza os botões em linha */
+        gap: 10px; /* Espaço entre os botões */
+        top: -25px;
+        left:-10px;
+        padding: 8px;
+        background-color: #f0f0f0; /* Cor de fundo suave */
+        border: 1px solid #3b4cca; /* Borda azul escura inspirada na paleta Pokémon */
+        border-radius: 10px; /* Bordas ligeiramente arredondadas */
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1); /* Sombra leve para um toque sutil */
+        font-family: Arial, sans-serif; /* Fonte padrão e limpa */
+        text-align: center;
+        color: #3b4cca; /* Cor do texto azul escuro */
+        transition: all 0.3s ease; /* Transição suave para o hover */
+    }
+    
+    #procurar .button-container:hover {
+        background-color: #e6e6fa; /* Cor de fundo levemente destacada no hover */
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Aumenta a sombra no hover */
+    }
+
+    .pokemon-name {
+        position: relative; /* ou absolute, dependendo do layout */
+        left: -10px; /* Mova para a esquerda */
+        top: -5px;
+    }    
+    
+
+    .footer {
+        flex-direction: column-reverse;
+    }
+
+    .footer p {
+        text-align: center;
+        margin: 2rem;
+    }
 }
+
+
+
+
 
 #DEX img {
     max-width: 100%; /* Garantir que a imagem se ajuste bem ao contêiner */
@@ -567,25 +753,5 @@ span {
     background-color: green;
 }
 
-.pokemon-name {
-    font-family: 'Press Start 2P', cursive; /* Fonte personalizada */
-    font-size: 24px; /* Tamanho da fonte */
-    font-weight: bold; /* Negrito */
-    color: #f1c40f; /* Cor dourada */
-    text-align: center; /* Centraliza o texto */
-    margin-top: 50px; /* Adiciona margem superior para mover o texto para baixo */
-    margin-bottom: 0; /* Remove margem inferior */
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Sombra para efeito de profundidade */
-}
 
-.pokemon-tipo {
-    font-family: 'Press Start 2P', cursive; /* Fonte personalizada */
-    font-size: 24px; /* Tamanho da fonte */
-    font-weight: bold; /* Negrito */
-    color: #f1c40f; /* Cor dourada */
-    text-align: center; /* Centraliza o texto */
-    margin-top: 20px; /* Adiciona margem superior para mover o texto para baixo */
-    margin-bottom: 0; /* Remove margem inferior */
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Sombra para efeito de profundidade */
-}
 
