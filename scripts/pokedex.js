@@ -161,14 +161,15 @@ function toLowerCase(str) {
 
 function displayPokemon(index) {
     const resultDiv = document.getElementById('result');
+    const resultInfo = document.getElementById('resultInfo');
     const pokemon = Pokedex[index];
     const imagePath = `/imagens/Pokemon/${toLowerCase(pokemon.nome)}.gif`;
 
     resultDiv.innerHTML = `
-    <img src="${imagePath}" alt="${pokemon.nome}" style="max-width: 100px; max-height: 100px; position: relative; top: -0px; left: -20px;">
+    <img src="${imagePath}" alt="${pokemon.nome}" style="max-width: 100px; max-height: 100px; position: absolute; top: 0px; left: -50px;">`
+    resultInfo.innerHTML = `
     <p class="pokemon-name">${pokemon.nome}</p>
-    <p class="pokemon-tipo">${pokemon.tipo}</p>
-`;
+    <p class="pokemon-tipo">${pokemon.tipo}</p>`;
 }
 
 function searchPokemon() {

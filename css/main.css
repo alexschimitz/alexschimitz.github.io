@@ -461,8 +461,6 @@ span {
     html {
         padding: 2rem 3%;
     }
-    
-
     .inicio {
         flex-direction: column;
     }
@@ -512,7 +510,7 @@ span {
     #menu-icon {
         display: block;
     }
-
+    
     .navbar {
         position: absolute;
         top: 100%;
@@ -577,12 +575,12 @@ span {
     .pokemon-name {
         position: relative; /* ou absolute, dependendo do layout */
         left: -10px; /* Mova para a esquerda */
-        top: 30px;
+        top: 0px;
     }    
     .pokemon-tipo {
         position: relative; /* ou absolute, dependendo do layout */
         left: -12px; /* Mova para a esquerda */
-        top: 40px;
+        top: 10px;
     } 
 }
 
@@ -593,12 +591,10 @@ span {
     .pokemon-name {
         position: relative; /* ou absolute, dependendo do layout */
         left: -10px; /* Mova para a esquerda */
-        top: 10px;
     }    
     .pokemon-tipo {
         position: relative; /* ou absolute, dependendo do layout */
         left: -12px; /* Mova para a esquerda */
-        top: 10px;
     }    
     .footer {
         flex-direction: column-reverse;
@@ -617,12 +613,12 @@ span {
     .pokemon-name {
         position: relative; /* ou absolute, dependendo do layout */
         left: -10px; /* Mova para a esquerda */
-        top: 10px;
+        top: 0px;
     }    
     .pokemon-tipo {
         position: relative; /* ou absolute, dependendo do layout */
         left: -12px; /* Mova para a esquerda */
-        top: 10px;
+        top: 0px;
     }    
     
 
@@ -642,7 +638,7 @@ span {
     }
     #searchInput {
         position: relative;
-        top: -35px; /* Valor negativo move o elemento para cima */
+        top: -15px; /* Valor negativo move o elemento para cima */
         margin-left: -30px;
         max-width: 80%;
         margin-bottom: 10px;
@@ -685,7 +681,55 @@ span {
         margin: 2rem;
     }
 }
+@media (max-width: 163px){
+    .inicio-img img {
+        width: 90vw;
+    }
+    #searchInput {
+        position: relative;
+        top:120px; /* Valor negativo move o elemento para cima */
+        margin-left: -30px;
+        max-width: 80%;
+        margin-bottom: 10px;
+    }
+    #procurar .button-container {
+        position: relative;
+        display: flex; /* Organiza os botões em linha */
+        gap: 10px; /* Espaço entre os botões */
+        top: 120px;
+        left:-10px;
+        padding: 8px;
+        background-color: #f0f0f0; /* Cor de fundo suave */
+        border: 1px solid #3b4cca; /* Borda azul escura inspirada na paleta Pokémon */
+        border-radius: 10px; /* Bordas ligeiramente arredondadas */
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1); /* Sombra leve para um toque sutil */
+        font-family: Arial, sans-serif; /* Fonte padrão e limpa */
+        text-align: center;
+        color: #3b4cca; /* Cor do texto azul escuro */
+        transition: all 0.3s ease; /* Transição suave para o hover */
+    }
+    
+    #procurar .button-container:hover {
+        background-color: #e6e6fa; /* Cor de fundo levemente destacada no hover */
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Aumenta a sombra no hover */
+    }
 
+    .pokemon-name {
+        position: relative; /* ou absolute, dependendo do layout */
+        left: -10px; /* Mova para a esquerda */
+        top: 12px;
+    }    
+    
+
+    .footer {
+        flex-direction: column-reverse;
+    }
+
+    .footer p {
+        text-align: center;
+        margin: 2rem;
+    }
+}
 
 
 
@@ -744,9 +788,18 @@ span {
     color: #fff;
 }
 
+#resultInfo {
+    position: absolute;
+    top: 53%; /* Ajuste conforme necessário */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #fff;
+}
+
 #result img {
-    max-width: 200px;
-    max-height: 200px;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .portfolio .procurar{
