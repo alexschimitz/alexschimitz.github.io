@@ -162,7 +162,7 @@ function toLowerCase(str) {
 function displayPokemon(index) {
     const resultDiv = document.getElementById('result');
     const pokemon = Pokedex[index];
-    const imagePath = `/imagens/Pokemon/${toLowerCase(pokemon.nome)}.png`;
+    const imagePath = `/imagens/Pokemon/${toLowerCase(pokemon.nome)}.gif`;
 
     resultDiv.innerHTML = `
     <img src="${imagePath}" alt="${pokemon.nome}" style="max-width: 100px; max-height: 100px; position: relative; top: -0px; left: -20px;">
