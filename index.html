@@ -4,9 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0a0d0c">
-  <meta name="description" content="Portfólio de Alexsander Schimitz — desenvolvimento, tecnologia e projetos autorais.">
-  <title>Alexsander Schimitz — Desenvolvedor</title>
-
+  <meta name="description" content="Portfólio de Alexsander Schimitz — jogos autorais, web e projetos em tecnologia.">
+  <title>Alexsander Schimitz — Desenvolvedor &amp; Jogos</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,16 +21,15 @@
         <span class="brand-mark">AS</span>
         <span class="brand-name">Alexsander Schimitz</span>
       </a>
-
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
-        <span></span>
-        <span></span>
+        <span></span><span></span>
       </button>
-
       <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
+        <a href="#jogos">Jogos</a>
         <a href="#sobre">Sobre</a>
         <a href="#projetos">Projetos</a>
         <a href="#stack">Stack</a>
+        <button class="theme-toggle" type="button" aria-label="Alternar tema claro ou escuro" title="Tema">◐</button>
         <a class="nav-cta" href="https://github.com/alexschimitz" target="_blank" rel="noreferrer">GitHub ↗</a>
       </nav>
     </div>
@@ -43,22 +41,19 @@
         <div class="eyebrow"><span class="status-dot"></span> Portfólio pessoal</div>
         <h1 id="hero-title">Eu transformo ideias em <span>projetos que funcionam.</span></h1>
         <p class="hero-lead">
-          Sou Alexsander Schimitz. Estudo e desenvolvo soluções em tecnologia, explorando web,
-          programação e projetos autorais com foco em aprender construindo.
+          Sou Alexsander Schimitz. Estudo e desenvolvo soluções em tecnologia — web, programação
+          e jogos autorais — com foco em aprender construindo.
         </p>
-
         <div class="hero-actions">
-          <a class="button button-primary" href="#projetos">Ver projetos <span>↓</span></a>
-          <a class="button button-ghost" href="https://github.com/alexschimitz" target="_blank" rel="noreferrer">Meu GitHub ↗</a>
+          <a class="button button-primary" href="#jogos">Jogar agora <span>↓</span></a>
+          <a class="button button-ghost" href="#projetos">Ver projetos</a>
         </div>
-
         <div class="hero-meta" aria-label="Áreas de interesse">
-          <span>Desenvolvimento Web</span>
-          <span>Programação</span>
+          <span>Jogos web</span>
+          <span>Front-end</span>
           <span>Projetos autorais</span>
         </div>
       </div>
-
       <div class="hero-visual reveal" aria-label="Resumo técnico">
         <div class="terminal-window">
           <div class="terminal-topbar">
@@ -71,53 +66,105 @@
             <p class="terminal-result">Alexsander Schimitz</p>
             <p><span class="prompt">$</span> cat focus.txt</p>
             <p class="terminal-result accent">criar · testar · aprender · evoluir</p>
-            <p><span class="prompt">$</span> ls ./projects</p>
+            <p><span class="prompt">$</span> ls ./games</p>
             <div class="terminal-list">
+              <span>garagem-games-tycoon/</span>
+              <span>turbo-cidade/</span>
               <span>pokedex/</span>
-              <span>estudos/</span>
-              <span>experimentos/</span>
             </div>
             <p class="cursor-line"><span class="prompt">$</span> <span class="cursor"></span></p>
           </div>
         </div>
         <div class="floating-card floating-card-one">HTML · CSS · JS</div>
-        <div class="floating-card floating-card-two">build &gt; repeat</div>
+        <div class="floating-card floating-card-two">Godot · Web</div>
+      </div>
+    </section>
+
+    <section class="section games-section" id="jogos" aria-labelledby="jogos-title">
+      <div class="container">
+        <div class="section-kicker reveal">01 / Jogos</div>
+        <div class="projects-heading reveal">
+          <div>
+            <h2 id="jogos-title">Jogos para jogar no navegador</h2>
+            <p>Dois projetos autorais no GitHub Pages — mobile-first e prontos para testar.</p>
+          </div>
+        </div>
+        <div class="games-grid">
+          <article class="game-card game-card-tycoon reveal">
+            <div class="game-visual" aria-hidden="true">
+              <div class="game-orb"></div>
+              <div class="game-badge">PWA · v0.7.1</div>
+              <div class="game-art tycoon-art">
+                <span class="art-building"></span>
+                <span class="art-building short"></span>
+                <span class="art-building"></span>
+              </div>
+            </div>
+            <div class="game-content">
+              <div class="project-topline">
+                <span>Simulação</span>
+                <span>HTML · CSS · JS</span>
+              </div>
+              <h3>Garagem Games Tycoon</h3>
+              <p>Gerencie um estúdio de jogos, da garagem ao prédio próprio. Contrate a equipe, lance títulos e cresça a marca.</p>
+              <div class="game-actions">
+                <a class="button button-primary" href="https://alexschimitz.github.io/games/garagem-games-tycoon/">Jogar →</a>
+                <a class="text-link" href="https://alexschimitz.github.io/games/garagem-games-tycoon/" target="_blank" rel="noreferrer">Abrir em nova aba ↗</a>
+              </div>
+            </div>
+          </article>
+          <article class="game-card game-card-cidade reveal">
+            <div class="game-visual" aria-hidden="true">
+              <div class="game-orb orb-warm"></div>
+              <div class="game-badge">Godot 4 · WebGL2</div>
+              <div class="game-art cidade-art">
+                <span class="art-road"></span>
+                <span class="art-car"></span>
+                <span class="art-skyline"></span>
+              </div>
+            </div>
+            <div class="game-content">
+              <div class="project-topline">
+                <span>Ação top-down 3D</span>
+                <span>Godot · WASM</span>
+              </div>
+              <h3>Turbo Cidade 3D</h3>
+              <p>Cidade low-poly vista de cima, missões, polícia e direção arcade — inspirado em GTA clássico, feito do zero para o navegador.</p>
+              <div class="game-actions">
+                <a class="button button-primary" href="https://alexschimitz.github.io/games/turbo-cidade/">Jogar →</a>
+                <a class="text-link" href="https://alexschimitz.github.io/games/turbo-cidade/" target="_blank" rel="noreferrer">Abrir em nova aba ↗</a>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
     <section class="section container" id="sobre" aria-labelledby="sobre-title">
-      <div class="section-kicker reveal">01 / Sobre</div>
+      <div class="section-kicker reveal">02 / Sobre</div>
       <div class="about-grid">
         <div class="section-heading reveal">
           <h2 id="sobre-title">Tecnologia faz mais sentido quando vira algo <span>real.</span></h2>
         </div>
         <div class="about-copy reveal">
-          <p>
-            Meu portfólio é um espaço para concentrar projetos, experimentos e estudos que mostram
-            minha evolução prática. Mais do que listar tecnologias, a ideia aqui é mostrar o que eu
-            consigo construir com elas.
-          </p>
-          <p>
-            Gosto de aprender colocando a mão no código, entendendo como cada parte funciona e
-            refinando o resultado até ficar simples, útil e bem apresentado.
-          </p>
+          <p>Meu portfólio concentra projetos, experimentos e estudos que mostram evolução prática. Mais do que listar tecnologias, a ideia é mostrar o que consigo construir com elas.</p>
+          <p>Gosto de aprender colocando a mão no código, entendendo como cada parte funciona e refinando o resultado até ficar simples, útil e bem apresentado.</p>
         </div>
       </div>
     </section>
 
     <section class="section projects-section" id="projetos" aria-labelledby="projetos-title">
       <div class="container">
-        <div class="section-kicker reveal">02 / Projetos</div>
+        <div class="section-kicker reveal">03 / Projetos</div>
         <div class="projects-heading reveal">
           <div>
-            <h2 id="projetos-title">Projetos selecionados</h2>
-            <p>Alguns trabalhos que representam estudo, prática e curiosidade técnica.</p>
+            <h2 id="projetos-title">Outros trabalhos</h2>
+            <p>Estudos e experimentos além dos jogos em destaque.</p>
           </div>
           <a class="text-link" href="https://github.com/alexschimitz?tab=repositories" target="_blank" rel="noreferrer">Ver todos no GitHub ↗</a>
         </div>
-
-        <div class="projects-grid">
-          <article class="project-card project-featured reveal">
+        <div class="projects-grid projects-grid-compact">
+          <article class="project-card reveal">
             <div class="project-index">01</div>
             <div class="project-visual pokedex-visual" aria-hidden="true">
               <div class="poke-orbit orbit-one"></div>
@@ -126,19 +173,15 @@
               <div class="project-label">WEB APP</div>
             </div>
             <div class="project-content">
-              <div class="project-topline">
-                <span>Projeto interativo</span>
-                <span>HTML · CSS · JavaScript</span>
-              </div>
+              <div class="project-topline"><span>Projeto interativo</span><span>HTML · CSS · JavaScript</span></div>
               <h3>Pokédex</h3>
-              <p>Uma experiência web temática com busca e interface própria, criada como projeto prático de desenvolvimento front-end.</p>
+              <p>Experiência web temática com busca e interface própria, criada como prática de front-end.</p>
               <div class="project-links">
                 <a href="pokedex.html">Abrir projeto →</a>
                 <a href="https://github.com/alexschimitz/alexschimitz.github.io" target="_blank" rel="noreferrer">Código ↗</a>
               </div>
             </div>
           </article>
-
           <article class="project-card reveal">
             <div class="project-index">02</div>
             <div class="project-visual studies-visual" aria-hidden="true">
@@ -151,33 +194,11 @@
               <div class="project-label">REPOSITÓRIO</div>
             </div>
             <div class="project-content">
-              <div class="project-topline">
-                <span>Estudos</span>
-                <span>Prática contínua</span>
-              </div>
+              <div class="project-topline"><span>Estudos</span><span>Prática contínua</span></div>
               <h3>Meus Estudos</h3>
-              <p>Repositório onde concentro códigos, exercícios e projetos usados no meu processo de aprendizado.</p>
+              <p>Repositório com códigos, exercícios e projetos do processo de aprendizado.</p>
               <div class="project-links">
                 <a href="https://github.com/alexschimitz/Meus-Estudos" target="_blank" rel="noreferrer">Ver repositório ↗</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card project-note reveal">
-            <div class="project-index">03</div>
-            <div class="project-visual experiments-visual" aria-hidden="true">
-              <div class="radar"></div>
-              <div class="project-label">EM EVOLUÇÃO</div>
-            </div>
-            <div class="project-content">
-              <div class="project-topline">
-                <span>Próximos projetos</span>
-                <span>2026</span>
-              </div>
-              <h3>Novos experimentos</h3>
-              <p>Este espaço foi preparado para destacar projetos maiores conforme eles forem ficando prontos para publicação.</p>
-              <div class="project-links">
-                <a href="https://github.com/alexschimitz" target="_blank" rel="noreferrer">Acompanhar no GitHub ↗</a>
               </div>
             </div>
           </article>
@@ -186,34 +207,17 @@
     </section>
 
     <section class="section container" id="stack" aria-labelledby="stack-title">
-      <div class="section-kicker reveal">03 / Stack</div>
+      <div class="section-kicker reveal">04 / Stack</div>
       <div class="stack-grid">
         <div class="section-heading reveal">
           <h2 id="stack-title">Ferramentas que fazem parte do processo.</h2>
           <p>O foco não é colecionar logos — é usar a ferramenta certa para resolver o problema.</p>
         </div>
-
         <div class="stack-list reveal">
-          <div class="stack-row">
-            <span class="stack-number">01</span>
-            <strong>HTML & CSS</strong>
-            <span>Estrutura, responsividade e interface</span>
-          </div>
-          <div class="stack-row">
-            <span class="stack-number">02</span>
-            <strong>JavaScript</strong>
-            <span>Interação e lógica no front-end</span>
-          </div>
-          <div class="stack-row">
-            <span class="stack-number">03</span>
-            <strong>Git & GitHub</strong>
-            <span>Versionamento e publicação</span>
-          </div>
-          <div class="stack-row">
-            <span class="stack-number">04</span>
-            <strong>Aprendizado contínuo</strong>
-            <span>Novas linguagens, engines e ferramentas</span>
-          </div>
+          <div class="stack-row"><span class="stack-number">01</span><strong>HTML &amp; CSS</strong><span>Estrutura, responsividade e interface</span></div>
+          <div class="stack-row"><span class="stack-number">02</span><strong>JavaScript</strong><span>Interação e lógica no front-end</span></div>
+          <div class="stack-row"><span class="stack-number">03</span><strong>Godot</strong><span>Jogos 3D exportados para WebAssembly</span></div>
+          <div class="stack-row"><span class="stack-number">04</span><strong>Git &amp; GitHub</strong><span>Versionamento e publicação (Pages)</span></div>
         </div>
       </div>
     </section>
@@ -221,9 +225,9 @@
     <section class="contact-section">
       <div class="container contact-card reveal">
         <div>
-          <div class="section-kicker">04 / Contato</div>
+          <div class="section-kicker">05 / Contato</div>
           <h2>Tem uma ideia interessante?</h2>
-          <p>Você pode acompanhar meus projetos e entrar em contato comigo pelas minhas redes.</p>
+          <p>Acompanhe os projetos e fale comigo pelas redes.</p>
         </div>
         <div class="contact-actions">
           <a class="button button-primary" href="https://github.com/alexschimitz" target="_blank" rel="noreferrer">GitHub ↗</a>
@@ -240,7 +244,6 @@
       <a href="#top">Voltar ao topo ↑</a>
     </div>
   </footer>
-
   <script src="scripts/home.js"></script>
 </body>
 </html>

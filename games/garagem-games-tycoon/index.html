@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#2f3b52">
+<meta name="description" content="Garagem Games Tycoon — gerencie seu estúdio de jogos, da garagem ao prédio próprio.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="css/style.css">
+<title>Garagem Games Tycoon</title>
+</head>
+<body>
+<div id="app">
+  <header id="hud" hidden>
+    <div class="hud-row">
+      <div class="hud-btns">
+        <button id="btn-menu" class="round" aria-label="Menu"><span class="burger"></span></button>
+        <button id="btn-info" class="round" aria-label="Informações">i</button>
+      </div>
+      <div id="proj-card" class="card"></div>
+      <div id="stat-box" class="card"></div>
+    </div>
+    <div id="bubbles"></div>
+  </header>
+  <main id="stage">
+    <canvas id="office" aria-label="Escritório do estúdio"></canvas>
+    <div id="cam-ctl" hidden>
+      <button id="cam-in" aria-label="Aproximar">+</button><button id="cam-out" aria-label="Afastar">−</button><button id="cam-fit" aria-label="Enquadrar">⌂</button><button id="btn-build" aria-label="Construir e decorar" title="Construir (B)">🔨</button>
+    </div>
+    <div id="floor-ctl" hidden><button id="fl-up" aria-label="Andar acima">▲</button><span id="fl-name">Térreo</span><button id="fl-down" aria-label="Andar abaixo">▼</button></div>
+    <canvas id="minimap" aria-label="Minimapa" hidden></canvas>
+    <div id="sales-card" class="card" hidden></div>
+    <div id="tutorial" class="card" hidden></div>
+  </main>
+  <footer id="dock" hidden>
+    <div id="speed"></div>
+    <nav id="nav"></nav>
+  </footer>
+</div>
+<div id="toasts" aria-live="polite"></div>
+<div id="modals"></div>
+<noscript>Este jogo precisa de JavaScript.</noscript>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

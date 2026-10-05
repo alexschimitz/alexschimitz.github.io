@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="theme-color" content="#0b0f1a">
+		<meta name="format-detection" content="telephone=no">
+		<title>Turbo Cidade 3D</title>
+		<style>
+/* Tela cheia sem gestos do navegador: sem rolagem, zoom, puxar-para-atualizar, seleção ou menu de contexto. */
+html, body, #canvas {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	width: 100%;
+	height: 100%;
+}
+html {
+	overscroll-behavior: none;
+	touch-action: none;
+	-webkit-text-size-adjust: 100%;
+}
+body {
+	position: fixed;
+	inset: 0;
+	color: white;
+	background-color: #0b0f1a;
+	overflow: hidden;
+	touch-action: none;
+	overscroll-behavior: none;
+	user-select: none;
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-tap-highlight-color: transparent;
+	font-family: 'Noto Sans', 'Droid Sans', Roboto, Arial, sans-serif;
+}
+#canvas {
+	display: block;
+	touch-action: none;
+	outline: none;
+}
+#status {
+	position: absolute;
+	inset: 0;
+	z-index: 5;
+	background: radial-gradient(ellipse at 50% 30%, #1d2b4d 0%, #0b0f1a 70%);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	visibility: hidden;
+	text-align: center;
+}
+#status h1 {
+	margin: 0 0 6px;
+	font-size: clamp(26px, 8vh, 56px);
+	letter-spacing: 2px;
+	color: #ffb826;
+	text-shadow: 0 3px 0 #5a2d00, 0 0 24px rgba(255, 140, 0, .45);
+}
+#status p { margin: 0 0 22px; color: #ffd8ef; font-size: clamp(13px, 3.4vh, 20px); }
+#bar {
+	width: min(60vw, 420px);
+	height: 16px;
+	border-radius: 9px;
+	background: rgba(255, 255, 255, .12);
+	border: 2px solid rgba(255, 255, 255, .35);
+	overflow: hidden;
+}
+#bar i {
+	display: block;
+	height: 100%;
+	width: 0%;
+	background: linear-gradient(90deg, #ff4fa3, #ffb826);
+	border-radius: 7px;
+	transition: width .15s linear;
+}
+#pct { margin-top: 10px; font-size: clamp(12px, 3vh, 17px); color: #cfe0ff; min-height: 1.3em; }
+#status-notice {
+	display: none;
+	background-color: #5b3943;
+	border-radius: .5rem;
+	border: 1px solid #9b3943;
+	color: #e0e0e0;
+	line-height: 1.3;
+	margin: 1rem 2rem 0;
+	padding: 1rem;
+	max-width: 80vw;
+}
+#retry { display: none; margin-top: 14px; padding: 12px 26px; font-size: 18px; border-radius: 24px; border: 0; background: #ffb826; color: #2b1600; font-weight: bold; }
+/* aviso para girar o celular (só em telas de toque em retrato) */
+#rotate {
+	display: none;
+	position: fixed;
+	inset: 0;
+	z-index: 20;
+	background: rgba(8, 12, 24, .96);
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: 24px;
+	box-sizing: border-box;
+}
+#rotate .ph {
+	width: 64px; height: 112px; border: 6px solid #ffb826; border-radius: 14px; position: relative;
+	animation: gira 2.4s ease-in-out infinite;
+}
+#rotate .ph::after { content: ""; position: absolute; left: 50%; bottom: 8px; width: 18px; height: 4px; margin-left: -9px; border-radius: 2px; background: #ffb826; }
+@keyframes gira { 0%, 20% { transform: rotate(0deg); } 60%, 100% { transform: rotate(-90deg); } }
+#rotate h2 { margin: 36px 0 6px; font-size: 26px; color: #ffb826; }
+#rotate p { margin: 0 0 18px; color: #dbe6ff; font-size: 17px; }
+#rotate button { padding: 10px 22px; border-radius: 22px; border: 2px solid #5f6f95; background: transparent; color: #cfe0ff; font-size: 15px; }
+@media (orientation: portrait) and (pointer: coarse) {
+	body:not(.ignore-portrait) #rotate { display: flex; }
+}
+		</style>
+		<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
+<link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
+		<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
+<link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
+
+		<script>
+/* Desbloqueio de áudio: navegadores de celular só liberam o som depois do primeiro toque.
+   Guardamos todos os AudioContext que o Godot criar e damos resume() no primeiro gesto. */
+(function () {
+	var ctxs = [];
+	var Orig = window.AudioContext || window.webkitAudioContext;
+	if (Orig) {
+		var Wrapped = class extends Orig {
+			constructor(...a) { super(...a); ctxs.push(this); }
+		};
+		window.AudioContext = Wrapped;
+		if (window.webkitAudioContext) { window.webkitAudioContext = Wrapped; }
+	}
+	var unlocked = false;
+	function unlock() {
+		ctxs.forEach(function (c) { try { if (c.state !== 'running') { c.resume(); } } catch (e) {} });
+		if (!unlocked) {
+			unlocked = true;
+			window.__audioUnlocked = true;
+			try { if (navigator.wakeLock) { navigator.wakeLock.request('screen').catch(function () {}); } } catch (e) {}
+		}
+	}
+	['pointerdown', 'touchstart', 'touchend', 'mousedown', 'keydown'].forEach(function (ev) {
+		window.addEventListener(ev, unlock, { capture: true, passive: true });
+	});
+	document.addEventListener('visibilitychange', function () {
+		if (document.visibilityState === 'visible') { unlock(); }
+	});
+	window.__tcUnlockAudio = unlock;
+	/* sem menu de contexto, zoom por pinça, toque duplo ou arrastar para atualizar */
+	['contextmenu', 'gesturestart', 'gesturechange', 'gestureend', 'selectstart', 'dragstart'].forEach(function (ev) {
+		document.addEventListener(ev, function (e) { e.preventDefault(); }, { passive: false });
+	});
+	document.addEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
+	document.addEventListener('touchstart', function (e) { if (e.touches.length > 1) { e.preventDefault(); } }, { passive: false });
+	document.addEventListener('wheel', function (e) { if (e.ctrlKey) { e.preventDefault(); } }, { passive: false });
+	var lastEnd = 0;
+	document.addEventListener('touchend', function (e) {
+		var n = Date.now();
+		if (n - lastEnd < 300) { e.preventDefault(); }
+		lastEnd = n;
+	}, { passive: false });
+	/* retrato: o jogo pausa sozinho (lê window.__portrait) */
+	function portrait() {
+		var coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+		window.__portrait = !!(coarse && window.innerHeight > window.innerWidth * 1.05 && !document.body.classList.contains('ignore-portrait'));
+	}
+	window.addEventListener('resize', portrait);
+	window.addEventListener('orientationchange', portrait);
+
+	/* Inclinar para virar (opcional): gira o celular como um volante. Pede permissão (iOS) dentro do gesto do toque. */
+	window.__tc_tilt = 0; window.__tc_ok = false; window.__tc_denied = false;
+	var motionOn = false, motionReq = false;
+	function onMotion(e) {
+		var a = e.accelerationIncludingGravity;
+		if (!a || a.x == null || a.y == null) { return; }
+		var ang = (screen.orientation && typeof screen.orientation.angle === 'number') ? screen.orientation.angle : (window.orientation || 0);
+		ang = ((ang % 360) + 360) % 360;
+		var dx = a.x, dy = a.y, sx, sy;
+		if (ang === 90) { sx = -dy; sy = dx; } else if (ang === 270) { sx = dy; sy = -dx; } else if (ang === 180) { sx = -dx; sy = -dy; } else { sx = dx; sy = dy; }
+		if (/iPhone|iPad|iPod/.test(navigator.userAgent)) { sx = -sx; sy = -sy; }
+		window.__tc_tilt = Math.atan2(-sx, sy);
+		window.__tc_ok = true;
+	}
+	function startMotion() {
+		if (motionOn || motionReq) { return; }
+		motionReq = true;
+		try {
+			if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+				DeviceMotionEvent.requestPermission().then(function (r) {
+					if (r === 'granted') { window.addEventListener('devicemotion', onMotion); motionOn = true; } else { window.__tc_denied = true; }
+					motionReq = false;
+				}).catch(function () { window.__tc_denied = true; motionReq = false; });
+			} else {
+				window.addEventListener('devicemotion', onMotion); motionOn = true; motionReq = false;
+			}
+		} catch (e) { window.__tc_denied = true; motionReq = false; }
+	}
+	function stopMotion() { window.removeEventListener('devicemotion', onMotion); motionOn = false; window.__tc_ok = false; window.__tc_tilt = 0; window.__tc_want = false; }
+	window.__tc_gyro_on = function () { window.__tc_want = true; window.__tc_denied = false; startMotion(); };
+	window.__tc_gyro_off = stopMotion;
+	['pointerup', 'touchend', 'click'].forEach(function (ev) {
+		window.addEventListener(ev, function () { if (window.__tc_want && !motionOn) { startMotion(); } }, { capture: true, passive: true });
+	});
+	window.addEventListener('DOMContentLoaded', function () {
+		portrait();
+		var b = document.getElementById('rotate-ignore');
+		if (b) { b.addEventListener('click', function () { document.body.classList.add('ignore-portrait'); portrait(); }); }
+	});
+}());
+		</script>
+	</head>
+	<body>
+		<canvas id="canvas" tabindex="0">
+			Seu navegador não suporta canvas.
+		</canvas>
+
+		<noscript>
+			Seu navegador não tem JavaScript ativado.
+		</noscript>
+
+		<div id="status">
+			<h1>TURBO CIDADE 3D</h1>
+			<p id="msg">Preparando a cidade…</p>
+			<div id="bar"><i id="fill"></i></div>
+			<div id="pct"></div>
+			<div id="status-notice"></div>
+			<button id="retry" onclick="location.reload()">Tentar de novo</button>
+		</div>
+
+		<div id="rotate">
+			<div class="ph"></div>
+			<h2>Gire o celular</h2>
+			<p>Turbo Cidade 3D é jogado na horizontal (paisagem).</p>
+			<button id="rotate-ignore">continuar assim mesmo</button>
+		</div>
+
+		<script src="index.js"></script>
+		<script>
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":false,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":390124,"index.wasm":39509339},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_THREADS_ENABLED = false;
+const engine = new Engine(GODOT_CONFIG);
+
+(function () {
+	const statusOverlay = document.getElementById('status');
+	const statusNotice = document.getElementById('status-notice');
+	const fill = document.getElementById('fill');
+	const pct = document.getElementById('pct');
+	const msg = document.getElementById('msg');
+
+	let initializing = true;
+	let statusMode = '';
+
+	function setStatusMode(mode) {
+		if (statusMode === mode || !initializing) {
+			return;
+		}
+		if (mode === 'hidden') {
+			statusOverlay.remove();
+			initializing = false;
+			window.__gameStarted = true;
+			return;
+		}
+		statusOverlay.style.visibility = 'visible';
+		statusNotice.style.display = mode === 'notice' ? 'block' : 'none';
+		document.getElementById('retry').style.display = mode === 'notice' ? 'inline-block' : 'none';
+		statusMode = mode;
+	}
+
+	function setStatusNotice(text) {
+		while (statusNotice.lastChild) {
+			statusNotice.removeChild(statusNotice.lastChild);
+		}
+		text.split('\n').forEach((line) => {
+			statusNotice.appendChild(document.createTextNode(line));
+			statusNotice.appendChild(document.createElement('br'));
+		});
+	}
+
+	function displayFailureNotice(err) {
+		console.error(err);
+		if (err instanceof Error) {
+			setStatusNotice(err.message);
+		} else if (typeof err === 'string') {
+			setStatusNotice(err);
+		} else {
+			setStatusNotice('Ocorreu um erro desconhecido.');
+		}
+		setStatusMode('notice');
+		initializing = false;
+	}
+
+	const missing = Engine.getMissingFeatures({
+		threads: GODOT_THREADS_ENABLED,
+	});
+
+	if (missing.length !== 0) {
+		displayFailureNotice('Erro\nO navegador não tem recursos necessários (WebGL2/WebAssembly):\n' + missing.join('\n'));
+	} else {
+		setStatusMode('progress');
+		engine.startGame({
+			'onProgress': function (current, total) {
+				if (current > 0 && total > 0) {
+					const p = Math.min(100, Math.floor(current * 100 / total));
+					fill.style.width = p + '%';
+					const mb = (current / 1048576).toFixed(1);
+					const tb = (total / 1048576).toFixed(1);
+					pct.textContent = p + '%  (' + mb + ' / ' + tb + ' MB)';
+					if (p >= 100) { msg.textContent = 'Montando a cidade…'; }
+				} else {
+					pct.textContent = 'Carregando…';
+				}
+			},
+		}).then(() => {
+			setStatusMode('hidden');
+		}, displayFailureNotice);
+	}
+}());
+		</script>
+	</body>
+</html>
+
