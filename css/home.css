@@ -25,7 +25,16 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px;
+  --header-offset: 96px;
+}
+
+/* Âncoras não ficam escondidas sob o cabeçalho fixo */
+section[id],
+article[id],
+h2[id],
+h3[id],
+.anchor {
+  scroll-margin-top: var(--header-offset);
 }
 
 body {
@@ -39,7 +48,8 @@ body {
   overflow-x: hidden;
 }
 
-body.menu-open {
+html.menu-open,
+html.menu-open body {
   overflow: hidden;
 }
 
@@ -91,17 +101,43 @@ button {
   opacity: 0.06;
 }
 
+/* O cabeçalho NÃO pode ter backdrop-filter/filter/transform: isso vira o
+   "containing block" do menu mobile (position: fixed) e o painel ficava preso
+   à altura do cabeçalho, deixando a página aparecer por trás. O desfoque fica
+   num pseudo-elemento, só como melhoria (@supports). */
 .site-header {
   position: fixed;
   inset: 0 0 auto;
   z-index: 100;
-  transition: background 220ms ease, border-color 220ms ease, backdrop-filter 220ms ease;
+  border-bottom: 1px solid transparent;
+  transition: background-color 220ms ease, border-color 220ms ease;
+}
+
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .site-header.scrolled {
-  background: rgba(9, 12, 11, 0.8);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid var(--line);
+  background-color: rgba(9, 12, 11, 0.96);
+  border-bottom-color: var(--line);
+}
+
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .site-header.scrolled {
+    background-color: rgba(9, 12, 11, 0.8);
+  }
+  .site-header.scrolled::before {
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+  }
+}
+
+.nav-overlay {
+  display: none;
 }
 
 .nav-wrap {
@@ -954,10 +990,18 @@ button {
     display: none;
   }
 
+  html {
+    --header-offset: 84px;
+  }
+
   .menu-toggle {
     display: block;
     position: relative;
     z-index: 102;
+    width: 46px;
+    height: 46px;
+    background: var(--bg, #090c0b);
+    touch-action: manipulation;
   }
 
   .menu-toggle.active span:first-child {
@@ -968,36 +1012,116 @@ button {
     transform: translateY(-3px) rotate(-45deg);
   }
 
+  /* Painel do menu: sempre opaco, com cor sólida de reserva nos dois temas */
   .main-nav {
     position: fixed;
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
     z-index: 101;
-    padding: 120px 28px 40px;
-    background: rgba(9, 12, 11, 0.97);
-    backdrop-filter: blur(22px);
+    width: min(86vw, 360px);
+    height: 100vh;
+    height: 100dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 88px 20px 32px;
+    background-color: #0f1311;
+    background-color: var(--panel-strong, #141916);
+    border-left: 1px solid var(--line-strong, rgba(255, 255, 255, 0.16));
+    box-shadow: -24px 0 60px rgba(0, 0, 0, 0.45);
     flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
-    opacity: 0;
+    align-items: stretch;
+    gap: 4px;
+    opacity: 1;
+    visibility: hidden;
     pointer-events: none;
-    transform: translateY(-12px);
-    transition: opacity 180ms ease, transform 180ms ease;
+    transform: translateX(104%);
+    transition: transform 220ms ease, visibility 0s linear 220ms;
   }
 
   .main-nav.open {
-    opacity: 1;
-    transform: none;
+    visibility: visible;
     pointer-events: auto;
+    transform: none;
+    transition: transform 220ms ease, visibility 0s linear 0s;
   }
 
   .main-nav a {
-    font-size: 1.6rem;
-    letter-spacing: -0.03em;
+    display: flex;
+    align-items: center;
+    min-height: 52px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    color: var(--text, #f3f6f4);
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+    touch-action: manipulation;
+  }
+
+  .main-nav a:hover,
+  .main-nav a:focus-visible,
+  .main-nav a.active {
+    background: var(--accent-soft, rgba(98, 245, 139, 0.12));
+    color: var(--text, #f3f6f4);
+  }
+
+  .main-nav a:focus-visible,
+  .main-nav button:focus-visible,
+  .menu-toggle:focus-visible {
+    outline: 2px solid var(--accent, #62f58b);
+    outline-offset: 2px;
+  }
+
+  .main-nav .theme-toggle {
+    align-self: flex-start;
+    margin: 10px 14px 0;
+    width: auto;
+    min-width: 52px;
+    height: 48px;
+    padding: 0 16px;
+  }
+
+  .main-nav .theme-toggle::after {
+    content: " Tema claro/escuro";
+    font-size: 0.95rem;
+    font-weight: 600;
   }
 
   .main-nav .nav-cta {
     margin-top: 12px;
+    justify-content: center;
     font-size: 1rem;
+  }
+
+  /* Fundo escurecido atrás do menu: bloqueia toques na página */
+  .nav-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 220ms ease, visibility 0s linear 220ms;
+  }
+
+  .nav-overlay.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 220ms ease, visibility 0s linear 0s;
+  }
+
+  @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    .nav-overlay {
+      -webkit-backdrop-filter: blur(3px);
+      backdrop-filter: blur(3px);
+    }
+  }
+
+  html.menu-open .site-header {
+    background-color: var(--bg, #090c0b);
   }
 
   .hero {
@@ -1156,7 +1280,26 @@ html[data-theme="light"] body {
 }
 
 html[data-theme="light"] .site-header {
-  background: rgba(243, 246, 244, 0.84);
+  background-color: rgba(243, 246, 244, 0.96);
+}
+
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  html[data-theme="light"] .site-header {
+    background-color: rgba(243, 246, 244, 0.84);
+  }
+}
+
+@media (max-width: 760px) {
+  html[data-theme="light"] .main-nav {
+    background-color: #ffffff;
+    box-shadow: -24px 0 60px rgba(20, 40, 28, 0.18);
+  }
+  html[data-theme="light"] .nav-overlay {
+    background: rgba(12, 20, 16, 0.45);
+  }
+  html[data-theme="light"].menu-open .site-header {
+    background-color: var(--bg, #f3f6f4);
+  }
 }
 
 html[data-theme="light"] .terminal-window {
@@ -1400,4 +1543,14 @@ html.js .reveal.in { opacity: 1; transform: none; }
   height: var(--h);
   border-radius: 6px 6px 2px 2px;
   background: linear-gradient(180deg, var(--accent), rgba(98, 245, 139, 0.25));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main-nav,
+  .main-nav.open,
+  .nav-overlay,
+  .nav-overlay.open,
+  .menu-toggle span {
+    transition: none !important;
+  }
 }
