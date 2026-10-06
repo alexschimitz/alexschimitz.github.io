@@ -1377,3 +1377,27 @@ html.js .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   html.js .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* ===== Projeto: Política em dados (card) ===== */
+.politica-visual {
+  background:
+    linear-gradient(rgba(98, 245, 139, 0.04) 1px, transparent 1px),
+    radial-gradient(circle at 30% 30%, rgba(98, 245, 139, 0.12), transparent 50%),
+    #0b100d;
+  background-size: 100% 28px, auto, auto;
+}
+.politica-bars {
+  width: min(70%, 300px);
+  height: 170px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.politica-bars span {
+  flex: 1;
+  height: var(--h);
+  border-radius: 6px 6px 2px 2px;
+  background: linear-gradient(180deg, var(--accent), rgba(98, 245, 139, 0.25));
+}

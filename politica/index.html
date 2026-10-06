@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0d0c">
+  <meta name="description" content="Acompanhe a política brasileira com dados abertos oficiais: deputados federais, senadores, votações em plenário, proposições, bancadas e notícias da Câmara e do Senado.">
+  <title>Política em dados abertos — Alexsander Schimitz</title>
+  <script>try{var t=localStorage.getItem('as-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" href="data/deputados.json" as="fetch" crossorigin>
+  <link rel="preload" href="data/senadores.json" as="fetch" crossorigin>
+  <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="politica.css">
+</head>
+<body class="politica">
+  <a class="skip-link" href="#parlamentares">Pular para o conteúdo</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="../" aria-label="Voltar à página inicial">
+        <span class="brand-mark">AS</span>
+        <span class="brand-name">Alexsander Schimitz</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+        <span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Navegação da página Política">
+        <a href="#parlamentares">Parlamentares</a>
+        <a href="#votacoes">Votações</a>
+        <a href="#proposicoes">Proposições</a>
+        <a href="#partidos">Partidos</a>
+        <a href="#noticias">Notícias</a>
+        <button class="theme-toggle" type="button" aria-label="Alternar tema claro ou escuro" title="Tema">◐</button>
+        <a class="nav-cta" href="../">← Início</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="pol-hero container" aria-labelledby="pol-title">
+      <div class="eyebrow"><span class="status-dot"></span> Painel cívico · dados abertos</div>
+      <h1 id="pol-title">Política brasileira, <span>direto das fontes oficiais.</span></h1>
+      <p class="hero-lead">
+        Deputados federais, senadores, votações em plenário, proposições recentes, bancadas e notícias —
+        tudo a partir dos dados abertos da Câmara dos Deputados e do Senado Federal, sem opinião e sem filtro editorial.
+      </p>
+      <dl class="pol-stats" aria-live="polite">
+        <div><dt>Deputados em exercício</dt><dd id="st-dep">—</dd></div>
+        <div><dt>Senadores em exercício</dt><dd id="st-sen">—</dd></div>
+        <div><dt>Partidos representados</dt><dd id="st-part">—</dd></div>
+        <div><dt>Atualizado em</dt><dd id="st-upd" class="mono">—</dd></div>
+      </dl>
+    </section>
+
+    <section class="section pol-section" id="parlamentares" aria-labelledby="parl-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">01 / Parlamentares</div>
+        <div class="projects-heading">
+          <div>
+            <h2 id="parl-title">Quem está no Congresso</h2>
+            <p>Busque por nome e filtre por casa, partido ou estado. Toque num card para ver o perfil.</p>
+          </div>
+        </div>
+
+        <form class="pol-filters" id="filters" role="search" aria-label="Filtrar parlamentares" onsubmit="return false">
+          <div class="field field-search">
+            <label for="f-q">Nome</label>
+            <input id="f-q" type="search" placeholder="Ex.: Silva" autocomplete="off" spellcheck="false">
+          </div>
+          <div class="field">
+            <label for="f-casa">Casa</label>
+            <select id="f-casa">
+              <option value="">Câmara e Senado</option>
+              <option value="c">Câmara dos Deputados</option>
+              <option value="s">Senado Federal</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-part">Partido</label>
+            <select id="f-part"><option value="">Todos</option></select>
+          </div>
+          <div class="field">
+            <label for="f-uf">UF</label>
+            <select id="f-uf"><option value="">Todas</option></select>
+          </div>
+          <button class="button button-ghost btn-reset" type="reset" id="f-reset">Limpar</button>
+        </form>
+        <p class="pol-count" id="count" role="status" aria-live="polite">Carregando parlamentares…</p>
+        <ul class="parl-grid" id="grid" aria-label="Lista de parlamentares"></ul>
+        <div class="more-wrap"><button class="button button-ghost" id="more" type="button" hidden>Mostrar mais</button></div>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="votacoes" aria-labelledby="vot-title">
+      <div class="container">
+        <div class="section-kicker">02 / Votações</div>
+        <div class="projects-heading">
+          <div>
+            <h2 id="vot-title">Votações recentes em plenário</h2>
+            <p>Resultados e placares conforme registrados pelas casas. Votações simbólicas não têm placar individual.</p>
+          </div>
+        </div>
+        <div class="tabs" role="tablist" aria-label="Casa legislativa das votações">
+          <button role="tab" id="tv-cn" aria-controls="pv" aria-selected="true" data-k="cn">Câmara · nominais</button>
+          <button role="tab" id="tv-ca" aria-controls="pv" aria-selected="false" data-k="ca" tabindex="-1">Câmara · todas</button>
+          <button role="tab" id="tv-s" aria-controls="pv" aria-selected="false" data-k="s" tabindex="-1">Senado</button>
+        </div>
+        <div id="pv" role="tabpanel" aria-labelledby="tv-cn" class="tab-panel"><p class="muted">Carregando…</p></div>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="proposicoes" aria-labelledby="prop-title">
+      <div class="container">
+        <div class="section-kicker">03 / Proposições</div>
+        <div class="projects-heading">
+          <div>
+            <h2 id="prop-title">Proposições apresentadas recentemente</h2>
+            <p>Projetos de lei, PECs, PLPs, MPs e decretos legislativos dos últimos 30 dias.</p>
+          </div>
+        </div>
+        <div class="tabs" role="tablist" aria-label="Casa legislativa das proposições">
+          <button role="tab" id="tp-c" aria-controls="pp" aria-selected="true" data-k="c">Câmara</button>
+          <button role="tab" id="tp-s" aria-controls="pp" aria-selected="false" data-k="s" tabindex="-1">Senado</button>
+        </div>
+        <div id="pp" role="tabpanel" aria-labelledby="tp-c" class="tab-panel"><p class="muted">Carregando…</p></div>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="partidos" aria-labelledby="part-title">
+      <div class="container">
+        <div class="section-kicker">04 / Partidos</div>
+        <div class="projects-heading">
+          <div>
+            <h2 id="part-title">Bancadas por partido</h2>
+            <p>Parlamentares em exercício hoje, por legenda. Toque numa barra para filtrar a lista.</p>
+          </div>
+        </div>
+        <div class="bars-grid">
+          <figure class="bars-card">
+            <figcaption><strong>Câmara dos Deputados</strong> <span id="bc-total" class="muted mono"></span></figcaption>
+            <ul class="bars" id="bars-c"></ul>
+          </figure>
+          <figure class="bars-card">
+            <figcaption><strong>Senado Federal</strong> <span id="bs-total" class="muted mono"></span></figcaption>
+            <ul class="bars" id="bars-s"></ul>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="noticias" aria-labelledby="news-title">
+      <div class="container">
+        <div class="section-kicker">05 / Notícias</div>
+        <div class="projects-heading">
+          <div>
+            <h2 id="news-title">Últimas das agências oficiais</h2>
+            <p>Manchetes dos feeds RSS da Agência Câmara de Notícias e da Agência Senado.</p>
+          </div>
+        </div>
+        <div class="news-grid" id="news"></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="profile" id="profile" aria-labelledby="pf-name">
+    <div class="profile-inner">
+      <button class="profile-close" type="button" id="pf-close" aria-label="Fechar perfil">✕</button>
+      <div id="pf-body"></div>
+    </div>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="container pol-footer">
+      <div>
+        <p><strong>Fontes:</strong>
+          <a href="https://dadosabertos.camara.leg.br/" target="_blank" rel="noreferrer">Dados Abertos da Câmara dos Deputados</a>,
+          <a href="https://legis.senado.leg.br/dadosabertos/" target="_blank" rel="noreferrer">Dados Abertos do Senado Federal</a>
+          (inclui <a href="https://adm.senado.gov.br/adm-dadosabertos/" target="_blank" rel="noreferrer">CEAPS</a>),
+          <a href="https://www.camara.leg.br/noticias/" target="_blank" rel="noreferrer">Agência Câmara de Notícias</a> e
+          <a href="https://www12.senado.leg.br/noticias" target="_blank" rel="noreferrer">Agência Senado</a>.
+        </p>
+        <p>Página independente e apartidária, sem vínculo com o Congresso Nacional. As informações são exibidas como publicadas pelas fontes; erros ou atrasos podem vir delas. Atualização automática diária.</p>
+        <p>Dados atualizados em <span id="ft-upd" class="mono">—</span> (horário de Brasília).</p>
+      </div>
+      <div class="pol-footer-links">
+        <p>© <span id="year"></span> Alexsander Schimitz.</p>
+        <a href="../">← Página inicial</a>
+        <a href="#top">Voltar ao topo ↑</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../scripts/home.js"></script>
+  <script src="politica.js"></script>
+</body>
+</html>
