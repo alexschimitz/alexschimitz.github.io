@@ -220,6 +220,30 @@ html[data-theme="light"] .simples { border-color: rgba(10, 120, 50, 0.16); }
 .simples .oficial { margin-top: 8px; color: var(--muted) !important; font-size: 0.84rem !important; }
 .simples .tag { display: inline-block; margin-right: 4px; padding: 0 7px; border-radius: 6px; border: 1px solid var(--line-strong); font-family: "DM Mono", monospace; font-size: 0.66rem; font-weight: 500; color: var(--muted); vertical-align: 1px; white-space: nowrap; }
 .simples .resumo .tag { color: var(--accent); border-color: rgba(98, 245, 139, 0.35); }
+/* Cartão da proposta: tipo/autoria → pra que serve → como funciona → situação → texto oficial */
+.simples .pc-k { margin-top: 12px !important; color: var(--muted) !important; font-size: 0.74rem !important; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+.pc { margin-top: 6px; padding: 10px 12px; border-radius: 12px; background: var(--panel); border: 1px solid var(--line); min-width: 0; }
+.simples > .pc:first-of-type { margin-top: 6px; }
+.pc p { overflow-wrap: anywhere; }
+.pc.pc-flat { margin-top: 2px; padding: 0; border: 0; background: none; }
+.pc .pc-head { margin-top: 0 !important; }
+.pc .pc-sig { font-family: "DM Mono", monospace; font-weight: 500; }
+.pc .linkish.autor { font-weight: 700; text-align: left; }
+.pc-tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 8px; }
+.pc-tags .tema-chips { display: contents; }
+.chip.tema { color: var(--text); border-color: rgba(98, 245, 139, 0.35); font-family: inherit; font-size: 0.72rem; font-weight: 600; white-space: normal; }
+.simples .pc-tags .tag { color: var(--accent); border-color: rgba(98, 245, 139, 0.35); }
+.simples .pc-tags .tag.auto { color: var(--warn); border-color: currentColor; }
+.pc-oficial { margin-top: 8px; }
+.pc-oficial summary { cursor: pointer; min-height: 32px; display: inline-flex; align-items: center; color: var(--text); font-size: 0.84rem; font-weight: 700; border-bottom: 1px solid var(--line-strong); }
+.pc-oficial summary:hover { color: var(--accent); }
+.pc-oficial p { color: var(--muted) !important; font-size: 0.84rem !important; }
+.pc-oficial a.ext { margin-top: 6px !important; }
+.tema-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 14px; }
+.tema-filter label { color: var(--muted); font-size: 0.82rem; font-weight: 700; }
+.tema-filter select { min-height: 44px; max-width: 100%; padding: 0 34px 0 12px; border-radius: 12px; border: 1px solid var(--line-strong); background-color: var(--panel-strong); color: var(--text); font: inherit; font-size: 0.9rem; appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 18px) 19px, calc(100% - 13px) 19px; background-size: 5px 5px; background-repeat: no-repeat; }
+.tema-filter select:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px var(--accent-soft); }
+html[data-theme="light"] .chip.tema, html[data-theme="light"] .simples .pc-tags .tag { border-color: rgba(10, 120, 50, 0.3); }
 .note-sm { margin-top: 8px; color: var(--muted-2) !important; font-size: 0.8rem !important; line-height: 1.5; }
 .item .note-sm b { color: var(--muted); }
 

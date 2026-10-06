@@ -220,21 +220,101 @@
 
   // ---------- Bloco "Em palavras simples" ----------
   const resumoKey = (casa, id) => (id ? `${casa}:${id}` : '');
-  function simplesBox({ linhas = [], resumo = null, oficial = null, oficialRotulo = 'Texto oficial (ementa)', termos: ts = [] }) {
+  const sentenca = (s) => { const t = String(s || '').trim(); return t && !/[.!?…]$/.test(t) ? `${t}.` : t; };
+  function simplesBox({ linhas = [], card = '', resumo = null, oficial = null, oficialRotulo = 'Texto oficial (ementa)', termos: ts = [] }) {
     const ls = linhas.filter(Boolean);
     return `<div class="simples">
       <p class="simples-h">Em palavras simples</p>
       ${ls.map((l) => `<p>${l}</p>`).join('')}
+      ${card}
       ${resumo ? `<p class="resumo"><span class="tag">Resumo simplificado</span> ${esc(resumo)}</p>` : ''}
       ${oficial ? `<p class="oficial"><span class="tag">${esc(oficialRotulo)}</span> ${esc(oficial)}</p>` : ''}
       ${ts.length ? `<div class="terms">${terms(ts)}</div>` : ''}
     </div>`;
   }
   const tipoFrase = (sig) => { const t = S.tipoInfo(sig); return t ? `É ${t[1]}.` : ''; };
-  const statusFrase = (st, tr) => {
-    if (!st) return /apresenta/i.test(tr || '') ? 'Situação: acabou de ser apresentada e ainda não tem uma situação registrada.' : '';
-    const s = S.statusSimples(st); return s ? `Situação: ${s.charAt(0).toLowerCase()}${s.slice(1)}` : '';
+  const statusTexto = (st, tr) => {
+    if (!st) return /apresenta/i.test(tr || '') ? 'acabou de ser apresentada e ainda não tem uma situação registrada.' : '';
+    const s = S.statusSimples(st); return s ? `${s.charAt(0).toLowerCase()}${s.slice(1)}` : '';
   };
+  const statusFrase = (st, tr) => { const s = statusTexto(st, tr); return s ? `Situação: ${s}` : ''; };
+
+  // Resumo (escrito à mão ou automático) embutido pelo enrich (x.rs) ou, na falta, do arquivo resumos-simples.json
+  function resumoDe(casa, id, x) {
+    if (x?.rs) return x.rs;
+    const h = state.resumos[resumoKey(casa, id)];
+    if (h && typeof h === 'object' && h.ps) return { ps: h.ps, cf: h.cf || null, h: 1 };
+    if (typeof h === 'string' && h) return { ps: h, cf: null, h: 1 };
+    return null;
+  }
+  // Autoria: Câmara não separa autor principal de coautores (o 1º é quem assinou primeiro)
+  function pessoaHTML(r) {
+    const [nome, id, t, part, uf] = r;
+    if (t === 'E') return '<b>Poder Executivo</b> (Presidência da República)';
+    const p = (t === 'D' && id) ? state.byKey.get(`c/${id}`) : (t === 'S' && id) ? state.byKey.get(`s/${id}`) : null;
+    if (p) return `<button type="button" class="linkish autor" data-open="${p.c}/${p.id}/projetos" aria-label="Ver perfil de ${esc(p.n)}">${esc(p.n)}</button> (${esc(p.p)}-${esc(p.uf)})`;
+    const pre = t === 'D' && id ? 'Dep. ' : t === 'S' && id ? 'Sen. ' : '';
+    return `<b>${esc(pre + nome)}</b>${part ? ` (${esc(part)}${uf ? `-${esc(uf)}` : ''})` : ''}`;
+  }
+  function autoriaHTML(casa, x, au) {
+    const a = x?.a || [];
+    if (a.length) {
+      const n = Math.max(x.na || a.length, a.length);
+      const resto = n - 1;
+      let s = `apresentado por ${pessoaHTML(a[0])}`;
+      if (resto === 1 && a[1]) s += ` e ${pessoaHTML(a[1])}`;
+      else if (resto > 0) s += ` e mais ${nf.format(resto)}`;
+      if (casa === 's' && x.cp) s += `. Chegou ao Senado vindo da Câmara dos Deputados (${esc(x.cp)})`;
+      return s;
+    }
+    if (x?.ra) return `apresentado por <b>${esc(x.ra)}</b>`;
+    if (au) { const t = au.length > 160 ? `${au.slice(0, 157).replace(/,[^,]*$/, '')} e outros` : au; return `apresentado por <b>${esc(t)}</b>`; }
+    return '';
+  }
+  const temaChips = (x) => (x?.tg?.length ? `<span class="tema-chips">${x.tg.map((t) => `<span class="chip tema" title="${esc(`Tema oficial: ${(x.to || []).join('; ')}`)}">${esc(t)}</span>`).join('')}</span>` : '');
+  // Cartão: [Tipo nº/ano], apresentado por … → Pra que serve → Como funciona → Situação → Ver texto oficial
+  function propCard({ casa, id, sig, x, ementa, au, st, tr, votado = false, flat = false }) {
+    const rs = resumoDe(casa, id, x);
+    const autoria = autoriaHTML(casa, x, au);
+    let cf;
+    if (rs?.h) cf = rs.cf || 'O texto oficial disponível não deixa claro como a proposta funcionaria na prática. Veja o texto oficial abaixo.';
+    else {
+      const lc = (rs?.lc || []).filter((l) => !rs.ps.includes(l));
+      cf = [tipoFrase(sig), lc.length ? `Pelo resumo oficial, mexe em ${lc.join(' e ')}.` : '', 'Este resumo automático usa só a ementa oficial; para conhecer os detalhes de como funcionaria, veja o texto oficial.'].filter(Boolean).join(' ');
+    }
+    const sit = statusTexto(st, tr);
+    const ng = x?.ng ? `Gerou a ${x.ng}.` : '';
+    const ps = rs?.ps || ementa || '';
+    return `<div class="pc${flat ? ' pc-flat' : ''}">
+      <p class="pc-head"><b class="pc-sig">${esc(sig || 'Proposta')}</b>${autoria ? `, ${autoria}` : ''}.</p>
+      ${ps ? `<p><b>Pra que serve:</b> ${esc(sentenca(ps))}</p>` : ''}
+      <p><b>Como funciona:</b> ${esc(cf)}</p>
+      ${sit || ng ? `<p><b>Situação:</b> ${esc([sit, ng].filter(Boolean).join(' '))}</p>` : ''}
+      <div class="pc-tags">${temaChips(x)}<span class="tag ${rs?.h ? '' : 'auto'}">${rs?.h ? 'Resumo simplificado' : 'Resumo automático'}</span></div>
+      ${votado && rs?.h ? '<p class="note-sm">O resumo descreve a proposta; mudanças feitas durante a votação (emendas, substitutivos) podem ter alterado o texto final.</p>' : ''}
+      ${ementa || x?.u ? `<details class="pc-oficial"><summary>Ver texto oficial</summary>${ementa ? `<p><span class="tag">Ementa oficial</span> ${esc(ementa)}</p>` : ''}${x?.u ? `<a class="ext" href="${esc(x.u)}" target="_blank" rel="noreferrer">Texto completo (inteiro teor) ↗</a>` : ''}</details>` : ''}
+    </div>`;
+  }
+
+  // Filtro por tema (votações, proposições e projetos do perfil)
+  const temaSel = {};
+  const temaRender = {};
+  const comTema = (scope, list, getX) => (temaSel[scope] ? list.filter((it) => getX(it)?.tg?.includes(temaSel[scope])) : list);
+  function temaFilterHTML(scope, list, getX) {
+    const cnt = {};
+    list.forEach((it) => (getX(it)?.tg || []).forEach((t) => { cnt[t] = (cnt[t] || 0) + 1; }));
+    const ts = Object.keys(cnt).sort((a, b) => a.localeCompare(b, 'pt-BR'));
+    if (!ts.length) return '';
+    if (temaSel[scope] && !cnt[temaSel[scope]]) temaSel[scope] = '';
+    const id = `tema-${scope}`;
+    return `<div class="tema-filter"><label for="${id}">Filtrar por tema</label><select id="${id}" data-scope="${scope}"><option value="">Todos os temas (${nf.format(list.length)})</option>${ts.map((t) => `<option value="${esc(t)}"${temaSel[scope] === t ? ' selected' : ''}>${esc(t)} (${cnt[t]})</option>`).join('')}</select></div>`;
+  }
+  document.addEventListener('change', (e) => {
+    const s = e.target.closest('.tema-filter select'); if (!s) return;
+    const scope = s.dataset.scope; temaSel[scope] = s.value;
+    temaRender[scope]?.();
+    const again = document.getElementById(`tema-${scope}`); if (again) again.focus();
+  });
 
   // ---------- Votações ----------
   const VOTO_LABEL = { S: 'Sim', N: 'Não', A: 'Abstenção', O: 'Obstrução', P: 'Presidindo (Art. 17)', V: 'Votou (voto secreto)' };
@@ -270,11 +350,11 @@
   function votacaoCamaraHTML(v) {
     const secreta = v.pl && v.pl.V;
     const vs = votoSimplesCamara(v);
-    const resumo = v.pr ? state.resumos[resumoKey('c', v.pr.id)] : null;
+    const card = v.pr ? `<p class="pc-k">Sobre a proposta votada</p>${propCard({ casa: 'c', id: v.pr.id, sig: v.pr.s, x: v.pr.x, ementa: v.pr.e, st: v.pr.st, tr: v.pr.tr, votado: true })}` : '';
     const tipoVot = v.nom ? (secreta ? 'secreta' : 'nominal') : 'simbolica';
     return `<li class="item"><div class="item-top"><time>${esc(fmtLocal(v.dt))}</time>${v.pr ? `<span class="sig">${esc(v.pr.s)}</span>` : ''}${resultBadge(v.ap, v.d)}<span class="chip">${tipoVot === 'simbolica' ? 'simbólica' : tipoVot}</span></div>
       <h3>${esc(descLimpa(v.d))}</h3>
-      ${simplesBox({ linhas: vs.linhas, resumo: resumo ? `Sobre a proposta: ${resumo}` : null, oficial: v.pr?.e || null, termos: [...vs.termos, tipoVot] })}
+      ${simplesBox({ linhas: vs.linhas, card, termos: [...vs.termos, tipoVot] })}
       ${v.ctx ? `<p class="note-sm"><b>Descrição oficial da votação:</b> ${esc(v.ctx)}</p>` : ''}
       ${secreta ? `<p class="note">Votação secreta: ${nf.format(v.pl.V)} deputados registraram voto, sem divulgação individual.</p>` : placarHTML(v.pl, CAMARA_PLACAR)}
       ${v.pr ? `<a class="ext" href="${propLinkCamara(v.pr.id)}" target="_blank" rel="noreferrer">Tramitação na Câmara ↗</a>` : ''}</li>`;
@@ -282,34 +362,40 @@
   function votacaoSenadoHTML(v) {
     const res = v.r === 'A' ? '<span class="badge ok">Aprovada</span>' : v.r === 'R' ? '<span class="badge no">Rejeitada</span>' : '<span class="badge neutral">Sem resultado registrado</span>';
     const vs = votoSimplesSenado(v);
-    const resumo = v.cm ? state.resumos[resumoKey('s', v.cm)] : null;
+    const card = v.cm || v.e ? `<p class="pc-k">Sobre a proposta votada</p>${propCard({ casa: 's', id: v.cm, sig: v.s, x: v.x, ementa: v.e, st: v.st, votado: true })}` : '';
     return `<li class="item"><div class="item-top"><time>${esc(fmtLocal(v.dt))}</time><span class="sig">${esc(v.s || '')}</span>${res}<span class="chip">${v.sec ? 'secreta' : 'nominal'}</span></div>
       <h3>${esc(v.d)}</h3>
-      ${simplesBox({ linhas: vs.linhas, resumo: resumo ? `Sobre a proposta: ${resumo}` : null, oficial: v.e || null, termos: [...vs.termos, v.sec ? 'secreta' : 'nominal'] })}
+      ${simplesBox({ linhas: vs.linhas, card, termos: [...vs.termos, v.sec ? 'secreta' : 'nominal'] })}
       ${v.sec ? `<p class="note">Votação secreta: ${nf.format(v.pl?.Votou || 0)} senadores registraram voto, sem divulgação individual.</p>` : placarHTML(v.pl, SENADO_PLACAR)}
       ${v.cm ? `<a class="ext" href="${materiaLinkSenado(v.cm)}" target="_blank" rel="noreferrer">Matéria no Senado ↗</a>` : ''}</li>`;
   }
+  const xVotCamara = (v) => v.pr?.x; const xVotSenado = (v) => v.x;
   function renderVotacoes(k) {
     const pv = $('#pv'); const V = state.votacoes;
+    temaRender.vot = () => renderVotacoes(k);
     if (!V) { pv.innerHTML = '<p class="err">Não foi possível carregar as votações agora. Tente recarregar a página.</p>'; return; }
     let html = '';
+    const bloco = (all, fn, getX, nota) => {
+      const l = comTema('vot', all, getX);
+      return `${temaFilterHTML('vot', all, getX)}${l.length ? listHTML(l, fn, nota) : '<p class="err">Nenhuma votação com esse tema na lista.</p>'}`;
+    };
     if (k === 'cn') {
       const l = V.camara?.nominais || [];
-      html = l.length ? listHTML(l, votacaoCamaraHTML, `<p class="note">Últimas ${l.length} votações nominais do Plenário da Câmara (placar calculado a partir dos votos individuais publicados pela API).</p>`) : '<p class="err">Nenhuma votação nominal no período consultado.</p>';
+      html = l.length ? bloco(l, votacaoCamaraHTML, xVotCamara, `<p class="note">Últimas ${l.length} votações nominais do Plenário da Câmara (placar calculado a partir dos votos individuais publicados pela API).</p>`) : '<p class="err">Nenhuma votação nominal no período consultado.</p>';
     } else if (k === 'ca') {
       const l = V.camara?.lista || [];
-      html = l.length ? listHTML(l, votacaoCamaraHTML, `<p class="note">${l.length} deliberações mais recentes do Plenário, incluindo votações simbólicas (${nf.format(V.camara.totalPeriodo || l.length)} no período consultado).</p>`) : '<p class="err">Sem votações no período consultado.</p>';
+      html = l.length ? bloco(l, votacaoCamaraHTML, xVotCamara, `<p class="note">${l.length} deliberações mais recentes do Plenário, incluindo votações simbólicas (${nf.format(V.camara.totalPeriodo || l.length)} no período consultado).</p>`) : '<p class="err">Sem votações no período consultado.</p>';
     } else {
       const l = V.senado?.lista || [];
-      html = l.length ? listHTML(l, votacaoSenadoHTML, `<p class="note">Votações nominais do Plenário do Senado nos últimos 180 dias (${nf.format(V.senado.totalPeriodo || l.length)} no total; exibindo até 40).</p>`) : '<p class="err">Sem votações nominais do Senado no período consultado.</p>';
+      html = l.length ? bloco(l, votacaoSenadoHTML, xVotSenado, `<p class="note">Votações nominais do Plenário do Senado nos últimos 180 dias (${nf.format(V.senado.totalPeriodo || l.length)} no total; exibindo até 40).</p>`) : '<p class="err">Sem votações nominais do Senado no período consultado.</p>';
     }
-    pv.innerHTML = html;
+    pv.innerHTML = html + NOTA_RESUMO;
   }
+  const NOTA_RESUMO = '<p class="note">Como ler os resumos: “Resumo simplificado” foi escrito à mão a partir do texto oficial (ementa e, quando disponível, o texto completo). “Resumo automático” é gerado por regras fixas a partir da ementa, sem interpretar. O texto oficial está sempre em “Ver texto oficial”. Na Câmara, o primeiro nome da autoria é o de quem assinou primeiro; a API não separa autor principal de coautores. Temas: classificação oficial da Câmara (temas) e do Senado (assuntos), agrupada em categorias simples.</p>';
 
   // ---------- Proposições ----------
   function propHTML(p, casa, { autoria = true } = {}) {
     const sig = S.sigla(p.s); const tp = S.tipoInfo(sig);
-    const resumo = state.resumos[resumoKey(casa, casa === 'c' ? p.id : p.cm)] || null;
     const st = p.st || null;
     const quando = p.sd ? fmtLocal(p.sd, false) : '';
     const link = casa === 'c' ? propLinkCamara(p.id) : (p.cm ? materiaLinkSenado(p.cm) : p.url);
@@ -317,21 +403,22 @@
     if (/relator/i.test(st || '')) ts.push('relator');
     if (/arquiv/i.test(st || '')) ts.push('arquivada');
     if (/parecer/i.test(st || '')) ts.push('parecer');
-    if (/conjunto|apens/i.test(st || '')) ts.push('tramitacao');
     if (/plen/i.test(st || '')) ts.push('plenario');
+    const card = propCard({ casa, id: casa === 'c' ? p.id : p.cm, sig: p.s, x: p.x, ementa: p.e, au: autoria ? p.au : '', st, tr: p.tr, flat: true });
     return `<li class="item"><div class="item-top"><time title="Data de apresentação">${esc(fmtLocal(p.dt, false))}</time><span class="sig">${esc(p.s)}</span>${p.pa ? '<span class="chip">1º autor(a)</span>' : ''}${p.tram === false ? '<span class="chip">não tramita mais</span>' : ''}</div>
-      ${simplesBox({ linhas: [esc(tipoFrase(sig)), esc(statusFrase(st, p.tr)) || (st || p.tr ? '' : 'Situação atual não informada pela API.')], resumo, oficial: p.e, termos: ts })}
+      ${simplesBox({ card, termos: ts })}
       ${!st && p.tr ? `<p class="note-sm"><b>Último andamento oficial:</b> ${esc(p.tr)}${p.org ? ` · ${esc(p.org)}` : ''}${quando ? ` · ${esc(quando)}` : ''}</p>` : ''}
       ${st ? `<p class="note-sm"><b>Situação oficial:</b> ${esc(st.charAt(0) + (st === st.toUpperCase() ? st.slice(1).toLowerCase() : st.slice(1)))}${p.org ? ` · ${esc(p.org)}` : ''}${quando ? ` · desde ${esc(quando)}` : ''}${p.tr && p.tr !== st ? `<br><b>Último andamento:</b> ${esc(p.tr)}` : ''}</p>` : ''}
-      ${autoria && p.au ? `<p class="note-sm"><b>Autoria:</b> ${esc(p.au.length > 220 ? `${p.au.slice(0, 217).replace(/,[^,]*$/, '')}, e outros` : p.au)}</p>` : ''}
       ${link ? `<a class="ext" href="${esc(link)}" target="_blank" rel="noreferrer">${casa === 'c' ? 'Ficha na Câmara' : 'Matéria no Senado'} ↗</a>` : ''}</li>`;
   }
   function renderProps(k) {
     const pp = $('#pp'); const P = state.props;
+    temaRender.prop = () => renderProps(k);
     if (!P) { pp.innerHTML = '<p class="err">Não foi possível carregar as proposições agora.</p>'; return; }
-    const l = (k === 'c' ? P.camara : P.senado) || [];
-    if (!l.length) { pp.innerHTML = '<p class="err">Nenhuma proposição desses tipos nos últimos 30 dias.</p>'; return; }
-    pp.innerHTML = listHTML(l, (p) => propHTML(p, k), `<p class="note">“Em palavras simples” é gerado por regras fixas a partir do tipo e da situação oficial. O “Resumo simplificado”, quando existe, foi escrito à mão a partir da ementa oficial, que aparece logo abaixo dele como “Texto oficial”.</p>`);
+    const all = (k === 'c' ? P.camara : P.senado) || [];
+    if (!all.length) { pp.innerHTML = '<p class="err">Nenhuma proposição desses tipos nos últimos 30 dias.</p>'; return; }
+    const l = comTema('prop', all, (p) => p.x);
+    pp.innerHTML = `${temaFilterHTML('prop', all, (p) => p.x)}${l.length ? listHTML(l, (p) => propHTML(p, k)) : '<p class="err">Nenhuma proposição com esse tema na lista.</p>'}${NOTA_RESUMO}`;
   }
 
   // ---------- Gastos (visão geral e ranking) ----------
@@ -595,8 +682,11 @@
     const head = `<p class="lead-simples">Desde ${pj.desde}, ${esc(p.n)} aparece como autor(a) ou coautor(a) de <b>${nf.format(pj.n)}</b> ${pj.n === 1 ? 'proposta' : 'propostas'} dos tipos ${casa === 'c' ? 'PL, PLP, PEC e PDL' : 'PL, PLP, PEC, PDL e PRS'}${tiposTxt ? ` (${tiposTxt})` : ''}.</p>
       <div class="terms">${terms(tipos.map(([t]) => S.tipoInfo(t)?.[0]).filter(Boolean))}</div>`;
     if (!pj.it?.length) { box.innerHTML = `${head}<p class="err">Nenhuma proposta desses tipos encontrada no período.</p>`; return; }
-    box.innerHTML = `${head}<h3 class="h-sm">As ${pj.it.length} mais recentes</h3>${listHTML(pj.it, (x) => propHTML(x, casa, { autoria: false }), '', 5)}
-      <p class="note">${casa === 'c' ? 'A API da Câmara lista propostas em que o(a) deputado(a) é autor(a) ou coautor(a), sem indicar quem é o autor principal.' : '“1º autor(a)” indica que o nome aparece primeiro na autoria registrada pelo Senado.'} Requerimentos, indicações e outros tipos não entram na contagem. ${oficial ? `<a href="${esc(oficial)}" target="_blank" rel="noreferrer">Lista completa na página oficial ↗</a>` : ''}</p>`;
+    const lista = () => { const l = comTema('pj', pj.it, (x) => x.x); return l.length ? listHTML(l, (x) => propHTML(x, casa), '', 5) : '<p class="err">Nenhuma proposta com esse tema entre as mais recentes.</p>'; };
+    temaRender.pj = () => { const el = box.querySelector('.pj-list'); if (el) el.innerHTML = lista(); };
+    temaSel.pj = '';
+    box.innerHTML = `${head}<h3 class="h-sm">As ${pj.it.length} mais recentes</h3>${temaFilterHTML('pj', pj.it, (x) => x.x)}<div class="pj-list">${lista()}</div>
+      <p class="note">${casa === 'c' ? 'A API da Câmara lista propostas em que o(a) deputado(a) é autor(a) ou coautor(a), sem indicar quem é o autor principal; na autoria, o primeiro nome é o de quem assinou primeiro.' : '“1º autor(a)” indica que o nome aparece primeiro na autoria registrada pelo Senado.'} Requerimentos, indicações e outros tipos não entram na contagem. ${oficial ? `<a href="${esc(oficial)}" target="_blank" rel="noreferrer">Lista completa na página oficial ↗</a>` : ''}</p>`;
   }
 
   // Votos
@@ -631,10 +721,11 @@
       const vs = p.c === 'c' ? votoSimplesCamara(v) : votoSimplesSenado(v);
       const sig = p.c === 'c' ? v.pr?.s : v.s; const ementa = p.c === 'c' ? v.pr?.e : v.e;
       const res = p.c === 'c' ? resultBadge(v.ap, v.d) : (v.r === 'A' ? '<span class="badge ok">Aprovada</span>' : v.r === 'R' ? '<span class="badge no">Rejeitada</span>' : '');
-      const rs = p.c === 'c' ? (v.pr ? state.resumos[resumoKey('c', v.pr.id)] : null) : (v.cm ? state.resumos[resumoKey('s', v.cm)] : null);
+      const card = p.c === 'c' ? (v.pr ? `<p class="pc-k">Sobre a proposta votada</p>${propCard({ casa: 'c', id: v.pr.id, sig, x: v.pr.x, ementa, st: v.pr.st, tr: v.pr.tr, votado: true })}` : '')
+        : (v.cm || ementa ? `<p class="pc-k">Sobre a proposta votada</p>${propCard({ casa: 's', id: v.cm, sig, x: v.x, ementa, st: v.st, votado: true })}` : '');
       return `<li class="item vote-item"><div class="item-top"><time>${esc(fmtLocal(v.dt, false))}</time>${sig ? `<span class="sig">${esc(sig)}</span>` : ''}${res}</div>
         <div class="vote-mine"><span>Voto de ${esc(p.n)}:</span>${voteTag(voto)}</div>
-        ${simplesBox({ linhas: vs.linhas, resumo: rs ? `Sobre a proposta: ${rs}` : null, oficial: ementa || null, termos: vs.termos })}
+        ${simplesBox({ linhas: vs.linhas, card, termos: vs.termos })}
         <p class="note-sm"><b>Descrição oficial da votação:</b> ${esc(p.c === 'c' ? descLimpa(v.d) : v.d)}</p></li>`;
     };
     box.innerHTML = `${resumo}<div class="terms">${terms(['nominal', 'abstencao', 'obstrucao', 'secreta'])}</div>${listHTML(rows, li, '', 6)}`;
