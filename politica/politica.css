@@ -264,7 +264,7 @@ html[data-theme="light"] .simples { border-color: rgba(10, 120, 50, 0.16); }
 .rk-row.item[hidden] { display: none; }
 
 /* Perfil v2 */
-.pf-tabs { margin: 22px 0 6px; position: sticky; top: -26px; z-index: 1; padding: 10px 0; background: var(--panel-strong); }
+.pf-tabs { margin: 22px 0 6px; position: sticky; top: -26px; z-index: 1; padding: 10px 52px 10px 0; background: var(--panel-strong); }
 .pf-tabs [role="tab"] { min-height: 40px; padding: 0 14px; }
 .pf-panel { min-height: 200px; }
 .pf-panel:focus-visible { outline-offset: 6px; }
