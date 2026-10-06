@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0a0d0c">
-  <meta name="description" content="Acompanhe a política brasileira com dados abertos oficiais: deputados federais, senadores, votações em plenário, proposições, bancadas e notícias da Câmara e do Senado.">
+  <meta name="description" content="Política brasileira em linguagem simples, com dados abertos oficiais: quanto cada deputado e senador gasta, os projetos que apresentou, como votou, glossário e notícias da Câmara e do Senado.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%2362f58b%22/%3E%3Cpath d=%22M8 24V14M14 24V9M20 24V12M26 24V17%22 stroke=%22%23071009%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3C/svg%3E">
   <title>Política em dados abertos — Alexsander Schimitz</title>
   <script>try{var t=localStorage.getItem('as-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
@@ -32,9 +32,11 @@
       </button>
       <nav class="main-nav" id="main-nav" aria-label="Navegação da página Política">
         <a href="#parlamentares">Parlamentares</a>
+        <a href="#gastos">Gastos</a>
         <a href="#votacoes">Votações</a>
-        <a href="#proposicoes">Proposições</a>
+        <a href="#proposicoes">Projetos</a>
         <a href="#partidos">Partidos</a>
+        <a href="#glossario">Glossário</a>
         <a href="#noticias">Notícias</a>
         <button class="theme-toggle" type="button" aria-label="Alternar tema claro ou escuro" title="Tema">◐</button>
         <a class="nav-cta" href="../">← Início</a>
@@ -47,8 +49,8 @@
       <div class="eyebrow"><span class="status-dot"></span> Painel cívico · dados abertos</div>
       <h1 id="pol-title">Política brasileira, <span>direto das fontes oficiais.</span></h1>
       <p class="hero-lead">
-        Deputados federais, senadores, votações em plenário, proposições recentes, bancadas e notícias —
-        tudo a partir dos dados abertos da Câmara dos Deputados e do Senado Federal, sem opinião e sem filtro editorial.
+        Quanto cada deputado e senador gasta, que projetos apresentou e como votou — explicado em linguagem simples,
+        a partir dos dados abertos da Câmara dos Deputados e do Senado Federal, sem opinião e sem filtro editorial.
       </p>
       <dl class="pol-stats" aria-live="polite">
         <div><dt>Deputados em exercício</dt><dd id="st-dep">—</dd></div>
@@ -64,7 +66,7 @@
         <div class="projects-heading">
           <div>
             <h2 id="parl-title">Quem está no Congresso</h2>
-            <p>Busque por nome e filtre por casa, partido ou estado. Toque num card para ver o perfil.</p>
+            <p>Busque por nome e filtre por casa, partido ou estado. Toque num card para ver o perfil com gastos, projetos e votos.</p>
           </div>
         </div>
 
@@ -97,13 +99,53 @@
       </div>
     </section>
 
-    <section class="section pol-section pol-alt" id="votacoes" aria-labelledby="vot-title">
+    <section class="section pol-section pol-alt" id="gastos" aria-labelledby="gas-title">
       <div class="container">
-        <div class="section-kicker">02 / Votações</div>
+        <div class="section-kicker">02 / Gastos</div>
+        <div class="projects-heading">
+          <div>
+            <h2 id="gas-title">Quanto eles gastam da cota parlamentar</h2>
+            <p>A cota é um dinheiro público para despesas do mandato, como passagens, escritório no estado e divulgação. Não inclui salários. Toque nos valores para ver o número exato.</p>
+          </div>
+        </div>
+        <div class="tabs" role="tablist" aria-label="Casa legislativa dos gastos">
+          <button role="tab" id="tg-c" aria-controls="gg" aria-selected="true" data-k="c">Câmara</button>
+          <button role="tab" id="tg-s" aria-controls="gg" aria-selected="false" data-k="s" tabindex="-1">Senado</button>
+        </div>
+        <div id="gg" role="tabpanel" aria-labelledby="tg-c" class="tab-panel"><p class="muted">Carregando…</p></div>
+
+        <h3 class="h-md" id="rank-title">Quem mais gastou</h3>
+        <form class="pol-filters rank-filters" id="rfilters" aria-labelledby="rank-title" onsubmit="return false">
+          <div class="field">
+            <label for="r-casa">Casa</label>
+            <select id="r-casa"><option value="c">Câmara dos Deputados</option><option value="s">Senado Federal</option></select>
+          </div>
+          <div class="field">
+            <label for="r-part">Partido</label>
+            <select id="r-part"><option value="">Todos</option></select>
+          </div>
+          <div class="field">
+            <label for="r-uf">UF</label>
+            <select id="r-uf"><option value="">Todas</option></select>
+          </div>
+          <div class="field">
+            <label for="r-ord">Ordem</label>
+            <select id="r-ord"><option value="desc">Quem mais gastou primeiro</option><option value="asc">Quem menos gastou primeiro</option></select>
+          </div>
+        </form>
+        <p class="pol-count" id="r-count" role="status" aria-live="polite">Carregando ranking…</p>
+        <div id="rank" class="rank"></div>
+        <p class="note">Ranking entre parlamentares em exercício com gastos registrados no ano. Gastar mais não significa irregularidade, e gastar menos não significa economia de outro tipo: o limite da cota muda conforme o estado e cada mandato tem rotinas diferentes.</p>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="votacoes" aria-labelledby="vot-title">
+      <div class="container">
+        <div class="section-kicker">03 / Votações</div>
         <div class="projects-heading">
           <div>
             <h2 id="vot-title">Votações recentes em plenário</h2>
-            <p>Resultados e placares conforme registrados pelas casas. Votações simbólicas não têm placar individual.</p>
+            <p>O que foi votado, o que significava votar Sim ou Não e qual foi o resultado. Votações simbólicas não têm placar individual.</p>
           </div>
         </div>
         <div class="tabs" role="tablist" aria-label="Casa legislativa das votações">
@@ -115,13 +157,13 @@
       </div>
     </section>
 
-    <section class="section pol-section" id="proposicoes" aria-labelledby="prop-title">
+    <section class="section pol-section pol-alt" id="proposicoes" aria-labelledby="prop-title">
       <div class="container">
-        <div class="section-kicker">03 / Proposições</div>
+        <div class="section-kicker">04 / Projetos</div>
         <div class="projects-heading">
           <div>
-            <h2 id="prop-title">Proposições apresentadas recentemente</h2>
-            <p>Projetos de lei, PECs, PLPs, MPs e decretos legislativos dos últimos 30 dias.</p>
+            <h2 id="prop-title">Projetos apresentados recentemente</h2>
+            <p>Projetos de lei, PECs, PLPs, MPs e decretos legislativos dos últimos 30 dias, com explicação simples e o texto oficial.</p>
           </div>
         </div>
         <div class="tabs" role="tablist" aria-label="Casa legislativa das proposições">
@@ -132,9 +174,9 @@
       </div>
     </section>
 
-    <section class="section pol-section pol-alt" id="partidos" aria-labelledby="part-title">
+    <section class="section pol-section" id="partidos" aria-labelledby="part-title">
       <div class="container">
-        <div class="section-kicker">04 / Partidos</div>
+        <div class="section-kicker">05 / Partidos</div>
         <div class="projects-heading">
           <div>
             <h2 id="part-title">Bancadas por partido</h2>
@@ -154,9 +196,22 @@
       </div>
     </section>
 
+    <section class="section pol-section pol-alt" id="glossario" aria-labelledby="gl-title">
+      <div class="container">
+        <div class="section-kicker">06 / Glossário</div>
+        <div class="projects-heading">
+          <div>
+            <h2 id="gl-title">O que quer dizer cada termo</h2>
+            <p>As palavras do Congresso, explicadas de forma simples. Os botões “O que é…?” espalhados pela página levam para cá.</p>
+          </div>
+        </div>
+        <dl class="gloss" id="gloss"></dl>
+      </div>
+    </section>
+
     <section class="section pol-section" id="noticias" aria-labelledby="news-title">
       <div class="container">
-        <div class="section-kicker">05 / Notícias</div>
+        <div class="section-kicker">07 / Notícias</div>
         <div class="projects-heading">
           <div>
             <h2 id="news-title">Últimas das agências oficiais</h2>
@@ -185,6 +240,9 @@
           <a href="https://www.camara.leg.br/noticias/" target="_blank" rel="noreferrer">Agência Câmara de Notícias</a> e
           <a href="https://www12.senado.leg.br/noticias" target="_blank" rel="noreferrer">Agência Senado</a>.
         </p>
+        <p><strong>Detalhes:</strong> gastos de deputados — <a href="https://dadosabertos.camara.leg.br/swagger/api.html" target="_blank" rel="noreferrer">API da Câmara</a> (/deputados/{id}/despesas); projetos de deputados — /proposicoes?idDeputadoAutor e /proposicoes/{id}; votos — /votacoes e /votacoes/{id}/votos;
+          gastos de senadores — <a href="https://adm.senado.gov.br/adm-dadosabertos/" target="_blank" rel="noreferrer">CEAPS</a> (/senadores/despesas_ceaps/{ano}); projetos de senadores — <a href="https://legis.senado.leg.br/dadosabertos/" target="_blank" rel="noreferrer">API do Senado</a> (/processo?codigoParlamentarAutor); votos — /votacao.</p>
+        <p><strong>Linguagem simples:</strong> as explicações “Em palavras simples” são geradas por regras fixas a partir do tipo, da situação e da descrição oficiais. Os “Resumos simplificados” foram escritos à mão a partir da ementa oficial, que é sempre exibida logo abaixo. Nenhum texto expressa opinião.</p>
         <p>Página independente e apartidária, sem vínculo com o Congresso Nacional. As informações são exibidas como publicadas pelas fontes; erros ou atrasos podem vir delas. Atualização automática diária.</p>
         <p>Dados atualizados em <span id="ft-upd" class="mono">—</span> (horário de Brasília).</p>
       </div>
@@ -196,6 +254,7 @@
     </div>
   </footer>
   <script src="../scripts/home.js"></script>
+  <script src="simples.js"></script>
   <script src="politica.js"></script>
 </body>
 </html>

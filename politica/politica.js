@@ -2,16 +2,18 @@
 (() => {
   'use strict';
   const $ = (s, el = document) => el.querySelector(s);
-  const CAMARA_API = 'https://dadosabertos.camara.leg.br/api/v2';
+  const S = window.PolSimples;
   const SENADO_API = 'https://legis.senado.leg.br/dadosabertos';
+  const CAMARA_API = 'https://dadosabertos.camara.leg.br/api/v2';
   const TZ = 'America/Sao_Paulo';
   const PAGE = 48;
 
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const norm = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   const nf = new Intl.NumberFormat('pt-BR');
-  const brl = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+  const pct = (x) => `${new Intl.NumberFormat('pt-BR', { maximumFractionDigits: x < 10 ? 1 : 0 }).format(x)}%`;
   const MESES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+  const MESES_LONGOS = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
 
   // Datas: carimbos com fuso (ISO "Z" / RSS) são convertidos para Brasília.
   // Datas "locais" das APIs (sem fuso) já estão no horário de Brasília e são apenas formatadas.
@@ -19,10 +21,10 @@
     const d = new Date(iso); if (isNaN(d)) return '';
     return new Intl.DateTimeFormat('pt-BR', { timeZone: TZ, day: '2-digit', month: '2-digit', year: 'numeric', ...(withTime ? { hour: '2-digit', minute: '2-digit' } : {}) }).format(d);
   };
-  const fmtLocal = (s) => {
+  const fmtLocal = (s, withTime = true) => {
     const m = String(s || '').match(/^(\d{4})-(\d{2})-(\d{2})(?:[T ](\d{2}):(\d{2}))?/);
     if (!m) return '';
-    return `${m[3]}/${m[2]}/${m[1]}${m[4] ? ` ${m[4]}h${m[5]}` : ''}`;
+    return `${m[3]}/${m[2]}/${m[1]}${withTime && m[4] && m[4] + m[5] !== '0000' ? ` ${m[4]}h${m[5]}` : ''}`;
   };
 
   const getJSON = async (url, { timeout = 15000 } = {}) => {
@@ -36,34 +38,82 @@
   };
   const data = (name) => getJSON(`data/${name}.json`, { timeout: 20000 });
 
-  const state = { all: [], filtered: [], shown: 0, meta: null, votacoes: null, votos: null, ceaps: null, props: null };
-  const lazy = {}; // dados carregados sob demanda
+  const state = { all: [], byKey: new Map(), filtered: [], shown: 0, meta: null, votacoes: null, props: null, gastos: null, resumos: {} };
+  const lazy = {};
   const once = (k, fn) => (lazy[k] ||= fn().catch((e) => { delete lazy[k]; throw e; }));
+  const loadResumos = () => once('resumos', () => data('resumos-simples').catch(() => ({})));
+  const loadGastos = () => once('gastos', () => data('gastos'));
+
+  // ---------- Pequenos componentes ----------
+  const money = (v, cls = '') => `<button type="button" class="money ${cls}" data-tip="Valor exato: ${esc(S.moneyExact(v))}" aria-label="${esc(S.moneySimple(v))} — valor exato ${esc(S.moneyExact(v))}">${esc(S.moneySimple(v))}</button>`;
+  const term = (k, label) => { const g = S.GLOSS[k]; if (!g) return ''; return `<button type="button" class="term" data-term="${k}" aria-haspopup="dialog">${esc(label || `O que é ${g.s}?`)}</button>`; };
+  const terms = (ks) => [...new Set(ks)].filter((k) => S.GLOSS[k]).map((k) => term(k)).join('');
+
+  // ---------- Dica flutuante (valores exatos e glossário) ----------
+  const tip = document.createElement('div');
+  tip.className = 'pol-tip'; tip.id = 'pol-tip'; tip.hidden = true;
+  let tipFor = null; let tipPinned = false;
+  function showTip(btn, pinned) {
+    let html;
+    if (btn.dataset.term) {
+      const g = S.GLOSS[btn.dataset.term];
+      html = `<strong>${esc(g.s)}${g.n ? ` — ${esc(g.n)}` : ''}</strong><p>${esc(g.d)}</p><a href="#gl-${g.k}" class="tip-link">Ver no glossário</a>`;
+      tip.setAttribute('role', 'dialog'); tip.setAttribute('aria-label', `O que é ${g.s}`);
+    } else {
+      html = esc(btn.dataset.tip); tip.setAttribute('role', 'tooltip'); tip.removeAttribute('aria-label');
+    }
+    const host = btn.closest('dialog') || document.body;
+    if (tip.parentElement !== host) host.append(tip);
+    tip.innerHTML = html; tip.hidden = false; tip.classList.toggle('rich', !!btn.dataset.term);
+    if (tipFor && tipFor !== btn) tipFor.setAttribute('aria-expanded', 'false');
+    tipFor = btn; tipPinned = pinned; btn.setAttribute('aria-expanded', 'true');
+    if (!btn.dataset.term) btn.setAttribute('aria-describedby', 'pol-tip');
+    const r = btn.getBoundingClientRect(); const vw = document.documentElement.clientWidth; const vh = window.innerHeight;
+    tip.style.left = '0px'; tip.style.top = '0px';
+    const w = tip.offsetWidth; const h = tip.offsetHeight;
+    let left = Math.min(Math.max(8, r.left + r.width / 2 - w / 2), vw - w - 8);
+    let top = r.bottom + 8; if (top + h > vh - 8 && r.top - h - 8 > 8) top = r.top - h - 8;
+    tip.style.left = `${left}px`; tip.style.top = `${top}px`;
+  }
+  function hideTip() {
+    if (!tipFor) return;
+    tipFor.setAttribute('aria-expanded', 'false'); tipFor.removeAttribute('aria-describedby');
+    tip.hidden = true; tipFor = null; tipPinned = false;
+  }
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('.money, .term');
+    if (b) { e.preventDefault(); e.stopPropagation(); if (tipFor === b && tipPinned) hideTip(); else showTip(b, true); return; }
+    if (e.target.closest('.tip-link')) { const k = e.target.closest('.tip-link').getAttribute('href'); hideTip(); if (dlg.open) dlg.close(); setTimeout(() => { const el = $(k); if (el) { location.hash = k; el.focus?.({ preventScroll: true }); } }, 0); e.preventDefault(); return; }
+    if (tipFor && !e.target.closest('.pol-tip')) hideTip();
+  }, true);
+  document.addEventListener('mouseover', (e) => { const b = e.target.closest('.money'); if (b && !tipPinned) showTip(b, false); });
+  document.addEventListener('mouseout', (e) => { const b = e.target.closest('.money'); if (b && b === tipFor && !tipPinned && !b.contains(e.relatedTarget)) hideTip(); });
+  document.addEventListener('focusin', (e) => { const b = e.target.closest?.('.money'); if (b && !tipPinned) showTip(b, false); });
+  document.addEventListener('focusout', (e) => { if (tipFor && !tipPinned && e.target === tipFor) hideTip(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && tipFor) { const b = tipFor; hideTip(); b.focus(); e.stopPropagation(); e.preventDefault(); } }, true);
+  window.addEventListener('scroll', () => { if (tipFor) hideTip(); }, { passive: true, capture: true });
+  window.addEventListener('resize', () => { if (tipFor) hideTip(); });
 
   // ---------- Avatares ----------
   const initials = (n) => String(n || '?').split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
-  const avatar = (p, eager = false) =>
-    `<span class="avatar" aria-hidden="true" data-i="${esc(initials(p.n))}">${p.f ? `<img src="${esc(p.f)}" alt="" width="56" height="72" ${eager ? '' : 'loading="lazy"'} decoding="async" referrerpolicy="no-referrer">` : esc(initials(p.n))}</span>`;
+  const avatar = (p, eager = false, size = '') =>
+    `<span class="avatar ${size}" aria-hidden="true" data-i="${esc(initials(p.n))}">${p.f ? `<img src="${esc(p.f)}" alt="" width="56" height="72" ${eager ? '' : 'loading="lazy"'} decoding="async" referrerpolicy="no-referrer">` : esc(initials(p.n))}</span>`;
   document.addEventListener('error', (e) => {
     const img = e.target;
-    if (img.tagName === 'IMG' && img.parentElement?.classList.contains('avatar')) {
-      const box = img.parentElement; box.textContent = box.dataset.i || '?';
-    }
+    if (img.tagName === 'IMG' && img.parentElement?.classList.contains('avatar')) { const box = img.parentElement; box.textContent = box.dataset.i || '?'; }
   }, true);
 
   const casaNome = (c) => (c === 'c' ? 'Câmara' : 'Senado');
   const partyName = (sig) => state.meta?.partidos?.[sig] || '';
+  const cargo = (c) => (c === 'c' ? 'deputado(a)' : 'senador(a)');
 
   // ---------- Lista de parlamentares ----------
   const els = { q: $('#f-q'), casa: $('#f-casa'), part: $('#f-part'), uf: $('#f-uf'), grid: $('#grid'), count: $('#count'), more: $('#more') };
-
   function fillSelect(sel, values, labeler) {
-    const cur = sel.value;
-    sel.length = 1;
+    const cur = sel.value; sel.length = 1;
     for (const v of values) { const o = document.createElement('option'); o.value = v; o.textContent = labeler ? labeler(v) : v; sel.append(o); }
     sel.value = values.includes(cur) ? cur : '';
   }
-
   function applyFilters(resetPage = true) {
     const q = norm(els.q.value.trim()); const casa = els.casa.value; const part = els.part.value; const uf = els.uf.value;
     state.filtered = state.all.filter((p) => (!casa || p.c === casa) && (!part || p.p === part) && (!uf || p.uf === uf) && (!q || p.k.includes(q)));
@@ -75,7 +125,6 @@
       : 'Nenhum parlamentar encontrado com esses filtros.';
     syncQuery();
   }
-
   function renderMore() {
     const next = state.filtered.slice(state.shown, state.shown + PAGE);
     const frag = document.createDocumentFragment();
@@ -93,50 +142,45 @@
     els.more.hidden = state.shown >= state.filtered.length;
     els.more.textContent = `Mostrar mais (${nf.format(state.filtered.length - state.shown)} restantes)`;
   }
-
   function syncQuery() {
     const u = new URL(location.href);
-    for (const [k, el] of [['q', els.q], ['casa', els.casa], ['partido', els.part], ['uf', els.uf]]) {
-      const v = el.value.trim(); v ? u.searchParams.set(k, v) : u.searchParams.delete(k);
-    }
+    for (const [k, el] of [['q', els.q], ['casa', els.casa], ['partido', els.part], ['uf', els.uf]]) { const v = el.value.trim(); v ? u.searchParams.set(k, v) : u.searchParams.delete(k); }
     history.replaceState(history.state, '', u);
   }
-
   let qTimer;
   els.q.addEventListener('input', () => { clearTimeout(qTimer); qTimer = setTimeout(applyFilters, 120); });
   [els.casa, els.part, els.uf].forEach((el) => el.addEventListener('change', () => applyFilters()));
   $('#filters').addEventListener('reset', () => setTimeout(() => applyFilters(), 0));
   els.more.addEventListener('click', renderMore);
-  els.grid.addEventListener('click', (e) => {
-    const b = e.target.closest('.parl-card'); if (!b) return;
-    openProfile(b.dataset.c, Number(b.dataset.id), b);
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-open]'); if (!b) return;
+    const [c, id, tab] = b.dataset.open.split('/');
+    openProfile(c, Number(id), b, tab);
   });
+  els.grid.addEventListener('click', (e) => { const b = e.target.closest('.parl-card'); if (b) openProfile(b.dataset.c, Number(b.dataset.id), b); });
 
   // ---------- Bancadas ----------
   function renderBars(list, casa, ul, totalEl) {
-    const counts = {};
-    list.forEach((p) => { counts[p.p] = (counts[p.p] || 0) + 1; });
+    const counts = {}; list.forEach((p) => { counts[p.p] = (counts[p.p] || 0) + 1; });
     const rows = Object.entries(counts).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
     const max = rows[0]?.[1] || 1;
     totalEl.textContent = `${nf.format(list.length)} cadeiras ocupadas · ${rows.length} legendas`;
     ul.innerHTML = rows.map(([sig, n]) => {
-      const pct = ((n / list.length) * 100).toFixed(1).replace('.', ',');
-      const nome = partyName(sig);
-      return `<li><button type="button" class="bar-row" data-casa="${casa}" data-p="${esc(sig)}" aria-label="${esc(sig)}${nome ? ` (${esc(nome)})` : ''}: ${n} parlamentares, ${pct}% — filtrar lista" title="${esc(nome || sig)} — ${pct}%">
+      const pc = ((n / list.length) * 100).toFixed(1).replace('.', ','); const nome = partyName(sig);
+      return `<li><button type="button" class="bar-row" data-casa="${casa}" data-p="${esc(sig)}" aria-label="${esc(sig)}${nome ? ` (${esc(nome)})` : ''}: ${n} parlamentares, ${pc}% — filtrar lista" title="${esc(nome || sig)} — ${pc}%">
         <span class="lbl">${esc(sig)}</span><span class="bar-track"><span class="bar-fill" style="width:${((n / max) * 100).toFixed(2)}%"></span></span><span class="val">${n}</span></button></li>`;
     }).join('');
   }
+  const smooth = () => (matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth');
   document.addEventListener('click', (e) => {
     const b = e.target.closest('.bar-row'); if (!b) return;
     els.q.value = ''; els.uf.value = ''; els.casa.value = b.dataset.casa; els.part.value = b.dataset.p;
-    applyFilters();
-    $('#parlamentares').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
-    $('#parlamentares').focus({ preventScroll: true });
+    applyFilters(); $('#parlamentares').scrollIntoView({ behavior: smooth() }); $('#parlamentares').focus({ preventScroll: true });
   });
 
   // ---------- Tabs genéricas ----------
-  function tabs(listSel, onChange) {
-    const tl = $(listSel); const btns = [...tl.querySelectorAll('[role="tab"]')];
+  function tabs(listSel, onChange, root = document) {
+    const tl = $(listSel, root); const btns = [...tl.querySelectorAll('[role="tab"]')];
     const select = (b, focus) => {
       btns.forEach((x) => { const on = x === b; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1; });
       $(`#${b.getAttribute('aria-controls')}`).setAttribute('aria-labelledby', b.id);
@@ -151,37 +195,54 @@
       else if (e.key === 'Home') j = 0; else if (e.key === 'End') j = btns.length - 1;
       if (j !== null) { e.preventDefault(); select(btns[j], true); }
     });
+    return { select: (k) => { const b = btns.find((x) => x.dataset.k === k); if (b) select(b); } };
   }
 
-
-  // Lista com "mostrar mais" para não alongar demais a página
+  // Lista com "mostrar mais"
   const LIST_STEP = 8;
-  function listHTML(items, render, extra = '') {
-    const first = items.slice(0, LIST_STEP).map(render).join('');
-    const rest = items.slice(LIST_STEP).map((x) => render(x).replace('<li class="item"', '<li class="item" hidden')).join('');
-    return `<ul class="items">${first}${rest}</ul>${items.length > LIST_STEP ? `<div class="more-wrap"><button type="button" class="button button-ghost list-more" aria-expanded="false">Mostrar mais (${items.length - LIST_STEP})</button></div>` : ''}${extra}`;
+  function listHTML(items, render, extra = '', step = LIST_STEP) {
+    const first = items.slice(0, step).map(render).join('');
+    const rest = items.slice(step).map((x) => render(x).replace(/^\s*<li class="item/, '<li hidden class="item')).join('');
+    return `<ul class="items">${first}${rest}</ul>${items.length > step ? `<div class="more-wrap"><button type="button" class="button button-ghost list-more" data-step="${step}" aria-expanded="false">Mostrar mais (${items.length - step})</button></div>` : ''}${extra}`;
   }
   document.addEventListener('click', (e) => {
     const b = e.target.closest('.list-more'); if (!b) return;
-    const ul = b.closest('.tab-panel').querySelector('.items');
-    const hidden = [...ul.querySelectorAll('li[hidden]')];
-    const next = hidden.slice(0, LIST_STEP);
+    const step = Number(b.dataset.step) || LIST_STEP;
+    const ul = b.parentElement.previousElementSibling;
+    const hidden = [...ul.querySelectorAll(':scope > li[hidden]')];
+    const next = hidden.slice(0, step);
     next.forEach((li) => { li.hidden = false; });
-    next[0]?.querySelector('h3')?.setAttribute('tabindex', '-1');
-    next[0]?.querySelector('h3')?.focus({ preventScroll: true });
+    const h = next[0]?.querySelector('h3, h4, .rk-name');
+    if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
     const left = hidden.length - next.length;
     if (left > 0) b.textContent = `Mostrar mais (${left})`; else b.parentElement.remove();
   });
 
-  // ---------- Votações ----------
-  const VOTO_LABEL = { S: 'Sim', N: 'Não', A: 'Abstenção', O: 'Obstrução', P: 'Art. 17 (presidência)', V: 'Votou (voto secreto)' };
-  const resultBadge = (ap) => ap === 1 ? '<span class="badge ok">Aprovada</span>' : ap === 0 ? '<span class="badge no">Rejeitada</span>' : '<span class="badge neutral">Sem resultado registrado</span>';
+  // ---------- Bloco "Em palavras simples" ----------
+  const resumoKey = (casa, id) => (id ? `${casa}:${id}` : '');
+  function simplesBox({ linhas = [], resumo = null, oficial = null, oficialRotulo = 'Texto oficial (ementa)', termos: ts = [] }) {
+    const ls = linhas.filter(Boolean);
+    return `<div class="simples">
+      <p class="simples-h">Em palavras simples</p>
+      ${ls.map((l) => `<p>${l}</p>`).join('')}
+      ${resumo ? `<p class="resumo"><span class="tag">Resumo simplificado</span> ${esc(resumo)}</p>` : ''}
+      ${oficial ? `<p class="oficial"><span class="tag">${esc(oficialRotulo)}</span> ${esc(oficial)}</p>` : ''}
+      ${ts.length ? `<div class="terms">${terms(ts)}</div>` : ''}
+    </div>`;
+  }
+  const tipoFrase = (sig) => { const t = S.tipoInfo(sig); return t ? `É ${t[1]}.` : ''; };
+  const statusFrase = (st, tr) => {
+    if (!st) return /apresenta/i.test(tr || '') ? 'Situação: acabou de ser apresentada e ainda não tem uma situação registrada.' : '';
+    const s = S.statusSimples(st); return s ? `Situação: ${s.charAt(0).toLowerCase()}${s.slice(1)}` : '';
+  };
 
+  // ---------- Votações ----------
+  const VOTO_LABEL = { S: 'Sim', N: 'Não', A: 'Abstenção', O: 'Obstrução', P: 'Presidindo (Art. 17)', V: 'Votou (voto secreto)' };
+  const resultBadge = (ap, d) => /^mantid[oa] o texto/i.test(d || '') ? '<span class="badge ok">Texto mantido</span>' : ap === 1 ? '<span class="badge ok">Aprovada</span>' : ap === 0 ? '<span class="badge no">Rejeitada</span>' : '<span class="badge neutral">Sem resultado registrado</span>';
   function placarHTML(pl, map) {
     if (!pl) return '';
     const parts = map.filter(([k]) => pl[k]).map(([k, label, cls]) => ({ k, label, cls, n: pl[k] }));
-    const total = parts.reduce((s, x) => s + x.n, 0);
-    if (!total) return '';
+    const total = parts.reduce((s, x) => s + x.n, 0); if (!total) return '';
     return `<div class="placar"><div class="placar-bar" role="img" aria-label="${esc(parts.map((x) => `${x.label}: ${x.n}`).join(', '))}">${parts.map((x) => `<span class="${x.cls}" style="width:${(x.n / total) * 100}%"></span>`).join('')}</div>
       <div class="placar-legend" aria-hidden="true">${parts.map((x) => `<span><i class="${x.cls}"></i>${esc(x.label)}: <b>${x.n}</b></span>`).join('')}</div></div>`;
   }
@@ -189,25 +250,45 @@
   const SENADO_PLACAR = [['Sim', 'Sim', 'v-S'], ['Não', 'Não', 'v-N'], ['Abstenção', 'Abstenção', 'v-A']];
   const propLinkCamara = (id) => `https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=${encodeURIComponent(id)}`;
   const materiaLinkSenado = (cm) => `https://www25.senado.leg.br/web/atividade/materias/-/materia/${encodeURIComponent(cm)}`;
+  const descLimpa = (d) => String(d || '').replace(/\s*Sim: \d+.*$/, '').replace(/\s+\.\s*$/, '.').trim();
+
+  function votoSimplesCamara(v) {
+    const x = S.sentidoVotoCamara(v);
+    const sobre = v.pr ? ` do ${esc(v.pr.s)}` : '';
+    const linhas = [
+      `Os deputados votaram ${esc(x.tema)}${x.tema === 'o projeto' || x.tema.startsWith('a mudança') || x.tema === 'a medida provisória' ? '' : sobre}${x.tema === 'o projeto' ? sobre : ''}.`,
+      x.sim ? `<b>Sim</b> = ${esc(x.sim)}. <b>Não</b> = ${esc(x.nao)}.` : '',
+      x.res ? esc(x.res) : '',
+    ];
+    return { linhas, termos: x.termos };
+  }
+  function votoSimplesSenado(v) {
+    const x = S.sentidoVotoSenado(v);
+    return { linhas: [`Os senadores votaram ${esc(x.tema)}${v.s && x.tema === 'o projeto' ? ` (${esc(v.s)})` : ''}.`, x.sim ? `<b>Sim</b> = ${esc(x.sim)}. <b>Não</b> = ${esc(x.nao)}.` : '', esc(x.res)], termos: x.termos };
+  }
 
   function votacaoCamaraHTML(v) {
     const secreta = v.pl && v.pl.V;
-    return `<li class="item"><div class="item-top"><time>${esc(fmtLocal(v.dt))}</time>${v.pr ? `<span class="sig">${esc(v.pr.s)}</span>` : ''}${resultBadge(v.ap)}${v.nom ? `<span class="chip">${secreta ? 'secreta' : 'nominal'}</span>` : '<span class="chip">simbólica</span>'}</div>
-      <h3>${esc(v.d)}</h3>
-      ${v.ctx ? `<p>${esc(v.ctx)}</p>` : ''}
-      ${v.pr?.e ? `<p><b>Proposição:</b> ${esc(v.pr.e)}</p>` : ''}
+    const vs = votoSimplesCamara(v);
+    const resumo = v.pr ? state.resumos[resumoKey('c', v.pr.id)] : null;
+    const tipoVot = v.nom ? (secreta ? 'secreta' : 'nominal') : 'simbolica';
+    return `<li class="item"><div class="item-top"><time>${esc(fmtLocal(v.dt))}</time>${v.pr ? `<span class="sig">${esc(v.pr.s)}</span>` : ''}${resultBadge(v.ap, v.d)}<span class="chip">${tipoVot === 'simbolica' ? 'simbólica' : tipoVot}</span></div>
+      <h3>${esc(descLimpa(v.d))}</h3>
+      ${simplesBox({ linhas: vs.linhas, resumo: resumo ? `Sobre a proposta: ${resumo}` : null, oficial: v.pr?.e || null, termos: [...vs.termos, tipoVot] })}
+      ${v.ctx ? `<p class="note-sm"><b>Descrição oficial da votação:</b> ${esc(v.ctx)}</p>` : ''}
       ${secreta ? `<p class="note">Votação secreta: ${nf.format(v.pl.V)} deputados registraram voto, sem divulgação individual.</p>` : placarHTML(v.pl, CAMARA_PLACAR)}
       ${v.pr ? `<a class="ext" href="${propLinkCamara(v.pr.id)}" target="_blank" rel="noreferrer">Tramitação na Câmara ↗</a>` : ''}</li>`;
   }
   function votacaoSenadoHTML(v) {
     const res = v.r === 'A' ? '<span class="badge ok">Aprovada</span>' : v.r === 'R' ? '<span class="badge no">Rejeitada</span>' : '<span class="badge neutral">Sem resultado registrado</span>';
+    const vs = votoSimplesSenado(v);
+    const resumo = v.cm ? state.resumos[resumoKey('s', v.cm)] : null;
     return `<li class="item"><div class="item-top"><time>${esc(fmtLocal(v.dt))}</time><span class="sig">${esc(v.s || '')}</span>${res}<span class="chip">${v.sec ? 'secreta' : 'nominal'}</span></div>
       <h3>${esc(v.d)}</h3>
-      ${v.e ? `<p>${esc(v.e)}</p>` : ''}
+      ${simplesBox({ linhas: vs.linhas, resumo: resumo ? `Sobre a proposta: ${resumo}` : null, oficial: v.e || null, termos: [...vs.termos, v.sec ? 'secreta' : 'nominal'] })}
       ${v.sec ? `<p class="note">Votação secreta: ${nf.format(v.pl?.Votou || 0)} senadores registraram voto, sem divulgação individual.</p>` : placarHTML(v.pl, SENADO_PLACAR)}
       ${v.cm ? `<a class="ext" href="${materiaLinkSenado(v.cm)}" target="_blank" rel="noreferrer">Matéria no Senado ↗</a>` : ''}</li>`;
   }
-
   function renderVotacoes(k) {
     const pv = $('#pv'); const V = state.votacoes;
     if (!V) { pv.innerHTML = '<p class="err">Não foi possível carregar as votações agora. Tente recarregar a página.</p>'; return; }
@@ -226,15 +307,119 @@
   }
 
   // ---------- Proposições ----------
+  function propHTML(p, casa, { autoria = true } = {}) {
+    const sig = S.sigla(p.s); const tp = S.tipoInfo(sig);
+    const resumo = state.resumos[resumoKey(casa, casa === 'c' ? p.id : p.cm)] || null;
+    const st = p.st || null;
+    const quando = p.sd ? fmtLocal(p.sd, false) : '';
+    const link = casa === 'c' ? propLinkCamara(p.id) : (p.cm ? materiaLinkSenado(p.cm) : p.url);
+    const ts = [tp?.[0], 'tramitacao'];
+    if (/relator/i.test(st || '')) ts.push('relator');
+    if (/arquiv/i.test(st || '')) ts.push('arquivada');
+    if (/parecer/i.test(st || '')) ts.push('parecer');
+    if (/conjunto|apens/i.test(st || '')) ts.push('tramitacao');
+    if (/plen/i.test(st || '')) ts.push('plenario');
+    return `<li class="item"><div class="item-top"><time title="Data de apresentação">${esc(fmtLocal(p.dt, false))}</time><span class="sig">${esc(p.s)}</span>${p.pa ? '<span class="chip">1º autor(a)</span>' : ''}${p.tram === false ? '<span class="chip">não tramita mais</span>' : ''}</div>
+      ${simplesBox({ linhas: [esc(tipoFrase(sig)), esc(statusFrase(st, p.tr)) || (st || p.tr ? '' : 'Situação atual não informada pela API.')], resumo, oficial: p.e, termos: ts })}
+      ${!st && p.tr ? `<p class="note-sm"><b>Último andamento oficial:</b> ${esc(p.tr)}${p.org ? ` · ${esc(p.org)}` : ''}${quando ? ` · ${esc(quando)}` : ''}</p>` : ''}
+      ${st ? `<p class="note-sm"><b>Situação oficial:</b> ${esc(st.charAt(0) + (st === st.toUpperCase() ? st.slice(1).toLowerCase() : st.slice(1)))}${p.org ? ` · ${esc(p.org)}` : ''}${quando ? ` · desde ${esc(quando)}` : ''}${p.tr && p.tr !== st ? `<br><b>Último andamento:</b> ${esc(p.tr)}` : ''}</p>` : ''}
+      ${autoria && p.au ? `<p class="note-sm"><b>Autoria:</b> ${esc(p.au.length > 220 ? `${p.au.slice(0, 217).replace(/,[^,]*$/, '')}, e outros` : p.au)}</p>` : ''}
+      ${link ? `<a class="ext" href="${esc(link)}" target="_blank" rel="noreferrer">${casa === 'c' ? 'Ficha na Câmara' : 'Matéria no Senado'} ↗</a>` : ''}</li>`;
+  }
   function renderProps(k) {
     const pp = $('#pp'); const P = state.props;
     if (!P) { pp.innerHTML = '<p class="err">Não foi possível carregar as proposições agora.</p>'; return; }
     const l = (k === 'c' ? P.camara : P.senado) || [];
     if (!l.length) { pp.innerHTML = '<p class="err">Nenhuma proposição desses tipos nos últimos 30 dias.</p>'; return; }
-    pp.innerHTML = listHTML(l, (p) => `<li class="item"><div class="item-top"><time>${esc(fmtLocal(p.dt))}</time><span class="sig">${esc(p.s)}</span>${p.st ? `<span class="chip">${esc(p.st.toLowerCase())}</span>` : ''}</div>
-      <h3>${esc(p.e)}</h3>${p.au ? `<p><b>Autoria:</b> ${esc(p.au)}</p>` : ''}
-      <a class="ext" href="${k === 'c' ? propLinkCamara(p.id) : materiaLinkSenado(p.cm)}" target="_blank" rel="noreferrer">${k === 'c' ? 'Ficha na Câmara' : 'Matéria no Senado'} ↗</a></li>`);
+    pp.innerHTML = listHTML(l, (p) => propHTML(p, k), `<p class="note">“Em palavras simples” é gerado por regras fixas a partir do tipo e da situação oficial. O “Resumo simplificado”, quando existe, foi escrito à mão a partir da ementa oficial, que aparece logo abaixo dele como “Texto oficial”.</p>`);
   }
+
+  // ---------- Gastos (visão geral e ranking) ----------
+  function monthChart(m, ano, label) {
+    const entries = Object.entries(m || {}).map(([k, v]) => [+k, v]).filter(([k]) => k >= 1 && k <= 12);
+    if (!entries.length) return '';
+    const last = Math.max(...entries.map(([k]) => k));
+    const vals = Array.from({ length: last }, (_, i) => (m[i + 1] ?? m[String(i + 1)] ?? 0));
+    const max = Math.max(...vals, 1);
+    const aria = vals.map((v, i) => `${MESES[i]}: ${S.moneySimple(v)}`).join('; ');
+    return `<figure class="mchart-wrap"><figcaption>${esc(label)} — por mês (${ano})</figcaption>
+      <div class="mchart" role="img" aria-label="${esc(`${label} por mês em ${ano}: ${aria}`)}">${vals.map((v, i) => `<div class="mcol" title="${esc(`${MESES_LONGOS[i]}: ${S.moneyExact(v)}`)}"><span class="mbar" style="height:${Math.max(v > 0 ? 2 : 0, (v / max) * 100).toFixed(1)}%"></span><span class="mlbl">${MESES[i]}</span></div>`).join('')}</div>
+      <details class="mtable"><summary>Ver valores de cada mês</summary><table><thead><tr><th scope="col">Mês</th><th scope="col">Valor</th></tr></thead><tbody>${vals.map((v, i) => `<tr><td>${MESES_LONGOS[i]}</td><td>${money(v)}</td></tr>`).join('')}</tbody></table></details>
+    </figure>`;
+  }
+  function catBars(tp, total, max = 8) {
+    const rows = Object.entries(tp).sort((a, b) => b[1] - a[1]);
+    const top = rows[0]?.[1] || 1;
+    const shown = rows.slice(0, max); const rest = rows.slice(max);
+    const row = ([t, v]) => `<li><div class="cb-top"><span class="cb-name">${esc(S.categoria(t))}</span><span class="cb-val">${money(v)} <small>${total > 0 ? pct((v / total) * 100) : ''}</small></span></div>
+      <span class="track"><span style="width:${Math.max(0, (v / top) * 100).toFixed(1)}%"></span></span><small class="cb-off">Nome oficial: ${esc(t)}</small></li>`;
+    return `<ul class="catbars">${shown.map(row).join('')}</ul>${rest.length ? `<details class="more-cats"><summary>Ver outras ${rest.length} categorias</summary><ul class="catbars">${rest.map(row).join('')}</ul></details>` : ''}`;
+  }
+  // Estatísticas por casa a partir de gastos.json
+  function casaStats(casa) {
+    const G = state.gastos; if (!G || !G[casa]) return null;
+    const list = Object.entries(G[casa]).map(([id, [t, n, ci]]) => ({ id: Number(id), t, n, ci }));
+    list.sort((a, b) => b.t - a.t);
+    const rank = new Map(list.map((x, i) => [x.id, i + 1]));
+    const total = list.reduce((s, x) => s + x.t, 0);
+    const sorted = [...list].map((x) => x.t).sort((a, b) => a - b);
+    const med = sorted.length ? (sorted.length % 2 ? sorted[(sorted.length - 1) / 2] : (sorted[sorted.length / 2 - 1] + sorted[sorted.length / 2]) / 2) : 0;
+    return { list, rank, total, avg: list.length ? total / list.length : 0, med, n: list.length, ano: G.ano?.[casa], cats: G.cat?.[casa] || [], tot: G.tot?.[casa] };
+  }
+  const statsCache = {};
+  const stats = (casa) => (statsCache[casa] ||= casaStats(casa));
+
+  function renderGastosGeral(casa) {
+    const box = $('#gg'); const st = stats(casa);
+    if (!st || !st.tot) { box.innerHTML = '<p class="err">Resumo de gastos indisponível no momento.</p>'; return; }
+    const tp = {}; for (const [k, v] of Object.entries(st.tot.tp || {})) tp[st.cats[k] || 'Não informado'] = v;
+    const quem = casa === 'c' ? 'deputados' : 'senadores';
+    const lastM = Math.max(...Object.keys(st.tot.m || {}).map(Number).filter((x) => x <= 12), 0);
+    box.innerHTML = `<p class="lead-simples">Em ${st.ano}, os ${nf.format(st.n)} ${quem} em exercício com gastos registrados usaram ${money(st.total)} da cota parlamentar ${term(casa === 'c' ? 'ceap' : 'ceaps', casa === 'c' ? '(CEAP)' : '(CEAPS)')}. Em média, ${money(st.avg)} por ${casa === 'c' ? 'deputado(a)' : 'senador(a)'}.</p>
+      <div class="kpis">
+        <div class="kpi"><b>${money(st.total)}</b><span>total em ${st.ano}${lastM ? ` (jan–${MESES[lastM - 1]})` : ''}</span></div>
+        <div class="kpi"><b>${money(st.avg)}</b><span>média por ${casa === 'c' ? 'deputado(a)' : 'senador(a)'}</span></div>
+        <div class="kpi"><b>${money(st.med)}</b><span>valor do meio (mediana)</span></div>
+        <div class="kpi"><b>${nf.format(st.tot.n)}</b><span>notas e recibos</span></div>
+      </div>
+      <div class="g2">
+        ${monthChart(st.tot.m, st.ano, `Gastos de todos os ${quem}`)}
+        <div><h3 class="h-sm">Com o que gastaram</h3>${catBars(tp, st.total, 7)}</div>
+      </div>
+      <p class="note">Os meses mais recentes podem estar incompletos: notas e recibos podem ser apresentados e lançados depois. Valores ${casa === 'c' ? 'líquidos (descontadas glosas) da API da Câmara' : 'reembolsados, dos dados administrativos do Senado'}.</p>`;
+  }
+
+  const rk = { casa: $('#r-casa'), part: $('#r-part'), uf: $('#r-uf'), ord: $('#r-ord'), list: $('#rank'), count: $('#r-count') };
+  function fillRankFilters() {
+    const casa = rk.casa.value; const pool = state.all.filter((p) => p.c === casa);
+    fillSelect(rk.part, [...new Set(pool.map((p) => p.p))].sort((a, b) => a.localeCompare(b, 'pt-BR')));
+    fillSelect(rk.uf, [...new Set(pool.map((p) => p.uf))].sort());
+  }
+  function renderRanking() {
+    const casa = rk.casa.value; const st = stats(casa);
+    if (!st) { rk.list.innerHTML = '<p class="err">Ranking indisponível no momento.</p>'; return; }
+    const rows = st.list.map((x) => ({ ...x, p: state.byKey.get(`${casa}/${x.id}`) })).filter((x) => x.p && (!rk.part.value || x.p.p === rk.part.value) && (!rk.uf.value || x.p.uf === rk.uf.value));
+    if (rk.ord.value === 'asc') rows.reverse();
+    const max = st.list[0]?.t || 1;
+    const filtro = [rk.part.value, rk.uf.value].filter(Boolean).join(' · ');
+    rk.count.textContent = rows.length ? `${nf.format(rows.length)} ${casa === 'c' ? 'deputados' : 'senadores'}${filtro ? ` (${filtro})` : ''} · média da ${casaNome(casa)}: ${S.moneySimple(st.avg)} · ano ${st.ano}` : 'Ninguém com gastos registrados com esses filtros.';
+    const sub = rows.length ? rows.reduce((s, x) => s + x.t, 0) / rows.length : 0;
+    const li = (x) => {
+      const r = st.rank.get(x.id); const cat = st.cats[x.ci];
+      const comp = x.t >= st.avg ? `${pct(((x.t / st.avg) - 1) * 100)} acima da média` : `${pct((1 - x.t / st.avg) * 100)} abaixo da média`;
+      return `<li class="item rk-row"><span class="rk-pos" aria-label="Posição ${r} de ${st.n}">${r}º</span>${avatar(x.p)}
+        <div class="rk-main"><button type="button" class="rk-name" data-open="${casa}/${x.id}/gastos">${esc(x.p.n)}</button>
+          <span class="parl-meta"><span class="chip">${esc(x.p.p)}</span><span class="chip">${esc(x.p.uf)}</span>${cat ? `<span class="rk-cat">Maior gasto: ${esc(S.categoria(cat))}</span>` : ''}</span>
+          <span class="track"><span style="width:${((x.t / max) * 100).toFixed(1)}%"></span></span></div>
+        <div class="rk-val">${money(x.t)}<small>${esc(comp)}</small></div></li>`;
+    };
+    rk.list.innerHTML = rows.length ? listHTML(rows, li, filtro && rows.length > 1 ? `<p class="note">Média do grupo filtrado: ${money(sub)}.</p>` : '', 20) : '';
+    const u = new URL(location.href);
+    for (const [k, el, def] of [['rcasa', rk.casa, 'c'], ['rpartido', rk.part, ''], ['ruf', rk.uf, ''], ['rordem', rk.ord, 'desc']]) { el.value && el.value !== def ? u.searchParams.set(k, el.value) : u.searchParams.delete(k); }
+    history.replaceState(history.state, '', u);
+  }
+  rk.casa.addEventListener('change', () => { fillRankFilters(); renderRanking(); });
+  [rk.part, rk.uf, rk.ord].forEach((el) => el.addEventListener('change', renderRanking));
 
   // ---------- Notícias ----------
   function renderNews(N) {
@@ -248,214 +433,230 @@
     }).join('');
   }
 
+  // ---------- Glossário ----------
+  function renderGlossario() {
+    $('#gloss').innerHTML = S.GLOSSARIO.map(([k, s, n, d]) => `<div class="gl-item" id="gl-${k}" tabindex="-1"><dt>${esc(s)}${n ? ` <span>${esc(n)}</span>` : ''}</dt><dd>${esc(d)}</dd></div>`).join('');
+  }
+
   // ---------- Perfil ----------
   const dlg = $('#profile'); const pfBody = $('#pf-body');
-  let lastFocus = null; let currentKey = '';
+  let lastFocus = null; let currentKey = ''; let pfTabs = null;
   $('#pf-close').addEventListener('click', () => dlg.close());
   dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
   dlg.addEventListener('close', () => {
-    currentKey = '';
+    hideTip(); currentKey = '';
     if (location.hash.startsWith('#perfil/')) history.replaceState(history.state, '', location.pathname + location.search);
     lastFocus?.focus?.();
   });
-
   const skel = (n = 3) => Array.from({ length: n }, (_, i) => `<div class="skeleton" style="width:${90 - i * 15}%"></div>`).join('');
   const dl = (rows) => `<dl class="pf-dl">${rows.filter(([, v]) => v).map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${v}</dd></div>`).join('')}</dl>`;
   const age = (iso) => { const m = String(iso || '').match(/^(\d{4})-(\d{2})-(\d{2})/); if (!m) return ''; const now = new Date(); let a = now.getFullYear() - +m[1]; if (now.getMonth() + 1 < +m[2] || (now.getMonth() + 1 === +m[2] && now.getDate() < +m[3])) a--; return `${fmtLocal(iso)} (${a} anos)`; };
+  const failBox = (msg, link) => `<p class="err">${esc(msg)}${link ? ` <a href="${esc(link)}" target="_blank" rel="noreferrer">Ver na página oficial ↗</a>` : ''}</p>`;
+  const loadParl = (c, id) => once(`parl-${c}-${id}`, () => data(`parl/${c}/${id}`));
+  const PF_TABS = [['resumo', 'Resumo'], ['gastos', 'Gastos'], ['projetos', 'Projetos'], ['votos', 'Votos']];
 
-  function openProfile(c, id, opener) {
-    const p = state.all.find((x) => x.c === c && x.id === id);
-    if (!p) return;
+  function openProfile(c, id, opener, tab = 'resumo') {
+    const p = state.byKey.get(`${c}/${id}`); if (!p) return;
+    if (!PF_TABS.some(([k]) => k === tab)) tab = 'resumo';
     lastFocus = opener || document.activeElement;
-    currentKey = `${c}/${id}`;
+    const key = `${c}/${id}`;
+    if (currentKey === key && dlg.open) { pfTabs?.select(tab); return; }
+    currentKey = key;
     const official = c === 'c' ? `https://www.camara.leg.br/deputados/${id}` : (p.url || `https://www25.senado.leg.br/web/senadores/senador/-/perfil/${id}`);
     pfBody.innerHTML = `<div class="pf-head">${avatar(p, true)}<div>
         <h2 id="pf-name">${esc(p.n)}</h2>
         <p class="sub">${c === 'c' ? 'Deputado(a) federal' : 'Senador(a)'} · ${esc(p.p)}${partyName(p.p) ? ` (${esc(partyName(p.p))})` : ''} · ${esc(p.uf)}</p>
         <div class="pf-links"><a href="${esc(official)}" target="_blank" rel="noreferrer">Página oficial ↗</a>${p.e ? `<a href="mailto:${esc(p.e)}">${esc(p.e)}</a>` : ''}</div>
       </div></div>
-      <section class="pf-sec" aria-labelledby="pf-info-h"><h3 id="pf-info-h">Informações</h3><div id="pf-info">${skel()}</div></section>
-      <section class="pf-sec" aria-labelledby="pf-desp-h"><h3 id="pf-desp-h">${c === 'c' ? 'Despesas com a cota parlamentar (CEAP)' : 'Despesas com a cota parlamentar (CEAPS)'}</h3><div id="pf-desp">${skel()}</div></section>
-      <section class="pf-sec" aria-labelledby="pf-vot-h"><h3 id="pf-vot-h">Votos recentes em plenário</h3><div id="pf-vot">${skel()}</div></section>`;
+      <div class="tabs pf-tabs" role="tablist" aria-label="Seções do perfil">${PF_TABS.map(([k, l], i) => `<button role="tab" id="pft-${k}" aria-controls="pfp" aria-selected="${i === 0}" data-k="${k}" ${i ? 'tabindex="-1"' : ''}>${l}</button>`).join('')}</div>
+      <div id="pfp" role="tabpanel" class="pf-panel" aria-labelledby="pft-resumo" tabindex="0">${skel()}</div>`;
     if (!dlg.open) dlg.showModal();
     $('.profile-inner').scrollTop = 0;
-    if (location.hash !== `#perfil/${currentKey}`) history.replaceState(history.state, '', `#perfil/${currentKey}`);
-    const key = currentKey;
     const alive = () => key === currentKey && dlg.open;
-    if (c === 'c') { infoDeputado(p, alive); despesasDeputado(p, alive); } else { infoSenador(p, alive); despesasSenador(p, alive); }
-    votosRecentes(p, alive);
+    pfTabs = tabs('.pf-tabs', (k) => {
+      if (!alive()) return;
+      const h = `#perfil/${key}${k === 'resumo' ? '' : `/${k}`}`;
+      if (location.hash !== h) history.replaceState(history.state, '', h);
+      renderPfTab(p, k, alive);
+    }, pfBody);
+    pfTabs.select(tab);
   }
 
-  const failBox = (msg, link) => `<p class="err">${esc(msg)}${link ? ` <a href="${esc(link)}" target="_blank" rel="noreferrer">Ver na página oficial ↗</a>` : ''}</p>`;
+  async function renderPfTab(p, k, alive) {
+    const box = $('#pfp'); box.innerHTML = skel();
+    const tabNow = () => alive() && $('#pfp')?.getAttribute('aria-labelledby') === `pft-${k}`;
+    try {
+      if (k === 'resumo') await pfResumo(p, box, tabNow);
+      else if (k === 'gastos') await pfGastos(p, box, tabNow);
+      else if (k === 'projetos') await pfProjetos(p, box, tabNow);
+      else await pfVotos(p, box, tabNow);
+    } catch (e) {
+      if (tabNow()) box.innerHTML = failBox('Não foi possível carregar esta seção agora. Tente novamente em instantes.', p.c === 'c' ? `https://www.camara.leg.br/deputados/${p.id}` : p.url);
+    }
+  }
 
-  function infoDeputadoHTML(x, fonte) {
+  // Resumo
+  function infoDeputadoHTML(x) {
     return dl([
-      ['Nome civil', esc(x.nc)],
-      ['Nascimento', esc(age(x.nasc))],
-      ['Naturalidade', x.mun ? esc(`${x.mun}${x.ufn ? ` (${x.ufn})` : ''}`) : ''],
-      ['Escolaridade', esc(x.esc)],
+      ['Nome civil', esc(x.nc)], ['Nascimento', esc(age(x.nasc))],
+      ['Naturalidade', x.mun ? esc(`${x.mun}${x.ufn ? ` (${x.ufn})` : ''}`) : ''], ['Escolaridade', esc(x.esc)],
       ['Situação', esc([x.sit, x.cond].filter(Boolean).join(' · '))],
       ['Gabinete', x.gab?.sala ? esc(`Sala ${x.gab.sala}, prédio ${x.gab.predio}${x.gab.tel ? ` · tel. (61) ${x.gab.tel}` : ''}`) : ''],
       ['Redes e site', x.redes?.length ? x.redes.map((u) => `<a href="${esc(u)}" target="_blank" rel="noreferrer">${esc(u.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))}</a>`).join('<br>') : ''],
-    ]) + (fonte ? `<p class="note">${esc(fonte)}</p>` : '');
+    ]);
   }
-
-  async function infoDeputado(p, alive) {
-    // O endpoint /deputados/{id} da Câmara não envia cabeçalho CORS de forma confiável para navegadores,
-    // então usamos primeiro o retrato da atualização diária e só consultamos a API ao vivo se faltar.
-    const box = () => $('#pf-info');
-    try {
-      const all = await once('detalhes', () => data('deputados-detalhes'));
-      if (!alive()) return;
-      const x = all[p.id];
-      if (!x) throw new Error('sem dados');
-      box().innerHTML = infoDeputadoHTML(x, `Fonte: API da Câmara, atualização de ${fmtZoned(state.meta?.atualizadoEm)}.`);
-      return;
-    } catch (_) { /* tenta ao vivo */ }
-    try {
-      const d = (await getJSON(`${CAMARA_API}/deputados/${p.id}`, { timeout: 10000 })).dados;
-      if (!alive()) return;
-      const s = d.ultimoStatus || {}; const g = s.gabinete || {};
-      box().innerHTML = infoDeputadoHTML({
-        nc: d.nomeCivil, nasc: d.dataNascimento, mun: d.municipioNascimento, ufn: d.ufNascimento, esc: d.escolaridade,
-        sit: s.situacao, cond: s.condicaoEleitoral, gab: g.sala ? { sala: g.sala, predio: g.predio, tel: g.telefone } : null,
-        redes: [...(d.redeSocial || []), d.urlWebsite].filter((u) => /^https?:\/\//.test(u || '')),
-      }, 'Fonte: API da Câmara (consulta ao vivo).');
-    } catch (e) {
-      if (alive()) box().innerHTML = failBox('Não foi possível obter os dados deste(a) deputado(a) agora.', `https://www.camara.leg.br/deputados/${p.id}`);
-    }
-  }
-
-  async function infoSenador(p, alive) {
-    const box = () => $('#pf-info');
-    const base = [
-      ['Nome completo', esc(p.nc)],
-      ['Participação', esc(p.part)],
-      ['Mandato até', p.fim ? esc(fmtLocal(p.fim)) : ''],
-      ['Bloco parlamentar', esc(p.bl)],
-      ['Funções', esc([p.mesa ? 'Membro da Mesa' : '', p.lid ? 'Membro de liderança' : ''].filter(Boolean).join(' · '))],
-    ];
-    try {
-      const j = await getJSON(`${SENADO_API}/senador/${p.id}.json`);
-      if (!alive()) return;
-      const P = j?.DetalheParlamentar?.Parlamentar || {}; const b = P.DadosBasicosParlamentar || {};
-      box().innerHTML = dl([
-        ...base.slice(0, 1),
-        ['Nascimento', esc(age(b.DataNascimento))],
-        ['Naturalidade', b.Naturalidade ? esc(`${b.Naturalidade}${b.UfNaturalidade ? ` (${b.UfNaturalidade})` : ''}`) : ''],
-        ...base.slice(1),
-        ['Gabinete', esc((b.EnderecoParlamentar || '').replace(/\s+/g, ' ').trim())],
-      ]);
-    } catch (e) {
-      if (alive()) box().innerHTML = dl(base) + failBox('Detalhes adicionais indisponíveis (API do Senado não respondeu).', p.url);
-    }
-  }
-
-  function despesasHTML({ total, n, tipos, meses, ano, parcial, fonteNota }) {
-    const top = Object.entries(tipos).sort((a, b) => b[1] - a[1]);
-    const max = top[0]?.[1] || 1;
-    const mesesOrd = Object.entries(meses).map(([m, v]) => [+m, v]).sort((a, b) => b[0] - a[0]);
-    const ult = mesesOrd[0];
-    return `<div class="kpis">
-        <div class="kpi"><b>${brl.format(total)}</b><span>total em ${ano}${parcial ? ' (parcial)' : ''}</span></div>
-        <div class="kpi"><b>${nf.format(n)}</b><span>documentos</span></div>
-        ${ult ? `<div class="kpi"><b>${brl.format(ult[1])}</b><span>último mês com registros (${MESES[ult[0] - 1]}/${ano})</span></div>` : ''}
-      </div>
-      <div class="hbar">${top.slice(0, 6).map(([t, v]) => `<span class="t" title="${esc(t)}">${esc(t.charAt(0) + t.slice(1).toLowerCase())}</span><span class="v">${brl.format(v)}</span><span class="track"><span style="width:${((v / max) * 100).toFixed(1)}%"></span></span>`).join('')}</div>
-      <p class="note">${esc(fonteNota)}</p>`;
-  }
-
-  async function despesasDeputado(p, alive) {
-    const box = () => $('#pf-desp');
-    const ano = Number(new Intl.DateTimeFormat('en', { timeZone: TZ, year: 'numeric' }).format(new Date()));
-    const leg = p.lg || 57;
-    const fetchYear = async (y) => {
-      const out = []; let parcial = false;
-      for (let pg = 1; pg <= 6; pg++) {
-        const j = await getJSON(`${CAMARA_API}/deputados/${p.id}/despesas?idLegislatura=${leg}&ano=${y}&itens=100&pagina=${pg}&ordem=DESC&ordenarPor=dataDocumento`, { timeout: 20000 });
-        out.push(...(j.dados || []));
-        const hasNext = (j.links || []).some((l) => l.rel === 'next');
-        if (!hasNext) break;
-        if (pg === 6) parcial = true;
-      }
-      return { out, parcial };
-    };
-    try {
-      let y = ano; let r = await fetchYear(y);
-      if (!r.out.length) { y = ano - 1; r = await fetchYear(y); }
-      if (!alive()) return;
-      if (!r.out.length) { box().innerHTML = failBox('Nenhuma despesa registrada na API para este mandato recentemente.', `https://www.camara.leg.br/deputados/${p.id}`); return; }
-      const tipos = {}; const meses = {}; let total = 0;
-      for (const d of r.out) { const v = Number(d.valorLiquido) || 0; total += v; tipos[d.tipoDespesa || 'Não informado'] = (tipos[d.tipoDespesa || 'Não informado'] || 0) + v; meses[d.mes] = (meses[d.mes] || 0) + v; }
-      box().innerHTML = despesasHTML({ total, n: r.out.length, tipos, meses, ano: y, parcial: r.parcial, fonteNota: `Valores líquidos declarados na Cota para o Exercício da Atividade Parlamentar, consultados ao vivo na API da Câmara.${r.parcial ? ' Exibindo os 600 documentos mais recentes.' : ''}` });
-    } catch (e) {
+  async function infoHTML(p) {
+    if (p.c === 'c') {
+      try { const all = await once('detalhes', () => data('deputados-detalhes')); if (all[p.id]) return infoDeputadoHTML(all[p.id]); } catch (_) { /* segue */ }
       try {
-        const DD = await once('despDep', () => data('despesas-deputados'));
-        if (!alive()) return;
-        const o = DD.por?.[p.id];
-        if (!o) throw new Error('sem dados');
-        const tipos = {}; for (const [k, v] of Object.entries(o.tp)) tipos[DD.tipos[k] || 'Não informado'] = v;
-        box().innerHTML = despesasHTML({ total: o.t, n: o.n, tipos, meses: o.m, ano: o.a, parcial: false, fonteNota: `Consulta ao vivo indisponível; valores líquidos da CEAP consolidados na última atualização (${fmtZoned(state.meta?.atualizadoEm)}).` });
-      } catch (_) {
-        if (alive()) box().innerHTML = failBox('Não foi possível consultar as despesas na API da Câmara agora.', `https://www.camara.leg.br/deputados/${p.id}`);
-      }
+        const d = (await getJSON(`${CAMARA_API}/deputados/${p.id}`, { timeout: 8000 })).dados; const s = d.ultimoStatus || {}; const g = s.gabinete || {};
+        return infoDeputadoHTML({ nc: d.nomeCivil, nasc: d.dataNascimento, mun: d.municipioNascimento, ufn: d.ufNascimento, esc: d.escolaridade, sit: s.situacao, cond: s.condicaoEleitoral, gab: g.sala ? { sala: g.sala, predio: g.predio, tel: g.telefone } : null, redes: [...(d.redeSocial || []), d.urlWebsite].filter((u) => /^https?:\/\//.test(u || '')) });
+      } catch (_) { return failBox('Dados cadastrais indisponíveis agora.', `https://www.camara.leg.br/deputados/${p.id}`); }
     }
+    const base = [['Nome completo', esc(p.nc)], ['Participação', esc(p.part)], ['Mandato até', p.fim ? esc(fmtLocal(p.fim)) : ''], ['Bloco parlamentar', esc(p.bl)], ['Funções', esc([p.mesa ? 'Membro da Mesa' : '', p.lid ? 'Membro de liderança' : ''].filter(Boolean).join(' · '))]];
+    try {
+      const j = await getJSON(`${SENADO_API}/senador/${p.id}.json`, { timeout: 8000 });
+      const b = j?.DetalheParlamentar?.Parlamentar?.DadosBasicosParlamentar || {};
+      return dl([...base.slice(0, 1), ['Nascimento', esc(age(b.DataNascimento))], ['Naturalidade', b.Naturalidade ? esc(`${b.Naturalidade}${b.UfNaturalidade ? ` (${b.UfNaturalidade})` : ''}`) : ''], ...base.slice(1), ['Gabinete', esc((b.EnderecoParlamentar || '').replace(/\s+/g, ' ').trim())]]);
+    } catch (_) { return dl(base); }
+  }
+  function participacao(p, V, VT) {
+    if (p.c === 'c') {
+      const list = V.camara?.nominais || []; const mine = VT.camara?.[p.id] || [];
+      const c = { S: 0, N: 0, A: 0, O: 0, P: 0, V: 0, x: 0 };
+      list.forEach((_, i) => { const v = mine[i]; if (v && c[v] !== undefined) c[v]++; else c.x++; });
+      const votou = c.S + c.N + c.A + c.O + c.V;
+      return { total: list.length, votou, c, list, mine };
+    }
+    const list = V.senado?.lista || []; const mine = VT.senado?.[p.id] || [];
+    const g = { v: 0, p: 0, a: 0, l: 0, x: 0, sem: 0 }; const det = {};
+    list.forEach((_, i) => { const v = mine[i]; if (!v) { g.sem++; return; } const m = S.VOTO_SENADO[v]; const grp = m ? m[0] : 'x'; g[grp]++; det[v] = (det[v] || 0) + 1; });
+    return { total: list.length, votou: g.v, g, det, list, mine };
+  }
+  async function pfResumo(p, box, ok) {
+    const [info, G, P, V, VT] = await Promise.all([
+      infoHTML(p), loadGastos().catch(() => null), loadParl(p.c, p.id).catch(() => null),
+      once('votacoes', () => data('votacoes')).catch(() => null), once('votos', () => data('votos')).catch(() => null),
+    ]);
+    if (!ok()) return;
+    state.gastos ||= G;
+    const st = G ? stats(p.c) : null; const mine = st?.list.find((x) => x.id === p.id);
+    const nome = esc(p.n.split(' ')[0]);
+    const hl = [];
+    if (mine) hl.push(`<li><b>Gastos:</b> usou ${money(mine.t)} da cota parlamentar em ${st.ano}. A média da ${casaNome(p.c)} é ${money(st.avg)}. <button type="button" class="linkish" data-goto="gastos">Ver gastos</button></li>`);
+    else if (st) hl.push(`<li><b>Gastos:</b> sem despesas da cota registradas em ${st.ano} nos dados oficiais.</li>`);
+    if (P?.pj) hl.push(`<li><b>Projetos:</b> aparece como autor(a) ou coautor(a) de ${nf.format(P.pj.n)} propostas (${Object.keys(P.pj.tp).join(', ') || 'PL, PLP, PEC, PDL'}) desde ${P.pj.desde}. <button type="button" class="linkish" data-goto="projetos">Ver projetos</button></li>`);
+    if (V && VT) { const pa = participacao(p, V, VT); if (pa.total) hl.push(`<li><b>Votos:</b> registrou voto em ${pa.votou} das ${pa.total} votações nominais recentes do Plenário. <button type="button" class="linkish" data-goto="votos">Ver votos</button></li>`); }
+    box.innerHTML = `${hl.length ? `<h3 class="h-sm">Em resumo</h3><ul class="pf-hl">${hl.join('')}</ul>` : ''}<h3 class="h-sm">Informações de ${nome}</h3>${info}`;
+  }
+  pfBody.addEventListener('click', (e) => { const b = e.target.closest('[data-goto]'); if (b) { pfTabs?.select(b.dataset.goto); $(`#pft-${b.dataset.goto}`)?.focus(); } });
+
+  // Gastos individuais
+  const docFmt = (d) => { const x = String(d || '').replace(/\D/g, ''); return x.length === 14 ? `CNPJ ${x.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5')}` : ''; };
+  async function pfGastos(p, box, ok) {
+    const [G, P] = await Promise.all([loadGastos(), loadParl(p.c, p.id)]);
+    if (!ok()) return;
+    state.gastos ||= G;
+    const st = stats(p.c); const g = P?.g; const cota = p.c === 'c' ? 'ceap' : 'ceaps';
+    if (!g) { box.innerHTML = `${failBox(`Sem despesas da cota parlamentar registradas para este(a) ${cargo(p.c)} em ${st?.ano || 'neste ano'}.`, p.c === 'c' ? `https://www.camara.leg.br/deputados/${p.id}` : p.url)}<div class="terms">${term(cota)}</div>`; return; }
+    const rank = st?.rank.get(p.id); const avg = st?.avg || 0;
+    const comp = avg ? (g.t >= avg ? `${pct(((g.t / avg) - 1) * 100)} acima da média` : `${pct((1 - g.t / avg) * 100)} abaixo da média`) : '';
+    const partyPeers = st ? st.list.filter((x) => state.byKey.get(`${p.c}/${x.id}`)?.p === p.p) : [];
+    const partyAvg = partyPeers.length > 1 ? partyPeers.reduce((s, x) => s + x.t, 0) / partyPeers.length : null;
+    const forn = (g.f || []).map(([n, doc, v, q]) => `<li><span class="sp-name">${esc(n)}${docFmt(doc) ? `<small>${esc(docFmt(doc))}</small>` : ''}</span><span class="sp-val">${money(v)}<small>${nf.format(q)} ${q > 1 ? 'documentos' : 'documento'}</small></span></li>`).join('');
+    const docs = (g.d || []).map((d) => `<li class="doc"><div class="doc-top"><span>${esc(fmtLocal(d.dt, false))}</span>${money(d.v)}</div>
+      <p><b>${esc(S.categoria(d.tp))}</b>${d.f ? ` — ${esc(d.f)}` : ''}</p>${d.det ? `<p class="muted">Descrição informada: ${esc(d.det)}</p>` : ''}
+      ${d.url ? `<a class="ext" href="${esc(d.url)}" target="_blank" rel="noreferrer">Ver documento oficial ↗</a>` : `<p class="note-sm">${p.c === 'c' ? 'A API não traz link para este documento.' : 'O Senado não publica link para o documento nos dados abertos.'}</p>`}</li>`).join('');
+    box.innerHTML = `<p class="lead-simples">Em ${g.a}, ${esc(p.n)} usou ${money(g.t)} da cota parlamentar ${term(cota, p.c === 'c' ? '(CEAP)' : '(CEAPS)')}, em ${nf.format(g.n)} notas e recibos.
+        ${avg ? `A média da ${casaNome(p.c)} é ${money(avg)} por ${cargo(p.c)} (${comp}).` : ''}
+        ${rank ? `É o ${rank}º maior valor entre ${nf.format(st.n)} ${p.c === 'c' ? 'deputados' : 'senadores'} com gastos registrados (1º = quem mais gastou).` : ''}
+        ${partyAvg ? `A média do ${esc(p.p)} na ${casaNome(p.c)} é ${money(partyAvg)}.` : ''}</p>
+      <div class="kpis">
+        <div class="kpi"><b>${money(g.t)}</b><span>total em ${g.a}</span></div>
+        <div class="kpi"><b>${rank ? `${rank}º` : '—'}</b><span>posição na ${casaNome(p.c)} (de ${nf.format(st?.n || 0)})</span></div>
+        <div class="kpi"><b>${nf.format(g.n)}</b><span>notas e recibos</span></div>
+      </div>
+      ${monthChart(g.m, g.a, 'Gastos')}
+      <h3 class="h-sm">Com o que gastou</h3>${catBars(g.tp, g.t, 6)}
+      ${forn ? `<h3 class="h-sm">Quem mais recebeu (fornecedores)</h3><ul class="suppliers">${forn}</ul>` : ''}
+      ${docs ? `<h3 class="h-sm">Maiores notas e recibos</h3><ul class="docs">${docs}</ul>` : ''}
+      <p class="note">${p.c === 'c' ? 'Fonte: API de Dados Abertos da Câmara (despesas da cota parlamentar, valores líquidos).' : 'Fonte: dados administrativos do Senado (CEAPS, valores reembolsados).'} Atualização de ${esc(fmtZoned(state.meta?.atualizadoEm))}. Os meses mais recentes podem estar incompletos. A cota tem limite mensal diferente para cada estado, então comparações entre parlamentares de estados diferentes devem ser feitas com cuidado. CPFs de pessoas físicas não são exibidos.</p>`;
   }
 
-  async function despesasSenador(p, alive) {
-    const box = () => $('#pf-desp');
-    try {
-      const C = await once('ceaps', () => data('despesas-senado'));
-      if (!alive()) return;
-      const o = C.por?.[p.id];
-      if (!o) { box().innerHTML = failBox(`Sem registros de CEAPS para este(a) senador(a) em ${C.ano}.`, p.url); return; }
-      box().innerHTML = despesasHTML({ total: o.t, n: o.n, tipos: o.tp, meses: o.m, ano: C.ano, parcial: false, fonteNota: 'Valores reembolsados pela Cota para o Exercício da Atividade Parlamentar dos Senadores (CEAPS), dados administrativos do Senado, consolidados na atualização diária.' });
-    } catch (e) {
-      if (alive()) box().innerHTML = failBox('Dados de despesas indisponíveis no momento.', p.url);
-    }
+  // Projetos
+  async function pfProjetos(p, box, ok) {
+    const [P] = await Promise.all([loadParl(p.c, p.id), loadResumos().then((r) => { state.resumos = r; })]);
+    if (!ok()) return;
+    const pj = P?.pj; const casa = p.c;
+    const oficial = casa === 'c' ? `https://www.camara.leg.br/deputados/${p.id}` : (p.url || '');
+    if (!pj) { box.innerHTML = failBox('Lista de projetos indisponível na última atualização.', oficial); return; }
+    const tipos = Object.entries(pj.tp).sort((a, b) => b[1] - a[1]);
+    const tiposTxt = tipos.map(([t, n]) => `${nf.format(n)} ${t}`).join(', ');
+    const head = `<p class="lead-simples">Desde ${pj.desde}, ${esc(p.n)} aparece como autor(a) ou coautor(a) de <b>${nf.format(pj.n)}</b> ${pj.n === 1 ? 'proposta' : 'propostas'} dos tipos ${casa === 'c' ? 'PL, PLP, PEC e PDL' : 'PL, PLP, PEC, PDL e PRS'}${tiposTxt ? ` (${tiposTxt})` : ''}.</p>
+      <div class="terms">${terms(tipos.map(([t]) => S.tipoInfo(t)?.[0]).filter(Boolean))}</div>`;
+    if (!pj.it?.length) { box.innerHTML = `${head}<p class="err">Nenhuma proposta desses tipos encontrada no período.</p>`; return; }
+    box.innerHTML = `${head}<h3 class="h-sm">As ${pj.it.length} mais recentes</h3>${listHTML(pj.it, (x) => propHTML(x, casa, { autoria: false }), '', 5)}
+      <p class="note">${casa === 'c' ? 'A API da Câmara lista propostas em que o(a) deputado(a) é autor(a) ou coautor(a), sem indicar quem é o autor principal.' : '“1º autor(a)” indica que o nome aparece primeiro na autoria registrada pelo Senado.'} Requerimentos, indicações e outros tipos não entram na contagem. ${oficial ? `<a href="${esc(oficial)}" target="_blank" rel="noreferrer">Lista completa na página oficial ↗</a>` : ''}</p>`;
   }
 
-  async function votosRecentes(p, alive) {
-    const box = () => $('#pf-vot');
-    try {
-      const [V, VT] = await Promise.all([once('votacoes', () => data('votacoes')), once('votos', () => data('votos'))]);
-      if (!alive()) return;
-      if (p.c === 'c') {
-        const list = V.camara?.nominais || []; const mine = VT.camara?.[p.id] || [];
-        if (!list.length) { box().innerHTML = failBox('Sem votações nominais no período.'); return; }
-        const rows = list.map((v, i) => ({ v, voto: mine[i] })).slice(0, 15);
-        box().innerHTML = `<ul class="votes">${rows.map(({ v, voto }) => `<li><span>${esc(v.pr ? `${v.pr.s} — ` : '')}${esc(v.d.replace(/\s*Sim: \d+.*$/, ''))}<small>${esc(fmtLocal(v.dt))}</small></span><span class="vote-tag ${voto || ''}">${esc(voto ? (VOTO_LABEL[voto] || voto) : 'Sem registro')}</span></li>`).join('')}</ul>
-          <p class="note">Últimas ${rows.length} votações nominais do Plenário. “Sem registro” significa que não há voto deste(a) deputado(a) na lista publicada pela Câmara (ausência, licença ou outro motivo não informado pela API).</p>`;
-      } else {
-        const list = V.senado?.lista || []; const mine = VT.senado?.[p.id] || []; const leg = V.senado?.legenda || {};
-        if (!list.length) { box().innerHTML = failBox('Sem votações nominais no período.', p.url); return; }
-        const rows = list.map((v, i) => ({ v, voto: mine[i] })).slice(0, 15);
-        const cls = (s) => (s === 'Sim' ? 'S' : s === 'Não' ? 'N' : s === 'Abstenção' ? 'A' : '');
-        box().innerHTML = `<ul class="votes">${rows.map(({ v, voto }) => `<li><span>${esc(v.s ? `${v.s} — ` : '')}${esc(v.d)}<small>${esc(fmtLocal(v.dt))}</small></span><span class="vote-tag ${cls(voto)}" ${voto && leg[voto] ? `title="${esc(leg[voto])}"` : ''}>${esc(voto ? (leg[voto] ? `${voto} · ${leg[voto]}` : voto) : 'Sem registro')}</span></li>`).join('')}</ul>
-          <p class="note">Últimas ${rows.length} votações nominais do Plenário do Senado. Siglas conforme o Senado; “Votou” indica votação secreta.</p>`;
-      }
-    } catch (e) {
-      if (alive()) box().innerHTML = failBox('Votos indisponíveis no momento.');
+  // Votos
+  async function pfVotos(p, box, ok) {
+    const [V, VT] = await Promise.all([once('votacoes', () => data('votacoes')), once('votos', () => data('votos')), loadResumos().then((r) => { state.resumos = r; })]);
+    if (!ok()) return;
+    const pa = participacao(p, V, VT);
+    const legSen = V.senado?.legenda || {};
+    const labelSen = (k) => S.VOTO_SENADO[k]?.[0] === 'v' ? S.VOTO_SENADO[k][1] : (legSen[k] || S.VOTO_SENADO[k]?.[1] || k);
+    if (!pa.total) { box.innerHTML = failBox('Sem votações nominais no período.'); return; }
+    const datas = pa.list.map((v) => String(v.dt).slice(0, 10)).sort();
+    const periodo = `de ${fmtLocal(datas[0], false)} a ${fmtLocal(datas[datas.length - 1], false)}`;
+    let resumo; let rows;
+    if (p.c === 'c') {
+      const c = pa.c;
+      const partes = [['S', 'Sim'], ['N', 'Não'], ['A', 'Abstenção'], ['O', 'Obstrução'], ['V', 'voto secreto'], ['P', 'presidindo a sessão']].filter(([k]) => c[k]).map(([k, l]) => `${c[k]} ${l}`);
+      resumo = `<p class="lead-simples">Nas ${pa.total} votações nominais mais recentes do Plenário da Câmara (${periodo}), ${esc(p.n)} registrou voto em <b>${pa.votou}</b>${pa.total ? ` (${pct((pa.votou / pa.total) * 100)})` : ''}.${partes.length ? ` Foram ${partes.join(', ')}.` : ''} Em ${c.x} não há voto registrado.</p>
+        <p class="note-sm">Isto não é a lista oficial de presença: “sem voto registrado” pode ser ausência, licença, missão oficial ou simplesmente não ter votado naquela rodada — a API de votos não informa o motivo.</p>`;
+      rows = pa.list.map((v, i) => ({ v, voto: pa.mine[i] }));
+    } else {
+      const g = pa.g; const det = Object.entries(pa.det).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${n} ${labelSen(k)}`).join(', ');
+      resumo = `<p class="lead-simples">Nas ${pa.total} votações nominais mais recentes do Plenário do Senado (${periodo}), ${esc(p.n)} registrou voto em <b>${g.v}</b> (${pct((g.v / pa.total) * 100)}).${det ? ` Registros: ${esc(det)}.` : ''}${g.sem ? ` Em ${g.sem} não há registro (por exemplo, quando ainda não estava no exercício do mandato).` : ''}</p>
+        <p class="note-sm">O Senado informa o motivo de quem não votou (licença, missão, atividade parlamentar etc.). Isto não substitui o registro oficial de presença nas sessões.</p>`;
+      rows = pa.list.map((v, i) => ({ v, voto: pa.mine[i] }));
     }
+    const voteTag = (voto) => {
+      if (p.c === 'c') { const l = voto ? (VOTO_LABEL[voto] || voto) : 'Sem voto registrado'; return `<span class="vote-tag ${voto || 'X'}">${esc(l)}</span>`; }
+      const cls = voto === 'Sim' ? 'S' : voto === 'Não' ? 'N' : voto === 'Abstenção' ? 'A' : 'X';
+      return `<span class="vote-tag ${cls}">${esc(voto ? labelSen(voto) : 'Sem registro')}</span>`;
+    };
+    const li = ({ v, voto }) => {
+      const vs = p.c === 'c' ? votoSimplesCamara(v) : votoSimplesSenado(v);
+      const sig = p.c === 'c' ? v.pr?.s : v.s; const ementa = p.c === 'c' ? v.pr?.e : v.e;
+      const res = p.c === 'c' ? resultBadge(v.ap, v.d) : (v.r === 'A' ? '<span class="badge ok">Aprovada</span>' : v.r === 'R' ? '<span class="badge no">Rejeitada</span>' : '');
+      const rs = p.c === 'c' ? (v.pr ? state.resumos[resumoKey('c', v.pr.id)] : null) : (v.cm ? state.resumos[resumoKey('s', v.cm)] : null);
+      return `<li class="item vote-item"><div class="item-top"><time>${esc(fmtLocal(v.dt, false))}</time>${sig ? `<span class="sig">${esc(sig)}</span>` : ''}${res}</div>
+        <div class="vote-mine"><span>Voto de ${esc(p.n)}:</span>${voteTag(voto)}</div>
+        ${simplesBox({ linhas: vs.linhas, resumo: rs ? `Sobre a proposta: ${rs}` : null, oficial: ementa || null, termos: vs.termos })}
+        <p class="note-sm"><b>Descrição oficial da votação:</b> ${esc(p.c === 'c' ? descLimpa(v.d) : v.d)}</p></li>`;
+    };
+    box.innerHTML = `${resumo}<div class="terms">${terms(['nominal', 'abstencao', 'obstrucao', 'secreta'])}</div>${listHTML(rows, li, '', 6)}`;
   }
 
   function routeHash() {
-    const m = location.hash.match(/^#perfil\/([cs])\/(\d+)$/);
-    if (m && state.all.length) openProfile(m[1], Number(m[2]));
+    const m = location.hash.match(/^#perfil\/([cs])\/(\d+)(?:\/(\w+))?$/);
+    if (m && state.all.length) openProfile(m[1], Number(m[2]), null, m[3] || 'resumo');
     else if (!m && dlg.open) dlg.close();
   }
   window.addEventListener('hashchange', routeHash);
 
   // ---------- Inicialização ----------
   async function init() {
+    renderGlossario();
     const [meta, dep, sen] = await Promise.allSettled([data('meta'), data('deputados'), data('senadores')]);
     state.meta = meta.status === 'fulfilled' ? meta.value : null;
     const D = dep.status === 'fulfilled' ? dep.value : [];
-    const S = sen.status === 'fulfilled' ? sen.value : [];
-    state.all = [
-      ...D.map((p) => ({ ...p, c: 'c' })),
-      ...S.map((p) => ({ ...p, c: 's' })),
-    ].map((p) => ({ ...p, k: norm(`${p.n} ${p.nc || ''}`) })).sort((a, b) => a.n.localeCompare(b.n, 'pt-BR'));
+    const Sn = sen.status === 'fulfilled' ? sen.value : [];
+    state.all = [...D.map((p) => ({ ...p, c: 'c' })), ...Sn.map((p) => ({ ...p, c: 's' }))]
+      .map((p) => ({ ...p, k: norm(`${p.n} ${p.nc || ''}`) })).sort((a, b) => a.n.localeCompare(b.n, 'pt-BR'));
+    state.byKey = new Map(state.all.map((p) => [`${p.c}/${p.id}`, p]));
 
     if (state.meta?.atualizadoEm) {
       const t = fmtZoned(state.meta.atualizadoEm);
@@ -466,7 +667,7 @@
       els.count.innerHTML = '<span class="err">Não foi possível carregar a lista de parlamentares. Verifique sua conexão e recarregue a página.</span>';
     } else {
       $('#st-dep').textContent = D.length ? nf.format(D.length) : '—';
-      $('#st-sen').textContent = S.length ? nf.format(S.length) : '—';
+      $('#st-sen').textContent = Sn.length ? nf.format(Sn.length) : '—';
       $('#st-part').textContent = nf.format(new Set(state.all.map((p) => p.p).filter((x) => x && !/^s\/?partido$/i.test(x))).size);
       fillSelect(els.part, [...new Set(state.all.map((p) => p.p))].sort((a, b) => a.localeCompare(b, 'pt-BR')), (s) => (partyName(s) ? `${s} — ${partyName(s)}` : s));
       fillSelect(els.uf, [...new Set(state.all.map((p) => p.uf))].sort());
@@ -475,17 +676,29 @@
       for (const [k, el] of [['casa', els.casa], ['partido', els.part], ['uf', els.uf]]) { const v = u.searchParams.get(k); if (v && [...el.options].some((o) => o.value === v)) el.value = v; }
       applyFilters();
       renderBars(D, 'c', $('#bars-c'), $('#bc-total'));
-      renderBars(S, 's', $('#bars-s'), $('#bs-total'));
+      renderBars(Sn, 's', $('#bars-s'), $('#bs-total'));
       routeHash();
     }
 
     tabs('#votacoes .tabs', renderVotacoes);
     tabs('#proposicoes .tabs', renderProps);
-    const [vot, props, news] = await Promise.allSettled([once('votacoes', () => data('votacoes')), data('proposicoes'), data('noticias')]);
+    const ggTabs = tabs('#gastos .tabs', renderGastosGeral);
+    const [vot, props, news, G, R] = await Promise.allSettled([once('votacoes', () => data('votacoes')), data('proposicoes'), data('noticias'), loadGastos(), loadResumos()]);
     state.votacoes = vot.status === 'fulfilled' ? vot.value : null;
     state.props = props.status === 'fulfilled' ? props.value : null;
+    state.gastos = G.status === 'fulfilled' ? G.value : null;
+    state.resumos = R.status === 'fulfilled' ? R.value : {};
     renderVotacoes($('#votacoes [aria-selected="true"]').dataset.k);
     renderProps($('#proposicoes [aria-selected="true"]').dataset.k);
+    renderGastosGeral($('#gastos .tabs [aria-selected="true"]').dataset.k);
+    if (state.all.length) {
+      const u = new URL(location.href);
+      if (u.searchParams.get('rcasa') === 's') rk.casa.value = 's';
+      fillRankFilters();
+      for (const [k, el] of [['rpartido', rk.part], ['ruf', rk.uf], ['rordem', rk.ord]]) { const v = u.searchParams.get(k); if (v && [...el.options].some((o) => o.value === v)) el.value = v; }
+      renderRanking();
+    }
+    void ggTabs;
     renderNews(news.status === 'fulfilled' ? news.value : null);
   }
   init();

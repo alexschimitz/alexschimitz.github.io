@@ -2,7 +2,7 @@
 // Coleta dados abertos da Câmara dos Deputados e do Senado Federal e grava JSON compacto
 // em politica/data/. Sem dependências externas (Node >= 18, fetch nativo).
 // Uso: node scripts/politica/fetch.mjs
-import { mkdir, writeFile, readFile } from 'node:fs/promises';
+import { mkdir, writeFile, readFile, readdir, rm } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -28,6 +28,10 @@ async function get(url, { type = 'json', tries = 3, timeout = 60000 } = {}) {
       clearTimeout(t);
       if (!res.ok) {
         const err = new Error(`HTTP ${res.status}`);
+        if (res.status === 429) { // limite de requisições: espera mais antes de tentar de novo
+          const ra = Number(res.headers.get('retry-after'));
+          err.wait = (Number.isFinite(ra) && ra > 0 ? ra * 1000 : 4000) * (i + 1);
+        }
         if (res.status >= 400 && res.status < 500 && res.status !== 429) { err.fatal = true; }
         throw err;
       }
@@ -35,7 +39,7 @@ async function get(url, { type = 'json', tries = 3, timeout = 60000 } = {}) {
     } catch (e) {
       last = e;
       if (e.fatal) break;
-      await new Promise((r) => setTimeout(r, 1200 * (i + 1)));
+      await new Promise((r) => setTimeout(r, e.wait || 1200 * (i + 1)));
     }
   }
   throw new Error(`${url} -> ${last?.message || last}`);
@@ -84,7 +88,7 @@ async function partidosCamara() {
 
 // Detalhes de cada deputado (fallback quando a API não responde ao navegador / CORS)
 async function deputadosDetalhes(dep) {
-  const res = await pool(dep, 8, async (d) => (await get(`${CAMARA}/deputados/${d.id}`, { tries: 2 })).dados);
+  const res = await pool(dep, 6, async (d) => (await get(`${CAMARA}/deputados/${d.id}`, { tries: 4 })).dados);
   const out = {};
   dep.forEach((d, k) => {
     const x = res[k]; if (!x) return;
@@ -99,33 +103,91 @@ async function deputadosDetalhes(dep) {
   return out;
 }
 
-// Resumo de despesas (CEAP) de cada deputado no ano corrente (ou anterior, se vazio)
+const r2 = (n) => Math.round(n * 100) / 100;
+const ANO = Number(new Intl.DateTimeFormat('en', { timeZone: 'America/Sao_Paulo', year: 'numeric' }).format(new Date()));
+const legInicio = (lg) => 2023 + (Number(lg || 57) - 57) * 4; // 57ª legislatura começou em 2023
+const cleanName = (s) => String(s || '').replace(/\s+/g, ' ').trim();
+
+// Resume uma lista de despesas normalizadas {v, tp, mes, dt, f, doc, url, td, det}
+// em: total, por mês, por categoria, maiores fornecedores e maiores documentos.
+function resumoGastos(rows, ano) {
+  const o = { a: ano, t: 0, n: rows.length, m: {}, tp: {}, f: [], d: [] };
+  const forn = new Map();
+  for (const x of rows) {
+    o.t += x.v;
+    o.m[x.mes] = (o.m[x.mes] || 0) + x.v;
+    o.tp[x.tp] = (o.tp[x.tp] || 0) + x.v;
+    const key = (x.doc || '').replace(/\D/g, '') || cleanName(x.f).toUpperCase() || '?';
+    const g = forn.get(key) || { n: cleanName(x.f) || 'Não informado', doc: x.doc || null, v: 0, q: 0 };
+    g.v += x.v; g.q += 1; forn.set(key, g);
+  }
+  o.t = r2(o.t);
+  for (const k in o.m) o.m[k] = r2(o.m[k]);
+  for (const k in o.tp) o.tp[k] = r2(o.tp[k]);
+  o.f = [...forn.values()].sort((a, b) => b.v - a.v).slice(0, 8).map((g) => [g.n, g.doc, r2(g.v), g.q]);
+  o.d = [...rows].sort((a, b) => b.v - a.v).slice(0, 6).map((x) => {
+    const d = { dt: x.dt || null, v: r2(x.v), f: cleanName(x.f) || null, tp: x.tp };
+    if (x.td) d.td = x.td;
+    if (x.url) d.url = x.url;
+    if (x.det) d.det = cleanName(x.det).slice(0, 160);
+    return d;
+  });
+  return o;
+}
+
+// Despesas (CEAP) completas de cada deputado no ano corrente: resumo geral + detalhe por deputado.
 async function despesasDeputados(dep) {
-  const ano = new Date().getUTCFullYear();
-  const tipos = []; const tIdx = new Map();
-  const ti = (t) => { const k = (t && String(t).trim()) || 'Não informado'; if (!tIdx.has(k)) { tIdx.set(k, tipos.length); tipos.push(k); } return tIdx.get(k); };
-  const r2 = (n) => Math.round(n * 100) / 100;
   const fetchYear = async (d, y) => {
     const out = [];
-    for (let pg = 1; pg <= 15; pg++) {
+    for (let pg = 1; pg <= 30; pg++) {
       const j = await get(`${CAMARA}/deputados/${d.id}/despesas?idLegislatura=${d.lg}&ano=${y}&itens=100&pagina=${pg}`, { tries: 3 });
       out.push(...(j.dados || []));
       if (!j.links?.some((l) => l.rel === 'next')) break;
     }
-    return out;
+    return out.map((x) => ({
+      v: Number(x.valorLiquido) || 0, tp: cleanName(x.tipoDespesa) || 'Não informado', mes: x.mes,
+      dt: x.dataDocumento ? String(x.dataDocumento).slice(0, 10) : null, f: x.nomeFornecedor, doc: x.cnpjCpfFornecedor || null,
+      url: x.urlDocumento ? httpsify(x.urlDocumento) : null, td: x.tipoDocumento || null,
+    }));
   };
-  const res = await pool(dep, 8, async (d) => {
-    let y = ano; let rows = await fetchYear(d, y);
-    if (!rows.length) { y = ano - 1; rows = await fetchYear(d, y); }
-    if (!rows.length) return null;
-    const o = { a: y, t: 0, n: rows.length, tp: {}, m: {} };
-    for (const x of rows) { const v = Number(x.valorLiquido) || 0; o.t += v; const k = ti(x.tipoDespesa); o.tp[k] = (o.tp[k] || 0) + v; o.m[x.mes] = (o.m[x.mes] || 0) + v; }
-    o.t = r2(o.t); for (const k in o.tp) o.tp[k] = r2(o.tp[k]); for (const k in o.m) o.m[k] = r2(o.m[k]);
-    return o;
+  const run = (y) => pool(dep, 8, async (d) => resumoGastos(await fetchYear(d, y), y));
+  let ano = ANO; let res = await run(ano);
+  if (!res.some((r) => r?.n)) { ano = ANO - 1; res = await run(ano); } // início de ano sem lançamentos
+  const por = {};
+  dep.forEach((d, k) => { if (res[k]) por[d.id] = res[k]; });
+  return { ano, por };
+}
+
+// Proposições de autoria (ou coautoria) de cada deputado na legislatura atual: contagem por tipo
+// e as mais recentes com situação atual (detalhe /proposicoes/{id}).
+const TIPOS_AUTORIA = ['PL', 'PLP', 'PEC', 'PDL'];
+const MAX_PROJ = 10;
+async function projetosDeputados(dep) {
+  const res = await pool(dep, 4, async (d) => {
+    const ini = legInicio(d.lg); const anos = []; for (let y = ini; y <= ANO; y++) anos.push(y);
+    const lista = [];
+    for (let pg = 1; pg <= 15; pg++) {
+      const j = await get(`${CAMARA}/proposicoes?idDeputadoAutor=${d.id}&siglaTipo=${TIPOS_AUTORIA.join(',')}&ano=${anos.join(',')}&ordem=DESC&ordenarPor=id&itens=100&pagina=${pg}`, { tries: 3 });
+      lista.push(...(j.dados || []));
+      if (!j.links?.some((l) => l.rel === 'next')) break;
+    }
+    const tp = {}; for (const p of lista) tp[p.siglaTipo] = (tp[p.siglaTipo] || 0) + 1;
+    const top = lista.slice(0, MAX_PROJ);
+    const det = await pool(top, 3, async (p) => (await get(`${CAMARA}/proposicoes/${p.id}`, { tries: 3 })).dados);
+    return {
+      desde: ini, n: lista.length, tp,
+      it: top.map((p, k) => {
+        const s = det[k]?.statusProposicao || {};
+        return {
+          id: p.id, s: `${p.siglaTipo} ${p.numero}/${p.ano}`, e: p.ementa, dt: p.dataApresentacao || det[k]?.dataApresentacao || null,
+          st: s.descricaoSituacao || null, tr: s.descricaoTramitacao || null, sd: s.dataHora || null, org: s.siglaOrgao || null,
+        };
+      }),
+    };
   });
   const por = {};
   dep.forEach((d, k) => { if (res[k]) por[d.id] = res[k]; });
-  return { tipos, por };
+  return por;
 }
 
 const VOTO_CAMARA = { 'Sim': 'S', 'Não': 'N', 'Abstenção': 'A', 'Obstrução': 'O', 'Artigo 17': 'P' };
@@ -203,11 +265,14 @@ async function proposicoesCamara() {
   const j = await get(`${CAMARA}/proposicoes?siglaTipo=PL,PLP,PEC,MPV,PDL&dataApresentacaoInicio=${ini}&ordem=DESC&ordenarPor=id&itens=40`);
   const props = j.dados.slice(0, 30);
   const autores = await pool(props, 6, async (p) => (await get(`${CAMARA}/proposicoes/${p.id}/autores`)).dados);
+  const det = await pool(props, 6, async (p) => (await get(`${CAMARA}/proposicoes/${p.id}`)).dados);
   return props.map((p, k) => {
     const a = (autores[k] || []).map((x) => x.nome).filter(Boolean);
+    const st = det[k]?.statusProposicao || {};
     return {
       id: p.id, s: `${p.siglaTipo} ${p.numero}/${p.ano}`, e: p.ementa, dt: p.dataApresentacao,
       au: a.length ? (a.length > 2 ? `${a[0]} e outros (${a.length})` : a.join(', ')) : null,
+      st: st.descricaoSituacao || null, tr: st.descricaoTramitacao || null, sd: st.dataHora || null, org: st.siglaOrgao || null,
     };
   });
 }
@@ -263,24 +328,50 @@ async function processosSenado() {
 
 async function despesasSenado() {
   // CEAPS – Cota para o Exercício da Atividade Parlamentar dos Senadores (dados administrativos do Senado)
-  const ano = new Date().getUTCFullYear();
-  let j; let usado = ano;
-  try { j = await get(`https://adm.senado.gov.br/adm-dadosabertos/api/v1/senadores/despesas_ceaps/${ano}`, { timeout: 180000 }); } catch (e) { j = null; errors.push(`ceaps ${ano}: ${e.message}`); }
-  if (!Array.isArray(j) || !j.length) { usado = ano - 1; j = await get(`https://adm.senado.gov.br/adm-dadosabertos/api/v1/senadores/despesas_ceaps/${usado}`, { timeout: 180000 }); }
-  const por = {};
+  const url = (y) => `https://adm.senado.gov.br/adm-dadosabertos/api/v1/senadores/despesas_ceaps/${y}`;
+  let j; let ano = ANO;
+  try { j = await get(url(ano), { timeout: 180000 }); } catch (e) { j = null; errors.push(`ceaps ${ano}: ${e.message}`); }
+  if (!Array.isArray(j) || !j.length) { ano = ANO - 1; j = await get(url(ano), { timeout: 180000 }); }
+  const rows = {};
   for (const x of j) {
     const cod = x.codSenador; if (!cod) continue;
-    const v = Number(x.valorReembolsado) || 0;
-    const o = (por[cod] ||= { t: 0, n: 0, tp: {}, m: {} });
-    o.t += v; o.n += 1;
-    const tipo = (x.tipoDespesa && String(x.tipoDespesa).trim()) || 'Não informado';
-    o.tp[tipo] = (o.tp[tipo] || 0) + v;
-    o.m[x.mes] = (o.m[x.mes] || 0) + v;
+    (rows[cod] ||= []).push({
+      v: Number(x.valorReembolsado) || 0, tp: cleanName(x.tipoDespesa) || 'Não informado', mes: x.mes,
+      dt: x.data || null, f: x.fornecedor, doc: x.cpfCnpj || null, td: x.tipoDocumento || null, det: x.detalhamento || null,
+    });
   }
-  const r2 = (n) => Math.round(n * 100) / 100;
-  for (const o of Object.values(por)) { o.t = r2(o.t); for (const k in o.tp) o.tp[k] = r2(o.tp[k]); for (const k in o.m) o.m[k] = r2(o.m[k]); }
-  return { ano: usado, por };
+  const por = {};
+  for (const [cod, r] of Object.entries(rows)) por[cod] = resumoGastos(r, ano);
+  return { ano, por };
 }
+
+// Matérias de autoria (ou coautoria) de cada senador desde o início da legislatura atual.
+const TIPOS_SENADO = new Set(['PL', 'PLP', 'PEC', 'PDL', 'PRS']);
+async function projetosSenadores(sen) {
+  const ini = 2023 + Math.floor((ANO - 2023) / 4) * 4; // início da legislatura atual
+  const res = await pool(sen, 4, async (p) => {
+    const j = await get(`${SENADO}/processo?codigoParlamentarAutor=${p.id}&dataInicioApresentacao=${ini}-02-01`, { timeout: 120000 });
+    const lista = arr(j).filter((x) => TIPOS_SENADO.has(String(x.identificacao || '').split(' ')[0]))
+      .sort((a, b) => String(b.dataApresentacao).localeCompare(String(a.dataApresentacao)) || (b.id || 0) - (a.id || 0));
+    const tp = {}; for (const x of lista) { const t = String(x.identificacao).split(' ')[0]; tp[t] = (tp[t] || 0) + 1; }
+    const nome = norm(p.n);
+    return {
+      desde: ini, n: lista.length, tp,
+      it: lista.slice(0, 12).map((x) => {
+        const first = norm(String(x.autoria || '').split(',')[0]);
+        return {
+          id: x.id, cm: x.codigoMateria || null, s: x.identificacao, e: x.ementa, dt: x.dataApresentacao || null,
+          st: x.situacaoAtual || null, sd: x.dataSituacaoAtual || null, tram: x.tramitando === 'Sim',
+          pa: !!nome && first.includes(nome), url: httpsify(x.urlDocumento) || null,
+        };
+      }),
+    };
+  });
+  const por = {};
+  sen.forEach((p, k) => { if (res[k]) por[p.id] = res[k]; });
+  return por;
+}
+const norm = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
 
 // ---------- RSS ----------
 function parseRss(xml, max = 15) {
@@ -334,17 +425,72 @@ async function main() {
   await save('votos.json', { camara: vc ? vc.porDep : oldVotos?.camara || {}, senado: vs ? vs.porSen : oldVotos?.senado || {} });
   const oldProp = await prev('proposicoes.json');
   await save('proposicoes.json', { camara: pc || oldProp?.camara || [], senado: ps || oldProp?.senado || [] });
-  if (ds) await save('despesas-senado.json', ds);
 
+  let det = null; let dd = null; let pjc = null; let pjs = null;
   if (dep?.length) {
     const t0 = Date.now();
-    const [det, dd] = await Promise.all([
+    [det, dd, pjc] = await Promise.all([
       step('deputados-detalhes', () => deputadosDetalhes(dep)),
       step('despesas-deputados', () => despesasDeputados(dep)),
+      step('projetos-deputados', () => projetosDeputados(dep)),
     ]);
-    if (det && Object.keys(det).length) await save('deputados-detalhes.json', det);
-    if (dd && Object.keys(dd.por).length) await save('despesas-deputados.json', dd);
-    log(`detalhes/despesas de deputados em ${((Date.now() - t0) / 1000).toFixed(0)}s`);
+    if (det && Object.keys(det).length) {
+      // Quem falhou nesta rodada mantém os dados cadastrais da atualização anterior.
+      const oldDet = (await prev('deputados-detalhes.json')) || {};
+      for (const d of dep) if (!det[d.id] && oldDet[d.id]) det[d.id] = oldDet[d.id];
+      await save('deputados-detalhes.json', det);
+    }
+    log(`detalhes/despesas/projetos de deputados em ${((Date.now() - t0) / 1000).toFixed(0)}s`);
+  }
+  if (sen?.length) pjs = await step('projetos-senadores', () => projetosSenadores(sen));
+
+  // Resumo de gastos (ranking) + um arquivo por parlamentar (carregado sob demanda no perfil)
+  const oldG = await prev('gastos.json');
+  const gastos = { ano: { c: dd?.ano ?? oldG?.ano?.c ?? null, s: ds?.ano ?? oldG?.ano?.s ?? null }, cat: { c: [], s: [] }, c: {}, s: {}, tot: {} };
+  const parlFiles = { c: {}, s: {} };
+  const addCasa = (casa, list, gPor, pPor) => {
+    if (!gPor) { gastos[casa] = oldG?.[casa] || {}; gastos.cat[casa] = oldG?.cat?.[casa] || []; gastos.tot[casa] = oldG?.tot?.[casa] || null; return; }
+    const cats = []; const ci = new Map(); const idx = (t) => { if (!ci.has(t)) { ci.set(t, cats.length); cats.push(t); } return ci.get(t); };
+    const tot = { t: 0, n: 0, p: 0, m: {}, tp: {} };
+    for (const p of list) {
+      const g = gPor[p.id];
+      if (g && g.n) {
+        const topCat = Object.entries(g.tp).sort((a, b) => b[1] - a[1])[0];
+        gastos[casa][p.id] = [g.t, g.n, topCat ? idx(topCat[0]) : null];
+        tot.t += g.t; tot.n += g.n; tot.p += 1;
+        for (const [m, v] of Object.entries(g.m)) tot.m[m] = (tot.m[m] || 0) + v;
+        for (const [t, v] of Object.entries(g.tp)) { const k = idx(t); tot.tp[k] = (tot.tp[k] || 0) + v; }
+      }
+      parlFiles[casa][p.id] = { g: g && g.n ? g : null, pj: pPor?.[p.id] || null };
+    }
+    tot.t = r2(tot.t); for (const k in tot.m) tot.m[k] = r2(tot.m[k]); for (const k in tot.tp) tot.tp[k] = r2(tot.tp[k]);
+    gastos.cat[casa] = cats; gastos.tot[casa] = tot;
+  };
+  addCasa('c', dep || [], dd?.por, pjc);
+  addCasa('s', sen || [], ds?.por, pjs);
+  await save('gastos.json', gastos);
+
+  // Arquivos individuais: só regrava quando há dados novos; remove arquivos de quem saiu do exercício.
+  for (const casa of ['c', 's']) {
+    const dir = join(OUT, 'parl', casa);
+    await mkdir(dir, { recursive: true });
+    const ids = Object.keys(parlFiles[casa]);
+    const fresh = casa === 'c' ? (dd && pjc) : (ds && pjs);
+    if (!ids.length || !fresh) {
+      // Mantém arquivos anteriores; completa só a parte que veio nova.
+      for (const id of ids) {
+        const f = join(dir, `${id}.json`);
+        let old = null; try { old = JSON.parse(await readFile(f, 'utf8')); } catch { /* novo */ }
+        const cur = parlFiles[casa][id];
+        await writeFile(f, JSON.stringify({ g: cur.g || old?.g || null, pj: cur.pj || old?.pj || null }) + '\n');
+      }
+      continue;
+    }
+    let bytes = 0;
+    for (const id of ids) { const body = JSON.stringify(parlFiles[casa][id]); bytes += body.length; await writeFile(join(dir, `${id}.json`), body + '\n'); }
+    const keep = new Set(ids.map((id) => `${id}.json`));
+    for (const f of await readdir(dir)) if (!keep.has(f)) await rm(join(dir, f));
+    log(`wrote parl/${casa}/*.json (${ids.length} arquivos, ${(bytes / 1024).toFixed(0)} KB)`);
   }
 
   const news = {};
@@ -365,6 +511,7 @@ async function main() {
       ceaps: 'https://adm.senado.gov.br/adm-dadosabertos/',
       rssCamara: FEEDS.camara.url, rssSenado: FEEDS.senado.url,
     },
+    anoGastos: gastos.ano,
     erros: errors.slice(0, 20),
   };
   await save('meta.json', meta);
