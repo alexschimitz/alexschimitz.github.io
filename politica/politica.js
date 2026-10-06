@@ -301,7 +301,17 @@
   }
 
   async function infoDeputado(p, alive) {
+    // O endpoint /deputados/{id} da Câmara não envia cabeçalho CORS de forma confiável para navegadores,
+    // então usamos primeiro o retrato da atualização diária e só consultamos a API ao vivo se faltar.
     const box = () => $('#pf-info');
+    try {
+      const all = await once('detalhes', () => data('deputados-detalhes'));
+      if (!alive()) return;
+      const x = all[p.id];
+      if (!x) throw new Error('sem dados');
+      box().innerHTML = infoDeputadoHTML(x, `Fonte: API da Câmara, atualização de ${fmtZoned(state.meta?.atualizadoEm)}.`);
+      return;
+    } catch (_) { /* tenta ao vivo */ }
     try {
       const d = (await getJSON(`${CAMARA_API}/deputados/${p.id}`, { timeout: 10000 })).dados;
       if (!alive()) return;
@@ -310,18 +320,9 @@
         nc: d.nomeCivil, nasc: d.dataNascimento, mun: d.municipioNascimento, ufn: d.ufNascimento, esc: d.escolaridade,
         sit: s.situacao, cond: s.condicaoEleitoral, gab: g.sala ? { sala: g.sala, predio: g.predio, tel: g.telefone } : null,
         redes: [...(d.redeSocial || []), d.urlWebsite].filter((u) => /^https?:\/\//.test(u || '')),
-      });
+      }, 'Fonte: API da Câmara (consulta ao vivo).');
     } catch (e) {
-      // API ao vivo indisponível (rede ou CORS): usa o retrato gerado na atualização diária.
-      try {
-        const all = await once('detalhes', () => data('deputados-detalhes'));
-        if (!alive()) return;
-        const x = all[p.id];
-        if (!x) throw new Error('sem dados');
-        box().innerHTML = infoDeputadoHTML(x, `Consulta ao vivo indisponível; dados da última atualização (${fmtZoned(state.meta?.atualizadoEm)}).`);
-      } catch (_) {
-        if (alive()) box().innerHTML = failBox('Não foi possível consultar a API da Câmara agora.', `https://www.camara.leg.br/deputados/${p.id}`);
-      }
+      if (alive()) box().innerHTML = failBox('Não foi possível obter os dados deste(a) deputado(a) agora.', `https://www.camara.leg.br/deputados/${p.id}`);
     }
   }
 
