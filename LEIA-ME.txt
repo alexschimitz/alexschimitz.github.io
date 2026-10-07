@@ -1,0 +1,23 @@
+SITE CORRIGIDO — um upload só
+
+O que estava quebrado
+- politica/brasil.js não executava: a função de escape virou sintaxe inválida no upload (aspas e &). Por isso o gabinete ficava em "Carregando…" e o mapa não montava.
+- politica/mapa.svg tinha sido cortado em 20 KB e o XML ficava aberto. O mapa não desenhava.
+
+O que este zip traz
+HTML, CSS, JS, SVG e JSON do site (home, pokédex, política e o workflow de dados).
+Não inclui imagens/Pokemon nem games/ (já estão no GitHub e passam de 280 MB).
+
+Como publicar de uma vez (não arquivo por arquivo)
+No seu computador, na pasta do repositório:
+
+  unzip -o site-corrigido.zip -d .
+  git add index.html pokedex.html css scripts politica .github
+  git commit -m "politica: corrige script do gabinete e o mapa"
+  git push
+
+No site do GitHub também dá para arrastar a pasta politica/ inteira em
+Add file → Upload files, num único envio. Não abra o SVG no editor web:
+ele corta arquivo grande.
+
+Páginas: https://alexschimitz.github.io/ e https://alexschimitz.github.io/politica/
