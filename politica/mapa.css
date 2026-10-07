@@ -92,3 +92,11 @@
 @media (min-width: 861px) {
   .pol-subnav { display: none; }
 }
+
+/* Menu da política: muitos links, não deixa estourar a barra no desktop */
+@media (min-width: 761px) {
+  .politica .nav-wrap { height: auto; min-height: 78px; padding-block: 10px; }
+  .politica .main-nav { flex-wrap: wrap; justify-content: flex-end; gap: 10px 14px; }
+  .politica .main-nav a { font-size: 0.86rem; }
+}
+.map-frame svg { max-height: 72vh; }

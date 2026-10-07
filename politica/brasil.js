@@ -4,9 +4,12 @@
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
 
   function esc(s) {
-    return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({
-      "&": "&", "<": "<", ">": ">", '"': """, "'": "&#39;"
-    }[c]));
+    // Monta as entidades em tempo de execução para o arquivo não quebrar
+    // se um upload web decodificar & e aspas.
+    const map = { "&": "amp", "<": "lt", ">": "gt", '"': "quot", "'": "#39" };
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return "&" + map[c] + ";";
+    });
   }
   function slug(s) {
     return String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "")
