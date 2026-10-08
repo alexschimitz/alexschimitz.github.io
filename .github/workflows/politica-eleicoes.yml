@@ -27,7 +27,7 @@ jobs:
     timeout-minutes: 60
     env:
       PYTHONUNBUFFERED: "1"
-      RAW: ${{ runner.temp }}/tse
+      RAW: /tmp/tse
     steps:
       - uses: actions/checkout@v4
         with:
