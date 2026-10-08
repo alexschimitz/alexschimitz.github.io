@@ -542,23 +542,23 @@
     var t = key.split(":");
     if (t[0] === "uf") {
       var uf = t[1];
-      return Promise.all([tryJSON("uf/" + uf + ".json"), tryJSON("pol/uf/" + uf + ".json")]).then(function (r) {
+      return Promise.all([tryJSON("uf/" + uf + ".json"), tryJSON("pol/uf/" + uf + ".json"), tryJSON("fed/" + uf + ".json")]).then(function (r) {
         var anos = {}, src = {};
         var ga = (r[0] && r[0].governo_estadual && r[0].governo_estadual.anos) || {};
         Object.keys(ga).forEach(function (y) { anos[y] = ga[y]; src[y] = ga[y] ? "siconfi" : "sem"; });
-        return { kind: "uf", uf: uf, nome: S.ufs[uf].nome, info: r[0], pol: r[1], anos: anos, src: src, pop: S.ufs[uf].pop, ente: S.ufs[uf].ibge };
+        return { kind: "uf", uf: uf, nome: S.ufs[uf].nome, info: r[0], pol: r[1], fedDoc: r[2], anos: anos, src: src, pop: S.ufs[uf].pop, ente: S.ufs[uf].ibge };
       });
     }
     var id = +t[1], m = S.mun[id];
     var noFin = id === 5300108;
     return Promise.all([noFin ? null : tryJSON("fin/m/" + m.uf + "/" + id + ".json"), noFin ? null : tryJSON("pol/m/" + m.uf + "/" + id + ".json"),
-                        tryJSON("uf/" + m.uf + ".json"), tryJSON("pol/uf/" + m.uf + ".json")]).then(function (r) {
+                        tryJSON("uf/" + m.uf + ".json"), tryJSON("pol/uf/" + m.uf + ".json"), tryJSON("fed/" + m.uf + ".json")]).then(function (r) {
       var anos = {}, src = {}, f = r[0] || {};
       Object.keys(f.hist || {}).forEach(function (y) { if (f.hist[y]) { anos[y] = f.hist[y]; src[y] = "finbra"; } });
       Object.keys(f.anos || {}).forEach(function (y) { anos[y] = f.anos[y] || anos[y] || 0; src[y] = f.anos[y] ? "siconfi" : (src[y] || "sem"); });
       var live = S.live[id] || {};
       Object.keys(live).forEach(function (y) { anos[y] = live[y] || 0; src[y] = live[y] ? "ao vivo" : "sem"; });
-      return { kind: "m", id: id, uf: m.uf, nome: m.nome, m: m, fin: f, pol: r[1], ufInfo: r[2], ufPol: r[3], anos: anos, src: src, pop: m.pop, ente: id };
+      return { kind: "m", id: id, uf: m.uf, nome: m.nome, m: m, fin: f, pol: r[1], ufInfo: r[2], ufPol: r[3], fedDoc: r[4], anos: anos, src: src, pop: m.pop, ente: id };
     });
   }
 
@@ -769,6 +769,7 @@
            "<div><dt>Por morador em " + y + "</dt><dd>" + (pc ? money(c.d / pc, u) : "—") + "<small>valores da época</small></dd></div>" +
            (c.f ? "<div><dt>Saúde e educação</dt><dd>" + pct(100 * ((f["10"] || 0) + (f["12"] || 0)) / c.d) + "<small>do total gasto em " + y + "</small></dd></div>" : "")
          : "<div><dt>Contas</dt><dd>Sem dados ainda<small>veja a seção Dinheiro</small></dd></div>") +
+      (function () { var fd = fedData(P), L = fd && fd.last.rf; return L ? "<div><dt>" + esc(rfName(L.y)) + " em " + MES[L.m] + "/" + L.y + "</dt><dd>" + money(L.v) + "<small>" + int(L.q) + " famílias (pago pelo governo federal)</small></dd></div>" : ""; })() +
       "</dl>" +
       '<div class="mp-actions"><a class="primary" href="#governo">Quem governa</a><a href="#dinheiro">Gastos</a>' +
       (P.kind === "m" ? '<a href="https://cidades.ibge.gov.br/brasil/' + P.uf.toLowerCase() + "/" + slug(P.nome) + '/panorama" target="_blank" rel="noopener">IBGE Cidades ↗</a>' : "") + "</div>";
@@ -946,6 +947,54 @@
     if (pc && P.kind === "m" && !cmpUF.some(function (v) { return v != null; }) && fn && ["10", "12", "06"].indexOf(fn) < 0) leg += "<span>(comparação por área só para saúde, educação e segurança)</span>";
     return { svg: out.join(""), leg: leg };
   }
+  // ---------- benefícios federais pagos direto aos moradores (Portal da Transparência) ----------
+  var MES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
+  function rfName(y) {
+    y = +y;
+    return y <= 2020 ? "Bolsa Família" : y === 2021 ? "Bolsa Família / Auxílio Brasil" : y === 2022 ? "Auxílio Brasil" : y === 2023 ? "Auxílio Brasil / Bolsa Família" : "Bolsa Família";
+  }
+  function fedData(P) {
+    var F = P.fedDoc; if (!F || !F.m) return null;
+    var ids = P.kind === "m" ? [String(P.id)] : Object.keys(S.mun).filter(function (k) { return S.mun[k].uf === P.uf; });
+    var out = { rf: {}, bpc: {}, last: {} };
+    ["rf", "bpc"].forEach(function (prog) {
+      var years = {};
+      ids.forEach(function (id) { var e = F.m[id] && F.m[id][prog]; if (e) Object.keys(e).forEach(function (y) { years[y] = 1; }); });
+      Object.keys(years).forEach(function (y) {
+        var v = 0, qs = [], months = [];
+        for (var mi = 0; mi < 12; mi++) {
+          var ok = true, mv = 0, mq = 0;
+          for (var i = 0; i < ids.length; i++) {
+            var e = F.m[ids[i]] && F.m[ids[i]][prog] && F.m[ids[i]][prog][y];
+            if (!e || e.v[mi] == null) { ok = false; break; }
+            mv += e.v[mi]; mq += e.q[mi] || 0;
+          }
+          if (ok) { v += mv; qs.push(mq); months.push(mi); if (mv > 0) { var L = out.last[prog]; if (!L || +y * 12 + mi > L.y * 12 + L.m) out.last[prog] = { y: +y, m: mi, v: mv, q: mq }; } }
+        }
+        if (months.length && v > 0) out[prog][y] = { v: v, q: Math.round(qs.reduce(function (a, b) { return a + b; }, 0) / qs.length), n: months.length, months: months };
+      });
+    });
+    return Object.keys(out.rf).length || Object.keys(out.bpc).length ? out : null;
+  }
+  function fedHTML(P) {
+    var fd = fedData(P); if (!fd) return "";
+    var ys = Object.keys(fd.rf).concat(Object.keys(fd.bpc)).filter(function (y, i, a) { return a.indexOf(y) === i; }).sort().reverse();
+    var cell = function (e, y) {
+      if (!e) return '<td class="num">—</td><td class="num">—</td>';
+      var p = P.kind === "m" ? popOf(P, +y) : null, val = adj(e.v, +y);
+      var part = e.n < 12 ? ' <small class="muted">(' + (e.n === 1 ? MES[e.months[0]] : e.n === e.months[e.months.length - 1] - e.months[0] + 1 ? MES[e.months[0]] + "–" + MES[e.months[e.months.length - 1]] : e.n + " meses") + ")</small>" : "";
+      return '<td class="num">' + money(val, "R$") + part + (p && val != null ? '<br><small class="muted">' + money(val / p, "R$") + " por morador</small>" : "") + '</td><td class="num">' + int(e.q) + "</td>";
+    };
+    var rows = ys.map(function (y) { return "<tr><td>" + y + '<br><small class="muted">' + esc(rfName(y)) + "</small></td>" + cell(fd.rf[y], y) + cell(fd.bpc[y], y) + "</tr>"; }).join("");
+    var L = fd.last.rf, who = P.kind === "m" ? "moradores de " + P.nome : "moradores de " + P.nome + " (soma das cidades)";
+    return '<h3 class="mp-h3">Dinheiro federal pago direto às famílias</h3>' +
+      '<p class="lead-simples">Além das contas do governo local, o governo federal paga benefícios direto aos ' + esc(who) + "." +
+      (L ? " Em " + MES[L.m] + "/" + L.y + ", o " + esc(rfName(L.y)) + " pagou <b>" + money(L.v) + "</b> para <b>" + int(L.q) + "</b> famílias." : "") + "</p>" +
+      '<div class="table-wrap"><table class="data-table mp-fed"><thead><tr><th>Ano</th><th class="num">Bolsa Família e sucessores</th><th class="num">Famílias por mês (média)</th><th class="num">BPC (idosos e pessoas com deficiência)</th><th class="num">Pessoas por mês (média)</th></tr></thead><tbody>' + rows + "</tbody></table></div>" +
+      '<p class="note-sm">' + (realMode() ? "Valores corrigidos pela inflação (IPCA). " : "Valores da época. ") + "Esse dinheiro não passa pelo caixa " + (P.kind === "m" ? "da prefeitura" : "do governo estadual") + ", por isso não aparece nas contas acima. " +
+      "Fonte: <a href=\"https://portaldatransparencia.gov.br/beneficios\" target=\"_blank\" rel=\"noopener\">Portal da Transparência (CGU)</a>. Os meses estão sendo copiados aos poucos, do mais recente para o mais antigo (desde 2004)" +
+      (P.kind === "uf" ? "; a soma do estado só aparece para meses em que todas as cidades já foram copiadas" : "") + ".</p>";
+  }
   function kpi(label, val, small) { return '<div class="mp-kpi"><span>' + esc(label) + "</span><b>" + val + "</b>" + (small ? "<small>" + small + "</small>" : "") + "</div>"; }
   function renderMoney() {
     var P = S.P, box = $("#din-body"); if (!P || !box) return;
@@ -1012,6 +1061,7 @@
       (first ? "Primeiro ano com contas: " + first + ". " : "") +
       (P.kind === "uf" ? "Contas dos governos estaduais com dados abertos padronizados existem a partir de 2013 (SICONFI). " : "Contas municipais: 1989–2012 do FINBRA e 2013 em diante do SICONFI (não existe base aberta padronizada para 1988). ") +
       (live.length ? "Os anos " + live.join(", ") + " foram buscados agora direto no Tesouro." : "") + "</p>");
+    h.push(fedHTML(P));
     box.innerHTML = h.join("");
     $$(".mp-chart .hit", box).forEach(function (r) {
       r.addEventListener("click", function () { $("#f-ano").value = r.getAttribute("data-y"); renderMoney(); });

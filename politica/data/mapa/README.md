@@ -35,6 +35,7 @@ completos no mesmo estado ficariam com o mesmo id — é raro, mas possível. A 
 | `uf/{UF}.json` | `governo_estadual.anos` (cópia de `fin/uf`) e `municipios_agregado.{ano}` (somas e medianas das prefeituras do estado; `n` = quantas tinham contas). |
 | `brasil.json` | IPCA (`ipca.fator.{ano}` multiplica valores para reais do ano-base; só de 1995 em diante), agregados nacionais, cobertura por ano. |
 | `pop/{UF}.json` | População anual por cidade (`m.{ibge}` = lista de `ano0` a `ano1`). |
+| `fed/{UF}.json` | Benefícios federais pagos direto aos moradores, por cidade e mês: `m.{ibge}.rf.{ano}` (Bolsa Família até 10/2021, Auxílio Brasil 11/2021–02/2023, Novo Bolsa Família desde 03/2023) e `m.{ibge}.bpc.{ano}` (BPC), cada um com `v` = 12 valores pagos (R$) e `q` = 12 quantidades de beneficiados; `null` = mês ainda não copiado, `0` = sem pagamento. `c` marca a última reconferência de um mês recente. |
 | `pol/uf/{UF}.json` | Governadores eleitos (`governadores`), `segundo_turno` pendente de 2026, `prefeitos_atuais` (resumo por cidade). |
 | `pol/m/{UF}/{ibge}.json` | Prefeitos eleitos com vice (`prefeitos`), vereadores eleitos por eleição (`camara`), eleições sem eleito registrado. |
 | `pol/pessoas/{UF}.json` | Para cada id de pessoa, todas as candidaturas eleitas a governador/vice/prefeito/vice: `[ano, cargo, local, partido, sq, tipo]`. |
@@ -72,6 +73,7 @@ anos pela inflação (a correção anual com hiperinflação não é confiável)
 | Contas municipais antigas | Tesouro Nacional, FINBRA — https://www.tesourotransparente.gov.br/publicacoes/finbra-dados-contabeis-dos-municipios-1989-a-2012 | 1989–2012 |
 | Contas 2013+ | Tesouro Nacional, SICONFI, API DCA — https://apidatalake.tesouro.gov.br/ords/siconfi/tt/dca (docs: https://apidatalake.tesouro.gov.br/docs/siconfi/) | 2013 até o último exercício entregue |
 | Inflação | Banco Central, SGS 433 (IPCA) — https://www3.bcb.gov.br/sgspub/ | 1995+ usado |
+| Bolsa Família e BPC por município | Portal da Transparência (CGU), API de dados (`*-por-municipio`) — https://api.portaldatransparencia.gov.br/swagger-ui/index.html (chave de API usada só no script/Actions, nunca no navegador) | 2004 até o último mês publicado; copiado aos poucos, do mais recente para trás |
 | Governador em exercício (2026) | `politica/data/ufs.json` (levantamento do G1, set/2026) | retrato atual |
 
 ## Limites conhecidos
@@ -81,3 +83,4 @@ anos pela inflação (a correção anual com hiperinflação não é confiável)
 - TSE: só eleitos (titulares e vices). Quem assumiu por morte, renúncia, cassação ou licença do titular não aparece como titular. Dados de candidatos começam em 1994 (estados) e 1996 (municípios).
 - SICONFI aceita ~1 consulta por segundo. A cópia das contas 2013+ de todas as prefeituras é feita aos poucos (estados e capitais primeiro, depois as maiores cidades). Enquanto não termina, a página busca os anos que faltam direto na API do Tesouro no navegador (CORS liberado para `alexschimitz.github.io`).
 - Valores são os declarados pelos próprios governos e podem ter erros de preenchimento; percentuais de saúde/educação aqui **não** são os mínimos constitucionais (que usam outra base de cálculo).
+- Portal da Transparência: ~60 consultas/min de dia e 300/min de madrugada; uma consulta por cidade, mês e programa. Os 12 meses mais recentes de todas as cidades ficam prontos primeiro; o histórico desde 2004 vai sendo completado a cada execução do workflow. A soma por estado só aparece para meses em que todas as cidades do estado já foram copiadas.

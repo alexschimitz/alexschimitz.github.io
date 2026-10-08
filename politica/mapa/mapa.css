@@ -195,3 +195,5 @@ details.mp-more > summary { cursor: pointer; min-height: 44px; display: flex; al
 .mp-timeline { min-width: 640px; }
 #din-body > .lead-simples:first-of-type, #din-body > #din-live + .lead-simples { margin-top: 18px; }
 .mp-rank .pos { white-space: nowrap; }
+.mp-fed { min-width: 640px; }
+.mp-fed td:first-child { white-space: nowrap; }
