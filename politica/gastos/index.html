@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0d0c">
+  <meta name="description" content="Para onde vai o dinheiro público federal, em linguagem simples: gastos da União por área e ministério desde 1988, Presidência, cartão corporativo e a cota de deputados e senadores, direto das fontes oficiais.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%2362f58b%22/%3E%3Cpath d=%22M8 24V14M14 24V9M20 24V12M26 24V17%22 stroke=%22%23071009%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3C/svg%3E">
+  <title>Gastos públicos federais em linguagem simples — Política em dados abertos</title>
+  <script>try{var t=localStorage.getItem('as-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="gastos.css">
+</head>
+<body class="politica gastos">
+  <a class="skip-link" href="#visao">Pular para o conteúdo</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../" aria-label="Voltar à página inicial">
+        <span class="brand-mark">AS</span>
+        <span class="brand-name">Alexsander Schimitz</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+        <span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Páginas de política">
+        <a href="/politica/">Painel</a>
+        <a href="/politica/gastos/" data-page="gastos" aria-current="page">Gastos</a>
+        <a href="/politica/#mapa" data-page="mapa">Mapa</a>
+        <a href="/politica/#parlamentares" data-page="politicos">Políticos</a>
+        <a href="/politica/#executivo" data-page="governo">Governo</a>
+        <a href="/politica/#proposicoes">Propostas</a>
+        <a href="/politica/#parlamentares">Congresso</a>
+        <span class="nav-sep" aria-hidden="true"></span>
+        <button class="theme-toggle" type="button" aria-label="Alternar tema claro ou escuro" title="Tema">◐</button>
+        <a class="nav-cta" href="/">← Site</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <nav class="pol-subnav" aria-label="Atalhos desta página">
+      <a href="#visao">Total</a>
+      <a href="#areas">Áreas</a>
+      <a href="#orgaos">Ministérios</a>
+      <a href="#presidencia">Presidência</a>
+      <a href="#cartao">Cartão</a>
+      <a href="#congresso">Congresso</a>
+      <a href="#como-ler">Como ler</a>
+      <a href="#fontes">Fontes</a>
+    </nav>
+
+    <section class="g-hero container" aria-labelledby="g-title">
+      <div class="eyebrow"><span class="status-dot"></span> Gastos públicos · dados oficiais</div>
+      <h1 id="g-title">Para onde vai o <span>dinheiro público federal.</span></h1>
+      <p class="hero-lead">
+        Quanto o governo federal gasta, em quê, em qual ministério, quanto custa a Presidência e o cartão corporativo,
+        e quanto cada deputado e senador gastou da cota do mandato, de 1988 até hoje (até onde os dados oficiais abertos vão).
+        Tudo em linguagem simples, com a fonte oficial de cada número.
+      </p>
+      <dl class="g-kpis" id="hero-kpis" aria-live="polite">
+        <div><dt>Gasto da União no ano</dt><dd>—</dd></div>
+        <div><dt>Por brasileiro</dt><dd>—</dd></div>
+        <div><dt>Por dia</dt><dd>—</dd></div>
+        <div><dt>Dados até</dt><dd class="mono">—</dd></div>
+      </dl>
+      <p class="g-note" id="hero-note"></p>
+    </section>
+
+    <!-- ===================== VISÃO GERAL ===================== -->
+    <section class="section g-section" id="visao" aria-labelledby="visao-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">União · total por ano</div>
+        <div class="g-heading">
+          <h2 id="visao-title">Quanto o governo federal gastou em cada ano</h2>
+          <p>Despesa <b>liquidada</b> (serviço entregue ou benefício devido) dos Orçamentos Fiscal e da Seguridade Social, que reúnem os três Poderes da União. Fonte: Tesouro Nacional.</p>
+        </div>
+        <div class="g-controls" role="group" aria-label="Opções do gráfico de total por ano">
+          <div class="g-seg" role="radiogroup" aria-label="Como mostrar os valores" data-seg="tot-mode">
+            <button type="button" role="radio" aria-checked="true" data-v="real">Corrigido pela inflação</button>
+            <button type="button" role="radio" aria-checked="false" data-v="nominal">Valor da época</button>
+            <button type="button" role="radio" aria-checked="false" data-v="pc">Por brasileiro</button>
+          </div>
+          <label class="g-check"><input type="checkbox" id="tot-refin"> Incluir a rolagem da dívida</label>
+          <label class="g-field">De <select id="tot-from" aria-label="Ano inicial"></select></label>
+          <label class="g-field">até <select id="tot-to" aria-label="Ano final"></select></label>
+        </div>
+        <div class="g-card">
+          <div class="g-chart" id="chart-total" role="img" aria-label="Gráfico do gasto total da União por ano"></div>
+          <p class="g-chart-note" id="total-note"></p>
+        </div>
+        <div class="g-simple" id="total-simple"></div>
+
+        <h3 class="g-h3">No que o dinheiro foi gasto, por tipo (1980–hoje, em % do total)</h3>
+        <p class="g-sub">Mostrado em porcentagem para dar para comparar até os anos de hiperinflação, quando somar valores do ano inteiro não faz sentido. Passe o dedo ou o mouse sobre as barras.</p>
+        <div class="g-card">
+          <div class="g-legend" id="legend-grupo"></div>
+          <div class="g-chart g-chart-stack" id="chart-grupo" role="img" aria-label="Composição do gasto da União por tipo de despesa ao longo dos anos"></div>
+          <p class="g-chart-note">Sem a rolagem da dívida a partir de 1994. De 1980 a 1993 a planilha oficial não separa a rolagem, por isso a "amortização da dívida" aparece bem maior nesses anos. O último ano é parcial. Fonte: Tesouro Nacional (Despesa_Grupo).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ÁREAS ===================== -->
+    <section class="section g-section" id="areas" aria-labelledby="areas-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">União · por área</div>
+        <div class="g-heading">
+          <h2 id="areas-title">Em que áreas o dinheiro é gasto</h2>
+          <p>A lei classifica cada gasto numa <b>função</b> (saúde, educação, previdência…). Escolha o ano e toque numa área para ver a evolução.</p>
+        </div>
+        <div class="g-controls" role="group" aria-label="Filtros de áreas">
+          <label class="g-field">Ano <select id="area-year" aria-label="Ano"></select></label>
+          <div class="g-seg" role="radiogroup" aria-label="Agrupar por" data-seg="area-dim">
+            <button type="button" role="radio" aria-checked="true" data-v="funcao">Por área (função)</button>
+            <button type="button" role="radio" aria-checked="false" data-v="grupo">Por tipo de gasto</button>
+          </div>
+          <div class="g-seg" role="radiogroup" aria-label="Unidade" data-seg="area-mode">
+            <button type="button" role="radio" aria-checked="true" data-v="real">R$ corrigidos</button>
+            <button type="button" role="radio" aria-checked="false" data-v="pc">Por brasileiro</button>
+            <button type="button" role="radio" aria-checked="false" data-v="pct">% do total</button>
+          </div>
+        </div>
+        <p class="g-note" id="area-note"></p>
+        <div class="g-grid-2">
+          <div class="g-card"><ol class="g-bars" id="area-bars" aria-label="Gasto por área no ano escolhido"></ol></div>
+          <div class="g-card g-sticky">
+            <h3 class="g-h3" id="area-detail-title">Toque numa área</h3>
+            <p class="g-sub" id="area-detail-desc">Você verá o que ela inclui e como o gasto mudou ao longo dos anos.</p>
+            <div class="g-chart" id="chart-area" role="img" aria-label="Evolução da área escolhida"></div>
+            <div class="g-simple" id="area-simple"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ÓRGÃOS ===================== -->
+    <section class="section g-section" id="orgaos" aria-labelledby="orgaos-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">União · por ministério e órgão (2000–hoje)</div>
+        <div class="g-heading">
+          <h2 id="orgaos-title">Quanto cada ministério e órgão previu e gastou</h2>
+          <p>Do orçamento aprovado no Congresso até o dinheiro pago. Fonte: Secretaria de Orçamento Federal (SIOP). Toque num órgão para ver em que ele mais gastou.</p>
+        </div>
+        <div class="g-controls" role="group" aria-label="Filtros de órgãos">
+          <label class="g-field">Ano <select id="org-year" aria-label="Ano"></select></label>
+          <label class="g-field">Área <select id="org-fun" aria-label="Área (função)"><option value="">Todas</option></select></label>
+          <label class="g-field">Tipo <select id="org-gnd" aria-label="Tipo de gasto"><option value="">Todos</option></select></label>
+          <label class="g-field g-grow">Buscar <input id="org-q" type="search" placeholder="ex.: Saúde, Educação, Presidência" aria-label="Buscar órgão"></label>
+          <label class="g-check"><input type="checkbox" id="org-refin"> Incluir a rolagem da dívida</label>
+        </div>
+        <dl class="g-kpis g-kpis-sm" id="org-kpis"></dl>
+        <div class="g-card g-table-wrap">
+          <table class="g-table" id="org-table">
+            <caption class="sr-only">Orçamento por órgão no ano escolhido</caption>
+            <thead><tr>
+              <th scope="col" data-k="nome" class="txt">Órgão</th>
+              <th scope="col" data-k="ini">Previsto <small>(lei aprovada)</small></th>
+              <th scope="col" data-k="atu">Autorizado <small>(com mudanças)</small></th>
+              <th scope="col" data-k="liq" aria-sort="descending">Gasto <small>(liquidado)</small></th>
+              <th scope="col" data-k="pag">Pago no ano</th>
+              <th scope="col" data-k="exec">% usado</th>
+              <th scope="col" data-k="pc">Por brasileiro</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+          <div class="g-more"><button class="button button-ghost" type="button" id="org-more" hidden>Mostrar todos</button></div>
+        </div>
+        <div class="g-card g-detail" id="org-detail" hidden></div>
+
+        <h3 class="g-h3">Procurar um programa ou ação do orçamento</h3>
+        <p class="g-sub">Cada órgão divide o dinheiro em <b>ações</b> (ex.: "Benefícios previdenciários urbanos", "Bolsa Família"). Busque pelo nome no ano escolhido acima.</p>
+        <div class="g-controls"><label class="g-field g-grow">Ação <input id="acao-q" type="search" placeholder="ex.: Bolsa Família, merenda, vacina, rodovia" aria-label="Buscar ação do orçamento"></label></div>
+        <div class="g-card g-table-wrap" id="acao-wrap" hidden>
+          <table class="g-table" id="acao-table">
+            <caption class="sr-only">Ações do orçamento encontradas</caption>
+            <thead><tr>
+              <th scope="col" data-k="nome" class="txt">Ação</th>
+              <th scope="col" data-k="org" class="txt">Órgão</th>
+              <th scope="col" data-k="ini">Previsto</th>
+              <th scope="col" data-k="liq" aria-sort="descending">Gasto (liquidado)</th>
+              <th scope="col" data-k="pag">Pago</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PRESIDÊNCIA ===================== -->
+    <section class="section g-section" id="presidencia" aria-labelledby="pres-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Presidência da República</div>
+        <div class="g-heading">
+          <h2 id="pres-title">Quanto custa a Presidência</h2>
+          <p>A <b>Presidência da República</b> é um órgão do orçamento que inclui o gabinete do presidente e, conforme o ano, a Casa Civil, a Secretaria-Geral, o Gabinete de Segurança Institucional, a Secom e outras secretarias. Em alguns anos também abrigou órgãos como a Advocacia-Geral da União, a Controladoria-Geral da União e a Secretaria de Portos (veja a lista abaixo do gráfico). A composição muda a cada governo, então compare com cuidado.</p>
+        </div>
+        <div class="g-grid-2">
+          <div class="g-card">
+            <h3 class="g-h3">Orçamento gasto pela Presidência (liquidado)</h3>
+            <div class="g-seg g-seg-sm" role="radiogroup" aria-label="Unidade" data-seg="pres-mode">
+              <button type="button" role="radio" aria-checked="true" data-v="real">Corrigido</button>
+              <button type="button" role="radio" aria-checked="false" data-v="nominal">Valor da época</button>
+            </div>
+            <div class="g-chart" id="chart-pres" role="img" aria-label="Gasto da Presidência por ano"></div>
+            <p class="g-chart-note" id="pres-note"></p>
+            <h4>O que estava dentro da Presidência em <select id="pres-year" aria-label="Ano da composição da Presidência" class="g-inline-select"></select></h4>
+            <p class="g-sub">Gasto (liquidado) por unidade do orçamento. É isso que explica os anos mais altos: em certos governos, secretarias com status de ministério ficavam dentro da Presidência.</p>
+            <ol class="g-bars g-bars-sm" id="pres-uos"></ol>
+          </div>
+          <div class="g-card">
+            <h3 class="g-h3">Cartão corporativo da Presidência</h3>
+            <p class="g-sub">Compras e saques com o Cartão de Pagamento do Governo Federal feitos pela Presidência. Parte é <b>sigilosa</b> por lei (segurança do presidente), e aparece sem detalhe.</p>
+            <div class="g-chart" id="chart-pres-cartao" role="img" aria-label="Cartão corporativo da Presidência por ano"></div>
+            <p class="g-chart-note" id="pres-cartao-note"></p>
+          </div>
+        </div>
+        <h3 class="g-h3">Cartão da Presidência por mandato (2003–2022, dados liberados em 2023)</h3>
+        <p class="g-sub">Planilha oficial divulgada pelo governo em 2023, quando esses gastos deixaram de ser sigilosos. Valores corrigidos pelo IPCA, ano a ano.</p>
+        <div class="g-card g-table-wrap">
+          <table class="g-table" id="mand-table">
+            <caption class="sr-only">Cartão corporativo da Presidência por mandato</caption>
+            <thead><tr>
+              <th scope="col" class="txt">Mandato</th><th scope="col">Período nos dados</th><th scope="col">Total (valor da época)</th><th scope="col">Total corrigido</th><th scope="col">Média por mês (corrigida)</th><th scope="col" class="txt">Maiores tipos de gasto</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="g-notes" id="mand-notes"></div>
+      </div>
+    </section>
+
+    <!-- ===================== CARTÃO ===================== -->
+    <section class="section g-section" id="cartao" aria-labelledby="cartao-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Cartão corporativo · todo o governo federal</div>
+        <div class="g-heading">
+          <h2 id="cartao-title">Cartão corporativo de todos os órgãos</h2>
+          <p>O Cartão de Pagamento do Governo Federal serve para pequenas despesas urgentes (material, conserto, viagem). Fonte: Portal da Transparência (CGU), arquivos mensais.</p>
+        </div>
+        <div class="g-controls">
+          <label class="g-field">Ano <select id="cartao-year" aria-label="Ano"></select></label>
+          <label class="g-field g-grow">Buscar <input id="cartao-q" type="search" placeholder="ex.: Polícia Federal, Educação" aria-label="Buscar órgão"></label>
+        </div>
+        <dl class="g-kpis g-kpis-sm" id="cartao-kpis"></dl>
+        <p class="g-note" id="cartao-note"></p>
+        <div class="g-grid-2">
+          <div class="g-card g-table-wrap">
+            <table class="g-table" id="cartao-table">
+              <caption class="sr-only">Cartão corporativo por órgão</caption>
+              <thead><tr>
+                <th scope="col" data-k="n" class="txt">Órgão</th>
+                <th scope="col" data-k="v" aria-sort="descending">Total</th>
+                <th scope="col" data-k="saque">Saques</th>
+                <th scope="col" data-k="sig">Sigiloso</th>
+              </tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="g-card g-sticky" id="cartao-detail">
+            <h3 class="g-h3">Toque num órgão</h3>
+            <p class="g-sub">Para ver onde o cartão mais foi usado (maiores fornecedores).</p>
+          </div>
+        </div>
+        <div class="g-card">
+          <h3 class="g-h3">Total do cartão por ano (todos os órgãos)</h3>
+          <div class="g-chart" id="chart-cartao" role="img" aria-label="Total do cartão corporativo por ano"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONGRESSO ===================== -->
+    <section class="section g-section" id="congresso" aria-labelledby="cong-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Congresso · cota do mandato (2008–hoje)</div>
+        <div class="g-heading">
+          <h2 id="cong-title">Quanto cada deputado e senador gastou da cota</h2>
+          <p>A <b>cota parlamentar</b> (CEAP na Câmara, CEAPS no Senado) reembolsa gastos do mandato: escritório, passagens, combustível, divulgação… Não inclui salário, assessores nem apartamento funcional. Inclui quem já saiu do cargo.</p>
+        </div>
+        <div class="g-controls" role="group" aria-label="Filtros da cota parlamentar">
+          <div class="g-seg" role="radiogroup" aria-label="Casa" data-seg="cong-casa">
+            <button type="button" role="radio" aria-checked="true" data-v="">Câmara e Senado</button>
+            <button type="button" role="radio" aria-checked="false" data-v="c">Câmara</button>
+            <button type="button" role="radio" aria-checked="false" data-v="s">Senado</button>
+          </div>
+          <label class="g-field">De <select id="cong-from" aria-label="Ano inicial"></select></label>
+          <label class="g-field">até <select id="cong-to" aria-label="Ano final"></select></label>
+          <label class="g-field">Partido <select id="cong-part" aria-label="Partido"><option value="">Todos</option></select></label>
+          <label class="g-field">UF <select id="cong-uf" aria-label="Estado"><option value="">Todas</option></select></label>
+          <label class="g-field">Categoria <select id="cong-cat" aria-label="Categoria de gasto"><option value="">Todas</option></select></label>
+          <label class="g-field g-grow">Nome <input id="cong-q" type="search" placeholder="Buscar deputado ou senador" aria-label="Buscar parlamentar pelo nome"></label>
+          <label class="g-check"><input type="checkbox" id="cong-atual"> Só quem teve gasto no ano mais recente</label>
+        </div>
+        <dl class="g-kpis g-kpis-sm" id="cong-kpis"></dl>
+        <p class="g-note" id="cong-note"></p>
+        <div class="g-card g-table-wrap">
+          <table class="g-table" id="cong-table">
+            <caption class="sr-only">Ranking de gastos da cota parlamentar</caption>
+            <thead><tr>
+              <th scope="col" class="num-col">#</th>
+              <th scope="col" data-k="nome" class="txt">Nome</th>
+              <th scope="col" data-k="casa" class="txt">Casa</th>
+              <th scope="col" data-k="partido" class="txt">Partido<small>*</small></th>
+              <th scope="col" data-k="uf" class="txt">UF</th>
+              <th scope="col" data-k="anos">Anos</th>
+              <th scope="col" data-k="total" aria-sort="descending">Total no período</th>
+              <th scope="col" data-k="media">Média por ano</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+          <div class="g-more"><button class="button button-ghost" type="button" id="cong-more" hidden>Mostrar mais</button></div>
+          <p class="g-chart-note">* Partido e UF mais recentes registrados nos dados da cota. Toque num nome para ver o detalhe.</p>
+        </div>
+        <div class="g-grid-3">
+          <div class="g-card"><h3 class="g-h3">Por partido</h3><p class="g-sub" id="cong-part-sub"></p><ol class="g-bars g-bars-sm" id="cong-by-part"></ol></div>
+          <div class="g-card"><h3 class="g-h3">Por estado</h3><p class="g-sub">Total gasto pelos parlamentares de cada estado.</p><ol class="g-bars g-bars-sm" id="cong-by-uf"></ol></div>
+          <div class="g-card"><h3 class="g-h3">Por categoria</h3><p class="g-sub">No que a cota foi gasta.</p><ol class="g-bars g-bars-sm" id="cong-by-cat"></ol></div>
+        </div>
+        <div class="g-card">
+          <h3 class="g-h3">Total da cota por ano</h3>
+          <div class="g-chart" id="chart-cong" role="img" aria-label="Total da cota parlamentar por ano"></div>
+          <p class="g-chart-note" id="cong-year-note"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== COMO LER ===================== -->
+    <section class="section g-section" id="como-ler" aria-labelledby="ler-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Em palavras simples</div>
+        <div class="g-heading"><h2 id="ler-title">Como ler estes números</h2></div>
+        <div class="g-glossary">
+          <details><summary>Previsto, autorizado, empenhado, liquidado e pago</summary>
+            <p><b>Previsto (dotação inicial):</b> o valor aprovado pelo Congresso na lei do orçamento (LOA).<br><b>Autorizado:</b> o previsto mais as mudanças feitas durante o ano (créditos extras ou cortes).<br><b>Empenhado:</b> o governo reservou o dinheiro para uma compra ou contrato.<br><b>Liquidado:</b> o serviço foi entregue ou o benefício é devido. É o que esta página chama de <b>gasto</b>.<br><b>Pago:</b> o dinheiro saiu do caixa. O que fica para pagar no ano seguinte vira <b>restos a pagar</b>.</p></details>
+          <details><summary>O que é a "rolagem da dívida"?</summary>
+            <p>Quando um título da dívida pública vence, o governo costuma emitir um título novo para pagar o antigo. Isso é o <b>refinanciamento</b>, ou rolagem: entra muito dinheiro no orçamento, mas é uma troca de dívida velha por dívida nova, não um serviço prestado à população. Por isso, por padrão, esta página mostra os totais <b>sem</b> a rolagem, como faz o Tesouro Nacional. Os juros e a parte da dívida paga com outros recursos continuam incluídos.</p></details>
+          <details><summary>Por que corrigir pela inflação?</summary>
+            <p>R$ 100 em 2000 compravam muito mais do que R$ 100 hoje. Para comparar anos diferentes, multiplicamos o valor de cada ano pela inflação acumulada (IPCA, do IBGE) desde a média daquele ano até o mês mais recente disponível. Assim todos os valores ficam "em reais de hoje".</p></details>
+          <details><summary>Por que antes de 1995 só aparecem porcentagens?</summary>
+            <p>Entre 1988 e 1994 o Brasil teve cinco moedas (cruzado, cruzado novo, cruzeiro, cruzeiro real e real) e inflação que chegou a mais de 80% ao mês. As planilhas oficiais somam o ano inteiro em moedas e preços muito diferentes, então o total em reais de hoje não seria confiável. A divisão em porcentagem (quanto foi para cada área) continua útil.</p></details>
+          <details><summary>Por que as áreas mudam em 2000?</summary>
+            <p>Até 1999 o orçamento usava outra lista de funções (por exemplo, "Saúde e Saneamento" juntos e "Educação e Cultura" juntas). A partir de 2000 vale a lista atual, com 28 funções (Portaria nº 42/1999). Por isso a evolução de uma área começa em 2000.</p></details>
+          <details><summary>O que é "por brasileiro"?</summary>
+            <p>O valor dividido pela população do Brasil naquele ano (IBGE: Censos e estimativas oficiais; anos sem número oficial são interpolados). É só uma forma de dar escala: ninguém recebe esse valor diretamente.</p></details>
+          <details><summary>O que a cota parlamentar paga e o que fica de fora</summary>
+            <p>Paga despesas do mandato com nota fiscal: escritório no estado, passagens, combustível, aluguel de carro, divulgação, telefone etc. O limite mensal varia por estado. <b>Não</b> inclui salário (subsídio), verba de gabinete para assessores, auxílio-moradia, apartamento funcional nem gastos da administração da Câmara ou do Senado (esses estão no orçamento da União, na função "Legislativa").</p></details>
+          <details><summary>Gasto sigiloso no cartão corporativo</summary>
+            <p>A lei permite manter em sigilo gastos ligados à segurança do presidente, do vice e de suas famílias, e algumas operações de investigação. Nesses casos o Portal da Transparência mostra só o valor, sem fornecedor. O governo pode divulgar esses dados depois, como fez em 2023 com os anos de 2003 a 2022.</p></details>
+        </div>
+
+        <h3 class="g-h3" id="lacunas">Lacunas e mudanças de método</h3>
+        <ul class="g-list" id="gaps"></ul>
+      </div>
+    </section>
+  </main>
+
+  <div class="g-modal" id="person-modal" role="dialog" aria-modal="true" aria-labelledby="pm-title" hidden>
+    <div class="g-modal-backdrop" data-close></div>
+    <div class="g-modal-panel" tabindex="-1">
+      <button class="g-modal-close" type="button" data-close aria-label="Fechar">×</button>
+      <div id="pm-body"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer" id="fontes">
+    <div class="container g-footer">
+      <div>
+        <p><strong>Fontes oficiais (com data da coleta):</strong></p>
+        <ul class="g-sources" id="sources"><li>Carregando…</li></ul>
+        <p><strong>Método:</strong> os dados são baixados por uma rotina automática no GitHub, que soma os registros oficiais (sem alterar valores) e grava arquivos resumidos que esta página lê. Valores corrigidos usam o IPCA (média do ano → mês mais recente). Nenhum número foi estimado por nós, exceto a população de anos sem dado oficial (interpolação, indicada) e as porcentagens/médias calculadas a partir dos dados.</p>
+        <p>Página independente e apartidária. As informações são exibidas como publicadas pelas fontes; erros ou atrasos podem vir delas. Dados gerados em <span id="ft-upd" class="mono">—</span> (horário de Brasília).</p>
+      </div>
+      <div class="g-footer-links">
+        <p>© <span id="year"></span> Alexsander Schimitz.</p>
+        <a href="../">← Política</a>
+        <a href="../../">← Página inicial</a>
+        <a href="#top">Voltar ao topo ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../scripts/home.js"></script>
+  <script src="../base.js"></script>
+  <script src="gastos.js"></script>
+</body>
+</html>
