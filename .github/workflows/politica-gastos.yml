@@ -48,6 +48,10 @@ jobs:
         continue-on-error: true
         run: python3 scripts/politica/gastos/fetch_parl.py
 
+      - name: Ligação com o diretório de políticos
+        continue-on-error: true
+        run: python3 scripts/politica/gastos/link_politicos.py
+
       - name: Emendas parlamentares
         timeout-minutes: 8
         continue-on-error: true

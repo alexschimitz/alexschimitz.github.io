@@ -190,3 +190,6 @@ html.g-modal-open, html.g-modal-open body { overflow: hidden; }
   #vg-table th:nth-child(4), #vg-table td:nth-child(4) { display: none; }
   #em-table tr.empty td, #vg-table tr.empty td { display: table-cell; }
 }
+.g-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 12px; }
+.g-chip { display: inline-flex; align-items: center; padding: 6px 12px; border: 1px solid var(--line-strong); border-radius: 999px; font-size: 0.84rem; font-weight: 600; color: var(--text); background: var(--panel-strong); }
+.g-chip:hover, .g-chip:focus-visible { border-color: var(--accent); color: var(--accent); }

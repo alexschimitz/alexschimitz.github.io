@@ -709,6 +709,13 @@
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); } else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
   });
+  function profileLinks(key) {
+    const [c, id] = [key.slice(0, 1), key.slice(2)];
+    let h = `<a class="g-chip" href="/politica/#perfil/${c}/${encodeURIComponent(id)}">Perfil, votos e projetos →</a>`;
+    const pid = S.polIds && S.polIds[key];
+    if (pid && S.pages && S.pages.politicos === true) h += ` <a class="g-chip" href="/politica/politicos/?id=${encodeURIComponent(pid)}">Todos os mandatos →</a>`;
+    return h;
+  }
   async function openPerson(key) {
     const i = key.indexOf('-'); const c = key.slice(0, i); const id = key.slice(i + 1);
     if (!c || !id) return;
@@ -730,6 +737,7 @@
     const cargo = c === 'c' ? 'Deputado(a) federal' : 'Senador(a)';
     body.innerHTML = `<h3 id="pm-title">${esc(P.nome)}</h3>
       <p class="g-sub">${cargo} · ${esc(P.partidos.join(' → ') || '—')} · ${esc(P.ufs.join(', ') || '—')} · cota usada em ${ys.length} ano(s): ${esc(ys[0])}${ys.length > 1 ? '–' + esc(ys[ys.length - 1]) : ''} · <a href="${link}" target="_blank" rel="noreferrer">página oficial ↗</a></p>
+      <p class="g-links">${profileLinks(key)}</p>
       <dl class="g-kpis g-kpis-sm"><div><dt>Total (valor da época)</dt><dd>${brl(tot)}</dd></div><div><dt>Total corrigido</dt><dd>${brl(totR)}<small>IPCA até ${esc(ultimoMes())}</small></dd></div><div><dt>Média por ano</dt><dd>${brl(media)}<small>média da casa: ${brl(avgPeers)}</small></dd></div><div><dt>Notas e recibos</dt><dd>${nf0.format(notas)}</dd></div></dl>
       <div class="g-simple"><p>Em média, ${esc(P.nome)} gastou <b>${brl(media)} por ano</b> da cota, ${media > avgPeers ? `<b>${pct(media / avgPeers - 1, 0)} acima</b>` : `<b>${pct(1 - media / avgPeers, 0)} abaixo</b>`} da média dos colegas da mesma casa nos mesmos anos (${brl(avgPeers)}). A média da casa inclui quem ficou só parte do ano, então serve como referência, não como regra. O limite mensal da cota também varia por estado.</p></div>
       <h4>Por ano</h4><div class="g-chart" id="pm-years"></div>
@@ -883,7 +891,7 @@
     let D; try { D = await getJSON(`emendas/a/${id}.json`); } catch (e) { box.innerHTML = '<p>Não foi possível carregar este autor.</p>'; return; }
     const ys = Object.keys(D.anos).sort(); const tp = ys.reduce((s, y) => s + D.anos[y].pago, 0); const te = ys.reduce((s, y) => s + D.anos[y].emp, 0);
     const tl = D.local.reduce((s, x) => s + x[1], 0) || 1; const tf = Object.values(D.funcao).reduce((s, v) => s + v, 0) || 1;
-    box.innerHTML = `<div class="g-detail-head"><div><h3>${esc(D.nome)}</h3><p class="g-sub">Emendas de ${esc(ys[0])}${ys.length > 1 ? ' a ' + esc(ys[ys.length - 1]) : ''} · reservado ${brl(te)} · pago ${brl(tp)}${D.parlamentar ? ` · <a href="#p=${esc(D.parlamentar)}" data-person="${esc(D.parlamentar)}">ver a cota parlamentar</a>` : ''}</p></div><button class="button button-ghost g-close" type="button" aria-label="Fechar detalhe">Fechar</button></div>
+    box.innerHTML = `<div class="g-detail-head"><div><h3>${esc(D.nome)}</h3><p class="g-sub">Emendas de ${esc(ys[0])}${ys.length > 1 ? ' a ' + esc(ys[ys.length - 1]) : ''} · reservado ${brl(te)} · pago ${brl(tp)}${D.parlamentar ? ` · <a href="#p=${esc(D.parlamentar)}" data-person="${esc(D.parlamentar)}">ver a cota parlamentar</a>` : ''}</p>${D.parlamentar ? `<p class="g-links">${profileLinks(D.parlamentar)}</p>` : ''}</div><button class="button button-ghost g-close" type="button" aria-label="Fechar detalhe">Fechar</button></div>
       <h4>Pago por ano</h4><div class="g-chart" id="emd-years"></div>
       <div class="g-grid-2 g-detail-lists"><div><h4>Para onde foi (cidade ou estado)</h4><ol class="g-bars g-bars-sm" id="emd-loc"></ol></div><div><h4>Em que área</h4><ol class="g-bars g-bars-sm" id="emd-fun"></ol></div></div>
       <p class="g-chart-note">"Pago" inclui restos a pagar pagos depois. Fonte: Portal da Transparência (CGU), emendas parlamentares.</p>`;
@@ -914,7 +922,7 @@
     if (cm.length) {
       const have = new Set(cm); const missing = []; const now = new Date();
       for (let y = 2013; y <= now.getFullYear(); y++) for (let m = 1; m <= 12; m++) { if (y === now.getFullYear() && m > now.getMonth() + 1) break; const k = `${y}${String(m).padStart(2, '0')}`; if (!have.has(k)) missing.push(k); }
-      gaps.push(`Cartão corporativo (todos os órgãos): o Portal da Transparência começa em jan/2013. ${missing.length ? `Meses que ainda não temos: ${missing.length} (${missing.slice(0, 6).map((k) => k.slice(4) + '/' + k.slice(0, 4)).join(', ')}${missing.length > 6 ? '…' : ''}).` : 'Todos os meses publicados já foram baixados.'} O Portal tem bloqueio anti-robô, então a rotina baixa poucos meses por vez; os meses mais recentes podem ainda não ter sido publicados.`);
+      gaps.push(`Cartão corporativo (todos os órgãos): o Portal da Transparência começa em jan/2013. ${missing.length ? `Meses que ainda não temos: ${missing.length} (${missing.slice(0, 6).map((k) => k.slice(4) + '/' + k.slice(0, 4)).join(', ')}${missing.length > 6 ? '…' : ''}).` : 'Todos os meses publicados já foram baixados.'} A atualização semanal baixa os meses que faltam aos poucos; os meses mais recentes podem ainda não ter sido publicados pelo Portal.`);
     }
     gaps.push('Cartão da Presidência por mandato: a planilha oficial cobre 02/01/2003 a 19/12/2022. De 2013 em diante também há os dados mensais do Portal, que medem de outro jeito (sem descontar devoluções e pelo mês da fatura).');
     gaps.push('Emendas parlamentares: o Portal da Transparência traz dados a partir de 2014 (2014 e 2015 com menos registros). Emendas de relator (2020–2022) e de comissão não mostram qual parlamentar pediu o dinheiro.');
@@ -931,6 +939,8 @@
       safe('parl/indice.json'), safe('parl/resumo.json'), safe('cartao/resumo.json'), safe('cartao/presidencia-2003-2022.json'),
       safe('emendas/resumo.json'), safe('emendas/autores.json'), safe('viagens/resumo.json'), safe('api/presidencia-por-orgao.json'),
     ]);
+    safe('parl/politicos_ids.json').then((j) => { S.polIds = j; });
+    fetch('/politica/paginas.json', { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : {})).then((j) => { S.pages = (j && j.paginas) || {}; }).catch(() => { S.pages = {}; });
     Object.assign(S, { idx, serie, res, fontes, meta, parlIdx, parlRes, cart, presHist, emRes, emAut, viagRes, pport });
     const run = (name, fn) => { try { fn(); } catch (e) { console.warn(name, e); const sec = document.getElementById(name); if (sec) { const p = document.createElement('p'); p.className = 'g-note warn'; p.textContent = 'Não foi possível montar esta seção agora. Tente recarregar a página.'; $('.container', sec).appendChild(p); } } };
     if (idx && serie) { run('visao', initVisao); run('areas', initAreas); }
