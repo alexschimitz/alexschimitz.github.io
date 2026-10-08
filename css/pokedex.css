@@ -30,6 +30,7 @@
 .type-veneno { background: #8a3fa0; } .type-terra { background: #b0883c; } .type-voador { background: #6f8fd8; }
 .type-inseto { background: #7f9a1f; } .type-pedra { background: #8c7a4a; } .type-fantasma { background: #5a4a8c; }
 .type-normal { background: #7d7d6a; } .type-aco { background: #6f8796; }
+.type:not(.type-eletrico) { background-image: linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.28)); }
 
 .dex-controls { margin-top: 18px; display: grid; gap: 10px; }
 .dex-label { color: #ffe9e9; font-size: 0.85rem; font-weight: 700; }

@@ -130,10 +130,10 @@
     const frag = document.createDocumentFragment();
     next.forEach((p, i) => {
       const li = document.createElement('li');
-      li.innerHTML = `<button type="button" class="parl-card" data-c="${p.c}" data-id="${p.id}" aria-label="Ver perfil de ${esc(p.n)}, ${esc(p.p)}-${esc(p.uf)}, ${casaNome(p.c)}">
+      li.innerHTML = `<button type="button" class="parl-card" data-c="${p.c}" data-id="${p.id}">
         ${avatar(p, state.shown === 0 && i < 8)}
-        <span><strong>${esc(p.n)}</strong>
-          <span class="parl-meta"><span class="chip casa">${p.c === 'c' ? 'Dep.' : 'Sen.'}</span><span class="chip">${esc(p.p)}</span><span class="chip">${esc(p.uf)}</span></span>
+        <span><span class="sr-only">Ver perfil de </span><strong>${esc(p.n)}</strong>
+          <span class="parl-meta"><span class="sr-only">${casaNome(p.c)}, </span><span class="chip casa" aria-hidden="true">${p.c === 'c' ? 'Dep.' : 'Sen.'}</span><span class="chip">${esc(p.p)}</span><span class="chip">${esc(p.uf)}</span></span>
         </span></button>`;
       frag.append(li);
     });
@@ -167,8 +167,8 @@
     totalEl.textContent = `${nf.format(list.length)} cadeiras ocupadas · ${rows.length} legendas`;
     ul.innerHTML = rows.map(([sig, n]) => {
       const pc = ((n / list.length) * 100).toFixed(1).replace('.', ','); const nome = partyName(sig);
-      return `<li><button type="button" class="bar-row" data-casa="${casa}" data-p="${esc(sig)}" aria-label="${esc(sig)}${nome ? ` (${esc(nome)})` : ''}: ${n} parlamentares, ${pc}% — filtrar lista" title="${esc(nome || sig)} — ${pc}%">
-        <span class="lbl">${esc(sig)}</span><span class="bar-track"><span class="bar-fill" style="width:${((n / max) * 100).toFixed(2)}%"></span></span><span class="val">${n}</span></button></li>`;
+      return `<li><button type="button" class="bar-row" data-casa="${casa}" data-p="${esc(sig)}" title="${esc(nome || sig)} — ${pc}%">
+        <span class="lbl">${esc(sig)}<span class="sr-only">${nome ? ` (${esc(nome)})` : ''}:</span></span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width:${((n / max) * 100).toFixed(2)}%"></span></span><span class="val">${n}<span class="sr-only"> parlamentares, ${pc}% — filtrar lista</span></span></button></li>`;
     }).join('');
   }
   const smooth = () => (matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth');
