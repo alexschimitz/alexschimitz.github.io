@@ -745,8 +745,8 @@ def make_person(i, P, R, O, dep, legs, leg_uf, sen, cam_ex, sen_ex, mun):
                 a, b = int(x.get('anoInicio')), int(x.get('anoFim') or x.get('anoInicio'))
             except Exception:
                 continue
-            if not cg or b < 1988:
-                continue
+            if not cg or b < 1988 or a < 1950 or b < a or b - a > 10:
+                continue  # fora do período ou ano digitado errado na declaração
             if any(m['c'] == cg and m['a'] <= b and a <= m['b'] for m in mand):
                 continue
             if any(m['c'] in (cg, VICE_DE.get(cg, 0)) and abs(m['a'] - a) <= 1 for m in mand):
