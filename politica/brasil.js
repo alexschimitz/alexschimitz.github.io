@@ -134,6 +134,7 @@
       '<p class="meta">Governador em exercício: <strong>' + esc(u.governador) + "</strong></p>" +
       '<p class="meta">' + esc(u.nota) + "</p>" +
       '<div class="sheet-actions">' +
+        '<a class="button button-primary" href="/politica/mapa/?uf=' + esc(u.uf) + '">Contas do estado e das prefeituras →</a>' +
         '<button class="button button-ghost" type="button" id="load-mun">Ver municípios</button>' +
         '<a class="ext" href="' + ibgeUrl(u.uf, u.capital) + '" target="_blank" rel="noreferrer">IBGE da capital ↗</a>' +
         '<a class="ext" href="https://resultados.tse.jus.br/" target="_blank" rel="noreferrer">Votos no TSE ↗</a>' +
@@ -191,6 +192,7 @@
       '<p class="meta">Código IBGE ' + m.id + (m.micro ? " · " + esc(m.micro) : "") + "</p>" +
       '<p class="meta">Prefeito e vereadores foram eleitos em 2024 (mandato até 2028). O placar da urna não é copiado para cá — o TSE é a fonte do voto.</p>' +
       '<div class="sheet-actions">' +
+        '<a class="button button-primary" href="/politica/mapa/?m=' + m.id + '">Contas da prefeitura e quem governa →</a>' +
         '<a class="ext" href="' + ibgeUrl(m.uf, m.nome) + '" target="_blank" rel="noreferrer">Panorama IBGE ↗</a>' +
         '<a class="ext" href="' + tse + '" target="_blank" rel="noreferrer">Eleição municipal 2024 ↗</a>' +
         '<a class="ext" href="https://resultados.tse.jus.br/" target="_blank" rel="noreferrer">Eleições 2026 ↗</a>' +

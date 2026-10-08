@@ -33,9 +33,9 @@
       <nav class="main-nav" id="main-nav" aria-label="Páginas de política">
         <a href="/politica/">Painel</a>
         <a href="/politica/gastos/" data-page="gastos">Gastos</a>
-        <a href="/politica/#mapa" data-page="mapa">Mapa</a>
+        <a href="/politica/mapa/" data-page="mapa">Mapa</a>
         <a href="/politica/#parlamentares" data-page="politicos">Políticos</a>
-        <a href="/politica/#executivo" data-page="governo">Governo</a>
+        <a href="/politica/governo/" data-page="governo">Governo</a>
         <a href="/politica/#proposicoes">Propostas</a>
         <a href="/politica/#parlamentares">Congresso</a>
         <span class="nav-sep" aria-hidden="true"></span>
@@ -95,7 +95,7 @@
             <span class="entry-txt"><strong data-soon>Gastos</strong>
             <span>Quanto o governo, a Presidência, os deputados e os senadores gastam, e com o quê. Filtre por pessoa, órgão e ano.</span></span>
             <span class="entry-go" aria-hidden="true">→</span></a></li>
-          <li><a class="entry" href="#mapa" data-page="mapa">
+          <li><a class="entry" href="/politica/mapa/" data-page="mapa">
             <span class="entry-ico" aria-hidden="true">◎</span>
             <span class="entry-txt"><strong data-soon>Mapa do Brasil</strong>
             <span>Toque no seu estado ou cidade: quem governa, quem é o prefeito e como estão as contas do estado e da prefeitura.</span></span>
@@ -105,7 +105,7 @@
             <span class="entry-txt"><strong data-soon>Políticos e mandatos</strong>
             <span>Busque qualquer político e veja quantos mandatos teve, em quais cargos, por quais partidos e em que anos.</span></span>
             <span class="entry-go" aria-hidden="true">→</span></a></li>
-          <li><a class="entry" href="#executivo" data-page="governo">
+          <li><a class="entry" href="/politica/governo/" data-page="governo">
             <span class="entry-ico" aria-hidden="true">★</span>
             <span class="entry-txt"><strong data-soon>Governo</strong>
             <span>Presidente, vice e ministros de hoje, os presidentes desde 1988, medidas provisórias e leis explicadas.</span></span>
@@ -141,7 +141,7 @@
           </div>
         </div>
         <div id="exec-body"><p class="muted">Carregando gabinete…</p></div>
-        <p class="more-link" data-page-reveal="governo" hidden><a href="/politica/governo/">Ver o governo completo: presidentes desde 1988, ministérios e medidas →</a></p>
+        <p class="more-link" data-page-reveal="governo"><a href="/politica/governo/">Ver o governo completo: presidentes desde 1988, ministérios e medidas →</a></p>
       </div>
     </section>
 
@@ -151,7 +151,7 @@
         <div class="projects-heading">
           <div>
             <h2 id="map-title">Mapa do Brasil, estado por estado</h2>
-            <p>Toque num estado ou busque um município. A lista vem do IBGE. Governador é quem está em exercício; prefeito e último voto municipal ficam no TSE, eleição de 2024.</p>
+            <p>Toque num estado ou busque um município para ver quem governa. No <a href="/politica/mapa/">mapa completo</a> você vê também as contas do estado e da prefeitura.</p>
           </div>
         </div>
         <form class="pol-filters" onsubmit="return false" aria-label="Buscar município">
@@ -165,10 +165,8 @@
           <div class="map-frame" id="br-map"></div>
           <div class="sheet" id="uf-sheet" aria-live="polite"><p class="muted">Escolha um estado no mapa.</p></div>
         </div>
-        <h3 class="h-md">Capitais</h3>
-        <div class="uf-chips" id="cap-chips" role="group" aria-label="Capitais"></div>
         <p class="note" id="uf-note"></p>
-        <p class="more-link" data-page-reveal="mapa" hidden><a href="/politica/mapa/">Abrir o mapa completo, com as contas do estado e da prefeitura →</a></p>
+        <p class="more-link" data-page-reveal="mapa"><a href="/politica/mapa/">Abrir o mapa completo, com as contas do estado e da prefeitura →</a></p>
       </div>
     </section>
 

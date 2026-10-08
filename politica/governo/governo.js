@@ -101,7 +101,7 @@
       });
       return '<div class="gov-ele-turno"><h3 class="h-md">' + esc(nome) + ' <small class="muted">' + (t.oficial ? "resultado oficial" : "parcial") + ", " + esc(t.secoes.pct) + "% das seções apuradas · TSE, " + esc(t.totalizadoEm) + " (Brasília)</small></h3>" +
         barras(cs, 0, function (c) { return c.pctS; }) +
-        '<dl class="kpis gov-ele-kpis"><div class="kpi"><b>' + nf(t.eleitorado) + '</b><span>eleitores</span></div><div class="kpi"><b>' + esc(t.comparecimentoPct) + '%</b><span>foram votar (' + nf(t.comparecimento) + ')</span></div><div class="kpi"><b>' + esc(t.abstencaoPct) + '%</b><span>não foram (abstenção)</span></div><div class="kpi"><b>' + esc(t.votos.brancosPct) + "% / " + esc(t.votos.nulosPct) + '%</b><span>brancos / nulos</span></div></dl>' +
+        '<div class="kpis gov-ele-kpis"><div class="kpi"><b>' + nf(t.eleitorado) + '</b><span>eleitores</span></div><div class="kpi"><b>' + esc(t.comparecimentoPct) + '%</b><span>foram votar (' + nf(t.comparecimento) + ')</span></div><div class="kpi"><b>' + esc(t.abstencaoPct) + '%</b><span>não foram (abstenção)</span></div><div class="kpi"><b>' + esc(t.votos.brancosPct) + "% / " + esc(t.votos.nulosPct) + '%</b><span>brancos / nulos</span></div></div>' +
         '<p class="note-sm">Fonte: ' + ext(t.url, "arquivo oficial de resultados do TSE") + ".</p></div>";
     };
     if (t2) h += turnoHTML(t2, "2º turno — " + dBR(e.datas.turno2));

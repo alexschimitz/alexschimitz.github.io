@@ -506,3 +506,4 @@ html[data-theme="light"] .map-frame .state, html[data-theme="light"] .map-frame 
 }
 .map-frame svg { max-height: 72vh; }
 .min-more { margin-top: 10px; }
+.projects-heading p a { color: var(--accent); border-bottom: 1px solid currentColor; font-weight: 700; }
