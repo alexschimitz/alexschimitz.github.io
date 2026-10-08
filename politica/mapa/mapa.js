@@ -794,7 +794,7 @@
         (m.vice ? personLink(m.vice.id, m.vice.nome) + " (" + esc(m.vice.partido) + ")" : "—") + "</td><td>" + esc(mandText(m)) + "</td><td class=\"num\">" + (m.n_mandato || "") + "º</td></tr>";
     }).join("");
     return '<h3 class="mp-h3">Todos os ' + cargo + " eleitos (TSE)</h3>" +
-      '<div class="table-wrap"><table class="data-table mp-timeline"><thead><tr><th>Eleição</th><th>Eleito(a)</th><th>Partido</th><th>Vice</th><th>Mandato</th><th>Vez no cargo</th></tr></thead><tbody>' + rows + "</tbody></table></div>";
+      '<div class="table-wrap"><table class="data-table tabela-cards mp-timeline"><thead><tr><th>Eleição</th><th>Eleito(a)</th><th>Partido</th><th>Vice</th><th>Mandato</th><th>Vez no cargo</th></tr></thead><tbody>' + rows + "</tbody></table></div>";
   }
   function renderGov(P) {
     var box = $("#gov-body"), h = [], today = ymd();
@@ -1177,7 +1177,7 @@
     var covRows = Object.keys(cov).sort().reverse().map(function (y) {
       var c = cov[y]; return "<tr><td>" + y + '</td><td class="num">' + int(c.finbra + c.siconfi) + '</td><td class="num">' + int(c.sem_entrega) + "</td><td>" + (c.siconfi ? "SICONFI" : "FINBRA") + "</td></tr>";
     }).join("");
-    $("#ft-body").innerHTML = '<div class="table-wrap"><table class="data-table"><thead><tr><th>O quê</th><th>Fonte oficial</th><th>Período</th></tr></thead><tbody>' +
+    $("#ft-body").innerHTML = '<div class="table-wrap"><table class="data-table tabela-cards"><thead><tr><th>O quê</th><th>Fonte oficial</th><th>Período</th></tr></thead><tbody>' +
       src.map(function (s) { return "<tr><td>" + esc(s[0]) + '</td><td><a href="' + esc(s[2]) + '" target="_blank" rel="noopener">' + esc(s[1]) + "</a></td><td>" + esc(s[3]) + "</td></tr>"; }).join("") +
       "</tbody></table></div>" +
       '<p class="note-sm">Dados baixados e processados em ' + dt + ' e atualizados automaticamente toda semana. Formatos e identificadores: <a href="../data/mapa/README.md">README dos dados</a>.</p>' +

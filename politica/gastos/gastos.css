@@ -198,3 +198,11 @@ html.g-modal-open, html.g-modal-open body { overflow: hidden; }
   #gov-table th:nth-child(3), #gov-table td:nth-child(3),
   #gov-table th:nth-child(6), #gov-table td:nth-child(6) { display: none; }
 }
+
+/* tabela de mandatos do cartão vira cartões no celular (.tabela-cards, base.css) */
+@media (max-width: 719.98px) {
+  .g-table-wrap:has(> .tabela-cards) { padding: 0; border: 0; background: transparent; overflow: visible; }
+  .g-table.tabela-cards td, .g-table.tabela-cards td.txt { white-space: normal; min-width: 0; text-align: left; }
+  .g-table.tabela-cards tbody tr { cursor: default; }
+  .g-table.tabela-cards tbody tr:hover { background: var(--panel); }
+}

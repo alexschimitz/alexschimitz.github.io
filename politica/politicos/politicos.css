@@ -42,8 +42,11 @@ html[data-theme="light"] .chip.cur { border-color: rgba(31, 157, 75, 0.4); }
 .pp-rank .v { font-family: "DM Mono", monospace; font-size: 0.8rem; text-align: right; white-space: nowrap; }
 .pp-rank .s { display: block; color: var(--muted); font-size: 0.76rem; font-weight: 500; }
 
-.pp-cargos th[scope="row"] { white-space: nowrap; }
-.pp-cargos td { min-width: 120px; }
+@media (min-width: 720px) {
+  .pp-cargos th[scope="row"] { white-space: nowrap; }
+  .pp-cargos td { min-width: 120px; }
+  .pp-cargos td.tc-fim { min-width: 220px; }
+}
 .pp-explain { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
 .pp-explain details summary { cursor: pointer; font-weight: 800; letter-spacing: -0.01em; }
 .pp-explain details p { margin-top: 10px; }
@@ -110,3 +113,11 @@ html[data-theme="light"] .chip.cur { border-color: rgba(31, 157, 75, 0.4); }
 .pm-table tbody th { position: static; }
 #pm-title:focus { outline: none; }
 #pm-title:focus-visible { outline: 2px solid var(--accent, #62f58b); outline-offset: 4px; border-radius: 6px; }
+
+#cov-table tbody th { white-space: normal; text-transform: none; letter-spacing: 0; font-size: 0.84rem; color: var(--text); background: transparent; position: static; }
+#cov-table th, #cov-table td { padding-inline: 10px; }
+@media (max-width: 719.98px) { .pp-cargos tbody td, .pm-table tbody td { font-size: 0.92rem; } }
+@media (max-width: 520px) {
+  #cov-table th, #cov-table td { padding: 8px 6px; font-size: 0.8rem; }
+  #cov-table thead th { letter-spacing: 0; }
+}

@@ -123,10 +123,37 @@
       }
     });
   }
-  tableWraps();
+  // .tabela-cards (ver base.css): rótulo de cada célula a partir do cabeçalho e papéis ARIA de tabela
+  // (display:block em telas estreitas faz alguns navegadores esquecerem que aquilo é uma tabela)
+  function tabelaCards() {
+    document.querySelectorAll("table.tabela-cards").forEach(function (t) {
+      if (!t.hasAttribute("role")) t.setAttribute("role", "table");
+      var heads = [].map.call(t.querySelectorAll("thead th"), function (th) { return th.textContent.replace(/\s+/g, " ").trim(); });
+      t.querySelectorAll("thead, tbody, tfoot").forEach(function (g) { g.setAttribute("role", "rowgroup"); });
+      t.querySelectorAll("tr:not([role])").forEach(function (tr) {
+        tr.setAttribute("role", "row");
+        var col = 0;
+        [].forEach.call(tr.children, function (c) {
+          if (c.tagName === "TH") c.setAttribute("role", c.getAttribute("scope") === "row" || c.parentNode.parentNode.tagName === "TBODY" ? "rowheader" : "columnheader");
+          else {
+            c.setAttribute("role", "cell");
+            if (heads[col] && !c.hasAttribute("data-label") && !c.hasAttribute("colspan")) c.setAttribute("data-label", heads[col]);
+            if (c.textContent.trim() && c.textContent.trim().length <= 26 && !c.querySelector("br, p, ul")) {
+              // rótulo e valor lado a lado: o conteúdo vai num único <span> (a 2ª coluna do grid)
+              var v = document.createElement("span"); v.className = "tc-v";
+              while (c.firstChild) v.appendChild(c.firstChild);
+              c.appendChild(v); c.classList.add("tc-curto");
+            }
+          }
+          col += +(c.getAttribute("colspan") || 1);
+        });
+      });
+    });
+  }
+  tableWraps(); tabelaCards();
   if ("MutationObserver" in window) {
     var tq = null;
-    new MutationObserver(function () { if (!tq) tq = setTimeout(function () { tq = null; tableWraps(); }, 150); })
+    new MutationObserver(function () { if (!tq) tq = setTimeout(function () { tq = null; tableWraps(); tabelaCards(); }, 150); })
       .observe(document.body, { childList: true, subtree: true });
   }
 })();

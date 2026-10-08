@@ -8,7 +8,7 @@
      <script src="../base.js"></script>   (marca a página atual no menu)
    Primitivas: .pol-hero .pol-section .pol-alt · .pol-card .pol-grid
    · .pol-filters/.field · .tabs · .items/.item · .chip .badge
-   · .data-table (.table-wrap) · .kpis/.kpi · .hbar · .mchart · .bars
+   · .data-table (.table-wrap) · .tabela-cards · .kpis/.kpi · .hbar · .mchart · .bars
    · .profile/.pol-modal (dialog) · .simples · .note .err .skeleton
    ===================================================================== */
 @import url("../css/home.css");
@@ -466,8 +466,36 @@ html { scroll-padding-top: 140px; }
 .data-table th, .data-table td { padding: 9px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
 .data-table th { color: var(--muted); font-size: 0.74rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; white-space: nowrap; background: var(--panel-strong); position: sticky; top: 0; }
 .data-table td.num, .data-table th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.data-table tbody tr:hover { background: var(--accent-soft); }
+/* realce de linha só com mouse: no toque o :hover "gruda" e pinta a linha inteira */
+@media (hover: hover) { .data-table tbody tr:hover { background: var(--accent-soft); } }
 .data-table tbody tr:last-child td { border-bottom: 0; }
+.pol-section h2 + .table-wrap, .pol-section h2 + p + .table-wrap { margin-top: clamp(14px, 3vw, 22px); }
+
+/* .tabela-cards — em telas estreitas (< 720px) cada linha vira um cartão empilhado, sem rolagem lateral.
+   Uso: <table class="data-table tabela-cards"> com <th scope="col"> no <thead>. O base.js copia o cabeçalho
+   de cada coluna para data-label nas células (rótulo visível no cartão) e reforça os papéis ARIA de tabela,
+   então leitores de tela continuam ouvindo "cabeçalho: valor". A 1ª célula da linha vira o título do cartão.
+   Células com texto curto (.tc-curto, marcadas pelo base.js) ficam com rótulo e valor na mesma linha;
+   .tc-fim manda a célula para o fim do cartão (ex.: um texto longo de explicação). */
+@media (max-width: 719.98px) {
+  .table-wrap:has(> .tabela-cards) { overflow: visible; border: 0; border-radius: 0; background: transparent; }
+  .tabela-cards, .tabela-cards tbody, .tabela-cards tr, .tabela-cards th, .tabela-cards td { display: block; width: auto; }
+  .tabela-cards thead { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+  .tabela-cards caption:not(.sr-only) { display: block; padding: 0 0 8px; }
+  .tabela-cards tbody { display: grid; gap: 10px; }
+  .tabela-cards tbody tr { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
+  .tabela-cards tbody tr:hover { background: var(--panel); }
+  .tabela-cards tbody th, .tabela-cards tbody td { padding: 0; border: 0; text-align: left; white-space: normal; min-width: 0; max-width: 62ch; position: static; background: transparent; }
+  .tabela-cards tbody tr > :first-child { padding: 0 0 8px 10px; margin-bottom: 2px; border-left: 3px solid var(--accent); border-bottom: 1px solid var(--line); color: var(--text); font-size: 1rem; font-weight: 800; letter-spacing: -0.01em; text-transform: none; line-height: 1.3; }
+  .tabela-cards tbody td[data-label]::before { content: attr(data-label); content: attr(data-label) / ""; display: block; margin-bottom: 2px; color: var(--muted); font-size: 0.68rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+  .tabela-cards tbody tr > :first-child::before { content: none; }
+  .tabela-cards tbody td.tc-curto { display: grid; grid-template-columns: minmax(0, 8.2rem) minmax(0, 1fr); align-items: baseline; gap: 10px; }
+  .tabela-cards tbody td.tc-curto::before { margin: 0; }
+  .tabela-cards tbody td.num { text-align: left; white-space: normal; }
+  .tabela-cards tbody td:empty { display: none; }
+  .tabela-cards tbody .tc-fim { order: 9; margin-top: 4px; line-height: 1.55; }
+  .tabela-cards tbody td[colspan] { text-align: left; }
+}
 
 /* Diálogo genérico (mesmo visual do perfil) */
 .pol-modal { width: min(760px, calc(100% - 24px)); max-height: calc(100dvh - 24px); margin: auto; padding: 0; border: 1px solid var(--line-strong); border-radius: var(--radius-lg); background: var(--panel-strong); color: var(--text); box-shadow: var(--shadow); overflow: hidden; }

@@ -21,7 +21,10 @@
 
   const S = { meta: null, part: null, mun: null, idx: {}, rows: [], shown: PAGE, fam: {}, famOf: {}, pages: {}, filtered: [] };
   const cache = {};
-  const getJSON = (u) => (cache[u] ||= fetch(D + u).then((r) => { if (!r.ok) throw new Error(u + ' ' + r.status); return r.json(); }));
+  // uma nova tentativa em falha passageira do GitHub Pages (503 etc.)
+  const fetchJSON = (u, n = 1) => fetch(D + u).then((r) => { if (!r.ok) throw new Error(u + ' ' + r.status); return r.json(); })
+    .catch((e) => (n > 0 ? new Promise((ok) => setTimeout(ok, 900)).then(() => fetchJSON(u, n - 1)) : Promise.reject(e)));
+  const getJSON = (u) => (cache[u] ||= fetchJSON(u));
 
   // ---------- helpers de texto ----------
   const munName = (code) => { const m = S.mun && S.mun[code]; return m ? `${m[0]} (${m[1]})` : (code ? `município ${code}` : ''); };
@@ -354,7 +357,7 @@
       <div class="pm-sec"><h3>Mandatos (${ms.filter((m) => m.c !== 9 && m.c !== 10).length})</h3><ul class="pm-mand">${mandList || '<li>Sem mandatos registrados.</li>'}</ul></div>
       ${pp ? `<div class="pm-sec"><h3>Partidos ao longo do tempo</h3><div class="pm-parties">${pp}</div><p class="note-sm">Partido na época de cada eleição (TSE) e trocas registradas pela Câmara e pelo Senado. Nomes antigos e fusões estão explicados em <a href="#partidos">Partidos que mudaram</a>.</p></div>` : ''}
       <div class="pm-sec"><h3>Todas as candidaturas (${els.length})</h3>
-        <div class="table-wrap"><table class="data-table pm-table"><thead><tr><th scope="col">Ano</th><th scope="col">Cargo</th><th scope="col">Onde</th><th scope="col">Partido</th><th scope="col" class="num">Votos</th><th scope="col">Resultado</th></tr></thead><tbody>${elei || '<tr><td colspan="6">Sem candidaturas nos dados do TSE (1989–2026).</td></tr>'}</tbody></table></div>
+        <div class="table-wrap"><table class="data-table tabela-cards pm-table"><thead><tr><th scope="col">Ano</th><th scope="col">Cargo</th><th scope="col">Onde</th><th scope="col">Partido</th><th scope="col" class="num">Votos</th><th scope="col">Resultado</th></tr></thead><tbody>${elei || '<tr><td colspan="6">Sem candidaturas nos dados do TSE (1989–2026).</td></tr>'}</tbody></table></div>
         <p class="note-sm">Votos nominais somados de todas as zonas eleitorais (TSE). Em 1989 e 1990 a soma é por estado. “2º turno” sem resultado final: eleição de 2026 ainda em andamento.</p>
       </div>`;
   }
