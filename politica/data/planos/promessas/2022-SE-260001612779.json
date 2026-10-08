@@ -1,0 +1,150 @@
+{
+ "ano": 2022,
+ "cargo": "governador",
+ "uf": "SE",
+ "sq": "260001612779",
+ "pessoa": {
+  "nome": "Fábio",
+  "nome_completo": "Fábio Cruz Mitidieri",
+  "partido": "PSD",
+  "id_politico": "ol4ckiawib"
+ },
+ "mandato": {
+  "inicio": "2023-01-01",
+  "fim": "2026-12-31",
+  "situacao": "em curso",
+  "nota": "Mandato ainda em curso: o status vale até a data da revisão e pode mudar."
+ },
+ "plano": {
+  "titulo": "Programa de Governo — Sergipe avança com Fábio",
+  "paginas": 112,
+  "arquivo": "2022SE260001612779.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/SE/260001612779",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2022_SE.zip"
+ },
+ "revisado": "2026-10-08",
+ "resumo": [
+  {
+   "t": "Agricultura e abastecimento: programa agroindustrial e apoio ao produtor rural.",
+   "p": 15
+  },
+  {
+   "t": "Assistência social: Prato do Povo, Mães de Sergipe e Banco de Alimentos.",
+   "p": 22
+  },
+  {
+   "t": "Cultura e economia: loteria estadual, apoio a artistas e ao empreendedorismo.",
+   "p": 27
+  },
+  {
+   "t": "Educação: ensino técnico, Bolsa Aprendizagem e quadras nas escolas.",
+   "p": 45
+  },
+  {
+   "t": "Esporte: Bolsa Atleta e secretaria própria para o esporte.",
+   "p": 51
+  },
+  {
+   "t": "Habitação e infraestrutura: programas de moradia e rodovias.",
+   "p": 56
+  }
+ ],
+ "promessas": [
+  {
+   "id": "se22-01",
+   "tema": "Assistência social",
+   "promessa": "Criar o Prato do Povo, com restaurantes também no interior",
+   "trecho": "Criar o programa Prato do Povo, visando ampliar o atendimento de restaurantes populares e a descentralização para o interior",
+   "pagina": 23,
+   "status": "cumprida",
+   "explicacao": "O programa Prato do Povo foi criado e, em dezembro de 2025, começou a servir refeições em mais quatro unidades no interior.",
+   "evidencias": [
+    {
+     "titulo": "Seasic-SE — Prato do Povo amplia atuação e inicia entrega de refeições em quatro novas unidades",
+     "url": "https://assistenciasocial.se.gov.br/programa-prato-do-povo-amplia-atuacao-e-inicia-entrega-de-refeicoes-em-quatro-novas-unidades-em-sergipe/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "se22-02",
+   "tema": "Economia",
+   "promessa": "Criar a loteria estadual (Lotese)",
+   "trecho": "Implantar a Loteria Estadual (LOTESE) e destinar parte dos recursos arrecadados para as áreas de cultura, esporte e lazer.",
+   "pagina": 27,
+   "status": "cumprida",
+   "explicacao": "A loteria estadual existe e é operada pela Loterias de Sergipe S.A. (Lotese), ligada ao Banese, com fiscalização da agência reguladora (Agrese). Não verificamos quanto da arrecadação vai para cultura, esporte e lazer.",
+   "evidencias": [
+    {
+     "titulo": "Agrese — Conheça a Câmara Técnica de Loteria Estadual (CTLOTESE)",
+     "url": "https://agrese.se.gov.br/conheca-a-ctlotese-2/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "se22-03",
+   "tema": "Esporte",
+   "promessa": "Criar o Bolsa Atleta estadual",
+   "trecho": "Criar e implantar o programa Bolsa Atleta e Paratleta estadual",
+   "pagina": 51,
+   "status": "cumprida",
+   "explicacao": "A lei do Bolsa Atleta de Sergipe foi aprovada pela Assembleia e publicada no Diário Oficial em outubro de 2024.",
+   "evidencias": [
+    {
+     "titulo": "Assembleia Legislativa de Sergipe — Bolsa Atleta: lei aprovada é publicada no Diário Oficial",
+     "url": "https://al.se.leg.br/bolsa-atleta-lei-aprovada-na-alese-e-publicada-no-diario-oficial-do-estado/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "se22-04",
+   "tema": "Esporte",
+   "promessa": "Criar uma secretaria só para o esporte",
+   "trecho": "Criar a Secretaria de Estado do Esporte, Lazer e Juventude",
+   "pagina": 52,
+   "status": "cumprida",
+   "explicacao": "A lei de organização do governo, de janeiro de 2023, separou a antiga secretaria de Educação, Esporte e Cultura e criou a Secretaria de Estado do Esporte e Lazer (Seel). O nome não inclui 'Juventude'.",
+   "evidencias": [
+    {
+     "titulo": "Assembleia Legislativa de Sergipe — Lei nº 9.156/2023 (estrutura do governo), com as alterações posteriores",
+     "url": "https://aleselegis.al.se.leg.br/Arquivo/Documents/legislacao/HTML/l91562023.html"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "se22-05",
+   "tema": "Mulheres",
+   "promessa": "Criar a Secretaria das Mulheres",
+   "trecho": "Criar a Secretaria de Estado das Mulheres.",
+   "pagina": 75,
+   "status": "cumprida",
+   "explicacao": "Em 2023 foi criada a Secretaria Especial de Políticas para as Mulheres, que em 2024 passou a ser Secretaria de Estado de Políticas para as Mulheres.",
+   "evidencias": [
+    {
+     "titulo": "Assembleia Legislativa de Sergipe — Lei nº 9.156/2023 (estrutura do governo), com as alterações posteriores",
+     "url": "https://aleselegis.al.se.leg.br/Arquivo/Documents/legislacao/HTML/l91562023.html"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "se22-06",
+   "tema": "Gestão",
+   "promessa": "Criar uma secretaria para atender os municípios",
+   "trecho": "Criar a Secretaria de Estado da Articulação Municipal",
+   "pagina": 87,
+   "status": "cumprida",
+   "explicacao": "Uma lei de março de 2024 criou a Secretaria Especial de Articulação com os Municípios (Seam).",
+   "evidencias": [
+    {
+     "titulo": "Assembleia Legislativa de Sergipe — Lei nº 9.156/2023 (estrutura do governo), com as alterações posteriores",
+     "url": "https://aleselegis.al.se.leg.br/Arquivo/Documents/legislacao/HTML/l91562023.html"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}

@@ -1,0 +1,166 @@
+{
+ "ano": 2022,
+ "cargo": "governador",
+ "uf": "PI",
+ "sq": "180001604027",
+ "pessoa": {
+  "nome": "Rafael Fonteles",
+  "nome_completo": "Rafael Tajra Fonteles",
+  "partido": "PT",
+  "id_politico": "jzhh4473wa"
+ },
+ "mandato": {
+  "inicio": "2023-01-01",
+  "fim": "2026-12-31",
+  "situacao": "em curso",
+  "nota": "Mandato ainda em curso: o status vale até a data da revisão e pode mudar."
+ },
+ "plano": {
+  "titulo": "Plano de governo 2023–2026 — Rafael Fonteles",
+  "paginas": 65,
+  "arquivo": "2022PI180001604027.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/PI/180001604027",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2022_PI.zip"
+ },
+ "revisado": "2026-10-08",
+ "resumo": [
+  {
+   "t": "Trabalho e renda: agricultura, agroindústria, turismo e atração de empresas.",
+   "p": 43
+  },
+  {
+   "t": "Infraestrutura: Transcerrados, novas ligações com estados vizinhos e porto de Luís Correia.",
+   "p": 44
+  },
+  {
+   "t": "Educação: dobrar as escolas em tempo integral e as matrículas no ensino técnico.",
+   "p": 49
+  },
+  {
+   "t": "Saúde: telemedicina em todos os territórios e novo Hospital Regional de Picos.",
+   "p": 51
+  },
+  {
+   "t": "Crianças e assistência social: Pacto pelas Crianças.",
+   "p": 56
+  },
+  {
+   "t": "Governo digital: serviços públicos 100% digitais.",
+   "p": 60
+  }
+ ],
+ "promessas": [
+  {
+   "id": "pi22-01",
+   "tema": "Educação",
+   "promessa": "Dobrar as escolas estaduais em tempo integral",
+   "trecho": "Dobrar o número de escolas estaduais em tempo integral (100 novas escolas).",
+   "pagina": 49,
+   "status": "cumprida",
+   "explicacao": "Segundo a Secretaria da Educação, em 2025 todas as escolas estaduais de ensino médio passaram a funcionar em tempo integral, e 81,46% das matrículas do ensino médio estadual eram de tempo integral (Censo Escolar 2025).",
+   "evidencias": [
+    {
+     "titulo": "Governo do Piauí — Piauí conquista 1º lugar no Censo Escolar 2025 em tempo integral e ensino técnico (fev/2026)",
+     "url": "https://www.pi.gov.br/piaui-conquista-1o-lugar-no-censo-escolar-2025-liderando-em-tempo-integral-e-ensino-profissional-e-tecnico/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pi22-02",
+   "tema": "Saúde",
+   "promessa": "Terminar o novo Hospital Regional de Picos",
+   "trecho": "concluir o novo Hospital Regional de Picos.",
+   "pagina": 51,
+   "status": "cumprida",
+   "explicacao": "O novo Hospital Regional de Picos foi inaugurado em 28 de junho de 2024.",
+   "evidencias": [
+    {
+     "titulo": "Governo do Piauí — Governo inaugura novo Hospital Regional de Picos (jun/2024)",
+     "url": "https://www.pi.gov.br/governo-do-piaui-inaugura-o-novo-hospital-regional-de-picos-nesta-sexta/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pi22-03",
+   "tema": "Saúde",
+   "promessa": "Telemedicina em todos os territórios",
+   "trecho": "Implantar a Telemedicina para especialidades e diagnósticos em todos os territórios de desenvolvimento.",
+   "pagina": 51,
+   "status": "cumprida",
+   "explicacao": "O programa Piauí Saúde Digital oferece consultas e exames a distância e, segundo a Secretaria da Saúde, está presente nos 224 municípios.",
+   "evidencias": [
+    {
+     "titulo": "Governo do Piauí — Programa Piauí Saúde Digital ultrapassa a marca de 300 mil atendimentos",
+     "url": "https://www.pi.gov.br/programa-piaui-saude-digital-ultrapassa-a-marca-de-300-mil-atendimentos-2/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pi22-04",
+   "tema": "Crianças",
+   "promessa": "Criar o Pacto pelas Crianças",
+   "trecho": "Pacto pelas Crianças: Criar e implementar programa integrado de ações para proteção e desenvolvimento das crianças do Piauí.",
+   "pagina": 56,
+   "status": "cumprida",
+   "explicacao": "O Pacto pelas Crianças foi lançado em 25 de abril de 2023, com ações de saúde, educação e assistência para a primeira infância.",
+   "evidencias": [
+    {
+     "titulo": "Governo do Piauí — Pacto pelas Crianças: o programa",
+     "url": "https://pactopelascriancas.pi.gov.br/o-programa"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pi22-05",
+   "tema": "Infraestrutura",
+   "promessa": "Terminar a rodovia Transcerrados",
+   "trecho": "Concluir a Rodovia Transcerrados",
+   "pagina": 44,
+   "status": "em_andamento",
+   "explicacao": "Em julho de 2025 o governo informou que a terceira e última etapa (96 km) estava em obras, com entrega prevista para janeiro de 2026. Não encontramos no site oficial o registro da conclusão até a data da revisão.",
+   "evidencias": [
+    {
+     "titulo": "Governo do Piauí — Última etapa da rodovia Transcerrados será entregue no início de 2026 (jul/2025)",
+     "url": "https://www.pi.gov.br/rafael-fonteles-anuncia-que-ultima-etapa-da-rodovia-transcerrados-sera-entregue-no-inicio-de-2026/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pi22-06",
+   "tema": "Infraestrutura",
+   "promessa": "Novas ligações com estados vizinhos e mais uma ponte sobre o rio Parnaíba",
+   "trecho": "(Ceará, Pernambuco e Bahia), além de mais 1 Ponte sobre o Rio Parnaíba.",
+   "pagina": 45,
+   "status": "parcialmente",
+   "explicacao": "Uma nova ponte sobre o rio Parnaíba, ligando o Piauí ao Maranhão na BR-330, foi inaugurada em setembro de 2025 (obra federal, do DNIT). Não encontramos fonte oficial sobre as três novas rodovias de ligação com Ceará, Pernambuco e Bahia.",
+   "evidencias": [
+    {
+     "titulo": "Governo do Piauí — Nova ponte sobre o rio Parnaíba, ligando o Piauí ao Maranhão, será inaugurada (set/2025)",
+     "url": "https://www.pi.gov.br/nova-ponte-sobre-o-rio-parnaiba-ligando-o-piaui-ao-maranhao-sera-inaugurada-no-sul-do-estado-nesta-sexta-5/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pi22-07",
+   "tema": "Infraestrutura",
+   "promessa": "Terminar o porto de Luís Correia e conceder à iniciativa privada",
+   "trecho": "Concluir e viabilizar a concessão do Porto de Luís Correia",
+   "pagina": 45,
+   "status": "parcialmente",
+   "explicacao": "Em vez de uma concessão, o governo assinou em outubro de 2024 um contrato de adesão com o Ministério de Portos para um Terminal de Uso Privado em Luís Correia. Não encontramos fonte oficial de que o porto já opere com navios de carga nem sobre o porto seco em Teresina.",
+   "evidencias": [
+    {
+     "titulo": "Governo do Piauí — Contrato com o Ministério de Portos para Terminal de Uso Privado em Luís Correia (out/2024)",
+     "url": "https://www.pi.gov.br/governo-do-estado-celebra-contrato-de-r-543-milhoes-com-o-ministerio-de-portos-para-construcao-de-terminal-de-uso-privado-em-luis-correia/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}
