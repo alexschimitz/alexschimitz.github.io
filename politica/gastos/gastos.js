@@ -812,7 +812,7 @@
     drawChart(); onResize(drawChart);
     const load = async () => {
       const y = sel.value; const a = V.anos[y];
-      $('#vg-kpis').innerHTML = `<div><dt>Viagens em ${esc(y)}</dt><dd>${nf0.format(a.n)}</dd></div><div><dt>Custo total</dt><dd>${brl(a.total)}</dd><small>diárias ${brl(a.diarias)} · passagens ${brl(a.passagens)}</small></div><div><dt>Média por viagem</dt><dd>${brl(a.total / Math.max(1, a.n))}</dd></div><div><dt>Por dia</dt><dd>${nf0.format(a.n / 365)} viagens</dd><small>${brl(a.total / 365)} por dia</small></div>`;
+      $('#vg-kpis').innerHTML = `<div><dt>Viagens em ${esc(y)}</dt><dd>${nf0.format(a.n)}</dd></div><div><dt>Custo total</dt><dd>${brl(a.total)}<small>diárias ${brl(a.diarias)} · passagens ${brl(a.passagens)}</small></dd></div><div><dt>Média por viagem</dt><dd>${brl(a.total / Math.max(1, a.n))}</dd></div><div><dt>Por dia</dt><dd>${nf0.format(a.n / 365)} viagens<small>${brl(a.total / 365)} por dia</small></dd></div>`;
       try { VG.data = await getJSON(`viagens/ano/${y}.json`); } catch (e) { VG.data = null; }
       drawVg(); const first = VG.sel || (VG.data && Object.keys(VG.data.orgaos)[0]); if (first) showVg(first);
     };
@@ -892,7 +892,7 @@
     for (let y = a; y <= b; y++) { const x = R.anos[y]; if (!x) continue; tp += x.pag + x.rp_pago; te += x.emp; Object.entries(x.funcao).forEach(([k, v]) => { fun[k] = (fun[k] || 0) + v; }); Object.entries(x.uf).forEach(([k, v]) => { uf[k] = (uf[k] || 0) + v; }); }
     const ind = rows.filter((r) => emTipoKey(r.tipo) === 'p');
     const yN = b - a + 1; const pp = pop(Math.min(b, new Date().getFullYear()));
-    $('#em-kpis').innerHTML = `<div><dt>Pago (${a}–${b})</dt><dd>${brl(tp)}</dd><small>valor da época</small></div><div><dt>Reservado (empenhado)</dt><dd>${brl(te)}</dd></div><div><dt>Autores nesta lista</dt><dd>${nf0.format(rows.length)}</dd><small>${nf0.format(ind.length)} com emendas individuais</small></div><div><dt>Por brasileiro</dt><dd>${pp ? brl(tp / pp) : '—'}</dd><small>no período todo</small></div>`;
+    $('#em-kpis').innerHTML = `<div><dt>Pago (${a}–${b})</dt><dd>${brl(tp)}<small>valor da época</small></dd></div><div><dt>Reservado (empenhado)</dt><dd>${brl(te)}</dd></div><div><dt>Autores nesta lista</dt><dd>${nf0.format(rows.length)}<small>${nf0.format(ind.length)} com emendas individuais</small></dd></div><div><dt>Por brasileiro</dt><dd>${pp ? brl(tp / pp) : '—'}<small>no período todo</small></dd></div>`;
     const topF = Object.entries(fun).sort((x, y) => y[1] - x[1]);
     const tf = topF.reduce((s, x) => s + x[1], 0) || 1;
     hbars($('#em-fun'), topF.slice(0, 12).map(([k, v]) => ({ label: k, v, txt: `${brl(v)} · ${pct(v / tf, 0)}` })));
