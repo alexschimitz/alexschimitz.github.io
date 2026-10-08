@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0d0c">
+  <meta name="description" content="Quem ganhou onde: resultados oficiais do TSE para presidente desde 1989 por região, estado e cidade, votos de cada partido de 1994 a 2026, votos no exterior e nos presídios, e o que as pesquisas dizem sobre cada grupo de eleitores.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%2362f58b%22/%3E%3Cpath d=%22M9 15h14v10H9zM12 15V9h8v6M14 12h4%22 stroke=%22%23071009%22 stroke-width=%222.4%22 fill=%22none%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E">
+  <title>Eleições: quem ganhou onde — Política em dados abertos</title>
+  <script>try{var t=localStorage.getItem('as-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" href="../data/eleicoes/indice.json" as="fetch" crossorigin>
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="eleicoes.css">
+</head>
+<body class="politica ele-page">
+  <a class="skip-link" href="#presidente">Pular para o conteúdo</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../" aria-label="AS Alexsander Schimitz — página inicial">
+        <span class="brand-mark">AS</span>
+        <span class="brand-name">Alexsander Schimitz</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+        <span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Páginas de política">
+        <a href="/politica/">Painel</a>
+        <a href="/politica/gastos/" data-page="gastos">Gastos</a>
+        <a href="/politica/economia/" data-page="economia">Economia</a>
+        <a href="/politica/planos/" data-page="planos">Planos</a>
+        <a href="/politica/mapa/" data-page="mapa">Mapa</a>
+        <a href="/politica/eleicoes/" data-page="eleicoes" aria-current="page">Eleições</a>
+        <a href="/politica/politicos/" data-page="politicos">Políticos</a>
+        <a href="/politica/governo/" data-page="governo">Governo</a>
+        <a href="/politica/propostas/" data-page="propostas">Propostas</a>
+        <a href="/politica/leis/" data-page="leis">Leis</a>
+        <a href="/politica/sigilos/" data-page="sigilos">Sigilos</a>
+        <a href="/politica/#parlamentares">Congresso</a>
+        <span class="nav-sep" aria-hidden="true"></span>
+        <button class="theme-toggle" type="button" aria-label="Alternar tema claro ou escuro" title="Tema">◐</button>
+        <a class="nav-cta" href="/">← Site</a>
+      </nav>
+    </div>
+  </header>
+  <main id="conteudo">
+    <nav class="pol-subnav" aria-label="Atalhos desta página">
+      <a href="#presidente">Presidente</a>
+      <a href="#cidade">Sua cidade</a>
+      <a href="#partidos">Partidos</a>
+      <a href="#exterior">Exterior</a>
+      <a href="#presidios">Presídios</a>
+      <a href="#grupos">Grupos (pesquisas)</a>
+      <a href="#eleitorado">Quem são os eleitores</a>
+      <a href="#como">Palavras</a>
+      <a href="#fontes">Fontes</a>
+    </nav>
+
+    <section class="pol-hero container" aria-labelledby="ele-title">
+      <nav class="pol-crumbs" aria-label="Você está em"><a href="/politica/">Política</a> <span aria-hidden="true">›</span> <span>Eleições</span></nav>
+      <div class="eyebrow"><span class="status-dot"></span> Eleições · resultado oficial do TSE desde 1989</div>
+      <h1 id="ele-title">Quem ganhou onde. <span>E quais partidos levaram mais votos.</span></h1>
+      <p class="hero-lead">Os votos de cada eleição para presidente separados por região, estado e cidade; os votos de cada partido para todos os cargos; quanto votaram os brasileiros no exterior e os presos que ainda não foram julgados. Para grupos de pessoas (idade, renda, religião…), o TSE não tem dados: o voto é secreto. Ali mostramos pesquisas, sempre avisando que são estimativas.</p>
+      <dl class="pol-stats" aria-live="polite">
+        <div><dt>Eleições para presidente</dt><dd id="st-pres">—</dd></div>
+        <div><dt>Eleições com votos por partido</dt><dd id="st-part">—</dd></div>
+        <div><dt id="st-ult-t">Última apuração</dt><dd id="st-ult">—</dd></div>
+        <div><dt>Próximo resultado</dt><dd id="st-prox">—</dd></div>
+      </dl>
+    </section>
+
+    <section class="section pol-section" id="presidente" aria-labelledby="pr-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Presidente</div>
+        <div class="projects-heading"><div>
+          <h2 id="pr-title">Quem ganhou em cada região e estado</h2>
+          <p>Escolha a eleição. Os números são os votos válidos (sem brancos e nulos), somados dos arquivos oficiais do TSE. As frases em destaque são montadas automaticamente a partir desses números.</p>
+        </div></div>
+        <div class="ele-controls">
+          <div class="field"><label for="pr-sel">Eleição</label><select id="pr-sel"></select></div>
+        </div>
+        <div id="pr-geral" aria-live="polite"><div class="skeleton" style="height:160px"></div></div>
+        <ul class="ele-frases" id="pr-frases" aria-live="polite"></ul>
+
+        <h3 class="h-md ele-h3">No mapa: quem ficou em primeiro em cada estado</h3>
+        <p class="note-sm">Quanto mais forte a cor, maior a vantagem. Toque num estado para ver os números.</p>
+        <div class="ele-map-wrap">
+          <div class="map-frame ele-map" id="pr-mapa"><div class="skeleton" style="height:260px"></div></div>
+          <div class="ele-uf-box pol-card" id="pr-uf" aria-live="polite"><p class="muted">Toque num estado no mapa ou escolha na lista.</p></div>
+        </div>
+        <div class="eco-legend ele-legend" id="pr-leg"></div>
+
+        <h3 class="h-md ele-h3">Por região</h3>
+        <div class="ele-stack" id="pr-reg"></div>
+
+        <h3 class="h-md ele-h3">Por estado</h3>
+        <details class="eco-tabela" id="pr-tab-box"><summary>Ver os 27 estados e o exterior</summary>
+        <div class="table-wrap"><table class="data-table tabela-cards" id="pr-tab">
+          <caption class="sr-only">Resultado por estado</caption>
+          <thead><tr><th scope="col">Estado</th><th scope="col">1º lugar</th><th scope="col">2º lugar</th><th scope="col">Foram votar</th><th scope="col">Brancos e nulos</th></tr></thead>
+          <tbody></tbody>
+        </table></div></details>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="cidade" aria-labelledby="cid-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Sua cidade</div>
+        <div class="projects-heading"><div>
+          <h2 id="cid-title">Como sua cidade votou para presidente</h2>
+          <p>Digite o nome da cidade. O resultado é da eleição escolhida lá em cima (por cidade, desde 1994). No mapa da cidade há também os gastos, os políticos e a população.</p>
+        </div></div>
+        <div class="ele-controls">
+          <div class="field ele-busca"><label for="cid-q">Cidade</label>
+            <input id="cid-q" type="search" placeholder="Ex.: Campinas, Feira de Santana…" autocomplete="off" aria-controls="cid-lista">
+          </div>
+          <div class="field"><label for="cid-sel">Eleição</label><select id="cid-sel"></select></div>
+        </div>
+        <ul class="ele-sugestoes" id="cid-lista" aria-label="Cidades encontradas"></ul>
+        <div id="cid-res" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="partidos" aria-labelledby="pa-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Partidos</div>
+        <div class="projects-heading"><div>
+          <h2 id="pa-title">Quais partidos receberam mais votos</h2>
+          <p>Votos de cada partido para cada cargo, de 1994 a 2026, e quantos candidatos ele elegeu. Para deputados e vereadores, contamos o voto no candidato e o voto só no número do partido (voto de legenda).</p>
+        </div></div>
+        <div class="ele-controls">
+          <div class="field"><label for="pa-ano">Eleição</label><select id="pa-ano"></select></div>
+          <div class="field"><label for="pa-cargo">Cargo</label><select id="pa-cargo"></select></div>
+          <div class="field"><label for="pa-lugar">Onde</label><select id="pa-lugar"></select></div>
+        </div>
+        <ul class="ele-frases" id="pa-frases" aria-live="polite"></ul>
+        <div class="ele-rank" id="pa-rank" aria-live="polite"><div class="skeleton" style="height:200px"></div></div>
+        <p class="note-sm" id="pa-nota"></p>
+
+        <h3 class="h-md ele-h3">Ao longo dos anos</h3>
+        <p class="note-sm">Parte dos votos que cada partido recebeu em cada eleição. Partidos que mudaram de nome ou se juntaram a outros aparecem separados, a não ser que você marque a opção abaixo.</p>
+        <div class="ele-controls">
+          <div class="field"><label for="tl-cargo">Cargo</label><select id="tl-cargo"></select></div>
+          <label class="eco-check"><input type="checkbox" id="tl-junta"> Somar partidos que mudaram de nome ou se juntaram (ex.: PFL → DEM → União)</label>
+        </div>
+        <figure class="eco-fig">
+          <div class="eco-chart" id="tl-chart" tabindex="0" role="img" aria-label="Gráfico da parte dos votos de cada partido por eleição"></div>
+          <figcaption class="eco-legend" id="tl-leg"></figcaption>
+        </figure>
+        <details class="eco-tabela"><summary>Ver os números em tabela</summary><div class="table-wrap"><table class="data-table" id="tl-tab"></table></div></details>
+
+        <h3 class="h-md ele-h3">Nomes que mudaram</h3>
+        <p class="note-sm" id="hist-nota"></p>
+        <ol class="ele-hist" id="hist"></ol>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="exterior" aria-labelledby="ex-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Exterior</div>
+        <div class="projects-heading"><div>
+          <h2 id="ex-title">Como votaram os brasileiros que moram fora</h2>
+          <p>Quem mora fora do Brasil só vota para presidente. O TSE informa a cidade onde fica a seção (embaixada ou consulado); aqui somamos por país. Mostra a eleição escolhida na seção Presidente.</p>
+        </div></div>
+        <div id="ex-res" aria-live="polite"><div class="skeleton" style="height:160px"></div></div>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="presidios" aria-labelledby="pp-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Presídios e unidades de internação</div>
+        <div class="projects-heading"><div>
+          <h2 id="pp-title">Como votaram os presos que ainda não foram condenados</h2>
+          <p>Pela Constituição (art. 15, III), quem foi condenado em definitivo perde o direito de votar enquanto cumpre a pena. Quem está preso <b>sem condenação final</b> (preso provisório) continua eleitor, e a Justiça Eleitoral monta seções dentro de presídios e de unidades de internação de adolescentes (16 e 17 anos). Isso começou em 2010.</p>
+        </div></div>
+        <div class="ele-controls">
+          <div class="field"><label for="pp-sel">Eleição</label><select id="pp-sel"></select></div>
+        </div>
+        <div id="pp-res" aria-live="polite"><div class="skeleton" style="height:160px"></div></div>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="grupos" aria-labelledby="gr-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Grupos de eleitores</div>
+        <div class="projects-heading"><div>
+          <h2 id="gr-title">Homens, mulheres, jovens, religião, renda: o que dizem as pesquisas</h2>
+        </div></div>
+        <div class="eco-aviso ele-aviso" role="note">
+          <strong>Isto é estimativa de pesquisa, não é resultado oficial.</strong>
+          <span id="gr-aviso">O voto é secreto: a urna não sabe a idade, o sexo, a renda, a religião ou a cor de quem votou. Por isso o TSE não publica votos por grupo de pessoas. Os números abaixo vêm de pesquisas registradas no TSE, feitas dias antes da eleição, com margem de erro.</span>
+        </div>
+        <div class="ele-controls">
+          <div class="field"><label for="gr-sel">Pesquisa</label><select id="gr-sel"></select></div>
+        </div>
+        <div id="gr-ficha" class="ele-ficha"></div>
+        <div id="gr-res" class="ele-grupos" aria-live="polite"><div class="skeleton" style="height:200px"></div></div>
+        <h3 class="h-md ele-h3">Pesquisa x urna, por região</h3>
+        <p class="note-sm">A região é o único grupo da pesquisa que dá para comparar com o resultado oficial. Diferenças não querem dizer que a pesquisa errou: ela é feita dias antes, e as pessoas mudam de ideia.</p>
+        <div id="gr-cmp"></div>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="eleitorado" aria-labelledby="el-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Quem são os eleitores</div>
+        <div class="projects-heading"><div>
+          <h2 id="el-title">O perfil oficial de quem pode votar</h2>
+          <p>Isto é do cadastro do TSE: diz quem <b>pode</b> votar em cada lugar, não em quem votou. Ajuda a entender por que uma região pesa mais que outra.</p>
+        </div></div>
+        <div class="ele-controls">
+          <div class="field"><label for="el-ano">Cadastro de</label><select id="el-ano"></select></div>
+          <div class="field"><label for="el-lugar">Onde</label><select id="el-lugar"></select></div>
+        </div>
+        <div id="el-res" class="pol-grid ele-perfil" aria-live="polite"><div class="skeleton" style="height:160px"></div></div>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="como" aria-labelledby="como-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Palavras</div>
+        <div class="projects-heading"><div><h2 id="como-title">O que quer dizer cada termo</h2></div></div>
+        <dl class="eco-gloss">
+          <div><dt>Votos válidos</dt><dd>Votos dados a um candidato ou partido. Brancos e nulos não entram. É sobre eles que se calcula quem ganhou.</dd></div>
+          <div><dt>Brancos e nulos</dt><dd>Branco: a pessoa apertou a tecla "branco". Nulo: digitou um número que não existe. Os dois não vão para ninguém.</dd></div>
+          <div><dt>Foram votar (comparecimento)</dt><dd>Quantos eleitores apareceram para votar, em relação a todos os que podiam votar ali.</dd></div>
+          <div><dt>Voto de legenda</dt><dd>Para deputado e vereador, dá para votar só no número do partido. Esse voto conta para o partido, não para um candidato.</dd></div>
+          <div><dt>Eleitos por partido</dt><dd>Para deputado e vereador, as vagas são divididas pelos votos do partido (ou federação), não só pelos mais votados. Por isso um partido pode ter mais votos e menos vagas que outro.</dd></div>
+          <div><dt>Senado: dois votos</dt><dd>Em algumas eleições cada eleitor escolhe dois senadores (renova 2/3 do Senado). Nesses anos a soma dos votos para senador fica perto do dobro do número de eleitores.</dd></div>
+          <div><dt>Preso provisório</dt><dd>Pessoa presa que ainda não tem condenação final (ainda cabe recurso). Ela continua podendo votar. Quem já foi condenado em definitivo não vota enquanto cumpre a pena.</dd></div>
+          <div><dt>Pesquisa eleitoral</dt><dd>Entrevista com uma amostra de eleitores. Tem margem de erro e vale para o dia em que foi feita. Precisa ser registrada no TSE antes de ser divulgada.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="fontes" aria-labelledby="fontes-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Fontes</div>
+        <div class="projects-heading"><div><h2 id="fontes-title">De onde vêm os números</h2></div></div>
+        <div class="eco-fontes">
+          <div class="pol-card"><h3 class="h-sm">Resultado oficial: Tribunal Superior Eleitoral (TSE)</h3>
+            <p class="muted">Portal de dados abertos: <a href="https://dadosabertos.tse.jus.br/" rel="noopener">dadosabertos.tse.jus.br</a>. Arquivos usados:</p>
+            <ul>
+              <li>Votação por candidato, cidade e zona (votacao_candidato_munzona) e, para 1989, por estado</li>
+              <li>Votação por partido (votacao_partido_munzona): votos nominais e de legenda</li>
+              <li>Detalhe da votação (detalhe_votacao_munzona): eleitores, comparecimento, brancos e nulos</li>
+              <li>Votação por seção (votacao_secao) + locais de votação (eleitorado_local_votacao, tipo "Preso provisório")</li>
+              <li>Perfil do eleitorado (perfil_eleitorado)</li>
+            </ul>
+            <p class="note-sm">Atualização automática: em 2026, depois do 2º turno (25/10), os dados são conferidos todo dia durante a semana da apuração e depois uma vez por mês. A cidade de cada seção no exterior foi ligada ao país por uma tabela própria (nome da cidade → país).</p>
+          </div>
+          <div class="pol-card"><h3 class="h-sm">Pesquisas</h3><ul id="fontes-pesq"></ul></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container pol-footer">
+      <div>
+        <p>Página independente e apartidária. Os números são somas dos arquivos oficiais; as frases só descrevem esses números e não dizem quem é melhor ou pior.</p>
+      </div>
+      <div class="pol-footer-links">
+        <p>© <span id="year"></span> Alexsander Schimitz.</p>
+        <a href="/politica/">Painel de política</a>
+        <a href="/politica/mapa/">Mapa</a>
+        <a href="#top">Voltar ao topo ↑</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../../scripts/home.js"></script>
+  <script src="../base.js"></script>
+  <script src="eleicoes.js"></script>
+</body>
+</html>

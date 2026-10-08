@@ -1,0 +1,162 @@
+/* politica/eleicoes — resultados por lugar, partidos, exterior, presídios, pesquisas. Gráficos em SVG/HTML próprios. */
+:root {
+  --c1: #5aaeff; --c2: #f5a83c; --c3: #c98bff; --c4: #35d0c0; --c5: #ff7096; --c6: #d7c94a; --c0: rgba(255, 255, 255, 0.22);
+}
+html[data-theme="light"] {
+  --c1: #1f6fd1; --c2: #b86a00; --c3: #8a3fd1; --c4: #0d8a7e; --c5: #c8285a; --c6: #7d7300; --c0: rgba(10, 20, 14, 0.2);
+}
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+.ele-page .pol-section .projects-heading { margin-bottom: 22px; }
+.ele-page .container { min-width: 0; }
+.ele-h3 { margin-top: 44px; margin-bottom: 6px; }
+.ele-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 12px 18px; margin-bottom: 16px; }
+.ele-controls .field { flex: 1 1 200px; min-width: 0; max-width: 340px; }
+.ele-controls .ele-busca { flex: 2 1 260px; max-width: 460px; }
+.ele-page .field input { width: 100%; min-height: 48px; }
+
+/* Barras de candidato */
+.ele-cands { display: grid; gap: 10px; }
+.ele-cand { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; align-items: baseline; min-width: 0; }
+.ele-cand b { font-size: 0.95rem; min-width: 0; overflow-wrap: anywhere; }
+.ele-cand b small { color: var(--muted); font-weight: 600; font-size: 0.78rem; margin-left: 4px; }
+.ele-cand .num { font: 600 0.9rem "DM Mono", monospace; white-space: nowrap; text-align: right; }
+.ele-cand .num small { display: block; color: var(--muted); font-size: 0.72rem; font-weight: 500; }
+.ele-cand .bar { grid-column: 1 / -1; height: 12px; border-radius: 6px; background: var(--c0); overflow: hidden; }
+.ele-cand .bar span { display: block; height: 100%; border-radius: 6px; }
+.ele-tag { display: inline-block; margin-left: 6px; padding: 0 8px; border-radius: 999px; border: 1px solid currentColor; font-size: 0.68rem; font-weight: 800; color: var(--accent); vertical-align: 2px; white-space: nowrap; }
+.ele-tag.t2 { color: var(--muted); }
+.ele-res-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 14px; }
+.ele-kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; align-content: start; }
+.ele-kpis div { padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); min-width: 0; }
+.ele-kpis dt { color: var(--muted); font-size: 0.74rem; font-weight: 700; }
+.ele-kpis dd { margin-top: 2px; font: 700 1.15rem "DM Mono", monospace; overflow-wrap: anywhere; }
+.ele-kpis dd small { display: block; color: var(--muted); font: 500 0.72rem Manrope, sans-serif; }
+@media (max-width: 760px) { .ele-res-grid { grid-template-columns: 1fr; } }
+
+/* Frases automáticas */
+.ele-frases { list-style: none; display: grid; gap: 8px; margin: 16px 0 0; }
+.ele-frases:empty { display: none; }
+.ele-frases li { padding: 10px 14px; border-left: 3px solid var(--accent); border-radius: 0 12px 12px 0; background: var(--accent-soft); font-size: 0.95rem; line-height: 1.5; }
+
+/* Mapa */
+.ele-map-wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: 14px; align-items: start; margin-top: 10px; }
+.ele-map svg path { stroke: var(--bg); stroke-width: 1; }
+.ele-map svg path:focus-visible, .ele-map svg path.is-sel { stroke: var(--text); stroke-width: 2.5; outline: none; }
+.ele-map svg text { fill: var(--text); font: 700 15px "DM Mono", monospace; pointer-events: none; paint-order: stroke; stroke: var(--bg); stroke-width: 3px; }
+.ele-uf-box h4 { font-size: 1.1rem; margin-bottom: 8px; }
+.ele-uf-box .ele-link { display: inline-flex; margin-top: 12px; }
+@media (max-width: 760px) { .ele-map-wrap { grid-template-columns: 1fr; } }
+.ele-legend { margin-top: 10px; }
+.ele-link { color: var(--accent); font-weight: 700; border-bottom: 1px solid currentColor; }
+
+/* Barras empilhadas por região */
+.ele-stack { display: grid; gap: 12px; }
+.ele-srow { display: grid; grid-template-columns: minmax(0, 9rem) minmax(0, 1fr); gap: 4px 14px; align-items: center; }
+.ele-srow > b { font-size: 0.9rem; }
+.ele-srow > b small { display: block; color: var(--muted); font: 500 0.72rem "DM Mono", monospace; }
+.ele-sbar { display: flex; height: 26px; border-radius: 8px; overflow: hidden; background: var(--c0); min-width: 0; }
+.ele-sbar span { display: flex; align-items: center; justify-content: center; min-width: 0; overflow: hidden; color: #071009; font: 700 0.72rem "DM Mono", monospace; white-space: nowrap; }
+html[data-theme="light"] .ele-sbar span { color: #fff; }
+.ele-sbar span.o { background: var(--c0); color: var(--text); }
+@media (max-width: 560px) { .ele-srow { grid-template-columns: 1fr; } }
+
+/* Ranking de partidos */
+.ele-rank { display: grid; gap: 8px; }
+.ele-prow { display: grid; grid-template-columns: 1.6rem minmax(0, 7.5rem) minmax(0, 1fr) auto; gap: 4px 10px; align-items: center; }
+.ele-prow > i { color: var(--muted); font: 500 0.78rem "DM Mono", monospace; font-style: normal; text-align: right; }
+.ele-prow > b { font-size: 0.88rem; overflow-wrap: anywhere; }
+.ele-prow .bar { height: 14px; border-radius: 4px; background: var(--c0); overflow: hidden; min-width: 0; }
+.ele-prow .bar span { display: block; height: 100%; background: var(--accent); border-radius: 4px; }
+.ele-prow .num { font: 600 0.8rem "DM Mono", monospace; text-align: right; white-space: nowrap; }
+.ele-prow .num small { display: block; color: var(--muted); font-weight: 500; font-size: 0.7rem; }
+.ele-mais { margin-top: 8px; }
+.ele-btn { min-height: 42px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line-strong); background: transparent; color: var(--text); font: inherit; font-weight: 700; font-size: 0.86rem; cursor: pointer; }
+.ele-btn:hover { border-color: var(--accent); }
+@media (max-width: 520px) {
+  .ele-prow { grid-template-columns: 1.4rem minmax(0, 1fr) auto; }
+  .ele-prow .bar { grid-column: 2 / -1; grid-row: 2; }
+}
+
+/* Linha do tempo (mesmo padrão do /economia/) */
+.eco-fig { margin: 0; min-width: 0; }
+.eco-chart { position: relative; width: 100%; min-height: 240px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); touch-action: pan-y; }
+.eco-chart:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.eco-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.eco-chart .ax text { fill: var(--muted); font: 500 11px "DM Mono", monospace; }
+.eco-chart .ax line { stroke: var(--line); }
+.eco-chart .ln { fill: none; stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; }
+.eco-chart .guide { stroke: var(--text); stroke-opacity: .35; stroke-dasharray: 3 3; }
+.eco-tip { position: absolute; z-index: 5; top: 8px; min-width: 150px; max-width: min(260px, calc(100% - 16px)); padding: 10px 12px; pointer-events: none; border: 1px solid var(--line-strong); border-radius: 12px; background: var(--panel-strong); box-shadow: 0 10px 30px rgba(0, 0, 0, .25); font-size: 0.8rem; line-height: 1.4; }
+.eco-tip b { display: block; margin-bottom: 4px; font-family: "DM Mono", monospace; }
+.eco-tip div { display: flex; justify-content: space-between; gap: 12px; }
+.eco-tip span { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); min-width: 0; }
+.eco-tip span i { width: 8px; height: 8px; border-radius: 50%; flex: 0 0 auto; }
+.eco-tip em { font-style: normal; font-variant-numeric: tabular-nums; white-space: nowrap; font-weight: 700; }
+.eco-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 10px; color: var(--muted); font-size: 0.82rem; }
+.eco-legend span { display: inline-flex; align-items: center; gap: 7px; }
+.eco-legend i { width: 12px; height: 12px; border-radius: 3px; flex: 0 0 auto; }
+.eco-check { display: inline-flex; align-items: center; gap: 9px; min-height: 48px; color: var(--muted); font-size: 0.88rem; font-weight: 600; cursor: pointer; }
+.eco-check input { width: 18px; height: 18px; flex: 0 0 auto; accent-color: var(--accent); }
+.eco-tabela { margin-top: 18px; }
+.eco-tabela summary { cursor: pointer; color: var(--accent); font-weight: 700; padding: 8px 0; min-height: 44px; display: flex; align-items: center; }
+.eco-tabela .table-wrap { max-height: 520px; overflow: auto; margin-top: 8px; }
+.eco-tabela .data-table th:first-child, .eco-tabela .data-table td:first-child { position: sticky; left: 0; background: var(--panel-strong); z-index: 1; }
+
+/* História dos partidos */
+.ele-hist { list-style: none; display: grid; gap: 8px; }
+.ele-hist li { display: grid; grid-template-columns: 3.4rem minmax(0, 1fr); gap: 10px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); font-size: 0.9rem; line-height: 1.5; }
+.ele-hist li b { font: 700 0.86rem "DM Mono", monospace; color: var(--accent); }
+
+/* Exterior, presídios */
+.ele-cards { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); }
+.ele-mini { padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); min-width: 0; }
+.ele-mini h4 { font-size: 0.95rem; margin-bottom: 8px; overflow-wrap: anywhere; }
+.ele-mini h4 small { color: var(--muted); font-weight: 600; font-size: 0.76rem; }
+.ele-explica { margin-top: 14px; color: var(--muted); font-size: 0.9rem; line-height: 1.6; max-width: 80ch; }
+.ele-explica b { color: var(--text); }
+
+/* Pesquisas */
+.eco-aviso { margin: 0 0 18px; padding: 14px 16px; border: 1px solid var(--warn); border-radius: 14px; background: color-mix(in srgb, var(--warn) 10%, transparent); color: var(--muted); font-size: 0.9rem; line-height: 1.55; }
+.eco-aviso strong { display: block; color: var(--text); margin-bottom: 4px; }
+.ele-ficha { margin-bottom: 16px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); color: var(--muted); font-size: 0.85rem; line-height: 1.55; }
+.ele-ficha:empty { display: none; }
+.ele-ficha b { color: var(--text); }
+.ele-ficha a { color: var(--accent); border-bottom: 1px solid currentColor; }
+.ele-grupos { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+.ele-grow { display: grid; gap: 3px; margin-top: 10px; }
+.ele-grow > div:first-child { display: flex; justify-content: space-between; gap: 8px; font-size: 0.85rem; }
+.ele-grow > div:first-child span { color: var(--muted); font: 500 0.78rem "DM Mono", monospace; white-space: nowrap; }
+.ele-grow .ele-sbar { height: 18px; }
+.ele-cmp { display: grid; gap: 10px; }
+.ele-cmp-row { display: grid; grid-template-columns: minmax(0, 10rem) minmax(0, 1fr); gap: 4px 14px; align-items: center; }
+.ele-cmp-row .ele-sbar { height: 18px; }
+.ele-cmp-row .ele-sbar + .ele-sbar { margin-top: 3px; }
+.ele-cmp-row small { color: var(--muted); font-size: 0.72rem; }
+@media (max-width: 560px) { .ele-cmp-row { grid-template-columns: 1fr; } }
+
+/* Busca de cidade */
+.ele-sugestoes { list-style: none; display: grid; gap: 6px; margin: -6px 0 14px; max-width: 460px; }
+.ele-sugestoes:empty { display: none; }
+.ele-sugestoes button { width: 100%; min-height: 44px; padding: 8px 12px; text-align: left; border-radius: 12px; border: 1px solid var(--line); background: var(--panel); color: var(--text); font: inherit; cursor: pointer; }
+.ele-sugestoes button:hover, .ele-sugestoes button:focus-visible { border-color: var(--accent); outline: none; }
+.ele-sugestoes small { color: var(--muted); margin-left: 6px; }
+
+/* Perfil do eleitorado */
+.ele-perfil .pol-card h3 { margin-bottom: 8px; }
+.ele-hbar { display: grid; grid-template-columns: minmax(0, 7.5rem) minmax(0, 1fr) 3.4rem; gap: 8px; align-items: center; margin-top: 6px; font-size: 0.82rem; }
+.ele-hbar .bar { height: 10px; border-radius: 5px; background: var(--c0); overflow: hidden; }
+.ele-hbar .bar span { display: block; height: 100%; background: var(--accent); }
+.ele-hbar em { font: 600 0.78rem "DM Mono", monospace; font-style: normal; text-align: right; }
+
+/* Glossário e fontes */
+.eco-gloss { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 12px; }
+.eco-gloss > div { padding: 16px 18px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
+.eco-gloss dt { font-weight: 800; }
+.eco-gloss dd { margin-top: 6px; color: var(--muted); font-size: 0.9rem; line-height: 1.55; }
+.eco-fontes { display: grid; gap: 10px; }
+.eco-fontes .pol-card a { color: var(--accent); border-bottom: 1px solid currentColor; font-weight: 700; overflow-wrap: anywhere; }
+.eco-fontes ul { margin: 8px 0 0 18px; color: var(--muted); font-size: 0.88rem; line-height: 1.6; }
+.eco-fontes li { overflow-wrap: anywhere; }
+.ele-vazio { padding: 16px; border: 1px dashed var(--line-strong); border-radius: 14px; color: var(--muted); font-size: 0.9rem; }
+
+#pr-tab-box .table-wrap, .eco-tabela .table-wrap:has(> .tabela-cards) { max-height: none; }
