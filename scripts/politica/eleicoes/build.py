@@ -123,7 +123,7 @@ def cols(path):
 def wjson(rel, obj):
     p = os.path.join(OUT, rel)
     os.makedirs(os.path.dirname(p), exist_ok=True)
-    s = json.dumps(obj, ensure_ascii=False, separators=(",", ":"))
+    s = json.dumps(obj, ensure_ascii=False, separators=(",", ":"), sort_keys=True)  # ordem fixa: o workflow só faz commit se algo mudou de verdade
     with open(p, "w", encoding="utf-8") as f:
         f.write(s)
     log(f"  -> {rel} ({len(s)/1024:.0f} KB)")
@@ -155,6 +155,8 @@ def baixar(ano):
         if r.returncode != 0:
             log("  falhou", url)
             continue
+        if pasta == "votacao_secao":
+            continue  # fica zipado: especiais() extrai só o que precisa
         dest = os.path.join(UNZ, nome[:-4])
         os.makedirs(dest, exist_ok=True)
         with zipfile.ZipFile(z) as zf:
@@ -240,8 +242,8 @@ def ext_pack(ext, k):
             cids.append([cid.title(), pa, *e["v"]])
     if sem:
         log("  exterior sem país:", sorted(sem))
-    return {"paises": sorted([[pa, *v] for pa, v in paises.items()], key=lambda x: -sum(x[1:])),
-            "cidades": sorted(cids, key=lambda x: -sum(x[2:]))[:40]}
+    return {"paises": sorted([[pa, *v] for pa, v in paises.items()], key=lambda x: (-sum(x[1:]), x[0])),
+            "cidades": sorted(cids, key=lambda x: (-sum(x[2:]), x[0], x[1]))[:40]}
 
 
 def presidente(ano):
