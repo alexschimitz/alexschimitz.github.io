@@ -1,0 +1,101 @@
+name: Dados do mapa (estados e cidades)
+
+# Atualiza politica/data/mapa/:
+#  - contas anuais (DCA) de estados e prefeituras no SICONFI/Tesouro (1 consulta/s, retomável);
+#    enquanto a cópia das ~5.570 prefeituras de 2013 em diante não termina, cada execução avança ~40 min;
+#    depois disso, só reconfere o último ano (retificações) e quem ainda não entregou;
+#  - eleitos do TSE (semanal, às segundas, ou manualmente com tse=true);
+#  - índices por ano, agregados por estado e brasil.json.
+# Só faz commit quando algum dado mudou (o carimbo "gerado" de brasil.json sozinho não conta).
+
+on:
+  schedule:
+    - cron: '41 7 * * *' # diariamente às 07:41 UTC (04:41 em Brasília)
+  workflow_dispatch:
+    inputs:
+      tse:
+        description: 'Baixar de novo os candidatos do TSE (eleições mais recentes)'
+        type: boolean
+        default: false
+      minutos:
+        description: 'Minutos de consulta ao SICONFI'
+        default: '40'
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: politica-mapa
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      MAPA_RAW: ${{ github.workspace }}/.mapa-raw
+      SICONFI_STATE: ${{ github.workspace }}/.mapa-raw/siconfi_state.json
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Restaurar estado do SICONFI (datas da última conferência)
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ github.workspace }}/.mapa-raw/siconfi_state.json
+          key: siconfi-state-${{ github.run_id }}
+          restore-keys: siconfi-state-
+
+      - name: Contas no SICONFI (Tesouro Nacional)
+        timeout-minutes: 48
+        run: |
+          mkdir -p "$MAPA_RAW"
+          MIN="${{ github.event.inputs.minutos }}"
+          if [ -z "$MIN" ]; then
+            # às segundas sobra tempo para o TSE
+            if [ "$(date -u +%u)" = "1" ]; then MIN=25; else MIN=40; fi
+          fi
+          python3 scripts/politica/mapa/siconfi_sync.py --minutes "$MIN"
+
+      - name: Salvar estado do SICONFI
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ github.workspace }}/.mapa-raw/siconfi_state.json
+          key: siconfi-state-${{ github.run_id }}
+
+      - name: Eleitos (TSE)
+        continue-on-error: true
+        timeout-minutes: 15
+        run: |
+          if [ "${{ github.event.inputs.tse }}" != "true" ] && [ "$(date -u +%u)" != "1" ]; then echo "TSE só às segundas."; exit 0; fi
+          python3 scripts/politica/mapa/tse_build.py --refresh
+
+      - name: Índices, agregados e brasil.json
+        run: python3 scripts/politica/mapa/build_index.py
+
+      - name: Commit dos dados (se houver mudança)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A politica/data/mapa
+          if git diff --cached --quiet -- politica/data/mapa ':(exclude)politica/data/mapa/brasil.json'; then
+            echo "Sem mudanças nos dados do mapa."
+            git reset -q
+            echo "CHANGED=false" >> "$GITHUB_ENV"
+            exit 0
+          fi
+          git commit -m "politica/mapa: atualiza contas e eleitos ($(TZ=America/Sao_Paulo date '+%Y-%m-%d %H:%M') BRT)"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "CHANGED=true" >> "$GITHUB_ENV"
+
+      - name: Solicitar build do GitHub Pages (legacy)
+        if: env.CHANGED == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${GITHUB_REPOSITORY}/pages/builds" || echo "Pedido de build não aceito; o push já dispara o build legacy."
