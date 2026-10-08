@@ -7,6 +7,8 @@
     "mapa": true,
     "politicos": true,
     "governo": true,
-    "propostas": true
+    "propostas": true,
+    "leis": true,
+    "sigilos": true
   }
 }
