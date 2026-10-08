@@ -1,0 +1,79 @@
+name: Politica - eleições (resultados do TSE)
+
+# Atualiza /politica/eleicoes/ com os arquivos abertos do TSE de 2026.
+# Semana do 2º turno (25/10): roda duas vezes por dia de 25 a 31/10. No resto do ano: uma vez por mês.
+on:
+  schedule:
+    - cron: "17 12,23 25-31 10 *"   # 25 a 31/10, 09:17 e 20:17 em Brasília
+    - cron: "41 9 5 * *"            # todo dia 5, 06:41 em Brasília
+  workflow_dispatch:
+    inputs:
+      anos:
+        description: "Anos para refazer (ex.: 2026 ou 2022,2026)"
+        required: false
+        default: "2026"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: politica-eleicoes
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      PYTHONUNBUFFERED: "1"
+      RAW: ${{ runner.temp }}/tse
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar duckdb
+        run: pip install --quiet duckdb
+
+      - name: Baixar do TSE e montar os dados
+        timeout-minutes: 50
+        continue-on-error: true
+        run: |
+          ANOS="${{ github.event.inputs.anos || '2026' }}"
+          python3 scripts/politica/eleicoes/build.py --baixar --anos "$ANOS" --so pres,partidos,especiais
+
+      - name: Commit (só se os dados mudaram)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          changed=$(git status --porcelain -- politica/data/eleicoes)
+          # indice.json muda a data todo dia: ignora mudança que seja só a data
+          if [ -n "$changed" ]; then
+            real=$(git diff --unified=0 -- politica/data/eleicoes | grep -E '^[+-][^+-]' | sed -E 's/^[+-]//; s/"gerado_em":"[0-9-]+"//g' | sort | uniq -u || true)
+            untracked=$(git ls-files --others --exclude-standard -- politica/data/eleicoes)
+            [ -z "$real" ] && [ -z "$untracked" ] && changed=""
+          fi
+          if [ -z "$changed" ]; then
+            echo "Sem mudanças nos dados."
+            git checkout -- politica/data/eleicoes 2>/dev/null || true
+            exit 0
+          fi
+          git add politica/data/eleicoes
+          git commit -m "politica/eleicoes: atualiza resultados do TSE ($(date -u +%Y-%m-%d))"
+          for i in 1 2 3; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break
+            sleep 10
+          done
+          echo "CHANGED=true" >> "$GITHUB_ENV"
+
+      - name: Pedir build do Pages
+        if: env.CHANGED == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${GITHUB_REPOSITORY}/pages/builds" || true

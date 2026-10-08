@@ -9,6 +9,7 @@
     "governo": true,
     "propostas": true,
     "leis": true,
-    "sigilos": true
+    "sigilos": true,
+    "eleicoes": true
   }
 }

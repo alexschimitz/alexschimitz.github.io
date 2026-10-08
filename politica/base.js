@@ -13,6 +13,7 @@
     { href: ROOT + "economia/", label: "Economia", page: "economia" },
     { href: ROOT + "planos/", label: "Planos", page: "planos" },
     { href: ROOT + "#mapa", label: "Mapa", page: "mapa" },
+    { href: ROOT + "eleicoes/", label: "Eleições", page: "eleicoes" },
     { href: ROOT + "#parlamentares", label: "Políticos", page: "politicos" },
     { href: ROOT + "#executivo", label: "Governo", page: "governo" },
     { href: ROOT + "#proposicoes", label: "Propostas", page: "propostas" },
@@ -55,6 +56,17 @@
         a.addEventListener("click", function () { var t = document.querySelector(".menu-toggle"); if (t && t.getAttribute("aria-expanded") === "true") t.click(); });
         prop.insertAdjacentElement("afterend", a);
       });
+    }
+  }
+
+  // Menus escritos à mão sem "Eleições": acrescenta depois de "Mapa"
+  if (nav && !nav.querySelector('a[data-page="eleicoes"]')) {
+    var mp = nav.querySelector('a[data-page="mapa"]');
+    if (mp) {
+      var ae = document.createElement("a");
+      ae.href = ROOT + "eleicoes/"; ae.setAttribute("data-page", "eleicoes"); ae.textContent = "Eleições";
+      ae.addEventListener("click", function () { var t = document.querySelector(".menu-toggle"); if (t && t.getAttribute("aria-expanded") === "true") t.click(); });
+      mp.insertAdjacentElement("afterend", ae);
     }
   }
 
