@@ -391,7 +391,7 @@ def main():
                 inf = ((v.get('informeLegislativo') or {}).get('texto')) or ''
                 meta = {'k': vk, 'casa': 's', 'dt': v.get('dataSessao'), 'd': (v.get('descricaoVotacao') or '')[:300],
                         'inf': inf.split('***')[0].strip()[:400], 'pr': p.get('identificacao'), 'turno': turno_de(inf),
-                        'ap': 1 if v.get('resultadoVotacao') == 'A' else 0, 't': dict(t), 'pt': {k: v2 for k, v2 in sorted(pt.items())},
+                        'ap': {'A': 1, 'R': 0}.get(v.get('resultadoVotacao'), 1 if (t['S'] > t['N'] if not secreta else re.match(r'aprovad', inf, re.I)) else 0), 't': dict(t), 'pt': {k: v2 for k, v2 in sorted(pt.items())},
                         'url': f"https://www25.senado.leg.br/web/atividade/materias/-/materia/{v.get('codigoMateria')}",
                         'src': f"{SEN}/votacao?codigoMateria={v.get('codigoMateria')}"}
                 if not meta['turno']: meta['turno'] = turno_de(v.get('descricaoVotacao') or '')
