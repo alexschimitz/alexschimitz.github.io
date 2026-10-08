@@ -101,3 +101,7 @@
 .gp-mais { border: 0 !important; padding: 0 !important; background: none !important; }
 .gp-mais > summary { color: var(--accent); font-weight: 700; padding: 6px 2px; }
 .gp-mais > .gp-chave { margin-top: 6px; }
+.gov-page .tag { display: inline-block; margin-right: 4px; padding: 0 7px; border-radius: 6px; border: 1px solid rgba(98, 245, 139, 0.35); font-family: "DM Mono", monospace; font-size: 0.66rem; font-weight: 500; color: var(--accent); vertical-align: 1px; white-space: nowrap; }
+.gov-page .tag.auto { color: var(--warn); border-color: currentColor; }
+.gov-page .pc-k { font-weight: 700; color: var(--text); }
+.gov-page .pc p b { color: var(--text); }

@@ -282,7 +282,11 @@
 "ps": "Mudou o funcionamento da Justiça.",
 "cf": "Criou o Conselho Nacional de Justiça (CNJ), para fiscalizar o Judiciário, e o Conselho Nacional do Ministério Público. Criou a súmula vinculante do STF e incluiu na Constituição o direito a um processo com duração razoável.",
 "data": "2004-12-08",
-"idSenado": 540648
+"idSenado": 540648,
+"origem": [
+"c:14373",
+"PEC 96/1992"
+]
 },
 "n:LEI-11096-2005": {
 "nome": "Lei do ProUni",
@@ -296,7 +300,11 @@
 "ps": "Combate a violência doméstica e familiar contra a mulher.",
 "cf": "Define as formas de violência (física, psicológica, sexual, patrimonial e moral), cria medidas protetivas de urgência — como afastar o agressor de casa — e juizados especializados. O nome homenageia Maria da Penha Maia Fernandes, vítima de violência doméstica.",
 "data": "2006-08-07",
-"idSenado": 572125
+"idSenado": 572125,
+"origem": [
+"c:272058",
+"PL 4559/2004"
+]
 },
 "n:LEI-11343-2006": {
 "nome": "Lei de Drogas",
@@ -314,21 +322,33 @@
 "ps": "Simplifica impostos e burocracia para micro e pequenas empresas.",
 "cf": "Criou o Simples Nacional, que junta vários impostos em uma guia única com alíquotas menores, conforme o faturamento. Depois, a lei também criou a figura do Microempreendedor Individual (MEI).",
 "data": "2006-12-14",
-"idSenado": 572878
+"idSenado": 572878,
+"origem": [
+"c:150559",
+"PLP 123/2004"
+]
 },
 "n:LEI-11977-2009": {
 "nome": "Lei do Minha Casa, Minha Vida (2009)",
 "ps": "Criou o programa Minha Casa, Minha Vida, de moradia para famílias de baixa e média renda.",
 "cf": "O governo subsidia parte do valor do imóvel e o financiamento conforme a renda da família. A lei também trata de regularização de terrenos ocupados. O programa foi recriado em 2023 pela Lei 14.620.",
 "data": "2009-07-07",
-"idSenado": 580200
+"idSenado": 580200,
+"origem": [
+"c:428043",
+"MPV 459/2009"
+]
 },
 "n:LCP-135-2010": {
 "nome": "Lei da Ficha Limpa",
 "ps": "Impede que pessoas condenadas ou que cometeram certas irregularidades se candidatem.",
 "cf": "Fica inelegível por 8 anos quem foi condenado por órgão colegiado (mais de um juiz) por crimes como corrupção, quem teve mandato cassado ou renunciou para fugir de cassação, entre outros casos. Nasceu de um projeto de iniciativa popular com mais de 1,3 milhão de assinaturas.",
 "data": "2010-06-04",
-"idSenado": 572890
+"idSenado": 572890,
+"origem": [
+"c:21571",
+"PLP 168/1993"
+]
 },
 "n:LEI-12288-2010": {
 "nome": "Estatuto da Igualdade Racial",
@@ -364,28 +384,44 @@
 "ps": "Define regras para proteger a vegetação nativa em propriedades rurais.",
 "cf": "Obriga a manter Áreas de Preservação Permanente (margens de rios, topos de morros) e uma Reserva Legal (de 20% a 80% do imóvel, conforme a região). Criou o Cadastro Ambiental Rural (CAR) e regras para recuperar áreas desmatadas.",
 "data": "2012-05-25",
-"idSenado": 589574
+"idSenado": 589574,
+"origem": [
+"c:17338",
+"PL 1876/1999"
+]
 },
 "n:LEI-12711-2012": {
 "nome": "Lei de Cotas",
 "ps": "Reserva vagas nas universidades e institutos federais para alunos de escola pública.",
 "cf": "Metade das vagas vai para estudantes que fizeram o ensino médio em escola pública, com parte delas para pessoas de baixa renda e para pretos, pardos, indígenas e pessoas com deficiência, conforme a população de cada estado. Revisada em 2023, quando quilombolas foram incluídos.",
 "data": "2012-08-29",
-"idSenado": 588087
+"idSenado": 588087,
+"origem": [
+"c:15013",
+"PL 73/1999"
+]
 },
 "n:EMC-72-2013": {
 "nome": "PEC das Domésticas",
 "ps": "Ampliou os direitos dos trabalhadores domésticos.",
 "cf": "Garantiu jornada de 8 horas por dia e 44 por semana, hora extra, adicional noturno e FGTS, entre outros direitos. Parte deles foi regulamentada pela Lei Complementar 150/2015.",
 "data": "2013-04-02",
-"idSenado": 540675
+"idSenado": 540675,
+"origem": [
+"c:473496",
+"PEC 478/2010"
+]
 },
 "n:LEI-12846-2013": {
 "nome": "Lei Anticorrupção (Lei da Empresa Limpa)",
 "ps": "Pune empresas que praticam corrupção contra a administração pública.",
 "cf": "A empresa responde mesmo que não se prove a intenção dos donos, com multa de até 20% do faturamento bruto e outras punições. Criou o acordo de leniência, em que a empresa colabora com as investigações em troca de punição menor.",
 "data": "2013-08-01",
-"idSenado": 591294
+"idSenado": 591294,
+"origem": [
+"c:466400",
+"PL 6826/2010"
+]
 },
 "n:LEI-12850-2013": {
 "nome": "Lei das Organizações Criminosas",
@@ -403,14 +439,22 @@
 "ps": "Define direitos e deveres para o uso da internet no Brasil.",
 "cf": "Garante a neutralidade da rede (o provedor não pode discriminar conteúdos), proteção da privacidade e regras para guarda de registros. Em regra, plataformas só respondiam por conteúdo de terceiros após ordem judicial; em 2025 o STF ampliou essa responsabilidade em alguns casos.",
 "data": "2014-04-23",
-"idSenado": 584776
+"idSenado": 584776,
+"origem": [
+"c:517255",
+"PL 2126/2011"
+]
 },
 "n:LEI-13005-2014": {
 "nome": "Plano Nacional de Educação (PNE 2014–2024)",
 "ps": "Fixou 20 metas para a educação brasileira por 10 anos.",
 "cf": "Entre as metas: universalizar a pré-escola e o ensino fundamental, acabar com o analfabetismo, ampliar o ensino em tempo integral e chegar a 10% do PIB investido em educação. O prazo foi prorrogado até a aprovação de um novo plano.",
 "data": "2014-06-25",
-"idSenado": 584816
+"idSenado": 584816,
+"origem": [
+"c:490116",
+"PL 8035/2010"
+]
 },
 "n:LEI-13104-2015": {
 "nome": "Lei do Feminicídio",
@@ -472,21 +516,33 @@
 "ps": "Limitou o crescimento das despesas do governo federal.",
 "cf": "Por até 20 anos, o gasto federal de cada ano só poderia crescer pela inflação do ano anterior. Saúde e educação tinham regras próprias. Foi substituído pelo novo arcabouço fiscal (LC 200/2023).",
 "data": "2016-12-15",
-"idSenado": 540698
+"idSenado": 540698,
+"origem": [
+"c:2088351",
+"PEC 241/2016"
+]
 },
 "n:LEI-13415-2017": {
 "nome": "Reforma do Ensino Médio",
 "ps": "Mudou a organização do ensino médio.",
 "cf": "Ampliou a carga horária e dividiu o currículo em uma parte comum (Base Nacional Comum Curricular) e itinerários formativos à escolha do aluno. Foi revista em 2024 pela Lei 14.945.",
 "data": "2017-02-16",
-"idSenado": 602639
+"idSenado": 602639,
+"origem": [
+"c:2112490",
+"MPV 746/2016"
+]
 },
 "n:LEI-13429-2017": {
 "nome": "Lei da Terceirização",
 "ps": "Ampliou a terceirização de serviços e mudou o trabalho temporário.",
 "cf": "Empresas podem contratar outra empresa para prestar serviços; a Reforma Trabalhista, no mesmo ano, deixou claro que isso vale inclusive para a atividade principal. A contratante responde de forma subsidiária (paga se a terceirizada não pagar) por direitos trabalhistas. O contrato temporário pode durar até 180 dias, prorrogáveis por mais 90.",
 "data": "2017-03-31",
-"idSenado": 17672582
+"idSenado": 17672582,
+"origem": [
+"c:20794",
+"PL 4302/1998"
+]
 },
 "n:LEI-13445-2017": {
 "nome": "Lei de Migração",
@@ -504,7 +560,11 @@
 "ps": "Mudou várias regras da CLT sobre trabalho e Justiça do Trabalho.",
 "cf": "Permite que acordos coletivos valham mais que a lei em vários temas, criou o trabalho intermitente, regulou o teletrabalho, acabou com a contribuição sindical obrigatória e mudou regras de férias, jornada e processos trabalhistas.",
 "data": "2017-07-13",
-"idSenado": 17728053
+"idSenado": 17728053,
+"origem": [
+"c:2122076",
+"PL 6787/2016"
+]
 },
 "n:EMC-97-2017": {
 "nome": "Cláusula de desempenho e fim das coligações",
@@ -522,35 +582,55 @@
 "ps": "Protege os dados pessoais das pessoas.",
 "cf": "Empresas e governo só podem usar dados pessoais com uma base legal (como o consentimento) e para fins claros. A pessoa pode pedir acesso, correção e exclusão dos seus dados. A ANPD fiscaliza e pode aplicar multas de até 2% do faturamento, limitadas a R$ 50 milhões por infração.",
 "data": "2018-08-14",
-"idSenado": 27457334
+"idSenado": 27457334,
+"origem": [
+"c:548066",
+"PL 4060/2012"
+]
 },
 "n:EMC-103-2019": {
 "nome": "Reforma da Previdência de 2019",
 "ps": "Mudou as regras de aposentadoria do INSS e dos servidores federais.",
 "cf": "Criou idade mínima para se aposentar: 65 anos para homens e 62 para mulheres, em regra, com tempo mínimo de contribuição. Mudou o cálculo do benefício e as alíquotas de contribuição e criou regras de transição para quem já trabalhava.",
 "data": "2019-11-12",
-"idSenado": 31727296
+"idSenado": 31727296,
+"origem": [
+"c:2192459",
+"PEC 6/2019"
+]
 },
 "n:LEI-13874-2019": {
 "nome": "Lei da Liberdade Econômica",
 "ps": "Reduz burocracia para empreender.",
 "cf": "Atividades de baixo risco podem funcionar sem alvará ou licença prévia, a carteira de trabalho passou a ser digital e a lei trouxe regras para limitar exigências do governo sobre empresas.",
 "data": "2019-09-20",
-"idSenado": 31412289
+"idSenado": 31412289,
+"origem": [
+"c:2199763",
+"MPV 881/2019"
+]
 },
 "n:LEI-13964-2019": {
 "nome": "Pacote Anticrime",
 "ps": "Mudou leis penais e de processo penal.",
 "cf": "Aumentou o tempo máximo de cumprimento de pena para 40 anos, endureceu regras para progressão de regime, criou o acordo de não persecução penal e a figura do juiz das garantias (que o STF validou com ajustes em 2023).",
 "data": "2019-12-24",
-"idSenado": 31865675
+"idSenado": 31865675,
+"origem": [
+"c:2178170",
+"PL 10372/2018"
+]
 },
 "n:LEI-13979-2020": {
 "nome": "Lei de medidas contra a covid-19",
 "ps": "Definiu medidas que o poder público podia adotar contra a pandemia de covid-19.",
 "cf": "Permitiu isolamento, quarentena, vacinação compulsória (que não significa vacinar à força), depois o uso obrigatório de máscaras, e compras emergenciais sem licitação durante a emergência de saúde pública.",
 "data": "2020-02-06",
-"idSenado": 31933184
+"idSenado": 31933184,
+"origem": [
+"c:2236343",
+"PL 23/2020"
+]
 },
 "n:LEI-13982-2020": {
 "nome": "Lei do Auxílio Emergencial",
@@ -590,7 +670,11 @@
 "ps": "Regulamentou o novo Fundeb criado pela EC 108/2020.",
 "cf": "Define como o dinheiro do fundo é dividido entre estados e municípios, os critérios da complementação da União e a regra de que pelo menos 70% vá para pagar profissionais da educação.",
 "data": "2020-12-25",
-"idSenado": 32999206
+"idSenado": 32999206,
+"origem": [
+"c:2261121",
+"PL 4372/2020"
+]
 },
 "n:LCP-179-2021": {
 "nome": "Autonomia do Banco Central",
@@ -608,7 +692,11 @@
 "ps": "Mudou regras eleitorais e a data de posse do presidente e dos governadores.",
 "cf": "A posse do presidente passou para 5 de janeiro e a dos governadores para 6 de janeiro, valendo a partir da eleição de 2026. Votos dados a mulheres e a pessoas negras contam em dobro na divisão do fundo partidário e eleitoral (em eleições de 2022 a 2030).",
 "data": "2021-09-28",
-"idSenado": 34969552
+"idSenado": 34969552,
+"origem": [
+"c:531331",
+"PEC 125/2011"
+]
 },
 "n:LEI-14133-2021": {
 "nome": "Nova Lei de Licitações",
@@ -626,21 +714,33 @@
 "ps": "Define regras para quem gera a própria energia, como com painéis solares.",
 "cf": "Quem gera energia em casa ou na empresa pode trocar o excedente por créditos na conta de luz. A lei criou uma transição para cobrar gradualmente pelo uso da rede de distribuição de quem passou a gerar a partir de 2023.",
 "data": "2022-01-06",
-"idSenado": 35420157
+"idSenado": 35420157,
+"origem": [
+"c:2228151",
+"PL 5829/2019"
+]
 },
 "n:LEI-14601-2023": {
 "nome": "Lei do novo Bolsa Família (2023)",
 "ps": "Recriou o Bolsa Família, programa de transferência de renda para famílias pobres.",
 "cf": "Paga no mínimo R$ 600 por família, mais R$ 150 por criança de 0 a 6 anos e R$ 50 por gestante, criança ou adolescente de 7 a 18 anos. As famílias precisam cumprir condições como frequência escolar, vacinação e pré-natal.",
 "data": "2023-06-19",
-"idSenado": 37200398
+"idSenado": 37200398,
+"origem": [
+"c:2349947",
+"MPV 1164/2023"
+]
 },
 "n:LEI-14611-2023": {
 "nome": "Lei da Igualdade Salarial",
 "ps": "Obriga salário igual para mulheres e homens que fazem o mesmo trabalho.",
 "cf": "Empresas com 100 ou mais empregados devem publicar relatórios de transparência salarial. Quem paga menos às mulheres pela mesma função pode ser multado e deve pagar a diferença.",
 "data": "2023-07-03",
-"idSenado": 37349718
+"idSenado": 37349718,
+"origem": [
+"c:2351179",
+"PL 1085/2023"
+]
 },
 "n:LEI-14663-2023": {
 "nome": "Lei da valorização do salário mínimo",
@@ -654,27 +754,43 @@
 "ps": "Substituiu o teto de gastos por uma nova regra para as contas do governo federal.",
 "cf": "Os gastos podem crescer, acima da inflação, até 70% do crescimento da receita, dentro de uma faixa de 0,6% a 2,5% ao ano. O governo precisa cumprir metas de resultado primário; se não cumprir, o crescimento do gasto no ano seguinte fica menor.",
 "data": "2023-08-30",
-"idSenado": 37553820
+"idSenado": 37553820,
+"origem": [
+"c:2357053",
+"PLP 93/2023"
+]
 },
 "n:EMC-132-2023": {
 "nome": "Reforma Tributária",
 "ps": "Muda os impostos sobre o consumo.",
 "cf": "Cinco tributos (PIS, Cofins, IPI, ICMS e ISS) serão substituídos aos poucos por um IVA dual: a CBS (federal) e o IBS (estados e municípios), além de um Imposto Seletivo sobre produtos prejudiciais à saúde e ao meio ambiente. A transição vai de 2026 a 2033.",
 "data": "2023-12-20",
-"idSenado": 37959796
+"idSenado": 37959796,
+"origem": [
+"c:2403910",
+"PEC 45/2019"
+]
 },
 "n:LEI-14790-2023": {
 "nome": "Lei das Apostas Esportivas (bets)",
 "ps": "Regula as apostas de quota fixa, como as apostas esportivas online.",
 "cf": "As empresas de apostas precisam de autorização do Ministério da Fazenda, pagar outorga e tributos e seguir regras de publicidade e de proteção ao apostador. Menores de 18 anos são proibidos de apostar.",
 "data": "2023-12-29",
-"idSenado": 38067061
+"idSenado": 38067061,
+"origem": [
+"c:2374400",
+"PL 3626/2023"
+]
 },
 "n:LCP-214-2025": {
 "nome": "Regulamentação da Reforma Tributária",
 "ps": "Detalha como funcionarão os novos impostos sobre consumo (IBS, CBS e Imposto Seletivo).",
 "cf": "Define alíquotas reduzidas para setores como saúde, educação e alimentos, a cesta básica nacional com alíquota zero, a devolução de imposto (cashback) para famílias de baixa renda e as regras da transição de 2026 a 2033.",
 "data": "2025-01-16",
-"idSenado": 40180341
+"idSenado": 40180341,
+"origem": [
+"c:2430143",
+"PLP 68/2024"
+]
 }
 }

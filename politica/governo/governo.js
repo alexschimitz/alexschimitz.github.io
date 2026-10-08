@@ -143,6 +143,7 @@
     dec: { s: "Decreto", n: "Decretos", urn: "decreto", exp: "Atos do presidente para organizar o governo e regulamentar leis. Inclui decretos numerados (os não numerados, como nomeações, ficam de fora)." },
     vet: { s: "Veto", n: "Vetos", exp: "Quando o presidente recusa um projeto aprovado, todo ou em parte, o Congresso analisa o veto e pode mantê-lo ou derrubá-lo. Dados do Senado a partir de 2000." }
   };
+  function propHref(chave, sigOuAno) { var m = /(\d{4})\s*$/.exec(String(sigOuAno)); return "../propostas/#id=" + encodeURIComponent(chave) + (m ? "&ano=" + m[1] : ""); }
   function chaveNorma(k) { var p = k.slice(2).split("-"); return { t: p[0].toLowerCase(), n: +p[1], a: p[2] }; }
   function rotNorma(t, n, a) { return TIPO[t].s + " nº " + (n >= 1000 ? numBR(n) : n) + "/" + a; }
   function urlNorma(t, n, iso) { return "https://normas.leg.br/?urn=urn:lex:br:federal:" + TIPO[t].urn + ":" + iso + ";" + n; }
@@ -165,7 +166,7 @@
         var r = S.resumos[k], x = chaveNorma(k); if (!r) return "";
         return '<li><details><summary><b>' + esc(r.nome) + '</b> <span class="muted">· ' + esc(rotNorma(x.t, x.n, x.a)) + "</span></summary>" +
           '<div class="pc"><p><span class="pc-k">Pra que serve:</span> ' + esc(r.ps) + '</p><p><span class="pc-k">Como funciona:</span> ' + esc(r.cf) + '</p>' +
-          '<p class="note-sm"><span class="tag">Resumo simplificado</span> ' + (r.data ? (x.t === "emc" ? "Promulgada em " : "Assinada em ") + dBR(r.data) + " · " : "") + ext(urlNorma(x.t, x.n, r.data), "Ver texto oficial") + (r.origem ? ' · veio de <a href="../propostas/#id=' + esc(r.origem[0]) + '">' + esc(r.origem[1]) + "</a>" : "") + "</p></div></details></li>";
+          '<p class="note-sm"><span class="tag">Resumo simplificado</span> ' + (r.data ? (x.t === "emc" ? "Promulgada em " : "Assinada em ") + dBR(r.data) + " · " : "") + ext(urlNorma(x.t, x.n, r.data), "Ver texto oficial") + (r.origem ? ' · veio de <a href="' + esc(propHref(r.origem[0], r.origem[1])) + '">' + esc(r.origem[1]) + "</a>" : "") + "</p></div></details></li>";
       }).filter(Boolean);
       return '<li class="gov-pres-item' + (i === 0 ? " is-atual" : "") + '" id="p-' + esc(p.id) + '">' +
         '<div class="gp-head">' + foto(p.foto, "Foto de " + p.nome, "gp-foto") +
@@ -231,7 +232,7 @@
         (r[3] ? "<h3>" + esc(r[3]) + "</h3>" : "") + '<p class="gov-ementa"><span class="pc-k">Ementa oficial:</span> ' + esc(r[2]) + "</p>" +
         (rs ? '<div class="pc"><p><span class="pc-k">Pra que serve:</span> ' + esc(rs.ps) + '</p>' + (rs.cf ? '<p><span class="pc-k">Como funciona:</span> ' + esc(rs.cf) + "</p>" : "") + '<p class="note-sm"><span class="tag">Resumo simplificado</span></p></div>' : "") +
         '<p class="note-sm">' + (sit.indexOf(":") > 0 ? esc(sit.split(":").slice(1).join(":").trim()) + ". " : "") + (r[6] ? "Resultado: <b>" + esc(r[6]) + "</b>. " : "") + "Editada em " + dBR(iso) + (pr ? " · " + esc(pr.nome) : "") + "</p>" +
-        '<p class="gov-links">' + ext("https://www25.senado.leg.br/web/atividade/materias/-/materia/" + r[4], "Ver tramitação e texto oficial") + (r[7] ? ' <a href="../propostas/#id=' + esc(r[7]) + '">Ver na lista de propostas</a>' : "") + "</p>";
+        '<p class="gov-links">' + ext("https://www25.senado.leg.br/web/atividade/materias/-/materia/" + r[4], "Ver tramitação e texto oficial") + (r[7] ? ' <a href="' + esc(propHref(r[7], y)) + '">Ver na lista de propostas</a>' : "") + "</p>";
     } else if (t === "vet") {
       iso = r[1]; pr = quem(iso);
       h = '<div class="item-top"><span class="sig mono">Veto ' + (r[4] === "T" ? "total" : "parcial") + " nº " + r[0] + "/" + y + '</span><span class="badge ' + (VET_CLS[r[5]] || "neutral") + '">' + esc((cod.vet[r[5]] || "").split(":")[0]) + "</span></div>" +
@@ -246,7 +247,7 @@
         '<p class="gov-ementa"><span class="pc-k">Ementa oficial:</span> ' + esc(r[2]) + "</p>" +
         (rs2 ? '<div class="pc"><p><span class="pc-k">Pra que serve:</span> ' + esc(rs2.ps) + '</p><p><span class="pc-k">Como funciona:</span> ' + esc(rs2.cf) + '</p><p class="note-sm"><span class="tag">Resumo simplificado</span> escrito à mão a partir do texto oficial; leis posteriores podem ter mudado partes dela.</p></div>' : auto(r[2], t)) +
         '<p class="note-sm">' + (t === "emc" ? "Promulgada pelo Congresso em " : "Assinada em ") + dBR(iso) + (pr ? " · governo " + esc(pr.nome) : "") +
-        (r[5] ? ' · veio de <a href="../propostas/#id=' + esc(r[5][0]) + '">' + esc(r[5][1]) + "</a>" : "") + "</p>" +
+        (r[5] ? ' · veio de <a href="' + esc(propHref(r[5][0], r[5][1])) + '">' + esc(r[5][1]) + "</a>" : "") + "</p>" +
         '<p class="gov-links">' + ext(urlNorma(t, r[0], iso), "Ver texto oficial") + " " + ext("https://legis.senado.leg.br/norma/" + r[4], "Ficha no Senado") + "</p>";
     }
     return '<li class="item">' + h + "</li>";

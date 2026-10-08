@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0d0c">
+  <meta name="description" content="Propostas do Congresso desde 1988 em linguagem simples: quem criou, pra que serve, como funciona e se virou lei. Busca por tema, autor, partido, estado, ano e situação, com o texto oficial sempre a um toque.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%2362f58b%22/%3E%3Cpath d=%22M8 24V14M14 24V9M20 24V12M26 24V17%22 stroke=%22%23071009%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3C/svg%3E">
+  <title>Propostas do Congresso em linguagem simples — Política em dados abertos</title>
+  <script>try{var t=localStorage.getItem('as-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" href="../data/propostas/indice.json" as="fetch" crossorigin>
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="propostas.css">
+</head>
+<body class="politica prop-page">
+  <a class="skip-link" href="#buscar">Pular para o conteúdo</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../" aria-label="Voltar à página inicial">
+        <span class="brand-mark">AS</span>
+        <span class="brand-name">Alexsander Schimitz</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+        <span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-nav" data-pol-nav aria-label="Páginas de política"></nav>
+    </div>
+  </header>
+  <main id="conteudo">
+    <nav class="pol-subnav" aria-label="Atalhos desta página">
+      <a href="#buscar">Buscar propostas</a>
+      <a href="#destaques">Resumos à mão</a>
+      <a href="#numeros">Números por ano</a>
+      <a href="#como">Como ler</a>
+      <a href="#fontes">Fontes</a>
+    </nav>
+
+    <section class="pol-hero container" aria-labelledby="prop-title">
+      <div class="eyebrow"><span class="status-dot"></span> Câmara e Senado · desde 1988</div>
+      <h1 id="prop-title">Propostas do Congresso, <span>em palavras simples.</span></h1>
+      <p class="hero-lead">Projetos de lei, emendas à Constituição e medidas provisórias: quem criou, pra que serve, como funciona e se virou lei. O texto oficial está sempre a um toque.</p>
+      <dl class="pol-stats" aria-live="polite">
+        <div><dt>Propostas desde 1988</dt><dd id="st-total">—</dd></div>
+        <div><dt>Viraram lei ou emenda</dt><dd id="st-lei">—</dd></div>
+        <div><dt>Resumos escritos à mão</dt><dd id="st-res">—</dd></div>
+        <div><dt>Atualizado em</dt><dd id="st-upd" class="mono">—</dd></div>
+      </dl>
+    </section>
+
+    <section class="section pol-section" id="buscar" aria-labelledby="buscar-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Buscar</div>
+        <div class="projects-heading"><div>
+          <h2 id="buscar-title">Encontre uma proposta</h2>
+          <p>Escolha o ano (ou “todos os anos”) e use os filtros. Cada cartão diz quem criou, pra que serve, como funciona e em que pé está.</p>
+        </div></div>
+        <form class="pol-filters prop-filters" id="f" role="search" onsubmit="return false">
+          <div class="field field-search prop-q"><label for="f-q">Palavra, número ou assunto</label><input id="f-q" type="search" placeholder="Ex.: salário mínimo, PL 2630, 14.133, dengue" autocomplete="off"></div>
+          <div class="field"><label for="f-ano">Ano</label><select id="f-ano"></select></div>
+          <div class="field"><label for="f-tipo">Tipo</label><select id="f-tipo"><option value="">Todos os tipos</option></select></div>
+          <div class="field"><label for="f-sit">Situação</label><select id="f-sit"><option value="">Todas</option></select></div>
+          <details class="prop-more" id="f-more"><summary>Mais filtros: tema, onde começou, autor, partido, estado e ordem</summary><div class="prop-more-grid">
+          <div class="field"><label for="f-tema">Tema</label><select id="f-tema"><option value="">Todos os temas</option></select></div>
+          <div class="field"><label for="f-casa">Onde começou</label><select id="f-casa"><option value="">Câmara e Senado</option><option value="c">Câmara dos Deputados</option><option value="s">Senado Federal</option></select></div>
+          <div class="field"><label for="f-autor">Autor</label><input id="f-autor" type="search" list="f-autores" placeholder="Nome do deputado, senador ou órgão" autocomplete="off"><datalist id="f-autores"></datalist></div>
+          <div class="field"><label for="f-part">Partido do autor</label><select id="f-part"><option value="">Todos</option></select></div>
+          <div class="field"><label for="f-uf">Estado do autor</label><select id="f-uf"><option value="">Todos</option></select></div>
+          <div class="field"><label for="f-ord">Ordem</label><select id="f-ord"><option value="d">Mais recentes primeiro</option><option value="a">Mais antigas primeiro</option><option value="r">Com resumo à mão primeiro</option></select></div>
+          </div></details>
+          <label class="prop-check"><input type="checkbox" id="f-res"> Só com resumo escrito à mão</label>
+          <button class="btn-reset" type="button" id="f-limpa">Limpar filtros</button>
+        </form>
+        <p class="pol-count" id="count" aria-live="polite"></p>
+        <div class="prop-prog" id="prog" hidden><span></span></div>
+        <ul class="items prop-list" id="lista"></ul>
+        <div class="more-wrap"><button class="button" type="button" id="mais" hidden>Mostrar mais</button></div>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="destaques" aria-labelledby="dest-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Resumos à mão</div>
+        <div class="projects-heading"><div>
+          <h2 id="dest-title">Leis que todo mundo cita, explicadas</h2>
+          <p>Resumos escritos à mão a partir do texto oficial. Leis podem ter sido mudadas depois por outras leis; o texto oficial atualizado está no link de cada uma.</p>
+        </div></div>
+        <div class="pol-filters"><div class="field field-search"><label for="d-q">Buscar entre as leis explicadas</label><input id="d-q" type="search" placeholder="Ex.: consumidor, LGPD, Maria da Penha" autocomplete="off"></div></div>
+        <ul class="prop-dest" id="dest"></ul>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="numeros" aria-labelledby="num-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Números</div>
+        <div class="projects-heading"><div>
+          <h2 id="num-title">Quantas propostas por ano, e quantas viraram lei</h2>
+          <p>Contagem das propostas apresentadas em cada ano (Câmara e Senado) e da situação atual delas. A maioria das propostas não chega a ser votada.</p>
+        </div></div>
+        <div class="table-wrap"><table class="data-table prop-anos" id="anos"><caption>Propostas por ano de apresentação e situação atual</caption></table></div>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="como" aria-labelledby="como-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Como ler</div>
+        <div class="projects-heading"><div><h2 id="como-title">Como ler cada cartão</h2></div></div>
+        <dl class="gov-gloss prop-gloss">
+          <div><dt>“Criado por”</dt><dd>Quem apresentou a proposta. Na Câmara, o primeiro nome é quem assinou primeiro; “e mais N” são os coautores. Partido e estado são os registrados na época.</dd></div>
+          <div><dt>Pra que serve</dt><dd>O objetivo da proposta, em linguagem simples.</dd></div>
+          <div><dt>Como funciona</dt><dd>O que muda na prática, quando o resumo foi escrito à mão. Nos resumos automáticos, explicamos o tipo de proposta e quais leis ela altera.</dd></div>
+          <div><dt>Resumo simplificado × automático</dt><dd><b>Simplificado</b>: escrito à mão a partir do texto oficial. <b>Automático</b>: a ementa oficial reorganizada por regras fixas, sem interpretar.</dd></div>
+          <div><dt>Situação</dt><dd>Em que pé está: em andamento, virou lei, arquivada, rejeitada, retirada ou perdeu a validade.</dd></div>
+          <div><dt>Arquivada</dt><dd>Parou de andar: por exemplo, porque a legislatura (4 anos) acabou sem votação. Algumas podem ser desarquivadas.</dd></div>
+          <div><dt>Ementa</dt><dd>O resumo oficial que vai no começo da proposta. Aparece em “Ver texto oficial”, junto com o link para o texto completo.</dd></div>
+          <div><dt>PL, PLP, PEC, MP…</dt><dd>PL: projeto de lei. PLP: lei complementar. PEC: muda a Constituição. MP: medida provisória do presidente. PDL/PDC/PDS: decreto legislativo. PRS: resolução do Senado. PLS: projeto de lei do Senado (até 2018).</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="fontes" aria-labelledby="fontes-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Fontes e limites</div>
+        <div class="projects-heading"><div><h2 id="fontes-title">De onde vêm os dados</h2></div></div>
+        <div class="gov-fontes" id="fontes-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container pol-footer">
+      <div>
+        <p><strong>Fontes:</strong>
+          <a href="https://dadosabertos.camara.leg.br/" target="_blank" rel="noreferrer">Dados Abertos da Câmara dos Deputados</a> (arquivos anuais de proposições, autores e temas; tramitação),
+          <a href="https://legis.senado.leg.br/dadosabertos/" target="_blank" rel="noreferrer">Dados Abertos do Senado Federal</a> (processos e legislação) e
+          <a href="https://normas.leg.br/" target="_blank" rel="noreferrer">Normas.leg.br</a>.</p>
+        <p><strong>Linguagem simples:</strong> cada proposta aparece como “tipo nº/ano, criado por…”, seguido de “Pra que serve”, “Como funciona” e a situação. Os “Resumos simplificados” foram escritos à mão a partir do texto oficial; os “Resumos automáticos” reorganizam a ementa oficial com regras fixas, sem interpretar. O texto oficial está sempre em “Ver texto oficial”. Nenhum texto expressa opinião.</p>
+        <p>Página independente e apartidária. Atualização automática diária.</p>
+      </div>
+      <div class="pol-footer-links">
+        <p>© <span id="year"></span> Alexsander Schimitz.</p>
+        <a href="/politica/">Painel de política</a>
+        <a href="/politica/governo/">Governo federal</a>
+        <a href="/">← Página inicial</a>
+        <a href="#top">Voltar ao topo ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../scripts/home.js"></script>
+  <script src="../base.js"></script>
+  <script src="../simples.js"></script>
+  <script src="simplifica.js"></script>
+  <script src="propostas.js"></script>
+</body>
+</html>

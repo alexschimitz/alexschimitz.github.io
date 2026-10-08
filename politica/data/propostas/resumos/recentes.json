@@ -1,0 +1,94 @@
+{
+"_sobre": "Resumos em linguagem simples escritos à mão a partir do texto oficial (inteiro teor e exposição de motivos) de medidas provisórias e PECs recentes. Chaves c:{id da Câmara}. \"ps\" = Pra que serve; \"cf\" = Como funciona. A situação de cada proposta é mostrada a partir dos dados oficiais, não deste arquivo.",
+"revisadoEm": "2026-10-08",
+"c:2599928": {
+"titulo": "MP 1.334/2026",
+"ps": "Mudar a regra de reajuste anual do piso salarial nacional dos professores da educação básica pública.",
+"cf": "O Ministério da Educação passa a atualizar o piso todo ano, até o último dia útil de janeiro. O reajuste soma a inflação do ano anterior (INPC) com metade do crescimento real médio, nos cinco anos anteriores, do dinheiro que estados e municípios colocam no Fundeb. O aumento não pode ser menor que a inflação nem maior que o crescimento da receita do Fundeb. A MP virou a Lei 15.437/2026."
+},
+"c:2601389": {
+"titulo": "MP 1.336/2026",
+"ps": "Permitir de novo que o FGTS empreste dinheiro a hospitais filantrópicos e a entidades sem fins lucrativos que atendem pessoas com deficiência pelo SUS.",
+"cf": "Essas operações de crédito com recursos do FGTS ficam autorizadas até o fim de 2030. Segundo o governo, entre 2019 e 2022 cerca de R$ 3 bilhões foram emprestados assim a 140 hospitais filantrópicos. A MP perdeu a validade sem ser votada."
+},
+"c:2607473": {
+"titulo": "MP 1.338/2026",
+"ps": "Dar um apoio financeiro às famílias que perderam bens nas enchentes e deslizamentos da Zona da Mata de Minas Gerais em 2026.",
+"cf": "Cada família de área atingida, em município com calamidade pública reconhecida pelo governo federal, recebe uma parcela única de R$ 7.300 (uma vez por família). A prefeitura informa as famílias e o responsável assina uma autodeclaração. A MP perdeu a validade sem ser votada pelo Congresso."
+},
+"c:2610975": {
+"titulo": "MP 1.343/2026",
+"ps": "Fazer cumprir o piso mínimo do frete do transporte rodoviário de cargas.",
+"cf": "Toda operação de transporte passa a ter um código de identificação (CIOT). A ANTT pode suspender por 5 a 30 dias o registro (RNTRC) de quem contrata frete abaixo do piso de forma repetida — mais de três multas em seis meses. A suspensão não vale para o caminhoneiro autônomo (TAC). A MP virou a Lei 15.485/2026."
+},
+"c:2613550": {
+"titulo": "MP 1.348/2026",
+"ps": "Reforçar o fundo que equipa a Polícia Federal (Funapol) e permitir que ele ajude a pagar a saúde dos policiais federais.",
+"cf": "O fundo passa a receber parte do dinheiro arrecadado com as apostas de quota fixa (bets), além de repasses de estados e organismos internacionais para combater o crime organizado e doações. Parte do dinheiro pode cobrir gastos de saúde dos servidores da PF. A MP virou a Lei 15.480/2026."
+},
+"c:2616962": {
+"titulo": "MP 1.350/2026",
+"ps": "Usar o fundo garantidor da habitação popular (FGHab) para facilitar empréstimos de reforma e melhoria de casas.",
+"cf": "O fundo pode garantir parte do risco de empréstimos para melhorias habitacionais em áreas urbanas feitos por famílias da faixa de renda mais baixa do Minha Casa, Minha Vida. Com a garantia, os bancos tendem a emprestar com mais facilidade."
+},
+"c:2620929": {
+"titulo": "MP 1.355/2026 — Novo Desenrola Brasil",
+"ps": "Ajudar famílias endividadas a renegociar dívidas atrasadas com bancos.",
+"cf": "Vale para quem ganha até 5 salários mínimos e tem dívidas contratadas até 31/01/2026, com atraso de 91 a 720 dias, no cartão de crédito, no cheque especial ou em crédito pessoal. A pessoa quita à vista ou troca a dívida por um novo empréstimo no próprio banco, em condições incentivadas pelo programa, com garantia de um fundo público (FGO). A MP perdeu a validade sem ser votada."
+},
+"c:2624161": {
+"titulo": "MP 1.357/2026 — compras internacionais",
+"ps": "Permitir que o ministro da Fazenda mude o imposto de importação sobre compras internacionais enviadas pelo correio ou por empresas de entrega.",
+"cf": "No regime simplificado das remessas internacionais, o ministro pode alterar as alíquotas por ato próprio, inclusive zerar o imposto em compras de até US$ 50 e cobrar 30% na faixa até US$ 3.000, e pode diferenciar quem aderir ao programa de conformidade da Receita Federal. A MP virou a Lei 15.502/2026."
+},
+"c:2625946": {
+"titulo": "MP 1.360/2026 — mototaxistas e motoboys",
+"ps": "Reduzir as exigências para trabalhar como mototaxista, motoboy ou motofretista.",
+"cf": "Deixam de ser exigidos: idade mínima de 21 anos, curso especializado e dois anos de habilitação — basta ter carteira A ou autorização para ciclomotor. A moto também deixa de precisar de placa de aluguel (vermelha) e de inspeção a cada seis meses. Segundo o governo, só 283 mil de 1,1 milhão de condutores tinham o curso. A MP perdeu a validade sem ser votada."
+},
+"c:2629391": {
+"titulo": "MP 1.363/2026 — subsídio ao diesel",
+"ps": "Segurar o preço e garantir o abastecimento de diesel durante a alta causada pela guerra no Oriente Médio.",
+"cf": "O governo federal paga R$ 1,12 por litro de diesel rodoviário vendido aos produtores e importadores autorizados pela ANP, que em troca precisam cumprir as condições da MP. A MP perdeu a validade sem ser votada."
+},
+"c:2634392": {
+"titulo": "MP 1.369/2026 — fila do INSS",
+"ps": "Ampliar o programa que acelera a análise de pedidos e revisões de benefícios do INSS (Programa de Gerenciamento de Benefícios).",
+"cf": "O programa passa a incluir também processos e serviços parados há mais de 30 dias ou com prazo judicial vencido, além das análises de pedidos novos e revisões de aposentadorias, auxílios e do BPC. A MP virou a Lei 15.497/2026."
+},
+"c:2634542": {
+"titulo": "MP 1.370/2026 — Enamed",
+"ps": "Criar um exame nacional obrigatório para avaliar quem estuda Medicina e os cursos de Medicina (Enamed).",
+"cf": "Para quem entrar na faculdade de Medicina a partir de 19/06/2026, ser aprovado (nível proficiente) na segunda etapa do Enamed passa a ser exigido para se registrar no Conselho Regional de Medicina e poder trabalhar. Quem já se formou não precisa fazer a prova. A nota pode ser usada para entrar na residência médica, e cursos que usam hospitais do SUS terão de oferecer contrapartidas."
+},
+"c:2635466": {
+"titulo": "MP 1.373/2026 — Desenrola Adimplentes",
+"ps": "Oferecer crédito em condições melhores para quem está com as contas em dia.",
+"cf": "A União pode destinar até R$ 3 bilhões para uma linha de crédito operada pelo Banco do Brasil e pela Caixa (ou bancos habilitados por eles), para que pessoas que pagam as dívidas em dia consigam empréstimos em condições mais vantajosas. A MP também cria o Fies Empreendedor, linha de crédito para quem está em dia com o Fies."
+},
+"c:2647154": {
+"titulo": "MP 1.393/2026 — Desenrola Brasil 3.0",
+"ps": "Criar uma nova rodada de renegociação de dívidas atrasadas de pessoas físicas.",
+"cf": "A União fica autorizada a comprar carteiras de dívidas em atraso dos bancos, por meio de fundos, e renegociá-las com as pessoas, com limite de R$ 15 bilhões de gastos; o programa vai até 30/06/2028. O Conselho Monetário Nacional deve adotar medidas de crédito responsável e mais transparência. O prazo do Desenrola Adimplentes também foi estendido."
+},
+"c:2225224": {
+"titulo": "PEC 169/2019 → Emenda Constitucional 138/2025",
+"ps": "Permitir que um professor da rede pública tenha também outro cargo público, de qualquer tipo, e receba pelos dois.",
+"cf": "Antes, a Constituição só deixava acumular o cargo de professor com outro “técnico ou científico”, o que gerava dúvidas e disputas. Com a mudança, o professor pode ter um segundo cargo de qualquer natureza, desde que os horários sejam compatíveis e respeitado o teto salarial. Virou a Emenda Constitucional 138, de 19/12/2025."
+},
+"c:2422905": {
+"titulo": "PEC 72/2023 → Emenda Constitucional 137/2025",
+"ps": "Dar isenção de IPVA a alguns veículos.",
+"cf": "No texto aprovado pelo Senado (que chegou à Câmara), carros de passeio, caminhonetes e veículos mistos com 20 anos ou mais de fabricação deixam de pagar IPVA; ônibus, micro-ônibus, reboques e semirreboques ficam de fora. Virou a Emenda Constitucional 137, de 09/12/2025 — confira no texto oficial da emenda a versão final."
+},
+"c:2454495": {
+"titulo": "PEC 66/2023 → Emenda Constitucional 136/2025",
+"ps": "Limitar quanto estados, Distrito Federal e municípios precisam pagar por ano em precatórios e abrir novo parcelamento de dívidas previdenciárias dos municípios.",
+"cf": "Precatórios são dívidas do governo reconhecidas pela Justiça. A emenda cria um limite anual para esse pagamento pelos governos locais e reabre o parcelamento especial das dívidas dos municípios com a Previdência (INSS e regimes próprios). Os detalhes dos limites e prazos estão no texto oficial."
+},
+"c:2352476": {
+"titulo": "PEC 9/2023 → Emenda Constitucional 133/2024",
+"ps": "Obrigar os partidos a aplicar dinheiro nas candidaturas de pessoas pretas e pardas e criar regras para regularizar dívidas dos partidos.",
+"cf": "A emenda fixa a obrigação de os partidos destinarem recursos às candidaturas de pessoas pretas e pardas, define condições para regularizar e refinanciar débitos dos partidos (inclusive os ligados a cotas não cumpridas em eleições anteriores) e reforça a imunidade de impostos dos partidos. Virou a Emenda Constitucional 133, de 22/08/2024."
+}
+}

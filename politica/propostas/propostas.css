@@ -1,0 +1,41 @@
+/* politica/propostas/propostas.css — complementa ../base.css */
+.prop-page .pol-hero h1 span { color: var(--accent); }
+.prop-filters { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px 12px; margin-top: 18px; align-items: end; }
+.prop-filters .prop-q { grid-column: span 2; }
+.prop-check { display: flex; gap: 8px; align-items: center; font-size: .88rem; color: var(--muted); padding: 10px 0; }
+.prop-check input { accent-color: var(--accent); width: 18px; height: 18px; }
+.prop-prog { height: 4px; border-radius: 99px; background: var(--bg-soft); overflow: hidden; margin-top: 8px; }
+.prop-prog span { display: block; height: 100%; width: 0; background: var(--accent); transition: width .2s; }
+.prop-list { margin-top: 12px; }
+.prop-item .pc { margin: 0; }
+.prop-item .item-top { margin-bottom: 6px; }
+.prop-casa { font-size: .78rem; }
+.prop-item a.autor { color: var(--accent); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+.prop-links { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 6px; }
+.prop-links a.ext { color: var(--accent); font-weight: 700; }
+.prop-dest { list-style: none; display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr)); margin-top: 16px; padding: 0; }
+.prop-dest-item { margin: 0 !important; }
+.prop-dest-item[hidden] { display: none; }
+.prop-dest-item a { color: var(--accent); font-weight: 700; }
+.prop-anos td, .prop-anos th { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.prop-anos .linkish { font-weight: 800; }
+.gov-gloss { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); margin-top: 18px; }
+.gov-gloss div { padding: 14px 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
+.gov-gloss dt { font-weight: 800; }
+.gov-gloss dd { margin: 4px 0 0; color: var(--muted); font-size: .9rem; line-height: 1.5; }
+.gov-fontes { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); margin-top: 18px; }
+.gov-fontes ul { margin: 8px 0 0 18px; display: grid; gap: 6px; font-size: .86rem; color: var(--muted); }
+.gov-fontes a { color: var(--accent); }
+.prop-page .chip { white-space: normal; max-width: 100%; }
+@media (max-width: 900px) { .prop-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .prop-filters { grid-template-columns: 1fr; } .prop-filters .prop-q { grid-column: auto; } }
+.prop-page .tag { display: inline-block; margin-right: 4px; padding: 0 7px; border-radius: 6px; border: 1px solid rgba(98, 245, 139, 0.35); font-family: "DM Mono", monospace; font-size: 0.66rem; font-weight: 500; color: var(--accent); vertical-align: 1px; white-space: nowrap; }
+.prop-page .tag.auto { color: var(--warn); border-color: currentColor; }
+.prop-page .pc-k { font-weight: 700; color: var(--text); }
+.prop-page .pc p b { color: var(--text); }
+.prop-more { grid-column: 1 / -1; border: 1px solid var(--line); border-radius: 14px; padding: 10px 14px; background: var(--panel); }
+.prop-more > summary { cursor: pointer; font-weight: 700; font-size: .9rem; }
+.prop-more-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 12px; margin-top: 10px; }
+@media (max-width: 900px) { .prop-more-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .prop-more-grid { grid-template-columns: 1fr; } }
+.prop-dest-item .pc-sig { font-family: inherit; }
