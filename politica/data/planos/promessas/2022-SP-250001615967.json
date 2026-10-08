@@ -1,0 +1,186 @@
+{
+ "ano": 2022,
+ "cargo": "governador",
+ "uf": "SP",
+ "sq": "250001615967",
+ "pessoa": {
+  "nome": "Tarcísio",
+  "nome_completo": "Tarcisio Gomes de Freitas",
+  "partido": "REPUBLICANOS",
+  "id_politico": "viaw3n7l42"
+ },
+ "mandato": {
+  "inicio": "2023-01-01",
+  "fim": "2026-12-31",
+  "situacao": "em curso",
+  "nota": "Mandato ainda em curso: o status vale até a data da revisão e pode mudar."
+ },
+ "plano": {
+  "titulo": "Diretrizes — Programa de Governo Tarcísio Freitas, Governador (2023-2026)",
+  "paginas": 43,
+  "arquivo": "2022SP250001615967.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/SP/250001615967",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2022_SP.zip"
+ },
+ "revisado": "2026-10-08",
+ "resumo": [
+  {
+   "t": "Educação: avançar na municipalização do ensino fundamental e usar indicadores de educação na divisão do ICMS.",
+   "p": 9
+  },
+  {
+   "t": "Segurança: mais policiais, apoio jurídico à ação policial e revisão da política de câmeras corporais.",
+   "p": 16
+  },
+  {
+   "t": "Obras: concluir obras paradas, como o Rodoanel Norte, e conceder as travessias litorâneas.",
+   "p": 21
+  },
+  {
+   "t": "Transporte: ampliar o metrô e implantar trens regionais.",
+   "p": 22
+  },
+  {
+   "t": "Saneamento: universalizar água e esgoto até 2027.",
+   "p": 28
+  },
+  {
+   "t": "Governo digital: pagar tributos por Pix e cartão, aprovação automática quando o prazo vence e Lei da Liberdade Econômica.",
+   "p": 40
+  },
+  {
+   "t": "Impostos: reduzir ICMS (começando pelos aumentos de 2021) e baixar o IPVA de 4% para 3%.",
+   "p": 43
+  }
+ ],
+ "promessas": [
+  {
+   "id": "sp22-01",
+   "tema": "Saneamento",
+   "promessa": "Antecipar a universalização de água e esgoto de 2033 para 2027",
+   "trecho": "Avançar na universalização de água tratada e coleta e tratamento de esgoto, antecipando a meta de universalização de 2033 para 2027",
+   "pagina": 28,
+   "status": "parcialmente",
+   "explicacao": "A lei que autorizou a privatização da Sabesp (2023) antecipou a meta, mas para 31/12/2029, e não para 2027.",
+   "evidencias": [
+    {
+     "titulo": "Lei estadual 17.853/2023 (Sabesp), art. com a meta de 31/12/2029",
+     "url": "https://www.al.sp.gov.br/repositorio/legislacao/lei/2023/lei-17853-08.12.2023.html"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "sp22-02",
+   "tema": "Obras",
+   "promessa": "Concluir o Rodoanel Norte",
+   "trecho": "Nesse rol enquadra-se o Rodoanel Norte, que finalmente será concluído.",
+   "pagina": 21,
+   "status": "em_andamento",
+   "explicacao": "O primeiro trecho foi liberado ao tráfego; o trecho final ainda estava em obras em 2026.",
+   "evidencias": [
+    {
+     "titulo": "Agência SP — Rodoanel Norte tem primeiro trecho liberado ao tráfego",
+     "url": "https://www.agenciasp.sp.gov.br/rodoanel-norte-tem-primeiro-trecho-liberado-ao-trafego-veja-como-a-obra-vai-mudar-a-logistica-de-sp/"
+    },
+    {
+     "titulo": "Agência SP — Trecho final do Rodoanel Norte chega a 68% das obras",
+     "url": "https://www.agenciasp.sp.gov.br/trecho-final-do-rodoanel-norte-chega-a-68-das-obras-concluidas/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "sp22-03",
+   "tema": "Impostos",
+   "promessa": "Voltar o ICMS de veículos ao patamar anterior",
+   "trecho": "Reduzir a alíquota de ICMS sobre veículos automotores, voltando para o patamar anterior",
+   "pagina": 43,
+   "status": "cumprida",
+   "explicacao": "Um decreto de fevereiro de 2023 acabou com o adicional de 2,5% de ICMS sobre veículos criado em 2021, como confirma a Secretaria da Fazenda.",
+   "evidencias": [
+    {
+     "titulo": "Sefaz-SP — Decreto 67.524/2023",
+     "url": "https://legislacao.fazenda.sp.gov.br/Paginas/Decreto-67524-de-2023.aspx"
+    },
+    {
+     "titulo": "Sefaz-SP — Resposta à Consulta 27078/2023 (fim do adicional de 2,5% em veículos)",
+     "url": "https://legislacao.fazenda.sp.gov.br/Paginas/RC27078_2023.aspx"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "sp22-04",
+   "tema": "Impostos",
+   "promessa": "Baixar o IPVA de carros de 4% para 3%",
+   "trecho": "reduzir a alíquota base do IPVA de 4% para 3% (média nacional)",
+   "pagina": 43,
+   "status": "nao_cumprida",
+   "explicacao": "Em 2026, último ano do mandato, a alíquota do IPVA para carros de passeio continuou em 4%.",
+   "evidencias": [
+    {
+     "titulo": "Agência SP — IPVA 2026: alíquotas permanecem as mesmas (4% para carros de passeio)",
+     "url": "https://www.agenciasp.sp.gov.br/ipva-2026-motoristas-ja-podem-consultar-o-valor-venal-de-veiculos-no-estado-de-sp/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "sp22-05",
+   "tema": "Economia",
+   "promessa": "Aprovar e regulamentar a Lei da Liberdade Econômica no estado e nos municípios",
+   "trecho": "Lei da Liberdade Econômica: Aprovar e regulamentar a Lei da Liberdade Econômica no Estado e em seus municípios.",
+   "pagina": 40,
+   "status": "cumprida",
+   "explicacao": "A Lei 17.761/2023 criou o licenciamento simplificado por grau de risco (com aprovação automática se o prazo vencer) e foi regulamentada no mesmo ano; segundo a Assembleia, 99% das cidades aderiram.",
+   "evidencias": [
+    {
+     "titulo": "Alesp — Lei 17.761/2023",
+     "url": "https://www.al.sp.gov.br/norma/208561"
+    },
+    {
+     "titulo": "Alesp — Lei que simplifica abertura de empresas tem adesão de 99% das cidades",
+     "url": "https://www.al.sp.gov.br/noticia/?id=484623"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "sp22-06",
+   "tema": "Governo digital",
+   "promessa": "Aceitar Pix e cartão para todos os tributos, taxas e custas",
+   "trecho": "Pagamentos Digitais: Adotar meios de pagamento digitais (Pix, cartão de crédito e cartão de débito) para todas as custas, tarifas e tributos",
+   "pagina": 40,
+   "status": "parcialmente",
+   "explicacao": "O estado passou a aceitar Pix no IPVA e em multas, licenciamento e transferência de veículos. Não encontramos fonte oficial mostrando que isso vale para todas as cobranças.",
+   "evidencias": [
+    {
+     "titulo": "Sefaz-SP — IPVA: pagamento por Pix",
+     "url": "https://portal.fazenda.sp.gov.br/servicos/ipva/Paginas/pix.aspx"
+    },
+    {
+     "titulo": "Agência SP — SP libera pagamento de multa, licenciamento e transferência por Pix",
+     "url": "https://www.agenciasp.sp.gov.br/sp-libera-pagamento-de-multa-licenciamento-e-transferencia-de-veiculos-por-pix/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "sp22-07",
+   "tema": "Transporte",
+   "promessa": "Conceder as travessias litorâneas, uma a uma",
+   "trecho": "Em relação às travessias litorâneas, trabalhar em concessões individuais considerando a especificidade de cada travessia.",
+   "pagina": 21,
+   "status": "parcialmente",
+   "explicacao": "As travessias foram concedidas à iniciativa privada, mas em um único contrato (PPP) para várias linhas, e não em concessões individuais. O resultado foi homologado em 2026.",
+   "evidencias": [
+    {
+     "titulo": "Agência SP — Governo homologa PPP do Sistema de Travessias Hídricas",
+     "url": "https://www.agenciasp.sp.gov.br/governo-de-sp-homologa-ppp-do-sistema-de-travessias-hidricas-e-confirma-consorcio-vencedor/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}

@@ -1,0 +1,158 @@
+{
+ "ano": 2022,
+ "cargo": "governador",
+ "uf": "BA",
+ "sq": "50001603638",
+ "pessoa": {
+  "nome": "Jerônimo",
+  "nome_completo": "Jerônimo Rodrigues Souza",
+  "partido": "PT",
+  "id_politico": "ikw3r73lcr"
+ },
+ "mandato": {
+  "inicio": "2023-01-01",
+  "fim": "2026-12-31",
+  "situacao": "em curso",
+  "nota": "Mandato ainda em curso: o status vale até a data da revisão e pode mudar."
+ },
+ "plano": {
+  "titulo": "Programa de Governo Jerônimo Rodrigues 2023-2026 (Coligação Pela Bahia, Pelo Brasil)",
+  "paginas": 124,
+  "arquivo": "2022BA50001603638.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/BA/50001603638",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2022_BA.zip"
+ },
+ "revisado": "2026-10-08",
+ "resumo": [
+  {
+   "t": "Mobilidade: ponte Salvador-Itaparica, trem metropolitano, VLT, novas linhas de metrô e nova rodoviária.",
+   "p": 16
+  },
+  {
+   "t": "Logística: articular com o governo federal a ferrovia FIOL, o Porto Sul e os portos.",
+   "p": 23
+  },
+  {
+   "t": "Campo: programa Bahia Sem Fome, habitação rural e energia solar no campo.",
+   "p": 36
+  },
+  {
+   "t": "Educação: ampliar o ensino em tempo integral.",
+   "p": 50
+  },
+  {
+   "t": "Saúde: novos hospitais regionais (como Ibotirama e Alagoinhas) e novas policlínicas.",
+   "p": 65
+  },
+  {
+   "t": "Segurança: câmeras nas ruas, nas viaturas e nas fardas dos policiais.",
+   "p": 92
+  },
+  {
+   "t": "Igualdade racial: aplicar a reserva de vagas para pessoas negras em concursos.",
+   "p": 100
+  }
+ ],
+ "promessas": [
+  {
+   "id": "ba22-01",
+   "tema": "Mobilidade",
+   "promessa": "Garantir a construção da ponte Salvador-Itaparica",
+   "trecho": "Garantir a construção da Ponte Salvador-Itaparica e do Sistema Viário Oeste (SVO)",
+   "pagina": 23,
+   "status": "em_andamento",
+   "explicacao": "As obras começaram em 2026, com anúncio oficial no canteiro em 01/07/2026; a ponte ainda não está pronta.",
+   "evidencias": [
+    {
+     "titulo": "Planalto — Agenda do presidente em 01/07/2026 (anúncio sobre a construção da ponte)",
+     "url": "https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/agenda-do-presidente-da-republica-lula/agenda-do-presidente-da-republica/2026-07-01"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "ba22-02",
+   "tema": "Combate à fome",
+   "promessa": "Implantar o programa Bahia Sem Fome",
+   "trecho": "Implantar um programa de estímulo e apoio à produção e distribuição de alimentos saudáveis",
+   "pagina": 36,
+   "status": "cumprida",
+   "explicacao": "O programa Bahia Sem Fome foi criado por lei estadual em 2023 (Lei 14.635/2023).",
+   "evidencias": [
+    {
+     "titulo": "Governo da Bahia — Marcos legais do Bahia Sem Fome",
+     "url": "https://www.ba.gov.br/bahiasemfome/marcos-legais"
+    },
+    {
+     "titulo": "Lei estadual 14.635/2023 (Diário Oficial)",
+     "url": "https://www.ba.gov.br/bahiasemfome/sites/site-bahiasemfome/files/2025-09/Lei14635BahiaSemFomeDiarioOficial.pdf"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "ba22-03",
+   "tema": "Educação",
+   "promessa": "Ampliar o ensino em tempo integral",
+   "trecho": "Avançaremos, agora, para a ampliação do ensino em tempo integral.",
+   "pagina": 50,
+   "status": "cumprida",
+   "explicacao": "Em 2025 a rede estadual tinha mais de 135 mil alunos em tempo integral, 42% a mais que em 2024.",
+   "evidencias": [
+    {
+     "titulo": "Secom-BA — Bahia amplia educação em tempo integral (2025)",
+     "url": "https://www.ba.gov.br/comunicacao/noticias/2025-02/365173/bahia-amplia-educacao-em-tempo-integral-da-rede-estadual-com-novos"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "ba22-04",
+   "tema": "Saúde",
+   "promessa": "Hospital Regional de Ibotirama com UTI e maternidade de alto risco",
+   "trecho": "Implantar o Hospital Regional de Ibotirama com leitos de UTI adulto e neonatal e maternidade de alto risco",
+   "pagina": 65,
+   "status": "parcialmente",
+   "explicacao": "O hospital foi inaugurado em agosto de 2025 com leitos de UTI; a fonte oficial não confirma UTI neonatal nem maternidade de alto risco (obstetrícia estava prevista para 2026).",
+   "evidencias": [
+    {
+     "titulo": "Secom-BA — Oeste baiano ganha novo Hospital Regional do Velho Chico, em Ibotirama",
+     "url": "https://www.ba.gov.br/comunicacao/noticias/2025-08/372733/oeste-baiano-ganha-novo-hospital-regional-do-velho-chico-em-ibotirama"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "ba22-05",
+   "tema": "Saúde",
+   "promessa": "Novo Hospital Regional em Alagoinhas",
+   "trecho": "Implantar o novo Hospital Regional na macrorregião Nordeste (Litoral Norte) em Alagoinhas",
+   "pagina": 65,
+   "status": "parcialmente",
+   "explicacao": "O Hospital Estadual do Litoral Norte foi inaugurado em 01/07/2026. Não encontramos fonte oficial que confirme todos os serviços prometidos (como maternidade de alto risco e UTI neonatal).",
+   "evidencias": [
+    {
+     "titulo": "Planalto — Agenda do presidente em 01/07/2026 (inauguração do Hospital Estadual do Litoral Norte)",
+     "url": "https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/agenda-do-presidente-da-republica-lula/agenda-do-presidente-da-republica/2026-07-01"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "ba22-06",
+   "tema": "Segurança",
+   "promessa": "Câmeras nas fardas dos policiais",
+   "trecho": "Implantar o sistema de monitoramento de câmeras nas áreas urbanas e rurais, nas viaturas e nas fardas corporais dos policiais do estado",
+   "pagina": 92,
+   "status": "em_andamento",
+   "explicacao": "Em outubro de 2025 as câmeras corporais funcionavam em 23 unidades policiais, com plano de levar a todo o estado.",
+   "evidencias": [
+    {
+     "titulo": "Casa Civil-BA — Bahia adere a programas nacionais de câmeras corporais",
+     "url": "https://www.ba.gov.br/casacivil/noticias/2025-10/3031/bahia-adere-programas-nacionais-de-cameras-corporais-e-qualificacao-do-uso-da"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}

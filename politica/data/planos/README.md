@@ -41,6 +41,8 @@ Limites conhecidos:
 - Alguns planos não estão no pacote do TSE (ex.: governador eleito de MT em 2022). A página diz isso e aponta para a página da candidatura.
 - O pacote de 2012 do RN tem só 11 PDFs, que não batem com candidaturas a prefeito.
 
+Cobertura das promessas (out/2026): presidentes eleitos em 2010, 2014, 2018 e 2022; governadores eleitos em 2022 em SP, MG, BA e RS. Os demais governadores e os prefeitos ainda não foram avaliados.
+
 ## 2. Promessas — `promessas/{ano}-{UF}-{sq}.json` (curadoria manual)
 
 Um arquivo por plano avaliado, **editado à mão**. `scripts/politica/planos/build_promessas.py` só valida e junta tudo em `promessas/index.json` (que a página carrega). Se faltar algum campo ou fonte, o script falha.

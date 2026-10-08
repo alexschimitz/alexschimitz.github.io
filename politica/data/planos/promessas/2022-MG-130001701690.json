@@ -1,0 +1,206 @@
+{
+ "ano": 2022,
+ "cargo": "governador",
+ "uf": "MG",
+ "sq": "130001701690",
+ "pessoa": {
+  "nome": "Zema",
+  "nome_completo": "Romeu Zema Neto",
+  "partido": "NOVO",
+  "id_politico": "rosgmjttza"
+ },
+ "mandato": {
+  "inicio": "2023-01-01",
+  "fim": "2026-12-31",
+  "situacao": "em curso",
+  "nota": "Romeu Zema deixou o cargo em 22/03/2026 para disputar a Presidência; o vice Mateus Simões, eleito na mesma chapa, assumiu. Avaliamos o governo da chapa eleita até a data da revisão."
+ },
+ "plano": {
+  "titulo": "Plano de Governo Romeu Zema (agosto de 2022)",
+  "paginas": 20,
+  "arquivo": "2022MG130001701690.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/MG/130001701690",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2022_MG.zip"
+ },
+ "revisado": "2026-10-08",
+ "resumo": [
+  {
+   "t": "Saúde: terminar os hospitais regionais e ampliar as cirurgias do Opera Mais.",
+   "p": 15
+  },
+  {
+   "t": "Segurança: integrar as polícias e seus sistemas de dados.",
+   "p": 15
+  },
+  {
+   "t": "Educação: mais vagas em cursos técnicos (Trilhas de Futuro) e mais ensino médio em tempo integral.",
+   "p": 16
+  },
+  {
+   "t": "Infraestrutura: ampliar concessões e PPPs em rodovias, aeroportos e transporte.",
+   "p": 16
+  },
+  {
+   "t": "Economia: licença automática para empreendimentos de menor impacto e privatização de estatais.",
+   "p": 17
+  },
+  {
+   "t": "Contas públicas: novo regulamento do ICMS, lei de responsabilidade fiscal mineira e reajuste anual dos servidores pela inflação.",
+   "p": 18
+  },
+  {
+   "t": "Assistência social: inclusão digital, auxílio habitacional e Casa da Mulher Mineira.",
+   "p": 19
+  }
+ ],
+ "promessas": [
+  {
+   "id": "mg22-01",
+   "tema": "Saúde",
+   "promessa": "Terminar a entrega dos hospitais regionais",
+   "trecho": "pretendemos finalizar a entrega dos Hospitais Regionais de forma a reduzir os vazios assistenciais",
+   "pagina": 15,
+   "status": "em_andamento",
+   "explicacao": "O Hospital Regional de Teófilo Otoni foi entregue em dezembro de 2025, o primeiro de cinco; outros, como o de Conselheiro Lafaiete, ainda estavam em obras.",
+   "evidencias": [
+    {
+     "titulo": "Agência Minas — Governo entrega obras do Hospital Regional de Teófilo Otoni",
+     "url": "https://www.agenciaminas.mg.gov.br/noticia/governo-de-minas-entrega-obras-do-hospital-regional-de-teofilo-otoni-maior-complexo-de-saude-do-interior-do-estado-128498"
+    },
+    {
+     "titulo": "Agência Minas — Vistoria das obras do Hospital Regional de Conselheiro Lafaiete",
+     "url": "https://www.agenciaminas.mg.gov.br/noticia/governo-de-minas-vistoria-obras-do-hospital-regional-de-conselheiro-lafaiete-128964"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "mg22-02",
+   "tema": "Educação",
+   "promessa": "Ampliar o ensino médio em tempo integral",
+   "trecho": "Avançaremos na oferta de ensino integral aos jovens",
+   "pagina": 16,
+   "status": "cumprida",
+   "explicacao": "A rede estadual passou de 798 para 838 escolas com ensino médio em tempo integral em 2026, segundo a Secretaria de Educação.",
+   "evidencias": [
+    {
+     "titulo": "SEE-MG — Ensino Médio em Tempo Integral passa de 798 para 838 escolas",
+     "url": "https://www.educacao.mg.gov.br/see-mg-reune-com-diretores-do-ensino-em-tempo-integral-e-anuncia-avancos-importantes-para-modelo-pedagogico/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "mg22-03",
+   "tema": "Infraestrutura",
+   "promessa": "Ampliar concessões e parcerias público-privadas",
+   "trecho": "Ampliar os programas de concessão e de parcerias público-privadas.",
+   "pagina": 16,
+   "status": "cumprida",
+   "explicacao": "Novas concessões foram feitas no mandato, como a rodoviária Via Liberdade (contrato assinado em 2026) e a dos parques do Ibitipoca e Itacolomi (2023).",
+   "evidencias": [
+    {
+     "titulo": "Agência Minas — Contrato de concessão da Via Liberdade",
+     "url": "https://www.agenciaminas.mg.gov.br/noticia/governo-de-minas-assina-contrato-de-concessao-da-via-liberdade-um-dos-maiores-projetos-rodoviarios-do-estado-128712"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "mg22-04",
+   "tema": "Energia",
+   "promessa": "Criar um marco legal estadual para energias renováveis",
+   "trecho": "Criar um Marco Legal Estadual para as fontes renováveis de Energia",
+   "pagina": 17,
+   "status": "parcialmente",
+   "explicacao": "Não houve um marco único; foram aprovadas leis separadas por fonte: energia renovável no campo (2023), biogás e biometano (2023) e hidrogênio de baixo carbono (2024).",
+   "evidencias": [
+    {
+     "titulo": "ALMG — Lei 24.625/2023 (energia rural renovável)",
+     "url": "https://www.almg.gov.br/legislacao-mineira/texto/LEI/24625/2023/"
+    },
+    {
+     "titulo": "ALMG — Lei 24.396/2023 (biogás e biometano)",
+     "url": "https://www.almg.gov.br/legislacao-mineira/texto/LEI/24396/2023/"
+    },
+    {
+     "titulo": "ALMG — Lei 24.940/2024 (hidrogênio de baixo carbono)",
+     "url": "https://www.almg.gov.br/legislacao-mineira/texto/LEI/24940/2024/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "mg22-05",
+   "tema": "Economia",
+   "promessa": "Privatizar estatais",
+   "trecho": "Realizar a venda de participações minoritárias e privatização de empresas estatais",
+   "pagina": 17,
+   "status": "cumprida",
+   "explicacao": "A Assembleia autorizou a privatização da Copasa (Lei 25.664/2025) e o governo concluiu a venda em 2026.",
+   "evidencias": [
+    {
+     "titulo": "ALMG — Lei 25.664/2025 (desestatização da Copasa)",
+     "url": "https://www.almg.gov.br/legislacao-mineira/texto/LEI/25664/2025/"
+    },
+    {
+     "titulo": "Agência Minas — Governo conclui a desestatização da Copasa",
+     "url": "https://www.agenciaminas.mg.gov.br/multimidia/audio/radio-governo-de-minas-conclui-processo-de-desestatizacao-da-copasa-e-abre-novo-ciclo-para-o-saneamento-6227"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "mg22-06",
+   "tema": "Impostos",
+   "promessa": "Terminar o novo regulamento do ICMS em 2023",
+   "trecho": "com previsão para finalização em 2023. O Novo regulamento tem foco no melhor atendimento aos empreendedores",
+   "pagina": 18,
+   "status": "cumprida",
+   "explicacao": "O novo Regulamento do ICMS foi publicado em março de 2023 (Decreto 48.589/2023).",
+   "evidencias": [
+    {
+     "titulo": "ALMG — Decreto 48.589/2023 (novo RICMS)",
+     "url": "https://www.almg.gov.br/legislacao-mineira/DEC/48589/2023/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "mg22-07",
+   "tema": "Servidores",
+   "promessa": "Reajuste anual dos servidores pela inflação",
+   "trecho": "Agora vamos garantir o poder de compra do servidor público, com o reajustamento anual para recompor as perdas ocasionadas pela inflação.",
+   "pagina": 18,
+   "status": "parcialmente",
+   "explicacao": "Encontramos uma lei de recomposição geral em 2024 (4,62%). Não encontramos lei de recomposição geral nos outros anos do mandato.",
+   "evidencias": [
+    {
+     "titulo": "ALMG — Lei 24.838/2024 (recomposição de 4,62%)",
+     "url": "https://www.almg.gov.br/legislacao-mineira/texto/LEI/24838/2024"
+    },
+    {
+     "titulo": "Agência Minas — Governo sanciona reajuste de 4,62%",
+     "url": "https://www.agenciaminas.mg.gov.br/noticia/governo-de-minas-sanciona-nesta-quinta-feira-27-6-reajuste-salarial-de-4-62-para-os-servidores-publicos-122601"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "mg22-08",
+   "tema": "Meio ambiente",
+   "promessa": "Ampliar as concessões de parques estaduais",
+   "trecho": "Continuar e ampliar o programa de concessões de gestão de parques e unidades de preservação.",
+   "pagina": 18,
+   "status": "cumprida",
+   "explicacao": "Em 2023 foi assinado o contrato de concessão dos parques estaduais do Ibitipoca e do Itacolomi.",
+   "evidencias": [
+    {
+     "titulo": "Agência Minas — Contrato de concessão dos parques do Ibitipoca e Itacolomi",
+     "url": "https://www.agenciaminas.mg.gov.br/noticia/minas-assina-contrato-de-concessao-de-uso-dos-parques-do-ibitipoca-e-itacolomi-117418"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}

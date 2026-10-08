@@ -1,0 +1,166 @@
+{
+ "ano": 2022,
+ "cargo": "governador",
+ "uf": "RS",
+ "sq": "210001609847",
+ "pessoa": {
+  "nome": "Eduardo Leite",
+  "nome_completo": "Eduardo Figueiredo Cavalheiro Leite",
+  "partido": "PSDB",
+  "id_politico": "f465mavol4"
+ },
+ "mandato": {
+  "inicio": "2023-01-01",
+  "fim": "2026-12-31",
+  "situacao": "em curso",
+  "nota": "Mandato ainda em curso: o status vale até a data da revisão e pode mudar."
+ },
+ "plano": {
+  "titulo": "Plano de Governo Eduardo Leite (2023-2026)",
+  "paginas": 58,
+  "arquivo": "2022RS210001609847.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/RS/210001609847",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2022_RS.zip"
+ },
+ "revisado": "2026-10-08",
+ "resumo": [
+  {
+   "t": "Educação: mais escolas de ensino médio em tempo integral e manter a bolsa Todo Jovem na Escola.",
+   "p": 13
+  },
+  {
+   "t": "Segurança: tornar o programa RS Seguro uma política permanente.",
+   "p": 23
+  },
+  {
+   "t": "Parcerias: continuar as concessões e PPPs.",
+   "p": 46
+  },
+  {
+   "t": "Estradas: asfalto para todos os municípios sem acesso asfáltico e estudar novas concessões de rodovias.",
+   "p": 48
+  },
+  {
+   "t": "Contas públicas: manter o equilíbrio fiscal, salários em dia e quitar precatórios.",
+   "p": 56
+  },
+  {
+   "t": "Impostos: apoiar a reforma tributária nacional e atualizar o Devolve ICMS.",
+   "p": 56
+  }
+ ],
+ "promessas": [
+  {
+   "id": "rs22-01",
+   "tema": "Educação",
+   "promessa": "Ampliar as escolas de ensino médio em tempo integral",
+   "trecho": "Ampliar o número de Escolas de Ensino Médio em Tempo Integral (EMTI)",
+   "pagina": 13,
+   "status": "cumprida",
+   "explicacao": "As escolas estaduais com ensino médio em tempo integral passaram de 111 (2023) para 438 previstas em 2026.",
+   "evidencias": [
+    {
+     "titulo": "Governo do RS — Rede Estadual chega a 515 escolas em Tempo Integral",
+     "url": "https://www.estado.rs.gov.br/rede-estadual-chega-a-515-escolas-em-tempo-integral-envolvendo-40-mil-estudantes-gauchos"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "rs22-02",
+   "tema": "Educação",
+   "promessa": "Manter a bolsa Todo Jovem na Escola",
+   "trecho": "Manter o programa Todo Jovem na Escola com bolsa mensal para os alunos do Ensino Médio em situação de vulnerabilidade social",
+   "pagina": 13,
+   "status": "cumprida",
+   "explicacao": "O programa continuou pagando bolsas mensais; em março de 2026 foram pagas mais de 92 mil bolsas.",
+   "evidencias": [
+    {
+     "titulo": "Governo do RS — Pagamento de mais de 92 mil bolsas do Todo Jovem na Escola (03/2026)",
+     "url": "https://estado.rs.gov.br/governo-do-estado-paga-mais-de-92-mil-bolsas-do-programa-todo-jovem-na-escola-nesta-sexta-20"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "rs22-03",
+   "tema": "Estradas",
+   "promessa": "Obras de asfalto para todos os municípios sem acesso asfáltico",
+   "trecho": "Colocar em execução obras de pavimentação para todos os municípios sem acesso asfáltico",
+   "pagina": 48,
+   "status": "em_andamento",
+   "explicacao": "Em abril de 2025, dos 62 municípios sem asfalto em 2019, 24 tinham o acesso pronto, 19 estavam em obras e os demais em preparação.",
+   "evidencias": [
+    {
+     "titulo": "Governo do RS — Em seis anos, maior investimento em acessos asfálticos",
+     "url": "https://estado.rs.gov.br/em-seis-anos-estado-realiza-maior-investimento-da-historia-em-acessos-asfalticos-com-recursos-proprios"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "rs22-04",
+   "tema": "Estradas",
+   "promessa": "Estudar concessões de novos lotes de rodovias",
+   "trecho": "Avaliar modelos de concessão de novos lotes de rodovias",
+   "pagina": 48,
+   "status": "cumprida",
+   "explicacao": "O governo modelou novos blocos de rodovias e levou o Bloco 2 a leilão, com edital refeito em 2026 após análise do Tribunal de Contas.",
+   "evidencias": [
+    {
+     "titulo": "Governo do RS — Redução da tarifa do Bloco 2 e nova data do leilão",
+     "url": "https://estado.rs.gov.br/leite-anuncia-reducao-da-tarifa-por-quilometro-do-bloco-2-de-rodovias-e-mudanca-na-data-do-leilao"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "rs22-05",
+   "tema": "Contas públicas",
+   "promessa": "Melhorar a nota de crédito do estado no Tesouro (Capag)",
+   "trecho": "Trabalhar para melhorar a nota de classificação do Estado no STN",
+   "pagina": 56,
+   "status": "cumprida",
+   "explicacao": "Em 2026 o estado saiu da nota D e passou para a nota C na avaliação do Tesouro Nacional, a melhor da sua história.",
+   "evidencias": [
+    {
+     "titulo": "Governo do RS — RS alcança sua melhor nota da história em capacidade de pagamento",
+     "url": "https://www.estado.rs.gov.br/rio-grande-do-sul-alcanca-sua-melhor-nota-da-historia-em-capacidade-de-pagamento"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "rs22-06",
+   "tema": "Contas públicas",
+   "promessa": "Pagar servidores e fornecedores em dia",
+   "trecho": "Manter a pontualidade dos pagamentos a servidores e fornecedores",
+   "pagina": 56,
+   "status": "cumprida",
+   "explicacao": "Segundo a Secretaria da Fazenda, o estado mantém salários e pagamentos a fornecedores em dia.",
+   "evidencias": [
+    {
+     "titulo": "Governo do RS — Capag: o Estado mantém salários e pagamentos a fornecedores em dia",
+     "url": "https://www.estado.rs.gov.br/rio-grande-do-sul-alcanca-sua-melhor-nota-da-historia-em-capacidade-de-pagamento"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "rs22-07",
+   "tema": "Contas públicas",
+   "promessa": "Executar o plano de quitação de precatórios",
+   "trecho": "Implementar o plano de quitação de precatórios",
+   "pagina": 56,
+   "status": "em_andamento",
+   "explicacao": "Os pagamentos seguem: só em 2025 foram pagos R$ 2,8 bilhões. O próprio plano de governo prevê a quitação até 2029.",
+   "evidencias": [
+    {
+     "titulo": "Governo do RS — Capag: R$ 2,8 bilhões em precatórios pagos em 2025",
+     "url": "https://www.estado.rs.gov.br/rio-grande-do-sul-alcanca-sua-melhor-nota-da-historia-em-capacidade-de-pagamento"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}
