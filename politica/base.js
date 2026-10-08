@@ -13,7 +13,7 @@
     { href: ROOT + "#mapa", label: "Mapa", page: "mapa" },
     { href: ROOT + "#parlamentares", label: "Políticos", page: "politicos" },
     { href: ROOT + "#executivo", label: "Governo", page: "governo" },
-    { href: ROOT + "#proposicoes", label: "Propostas" },
+    { href: ROOT + "#proposicoes", label: "Propostas", page: "propostas" },
     { href: ROOT + "#parlamentares", label: "Congresso" }
   ];
   var body = document.body;

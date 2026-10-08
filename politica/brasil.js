@@ -61,11 +61,11 @@
     grid.insertAdjacentElement("afterend", moreBtn);
     function paint(q) {
       const n = (q || "").trim().toLowerCase();
-      const rows = mins.filter(m => !n || (m.nome + " " + m.orgao).toLowerCase().includes(n));
+      const rows = mins.filter(m => !n || (m.nome + " " + m.orgao + " " + (m.partido || "")).toLowerCase().includes(n));
       const cut = n || showAll ? rows : rows.slice(0, LIMIT);
       count.textContent = rows.length + " pasta" + (rows.length === 1 ? "" : "s");
       grid.innerHTML = cut.map(m =>
-        "<li><small>" + esc(m.orgao) + "</small><strong>" + esc(m.nome) + "</strong><span>No cargo desde " + esc(m.desde) + "</span></li>"
+        "<li><small>" + esc(m.orgao) + "</small><strong>" + esc(m.nome) + "</strong>" + (m.partido ? "<span>" + esc(m.partido) + "</span>" : "") + (m.desde ? "<span>No cargo desde " + esc(m.desde) + "</span>" : "") + "</li>"
       ).join("") || '<li><strong>Nenhuma pasta com esse texto.</strong></li>';
       moreBtn.hidden = !!n || rows.length <= LIMIT;
       moreBtn.textContent = showAll ? "Mostrar menos" : "Mostrar todas as " + rows.length + " pastas";
@@ -282,7 +282,31 @@
     });
   }
 
-  fetch("data/governo.json").then(r => r.json()).then(renderGoverno).catch(() => {
+  // Gabinete: lê o conjunto conferido (data/governo/atual.json, Planalto + checagem
+  // cruzada) e as datas oficiais da eleição (data/governo/eleicoes2026.json).
+  // O arquivo antigo data/governo.json só entra se o conferido não abrir.
+  const getJSON = u => fetch(u).then(r => { if (!r.ok) throw new Error(u); return r.json(); });
+  function fromVerified(a, e, old) {
+    const dia = iso => { if (!iso) return ""; const [y, m, d] = iso.split("-"); const ms = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"]; return (+d === 1 ? "1º" : +d) + " de " + ms[+m - 1] + " de " + y; };
+    const pessoa = p => ({ nome: p.nome, partido: p.partido, cargo: p.cargo, desde: p.desdeTexto || dia(p.desde), url: p.url });
+    const datas = (e && e.datas) || {};
+    const ele = (old && old.eleicao2026) || {};
+    return {
+      presidente: pessoa(a.presidente),
+      vice: pessoa(a.vice),
+      ministros: (a.ministerios || []).map(m => ({ orgao: m.orgao, nome: m.nome, partido: m.partido && m.partido !== "Sem partido" ? m.partido : "", desde: m.desdeTexto || "" })),
+      eleicao2026: {
+        resumo: (ele.resumo ? ele.resumo + " " : "") + (datas.posse ? "A posse do próximo mandato é em " + dia(datas.posse) + "." : ""),
+        links: [{ rotulo: "Eleição explicada", url: "/politica/governo/#eleicoes" }].concat(ele.links || [])
+      },
+      nota: a.nota + (a.verificadoEm ? " Conferido em " + a.verificadoEm.split("-").reverse().join("/") + "." : ""),
+      fontes: a.fontes || []
+    };
+  }
+  Promise.all([getJSON("data/governo/atual.json"), getJSON("data/governo/eleicoes2026.json").catch(() => null), getJSON("data/governo.json").catch(() => null)])
+    .then(([a, e, old]) => renderGoverno(fromVerified(a, e, old)))
+    .catch(() => getJSON("data/governo.json").then(renderGoverno))
+    .catch(() => {
     const box = $("#exec-body");
     if (box) box.innerHTML = '<p class="err">Não foi possível abrir o gabinete. Veja a <a href="https://www.gov.br/planalto/pt-br/conheca-a-presidencia/ministros-e-ministras" target="_blank" rel="noreferrer">lista oficial do Planalto</a>.</p>';
   });

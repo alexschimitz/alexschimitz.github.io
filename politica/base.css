@@ -19,7 +19,7 @@ html[data-theme="light"] { --warn: #a86a00; --bad: #c43c3c; }
 .politica { overflow-wrap: anywhere; }
 .mono { font-family: "DM Mono", monospace; }
 .muted { color: var(--muted); }
-.skip-link { position: absolute; left: 12px; top: -60px; z-index: 200; padding: 10px 14px; border-radius: 10px; background: var(--accent); color: #071009; font-weight: 700; }
+.skip-link { position: absolute; left: 12px; top: -60px; z-index: 200; padding: 10px 14px; border-radius: 10px; background: var(--accent); color: var(--on-accent, #071009); font-weight: 700; }
 .skip-link:focus { top: 12px; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 
@@ -72,7 +72,7 @@ html[data-theme="light"] .pol-alt { background: rgba(10, 20, 14, 0.02); }
 /* Tabs */
 .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
 .tabs [role="tab"] { min-height: 42px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line-strong); background: transparent; color: var(--muted); font-weight: 700; font-size: 0.86rem; cursor: pointer; }
-.tabs [role="tab"][aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: #071009; }
+.tabs [role="tab"][aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent, #071009); }
 
 /* Listas (votações / proposições) */
 .items { list-style: none; display: grid; gap: 10px; }
@@ -389,7 +389,7 @@ html[data-theme="light"] .chip.tema, html[data-theme="light"] .simples .pc-tags 
   border: 1px solid var(--line-strong); background: transparent; color: var(--text);
   font: inherit; font-weight: 700; font-size: 0.82rem; cursor: pointer;
 }
-.uf-chips button[aria-pressed="true"], .cap-btn[aria-pressed="true"] { background: var(--accent); color: #071009; border-color: var(--accent); }
+.uf-chips button[aria-pressed="true"], .cap-btn[aria-pressed="true"] { background: var(--accent); color: var(--on-accent, #071009); border-color: var(--accent); }
 
 .sheet h3 { font-size: 1.35rem; letter-spacing: -0.03em; }
 .sheet .meta { margin-top: 4px; color: var(--muted); }
@@ -439,7 +439,7 @@ body { overflow-x: clip; }
   padding: 0 14px; border-radius: 999px; border: 1px solid var(--line-strong);
   font-size: 0.82rem; font-weight: 700; color: var(--muted); white-space: nowrap;
 }
-.pol-subnav a:hover, .pol-subnav a[aria-current="true"] { color: #071009; background: var(--accent); border-color: var(--accent); }
+.pol-subnav a:hover, .pol-subnav a[aria-current="true"] { color: var(--on-accent, #071009); background: var(--accent); border-color: var(--accent); }
 @media (max-width: 760px) { .pol-subnav { top: 72px; } }
 html { scroll-padding-top: 140px; }
 

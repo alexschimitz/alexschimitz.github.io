@@ -9,6 +9,7 @@
   --muted: #9ba69f;
   --muted-2: #6e7a72;
   --accent: #62f58b;
+  --on-accent: #071009;
   --accent-soft: rgba(98, 245, 139, 0.12);
   --accent-glow: rgba(98, 245, 139, 0.28);
   --max-width: 1180px;
@@ -55,7 +56,7 @@ html.menu-open body {
 
 ::selection {
   background: var(--accent);
-  color: #071009;
+  color: var(--on-accent, #071009);
 }
 
 a {
@@ -162,7 +163,7 @@ button {
   place-items: center;
   border-radius: 11px;
   background: var(--accent);
-  color: #08100a;
+  color: var(--on-accent, #08100a);
   font-size: 0.83rem;
   font-weight: 800;
   box-shadow: 0 0 30px rgba(98, 245, 139, 0.13);
@@ -303,7 +304,7 @@ button {
 
 .button-primary {
   background: var(--accent);
-  color: #071009;
+  color: var(--on-accent, #071009);
   box-shadow: 0 10px 34px rgba(98, 245, 139, 0.11);
 }
 
@@ -1267,8 +1268,10 @@ html[data-theme="light"] {
   --text: #121816;
   --muted: #5b675f;
   --muted-2: #7a877e;
-  --accent: #1f9d4b;
-  --accent-soft: rgba(31, 157, 75, 0.12);
+  /* #167a3b: texto verde com contraste AA (5,4:1 no branco); botões verdes usam texto branco */
+  --accent: #167a3b;
+  --on-accent: #ffffff;
+  --accent-soft: rgba(22, 122, 59, 0.12);
   --accent-glow: rgba(31, 157, 75, 0.22);
   --shadow: 0 24px 70px rgba(20, 40, 28, 0.12);
 }

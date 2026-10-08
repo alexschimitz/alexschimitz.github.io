@@ -4,6 +4,7 @@
     "gastos": true,
     "mapa": true,
     "politicos": false,
-    "governo": true
+    "governo": true,
+    "propostas": true
   }
 }
