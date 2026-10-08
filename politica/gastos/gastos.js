@@ -782,7 +782,7 @@
       const y = sel.value; const a = V.anos[y];
       $('#vg-kpis').innerHTML = `<div><dt>Viagens em ${esc(y)}</dt><dd>${nf0.format(a.n)}</dd></div><div><dt>Custo total</dt><dd>${brl(a.total)}</dd><small>diárias ${brl(a.diarias)} · passagens ${brl(a.passagens)}</small></div><div><dt>Média por viagem</dt><dd>${brl(a.total / Math.max(1, a.n))}</dd></div><div><dt>Por dia</dt><dd>${nf0.format(a.n / 365)} viagens</dd><small>${brl(a.total / 365)} por dia</small></div>`;
       try { VG.data = await getJSON(`viagens/ano/${y}.json`); } catch (e) { VG.data = null; }
-      drawVg(); if (VG.sel) showVg(VG.sel);
+      drawVg(); const first = VG.sel || (VG.data && Object.keys(VG.data.orgaos)[0]); if (first) showVg(first);
     };
     sel.addEventListener('change', load);
     $('#vg-q').addEventListener('input', debounce(drawVg, 200));
