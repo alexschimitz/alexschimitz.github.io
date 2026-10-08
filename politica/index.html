@@ -13,12 +13,11 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="preload" href="data/deputados.json" as="fetch" crossorigin>
   <link rel="preload" href="data/senadores.json" as="fetch" crossorigin>
-  <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="base.css">
   <link rel="stylesheet" href="politica.css">
-  <link rel="stylesheet" href="mapa.css">
 </head>
 <body class="politica">
-  <a class="skip-link" href="#executivo">Pular para o conteúdo</a>
+  <a class="skip-link" href="#comecar">Pular para o conteúdo</a>
   <div class="ambient ambient-one" aria-hidden="true"></div>
   <div class="ambient ambient-two" aria-hidden="true"></div>
 
@@ -31,32 +30,35 @@
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
         <span></span><span></span>
       </button>
-      <nav class="main-nav" id="main-nav" aria-label="Navegação da página Política">
-        <a href="#executivo">Executivo</a>
-        <a href="#mapa">Mapa</a>
-        <a href="#parlamentares">Parlamentares</a>
-        <a href="#gastos">Gastos</a>
-        <a href="#votacoes">Votações</a>
-        <a href="#proposicoes">Projetos</a>
-        <a href="#partidos">Partidos</a>
-        <a href="#glossario">Glossário</a>
-        <a href="#noticias">Notícias</a>
+      <nav class="main-nav" id="main-nav" aria-label="Páginas de política">
+        <a href="/politica/">Painel</a>
+        <a href="/politica/#gastos" data-page="gastos">Gastos</a>
+        <a href="/politica/#mapa" data-page="mapa">Mapa</a>
+        <a href="/politica/#parlamentares" data-page="politicos">Políticos</a>
+        <a href="/politica/#executivo" data-page="governo">Governo</a>
+        <a href="/politica/#proposicoes">Propostas</a>
+        <a href="/politica/#parlamentares">Congresso</a>
+        <span class="nav-sep" aria-hidden="true"></span>
         <button class="theme-toggle" type="button" aria-label="Alternar tema claro ou escuro" title="Tema">◐</button>
-        <a class="nav-cta" href="../">← Início</a>
+        <a class="nav-cta" href="/">← Site</a>
       </nav>
     </div>
   </header>
 
-  <main>
+  <main id="conteudo">
+    <nav class="pol-subnav" aria-label="Atalhos desta página">
+      <a href="#comecar">Começar</a>
+      <a href="#executivo">Governo agora</a>
+      <a href="#mapa">Mapa</a>
+      <a href="#parlamentares">Congresso</a>
+      <a href="#gastos">Gastos</a>
+      <a href="#votacoes">Votações</a>
+      <a href="#proposicoes">Projetos</a>
+      <a href="#partidos">Partidos</a>
+      <a href="#glossario">Glossário</a>
+      <a href="#noticias">Notícias</a>
+    </nav>
 
-  <nav class="pol-subnav" aria-label="Atalhos do painel">
-    <a href="#executivo">Executivo</a>
-    <a href="#mapa">Mapa</a>
-    <a href="#votacoes">Votos</a>
-    <a href="#parlamentares">Congresso</a>
-    <a href="#gastos">Gastos</a>
-    <a href="#noticias">Notícias</a>
-  </nav>
     <section class="pol-hero container" aria-labelledby="pol-title">
       <div class="eyebrow"><span class="status-dot"></span> Painel cívico · dados abertos</div>
       <h1 id="pol-title">Política brasileira, <span>direto das fontes oficiais.</span></h1>
@@ -72,10 +74,66 @@
       </dl>
     </section>
 
-
-    <section class="section pol-section" id="executivo" aria-labelledby="ex-title" tabindex="-1">
+    <section class="section pol-section pol-start" id="comecar" aria-labelledby="start-title" tabindex="-1">
       <div class="container">
-        <div class="section-kicker">Executivo</div>
+        <div class="section-kicker">Como usar</div>
+        <div class="projects-heading">
+          <div>
+            <h2 id="start-title">Escolha o que você quer saber</h2>
+            <p>Tudo aqui vem de sites oficiais do governo e do Congresso. Nós só organizamos e explicamos em palavras simples. Nenhum texto dá opinião.</p>
+          </div>
+        </div>
+        <ol class="howto">
+          <li><b>1. Escolha um assunto</b><span>Toque num dos cartões abaixo: gastos, mapa, políticos, governo ou propostas.</span></li>
+          <li><b>2. Filtre</b><span>Use a busca e os filtros por nome, partido, estado ou cidade.</span></li>
+          <li><b>3. Entenda</b><span>Cada número e cada projeto vem explicado. Palavras difíceis têm o botão <span class="term-demo">?</span> “O que é…”.</span></li>
+          <li><b>4. Confira na fonte</b><span>Sempre há um link para o dado oficial, caso você queira checar.</span></li>
+        </ol>
+        <ul class="entry-grid" aria-label="Seções do painel">
+          <li><a class="entry" href="#gastos" data-page="gastos">
+            <span class="entry-ico" aria-hidden="true">R$</span>
+            <span class="entry-txt"><strong data-soon>Gastos</strong>
+            <span>Quanto o governo, a Presidência, os deputados e os senadores gastam, e com o quê. Filtre por pessoa, órgão e ano.</span></span>
+            <span class="entry-go" aria-hidden="true">→</span></a></li>
+          <li><a class="entry" href="#mapa" data-page="mapa">
+            <span class="entry-ico" aria-hidden="true">◎</span>
+            <span class="entry-txt"><strong data-soon>Mapa do Brasil</strong>
+            <span>Toque no seu estado ou cidade: quem governa, quem é o prefeito e como estão as contas do estado e da prefeitura.</span></span>
+            <span class="entry-go" aria-hidden="true">→</span></a></li>
+          <li><a class="entry" href="#parlamentares" data-page="politicos">
+            <span class="entry-ico" aria-hidden="true">☰</span>
+            <span class="entry-txt"><strong data-soon>Políticos e mandatos</strong>
+            <span>Busque qualquer político e veja quantos mandatos teve, em quais cargos, por quais partidos e em que anos.</span></span>
+            <span class="entry-go" aria-hidden="true">→</span></a></li>
+          <li><a class="entry" href="#executivo" data-page="governo">
+            <span class="entry-ico" aria-hidden="true">★</span>
+            <span class="entry-txt"><strong data-soon>Governo</strong>
+            <span>Presidente, vice e ministros de hoje, os presidentes desde 1988, medidas provisórias e leis explicadas.</span></span>
+            <span class="entry-go" aria-hidden="true">→</span></a></li>
+          <li><a class="entry" href="#proposicoes" id="entry-propostas">
+            <span class="entry-ico" aria-hidden="true">✎</span>
+            <span class="entry-txt"><strong>Propostas</strong>
+            <span>Projetos de lei e PECs em palavras simples: quem criou, pra que serve, como funciona e em que pé está.</span></span>
+            <span class="entry-go" aria-hidden="true">→</span></a></li>
+          <li><a class="entry" href="#parlamentares">
+            <span class="entry-ico" aria-hidden="true">⌂</span>
+            <span class="entry-txt"><strong>Congresso hoje</strong>
+            <span>Os 513 deputados e 81 senadores em exercício, com perfil, gastos, projetos e votos de cada um.</span></span>
+            <span class="entry-go" aria-hidden="true">→</span></a></li>
+        </ul>
+        <ul class="quick-links" aria-label="Atalhos rápidos">
+          <li><a href="#rank-title">Ranking de quem mais gastou</a></li>
+          <li><a href="#votacoes">Como cada um votou</a></li>
+          <li><a href="#partidos">Bancadas por partido</a></li>
+          <li><a href="#glossario">Glossário</a></li>
+          <li><a href="#noticias">Notícias oficiais</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="executivo" aria-labelledby="ex-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Governo agora</div>
         <div class="projects-heading">
           <div>
             <h2 id="ex-title">Presidente, vice e ministros</h2>
@@ -83,12 +141,13 @@
           </div>
         </div>
         <div id="exec-body"><p class="muted">Carregando gabinete…</p></div>
+        <p class="more-link" data-page-reveal="governo" hidden><a href="/politica/governo/">Ver o governo completo: presidentes desde 1988, ministérios e medidas →</a></p>
       </div>
     </section>
 
-    <section class="section pol-section pol-alt" id="mapa" aria-labelledby="map-title">
+    <section class="section pol-section" id="mapa" aria-labelledby="map-title">
       <div class="container">
-        <div class="section-kicker">Municípios</div>
+        <div class="section-kicker">Mapa</div>
         <div class="projects-heading">
           <div>
             <h2 id="map-title">Mapa do Brasil, estado por estado</h2>
@@ -101,20 +160,21 @@
             <input id="mun-q" type="search" placeholder="Ex.: Porto Alegre, Recife, Oiapoque" autocomplete="off" enterkeyhint="search">
           </div>
         </form>
-        <div class="uf-chips" id="uf-chips" aria-label="Estados"></div>
+        <div class="uf-chips" id="uf-chips" role="group" aria-label="Estados"></div>
         <div class="map-layout">
-          <div class="map-frame" id="br-map" aria-label="Mapa interativo dos estados"></div>
+          <div class="map-frame" id="br-map"></div>
           <div class="sheet" id="uf-sheet" aria-live="polite"><p class="muted">Escolha um estado no mapa.</p></div>
         </div>
         <h3 class="h-md">Capitais</h3>
-        <div class="uf-chips" id="cap-chips" aria-label="Capitais"></div>
+        <div class="uf-chips" id="cap-chips" role="group" aria-label="Capitais"></div>
         <p class="note" id="uf-note"></p>
+        <p class="more-link" data-page-reveal="mapa" hidden><a href="/politica/mapa/">Abrir o mapa completo, com as contas do estado e da prefeitura →</a></p>
       </div>
     </section>
 
-    <section class="section pol-section" id="parlamentares" aria-labelledby="parl-title" tabindex="-1">
+    <section class="section pol-section pol-alt" id="parlamentares" aria-labelledby="parl-title" tabindex="-1">
       <div class="container">
-        <div class="section-kicker">01 / Parlamentares</div>
+        <div class="section-kicker">Parlamentares</div>
         <div class="projects-heading">
           <div>
             <h2 id="parl-title">Quem está no Congresso</h2>
@@ -151,9 +211,9 @@
       </div>
     </section>
 
-    <section class="section pol-section pol-alt" id="gastos" aria-labelledby="gas-title">
+    <section class="section pol-section" id="gastos" aria-labelledby="gas-title">
       <div class="container">
-        <div class="section-kicker">02 / Gastos</div>
+        <div class="section-kicker">Gastos</div>
         <div class="projects-heading">
           <div>
             <h2 id="gas-title">Quanto eles gastam da cota parlamentar</h2>
@@ -161,8 +221,8 @@
           </div>
         </div>
         <div class="tabs" role="tablist" aria-label="Casa legislativa dos gastos">
-          <button role="tab" id="tg-c" aria-controls="gg" aria-selected="true" data-k="c">Câmara</button>
-          <button role="tab" id="tg-s" aria-controls="gg" aria-selected="false" data-k="s" tabindex="-1">Senado</button>
+          <button type="button" role="tab" id="tg-c" aria-controls="gg" aria-selected="true" data-k="c">Câmara</button>
+          <button type="button" role="tab" id="tg-s" aria-controls="gg" aria-selected="false" data-k="s" tabindex="-1">Senado</button>
         </div>
         <div id="gg" role="tabpanel" aria-labelledby="tg-c" class="tab-panel"><p class="muted">Carregando…</p></div>
 
@@ -187,13 +247,14 @@
         </form>
         <p class="pol-count" id="r-count" role="status" aria-live="polite">Carregando ranking…</p>
         <div id="rank" class="rank"></div>
+        <p class="more-link" data-page-reveal="gastos" hidden><a href="/politica/gastos/">Ver todos os gastos: governo federal, Presidência e anos anteriores →</a></p>
         <p class="note">Ranking entre parlamentares em exercício com gastos registrados no ano. Gastar mais não significa irregularidade, e gastar menos não significa economia de outro tipo: o limite da cota muda conforme o estado e cada mandato tem rotinas diferentes.</p>
       </div>
     </section>
 
-    <section class="section pol-section" id="votacoes" aria-labelledby="vot-title">
+    <section class="section pol-section pol-alt" id="votacoes" aria-labelledby="vot-title">
       <div class="container">
-        <div class="section-kicker">03 / Votações</div>
+        <div class="section-kicker">Votações</div>
         <div class="projects-heading">
           <div>
             <h2 id="vot-title">Votações recentes em plenário</h2>
@@ -201,17 +262,17 @@
           </div>
         </div>
         <div class="tabs" role="tablist" aria-label="Casa legislativa das votações">
-          <button role="tab" id="tv-cn" aria-controls="pv" aria-selected="true" data-k="cn">Câmara · nominais</button>
-          <button role="tab" id="tv-ca" aria-controls="pv" aria-selected="false" data-k="ca" tabindex="-1">Câmara · todas</button>
-          <button role="tab" id="tv-s" aria-controls="pv" aria-selected="false" data-k="s" tabindex="-1">Senado</button>
+          <button type="button" role="tab" id="tv-cn" aria-controls="pv" aria-selected="true" data-k="cn">Câmara · nominais</button>
+          <button type="button" role="tab" id="tv-ca" aria-controls="pv" aria-selected="false" data-k="ca" tabindex="-1">Câmara · todas</button>
+          <button type="button" role="tab" id="tv-s" aria-controls="pv" aria-selected="false" data-k="s" tabindex="-1">Senado</button>
         </div>
         <div id="pv" role="tabpanel" aria-labelledby="tv-cn" class="tab-panel"><p class="muted">Carregando…</p></div>
       </div>
     </section>
 
-    <section class="section pol-section pol-alt" id="proposicoes" aria-labelledby="prop-title">
+    <section class="section pol-section" id="proposicoes" aria-labelledby="prop-title">
       <div class="container">
-        <div class="section-kicker">04 / Projetos</div>
+        <div class="section-kicker">Projetos</div>
         <div class="projects-heading">
           <div>
             <h2 id="prop-title">Projetos apresentados recentemente</h2>
@@ -219,16 +280,16 @@
           </div>
         </div>
         <div class="tabs" role="tablist" aria-label="Casa legislativa das proposições">
-          <button role="tab" id="tp-c" aria-controls="pp" aria-selected="true" data-k="c">Câmara</button>
-          <button role="tab" id="tp-s" aria-controls="pp" aria-selected="false" data-k="s" tabindex="-1">Senado</button>
+          <button type="button" role="tab" id="tp-c" aria-controls="pp" aria-selected="true" data-k="c">Câmara</button>
+          <button type="button" role="tab" id="tp-s" aria-controls="pp" aria-selected="false" data-k="s" tabindex="-1">Senado</button>
         </div>
         <div id="pp" role="tabpanel" aria-labelledby="tp-c" class="tab-panel"><p class="muted">Carregando…</p></div>
       </div>
     </section>
 
-    <section class="section pol-section" id="partidos" aria-labelledby="part-title">
+    <section class="section pol-section pol-alt" id="partidos" aria-labelledby="part-title">
       <div class="container">
-        <div class="section-kicker">05 / Partidos</div>
+        <div class="section-kicker">Partidos</div>
         <div class="projects-heading">
           <div>
             <h2 id="part-title">Bancadas por partido</h2>
@@ -248,9 +309,9 @@
       </div>
     </section>
 
-    <section class="section pol-section pol-alt" id="glossario" aria-labelledby="gl-title">
+    <section class="section pol-section" id="glossario" aria-labelledby="gl-title">
       <div class="container">
-        <div class="section-kicker">06 / Glossário</div>
+        <div class="section-kicker">Glossário</div>
         <div class="projects-heading">
           <div>
             <h2 id="gl-title">O que quer dizer cada termo</h2>
@@ -261,9 +322,9 @@
       </div>
     </section>
 
-    <section class="section pol-section" id="noticias" aria-labelledby="news-title">
+    <section class="section pol-section pol-alt" id="noticias" aria-labelledby="news-title">
       <div class="container">
-        <div class="section-kicker">07 / Notícias</div>
+        <div class="section-kicker">Notícias</div>
         <div class="projects-heading">
           <div>
             <h2 id="news-title">Últimas das agências oficiais</h2>
@@ -304,21 +365,15 @@
       </div>
       <div class="pol-footer-links">
         <p>© <span id="year"></span> Alexsander Schimitz.</p>
-        <a href="../">← Página inicial</a>
+        <a href="/politica/">Painel de política</a>
+        <a href="/">← Página inicial</a>
         <a href="#top">Voltar ao topo ↑</a>
       </div>
     </div>
   </footer>
 
-  <div class="dock" aria-label="Atalhos móveis">
-    <nav>
-      <a href="#executivo">Executivo</a>
-      <a href="#mapa">Mapa</a>
-      <a href="#votacoes">Votos</a>
-      <a href="#parlamentares">Congresso</a>
-    </nav>
-  </div>
   <script src="../scripts/home.js"></script>
+  <script src="base.js"></script>
   <script src="brasil.js"></script>
   <script src="simples.js"></script>
   <script src="politica.js"></script>

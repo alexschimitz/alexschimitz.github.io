@@ -9,10 +9,10 @@
   var ROOT = "/politica/";
   var PAGES = [
     { href: ROOT, label: "Painel" },
-    { href: ROOT + "gastos/", label: "Gastos" },
-    { href: ROOT + "mapa/", label: "Mapa" },
-    { href: ROOT + "politicos/", label: "Políticos" },
-    { href: ROOT + "governo/", label: "Governo" },
+    { href: ROOT + "#gastos", label: "Gastos", page: "gastos" },
+    { href: ROOT + "#mapa", label: "Mapa", page: "mapa" },
+    { href: ROOT + "#parlamentares", label: "Políticos", page: "politicos" },
+    { href: ROOT + "#executivo", label: "Governo", page: "governo" },
     { href: ROOT + "#proposicoes", label: "Propostas" },
     { href: ROOT + "#parlamentares", label: "Congresso" }
   ];
@@ -21,7 +21,7 @@
   var nav = document.getElementById("main-nav");
 
   if (nav && nav.hasAttribute("data-pol-nav") && !nav.querySelector("a")) {
-    var html = PAGES.map(function (p) { return '<a href="' + p.href + '">' + p.label + "</a>"; }).join("");
+    var html = PAGES.map(function (p) { return '<a href="' + p.href + '"' + (p.page ? ' data-page="' + p.page + '"' : "") + ">" + p.label + "</a>"; }).join("");
     html += '<button class="theme-toggle" type="button" aria-label="Alternar tema claro ou escuro" title="Tema">◐</button>';
     html += '<a class="nav-cta" href="/">← Site</a>';
     nav.innerHTML = html;
@@ -43,8 +43,9 @@
 
   // Página atual
   var here = location.pathname.replace(/index\.html$/, "");
-  if (nav) {
+  function markCurrent() {
     nav.querySelectorAll("a[href]").forEach(function (a) {
+      a.removeAttribute("aria-current");
       var u;
       try { u = new URL(a.getAttribute("href"), location.href); } catch (e) { return; }
       if (u.origin !== location.origin || u.hash) return;
@@ -52,36 +53,39 @@
       if (p === here) a.setAttribute("aria-current", "page");
     });
   }
+  if (nav) markCurrent();
 
-  // Subpáginas ainda não publicadas: selo "em breve" (o link continua funcionando)
-  var cache = {};
-  function exists(path) {
-    if (!cache[path]) {
-      cache[path] = fetch(path, { method: "HEAD", cache: "no-store" })
-        .then(function (r) { return r.ok; })
-        .catch(function () { return true; }); // offline/erro: não marca
-    }
-    return cache[path];
-  }
-  if (location.protocol.indexOf("http") === 0) {
-    document.querySelectorAll("a[data-pol-check], #main-nav a[href]").forEach(function (a) {
-      var u;
-      try { u = new URL(a.getAttribute("href"), location.href); } catch (e) { return; }
-      if (u.origin !== location.origin || u.hash || u.pathname === ROOT || u.pathname.indexOf(ROOT) !== 0) return;
-      exists(u.pathname).then(function (ok) {
-        if (ok) return;
+  // Subpáginas: /politica/paginas.json diz quais já estão no ar.
+  // Links com data-page="x" apontam para a seção do painel (funciona sem JS) e
+  // passam para /politica/x/ quando a página existe; senão ganham "em breve".
+  // Elementos com data-page-reveal="x" ficam escondidos até /politica/x/ existir.
+  // (Não usamos HEAD na própria página: um 404 vira erro no console.)
+  function applyPages(pages) {
+    document.querySelectorAll("a[data-page]").forEach(function (a) {
+      var k = a.getAttribute("data-page");
+      if (pages[k] === true || here.indexOf(ROOT + k + "/") === 0) {
+        a.setAttribute("href", ROOT + k + "/");
+        a.classList.remove("is-soon");
+        var old = a.querySelector(".nav-soon"); if (old) old.remove();
+      } else if (!a.querySelector(".nav-soon")) {
         a.classList.add("is-soon");
-        var holder = a.querySelector("[data-soon]") || a;
-        if (!holder.querySelector(".nav-soon")) {
-          var s = document.createElement("span");
-          s.className = "nav-soon";
-          s.textContent = "em breve";
-          holder.appendChild(s);
-        }
-        var fb = a.getAttribute("data-fallback");
-        if (fb) a.setAttribute("href", fb);
-      });
+        var s = document.createElement("span");
+        s.className = "nav-soon";
+        s.textContent = "em breve";
+        (a.querySelector("[data-soon]") || a).appendChild(s);
+      }
     });
+    document.querySelectorAll("[data-page-reveal]").forEach(function (el) {
+      var k = el.getAttribute("data-page-reveal");
+      el.hidden = !(pages[k] === true || here.indexOf(ROOT + k + "/") === 0);
+    });
+    if (nav) markCurrent();
+  }
+  if (document.querySelector("[data-page], [data-page-reveal]")) {
+    fetch(ROOT + "paginas.json", { cache: "no-cache" })
+      .then(function (r) { return r.ok ? r.json() : {}; })
+      .catch(function () { return {}; })
+      .then(function (j) { applyPages((j && j.paginas) || {}); });
   }
 
   // Atalhos da página acompanham a rolagem

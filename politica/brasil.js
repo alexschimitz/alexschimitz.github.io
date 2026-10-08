@@ -52,14 +52,26 @@
     const mins = data.ministros || [];
     const grid = $("#min-grid");
     const count = $("#min-count");
+    const LIMIT = 9;
+    let showAll = false;
+    const moreBtn = document.createElement("button");
+    moreBtn.type = "button";
+    moreBtn.className = "button button-ghost min-more";
+    moreBtn.setAttribute("aria-controls", "min-grid");
+    grid.insertAdjacentElement("afterend", moreBtn);
     function paint(q) {
       const n = (q || "").trim().toLowerCase();
       const rows = mins.filter(m => !n || (m.nome + " " + m.orgao).toLowerCase().includes(n));
+      const cut = n || showAll ? rows : rows.slice(0, LIMIT);
       count.textContent = rows.length + " pasta" + (rows.length === 1 ? "" : "s");
-      grid.innerHTML = rows.map(m =>
+      grid.innerHTML = cut.map(m =>
         "<li><small>" + esc(m.orgao) + "</small><strong>" + esc(m.nome) + "</strong><span>No cargo desde " + esc(m.desde) + "</span></li>"
       ).join("") || '<li><strong>Nenhuma pasta com esse texto.</strong></li>';
+      moreBtn.hidden = !!n || rows.length <= LIMIT;
+      moreBtn.textContent = showAll ? "Mostrar menos" : "Mostrar todas as " + rows.length + " pastas";
+      moreBtn.setAttribute("aria-expanded", showAll ? "true" : "false");
     }
+    moreBtn.addEventListener("click", () => { showAll = !showAll; paint($("#min-q").value); });
     paint("");
     $("#min-q").addEventListener("input", e => paint(e.target.value));
   }
@@ -97,7 +109,15 @@
     }
     const note = $("#uf-note");
     if (note && data) note.textContent = data.nota || "";
+    labelStates();
     selectUf(ufAtual, true);
+  }
+
+  function labelStates() {
+    $$("#br-map .state").forEach(el => {
+      const u = ufs.find(x => x.uf === el.id);
+      if (u) el.setAttribute("aria-label", u.nome + " (" + u.uf + ")");
+    });
   }
 
   function selectUf(uf, silent) {
@@ -236,6 +256,13 @@
     if (!host) return;
     fetch("mapa.svg").then(r => r.text()).then(svg => {
       host.innerHTML = svg;
+      const root = host.querySelector("svg");
+      if (root) {
+        // role="img" esconderia os estados (botões) de leitores de tela
+        root.setAttribute("role", "group");
+        root.setAttribute("aria-label", "Mapa do Brasil: escolha um estado");
+        root.removeAttribute("aria-labelledby");
+      }
       host.querySelectorAll(".state").forEach(el => {
         el.setAttribute("tabindex", "0");
         el.setAttribute("role", "button");
@@ -246,6 +273,7 @@
           if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); }
         });
       });
+      labelStates();
       selectUf(ufAtual, true);
     }).catch(() => {
       host.innerHTML = '<p class="err">Mapa não carregou. Use a lista de estados abaixo.</p>';

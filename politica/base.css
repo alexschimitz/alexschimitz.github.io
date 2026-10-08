@@ -422,7 +422,8 @@ body { overflow-x: clip; }
   .main-nav .nav-sep { display: block; height: 1px; margin: 10px 14px; background: var(--line); }
 }
 .main-nav .nav-sep { display: none; }
-.nav-soon { margin-left: 6px; padding: 1px 6px; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--muted-2); font-size: 0.62rem; font-weight: 700; letter-spacing: .02em; vertical-align: 2px; }
+.main-nav .nav-soon { display: none; }
+.nav-soon { margin-left: 6px; padding: 1px 6px; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--muted-2); font-size: 0.62rem; font-weight: 700; letter-spacing: .02em; vertical-align: 2px; white-space: nowrap; display: inline-block; line-height: 1.5; }
 
 /* Atalhos da página (chips fixos sob o cabeçalho) */
 .pol-subnav {
@@ -492,3 +493,14 @@ html[data-theme="light"] .map-frame .state, html[data-theme="light"] .map-frame 
   .pol-subnav { margin-top: 72px; }
   .pol-subnav ~ .pol-hero { padding-top: 36px; }
 }
+
+@media (max-width: 860px) {
+  .exec-grid, .map-layout { grid-template-columns: 1fr; }
+  .map-frame { padding: 4px; }
+  .mun-list { max-height: 46vh; }
+}
+@media (max-width: 420px) {
+  .exec-card h3, .mini-card h3 { font-size: 1.15rem; }
+}
+.map-frame svg { max-height: 72vh; }
+.min-more { margin-top: 10px; }

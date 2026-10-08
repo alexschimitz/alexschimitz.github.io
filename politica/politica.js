@@ -555,7 +555,7 @@
         <p class="sub">${c === 'c' ? 'Deputado(a) federal' : 'Senador(a)'} · ${esc(p.p)}${partyName(p.p) ? ` (${esc(partyName(p.p))})` : ''} · ${esc(p.uf)}</p>
         <div class="pf-links"><a href="${esc(official)}" target="_blank" rel="noreferrer">Página oficial ↗</a>${p.e ? `<a href="mailto:${esc(p.e)}">${esc(p.e)}</a>` : ''}</div>
       </div></div>
-      <div class="tabs pf-tabs" role="tablist" aria-label="Seções do perfil">${PF_TABS.map(([k, l], i) => `<button role="tab" id="pft-${k}" aria-controls="pfp" aria-selected="${i === 0}" data-k="${k}" ${i ? 'tabindex="-1"' : ''}>${l}</button>`).join('')}</div>
+      <div class="tabs pf-tabs" role="tablist" aria-label="Seções do perfil">${PF_TABS.map(([k, l], i) => `<button type="button" role="tab" id="pft-${k}" aria-controls="pfp" aria-selected="${i === 0}" data-k="${k}" ${i ? 'tabindex="-1"' : ''}>${l}</button>`).join('')}</div>
       <div id="pfp" role="tabpanel" class="pf-panel" aria-labelledby="pft-resumo" tabindex="0">${skel()}</div>`;
     if (!dlg.open) dlg.showModal();
     $('.profile-inner').scrollTop = 0;
