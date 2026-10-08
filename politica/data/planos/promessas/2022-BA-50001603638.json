@@ -153,6 +153,54 @@
     }
    ],
    "revisado": "2026-10-08"
+  },
+  {
+   "id": "ba22-07",
+   "tema": "Mobilidade",
+   "promessa": "Nova rodoviária de Salvador",
+   "trecho": "além da nova rodoviária da capital",
+   "pagina": 16,
+   "status": "cumprida",
+   "explicacao": "A nova Rodoviária da Bahia, no bairro de Águas Claras, em Salvador, foi inaugurada em janeiro de 2026.",
+   "evidencias": [
+    {
+     "titulo": "Seinfra-BA — Nova Rodoviária da Bahia completa um mês (fev/2026)",
+     "url": "https://www.ba.gov.br/infraestrutura/noticias/2026-02/12331/nova-rodoviaria-da-bahia-completa-um-mes-com-alta-no-fluxo-e-sucesso-na"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "ba22-08",
+   "tema": "Saúde",
+   "promessa": "Hospital Regional em Valença (macrorregião Sul)",
+   "trecho": "Implantar o Hospital Regional na macrorregião Sul (Valença) com leitos de UTI adulto e neonatal, maternidade de alto risco e ampliação de serviços necessários regionalmente",
+   "pagina": 65,
+   "status": "em_andamento",
+   "explicacao": "O Hospital e Maternidade Regional Costa do Dendê, em Valença, foi anunciado em janeiro de 2025 e está em obras. Até a revisão, ainda não tinha sido entregue.",
+   "evidencias": [
+    {
+     "titulo": "Casa Civil-BA — Hospital e Maternidade Regional Costa do Dendê será construído em Valença (jan/2025)",
+     "url": "https://www.ba.gov.br/casacivil/noticias/2025-01/2553/hospital-e-maternidade-regional-costa-do-dende-sera-construido-em-valenca-com"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "ba22-09",
+   "tema": "Saúde",
+   "promessa": "Hospital Regional do Sisal (macrorregião Nordeste)",
+   "trecho": "Implantar o Hospital Regional da macrorregião Nordeste (Sisal) com leitos de UTI adulto",
+   "pagina": 65,
+   "status": "em_andamento",
+   "explicacao": "O governo anunciou em fevereiro de 2025 a construção do Hospital e Maternidade Regional do Sisal, em Serrinha. Até a revisão, ainda não tinha sido entregue.",
+   "evidencias": [
+    {
+     "titulo": "Casa Civil-BA — Governo vai investir R$ 180,4 milhões na construção do Hospital e Maternidade Regional do Sisal (fev/2025)",
+     "url": "https://www.ba.gov.br/casacivil/noticias/2025-02/2595/governo-do-estado-vai-investir-r-1804-milhoes-na-construcao-do-hospital-e"
+    }
+   ],
+   "revisado": "2026-10-08"
   }
  ]
 }

@@ -1,0 +1,194 @@
+{
+ "ano": 2022,
+ "cargo": "governador",
+ "uf": "PR",
+ "sq": "160001614467",
+ "pessoa": {
+  "nome": "Ratinho Junior",
+  "nome_completo": "Carlos Roberto Massa Junior",
+  "partido": "PSD",
+  "id_politico": "jwosnqlocj"
+ },
+ "mandato": {
+  "inicio": "2023-01-01",
+  "fim": "2026-12-31",
+  "situacao": "em curso",
+  "nota": "Mandato ainda em curso: o status vale até a data da revisão e pode mudar."
+ },
+ "plano": {
+  "titulo": "Plano de Governo Ratinho Junior — Pra frente Paraná (2023-2026)",
+  "paginas": 113,
+  "arquivo": "2022PR160001614467.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/PR/160001614467",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2022_PR.zip"
+ },
+ "revisado": "2026-10-08",
+ "resumo": [
+  {
+   "t": "Energia: ampliar a rede de gás natural com a nova concessão da Compagas.",
+   "p": 67
+  },
+  {
+   "t": "Educação: Escola do Futuro, mais escolas em tempo integral e troca das salas de aula de madeira.",
+   "p": 70
+  },
+  {
+   "t": "Saúde: cirurgias eletivas pelo Opera Paraná e mais hospitais regionais.",
+   "p": 70
+  },
+  {
+   "t": "Social: ampliar o Água Solidária (tarifa reduzida da Sanepar) para 360 mil famílias.",
+   "p": 72
+  },
+  {
+   "t": "Habitação: ampliar o Vida Nova e o Valor da Entrada.",
+   "p": 74
+  },
+  {
+   "t": "Gestão: orçamento orientado para resultados e serviços digitais.",
+   "p": 85
+  },
+  {
+   "t": "Infraestrutura: Ponte de Guaratuba, duplicações de rodovias e moega ferroviária no Porto de Paranaguá.",
+   "p": 90
+  }
+ ],
+ "promessas": [
+  {
+   "id": "pr22-01",
+   "tema": "Infraestrutura",
+   "promessa": "Começar a construção da Ponte de Guaratuba",
+   "trecho": "Iniciar a construção da Ponte de Guaratuba, entre Matinhos e Guaratuba, cujo edital já foi lançado.",
+   "pagina": 91,
+   "status": "cumprida",
+   "explicacao": "A obra começou durante o mandato e a ponte foi inaugurada em 1º de maio de 2026.",
+   "evidencias": [
+    {
+     "titulo": "AEN — Ponte de Guaratuba atinge 91% de execução (jan/2026)",
+     "url": "https://www.parana.pr.gov.br/aen/Noticia/Com-trecho-estaiado-quase-pronto-e-160-vigas-lancadas-Ponte-de-Guaratuba-atinge-91-de"
+    },
+    {
+     "titulo": "AEN — População se prepara para assistir à inauguração da Ponte de Guaratuba",
+     "url": "https://www.parana.pr.gov.br/aen/Noticia/Emocionada-populacao-se-prepara-para-assistir-inauguracao-da-Ponte-de-Guaratuba"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pr22-02",
+   "tema": "Infraestrutura",
+   "promessa": "Moega exclusiva para trens no Porto de Paranaguá",
+   "trecho": "Implantar no Corredor de Exportação do Porto de Paranaguá uma moega exclusiva para trens que transportam granéis sólidos",
+   "pagina": 91,
+   "status": "em_andamento",
+   "explicacao": "A obra do Moegão chegou a 80% de execução em dezembro de 2025, segundo a Portos do Paraná. Até a revisão, não encontramos fonte oficial sobre a conclusão.",
+   "evidencias": [
+    {
+     "titulo": "Portos do Paraná — Moegão atinge 80% de execução e avança para a fase de conclusão (dez/2025)",
+     "url": "https://www.portosdoparana.pr.gov.br/Noticia/Moegao-da-Portos-do-Parana-atinge-80-de-execucao-e-avanca-para-fase-de-conclusao"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pr22-03",
+   "tema": "Infraestrutura",
+   "promessa": "Duplicar a Rodovia dos Minérios (Rua Mateus Leme até o Contorno Norte)",
+   "trecho": "Duplicar a Rodovia dos Minérios, no sentido Curitiba, partindo do Contorno Norte até a conexão com a Rua Mateus Leme.",
+   "pagina": 90,
+   "status": "cumprida",
+   "explicacao": "O primeiro lote duplicado (4,74 km), que liga Curitiba a Almirante Tamandaré passando pelo Contorno Norte, foi entregue em 2024.",
+   "evidencias": [
+    {
+     "titulo": "Paraná em Obras — Governador entrega 1º trecho da duplicação da Rodovia dos Minérios",
+     "url": "https://www.paranaemobras.pr.gov.br/noticias/aen/ae396e7b-1ca6-49f9-88f6-84d25f58657b"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pr22-04",
+   "tema": "Infraestrutura",
+   "promessa": "Novo trecho da PR-423 entre Araucária e Curitiba/Fazenda Rio Grande",
+   "trecho": "Implantar novo trecho da PR-423, na ligação entre Araucária (Rodovia do Xisto) e Curitiba/ Fazenda Rio Grande (BR-116)",
+   "pagina": 90,
+   "status": "em_andamento",
+   "explicacao": "O contrato da obra do novo Corredor Metropolitano (prolongamento da PR-423, 9,5 km) foi autorizado em agosto de 2025, com entrega prevista em cerca de dois anos e meio.",
+   "evidencias": [
+    {
+     "titulo": "Secom-PR — Governador autoriza obras do novo Corredor Metropolitano (PR-423)",
+     "url": "https://www.comunicacao.pr.gov.br/noticias/aen/968cd01f-a95d-4736-b624-fe4a531bd3ca"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pr22-05",
+   "tema": "Educação",
+   "promessa": "Trocar as salas de aula de madeira",
+   "trecho": "As salas de aula de madeira serão substituídas por infraestrutura mais moderna e sustentável",
+   "pagina": 70,
+   "status": "em_andamento",
+   "explicacao": "Em outubro de 2025, 63% das salas de madeira da rede estadual já tinham sido substituídas; outras estavam em obra ou licitação.",
+   "evidencias": [
+    {
+     "titulo": "AEN — Estado avança na substituição de salas de madeira com anúncio de novas entregas",
+     "url": "https://www.parana.pr.gov.br/aen/Noticia/Estado-avanca-na-substituicao-de-salas-de-madeira-com-anuncio-de-novas-entregas"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pr22-06",
+   "tema": "Social",
+   "promessa": "Levar o Água Solidária a 360 mil famílias em 2023",
+   "trecho": "a meta de atendimento é de 360 mil famílias já em 2023",
+   "pagina": 72,
+   "status": "parcialmente",
+   "explicacao": "Segundo os relatórios da Sanepar, o programa atendeu 356 mil famílias em 2023, um pouco abaixo da meta para aquele ano, e 383.387 famílias em 2024.",
+   "evidencias": [
+    {
+     "titulo": "Sanepar — Relatório integrado 2023 (em inglês; 356 mil famílias)",
+     "url": "https://ri.sanepar.com.br/docs/Sanepar-2023-12-31-JqLBbFFg.pdf"
+    },
+    {
+     "titulo": "Sanepar — Relatório da administração 2024 (383.387 famílias)",
+     "url": "https://ri.sanepar.com.br/docs/Sanepar-2024-12-31-MbmJzk6f.pdf"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pr22-07",
+   "tema": "Educação",
+   "promessa": "Manter o intercâmbio Ganhando o Mundo para alunos",
+   "trecho": "O Ganhando o Mundo para os alunos terá continuidade",
+   "pagina": 70,
+   "status": "cumprida",
+   "explicacao": "O programa continuou: cerca de mil alunos viajaram em 2024 e a edição de 2025 previa 1,2 mil.",
+   "evidencias": [
+    {
+     "titulo": "AEN — Na maior edição, Ganhando o Mundo enviará 1,2 mil alunos para intercâmbio em 2025",
+     "url": "https://www.parana.pr.gov.br/aen/Noticia/Na-maior-edicao-Ganhando-o-Mundo-enviara-12-mil-alunos-para-intercambio-em-2025"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pr22-08",
+   "tema": "Educação",
+   "promessa": "Criar o Ganhando o Mundo para professores",
+   "trecho": "Implantar o programa Ganhando o Mundo – Professor, que ofertará intercâmbio profissional aos docentes em instituições de ensino de outros países",
+   "pagina": 105,
+   "status": "cumprida",
+   "explicacao": "O Ganhando o Mundo Professor foi criado e já teve ao menos duas edições.",
+   "evidencias": [
+    {
+     "titulo": "Governo do PR — Educação divulga lista de 250 convocados para 2ª edição do Ganhando o Mundo Professor",
+     "url": "https://www.parana.pr.gov.br/Audio/Educacao-divulga-lista-de-250-convocados-para-2a-edicao-do-Ganhando-o-Mundo-Professor"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}

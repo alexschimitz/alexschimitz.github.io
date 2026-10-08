@@ -26,6 +26,7 @@ Arquivos gerados:
 | `pref/{ano}/{UF}.json` | prefeitos 2012–2024, um arquivo por ano e estado: ue_tse, ibge, municipio, nome_urna, partido, numero, resultado, sq, arquivos, kb, id_politico. |
 | `pref/capitais.json` | só as capitais, todos os anos (carregado por padrão na página). |
 | `meta.json` | contagens (candidaturas, com plano) por ano/cargo/UF, fontes e data. |
+| `por_politico/{xx}.json` | índice por político (usado no perfil em `/politica/politicos/`); `xx` = 2 primeiros caracteres do `id_politico`. `{"d": ids de eleição do DivulgaCand, "p": {id: [[ano, cargo, ue, local, sq, tem_arquivo, resultado, chave_promessas ou ""]]}}`. |
 
 `resultado`: `E` eleito · `S` foi ao 2º turno e perdeu · `T` vai disputar o 2º turno (pendente) · `N` não eleito · `X` candidatura sem efeito (indeferida, renúncia, cancelada) · `U` sem resultado na fonte.
 
@@ -41,7 +42,7 @@ Limites conhecidos:
 - Alguns planos não estão no pacote do TSE (ex.: governador eleito de MT em 2022). A página diz isso e aponta para a página da candidatura.
 - O pacote de 2012 do RN tem só 11 PDFs, que não batem com candidaturas a prefeito.
 
-Cobertura das promessas (out/2026): presidentes eleitos em 2010, 2014, 2018 e 2022; governadores eleitos em 2022 em SP, MG, BA e RS. Os demais governadores e os prefeitos ainda não foram avaliados.
+Cobertura das promessas (out/2026): presidentes eleitos em 2010, 2014, 2018 e 2022; governadores eleitos em 2022 em BA, CE, MG, PE, PR, RJ, RS e SP. Os demais governadores e os prefeitos ainda não foram avaliados.
 
 ## 2. Promessas — `promessas/{ano}-{UF}-{sq}.json` (curadoria manual)
 

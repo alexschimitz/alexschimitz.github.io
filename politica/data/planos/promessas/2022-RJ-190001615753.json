@@ -1,0 +1,186 @@
+{
+ "ano": 2022,
+ "cargo": "governador",
+ "uf": "RJ",
+ "sq": "190001615753",
+ "pessoa": {
+  "nome": "Cláudio Castro",
+  "nome_completo": "Cláudio Bomfim de Castro e Silva",
+  "partido": "PL",
+  "id_politico": "pvjfnd2osp"
+ },
+ "mandato": {
+  "inicio": "2023-01-01",
+  "fim": "2026-12-31",
+  "situacao": "em curso",
+  "nota": "Cláudio Castro renunciou em 23/03/2026. Como o cargo de vice estava vago e o presidente da Alerj estava afastado, o presidente do Tribunal de Justiça, Ricardo Couto, assumiu o governo interinamente (fonte: Agência Brasil). Avaliamos o governo da chapa eleita até a data da revisão; o status pode mudar até o fim do mandato."
+ },
+ "plano": {
+  "titulo": "Cláudio Castro 2023-2026 — Propostas de governo: diretrizes gerais, metas e ações (agosto de 2022)",
+  "paginas": 37,
+  "arquivo": "2022RJ190001615753.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/RJ/190001615753",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2022_RJ.zip"
+ },
+ "revisado": "2026-10-08",
+ "resumo": [
+  {
+   "t": "Economia: meta de abrir 1 milhão de postos de trabalho entre 2023 e 2026.",
+   "p": 5
+  },
+  {
+   "t": "Contas públicas: seguir o Regime de Recuperação Fiscal e abrir espaço para investimento.",
+   "p": 16
+  },
+  {
+   "t": "Educação: ensino técnico, Novo Ensino Médio e valorização dos profissionais.",
+   "p": 19
+  },
+  {
+   "t": "Saúde: consolidar novos hospitais na Baixada e no interior e reformar hospitais estaduais.",
+   "p": 22
+  },
+  {
+   "t": "Segurança: 15 novas bases do Segurança Presente e mais transparência na atuação policial.",
+   "p": 24
+  },
+  {
+   "t": "Mobilidade e logística: Metrô Leve da Baixada, acesso aos portos e manutenção de estradas.",
+   "p": 27
+  },
+  {
+   "t": "Mulheres: ampliar centros de atendimento e criar o Observatório do Feminicídio.",
+   "p": 33
+  },
+  {
+   "t": "Água: implantar o Novo Sistema Guandu.",
+   "p": 35
+  }
+ ],
+ "promessas": [
+  {
+   "id": "rj22-01",
+   "tema": "Segurança",
+   "promessa": "15 novas bases do Segurança Presente",
+   "trecho": "Ampliação do número de bases e qualificação da Operação Segurança Presente, com o objetivo de aumentar em 43% o número de bases operacionais da Operação Segurança Presente (OSP), através da implantação de 15 novas bases.",
+   "pagina": 24,
+   "status": "cumprida",
+   "explicacao": "Quando o plano foi escrito, eram 33 bases. Segundo a página oficial do programa, em 2026 havia 64 bases funcionando, mais que as 15 novas prometidas.",
+   "evidencias": [
+    {
+     "titulo": "Governo do RJ — Operação Segurança Presente (página oficial)",
+     "url": "https://www.rj.gov.br/segov/node/164"
+    },
+    {
+     "titulo": "Governo do RJ — Segurança Presente inaugura bases na Barra Olímpica e na Freguesia e chega à 61ª unidade no estado",
+     "url": "https://www.rj.gov.br/segov/node/198"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "rj22-02",
+   "tema": "Saúde",
+   "promessa": "Implantar o Rio Imagem Baixada (exames de imagem)",
+   "trecho": "Implantação e Consolidação do RioImagem Baixada, para garantia da realização de exames de imagem por toda a comunidade daquela Região",
+   "pagina": 22,
+   "status": "cumprida",
+   "explicacao": "O Rio Imagem Baixada, centro de diagnóstico por imagem em Nova Iguaçu, foi inaugurado em julho de 2023.",
+   "evidencias": [
+    {
+     "titulo": "Secretaria de Saúde do RJ — Governo do Estado inaugura Rio Imagem Baixada (jul/2023)",
+     "url": "https://www.saude.rj.gov.br/noticias/2023/07/governo-do-estado-inaugura-rio-imagem-baixada-e-anuncia-instituto-do-cancer-em-nova-iguacu"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "rj22-03",
+   "tema": "Saúde",
+   "promessa": "Consolidar seis novos hospitais (Baixada, Nova Friburgo, Resende, Tórax e São Gonçalo)",
+   "trecho": "Consolidação do Hospital de Cardiologia da Baixada, do Hospital Oncológico da Baixada, do Hospital Oncológico de Nova Friburgo, do Hospital de Resende, do Hospital do Torax e da Maternidade de São Gonçalo",
+   "pagina": 22,
+   "status": "parcialmente",
+   "explicacao": "O Hospital do Coração em Duque de Caxias (Baixada) foi inaugurado em 2024 e o Onco Baixada, em Nova Iguaçu, em fevereiro de 2026. Não encontramos fonte oficial sobre os outros quatro.",
+   "evidencias": [
+    {
+     "titulo": "Secretaria de Saúde do RJ — Governador inaugura Hospital do Coração em Duque de Caxias",
+     "url": "https://www.rj.gov.br/saude/node/2646"
+    },
+    {
+     "titulo": "Secretaria de Saúde do RJ — Onco Baixada, primeiro hospital oncológico da rede estadual, é inaugurado (fev/2026)",
+     "url": "https://www.rj.gov.br/saude/node/3855"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "rj22-04",
+   "tema": "Saúde",
+   "promessa": "Reformar os hospitais Azevedo Lima, Getúlio Vargas e Roberto Chabo",
+   "trecho": "Qualificação da Rede de Urgência e Emergência, promovendo reforma nos Hospitais Estaduais, em especial: Hospital Estadual Azevedo Lima (HEAL), Hospital Estadual Getúlio Vargas (HEGV) e Hospital Estadual Roberto Chabo (HERC)",
+   "pagina": 22,
+   "status": "em_andamento",
+   "explicacao": "Houve obras: a primeira fase da modernização do Getúlio Vargas foi entregue em 2024 e o Roberto Chabo estava na fase final das obras do centro de trauma no fim de 2023. Não encontramos fonte oficial dizendo que todas as reformas terminaram.",
+   "evidencias": [
+    {
+     "titulo": "Secretaria de Saúde do RJ — Hospital Estadual Getúlio Vargas completa 86 anos com qualificação da capacidade de atendimento",
+     "url": "https://www.rj.gov.br/saude/node/3025"
+    },
+    {
+     "titulo": "Secretaria de Saúde do RJ — Hospital Estadual Roberto Chabo ganhará centro de trauma e mais leitos de CTI (nov/2023)",
+     "url": "https://www.rj.gov.br/saude/node/552"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "rj22-05",
+   "tema": "Mobilidade",
+   "promessa": "Implantar o Metrô Leve da Baixada Fluminense",
+   "trecho": "Implantação do Metroleve da Baixada Fluminense, parte do Programa de Redesenvolvimento Urbano Integrado, para ampliar a mobilidade urbana da região",
+   "pagina": 27,
+   "status": "nao_cumprida",
+   "explicacao": "A página oficial do projeto mostra apenas a consulta pública e as audiências de 2022. Não encontramos registro oficial de contratação ou início de obra até a revisão, a poucos meses do fim do mandato.",
+   "evidencias": [
+    {
+     "titulo": "Governo do RJ — Página do projeto Metrô Leve da Baixada",
+     "url": "https://www.rj.gov.br/metroleve"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "rj22-06",
+   "tema": "Mulheres",
+   "promessa": "Criar o Observatório do Feminicídio",
+   "trecho": "Implantação do Observatório do Feminicídio",
+   "pagina": 33,
+   "status": "cumprida",
+   "explicacao": "O Observatório do Feminicídio funciona, coordenado pela Secretaria de Estado da Mulher, com painel público de dados lançado em 2025.",
+   "evidencias": [
+    {
+     "titulo": "Observatório do Feminicídio do RJ — Apresentação",
+     "url": "https://www.observatoriofeminicidiorj.com.br/apresentacao"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "rj22-07",
+   "tema": "Água",
+   "promessa": "Implantar o Novo Sistema Guandu",
+   "trecho": "Implantação do Novo sistema Guandu",
+   "pagina": 35,
+   "status": "em_andamento",
+   "explicacao": "A Cedae informa que as obras do Novo Guandu (estação de tratamento, tubulações e reservatório) devem terminar até março de 2030.",
+   "evidencias": [
+    {
+     "titulo": "Cedae — Novo Guandu",
+     "url": "https://www.cedae.com.br/novoguandu"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}

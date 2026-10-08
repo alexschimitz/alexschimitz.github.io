@@ -1,0 +1,122 @@
+{
+ "ano": 2022,
+ "cargo": "governador",
+ "uf": "CE",
+ "sq": "60001633585",
+ "pessoa": {
+  "nome": "Elmano de Freitas",
+  "nome_completo": "Elmano de Freitas da Costa",
+  "partido": "PT",
+  "id_politico": "os7md34meo"
+ },
+ "mandato": {
+  "inicio": "2023-01-01",
+  "fim": "2026-12-31",
+  "situacao": "em curso",
+  "nota": "Mandato ainda em curso: o status vale até a data da revisão e pode mudar."
+ },
+ "plano": {
+  "titulo": "Plano de Governo — Coligação Ceará cada vez mais forte (agosto de 2022)",
+  "paginas": 16,
+  "arquivo": "2022CE60001633585.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/CE/60001633585",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2022_CE.zip"
+ },
+ "revisado": "2026-10-08",
+ "resumo": [
+  {
+   "t": "Educação: chegar a 100% da rede estadual em tempo integral até 2026.",
+   "p": 5
+  },
+  {
+   "t": "Diretrizes gerais: juventude, saúde pública (SUS), mobilidade e segurança no trânsito.",
+   "p": 6
+  },
+  {
+   "t": "Educação: ampliar o tempo integral e a alfabetização na idade certa (PAIC).",
+   "p": 10
+  },
+  {
+   "t": "Segurança: manter o programa de prevenção da violência (PReVio).",
+   "p": 12
+  },
+  {
+   "t": "Assistência social: fortalecer o Mais Infância e programas contra a fome.",
+   "p": 13
+  },
+  {
+   "t": "Mulheres: programa de qualificação, trabalho e renda.",
+   "p": 17
+  },
+  {
+   "t": "Gestão: Portal Único com os serviços do governo.",
+   "p": 18
+  }
+ ],
+ "promessas": [
+  {
+   "id": "ce22-01",
+   "tema": "Educação",
+   "promessa": "Tempo integral em 100% da rede estadual até 2026",
+   "trecho": "possui plano aprovado para chegar a 100% até 2026",
+   "pagina": 5,
+   "status": "em_andamento",
+   "explicacao": "Em abril de 2025, mais de 75% da rede estadual (513 escolas) funcionava em tempo integral, e o governo autorizou a construção de mais 39 escolas para universalizar o modelo. Até a revisão, não encontramos fonte oficial confirmando 100%.",
+   "evidencias": [
+    {
+     "titulo": "Seduc-CE — Governo do Ceará autoriza construção de 39 escolas em tempo integral (abr/2025)",
+     "url": "https://www.ce.gov.br/seduc/2025/04/02/com-investimento-de-quase-r-447-milhoes-governo-autoriza-a-construcao-de-39-escolas-publicas-de-tempo-integral/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "ce22-02",
+   "tema": "Segurança",
+   "promessa": "Manter o programa de prevenção da violência (PReVio)",
+   "trecho": "Assegurar a continuidade do Programa Integrado de Prevenção e Redução da Violência",
+   "pagina": 12,
+   "status": "cumprida",
+   "explicacao": "O programa continuou ativo durante o mandato, com novas contratações em 2025.",
+   "evidencias": [
+    {
+     "titulo": "SEAS-CE — Governo do Ceará abre seleção para consultoria no PReVio (jan/2025)",
+     "url": "https://www.ce.gov.br/seas/2025/01/31/governo-do-ceara-abre-selecao-para-consultoria-no-programa-integrado-de-prevencao-e-reducao-da-violencia-previo/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "ce22-03",
+   "tema": "Mulheres",
+   "promessa": "Criar programa estadual de qualificação, trabalho e renda para mulheres",
+   "trecho": "Criar o Programa Estadual de Qualificação, Trabalho e Renda para as Mulheres",
+   "pagina": 17,
+   "status": "cumprida",
+   "explicacao": "O programa Ceará por Elas, criado em 2023, tem um eixo de autonomia econômica com qualificação profissional, acesso ao trabalho e microcrédito para mulheres.",
+   "evidencias": [
+    {
+     "titulo": "Secretaria das Mulheres-CE — Programa Ceará por Elas",
+     "url": "https://www.ce.gov.br/mulheres/cearaporelas/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "ce22-04",
+   "tema": "Gestão",
+   "promessa": "Implantar o Portal Único de serviços do governo",
+   "trecho": "Implantar o Portal Único do Governo reunindo em um só lugar, serviços para o cidadão e informações sobre a atuação de todas as áreas do governo",
+   "pagina": 18,
+   "status": "cumprida",
+   "explicacao": "O portal Ceará Digital (Portal Único de Serviços) funciona e reúne os serviços do governo estadual. Ele foi criado por decreto em junho de 2022, antes do mandato, e seguiu sendo ampliado.",
+   "evidencias": [
+    {
+     "titulo": "Seplag-CE — Seplag trata sobre Carta de Serviços ao Cidadão (Ceará Digital / Portal Único de Serviços)",
+     "url": "https://www.ce.gov.br/seplag/2024/08/07/seplag-trata-sobre-carta-de-servicos-ao-cidadao-com-profissionais-de-comunicacao-e-tecnologia/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}

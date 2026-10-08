@@ -1,0 +1,170 @@
+{
+ "ano": 2022,
+ "cargo": "governador",
+ "uf": "PE",
+ "sq": "170001604087",
+ "pessoa": {
+  "nome": "Raquel Lyra",
+  "nome_completo": "Raquel Teixeira Lyra Lucena",
+  "partido": "PSDB",
+  "id_politico": "c47ohcxa27"
+ },
+ "mandato": {
+  "inicio": "2023-01-01",
+  "fim": "2026-12-31",
+  "situacao": "em curso",
+  "nota": "Mandato ainda em curso: o status vale até a data da revisão e pode mudar."
+ },
+ "plano": {
+  "titulo": "Plano de Governo 2023-2026 — Raquel Lyra e Priscila Krause (agosto de 2022)",
+  "paginas": 71,
+  "arquivo": "2022PE170001604087.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/PE/170001604087",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2022_PE.zip"
+ },
+ "revisado": "2026-10-08",
+ "resumo": [
+  {
+   "t": "Educação: criar 60 mil vagas em creches e adotar o tempo integral no ensino fundamental.",
+   "p": 17
+  },
+  {
+   "t": "Saúde: concluir o Hospital da Mulher do Agreste, retomar o hospital de Garanhuns e reduzir filas.",
+   "p": 22
+  },
+  {
+   "t": "Segurança: criar o Observatório da Segurança Pública e fortalecer a perícia no interior.",
+   "p": 27
+  },
+  {
+   "t": "Mulheres: novas Delegacias da Mulher e Casas de Passagem.",
+   "p": 31
+  },
+  {
+   "t": "Combate à fome: criar o Mães de Pernambuco (R$ 300 por mês) e restaurantes populares.",
+   "p": 34
+  },
+  {
+   "t": "Água: concluir a Adutora do Agreste e as 4 barragens da Mata Sul.",
+   "p": 39
+  }
+ ],
+ "promessas": [
+  {
+   "id": "pe22-01",
+   "tema": "Educação",
+   "promessa": "Criar 60 mil vagas em creches",
+   "trecho": "Criar 60 mil vagas em creches em todo o estado, oferecendo 5 refeições por dia, dobrando a atual quantidade de vagas disponíveis em creches públicas em Pernambuco.",
+   "pagina": 17,
+   "status": "em_andamento",
+   "explicacao": "O programa Juntos pela Educação prevê construir creches em parceria com as prefeituras. A primeira creche construída pelo governo estadual foi inaugurada em dezembro de 2025; até a revisão, a maior parte das obras ainda não tinha sido entregue.",
+   "evidencias": [
+    {
+     "titulo": "Cehab-PE — Em Igarassu, governadora inaugura primeira creche construída pelo Governo do Estado (dez/2025)",
+     "url": "https://www.cehab.pe.gov.br/noticias/em-igarassu-governadora-raquel-lyra-inaugura-primeira-creche-construida-pelo-governo-do-estado"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pe22-02",
+   "tema": "Saúde",
+   "promessa": "Concluir o Hospital da Mulher do Agreste, em Caruaru",
+   "trecho": "Concluir as obras do Hospital da Mulher do Agreste em Caruaru.",
+   "pagina": 22,
+   "status": "cumprida",
+   "explicacao": "O Hospital da Mulher do Agreste foi inaugurado em maio de 2025.",
+   "evidencias": [
+    {
+     "titulo": "Secretaria de Saúde de PE — Saúde inaugura Hospital da Mulher do Agreste",
+     "url": "https://portal.saude.pe.gov.br/saude-inaugura-hospital-da-mulher-do-agreste-obra-esperada-pela-populacao-ha-mais-de-uma-decada/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pe22-03",
+   "tema": "Saúde",
+   "promessa": "Retomar o Hospital Mestre Dominguinhos, em Garanhuns",
+   "trecho": "Retomar o projeto do Hospital Mestre Dominguinhos em Garanhuns.",
+   "pagina": 22,
+   "status": "em_andamento",
+   "explicacao": "O governo abriu nova licitação para a obra em 2025. Até a revisão, o hospital ainda não tinha sido entregue.",
+   "evidencias": [
+    {
+     "titulo": "Cehab-PE — Edital da obra do Hospital Mestre Dominguinhos (republicação, jun/2025)",
+     "url": "https://www.cehab.pe.gov.br/images/Dominguinhos/EDITAL%20REPUBLICACAO%20-%2016.06.2025%20-%20HOSPITAL%20MESTRE%20DOMINGUINHOS%20-%20CELOE%20I%201.pdf"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pe22-04",
+   "tema": "Combate à fome",
+   "promessa": "Criar o Mães de Pernambuco, com R$ 300 por mês",
+   "trecho": "Criar o Programa Mães de Pernambuco, direcionado às mulheres em situação de pobreza, transferindo R$ 300 por mês para o combate imediato da grave insegurança alimentar dessas famílias",
+   "pagina": 34,
+   "status": "cumprida",
+   "explicacao": "O Mães de Pernambuco foi criado por lei em 2023 e paga R$ 300 por mês a mães sem renda das famílias mais vulneráveis do estado (até 100 mil famílias).",
+   "evidencias": [
+    {
+     "titulo": "SAS-PE — Mães de Pernambuco (página do programa)",
+     "url": "https://www.sas.pe.gov.br/programas-e-projetos-2/maes-de-pernambuco/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pe22-05",
+   "tema": "Combate à fome",
+   "promessa": "Criar restaurantes populares Bom Prato Pernambucano",
+   "trecho": "Criar o Programa de Restaurantes Populares Bom Prato Pernambucano, voltado para a população de baixa renda, oferecendo refeições saudáveis e nutritivas a um custo acessível.",
+   "pagina": 34,
+   "status": "parcialmente",
+   "explicacao": "O programa Bom Prato foi criado, mas funciona como apoio do estado a cozinhas comunitárias geridas pelas prefeituras, e não como uma rede estadual de restaurantes populares, como descrito no plano.",
+   "evidencias": [
+    {
+     "titulo": "SAS-PE — Programa Bom Prato (página do programa)",
+     "url": "https://www.sas.pe.gov.br/programas-e-projetos-2/bom-prato/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pe22-06",
+   "tema": "Água",
+   "promessa": "Concluir a Adutora do Agreste",
+   "trecho": "Concluir as obras de construção da Adutora do Agreste",
+   "pagina": 39,
+   "status": "em_andamento",
+   "explicacao": "As obras continuaram por trechos; a Compesa informou trechos em fase final em 2026. Não encontramos fonte oficial dizendo que a adutora inteira foi concluída.",
+   "evidencias": [
+    {
+     "titulo": "Compesa — Obras da Adutora do Agreste para São Bento do Una entram na reta final",
+     "url": "https://servicos.compesa.com.br/obras-da-adutora-do-agreste-para-sao-bento-do-una-entram-na-reta-final/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pe22-07",
+   "tema": "Água",
+   "promessa": "Concluir as 4 barragens da Mata Sul",
+   "trecho": "Retomar as obras paralisadas e concluir a construção das 4 barragens na Zona da Mata Sul - Panelas II, em Cupira, Igarapeba, em São Benedito do Sul, Gatos, em Belém de Maria, e a de Barra de Guabiraba",
+   "pagina": 39,
+   "status": "em_andamento",
+   "explicacao": "Panelas II foi entregue em dezembro de 2025, com recursos federais. A obra de conclusão de Gatos foi autorizada pelo estado em 2025, e Igarapeba teve as obras retomadas. Não encontramos fonte oficial sobre a conclusão de Barra de Guabiraba.",
+   "evidencias": [
+    {
+     "titulo": "Ministério da Integração — Ministro entrega Barragem Panelas II e anuncia retomada das obras de Igarapeba",
+     "url": "https://www.gov.br/mdr/pt-br/noticias/ministro-waldez-goes-entrega-barragem-panelas-ii-e-anuncia-retomada-das-obras-de-igarapeba-em-pernambuco"
+    },
+    {
+     "titulo": "SRHS-PE — Governo do Estado autoriza obra de conclusão da Barragem de Gatos (fev/2025)",
+     "url": "https://srhs.pe.gov.br/noticias/aguas-de-pernambuco-governo-do-estado-autoriza-obra-de-conclusao-da-barragem-de-gatos"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}

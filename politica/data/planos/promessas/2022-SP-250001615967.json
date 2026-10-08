@@ -181,6 +181,38 @@
     }
    ],
    "revisado": "2026-10-08"
+  },
+  {
+   "id": "sp22-08",
+   "tema": "Transporte",
+   "promessa": "Implantar trens regionais",
+   "trecho": "Implantar rotas que atinjam a população mais carente da região metropolitana, com foco na ampliação das linhas de metrô de São Paulo, com a conclusão de linhas já iniciadas e na implantação de trens regionais (CPTM)",
+   "pagina": 22,
+   "status": "em_andamento",
+   "explicacao": "O contrato do Trem Intercidades (TIC) Eixo Norte, entre São Paulo, Jundiaí e Campinas, foi assinado em 2024 e as obras começaram em março de 2026. O trem ainda não funciona.",
+   "evidencias": [
+    {
+     "titulo": "Agência SP — Caravana 3D: Governo de SP avança em obras do TIC Campinas (abr/2026)",
+     "url": "https://www.agenciasp.sp.gov.br/caravana-3d-governo-de-sao-paulo-avanca-em-obras-do-tic-campinas/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "sp22-09",
+   "tema": "Segurança",
+   "promessa": "Rever a política das câmeras corporais da PM",
+   "trecho": "Rever política das câmeras corporais.",
+   "pagina": 16,
+   "status": "cumprida",
+   "explicacao": "Em 2024 o estado fez um novo contrato de câmeras corporais para a PM (12 mil aparelhos). No novo modelo, a gravação é ligada pelo policial, pela central ou automaticamente, em vez de gravar o tempo todo. A política foi revista, como prometido; o plano não dizia em que sentido.",
+   "evidencias": [
+    {
+     "titulo": "Agência SP — Governo de SP reforça ao STF compromisso com a política de câmeras corporais (dez/2024)",
+     "url": "https://www.agenciasp.sp.gov.br/governo-de-sp-reforca-ao-stf-compromisso-com-a-politica-de-cameras-corporais/"
+    }
+   ],
+   "revisado": "2026-10-08"
   }
  ]
 }

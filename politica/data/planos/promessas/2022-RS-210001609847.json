@@ -161,6 +161,58 @@
     }
    ],
    "revisado": "2026-10-08"
+  },
+  {
+   "id": "rs22-08",
+   "tema": "Socioeducativo",
+   "promessa": "Entregar 3 novos centros socioeducativos (Osório, Santa Cruz e Viamão)",
+   "trecho": "Entregar 3 novos Centros de Atendimento Socioeducativos (Case) (Osório, Santa Cruz e Viamão)",
+   "pagina": 11,
+   "status": "em_andamento",
+   "explicacao": "Em junho de 2025 a obra do Case de Osório estava 99% pronta. A obra do Case de Viamão teve nova licitação em 2025 para ser retomada. Não encontramos fonte oficial sobre o de Santa Cruz do Sul.",
+   "evidencias": [
+    {
+     "titulo": "Governo do RS — Obra do Centro de Atendimento Socioeducativo de Osório atinge 99% de execução",
+     "url": "https://estado.rs.gov.br/com-investimento-que-supera-r-28-milhoes-obra-do-centro-de-atendimento-socioeducativo-de-osorio-atinge-99-de-execucao"
+    },
+    {
+     "titulo": "Governo do RS — Construção do Case de Viamão é destaque da agenda da Celic",
+     "url": "https://www.estado.rs.gov.br/construcao-do-centro-de-atendimento-socioeducativo-de-viamao-e-destaque-da-agenda-celic"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "rs22-09",
+   "tema": "Cultura",
+   "promessa": "Terminar as obras do MAC, do Museu Julio de Castilhos e do Multipalco",
+   "trecho": "Finalizar as obras do MAC, do Museu Julio de Castilhos e do Complexo Cultural Multipalco",
+   "pagina": 21,
+   "status": "parcialmente",
+   "explicacao": "O Teatro Simões Lopes Neto, parte do Multipalco Eva Sopher, foi inaugurado em março de 2025. Não encontramos fonte oficial sobre a conclusão das obras do MAC e do Museu Julio de Castilhos.",
+   "evidencias": [
+    {
+     "titulo": "Governo do RS — Leite participa da inauguração do Teatro Simões Lopes Neto (Multipalco)",
+     "url": "https://estado.rs.gov.br/leite-participa-da-inauguracao-do-teatro-simoes-lopes-neto-em-noite-com-apresentacao-da-opera-turandot"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "rs22-10",
+   "tema": "Educação",
+   "promessa": "Bolsas em universidades comunitárias para alunos de baixa renda",
+   "trecho": "Implementar programa de bolsas de estudo nas universidades comunitárias gaúchas para alunos de baixa renda",
+   "pagina": 13,
+   "status": "parcialmente",
+   "explicacao": "O programa RS Talentos (2025) aprovou 200 bolsas em universidades comunitárias, para cursos de engenharia e computação. A divulgação oficial não cita a renda do aluno como critério, como dizia o plano.",
+   "evidencias": [
+    {
+     "titulo": "Governo do RS — Estado divulga resultado final do edital do RS Talentos para universidades comunitárias",
+     "url": "https://estado.rs.gov.br/estado-divulga-resultado-final-do-edital-do-rs-talentos-para-universidades-comunitarias"
+    }
+   ],
+   "revisado": "2026-10-08"
   }
  ]
 }
