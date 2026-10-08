@@ -22,8 +22,6 @@ jobs:
   update:
     runs-on: ubuntu-latest
     timeout-minutes: 60
-    env:
-      POL_GOV_RAW: ${{ runner.temp }}/pol-governo-raw
     steps:
       - uses: actions/checkout@v4
 
