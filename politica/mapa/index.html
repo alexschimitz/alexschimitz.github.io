@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0d0c">
+  <meta name="description" content="Mapa do Brasil em linguagem simples: escolha um estado ou uma das 5.571 cidades e veja quem governa, quem já governou e quanto a prefeitura e o estado arrecadam e gastam, com dados oficiais do TSE, IBGE e Tesouro Nacional.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%2362f58b%22/%3E%3Cpath d=%22M8 24V14M14 24V9M20 24V12M26 24V17%22 stroke=%22%23071009%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3C/svg%3E">
+  <title>Mapa do Brasil: estados, cidades, governantes e contas — Política em dados abertos</title>
+  <script>try{var t=localStorage.getItem('as-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" href="../data/mapa/geo/br.json" as="fetch" crossorigin>
+  <link rel="preload" href="../data/mapa/municipios.json" as="fetch" crossorigin>
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="mapa.css">
+</head>
+<body class="politica pol-mapa">
+  <a class="skip-link" href="#explorar">Pular para o mapa</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../" aria-label="Voltar à página inicial">
+        <span class="brand-mark">AS</span>
+        <span class="brand-name">Alexsander Schimitz</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+        <span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Páginas de política">
+        <a href="/politica/">Painel</a>
+        <a href="/politica/#gastos" data-page="gastos">Gastos</a>
+        <a href="/politica/mapa/" data-page="mapa">Mapa</a>
+        <a href="/politica/#parlamentares" data-page="politicos">Políticos</a>
+        <a href="/politica/#executivo" data-page="governo">Governo</a>
+        <a href="/politica/#proposicoes">Propostas</a>
+        <a href="/politica/#parlamentares">Congresso</a>
+        <span class="nav-sep" aria-hidden="true"></span>
+        <button class="theme-toggle" type="button" aria-label="Alternar tema claro ou escuro" title="Tema">◐</button>
+        <a class="nav-cta" href="/">← Site</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <nav class="pol-subnav" aria-label="Atalhos desta página">
+      <a href="#explorar">Mapa</a>
+      <a href="#governo">Quem governa</a>
+      <a href="#dinheiro">Dinheiro</a>
+      <a href="#comparar">Comparar</a>
+      <a href="#ranking">Ranking</a>
+      <a href="#fontes">Fontes</a>
+    </nav>
+
+    <section class="pol-hero container mp-hero" aria-labelledby="mp-title">
+      <nav class="pol-crumbs" aria-label="Você está em"><a href="/politica/">Painel de política</a><span aria-hidden="true">›</span><span>Mapa</span></nav>
+      <h1 id="mp-title">Seu estado e sua cidade, <span>em linguagem simples.</span></h1>
+      <p class="hero-lead">Toque num estado e depois numa cidade. Você vê quem governa agora, quem já governou, quanto a prefeitura e o estado arrecadam e no que gastam: saúde, escola, segurança, salários de servidores, obras e dívidas. Tudo vem de fontes oficiais (TSE, IBGE e Tesouro Nacional), sem opinião.</p>
+      <form class="mp-search" role="search" onsubmit="return false">
+        <label for="mp-q">Buscar cidade ou estado</label>
+        <div class="mp-search-box">
+          <input id="mp-q" type="search" placeholder="Ex.: Porto Alegre, Bahia, Campinas" autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-controls="mp-sugg" aria-expanded="false" role="combobox">
+          <ul id="mp-sugg" class="mp-sugg" role="listbox" hidden></ul>
+        </div>
+      </form>
+    </section>
+
+    <section class="pol-section mp-explore" id="explorar" aria-labelledby="ex-title" tabindex="-1">
+      <div class="container">
+        <h2 id="ex-title" class="visually-hidden">Mapa interativo</h2>
+        <div class="mp-layout">
+          <div class="mp-mapcol">
+            <div class="mp-toolbar">
+              <nav class="mp-crumbs" id="mp-crumbs" aria-label="Nível do mapa"></nav>
+              <div class="mp-paint">
+                <label for="mp-color">Pintar por</label>
+                <select id="mp-color">
+                  <option value="">Só o mapa</option>
+                  <option value="pc">Gasto por habitante</option>
+                  <option value="saude">% do gasto em saúde</option>
+                  <option value="educacao">% do gasto em educação</option>
+                  <option value="pessoal">% do gasto com pessoal</option>
+                  <option value="invest">% do gasto em obras e equipamentos</option>
+                  <option value="partido">Partido de quem governa</option>
+                </select>
+                <label for="mp-color-year" class="visually-hidden">Ano das contas</label>
+                <select id="mp-color-year" aria-label="Ano das contas"></select>
+              </div>
+            </div>
+            <div class="mp-frame" id="mp-frame">
+              <svg id="mp-svg" role="img" aria-labelledby="mp-svg-title" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">
+                <title id="mp-svg-title">Mapa do Brasil</title>
+                <g id="mp-g"></g>
+              </svg>
+              <div class="mp-zoom" role="group" aria-label="Zoom do mapa">
+                <button type="button" data-zoom="in" aria-label="Aproximar">+</button>
+                <button type="button" data-zoom="out" aria-label="Afastar">−</button>
+                <button type="button" data-zoom="reset" aria-label="Ver o mapa inteiro">⤢</button>
+              </div>
+              <div class="mp-tip" id="mp-tip" role="status" aria-live="polite" hidden></div>
+              <p class="mp-loading" id="mp-loading" hidden>Carregando…</p>
+            </div>
+            <div class="mp-legend" id="mp-legend" aria-live="polite"></div>
+            <div class="mp-pickers">
+              <div class="field">
+                <label for="mp-uf">Estado</label>
+                <select id="mp-uf"><option value="">Brasil inteiro</option></select>
+              </div>
+              <div class="field">
+                <label for="mp-city">Cidade</label>
+                <select id="mp-city" disabled><option value="">Escolha um estado antes</option></select>
+              </div>
+            </div>
+            <p class="note-sm">No celular: toque para escolher; use + e − para aproximar e arraste com um dedo quando estiver aproximado. Desenho das fronteiras: malhas oficiais do IBGE.</p>
+          </div>
+          <aside class="mp-sheet" id="mp-sheet" aria-live="polite" aria-label="Resumo do lugar escolhido"></aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="pol-section pol-alt" id="governo" aria-labelledby="gov-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Quem governa</div>
+        <h2 id="gov-title">Quem governa agora e <span class="acc">quem já governou</span></h2>
+        <div id="gov-body"><p class="state-empty">Escolha um estado ou uma cidade no mapa.</p></div>
+      </div>
+    </section>
+
+    <section class="pol-section" id="dinheiro" aria-labelledby="din-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Dinheiro público</div>
+        <h2 id="din-title">Quanto entra, quanto sai e <span class="acc">pra onde vai</span></h2>
+        <form class="pol-filters auto mp-filters" id="din-filters" onsubmit="return false">
+          <div class="field"><label for="f-de">De</label><select id="f-de"></select></div>
+          <div class="field"><label for="f-ate">Até</label><select id="f-ate"></select></div>
+          <div class="field"><label for="f-ano">Ano em destaque</label><select id="f-ano"></select></div>
+          <div class="field"><label for="f-func">Área (função)</label><select id="f-func"><option value="">Todas as áreas</option></select></div>
+          <div class="field"><label for="f-modo">Valores</label>
+            <select id="f-modo">
+              <option value="real">Corrigidos pela inflação</option>
+              <option value="nominal">Da época (sem correção)</option>
+            </select></div>
+          <div class="field"><label for="f-pc">Mostrar</label>
+            <select id="f-pc">
+              <option value="total">Total</option>
+              <option value="pc">Por habitante</option>
+            </select></div>
+        </form>
+        <div id="din-body"><p class="state-empty">Escolha um estado ou uma cidade no mapa.</p></div>
+      </div>
+    </section>
+
+    <section class="pol-section pol-alt" id="comparar" aria-labelledby="cmp-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Comparar</div>
+        <h2 id="cmp-title">Compare duas cidades <span class="acc">ou dois estados</span></h2>
+        <p class="lead-simples">Os valores são por habitante, para que cidades grandes e pequenas possam ser comparadas.</p>
+        <form class="pol-filters auto mp-filters" id="cmp-form" onsubmit="return false">
+          <div class="field mp-ac"><label for="cmp-a">Primeiro lugar</label><input id="cmp-a" type="search" autocomplete="off" placeholder="Cidade ou estado"><ul class="mp-sugg" hidden></ul></div>
+          <div class="field mp-ac"><label for="cmp-b">Segundo lugar</label><input id="cmp-b" type="search" autocomplete="off" placeholder="Cidade ou estado"><ul class="mp-sugg" hidden></ul></div>
+          <div class="field"><label for="cmp-ano">Ano</label><select id="cmp-ano"></select></div>
+        </form>
+        <div id="cmp-body"><p class="state-empty">Escolha dois lugares.</p></div>
+      </div>
+    </section>
+
+    <section class="pol-section" id="ranking" aria-labelledby="rk-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Ranking</div>
+        <h2 id="rk-title">Cidades que mais e menos <span class="acc">gastam em cada área</span></h2>
+        <form class="pol-filters auto mp-filters" id="rk-form" onsubmit="return false">
+          <div class="field"><label for="rk-uf">Estado</label><select id="rk-uf"><option value="">Brasil inteiro</option></select></div>
+          <div class="field"><label for="rk-ind">Indicador</label>
+            <select id="rk-ind">
+              <option value="pc">Gasto por habitante</option>
+              <option value="saude_pc">Saúde por habitante</option>
+              <option value="educacao_pc">Educação por habitante</option>
+              <option value="seguranca_pc">Segurança por habitante</option>
+              <option value="saude">% do gasto em saúde</option>
+              <option value="educacao">% do gasto em educação</option>
+              <option value="pessoal">% do gasto com pessoal</option>
+              <option value="invest">% do gasto em obras e equipamentos</option>
+              <option value="dep">% da receita vinda da União</option>
+              <option value="trib">Impostos próprios por habitante</option>
+            </select></div>
+          <div class="field"><label for="rk-ano">Ano</label><select id="rk-ano"></select></div>
+          <div class="field"><label for="rk-pop">Tamanho da cidade</label>
+            <select id="rk-pop">
+              <option value="">Todas</option>
+              <option value="0-10000">Até 10 mil habitantes</option>
+              <option value="10000-50000">10 mil a 50 mil</option>
+              <option value="50000-200000">50 mil a 200 mil</option>
+              <option value="200000-999999999">Mais de 200 mil</option>
+            </select></div>
+        </form>
+        <div id="rk-body"><p class="state-empty">Carregando…</p></div>
+      </div>
+    </section>
+
+    <section class="pol-section pol-alt" id="fontes" aria-labelledby="ft-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Fontes e limites</div>
+        <h2 id="ft-title">De onde vêm os dados</h2>
+        <div id="ft-body" class="mp-sources"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container pol-footer">
+      <div>
+        <p><strong>Fontes:</strong>
+          <a href="https://servicodados.ibge.gov.br/api/docs/malhas?versao=3" target="_blank" rel="noreferrer">IBGE (malhas, localidades e população)</a>,
+          <a href="https://dadosabertos.tse.jus.br/" target="_blank" rel="noreferrer">TSE (candidatos e eleitos)</a>,
+          <a href="https://apidatalake.tesouro.gov.br/docs/siconfi/" target="_blank" rel="noreferrer">Tesouro Nacional — SICONFI (contas anuais, 2013 em diante)</a>,
+          <a href="https://www.tesourotransparente.gov.br/publicacoes/finbra-dados-contabeis-dos-municipios-1989-a-2012" target="_blank" rel="noreferrer">Tesouro Nacional — FINBRA (1989 a 2012)</a> e
+          <a href="https://www3.bcb.gov.br/sgspub" target="_blank" rel="noreferrer">Banco Central (IPCA)</a>.</p>
+        <p>Página independente e apartidária. Os números aparecem como as prefeituras e os estados declararam ao Tesouro; erros ou atrasos podem vir das fontes.</p>
+      </div>
+      <div class="pol-footer-links">
+        <p>© <span id="year"></span> Alexsander Schimitz.</p>
+        <a href="/politica/">Painel de política</a>
+        <a href="/">← Página inicial</a>
+        <a href="#top">Voltar ao topo ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../scripts/home.js"></script>
+  <script src="../base.js"></script>
+  <script src="mapa.js"></script>
+</body>
+</html>
