@@ -2,32 +2,47 @@
 """Dados extras via API do Portal da Transparência (CGU).
 
 Só roda se a variável de ambiente PORTAL_TRANSPARENCIA_KEY estiver definida
-(chave gratuita em https://portaldatransparencia.gov.br/api-de-dados/cadastrar-email).
-Sem a chave, sai sem erro e sem mexer em nada.
+(chave gratuita, cabeçalho "chave-api-dados"). Sem a chave, sai sem erro.
+A chave nunca vai para o site: aqui só se gravam totais já calculados.
 
-O que a chave acrescenta (gravado em politica/data/gastos/api/):
-  - emendas/{ano}.json   emendas parlamentares por autor, área e local (anos recentes)
-  - cartao-presidencia.json  cartão corporativo da Presidência (órgão 20000) mês a mês,
-                             sem depender dos downloads em massa (que têm captcha)
-  - viagens-presidencia.json viagens a serviço pagas pela Presidência (diárias e passagens)
+Grava em politica/data/gastos/api/:
+  presidencia-por-orgao.json  execução da Presidência por órgão segundo o Portal (empenhado,
+                            liquidado, pago), por ano — visão do Portal, que difere do SIOP
+
+  viagens-presidencia.json  (opcional, PORTAL_VIAGENS=1) viagens da Presidência mês a mês
+
+Emendas, cartão corporativo e viagens usam os downloads em massa (sem chave), que trazem
+tudo de uma vez (fetch_emendas.py, fetch_cartao.py, fetch_viagens.py).
 """
 import json
 import os
 import sys
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
-from collections import defaultdict
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 
 sys.path.insert(0, os.path.dirname(__file__))
-from common import r0, today, update_sources, write_json  # noqa: E402
+from common import r0, read_json, today, update_sources, write_json  # noqa: E402
 
 KEY = os.environ.get("PORTAL_TRANSPARENCIA_KEY", "").strip()
 BASE = "https://api.portaldatransparencia.gov.br/api-de-dados/"
-DELAY = float(os.environ.get("PORTAL_DELAY", "0.8"))  # limite oficial: 90 req/min (dia)
-MAX_PAGES = int(os.environ.get("PORTAL_MAX_PAGES", "300"))
-API_OUT = "api"
+BUDGET_S = float(os.environ.get("PORTAL_BUDGET_S", "900"))
+DESDE = os.environ.get("PORTAL_VIAGENS_DESDE", "2015-01")
+ORGAOS_VIAGEM = ("20000", "20101")  # unidades de vínculo direto + Presidência da República
+T0 = time.time()
+REQS = 0
+
+
+class Budget(Exception):
+    pass
+
+
+def delay():
+    # limite documentado: ~90 req/min de dia; bem mais entre 0h e 6h (Brasília)
+    h = datetime.now(timezone(timedelta(hours=-3))).hour
+    return float(os.environ.get("PORTAL_DELAY", "0.3" if h < 6 else "0.75"))
 
 
 def num(v):
@@ -35,7 +50,7 @@ def num(v):
         return 0.0
     if isinstance(v, (int, float)):
         return float(v)
-    s = str(v).strip().replace("R$", "").strip()
+    s = str(v).strip()
     if "," in s:
         s = s.replace(".", "").replace(",", ".")
     try:
@@ -45,128 +60,146 @@ def num(v):
 
 
 def get(path, params):
+    global REQS
+    if time.time() - T0 > BUDGET_S:
+        raise Budget()
     url = BASE + path + "?" + urllib.parse.urlencode(params)
-    for tent in range(4):
+    for tent in range(5):
         req = urllib.request.Request(url, headers={"chave-api-dados": KEY, "Accept": "application/json",
                                                    "User-Agent": "alexschimitz.github.io/politica (dados abertos)"})
         try:
             with urllib.request.urlopen(req, timeout=60) as r:
-                time.sleep(DELAY)
+                REQS += 1
+                time.sleep(delay())
                 return json.loads(r.read().decode("utf-8") or "[]")
         except urllib.error.HTTPError as e:
             if e.code in (401, 403):
                 raise SystemExit(f"Portal API recusou a chave ({e.code}).")
             if e.code == 429 or e.code >= 500:
-                time.sleep(15 * (tent + 1))
+                time.sleep(20 * (tent + 1))
                 continue
             raise
-        except Exception:
+        except (urllib.error.URLError, TimeoutError):
             time.sleep(10 * (tent + 1))
-    raise RuntimeError("falha em " + url)
+    raise RuntimeError("falha repetida em " + path)
 
 
-def paged(path, params):
-    for p in range(1, MAX_PAGES + 1):
+def paged(path, params, size=15):
+    p = 1
+    while True:
         rows = get(path, dict(params, pagina=p))
-        if not rows:
-            return
         yield from rows
-    print(f"  aviso: {path} parou no limite de {MAX_PAGES} páginas", flush=True)
+        if len(rows) < size:
+            return
+        p += 1
 
 
-def emendas(anos):
-    for y in anos:
-        aut = defaultdict(lambda: [0.0, 0.0, 0.0, 0])
-        fun = defaultdict(float)
-        loc = defaultdict(float)
-        tipo = defaultdict(float)
-        n = 0
-        for e in paged("emendas", {"ano": y}):
-            n += 1
-            emp, liq, pag = num(e.get("valorEmpenhado")), num(e.get("valorLiquidado")), num(e.get("valorPago"))
-            a = aut[(e.get("nomeAutor") or e.get("autor") or "Sem autor").strip()]
-            a[0] += emp; a[1] += liq; a[2] += pag; a[3] += 1
-            fun[(e.get("funcao") or "?").strip()] += pag
-            loc[(e.get("localidadeDoGasto") or "?").strip()] += pag
-            tipo[(e.get("tipoEmenda") or "?").strip()] += pag
-        if not n:
+def month_end(d):
+    return (d.replace(day=28) + timedelta(days=4)).replace(day=1) - timedelta(days=1)
+
+
+def viagens_mes(d):
+    """Viagens com ida no mês d (volta no mesmo mês ou no seguinte), sem repetir."""
+    f = lambda x: x.strftime("%d/%m/%Y")  # noqa: E731
+    fim = month_end(d)
+    nxt = fim + timedelta(days=1)
+    seen = {}
+    for org in ORGAOS_VIAGEM:
+        for r_ini, r_fim in ((d, fim), (nxt, month_end(nxt))):
+            for v in paged("viagens", {"dataIdaDe": f(d), "dataIdaAte": f(fim), "dataRetornoDe": f(r_ini),
+                                       "dataRetornoAte": f(r_fim), "codigoOrgao": org}):
+                seen[v.get("id")] = v
+    out = {"n": 0, "diarias": 0.0, "passagens": 0.0, "total": 0.0, "devolucao": 0.0,
+           "sig_n": 0, "sig_v": 0.0, "int_n": 0, "int_v": 0.0}
+    for v in seen.values():
+        if (v.get("situacao") or "").lower().startswith("n"):  # "Não realizada"
             continue
-        write_json(os.path.join(API_OUT, "emendas", f"{y}.json"), {
-            "ano": y, "emendas": n,
-            "colunas_autores": ["autor", "empenhado", "liquidado", "pago", "emendas"],
-            "autores": sorted([[k, r0(v[0]), r0(v[1]), r0(v[2]), v[3]] for k, v in aut.items()], key=lambda x: -x[3]),
-            "funcao": {k: r0(v) for k, v in sorted(fun.items(), key=lambda x: -x[1])},
-            "localidade": {k: r0(v) for k, v in sorted(loc.items(), key=lambda x: -x[1])[:200]},
-            "tipo": {k: r0(v) for k, v in tipo.items()},
-        })
-        print(f"  emendas {y}: {n} registros", flush=True)
+        tot = num(v.get("valorTotalViagem"))
+        out["n"] += 1
+        out["diarias"] += num(v.get("valorTotalDiarias"))
+        out["passagens"] += num(v.get("valorTotalPassagem"))
+        out["devolucao"] += num(v.get("valorTotalDevolucao"))
+        out["total"] += tot
+        if "sigilo" in json.dumps(v.get("beneficiario") or {}, ensure_ascii=False).lower():
+            out["sig_n"] += 1; out["sig_v"] += tot
+        if (v.get("tipoViagem") or "").lower().startswith("internac"):
+            out["int_n"] += 1; out["int_v"] += tot
+    return {k: (r0(x) if isinstance(x, float) else x) for k, x in out.items()}
 
 
-def meses(qtd):
-    d = date.today().replace(day=1)
-    out = []
-    for _ in range(qtd):
-        d = (d - timedelta(days=1)).replace(day=1)
-        out.append(d)
-    return sorted(out)
+def viagens():
+    rel = "api/viagens-presidencia.json"
+    cur = read_json(rel, {}) or {}
+    meses = cur.get("meses", {})
+    y0, m0 = map(int, DESDE.split("-"))
+    d = date(y0, m0, 1)
+    last = (date.today().replace(day=1) - timedelta(days=1)).replace(day=1)
+    todos = []
+    while d <= last:
+        todos.append(d)
+        d = month_end(d) + timedelta(days=1)
+    recentes = todos[-3:]
+    fila = recentes[::-1] + [x for x in reversed(todos[:-3]) if x.strftime("%Y%m") not in meses]
+    feitos = 0
+    try:
+        for d in fila:
+            meses[d.strftime("%Y%m")] = viagens_mes(d)
+            feitos += 1
+            print(f"  viagens Presidência {d:%m/%Y}: {meses[d.strftime('%Y%m')]['n']}", flush=True)
+    except Budget:
+        print("  limite de tempo atingido; continua na próxima execução", flush=True)
+    finally:
+        if feitos:
+            write_json(rel, {"orgaos": list(ORGAOS_VIAGEM), "desde": DESDE,
+                             "meses": dict(sorted(meses.items())),
+                             "faltando": [x.strftime("%Y%m") for x in todos if x.strftime("%Y%m") not in meses]})
+    return meses
 
 
-def cartao_presidencia(qtd):
-    res = {}
-    for d in meses(qtd):
-        m = d.strftime("%m/%Y")
-        tot = 0.0; q = 0
-        ug = defaultdict(float); est = defaultdict(float)
-        for t in paged("cartoes", {"mesExtratoInicio": m, "mesExtratoFim": m, "codigoOrgao": "20000"}):
-            v = num(t.get("valorTransacao")); tot += v; q += 1
-            ug[((t.get("unidadeGestora") or {}).get("nome") or "?").strip()] += v
-            e = t.get("estabelecimento") or {}
-            est[(e.get("nome") or e.get("razaoSocialReceita") or "Sem informação").strip()] += v
-        res[d.strftime("%Y%m")] = {"v": r0(tot), "q": q,
-                                   "ug": {k: r0(v) for k, v in sorted(ug.items(), key=lambda x: -x[1])},
-                                   "estab_top": [[k, r0(v)] for k, v in sorted(est.items(), key=lambda x: -x[1])[:15]]}
-        print(f"  cartão Presidência {m}: R$ {tot:,.2f} em {q} transações", flush=True)
-    write_json(os.path.join(API_OUT, "cartao-presidencia.json"), {"orgao": "20000", "meses": res})
-
-
-def viagens_presidencia(qtd):
-    res = {}
-    for d in meses(qtd):
-        fim = (d.replace(day=28) + timedelta(days=4)).replace(day=1) - timedelta(days=1)
-        f = lambda x: x.strftime("%d/%m/%Y")  # noqa: E731
-        tot = defaultdict(float); q = 0
-        for v in paged("viagens", {"dataIdaDe": f(d), "dataIdaAte": f(fim), "dataRetornoDe": f(d),
-                                   "dataRetornoAte": f(fim + timedelta(days=60)), "codigoOrgao": "20000"}):
-            q += 1
-            for k in ("valorTotalDiarias", "valorTotalPassagem", "valorTotalViagem", "valorTotalDevolucao"):
-                tot[k] += num(v.get(k))
-        res[d.strftime("%Y%m")] = {"viagens": q, **{k: r0(x) for k, x in tot.items()}}
-        print(f"  viagens Presidência {d:%m/%Y}: {q}", flush=True)
-    write_json(os.path.join(API_OUT, "viagens-presidencia.json"), {"orgao": "20000", "meses": res})
+def por_orgao():
+    rel = "api/presidencia-por-orgao.json"
+    cur = read_json(rel, {}) or {}
+    anos = cur.get("anos", {})
+    y = date.today().year
+    for ano in range(2014, y + 1):
+        if str(ano) in anos and ano < y - 1:
+            continue
+        rows = get("despesas/por-orgao", {"ano": ano, "orgaoSuperior": "20000", "pagina": 1})
+        anos[str(ano)] = [[r.get("codigoOrgao"), r.get("orgao"), r0(num(r.get("empenhado"))), r0(num(r.get("liquidado"))),
+                           r0(num(r.get("pago")))] for r in rows]
+    write_json(rel, {"orgao_superior": "20000", "colunas": ["codigo", "orgao", "empenhado", "liquidado", "pago"],
+                     "anos": dict(sorted(anos.items()))})
 
 
 def main():
     if not KEY:
         print("PORTAL_TRANSPARENCIA_KEY não definida: pulando dados extras da API (sem erro).")
         return
-    y = date.today().year
-    anos = [int(a) for a in os.environ.get("PORTAL_EMENDAS_ANOS", f"{y - 1},{y}").split(",") if a.strip()]
-    qtd = int(os.environ.get("PORTAL_MESES", "12"))
     feito = []
-    for nome, fn in (("emendas", lambda: emendas(anos)), ("cartao", lambda: cartao_presidencia(qtd)),
-                     ("viagens", lambda: viagens_presidencia(qtd))):
+    tarefas = [("presidencia_por_orgao", por_orgao)]
+    # As viagens de todo o governo já vêm do download anual (fetch_viagens.py). A consulta mês a mês
+    # pela API é lenta (15 registros por página); fica disponível com PORTAL_VIAGENS=1.
+    if os.environ.get("PORTAL_VIAGENS") == "1":
+        tarefas.append(("viagens_presidencia", viagens))
+    for nome, fn in tarefas:
         try:
             fn(); feito.append(nome)
         except SystemExit:
             raise
+        except Budget:
+            print(f"  {nome}: limite de tempo", flush=True)
         except Exception as e:  # um endpoint com problema não derruba os outros
             print(f"  erro em {nome}: {e}", flush=True)
+    v = read_json("api/viagens-presidencia.json", {}) or {}
+    ms = sorted(v.get("meses", {}))
     update_sources("portal_api", {
-        "nome": "Portal da Transparência (CGU) - API de dados",
+        "nome": "Portal da Transparência (CGU) — API de dados (despesas da Presidência por órgão)",
         "url": "https://api.portaldatransparencia.gov.br/swagger-ui/index.html",
-        "cobertura": f"emendas {anos}; cartão e viagens da Presidência, últimos {qtd} meses",
+        "cobertura": "2014–" + str(date.today().year)
+                     + (f"; viagens da Presidência {ms[0][:4]}-{ms[0][4:]} a {ms[-1][:4]}-{ms[-1][4:]}" if ms else ""),
         "coletado_em": today(), "partes": feito,
     })
+    print(f"ok Portal API: {REQS} consultas em {time.time() - T0:.0f}s", flush=True)
 
 
 if __name__ == "__main__":

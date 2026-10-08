@@ -48,12 +48,22 @@ jobs:
         continue-on-error: true
         run: python3 scripts/politica/gastos/fetch_parl.py
 
+      - name: Emendas parlamentares
+        timeout-minutes: 8
+        continue-on-error: true
+        run: python3 scripts/politica/gastos/fetch_emendas.py
+
+      - name: Viagens a serviço
+        timeout-minutes: 10
+        continue-on-error: true
+        run: python3 scripts/politica/gastos/fetch_viagens.py
+
       - name: Cartão corporativo (CPGF)
-        timeout-minutes: 32
+        timeout-minutes: 25
         continue-on-error: true
         env:
           CPGF_MAX_DOWNLOADS: ${{ github.event.inputs.cpgf_max || '20' }}
-          CPGF_BUDGET_S: "1500"
+          CPGF_BUDGET_S: "1200"
           CPGF_DELAY: "20"
         run: python3 scripts/politica/gastos/fetch_cartao.py
 
