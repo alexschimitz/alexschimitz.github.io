@@ -155,71 +155,63 @@ const Pokedex = [
 
 let currentIndex = 0;
 
-function toLowerCase(str) {
-    return str.toLowerCase();
-}
+(function () {
+    const FILES = { "Nidoran♀": "nidoran_f", "Nidoran♂": "nidoran_m", "Farfetch'd": "farfetchd", "Mr. Mime": "mr._mime" };
+    const $ = (id) => document.getElementById(id);
+    const img = $("dex-img"), num = $("dex-num"), name = $("dex-name"), types = $("dex-types");
+    const input = $("searchInput"), msg = $("dex-msg"), prev = $("dex-prev"), next = $("dex-next");
+    if (!img || !input) return;
 
-function displayPokemon(index) {
-    const resultDiv = document.getElementById('result');
-    const resultInfo = document.getElementById('resultInfo');
-    const pokemon = Pokedex[index];
-    const imagePath = `/imagens/Pokemon/${toLowerCase(pokemon.nome)}.gif`;
+    const norm = (s) => String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9♀♂]/g, "");
+    const fileOf = (p) => "imagens/Pokemon/" + (FILES[p.nome] || p.nome.toLowerCase()) + ".gif";
 
-    resultDiv.innerHTML = `
-    <img src="${imagePath}" alt="${pokemon.nome}" style="max-width: 100px; max-height: 100px; position: absolute; top: 0px; left: -50px;">`
-    resultInfo.innerHTML = `
-    <p class="pokemon-name">${pokemon.nome}</p>
-    <p class="pokemon-tipo">${pokemon.tipo}</p>`;
-}
-
-function searchPokemon() {
-    const query = document.getElementById('searchInput').value.trim();
-    const resultDiv = document.getElementById('result');
-    resultDiv.innerHTML = ''; // Limpar resultados anteriores
-
-    if (!isNaN(query)) {
-        const numero = parseInt(query, 10);
-        if (numero > 0 && numero <= NUM_POKEMON) {
-            currentIndex = numero - 1;
-            displayPokemon(currentIndex);
-        } else {
-            resultDiv.innerHTML = 'Número de Pokémon inválido.';
-        }
-    } else {
-        const queryLower = toLowerCase(query);
-        let encontrado = false;
-
-        Pokedex.forEach((pokemon, index) => {
-            const nomeLower = toLowerCase(pokemon.nome);
-            if (nomeLower.includes(queryLower)) {
-                currentIndex = index;
-                displayPokemon(currentIndex);
-                encontrado = true;
-            }
+    function displayPokemon(index) {
+        const p = Pokedex[index];
+        currentIndex = index;
+        img.src = fileOf(p);
+        img.alt = p.nome;
+        num.textContent = "Nº " + String(p.indice_original).padStart(3, "0");
+        name.textContent = p.nome;
+        types.innerHTML = "";
+        p.tipo.split("/").forEach((t) => {
+            const s = document.createElement("span");
+            s.className = "type type-" + norm(t);
+            s.textContent = t.replace("Agua", "Água").replace("Eletrico", "Elétrico").replace("Psiquico", "Psíquico");
+            types.appendChild(s);
         });
+        prev.disabled = index === 0;
+        next.disabled = index === Pokedex.length - 1;
+        try { history.replaceState(null, "", "#" + p.indice_original); } catch (e) {}
+    }
 
-        if (!encontrado) {
-            resultDiv.innerHTML = 'Nenhum Pokémon encontrado.';
+    function searchPokemon() {
+        const q = input.value.trim();
+        msg.textContent = "";
+        if (!q) return;
+        if (/^\d+$/.test(q)) {
+            const n = parseInt(q, 10);
+            if (n >= 1 && n <= NUM_POKEMON) { displayPokemon(n - 1); return; }
+            msg.textContent = "Número inválido: use de 1 a " + NUM_POKEMON + ".";
+            return;
         }
+        const k = norm(q);
+        let i = Pokedex.findIndex((p) => norm(p.nome) === k);
+        if (i < 0) i = Pokedex.findIndex((p) => norm(p.nome).startsWith(k));
+        if (i < 0) i = Pokedex.findIndex((p) => norm(p.nome).includes(k));
+        if (i < 0) { msg.textContent = "Nenhum Pokémon encontrado com “" + q + "”."; return; }
+        displayPokemon(i);
     }
-}
 
-function handleEnter(event) {
-    if (event.key === 'Enter') {
-        searchPokemon();
-    }
-}
-
-function previousPokemon() {
-    if (currentIndex > 0) {
-        currentIndex--;
-        displayPokemon(currentIndex);
-    }
-}
-
-function nextPokemon() {
-    if (currentIndex < NUM_POKEMON - 1) {
-        currentIndex++;
-        displayPokemon(currentIndex);
-    }
-}
+    const dl = $("dex-names");
+    if (dl) dl.innerHTML = Pokedex.map((p) => '<option value="' + p.nome.replace(/"/g, "&quot;") + '"></option>').join("");
+    $("dex-form").addEventListener("submit", (e) => { e.preventDefault(); searchPokemon(); });
+    prev.addEventListener("click", () => { if (currentIndex > 0) displayPokemon(currentIndex - 1); });
+    next.addEventListener("click", () => { if (currentIndex < Pokedex.length - 1) displayPokemon(currentIndex + 1); });
+    document.addEventListener("keydown", (e) => {
+        if (e.target === input || e.altKey || e.ctrlKey || e.metaKey) return;
+        if (e.key === "ArrowLeft") prev.click();
+        else if (e.key === "ArrowRight") next.click();
+    });
+    const h = parseInt(location.hash.slice(1), 10);
+    displayPokemon(h >= 1 && h <= NUM_POKEMON ? h - 1 : 0);
+})();

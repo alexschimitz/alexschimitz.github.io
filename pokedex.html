@@ -1,61 +1,88 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Schimitz</title>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="css/main.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0d0c">
+  <meta name="description" content="Pokédex da 1ª geração: busque os 151 Pokémon por nome ou número.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <title>Pokédex — Alexsander Schimitz</title>
+  <script>try{var t=localStorage.getItem('as-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/pokedex.css">
 </head>
-<body>
-    
-    <header class="header">
-        <a href="https://alexschimitz.github.io/" class="logo">Alexsander Schimitz</a>
+<body class="pokedex-page">
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
 
-        <i class='bx bx-menu' id="menu-icon"></i>
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="./" aria-label="Voltar à página inicial">
+        <span class="brand-mark">AS</span>
+        <span class="brand-name">Alexsander Schimitz</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+        <span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
+        <a href="./#jogos">Jogos</a>
+        <a href="./#projetos">Projetos</a>
+        <a href="pokedex.html" aria-current="page" class="active">Pokédex</a>
+        <a href="politica/">Política</a>
+        <button class="theme-toggle" type="button" aria-label="Alternar tema claro ou escuro" title="Tema">◐</button>
+        <a class="nav-cta" href="./">← Início</a>
+      </nav>
+    </div>
+  </header>
 
-        <nav class="navbar">
-            <a href="index.html">INICIO</a>
-            <a href="pokedex.html" class="active">POKEDEX</a>
-        </nav>
-    </header>
+  <main class="container dex-main" id="conteudo">
+    <div class="eyebrow"><span class="status-dot"></span> Projeto · JavaScript</div>
+    <h1 class="dex-title">Pokédex <span>1ª geração</span></h1>
+    <p class="dex-lead">Busque pelo nome ou pelo número (1 a 151). Use os botões ou as setas ← → do teclado para navegar.</p>
 
-    <section class="portfolio" id="portfolio">
-        <h2 class="heading"><span>Pokedex</span></h2>
-    
-        <div class="ptf_c">
-            <div id="searchContainer">
-                <div id="DEX">
-                    <img src="./imagens/Pokemon/pokedex.png" alt="Pokedex">
-                    <div id="result"></div>
-                    <div id="resultInfo"></div>
-                    <div id="procurar">
-                        <input type="text" id="searchInput" placeholder="Digite o nome ou n do Pokémon" onkeydown="handleEnter(event)">
-                        <div class="button-container">
-                            <button onclick="previousPokemon()">Anterior</button>
-                            <button onclick="nextPokemon()">Próximo</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="dex" aria-label="Pokédex">
+      <div class="dex-screen">
+        <div class="dex-lights" aria-hidden="true"><i></i><i></i><i></i></div>
+        <figure class="dex-figure" id="result" aria-live="polite">
+          <img id="dex-img" src="imagens/Pokemon/bulbasaur.gif" alt="Bulbasaur" width="96" height="96">
+        </figure>
+        <div class="dex-info" id="resultInfo">
+          <p class="dex-num" id="dex-num">Nº 001</p>
+          <p class="pokemon-name" id="dex-name">Bulbasaur</p>
+          <p class="pokemon-tipo" id="dex-types"><span class="type">Grama</span></p>
         </div>
+      </div>
+
+      <form class="dex-controls" id="dex-form" role="search">
+        <label for="searchInput" class="dex-label">Nome ou número</label>
+        <div class="dex-search">
+          <input type="search" id="searchInput" list="dex-names" placeholder="Ex.: Pikachu ou 25" autocomplete="off" enterkeyhint="search">
+          <button class="button button-primary" type="submit">Buscar</button>
+        </div>
+        <datalist id="dex-names"></datalist>
+        <p class="dex-msg" id="dex-msg" role="status"></p>
+        <div class="button-container">
+          <button class="button button-ghost" type="button" id="dex-prev">← Anterior</button>
+          <button class="button button-ghost" type="button" id="dex-next">Próximo →</button>
+        </div>
+      </form>
     </section>
-    
+  </main>
 
-    <footer class="footer">
-        <div class="footer-text">
-            <p>2024 &copy; Por Alexsander Schimitz | Todos os direitos reservados.</p>
-        </div>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Alexsander Schimitz.</p>
+      <p>Sprites: <a href="imagens/Pokemon/0-credits.txt">créditos</a>. Pokémon é marca da Nintendo/Game Freak.</p>
+      <a href="#top">Voltar ao topo ↑</a>
+    </div>
+  </footer>
 
-        <div class="footer-icontop">
-            <a href="#inicio"><i class='bx bx-up-arrow-alt'></i></a>
-        </div>
-    </footer>
-
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="scripts/main.js"></script>
-    <script src="scripts/pokedex.js"></script>
+  <script src="scripts/home.js"></script>
+  <script src="scripts/pokedex.js"></script>
 </body>
 </html>
