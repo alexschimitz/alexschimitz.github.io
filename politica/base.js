@@ -10,6 +10,7 @@
   var PAGES = [
     { href: ROOT, label: "Painel" },
     { href: ROOT + "#gastos", label: "Gastos", page: "gastos" },
+    { href: ROOT + "economia/", label: "Economia", page: "economia" },
     { href: ROOT + "#mapa", label: "Mapa", page: "mapa" },
     { href: ROOT + "#parlamentares", label: "Políticos", page: "politicos" },
     { href: ROOT + "#executivo", label: "Governo", page: "governo" },

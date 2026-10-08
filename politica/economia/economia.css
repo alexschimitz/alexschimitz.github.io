@@ -1,0 +1,157 @@
+/* politica/economia — gráficos em SVG próprios, seletor de países, faixa de veredito */
+:root {
+  --c1: #f5a83c; --c2: #5aaeff; --c3: #c98bff; --c4: #ff7096; --c5: #35d0c0; --c6: #d7c94a;
+  --eco-bad: #ff7a7a; --eco-same: rgba(255, 255, 255, 0.22);
+}
+html[data-theme="light"] {
+  --c1: #b86a00; --c2: #1f6fd1; --c3: #8a3fd1; --c4: #c8285a; --c5: #0d8a7e; --c6: #7d7300;
+  --eco-bad: #c43c3c; --eco-same: rgba(10, 20, 14, 0.2);
+}
+
+.eco-page .pol-section .projects-heading { margin-bottom: 22px; }
+.eco-h3 { margin-top: 44px; margin-bottom: 6px; }
+
+/* Resposta curta */
+.eco-resumo { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 12px; }
+.eco-resumo li { padding: 18px 20px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); min-width: 0; }
+.eco-resumo .k { display: block; color: var(--muted); font-size: 0.74rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.eco-resumo .big { display: block; margin: 6px 0 8px; font-size: clamp(1.45rem, 3vw, 1.9rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+.eco-resumo p { color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+.eco-resumo p b { color: var(--text); }
+.eco-resumo li.eco-conclusao { grid-column: 1 / -1; border-color: rgba(98, 245, 139, 0.32); background: var(--accent-soft); }
+.eco-resumo li.eco-conclusao p { color: var(--text); font-size: 1rem; }
+
+/* Seletor de países */
+.eco-picker { padding: 16px 18px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); margin-bottom: 18px; }
+.eco-picker-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
+.eco-picker-top .h-sm { margin: 0; }
+.eco-pk-grp { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin-top: 12px; }
+.eco-pk-grp > span { flex: 0 0 100%; color: var(--muted); font-size: 0.72rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.eco-chip {
+  display: inline-flex; align-items: center; gap: 7px; min-height: 38px; padding: 0 13px; border-radius: 999px;
+  border: 1px solid var(--line-strong); background: transparent; color: var(--muted); font: inherit; font-size: 0.85rem; font-weight: 700; cursor: pointer;
+}
+.eco-chip i { width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--line-strong); flex: 0 0 auto; }
+.eco-chip[aria-pressed="true"] { color: var(--text); border-color: var(--sw, var(--accent)); background: color-mix(in srgb, var(--sw, var(--accent)) 14%, transparent); }
+.eco-chip[aria-pressed="true"] i { background: var(--sw, var(--accent)); border-color: var(--sw, var(--accent)); }
+.eco-chip.is-br { cursor: default; --sw: var(--accent); }
+.eco-chip:disabled:not(.is-br) { opacity: .45; cursor: not-allowed; }
+@media (hover: hover) { .eco-chip:not(:disabled):hover { border-color: var(--accent); color: var(--text); } }
+
+.eco-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 12px 20px; margin-bottom: 14px; }
+.eco-controls .field { min-width: min(100%, 250px); }
+.eco-check { display: inline-flex; align-items: center; gap: 9px; min-height: 48px; color: var(--muted); font-size: 0.88rem; font-weight: 600; cursor: pointer; }
+.eco-check input { width: 18px; height: 18px; accent-color: var(--accent); }
+.eco-tabs-inline { margin-bottom: 0; }
+.eco-comp { color: var(--muted); font-size: 0.86rem; margin: 4px 0 10px; }
+.eco-comp-list b { color: var(--text); font-weight: 700; }
+
+/* Gráficos */
+.eco-fig { margin: 0; min-width: 0; }
+.eco-chart { position: relative; width: 100%; min-height: 240px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); touch-action: pan-y; }
+.eco-chart:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.eco-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.eco-chart-sm { min-height: 200px; margin-top: 10px; }
+.pol-card .eco-chart { border: 0; background: transparent; border-radius: 0; }
+.eco-chart .ax text { fill: var(--muted); font: 500 11px "DM Mono", monospace; }
+.eco-chart .ax line { stroke: var(--line); }
+.eco-chart .ax .zero { stroke: var(--line-strong); stroke-width: 1.3; }
+.eco-chart .guide { stroke: var(--text); stroke-opacity: .35; stroke-dasharray: 3 3; }
+.eco-chart .bar-pos { fill: var(--accent); }
+.eco-chart .bar-neg { fill: var(--eco-bad); }
+.eco-chart .bar-proj { fill-opacity: .35; stroke-dasharray: 3 2; stroke-width: 1.2; }
+.eco-chart .bar-pos.bar-proj { stroke: var(--accent); }
+.eco-chart .bar-neg.bar-proj { stroke: var(--eco-bad); }
+.eco-chart .bar-sel { stroke: var(--text); stroke-width: 1.5; }
+.eco-chart .ln { fill: none; stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; }
+.eco-chart .ln-br { stroke-width: 3; }
+.eco-chart .ln-proj { stroke-dasharray: 5 4; stroke-width: 1.8; }
+.eco-chart .proj-zone { fill: var(--text); fill-opacity: .04; }
+.eco-chart .proj-lbl { fill: var(--muted); font: 600 10px Manrope, sans-serif; }
+.eco-chart .cap-mk { stroke: none; }
+.eco-chart .ev { fill: var(--muted); font: 600 10px Manrope, sans-serif; }
+.eco-chart .ev-line { stroke: var(--muted); stroke-opacity: .35; stroke-dasharray: 2 3; }
+.eco-tip {
+  position: absolute; z-index: 5; top: 8px; min-width: 150px; max-width: min(260px, calc(100% - 16px)); padding: 10px 12px; pointer-events: none;
+  border: 1px solid var(--line-strong); border-radius: 12px; background: var(--panel-strong); box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+  font-size: 0.8rem; line-height: 1.4;
+}
+.eco-tip b { display: block; margin-bottom: 4px; font-family: "DM Mono", monospace; font-size: 0.82rem; }
+.eco-tip div { display: flex; justify-content: space-between; gap: 12px; }
+.eco-tip span { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); min-width: 0; }
+.eco-tip span i { width: 8px; height: 8px; border-radius: 50%; flex: 0 0 auto; }
+.eco-tip em { font-style: normal; font-variant-numeric: tabular-nums; white-space: nowrap; font-weight: 700; }
+.eco-tip small { display: block; margin-top: 4px; color: var(--muted-2); font-size: 0.7rem; }
+.eco-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 10px; color: var(--muted); font-size: 0.82rem; }
+.eco-legend span { display: inline-flex; align-items: center; gap: 7px; }
+.eco-legend i { width: 18px; height: 3px; border-radius: 2px; }
+.eco-legend i.sq { width: 10px; height: 10px; border-radius: 2px; }
+.eco-legend i.dash { background: repeating-linear-gradient(90deg, var(--muted) 0 5px, transparent 5px 9px) !important; }
+.eco-empty { display: grid; place-items: center; min-height: 200px; padding: 20px; color: var(--muted); text-align: center; font-size: 0.9rem; }
+
+.eco-ano-detalhe { min-height: 3em; margin-top: 14px; padding: 14px 16px; border-left: 3px solid var(--accent); border-radius: 0 12px 12px 0; background: var(--accent-soft); font-size: 0.98rem; line-height: 1.55; }
+.eco-ano-detalhe:empty { display: none; }
+.eco-ano-detalhe small { display: block; margin-top: 4px; color: var(--muted); font-size: 0.82rem; }
+.eco-explica { margin-top: 14px; color: var(--muted); font-size: 0.94rem; line-height: 1.6; max-width: 80ch; }
+.eco-explica b { color: var(--text); }
+.eco-ou-def { margin: 0 0 14px; }
+.eco-g2 { gap: 14px; }
+.eco-g2 .eco-explica { font-size: 0.88rem; }
+
+/* Faixa de veredito */
+.eco-faixa { display: grid; grid-template-columns: repeat(auto-fill, minmax(42px, 1fr)); gap: 4px; margin-top: 12px; }
+.eco-faixa button {
+  min-height: 40px; padding: 2px 0; border: 1px solid transparent; border-radius: 8px; cursor: pointer;
+  font: 600 0.7rem "DM Mono", monospace; color: var(--text); background: var(--eco-same);
+}
+.eco-faixa button.mais { background: color-mix(in srgb, var(--accent) 55%, transparent); color: var(--text); }
+.eco-faixa button.menos { background: color-mix(in srgb, var(--eco-bad) 55%, transparent); }
+.eco-faixa button[aria-pressed="true"] { border-color: var(--text); box-shadow: 0 0 0 1px var(--text) inset; }
+.eco-faixa button small { display: block; font-size: 0.62rem; opacity: .8; }
+
+/* Tabelas numéricas */
+.eco-tabela { margin-top: 18px; }
+.eco-tabela summary { cursor: pointer; color: var(--accent); font-weight: 700; padding: 8px 0; }
+.eco-tabela .table-wrap { max-height: 520px; overflow: auto; margin-top: 8px; }
+.eco-tabela .data-table th:first-child, .eco-tabela .data-table td:first-child { position: sticky; left: 0; background: var(--panel-strong); z-index: 1; }
+.eco-tabela .data-table th:first-child { z-index: 2; }
+.eco-tabela .proj { color: var(--muted); font-style: italic; }
+.data-table td.neg { color: var(--eco-bad); }
+#placar td.num b { font-size: 1rem; }
+.eco-tag { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 0.74rem; font-weight: 700; white-space: nowrap; border: 1px solid var(--line-strong); color: var(--muted); }
+.eco-tag.mais { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+.eco-tag.menos { color: var(--eco-bad); border-color: color-mix(in srgb, var(--eco-bad) 45%, transparent); }
+
+/* Por presidente: barras Brasil x mundo */
+.eco-aviso { margin: 0 0 18px; padding: 14px 16px; border: 1px solid var(--line-strong); border-radius: 14px; background: var(--panel); color: var(--muted); font-size: 0.88rem; line-height: 1.55; }
+.eco-aviso strong { color: var(--text); }
+.eco-pm { display: grid; gap: 10px; margin-bottom: 22px; max-width: 900px; }
+.eco-pm-row { display: grid; grid-template-columns: minmax(0, 13rem) minmax(0, 1fr); gap: 4px 14px; align-items: center; }
+.eco-pm-row > b { font-size: 0.86rem; line-height: 1.25; }
+.eco-pm-row > b small { display: block; color: var(--muted); font: 500 0.72rem "DM Mono", monospace; }
+.eco-pm-bars { position: relative; display: grid; gap: 3px; margin-inline: 3.3rem; min-width: 0; }
+.eco-pm-bar { position: relative; height: 14px; }
+.eco-pm-bar span { position: absolute; top: 0; bottom: 0; border-radius: 3px; }
+.eco-pm-bar em { position: absolute; top: -1px; font: 600 0.7rem "DM Mono", monospace; font-style: normal; color: var(--muted); white-space: nowrap; }
+.eco-pm-zero { position: absolute; top: -3px; bottom: -3px; width: 1px; background: var(--line-strong); }
+.eco-pm-key { display: flex; flex-wrap: wrap; gap: 6px 16px; color: var(--muted); font-size: 0.82rem; }
+.eco-pm-key i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+@media (max-width: 640px) {
+  .eco-pm-row { grid-template-columns: 1fr; }
+}
+
+/* Glossário e fontes */
+.eco-gloss { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 12px; }
+.eco-gloss > div { padding: 16px 18px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
+.eco-gloss dt { font-weight: 800; }
+.eco-gloss dd { margin-top: 6px; color: var(--muted); font-size: 0.9rem; line-height: 1.55; }
+.eco-fontes { display: grid; gap: 10px; }
+.eco-fontes .pol-card a { color: var(--accent); border-bottom: 1px solid currentColor; font-weight: 700; }
+.eco-fontes ul { margin: 8px 0 0 18px; color: var(--muted); font-size: 0.88rem; line-height: 1.6; }
+
+@media (max-width: 520px) {
+  .eco-picker { padding: 14px; }
+  .eco-chip { min-height: 36px; padding: 0 11px; font-size: 0.8rem; }
+  .eco-faixa { grid-template-columns: repeat(auto-fill, minmax(38px, 1fr)); }
+  .eco-chart .ax text { font-size: 10px; }
+}

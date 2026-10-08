@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0d0c">
+  <meta name="description" content="O Brasil cresceu mesmo? Crescimento do PIB ano a ano desde 1988, comparado com o mundo, a América Latina, emergentes e países ricos. PIB por pessoa, crescimento acumulado, média por presidente, inflação, desemprego e dívida — com fontes oficiais.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%2362f58b%22/%3E%3Cpath d=%22M8 24V14M14 24V9M20 24V12M26 24V17%22 stroke=%22%23071009%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3C/svg%3E">
+  <title>Economia: o Brasil cresceu mesmo? — Política em dados abertos</title>
+  <script>try{var t=localStorage.getItem('as-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" href="../data/economia/paises.json" as="fetch" crossorigin>
+  <link rel="preload" href="../data/economia/brasil.json" as="fetch" crossorigin>
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="economia.css">
+</head>
+<body class="politica eco-page">
+  <a class="skip-link" href="#resumo">Pular para o conteúdo</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../" aria-label="AS Alexsander Schimitz — página inicial">
+        <span class="brand-mark">AS</span>
+        <span class="brand-name">Alexsander Schimitz</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+        <span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Páginas de política">
+        <a href="/politica/">Painel</a>
+        <a href="/politica/gastos/" data-page="gastos">Gastos</a>
+        <a href="/politica/economia/" data-page="economia" aria-current="page">Economia</a>
+        <a href="/politica/mapa/" data-page="mapa">Mapa</a>
+        <a href="/politica/politicos/" data-page="politicos">Políticos</a>
+        <a href="/politica/governo/" data-page="governo">Governo</a>
+        <a href="/politica/propostas/" data-page="propostas">Propostas</a>
+        <a href="/politica/#parlamentares">Congresso</a>
+        <span class="nav-sep" aria-hidden="true"></span>
+        <button class="theme-toggle" type="button" aria-label="Alternar tema claro ou escuro" title="Tema">◐</button>
+        <a class="nav-cta" href="/">← Site</a>
+      </nav>
+    </div>
+  </header>
+  <main id="conteudo">
+    <nav class="pol-subnav" aria-label="Atalhos desta página">
+      <a href="#resumo">Resposta curta</a>
+      <a href="#ano-a-ano">Ano a ano</a>
+      <a href="#por-pessoa">Por pessoa</a>
+      <a href="#acumulado">Desde 1988</a>
+      <a href="#mundo">Lugar no mundo</a>
+      <a href="#presidentes">Por presidente</a>
+      <a href="#outros">Inflação e mais</a>
+      <a href="#como">Palavras</a>
+      <a href="#fontes">Fontes</a>
+    </nav>
+
+    <section class="pol-hero container" aria-labelledby="eco-title">
+      <div class="eyebrow"><span class="status-dot"></span> Economia · dados oficiais desde 1988</div>
+      <h1 id="eco-title">O Brasil cresceu mesmo? <span>Compare com o mundo.</span></h1>
+      <p class="hero-lead">Quanto a economia do Brasil cresceu em cada ano, comparado com a média do mundo, a América Latina, outros países emergentes e países ricos. E também o que mais importa no bolso: se cada pessoa ficou mais rica, a inflação e o desemprego.</p>
+      <dl class="pol-stats" aria-live="polite">
+        <div><dt id="st-ult-t">Crescimento no último ano</dt><dd id="st-ult">—</dd></div>
+        <div><dt>Média por ano desde 1988</dt><dd id="st-media">—</dd></div>
+        <div><dt id="st-pc-t">PIB por pessoa (PPC)</dt><dd id="st-pc">—</dd></div>
+        <div><dt>Dados atualizados em</dt><dd id="st-upd" class="mono">—</dd></div>
+      </dl>
+    </section>
+
+    <section class="section pol-section" id="resumo" aria-labelledby="resumo-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Resposta curta</div>
+        <div class="projects-heading"><div>
+          <h2 id="resumo-title">Cresceu, mas quanto em comparação com os outros?</h2>
+          <p>O resumo abaixo é montado automaticamente a partir dos números oficiais, sempre comparando o Brasil com a média do mundo. Os detalhes de cada ponto estão nas seções seguintes.</p>
+        </div></div>
+        <ul class="eco-resumo" id="resumo-list" aria-live="polite"><li class="skeleton" style="height:120px"></li></ul>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="ano-a-ano" aria-labelledby="ano-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Ano a ano</div>
+        <div class="projects-heading"><div>
+          <h2 id="ano-title">Quanto o Brasil cresceu em cada ano</h2>
+          <p>As barras mostram o crescimento do PIB do Brasil (quanto a economia aumentou, já sem a inflação). As linhas mostram os países que você escolher. Toque num ano para ver a explicação.</p>
+        </div></div>
+
+        <div class="eco-picker" id="paises" tabindex="-1">
+          <div class="eco-picker-top">
+            <h3 class="h-sm">Comparar com <span class="muted" id="pk-count"></span></h3>
+            <button class="linkish" type="button" id="pk-reset">Voltar ao padrão</button>
+          </div>
+          <div id="pk-groups"></div>
+          <p class="note-sm">A escolha vale para todos os gráficos da página. Até 6 comparações ao mesmo tempo, para o gráfico continuar legível.</p>
+        </div>
+
+        <div class="eco-controls">
+          <div class="field"><label for="ano-de">Período</label>
+            <select id="ano-de">
+              <option value="1961">Desde 1961</option>
+              <option value="1980">Desde 1980</option>
+              <option value="1988" selected>Desde 1988 (Constituição)</option>
+              <option value="1995">Desde 1995 (depois do Plano Real)</option>
+              <option value="2003">Desde 2003</option>
+              <option value="2015">Últimos 10 anos</option>
+            </select></div>
+          <label class="eco-check"><input type="checkbox" id="ano-proj" checked> Mostrar projeção do FMI para os próximos 2 anos</label>
+        </div>
+
+        <figure class="eco-fig">
+          <div class="eco-chart" id="ch-cres"></div>
+          <figcaption class="eco-legend" id="lg-cres"></figcaption>
+        </figure>
+        <p class="eco-ano-detalhe" id="ano-detalhe" aria-live="polite"></p>
+
+        <h3 class="h-md eco-h3">Brasil x mundo, ano a ano</h3>
+        <p class="note-sm">Verde: o Brasil cresceu mais que a média do mundo. Vermelho: cresceu menos (ou caiu mais). Cinza: praticamente igual (diferença menor que meio ponto). Toque num ano para ler.</p>
+        <div class="eco-faixa" id="faixa" role="group" aria-label="Brasil comparado com o mundo em cada ano"></div>
+        <p class="pol-count" id="faixa-conta"></p>
+
+        <h3 class="h-md eco-h3">Placar do período escolhido</h3>
+        <div class="table-wrap"><table class="data-table tabela-cards" id="placar"><caption class="sr-only">Crescimento médio por ano no período escolhido</caption></table></div>
+
+        <details class="eco-tabela"><summary>Ver todos os números em tabela</summary><div class="table-wrap"><table class="data-table" id="tb-cres"></table></div></details>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="por-pessoa" aria-labelledby="pp-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Por pessoa</div>
+        <div class="projects-heading"><div>
+          <h2 id="pp-title">Cada brasileiro ficou mais rico?</h2>
+          <p>O PIB total cresce também porque a população aumenta. Dividindo pelo número de habitantes (PIB por pessoa), dá para ver se a riqueza média de cada um cresceu de verdade.</p>
+        </div></div>
+        <div class="tabs" role="tablist" aria-label="Tipo de gráfico" id="pp-tabs">
+          <button role="tab" type="button" aria-selected="true" data-k="nivel">Quanto cada pessoa produz</button>
+          <button role="tab" type="button" aria-selected="false" data-k="cresc">Crescimento por pessoa, ano a ano</button>
+        </div>
+        <p class="eco-comp">Comparando com: <span class="eco-comp-list"></span> · <a class="linkish" href="#paises">trocar países</a></p>
+        <figure class="eco-fig">
+          <div class="eco-chart" id="ch-pp"></div>
+          <figcaption class="eco-legend" id="lg-pp"></figcaption>
+        </figure>
+        <p class="eco-explica" id="pp-explica"></p>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="acumulado" aria-labelledby="ac-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Crescimento acumulado</div>
+        <div class="projects-heading"><div>
+          <h2 id="ac-title">Quanto cada economia cresceu desde 1988</h2>
+          <p>Todo mundo começa em 100 no ano escolhido. Se a linha chega a 200, aquela economia dobrou de tamanho. Assim dá para comparar países grandes e pequenos lado a lado.</p>
+        </div></div>
+        <div class="eco-controls">
+          <div class="field"><label for="ac-base">Começar em</label>
+            <select id="ac-base">
+              <option value="1980">1980</option>
+              <option value="1988" selected>1988 (Constituição)</option>
+              <option value="1994">1994 (Plano Real)</option>
+              <option value="2002">2002</option>
+              <option value="2010">2010</option>
+              <option value="2014">2014</option>
+            </select></div>
+          <div class="tabs eco-tabs-inline" role="tablist" aria-label="Medida" id="ac-tabs">
+            <button role="tab" type="button" aria-selected="true" data-k="total">Economia inteira</button>
+            <button role="tab" type="button" aria-selected="false" data-k="pc">Por pessoa</button>
+          </div>
+        </div>
+        <p class="eco-comp">Comparando com: <span class="eco-comp-list"></span> · <a class="linkish" href="#paises">trocar países</a></p>
+        <figure class="eco-fig">
+          <div class="eco-chart" id="ch-ac"></div>
+          <figcaption class="eco-legend" id="lg-ac"></figcaption>
+        </figure>
+        <p class="eco-explica" id="ac-explica"></p>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="mundo" aria-labelledby="mu-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Lugar no mundo</div>
+        <div class="projects-heading"><div>
+          <h2 id="mu-title">O Brasil subiu ou desceu entre os países?</h2>
+          <p>Duas formas de ver: o pedaço da economia mundial que é do Brasil e a posição do Brasil numa lista de todos os países ordenados pelo PIB por pessoa.</p>
+        </div></div>
+        <div class="pol-grid pol-grid-2 eco-g2">
+          <figure class="eco-fig pol-card">
+            <h3 class="h-sm">Fatia do Brasil na economia do mundo</h3>
+            <p class="note-sm">Em PPC (descontando a diferença de preços entre países). Fonte: FMI.</p>
+            <div class="eco-chart eco-chart-sm" id="ch-fatia"></div>
+            <figcaption class="eco-explica" id="fatia-explica"></figcaption>
+          </figure>
+          <figure class="eco-fig pol-card">
+            <h3 class="h-sm">Países que ficam atrás do Brasil em PIB por pessoa</h3>
+            <p class="note-sm">Quanto mais alto, melhor a posição. Fonte: Banco Mundial (todos os países com dado no ano).</p>
+            <div class="eco-chart eco-chart-sm" id="ch-rank"></div>
+            <figcaption class="eco-explica" id="rank-explica"></figcaption>
+          </figure>
+        </div>
+        <details class="eco-tabela"><summary>Ver a posição do Brasil em cada ano</summary><div class="table-wrap"><table class="data-table" id="tb-rank"></table></div></details>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="presidentes" aria-labelledby="pr-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Por presidente</div>
+        <div class="projects-heading"><div>
+          <h2 id="pr-title">Crescimento médio em cada mandato</h2>
+          <p id="pr-regra">Quanto a economia cresceu, em média por ano, em cada mandato presidencial, ao lado do mundo e da América Latina nos mesmos anos.</p>
+        </div></div>
+        <div class="note eco-aviso" role="note"><strong>Antes de comparar:</strong> o crescimento depende muito de coisas que nenhum presidente controla, como crises mundiais, o preço do que o Brasil exporta (soja, minério, petróleo), juros lá fora, secas e pandemias. Decisões de um governo também costumam ter efeito nos anos seguintes. Por isso, compare cada mandato com o mundo e a América Latina no mesmo período.</div>
+        <div class="eco-pm" id="pm-barras" aria-hidden="true"></div>
+        <div class="table-wrap"><table class="data-table tabela-cards" id="tb-pres"><caption class="sr-only">Crescimento médio por mandato presidencial</caption></table></div>
+        <p class="note-sm" id="pr-nota"></p>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="outros" aria-labelledby="ou-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Inflação e mais</div>
+        <div class="projects-heading"><div>
+          <h2 id="ou-title">Outros sinais de como vai a economia</h2>
+          <p>Crescer é só uma parte da história. Veja também os preços, o emprego, a dívida do governo e a desigualdade, comparando com os mesmos países.</p>
+        </div></div>
+        <div class="tabs" role="tablist" aria-label="Indicador" id="ou-tabs">
+          <button role="tab" type="button" aria-selected="true" data-k="infl">Inflação</button>
+          <button role="tab" type="button" aria-selected="false" data-k="desemp">Desemprego</button>
+          <button role="tab" type="button" aria-selected="false" data-k="divida">Dívida do governo</button>
+          <button role="tab" type="button" aria-selected="false" data-k="gini">Desigualdade</button>
+        </div>
+        <p class="eco-explica eco-ou-def" id="ou-def"></p>
+        <div class="eco-controls">
+          <div class="field"><label for="ou-de">Período</label>
+            <select id="ou-de">
+              <option value="1980">Desde 1980</option>
+              <option value="1988">Desde 1988</option>
+              <option value="1995" selected>Desde 1995 (depois do Plano Real)</option>
+              <option value="2010">Desde 2010</option>
+            </select></div>
+        </div>
+        <p class="eco-comp">Comparando com: <span class="eco-comp-list"></span> · <a class="linkish" href="#paises">trocar países</a></p>
+        <figure class="eco-fig">
+          <div class="eco-chart" id="ch-ou"></div>
+          <figcaption class="eco-legend" id="lg-ou"></figcaption>
+        </figure>
+        <p class="eco-explica" id="ou-explica"></p>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="como" aria-labelledby="como-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Como ler</div>
+        <div class="projects-heading"><div><h2 id="como-title">Palavras que aparecem nesta página</h2></div></div>
+        <dl class="eco-gloss">
+          <div><dt>PIB</dt><dd>Produto Interno Bruto: o valor de tudo o que o país produz num ano (produtos e serviços). É a medida mais usada do tamanho de uma economia.</dd></div>
+          <div><dt>Crescimento do PIB</dt><dd>Quanto o PIB aumentou de um ano para o outro, já tirando o efeito da inflação. Se for negativo, a economia encolheu.</dd></div>
+          <div><dt>PIB por pessoa (per capita)</dt><dd>O PIB dividido pelo número de habitantes. Mostra quanto, em média, cada pessoa produz. É uma média: não diz como a riqueza é dividida.</dd></div>
+          <div><dt>PPC (paridade do poder de compra)</dt><dd>Um ajuste que leva em conta que as coisas custam preços diferentes em cada país. Com a PPC, um dólar compra a mesma quantidade de coisas em qualquer lugar, então a comparação fica mais justa.</dd></div>
+          <div><dt>Dólar internacional de 2021</dt><dd>A moeda usada na comparação em PPC, com os preços de 2021 para todos os anos. Assim, a inflação não engana a comparação ao longo do tempo.</dd></div>
+          <div><dt>Recessão</dt><dd>Quando a economia encolhe por um tempo. Na linguagem do dia a dia, um ano com crescimento negativo.</dd></div>
+          <div><dt>Inflação</dt><dd>Quanto os preços subiram, em média, em um ano. No Brasil, a medida oficial é o IPCA, calculado pelo IBGE.</dd></div>
+          <div><dt>Desemprego</dt><dd>A parte das pessoas que querem trabalhar e procuram emprego, mas não encontram.</dd></div>
+          <div><dt>Dívida bruta do governo</dt><dd>Tudo o que o governo (União, estados e municípios) deve, comparado com o tamanho da economia (% do PIB).</dd></div>
+          <div><dt>Índice de Gini</dt><dd>Mede a desigualdade de renda de 0 a 100: quanto mais alto, mais desigual. 0 seria todo mundo com a mesma renda.</dd></div>
+          <div><dt>Projeção</dt><dd>Uma previsão para anos que ainda não terminaram ou ainda não têm número oficial. Pode mudar. Aqui aparece em linha tracejada.</dd></div>
+          <div><dt>Ponto percentual</dt><dd>A diferença simples entre duas porcentagens. De 2% para 3% é 1 ponto percentual a mais.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="fontes" aria-labelledby="fontes-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Fontes e limites</div>
+        <div class="projects-heading"><div><h2 id="fontes-title">De onde vêm os dados</h2>
+          <p>Só números de órgãos oficiais. Os anos sem dado aparecem como lacuna, nunca inventados. Atualização automática toda semana.</p></div></div>
+        <div class="eco-fontes" id="fontes-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container pol-footer">
+      <div>
+        <p><strong>Fontes:</strong>
+          <a href="https://sidra.ibge.gov.br/tabela/6784" target="_blank" rel="noreferrer">IBGE — Contas Nacionais</a>,
+          <a href="https://www3.bcb.gov.br/sgspub/" target="_blank" rel="noreferrer">Banco Central (SGS)</a>,
+          <a href="https://data.worldbank.org/" target="_blank" rel="noreferrer">Banco Mundial (WDI)</a> e
+          <a href="https://www.imf.org/en/Publications/WEO" target="_blank" rel="noreferrer">FMI (World Economic Outlook)</a>.</p>
+        <p>Página independente e apartidária. Os textos automáticos só descrevem os números e não expressam opinião.</p>
+      </div>
+      <div class="pol-footer-links">
+        <p>© <span id="year"></span> Alexsander Schimitz.</p>
+        <a href="/politica/">Painel de política</a>
+        <a href="/politica/gastos/">Gastos públicos</a>
+        <a href="/">← Página inicial</a>
+        <a href="#top">Voltar ao topo ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../scripts/home.js"></script>
+  <script src="../base.js"></script>
+  <script src="economia.js"></script>
+</body>
+</html>

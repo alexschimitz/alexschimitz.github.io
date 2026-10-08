@@ -1,0 +1,64 @@
+name: Politica - economia (PIB e comparação entre países)
+
+on:
+  schedule:
+    - cron: "37 8 * * 3"   # toda quarta, 05:37 em Brasília
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: politica-economia
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Baixar e montar os dados (IBGE, Banco Central, Banco Mundial, FMI)
+        timeout-minutes: 15
+        continue-on-error: true
+        run: python3 scripts/politica/economia/build.py
+
+      - name: Commit (só se os dados mudaram)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          changed=$(git status --porcelain -- politica/data/economia | grep -v -E 'politica/data/economia/fontes\.json$' || true)
+          # geradoEm muda todo dia: ignora mudança que seja só a data
+          if [ -n "$changed" ]; then
+            real=$(git diff --unified=0 -- politica/data/economia ':!politica/data/economia/fontes.json' | grep -E '^[+-][^+-]' | sed -E 's/^[+-]//; s/"geradoEm":"[0-9-]+"//g' | sort | uniq -u || true)
+            [ -z "$real" ] && changed=""
+          fi
+          if [ -z "$changed" ]; then
+            echo "Sem mudanças nos dados."
+            git checkout -- politica/data/economia 2>/dev/null || true
+            exit 0
+          fi
+          git add politica/data/economia
+          git commit -m "politica/economia: atualiza dados ($(date -u +%Y-%m-%d))"
+          for i in 1 2 3; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break
+            sleep 10
+          done
+          echo "CHANGED=true" >> "$GITHUB_ENV"
+
+      - name: Pedir build do Pages
+        if: env.CHANGED == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${GITHUB_REPOSITORY}/pages/builds" || true
