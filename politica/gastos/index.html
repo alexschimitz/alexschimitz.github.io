@@ -50,7 +50,9 @@
       <a href="#orgaos">Ministérios</a>
       <a href="#presidencia">Presidência</a>
       <a href="#cartao">Cartão</a>
+      <a href="#viagens">Viagens</a>
       <a href="#congresso">Congresso</a>
+      <a href="#emendas">Emendas</a>
       <a href="#como-ler">Como ler</a>
       <a href="#fontes">Fontes</a>
     </nav>
@@ -220,6 +222,26 @@
             <p class="g-chart-note" id="pres-cartao-note"></p>
           </div>
         </div>
+        <div class="g-grid-2">
+          <div class="g-card" id="viag-card">
+            <h3 class="g-h3">Viagens a serviço pagas pela Presidência</h3>
+            <p class="g-sub">Diárias e passagens de quem viajou a trabalho pela Presidência (servidores, assessores, seguranças, convidados). Nomes e cargos de parte delas são <b>sigilosos</b>.</p>
+            <div class="g-seg" role="radiogroup" aria-label="Medida" data-seg="viag-mode">
+              <button type="button" role="radio" aria-checked="true" data-v="v">Valor</button>
+              <button type="button" role="radio" aria-checked="false" data-v="n">Quantidade</button>
+            </div>
+            <div class="g-chart" id="chart-viag" role="img" aria-label="Viagens a serviço da Presidência por ano"></div>
+            <p class="g-chart-note" id="viag-note"></p>
+          </div>
+          <div class="g-card" id="pport-card">
+            <h3 class="g-h3">A Presidência pelo Portal da Transparência</h3>
+            <p class="g-sub">Outra conta oficial: o Portal soma pelo órgão que <b>executou</b> o gasto, por isso pode incluir dinheiro de outros ministérios que a Presidência pagou. Não some com o gráfico ao lado.</p>
+            <label class="g-field">Ano <select id="pport-year" aria-label="Ano"></select></label>
+            <div class="g-table-wrap"><table class="g-table" id="pport-table"><caption class="sr-only">Presidência por órgão segundo o Portal</caption>
+              <thead><tr><th scope="col" class="txt">Órgão</th><th scope="col">Gasto (liquidado)</th><th scope="col">Pago</th></tr></thead><tbody></tbody></table></div>
+            <p class="g-chart-note">Fonte: Portal da Transparência (CGU), API de dados, despesas por órgão (órgão superior 20000), desde 2014.</p>
+          </div>
+        </div>
         <h3 class="g-h3">Cartão da Presidência por mandato (2003–2022, dados liberados em 2023)</h3>
         <p class="g-sub">Planilha oficial divulgada pelo governo em 2023, quando esses gastos deixaram de ser sigilosos. Valores corrigidos pelo IPCA, ano a ano.</p>
         <div class="g-card g-table-wrap">
@@ -270,6 +292,45 @@
         <div class="g-card">
           <h3 class="g-h3">Total do cartão por ano (todos os órgãos)</h3>
           <div class="g-chart" id="chart-cartao" role="img" aria-label="Total do cartão corporativo por ano"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== VIAGENS ===================== -->
+    <section class="section g-section" id="viagens" aria-labelledby="vg-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Viagens a serviço · todo o governo federal</div>
+        <div class="g-heading">
+          <h2 id="vg-title">Quanto o governo gasta com viagens a trabalho</h2>
+          <p>Quando um servidor viaja a serviço, o governo paga <b>diárias</b> (hotel e comida) e <b>passagens</b>. Fonte: Portal da Transparência (CGU), arquivos anuais de viagens.</p>
+        </div>
+        <div class="g-controls">
+          <label class="g-field">Ano <select id="vg-year" aria-label="Ano"></select></label>
+          <label class="g-field g-grow">Buscar <input id="vg-q" type="search" placeholder="ex.: Saúde, Polícia, Educação" aria-label="Buscar órgão"></label>
+        </div>
+        <dl class="g-kpis g-kpis-sm" id="vg-kpis"></dl>
+        <div class="g-grid-2">
+          <div class="g-card g-table-wrap">
+            <table class="g-table" id="vg-table">
+              <caption class="sr-only">Viagens a serviço por órgão</caption>
+              <thead><tr>
+                <th scope="col" data-k="n" class="txt">Órgão</th>
+                <th scope="col" data-k="q">Viagens</th>
+                <th scope="col" data-k="v" aria-sort="descending">Custo</th>
+                <th scope="col" data-k="m">Média</th>
+              </tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="g-card g-sticky" id="vg-detail">
+            <h3 class="g-h3">Toque num órgão</h3>
+            <p class="g-sub">Para ver quem pediu as viagens, os cargos que mais viajaram e os destinos mais comuns.</p>
+          </div>
+        </div>
+        <div class="g-card">
+          <h3 class="g-h3">Custo das viagens a serviço por ano (todo o governo)</h3>
+          <div class="g-chart" id="chart-vg" role="img" aria-label="Custo das viagens a serviço por ano"></div>
+          <p class="g-chart-note">Diárias + passagens + outros gastos, menos devoluções. Valores da época. * Ano em curso.</p>
         </div>
       </div>
     </section>
@@ -325,6 +386,57 @@
           <h3 class="g-h3">Total da cota por ano</h3>
           <div class="g-chart" id="chart-cong" role="img" aria-label="Total da cota parlamentar por ano"></div>
           <p class="g-chart-note" id="cong-year-note"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== EMENDAS ===================== -->
+    <section class="section g-section" id="emendas" aria-labelledby="em-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Congresso · emendas parlamentares (2014–hoje)</div>
+        <div class="g-heading">
+          <h2 id="em-title">Para onde deputados e senadores mandaram dinheiro</h2>
+          <p><b>Emendas parlamentares</b> são pedaços do orçamento federal que deputados, senadores, bancadas estaduais e comissões indicam para uma cidade, um estado ou um projeto (obra, hospital, asfalto, ônibus escolar…). O dinheiro é do governo federal; o parlamentar escolhe o destino.</p>
+        </div>
+        <div class="g-controls" role="group" aria-label="Filtros das emendas">
+          <label class="g-field">De <select id="em-from" aria-label="Ano inicial"></select></label>
+          <label class="g-field">até <select id="em-to" aria-label="Ano final"></select></label>
+          <label class="g-field">Tipo <select id="em-tipo" aria-label="Tipo de autor"><option value="">Todos</option><option value="p" selected>Só parlamentares (individuais)</option><option value="b">Bancadas</option><option value="c">Comissões</option><option value="r">Relator-geral</option></select></label>
+          <label class="g-field g-grow">Autor <input id="em-q" type="search" placeholder="Buscar pelo nome do autor" aria-label="Buscar autor da emenda"></label>
+        </div>
+        <dl class="g-kpis g-kpis-sm" id="em-kpis"></dl>
+        <div class="g-simple" id="em-simple"></div>
+        <div class="g-grid-2">
+          <div class="g-card">
+            <h3 class="g-h3">Pago por ano, por tipo de emenda</h3>
+            <div class="g-legend" id="em-legend"></div>
+            <div class="g-chart" id="chart-em" role="img" aria-label="Emendas pagas por ano e tipo"></div>
+            <p class="g-chart-note">"Pago" inclui o que foi pago depois, como restos a pagar. Valores da época. O ano em curso é parcial.</p>
+          </div>
+          <div class="g-card">
+            <h3 class="g-h3">Em que áreas o dinheiro foi usado</h3>
+            <ol class="g-bars g-bars-sm" id="em-fun"></ol>
+          </div>
+        </div>
+        <div class="g-card g-table-wrap">
+          <table class="g-table" id="em-table">
+            <caption class="sr-only">Autores de emendas parlamentares</caption>
+            <thead><tr>
+              <th scope="col" class="num-col">#</th>
+              <th scope="col" data-k="nome" class="txt">Autor</th>
+              <th scope="col" data-k="tipo" class="txt">Tipo</th>
+              <th scope="col" data-k="emp">Reservado (empenhado)</th>
+              <th scope="col" data-k="pago" aria-sort="descending">Pago</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+          <div class="g-more"><button class="button button-ghost" type="button" id="em-more" hidden>Mostrar mais</button></div>
+          <p class="g-chart-note">Toque num autor para ver para onde foi o dinheiro. Nomes como registrados pelo Portal da Transparência.</p>
+        </div>
+        <div class="g-card g-detail" id="em-detail" hidden></div>
+        <div class="g-card">
+          <h3 class="g-h3">Estados que mais receberam (no período)</h3>
+          <ol class="g-bars g-bars-sm g-cols-2" id="em-uf"></ol>
         </div>
       </div>
     </section>

@@ -163,7 +163,7 @@
       s += `<g data-tip="${esc(tipTxt)}">`;
       if (d.parts) {
         let acc = 0;
-        d.parts.forEach((p) => { const h = (ih * (p.v || 0)) / max; s += `<rect class="bar ${p.cls || ''}" x="${x}" y="${pad.t + ih - acc - h}" width="${w}" height="${Math.max(0, h)}" rx="2"/>`; acc += h; });
+        d.parts.forEach((p) => { const h = (ih * (p.v || 0)) / max; s += `<rect class="bar ${p.cls || ''}" x="${x}" y="${pad.t + ih - acc - h}" width="${w}" height="${Math.max(0, h)}" rx="2"${p.color ? ` style="fill:var(${p.color})"` : ''}/>`; acc += h; });
       } else {
         const h = (ih * (d.v || 0)) / max;
         s += `<rect class="bar ${d.cls || ''}" x="${x}" y="${pad.t + ih - h}" width="${w}" height="${Math.max(0, h)}" rx="2"/>`;
@@ -744,12 +744,160 @@
       hbars($('#pm-forn'), a.forn.slice(0, 8).map((f) => ({ label: f[0] || '—', sub: fmtCNPJ(f[1]), v: f[2], txt: brl(f[2]) })));
     };
     $('#pm-y').addEventListener('change', drawY); drawY();
+    const em = S.emAut && S.emAut.autores.find((r) => r[9] === key);
+    if (em) {
+      const box = document.createElement('div'); box.className = 'g-simple';
+      box.innerHTML = `<p><b>Emendas parlamentares:</b> ${esc(P.nome)} indicou ${brl(em[3])} do orçamento federal de ${em[6]} a ${em[7]}, dos quais ${brl(em[4])} já foram pagos. <a href="#emendas" data-em="${esc(em[0])}">Ver para onde foi o dinheiro</a>.</p>`;
+      body.insertBefore(box, $('#pm-years', body).previousElementSibling);
+      $('[data-em]', box).addEventListener('click', (e) => { e.preventDefault(); closeModal(); $('#em-q').value = ''; showEmAutor(em[0], true); });
+    }
+  }
+
+
+  // ================================================================ VIAGENS e PORTAL (Presidência)
+  function initViagens() {
+    const V = S.viagRes; const card = $('#viag-card');
+    if (!V || !V.anos) { card.hidden = true; return; }
+    const ys = Object.keys(V.anos).sort().filter((y) => V.anos[y].orgaos.some((o) => o[0] === '20000'));
+    if (!ys.length) { card.hidden = true; return; }
+    const get = (y) => V.anos[y].orgaos.find((o) => o[0] === '20000');
+    const cy = String(new Date().getFullYear());
+    const draw = () => {
+      const mode = segValue('viag-mode');
+      barChart($('#chart-viag'), ys.map((y) => { const o = get(y); const inc = y === cy; const v = mode === 'n' ? o[2] : o[3]; return { x: inc ? y + '*' : y, v, cls: inc ? 'partial' : '', tip: `<b>${y}${inc ? ' (parcial)' : ''}</b>${nf0.format(o[2])} viagens · ${brl(o[3])}<br><small>marcadas como sigilosas: ${nf0.format(o[4])} (${brl(o[5])})</small>` }; }), { height: 200, fmt: mode === 'n' ? (x) => nf0.format(x) : undefined });
+    };
+    bindSeg('viag-mode', draw); draw(); onResize(draw);
+    const yf = ys.filter((y) => y !== cy).pop(); const o = yf && get(yf);
+    $('#viag-note').textContent = `${o ? `Em ${yf}: ${nf0.format(o[2])} viagens, ${brl(o[3])}, média de ${brl(o[3] / Math.max(1, o[2]))} por viagem. ` : ''}Diárias + passagens + outros gastos, menos devoluções; valores da época, pelo mês de início. * Ano em curso. Fonte: Portal da Transparência (CGU), viagens a serviço, órgão superior 20000.`;
+  }
+  // ================================================================ VIAGENS (todo o governo)
+  const VG = { sort: 'v', dir: -1, data: null, sel: null };
+  function initViagGov() {
+    const V = S.viagRes; const ys = Object.keys(V.anos).sort(); const sel = $('#vg-year');
+    const cy = String(new Date().getFullYear()); const lf = ys.filter((y) => y !== cy).pop() || ys[ys.length - 1];
+    fillYears(sel, ys.slice().reverse(), lf);
+    const drawChart = () => barChart($('#chart-vg'), ys.map((y) => { const a = V.anos[y]; const inc = y === cy; return { x: inc ? y + '*' : y, v: a.total, cls: inc ? 'partial' : '', tip: `<b>${y}${inc ? ' (parcial)' : ''}</b>${nf0.format(a.n)} viagens · ${brl(a.total)}<br><small>diárias ${brl(a.diarias)} · passagens ${brl(a.passagens)} · devoluções ${brl(a.devolucao)}</small>` }; }), { height: 220 });
+    drawChart(); onResize(drawChart);
+    const load = async () => {
+      const y = sel.value; const a = V.anos[y];
+      $('#vg-kpis').innerHTML = `<div><dt>Viagens em ${esc(y)}</dt><dd>${nf0.format(a.n)}</dd></div><div><dt>Custo total</dt><dd>${brl(a.total)}</dd><small>diárias ${brl(a.diarias)} · passagens ${brl(a.passagens)}</small></div><div><dt>Média por viagem</dt><dd>${brl(a.total / Math.max(1, a.n))}</dd></div><div><dt>Por dia</dt><dd>${nf0.format(a.n / 365)} viagens</dd><small>${brl(a.total / 365)} por dia</small></div>`;
+      try { VG.data = await getJSON(`viagens/ano/${y}.json`); } catch (e) { VG.data = null; }
+      drawVg(); if (VG.sel) showVg(VG.sel);
+    };
+    sel.addEventListener('change', load);
+    $('#vg-q').addEventListener('input', debounce(drawVg, 200));
+    sortableTable($('#vg-table'), VG, () => drawVg());
+    rowKeys($('#vg-table tbody'), (k) => showVg(k, true));
+    load();
+  }
+  function drawVg() {
+    const tb = $('#vg-table tbody'); if (!VG.data) { tb.innerHTML = '<tr class="empty"><td colspan="4">Não foi possível carregar.</td></tr>'; return; }
+    const q = norm($('#vg-q').value);
+    const rows = Object.entries(VG.data.orgaos).map(([k, o]) => ({ k, n: o.nome, q: o.n, v: o.v, m: o.v / Math.max(1, o.n) })).filter((r) => !q || norm(r.n).includes(q)).sort(cmp(VG.sort, VG.dir));
+    tb.innerHTML = rows.length ? rows.map((r) => `<tr tabindex="0" data-key="${esc(r.k)}" class="${VG.sel === r.k ? 'sel' : ''}"><td class="txt">${esc(r.n)}</td><td>${nf0.format(r.q)}</td><td><b>${brl(r.v)}</b></td><td>${brl(r.m)}</td></tr>`).join('') : '<tr class="empty"><td colspan="4">Nenhum órgão encontrado.</td></tr>';
+  }
+  function showVg(k, scroll) {
+    VG.sel = k; $$('#vg-table tbody tr').forEach((tr) => tr.classList.toggle('sel', tr.dataset.key === k));
+    const o = VG.data && VG.data.orgaos[k]; const box = $('#vg-detail'); if (!o) return;
+    box.innerHTML = `<h3 class="g-h3">${esc(o.nome)}</h3><p class="g-sub">${esc(VG.data.ano)}: ${nf0.format(o.n)} viagens, ${brl(o.v)} (diárias ${brl(o.diarias)}, passagens ${brl(o.passagens)}). ${o.sig_n ? `${nf0.format(o.sig_n)} marcadas como sigilosas (${brl(o.sig_v)}). ` : ''}${o.urgentes ? `${nf0.format(o.urgentes)} pedidas com urgência.` : ''}</p>
+      <h4>Por mês</h4><div class="g-chart" id="vgd-m"></div>
+      <h4>Quem pediu (unidade)</h4><ol class="g-bars g-bars-sm" id="vgd-sol"></ol>
+      <h4>Cargos que mais viajaram</h4><ol class="g-bars g-bars-sm" id="vgd-car"></ol>
+      <h4>Destinos mais comuns</h4><ol class="g-bars g-bars-sm" id="vgd-dest"></ol>`;
+    barChart($('#vgd-m'), o.mes.map((v, j) => ({ x: MESES[j], v })), { height: 130 });
+    const li = (arr) => arr.map((x) => ({ label: x[0], sub: `${nf0.format(x[2])} viagens`, v: x[1], txt: brl(x[1]) }));
+    hbars($('#vgd-sol'), li(o.solicitantes.slice(0, 8))); hbars($('#vgd-car'), li(o.cargos.slice(0, 8))); hbars($('#vgd-dest'), li(o.destinos.slice(0, 10)));
+    if (scroll && window.innerWidth < 900) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  function initPport() {
+    const P = S.pport; const card = $('#pport-card');
+    if (!P || !P.anos || !Object.keys(P.anos).length) { card.hidden = true; return; }
+    const ys = Object.keys(P.anos).sort(); const sel = $('#pport-year');
+    const lf = String(S.serie ? lastFullYear() : ys[ys.length - 2]);
+    fillYears(sel, ys.slice().reverse(), ys.includes(lf) ? lf : ys[ys.length - 1]);
+    const draw = () => {
+      const rows = (P.anos[sel.value] || []).slice().sort((a, b) => b[3] - a[3]);
+      const t = rows.reduce((a, r) => [a[0] + r[2], a[1] + r[3], a[2] + r[4]], [0, 0, 0]);
+      $('#pport-table tbody').innerHTML = rows.map((r) => `<tr><td class="txt">${esc(r[1])}<small>código ${esc(r[0])}</small></td><td><b>${brl(r[3])}</b></td><td>${brl(r[4])}</td></tr>`).join('') + `<tr class="g-total"><td class="txt"><b>Total</b></td><td><b>${brl(t[1])}</b></td><td>${brl(t[2])}</td></tr>`;
+    };
+    sel.addEventListener('change', draw); draw();
+  }
+
+  // ================================================================ EMENDAS
+  const EM = { sort: 'pago', dir: -1, shown: 25, rows: [], sel: null };
+  const EM_TIPOS = [['Individual (com destino definido)', '--g-c1'], ['Individual ("emenda Pix")', '--g-c2'], ['Bancada estadual', '--g-c3'], ['Comissão', '--g-c4'], ['Relator-geral', '--g-c5']];
+  const emTipoKey = (t) => (/^Individual/.test(t) ? 'p' : /^Bancada/.test(t) ? 'b' : /^Comiss/.test(t) ? 'c' : /^Relator/.test(t) ? 'r' : '');
+  function initEmendas() {
+    const R = S.emRes; const ys = Object.keys(R.anos).sort();
+    const f = $('#em-from'); const t = $('#em-to');
+    fillYears(f, ys, ys[0]); fillYears(t, ys, ys[ys.length - 1]);
+    $('#em-legend').innerHTML = EM_TIPOS.map(([k, c]) => `<span><i style="background:var(${c})"></i>${esc(k)}</span>`).join('');
+    const drawChart = () => barChart($('#chart-em'), ys.map((y) => { const a = R.anos[y]; const last = y === ys[ys.length - 1]; const tot = a.pag + a.rp_pago; return { x: last ? y + '*' : y, v: tot, parts: EM_TIPOS.map(([k, c]) => ({ v: a.tipos[k] || 0, color: c })), tip: `<b>${y}${last ? ' (parcial)' : ''}</b>Pago: ${brl(tot)}<br><small>${EM_TIPOS.filter(([k]) => a.tipos[k]).map(([k]) => `${esc(k)}: ${brl(a.tipos[k])}`).join('<br>')}<br>reservado (empenhado): ${brl(a.emp)}</small>` }; }), { height: 230 });
+    drawChart(); onResize(drawChart);
+    const re = () => { EM.shown = 25; renderEm(); };
+    [f, t, $('#em-tipo')].forEach((x) => x.addEventListener('change', re));
+    $('#em-q').addEventListener('input', debounce(re, 200));
+    $('#em-more').addEventListener('click', () => { EM.shown += 50; drawEmTable(); });
+    sortableTable($('#em-table'), EM, () => drawEmTable());
+    rowKeys($('#em-table tbody'), (k) => showEmAutor(k, true));
+    renderEm();
+  }
+  function renderEm() {
+    const R = S.emRes; const A = S.emAut;
+    let a = +$('#em-from').value; let b = +$('#em-to').value; if (a > b) [a, b] = [b, a];
+    const tipo = $('#em-tipo').value; const q = norm($('#em-q').value.trim());
+    const rows = [];
+    A.autores.forEach((r) => {
+      if (tipo && emTipoKey(r[2]) !== tipo) return;
+      if (q && !norm(r[1]).includes(q)) return;
+      let emp = 0; let pago = 0;
+      Object.entries(r[8]).forEach(([y, v]) => { if (+y >= a && +y <= b) { emp += v[0]; pago += v[1]; } });
+      if (!emp && !pago) return;
+      rows.push({ key: r[0], nome: r[1], tipo: r[2], emp, pago, parl: r[9] });
+    });
+    EM.rows = rows; drawEmTable();
+    let tp = 0; let te = 0; const fun = {}; const uf = {};
+    for (let y = a; y <= b; y++) { const x = R.anos[y]; if (!x) continue; tp += x.pag + x.rp_pago; te += x.emp; Object.entries(x.funcao).forEach(([k, v]) => { fun[k] = (fun[k] || 0) + v; }); Object.entries(x.uf).forEach(([k, v]) => { uf[k] = (uf[k] || 0) + v; }); }
+    const ind = rows.filter((r) => emTipoKey(r.tipo) === 'p');
+    const yN = b - a + 1; const pp = pop(Math.min(b, new Date().getFullYear()));
+    $('#em-kpis').innerHTML = `<div><dt>Pago (${a}–${b})</dt><dd>${brl(tp)}</dd><small>valor da época</small></div><div><dt>Reservado (empenhado)</dt><dd>${brl(te)}</dd></div><div><dt>Autores nesta lista</dt><dd>${nf0.format(rows.length)}</dd><small>${nf0.format(ind.length)} com emendas individuais</small></div><div><dt>Por brasileiro</dt><dd>${pp ? brl(tp / pp) : '—'}</dd><small>no período todo</small></div>`;
+    const topF = Object.entries(fun).sort((x, y) => y[1] - x[1]);
+    const tf = topF.reduce((s, x) => s + x[1], 0) || 1;
+    hbars($('#em-fun'), topF.slice(0, 12).map(([k, v]) => ({ label: k, v, txt: `${brl(v)} · ${pct(v / tf, 0)}` })));
+    const tu = Object.values(uf).reduce((s, v) => s + v, 0) || 1;
+    hbars($('#em-uf'), Object.entries(uf).sort((x, y) => y[1] - x[1]).slice(0, 28).map(([k, v]) => ({ label: k, v, txt: `${brl(v)} · ${pct(v / tu, 0)}` })));
+    const yl = R.anos[b] || R.anos[ys0()]; const rel = Object.entries((R.anos[2021] || {}).tipos || {}).find(([k]) => /^Relator/.test(k));
+    $('#em-simple').innerHTML = `<p>De ${a} a ${b}, o governo federal pagou <b>${brl(tp)}</b> em emendas parlamentares, cerca de <b>${brl(tp / yN)} por ano</b>. A maior parte foi para <b>${esc(topF[0] ? topF[0][0] : '—')}</b>${topF[1] ? ` e <b>${esc(topF[1][0])}</b>` : ''}. As emendas individuais de cada parlamentar têm valor garantido por lei; de 2020 a 2022 as "emendas de relator" (o chamado orçamento secreto) não mostravam quem pediu o dinheiro${rel ? ` (em 2021, ${brl(rel[1])} pagos)` : ''}.</p>`;
+    void yl;
+  }
+  const ys0 = () => Object.keys(S.emRes.anos).sort()[0];
+  function drawEmTable() {
+    const rows = EM.rows.slice().sort(cmp(EM.sort, EM.dir));
+    $('#em-table tbody').innerHTML = rows.length ? rows.slice(0, EM.shown).map((r, i) => `<tr tabindex="0" data-key="${esc(r.key)}" class="${EM.sel === r.key ? 'sel' : ''}"><td class="num-col">${i + 1}</td><td class="txt"><b>${esc(r.nome)}</b>${r.parl ? '<small>também na cota parlamentar</small>' : ''}</td><td class="txt">${esc(r.tipo)}</td><td>${brl(r.emp)}</td><td><b>${brl(r.pago)}</b></td></tr>`).join('') : '<tr class="empty"><td colspan="5">Nenhum autor encontrado com esses filtros.</td></tr>';
+    $('#em-more').hidden = rows.length <= EM.shown;
+  }
+  async function showEmAutor(id, scroll) {
+    EM.sel = id; $$('#em-table tbody tr').forEach((tr) => tr.classList.toggle('sel', tr.dataset.key === id));
+    const box = $('#em-detail'); box.hidden = false; box.innerHTML = '<p class="g-loading">Carregando…</p>';
+    if (scroll) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    let D; try { D = await getJSON(`emendas/a/${id}.json`); } catch (e) { box.innerHTML = '<p>Não foi possível carregar este autor.</p>'; return; }
+    const ys = Object.keys(D.anos).sort(); const tp = ys.reduce((s, y) => s + D.anos[y].pago, 0); const te = ys.reduce((s, y) => s + D.anos[y].emp, 0);
+    const tl = D.local.reduce((s, x) => s + x[1], 0) || 1; const tf = Object.values(D.funcao).reduce((s, v) => s + v, 0) || 1;
+    box.innerHTML = `<div class="g-detail-head"><div><h3>${esc(D.nome)}</h3><p class="g-sub">Emendas de ${esc(ys[0])}${ys.length > 1 ? ' a ' + esc(ys[ys.length - 1]) : ''} · reservado ${brl(te)} · pago ${brl(tp)}${D.parlamentar ? ` · <a href="#p=${esc(D.parlamentar)}" data-person="${esc(D.parlamentar)}">ver a cota parlamentar</a>` : ''}</p></div><button class="button button-ghost g-close" type="button" aria-label="Fechar detalhe">Fechar</button></div>
+      <h4>Pago por ano</h4><div class="g-chart" id="emd-years"></div>
+      <div class="g-grid-2 g-detail-lists"><div><h4>Para onde foi (cidade ou estado)</h4><ol class="g-bars g-bars-sm" id="emd-loc"></ol></div><div><h4>Em que área</h4><ol class="g-bars g-bars-sm" id="emd-fun"></ol></div></div>
+      <p class="g-chart-note">"Pago" inclui restos a pagar pagos depois. Fonte: Portal da Transparência (CGU), emendas parlamentares.</p>`;
+    barChart($('#emd-years'), ys.map((y) => ({ x: y, v: D.anos[y].pago, tip: `<b>${y}</b>pago ${brl(D.anos[y].pago)}<br><small>reservado ${brl(D.anos[y].emp)} · ${D.anos[y].n} registro(s)</small>` })), { height: 170 });
+    hbars($('#emd-loc'), D.local.slice(0, 12).map(([k, v]) => ({ label: k, v, txt: `${brl(v)} · ${pct(v / tl, 0)}` })));
+    hbars($('#emd-fun'), Object.entries(D.funcao).slice(0, 10).map(([k, v]) => ({ label: k, v, txt: `${brl(v)} · ${pct(v / tf, 0)}` })));
+    $('.g-close', box).addEventListener('click', () => { box.hidden = true; EM.sel = null; $$('#em-table tbody tr').forEach((tr) => tr.classList.remove('sel')); });
+    const pl = $('[data-person]', box); if (pl) pl.addEventListener('click', (e) => { e.preventDefault(); openPerson(pl.dataset.person); });
   }
 
   // ---------------------------------------------------------------- fontes e lacunas
   function renderSources() {
     const F = S.fontes || {};
-    const order = ['tesouro_series', 'siop', 'ipca', 'populacao', 'cpgf', 'presidencia_cartao_2003_2022', 'camara_ceap', 'senado_ceaps', 'senado_lista', 'portal_api'];
+    const order = ['tesouro_series', 'siop', 'ipca', 'populacao', 'cpgf', 'presidencia_cartao_2003_2022', 'camara_ceap', 'senado_ceaps', 'senado_lista', 'emendas', 'viagens', 'portal_api'];
     const keys = [...order.filter((k) => F[k]), ...Object.keys(F).filter((k) => !order.includes(k))];
     $('#sources').innerHTML = keys.length ? keys.map((k) => { const f = F[k]; return `<li><a href="${esc(f.url)}" target="_blank" rel="noreferrer">${esc(f.nome)}</a>${f.cobertura ? ` — cobertura: ${esc(f.cobertura)}` : ''}${f.publicado_em ? ` — publicado em ${esc(f.publicado_em)}` : ''} — coletado em ${esc((f.coletado_em || '').split('-').reverse().join('/'))}${f.doc ? ` (<a href="${esc(f.doc)}" target="_blank" rel="noreferrer">documentação</a>)` : ''}.</li>`; }).join('') : '<li>Lista de fontes indisponível no momento.</li>';
     $('#ft-upd').textContent = (S.meta && S.meta.gerado_em) || '—';
@@ -769,23 +917,29 @@
       gaps.push(`Cartão corporativo (todos os órgãos): o Portal da Transparência começa em jan/2013. ${missing.length ? `Meses que ainda não temos: ${missing.length} (${missing.slice(0, 6).map((k) => k.slice(4) + '/' + k.slice(0, 4)).join(', ')}${missing.length > 6 ? '…' : ''}).` : 'Todos os meses publicados já foram baixados.'} O Portal tem bloqueio anti-robô, então a rotina baixa poucos meses por vez; os meses mais recentes podem ainda não ter sido publicados.`);
     }
     gaps.push('Cartão da Presidência por mandato: a planilha oficial cobre 02/01/2003 a 19/12/2022. De 2013 em diante também há os dados mensais do Portal, que medem de outro jeito (sem descontar devoluções e pelo mês da fatura).');
-    gaps.push('Ainda não incluídos nesta página: emendas parlamentares por autor, viagens a serviço, salários de servidores e gastos de estados e municípios.');
+    gaps.push('Emendas parlamentares: o Portal da Transparência traz dados a partir de 2014 (2014 e 2015 com menos registros). Emendas de relator (2020–2022) e de comissão não mostram qual parlamentar pediu o dinheiro.');
+    if (S.viagRes) { const vy = Object.keys(S.viagRes.anos).sort(); gaps.push(`Viagens a serviço: dados do Portal da Transparência de ${vy[0]} a ${vy[vy.length - 1]} (o ano atual é parcial). Contamos pela data de início da viagem; viagens canceladas ficam de fora. Nomes e cargos de parte das viagens da Presidência são sigilosos.`); }
+    gaps.push('Ainda não incluídos nesta página: salários de servidores e gastos de estados e municípios.');
     $('#gaps').innerHTML = gaps.map((g) => `<li>${esc(g)}</li>`).join('');
   }
 
   // ---------------------------------------------------------------- início
   async function start() {
     const safe = (p) => getJSON(p).catch((e) => { console.warn(e); return null; });
-    const [idx, serie, res, fontes, meta, parlIdx, parlRes, cart, presHist] = await Promise.all([
+    const [idx, serie, res, fontes, meta, parlIdx, parlRes, cart, presHist, emRes, emAut, viagRes, pport] = await Promise.all([
       safe('indices.json'), safe('uniao/serie.json'), safe('uniao/resumo.json'), safe('fontes.json'), safe('meta.json'),
       safe('parl/indice.json'), safe('parl/resumo.json'), safe('cartao/resumo.json'), safe('cartao/presidencia-2003-2022.json'),
+      safe('emendas/resumo.json'), safe('emendas/autores.json'), safe('viagens/resumo.json'), safe('api/presidencia-por-orgao.json'),
     ]);
-    Object.assign(S, { idx, serie, res, fontes, meta, parlIdx, parlRes, cart, presHist });
+    Object.assign(S, { idx, serie, res, fontes, meta, parlIdx, parlRes, cart, presHist, emRes, emAut, viagRes, pport });
     const run = (name, fn) => { try { fn(); } catch (e) { console.warn(name, e); const sec = document.getElementById(name); if (sec) { const p = document.createElement('p'); p.className = 'g-note warn'; p.textContent = 'Não foi possível montar esta seção agora. Tente recarregar a página.'; $('.container', sec).appendChild(p); } } };
     if (idx && serie) { run('visao', initVisao); run('areas', initAreas); }
     if (idx && res) run('orgaos', initOrgaos);
     if (idx && res) run('presidencia', initPresidencia);
+    run('presidencia', initViagens); if (idx) run('presidencia', initPport);
     if (cart) run('cartao', initCartao);
+    if (viagRes) run('viagens', initViagGov); else { const v = $('#viagens'); if (v) v.hidden = true; }
+    if (emRes && emAut && idx) run('emendas', initEmendas);
     if (parlIdx && parlRes && idx) run('congresso', initCongresso);
     run('como-ler', renderSources);
     const m = /^#p=([cs]-[\w-]+)/.exec(location.hash);

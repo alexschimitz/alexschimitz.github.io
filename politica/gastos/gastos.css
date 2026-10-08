@@ -180,3 +180,13 @@ html.g-modal-open, html.g-modal-open body { overflow: hidden; }
 }
 .gastos main section[id], .gastos footer[id] { scroll-margin-top: 140px; }
 @media (max-width: 760px) { .gastos main section[id], .gastos footer[id] { scroll-margin-top: 124px; } }
+.g-table tr.g-total td { border-top: 1px solid var(--line-strong); }
+.g-bars.g-cols-2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); column-gap: 28px; }
+.g-detail-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+#pport-card .g-field { margin: 4px 0 10px; }
+@media (max-width: 640px) {
+  #em-table th:nth-child(3), #em-table td:nth-child(3),
+  #em-table th:nth-child(4), #em-table td:nth-child(4),
+  #vg-table th:nth-child(4), #vg-table td:nth-child(4) { display: none; }
+  #em-table tr.empty td, #vg-table tr.empty td { display: table-cell; }
+}
