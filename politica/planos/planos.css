@@ -1,0 +1,112 @@
+/* politica/planos — planos de governo e promessas. Usa as primitivas de ../base.css. */
+:root {
+  --st-cumprida: var(--accent);
+  --st-parcialmente: #d6d45a;
+  --st-em_andamento: #6fb6ff;
+  --st-nao_cumprida: var(--bad);
+  --st-sem_como_verificar: #8a948f;
+}
+html[data-theme="light"] {
+  --st-parcialmente: #7a7400;
+  --st-em_andamento: #1f64c4;
+  --st-sem_como_verificar: #6b736f;
+}
+.st-bg-cumprida { background: var(--st-cumprida); }
+.st-bg-parcialmente { background: var(--st-parcialmente); }
+.st-bg-em_andamento { background: var(--st-em_andamento); }
+.st-bg-nao_cumprida { background: var(--st-nao_cumprida); }
+.st-bg-sem_como_verificar { background: var(--st-sem_como_verificar); }
+
+.pl-st { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; border: 1px solid currentColor; font-weight: 800; font-size: 0.74rem; line-height: 1.4; white-space: nowrap; }
+.pl-st::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.st-cumprida { color: var(--st-cumprida); }
+.st-parcialmente { color: var(--st-parcialmente); }
+.st-em_andamento { color: var(--st-em_andamento); }
+.st-nao_cumprida { color: var(--st-nao_cumprida); }
+.st-sem_como_verificar { color: var(--st-sem_como_verificar); }
+
+/* placar */
+.pl-legenda, .pl-cts { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.82rem; color: var(--muted); }
+.pl-legenda { margin-bottom: 14px; }
+.pl-ct { display: inline-flex; align-items: center; gap: 6px; }
+.pl-ct i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.pl-ct b { color: var(--text); }
+.pl-placar { list-style: none; display: grid; gap: 12px; padding: 0; margin: 0 0 14px; }
+.pl-placar > li { padding: 16px 18px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); min-width: 0; }
+.pl-placar-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-bottom: 10px; }
+.pl-placar-top .linkish { font-size: 1.02rem; text-align: left; }
+.pl-placar-sub { font-size: 0.82rem; }
+.pl-bar { display: flex; height: 14px; border-radius: 999px; overflow: hidden; background: var(--line); margin-bottom: 8px; }
+.pl-bar span { display: block; height: 100%; }
+.pl-bar span + span { box-shadow: -2px 0 0 var(--panel); }
+
+/* filtros */
+.pl-filtros { grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)) auto; }
+.pl-filtros-idx { grid-template-columns: minmax(0, 2fr) repeat(5, minmax(0, 1fr)); }
+@media (max-width: 1100px) {
+  .pl-filtros-idx { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pl-filtros-idx .field-search { grid-column: 1 / -1; }
+}
+@media (max-width: 900px) {
+  .pl-filtros { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pl-filtros .field-search { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .pl-filtros-idx { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pl-filtros .field:nth-child(2) { grid-column: 1 / -1; }
+}
+
+/* lista de promessas */
+.pl-lista { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.pl-item { padding: 18px 20px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); min-width: 0; }
+.pl-item-top { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+.pl-item-top .chip { white-space: normal; font-family: inherit; font-size: 0.72rem; font-weight: 600; }
+.pl-item h3 { font-size: 1.12rem; line-height: 1.3; letter-spacing: -0.02em; }
+.pl-quem { margin-top: 4px; color: var(--muted); font-size: 0.86rem; }
+.pl-quem a { color: var(--text); font-weight: 700; }
+.pl-trecho { margin: 12px 0; padding: 10px 14px; border-left: 3px solid var(--line-strong); background: var(--panel-strong); border-radius: 0 12px 12px 0; }
+.pl-trecho p { font-style: italic; line-height: 1.55; }
+.pl-trecho footer { margin-top: 6px; font-size: 0.8rem; color: var(--muted); }
+.pl-trecho footer a, .pl-ev a, .pl-plano-cel a, .pl-plano .note-sm a, .pl-fontes a, #idx-nota a { color: var(--accent); }
+.pl-expl { line-height: 1.55; }
+.pl-ev { margin: 8px 0 0; padding-left: 18px; font-size: 0.88rem; display: grid; gap: 4px; }
+.pl-rev { margin-top: 8px; font-size: 0.76rem; color: var(--muted); font-family: "DM Mono", monospace; }
+.pl-vazio { padding: 18px; border: 1px dashed var(--line-strong); border-radius: 16px; color: var(--muted); }
+.pl-mais { margin-top: 16px; }
+
+/* planos avaliados */
+.pl-planos { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 460px), 1fr)); gap: 16px; }
+.pl-plano { display: flex; flex-direction: column; gap: 10px; }
+.pl-plano-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+.pl-plano-top p { font-size: 0.86rem; margin-top: 2px; }
+.pl-plano-top .chip { align-self: flex-start; white-space: normal; }
+.pl-titulo { font-size: 0.88rem; color: var(--muted); font-style: italic; }
+.pl-resumo { padding-left: 18px; display: grid; gap: 6px; line-height: 1.45; }
+.pl-pg { font-family: "DM Mono", monospace; font-size: 0.72rem; color: var(--muted); white-space: nowrap; }
+.pl-acoes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.pl-acoes .btn { min-height: 42px; }
+
+/* índice */
+.pl-cand a { color: var(--text); font-weight: 700; }
+.pl-civil { display: block; font-size: 0.78rem; color: var(--muted); font-weight: 500; }
+.pl-arq { display: block; margin-top: 2px; font-family: "DM Mono", monospace; font-size: 0.7rem; color: var(--muted); overflow-wrap: anywhere; }
+.pl-plano-cel .linkish { margin-top: 6px; font-size: 0.86rem; text-align: left; }
+.pl-res { display: inline-block; max-width: 100%; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line-strong); font-size: 0.74rem; font-weight: 700; color: var(--muted); }
+.pl-res.res-E { color: var(--accent); border-color: currentColor; }
+.pl-res.res-T { color: var(--st-em_andamento); border-color: currentColor; }
+.pl-res.res-X { color: var(--warn); }
+.pl-idx tbody tr:has(.res-E) { background: var(--accent-soft, rgba(98, 245, 139, 0.06)); }
+
+/* regras */
+.pl-regras { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 12px; margin-bottom: 24px; }
+.pl-regras > div { padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
+.pl-regras dd { margin-top: 8px; font-size: 0.9rem; line-height: 1.5; color: var(--muted); }
+.pl-metodo { display: grid; gap: 10px; padding-left: 18px; line-height: 1.55; max-width: 900px; }
+.pl-fontes { display: grid; gap: 8px; padding-left: 18px; }
+
+@media (max-width: 720px) {
+  .pl-item, .pl-placar > li { padding: 14px; }
+  .pl-trecho { padding: 8px 10px; }
+  .pl-acoes .btn { flex: 1 1 auto; justify-content: center; }
+  .pl-idx tbody tr:has(.res-E) { border-color: var(--accent); }
+}

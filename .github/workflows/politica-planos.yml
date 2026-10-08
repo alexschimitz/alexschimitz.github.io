@@ -1,0 +1,68 @@
+name: Politica - planos de governo (índice do TSE)
+
+on:
+  schedule:
+    - cron: "17 9 3 * *"   # todo dia 3, 06:17 em Brasília
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: politica-planos
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Montar o índice de planos (dados abertos do TSE, só os índices dos ZIPs)
+        timeout-minutes: 30
+        continue-on-error: true
+        run: python3 scripts/politica/planos/build_index.py
+
+      - name: Validar as avaliações curadas e gerar promessas/index.json
+        run: python3 scripts/politica/planos/build_promessas.py
+
+      - name: Commit (só se os dados mudaram)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          changed=$(git status --porcelain -- politica/data/planos || true)
+          # geradoEm muda a cada execução: ignora mudança que seja só a data
+          if [ -n "$changed" ]; then
+            real=$(git diff --unified=0 -- politica/data/planos | grep -E '^[+-][^+-]' | sed -E 's/^[+-]//; s/"geradoEm":"[0-9-]+"//g' | sort | uniq -u || true)
+            untracked=$(git ls-files --others --exclude-standard -- politica/data/planos || true)
+            [ -z "$real" ] && [ -z "$untracked" ] && changed=""
+          fi
+          if [ -z "$changed" ]; then
+            echo "Sem mudanças nos dados."
+            git checkout -- politica/data/planos 2>/dev/null || true
+            exit 0
+          fi
+          git add politica/data/planos
+          git commit -m "politica/planos: atualiza índice do TSE ($(date -u +%Y-%m-%d))"
+          for i in 1 2 3; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break
+            sleep 10
+          done
+          echo "CHANGED=true" >> "$GITHUB_ENV"
+
+      - name: Pedir build do Pages
+        if: env.CHANGED == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${GITHUB_REPOSITORY}/pages/builds" || true

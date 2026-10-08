@@ -1,0 +1,386 @@
+{
+ "ano": 2018,
+ "cargo": "presidente",
+ "uf": "BR",
+ "sq": "280000614517",
+ "pessoa": {
+  "nome": "Jair Bolsonaro",
+  "nome_completo": "Jair Messias Bolsonaro",
+  "partido": "PSL",
+  "id_politico": "myzenkbdb2"
+ },
+ "mandato": {
+  "inicio": "2019-01-01",
+  "fim": "2022-12-31",
+  "situacao": "encerrado",
+  "nota": "Avaliado pelo que aconteceu durante o mandato (2019–2022)."
+ },
+ "plano": {
+  "titulo": "O Caminho da Prosperidade — Proposta de Plano de Governo (Bolsonaro 2018)",
+  "paginas": 81,
+  "arquivo": "2018BR280000614517.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2018/2022802018/BR/280000614517",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2018_BR.zip"
+ },
+ "revisado": "2026-10-08",
+ "resumo": [
+  {
+   "t": "Segurança: prender mais, maioridade penal aos 16 e mudar o Estatuto do Desarmamento.",
+   "p": 32
+  },
+  {
+   "t": "Menos ministérios, um Ministério da Economia e Banco Central independente.",
+   "p": 17
+  },
+  {
+   "t": "Zerar o déficit no 1º ano e usar privatizações para reduzir a dívida.",
+   "p": 55
+  },
+  {
+   "t": "Reforma da Previdência com capitalização e reforma tributária simplificadora.",
+   "p": 57
+  },
+  {
+   "t": "Renda mínima acima do Bolsa Família e carteira de trabalho “verde e amarela”.",
+   "p": 63
+  },
+  {
+   "t": "Abertura comercial com redução de tarifas de importação.",
+   "p": 65
+  },
+  {
+   "t": "Petróleo e gás: vender refinarias e acabar com o monopólio do gás.",
+   "p": 74
+  },
+  {
+   "t": "Saúde: prontuário eletrônico nacional e carreira de Médico de Estado.",
+   "p": 39
+  }
+ ],
+ "promessas": [
+  {
+   "id": "b18-01",
+   "tema": "Gestão",
+   "promessa": "Reduzir o número de ministérios",
+   "trecho": "O PAÍS FUNCIONARÁ MELHOR COM MENOS MINISTÉRIOS",
+   "pagina": 17,
+   "status": "cumprida",
+   "explicacao": "Em 2019 a Esplanada foi reorganizada com menos pastas, com fusões como a do Ministério da Economia.",
+   "evidencias": [
+    {
+     "titulo": "Lei 13.844/2019 (organização dos Ministérios; conversão da MP 870/2019)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/lei/l13844.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "b18-02",
+   "tema": "Economia",
+   "promessa": "Criar o Ministério da Economia (Fazenda + Planejamento + Indústria)",
+   "trecho": "o Ministério da Economia abarcará as funções hoje desempenhadas pelos Ministérios da Fazenda, Planejamento e Indústria e Comércio",
+   "pagina": 53,
+   "status": "cumprida",
+   "explicacao": "O Ministério da Economia foi criado em 2019 juntando essas pastas.",
+   "evidencias": [
+    {
+     "titulo": "Lei 13.844/2019",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/lei/l13844.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "b18-03",
+   "tema": "Economia",
+   "promessa": "Banco Central formalmente independente",
+   "trecho": "avançamos institucionalmente, com uma proposta de independência formal do Banco Central",
+   "pagina": 59,
+   "status": "cumprida",
+   "explicacao": "Lei de 2021 deu autonomia ao Banco Central, com mandatos fixos para a diretoria.",
+   "evidencias": [
+    {
+     "titulo": "Lei Complementar 179/2021 (autonomia do Banco Central)",
+     "url": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp179.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "b18-04",
+   "tema": "Contas públicas",
+   "promessa": "Zerar o déficit primário no 1º ano e ter superávit no 2º",
+   "trecho": "O déficit público primário precisa ser eliminado já no primeiro ano e convertido em superávit no segundo ano.",
+   "pagina": 55,
+   "status": "nao_cumprida",
+   "explicacao": "Segundo o Tesouro, houve déficit de R$ 95,1 bilhões em 2019 e de R$ 743,1 bilhões em 2020 (ano de gastos com a pandemia).",
+   "evidencias": [
+    {
+     "titulo": "Tesouro Nacional — Resultado do Tesouro Nacional, dezembro de 2020",
+     "url": "https://www.tesourotransparente.gov.br/publicacoes/boletim-resultado-do-tesouro-nacional-rtn/2020/12"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "b18-05",
+   "tema": "Previdência",
+   "promessa": "Reforma da Previdência com contas de capitalização",
+   "trecho": "A grande novidade será a introdução de um sistema com contas individuais de capitalização.",
+   "pagina": 57,
+   "status": "parcialmente",
+   "explicacao": "A reforma da Previdência foi aprovada em 2019, mas sem o sistema de capitalização.",
+   "evidencias": [
+    {
+     "titulo": "Emenda Constitucional 103/2019 (reforma da Previdência)",
+     "url": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc103.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "b18-06",
+   "tema": "Impostos",
+   "promessa": "Reforma tributária com unificação de tributos",
+   "trecho": "Nossa reforma visa a unificação de tributos e a radical simplificação do sistema tributário nacional.",
+   "pagina": 58,
+   "status": "nao_cumprida",
+   "explicacao": "Nenhuma reforma tributária ampla foi aprovada até 2022; o projeto do governo para unificar PIS/Cofins (PL 3887/2020) não foi votado. A reforma só veio em dezembro de 2023.",
+   "evidencias": [
+    {
+     "titulo": "Câmara — PL 3887/2020 (CBS), situação",
+     "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2258196"
+    },
+    {
+     "titulo": "Emenda Constitucional 132/2023 (aprovada após o mandato)",
+     "url": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc132.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "b18-07",
+   "tema": "Assistência",
+   "promessa": "Renda mínima para todas as famílias, acima do Bolsa Família",
+   "trecho": "Acima do valor da Bolsa Família, pretendemos instituir uma renda mínima para todas as famílias brasileiras.",
+   "pagina": 63,
+   "status": "parcialmente",
+   "explicacao": "O Bolsa Família foi substituído pelo Auxílio Brasil em 2021, com valores maiores, mas sem renda mínima para todas as famílias.",
+   "evidencias": [
+    {
+     "titulo": "Lei 14.284/2021 (Auxílio Brasil)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14284.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "b18-08",
+   "tema": "Trabalho",
+   "promessa": "Carteira de trabalho verde e amarela",
+   "trecho": "Criaremos uma nova carteira de trabalho verde e amarela, voluntária, para novos trabalhadores.",
+   "pagina": 64,
+   "status": "nao_cumprida",
+   "explicacao": "A medida provisória que criou o contrato Verde e Amarelo (2019) foi revogada em 2020 sem virar lei.",
+   "evidencias": [
+    {
+     "titulo": "MP 905/2019",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/mpv/mpv905.htm"
+    },
+    {
+     "titulo": "MP 955/2020 (revoga a MP 905)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/mpv/mpv955.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "b18-09",
+   "tema": "Comércio exterior",
+   "promessa": "Reduzir alíquotas de importação",
+   "trecho": "Propomos, assim, a redução de muitas alíquotas de importação e das barreiras não-tarifárias",
+   "pagina": 65,
+   "status": "parcialmente",
+   "explicacao": "Houve corte geral de cerca de 10% nas tarifas de importação em 2021, mas de forma temporária (até o fim de 2022).",
+   "evidencias": [
+    {
+     "titulo": "DOU — Resolução Gecex 269/2021",
+     "url": "https://www.in.gov.br/en/web/dou/-/resolucao-gecex-n-269-de-4-de-novembro-de-2021-357327000"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "b18-10",
+   "tema": "Petróleo e gás",
+   "promessa": "Petrobras vender parte substancial do refino",
+   "trecho": "a Petrobras deve vender parcela substancial de sua capacidade de refino, varejo, transporte e outras atividades onde tenha poder de mercado.",
+   "pagina": 74,
+   "status": "parcialmente",
+   "explicacao": "A primeira refinaria (RLAM, na Bahia) foi vendida em 2021; outras vendas foram assinadas, mas o plano de vender 8 refinarias não foi concluído.",
+   "evidencias": [
+    {
+     "titulo": "Agência Brasil — Petrobras conclui venda da Refinaria Landulpho Alves (30/11/2021)",
+     "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2021-11/petrobras-conclui-venda-da-refinaria-landulpho-alves-na-bahia"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "b18-11",
+   "tema": "Petróleo e gás",
+   "promessa": "Acabar com o monopólio da Petrobras no gás natural",
+   "trecho": "é importante acabar com o monopólio da Petrobras sobre toda a cadeia de produção do combustível",
+   "pagina": 75,
+   "status": "cumprida",
+   "explicacao": "A Nova Lei do Gás (2021) abriu o mercado de transporte e comercialização de gás.",
+   "evidencias": [
+    {
+     "titulo": "Lei 14.134/2021 (Nova Lei do Gás)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14134.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "b18-12",
+   "tema": "Infraestrutura",
+   "promessa": "Mais participação privada nos aeroportos",
+   "trecho": "será buscado um modelo de maior participação privada, baseado no interesse público, reduzindo custos e elevando a eficiência.",
+   "pagina": 78,
+   "status": "cumprida",
+   "explicacao": "Houve rodadas de concessão de aeroportos, incluindo a 7ª rodada (2022), com Congonhas.",
+   "evidencias": [
+    {
+     "titulo": "Ministério dos Transportes — 7ª rodada de concessão de aeroportos (ago/2022)",
+     "url": "https://www.gov.br/transportes/pt-br/assuntos/noticias/2022/08/setima-rodada-aena-xp-e-consorcio-novo-norte-vao-investir-r-7-3-bilhoes-em-15-aeroportos-brasileiros"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "b18-13",
+   "tema": "Segurança",
+   "promessa": "Reduzir a maioridade penal para 16 anos",
+   "trecho": "Reduzir a maioridade penal para 16 anos!",
+   "pagina": 32,
+   "status": "nao_cumprida",
+   "explicacao": "A PEC sobre o tema (PEC 115/2015) não foi votada no Senado e foi arquivada no fim de 2022.",
+   "evidencias": [
+    {
+     "titulo": "Senado — PEC 115/2015 (arquivada em 22/12/2022)",
+     "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/122817"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "b18-14",
+   "tema": "Segurança",
+   "promessa": "Reformular o Estatuto do Desarmamento",
+   "trecho": "Reformular o Estatuto do Desarmamento para garantir o direito do cidadão à LEGÍTIMA DEFESA",
+   "pagina": 32,
+   "status": "parcialmente",
+   "explicacao": "As regras de posse e porte foram mudadas por decretos e por uma lei sobre posse em área rural; o Estatuto não foi substituído.",
+   "evidencias": [
+    {
+     "titulo": "Decreto 9.785/2019 (depois revogado e substituído por outros decretos)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/decreto/d9785.htm"
+    },
+    {
+     "titulo": "Lei 13.870/2019 (posse em toda a área do imóvel rural)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/lei/l13870.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "b18-15",
+   "tema": "Segurança",
+   "promessa": "Excludente de ilicitude para policiais",
+   "trecho": "Policiais precisam ter certeza que, no exercício de sua atividade profissional, serão protegidos por uma retaguarda jurídica. Garantida pelo Estado, através do excludente de ilicitude.",
+   "pagina": 32,
+   "status": "nao_cumprida",
+   "explicacao": "O pacote anticrime de 2019 virou lei sem essa ampliação; o projeto para militares em operações de GLO (PL 6125/2019) não foi votado.",
+   "evidencias": [
+    {
+     "titulo": "Lei 13.964/2019 (pacote anticrime)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/lei/l13964.htm"
+    },
+    {
+     "titulo": "Câmara — PL 6125/2019, situação",
+     "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2230394"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "b18-16",
+   "tema": "Segurança",
+   "promessa": "Acabar com a progressão de penas e as saídas temporárias",
+   "trecho": "Acabar com a progressão de penas e as saídas temporárias!",
+   "pagina": 32,
+   "status": "parcialmente",
+   "explicacao": "Em 2019 as regras de progressão ficaram mais duras, mas ela continuou existindo; as saídas temporárias só foram restringidas em 2024, depois do mandato.",
+   "evidencias": [
+    {
+     "titulo": "Lei 13.964/2019 (regras de progressão)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/lei/l13964.htm"
+    },
+    {
+     "titulo": "Lei 14.843/2024 (saída temporária — após o mandato)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l14843.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "b18-17",
+   "tema": "Segurança",
+   "promessa": "Tipificar como terrorismo as invasões de propriedades",
+   "trecho": "Tipificar como terrorismo as invasões de propriedades rurais e urbanas no território brasileiro.",
+   "pagina": 32,
+   "status": "nao_cumprida",
+   "explicacao": "A Lei Antiterrorismo não foi alterada para incluir invasões de propriedade.",
+   "evidencias": [
+    {
+     "titulo": "Lei 13.260/2016 (Lei Antiterrorismo, texto atual)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/lei/l13260.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "b18-18",
+   "tema": "Saúde",
+   "promessa": "Criar a carreira de Médico de Estado",
+   "trecho": "Será criada a carreira de Médico de Estado, para atender as áreas remotas e carentes do Brasil",
+   "pagina": 40,
+   "status": "parcialmente",
+   "explicacao": "Foi criado o programa Médicos pelo Brasil (2019), com contratação por uma agência, não uma carreira de Estado.",
+   "evidencias": [
+    {
+     "titulo": "Lei 13.958/2019 (Programa Médicos pelo Brasil)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/lei/l13958.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "b18-19",
+   "tema": "Saúde",
+   "promessa": "Visita ao dentista pelas gestantes",
+   "trecho": "Estabelecer nos programas neonatais em todo o país a visita ao dentista pelas gestantes.",
+   "pagina": 40,
+   "status": "cumprida",
+   "explicacao": "O atendimento odontológico de gestantes passou a ser indicador de pagamento da atenção básica em 2019 (Previne Brasil).",
+   "evidencias": [
+    {
+     "titulo": "Ministério da Saúde — Portaria 3.222/2019 (indicadores do Previne Brasil)",
+     "url": "https://bvsms.saude.gov.br/bvs/saudelegis/gm/2019/prt3222_11_12_2019.html"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}

@@ -3,6 +3,7 @@
   "paginas": {
     "gastos": true,
     "economia": true,
+    "planos": true,
     "mapa": true,
     "politicos": true,
     "governo": true,

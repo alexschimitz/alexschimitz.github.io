@@ -1,0 +1,510 @@
+{
+ "ano": 2022,
+ "cargo": "presidente",
+ "uf": "BR",
+ "sq": "280001607829",
+ "pessoa": {
+  "nome": "Lula",
+  "nome_completo": "Luiz Inácio Lula da Silva",
+  "partido": "PT",
+  "id_politico": "dmrffhxtzv"
+ },
+ "mandato": {
+  "inicio": "2023-01-01",
+  "fim": "2026-12-31",
+  "situacao": "em curso",
+  "nota": "Mandato ainda em curso: o status vale até a data da revisão e pode mudar."
+ },
+ "plano": {
+  "titulo": "Diretrizes para o Programa de Reconstrução e Transformação do Brasil (Lula Alckmin 2023-2026)",
+  "paginas": 21,
+  "arquivo": "2022BR280001607829.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/BR/280001607829",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2022_BR.zip"
+ },
+ "revisado": "2026-10-08",
+ "resumo": [
+  {
+   "t": "Valorizar o salário mínimo e propor uma nova legislação trabalhista.",
+   "p": 4
+  },
+  {
+   "t": "Combater a fome e criar um Bolsa Família renovado e ampliado.",
+   "p": 5
+  },
+  {
+   "t": "Fortalecer o SUS e retomar Mais Médicos e Farmácia Popular.",
+   "p": 6
+  },
+  {
+   "t": "Revogar o teto de gastos, criar novo regime fiscal e fazer reforma tributária.",
+   "p": 10
+  },
+  {
+   "t": "Reindustrializar o país e retomar obras paradas.",
+   "p": 12
+  },
+  {
+   "t": "Ser contra a privatização de Petrobras, Eletrobras e Correios.",
+   "p": 14
+  },
+  {
+   "t": "Combater o desmatamento ilegal, com meta de desmatamento líquido zero.",
+   "p": 17
+  },
+  {
+   "t": "Reforçar Mercosul, Unasul, Celac e Brics e recriar conselhos de participação social.",
+   "p": 18
+  }
+ ],
+ "promessas": [
+  {
+   "id": "l22-01",
+   "tema": "Renda e trabalho",
+   "promessa": "Retomar a valorização do salário mínimo",
+   "trecho": "Retomaremos a política de valorização do salário mínimo visando à recuperação do poder de compra de trabalhadores, trabalhadoras, e dos beneficiários e beneficiárias de políticas previdenciárias e assistenciais",
+   "pagina": 4,
+   "status": "cumprida",
+   "explicacao": "Uma lei de 2023 voltou a dar ao salário mínimo correção pela inflação mais o crescimento do PIB.",
+   "evidencias": [
+    {
+     "titulo": "Lei 14.663/2023 (política de valorização do salário mínimo)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14663.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-02",
+   "tema": "Trabalho",
+   "promessa": "Propor nova legislação trabalhista e revogar pontos da reforma de 2017",
+   "trecho": "O novo governo irá propor, a partir de um amplo debate e negociação, uma nova legislação trabalhista de extensa proteção social a todas as formas de ocupação, de emprego e de relação de trabalho",
+   "pagina": 4,
+   "status": "nao_cumprida",
+   "explicacao": "Até a data da revisão não foi aprovada nova legislação trabalhista ampla; a reforma de 2017 segue em vigor. O projeto para motoristas de aplicativo (PLP 12/2024) ainda não foi votado na Câmara.",
+   "evidencias": [
+    {
+     "titulo": "Lei 13.467/2017 (reforma trabalhista, em vigor)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13467.htm"
+    },
+    {
+     "titulo": "Câmara — PLP 12/2024 (trabalho por aplicativos), situação",
+     "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2419243"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-03",
+   "tema": "Fome e assistência",
+   "promessa": "Acabar com a fome: três refeições por dia para todos",
+   "trecho": "Trabalharemos de forma incansável até que todos os brasileiros e as brasileiras tenham novamente direito ao menos a três refeições de qualidade por dia.",
+   "pagina": 5,
+   "status": "em_andamento",
+   "explicacao": "O relatório da FAO/ONU de 2025 tirou o Brasil do Mapa da Fome (média 2022–2024) e o de 2026 manteve o país fora. A meta de “todos” ainda não pode ser dada como atingida.",
+   "evidencias": [
+    {
+     "titulo": "MDS — Relatório da ONU (SOFI 2026): Brasil permanece fora do Mapa da Fome",
+     "url": "https://www.gov.br/mds/pt-br/noticias/relatorio-da-onu-confirma-que-brasil-permanece-fora-do-mapa-da-fome-e-aponta-melhora-em-indicadores"
+    },
+    {
+     "titulo": "MDS — painel SOFI 2025 (explica o indicador da FAO)",
+     "url": "https://paineis.mds.gov.br/public/extensions/BSF/SOFI.html"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-04",
+   "tema": "Fome e assistência",
+   "promessa": "Bolsa Família renovado e ampliado",
+   "trecho": "Um programa Bolsa Família renovado e ampliado precisa ser implantado com urgência para garantir renda compatível com as atuais necessidades da população.",
+   "pagina": 5,
+   "status": "cumprida",
+   "explicacao": "O Bolsa Família foi recriado por lei em 2023, substituindo o Auxílio Brasil.",
+   "evidencias": [
+    {
+     "titulo": "Lei 14.601/2023 (novo Programa Bolsa Família)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14601.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-05",
+   "tema": "Educação",
+   "promessa": "Retomar as metas do Plano Nacional de Educação",
+   "trecho": "retomando as metas do Plano Nacional de Educação e revertendo os desmontes do atual governo",
+   "pagina": 5,
+   "status": "em_andamento",
+   "explicacao": "Um novo PNE, com metas para os próximos 10 anos, virou lei em abril de 2026. O cumprimento das metas só pode ser medido ao longo da década.",
+   "evidencias": [
+    {
+     "titulo": "Lei 15.388/2026 (novo Plano Nacional de Educação)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15388.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-06",
+   "tema": "Saúde",
+   "promessa": "Retomar o Mais Médicos e o Farmácia Popular",
+   "trecho": "a retomada de políticas como o Mais Médicos e o Farmácia Popular",
+   "pagina": 6,
+   "status": "cumprida",
+   "explicacao": "O Mais Médicos foi relançado por lei em 2023; em 2025 todos os itens do Farmácia Popular passaram a ser gratuitos.",
+   "evidencias": [
+    {
+     "titulo": "Lei 14.621/2023 (Estratégia Nacional de Formação de Especialistas / Mais Médicos)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14621.htm"
+    },
+    {
+     "titulo": "Ministério da Saúde — 100% de gratuidade no Farmácia Popular (fev/2025)",
+     "url": "https://www.gov.br/saude/pt-br/assuntos/noticias/2025/fevereiro/ministerio-da-saude-anuncia-100-de-gratuidade-no-farmacia-popular-e-abre-credenciamento-a-todos-os-municipios-do-pais"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-07",
+   "tema": "Cultura",
+   "promessa": "Implantar o Sistema Nacional de Cultura",
+   "trecho": "Defendemos a implantação do Sistema Nacional de Cultura e a adoção da política de descentralização de recursos para Estados e o maior número possível de municípios",
+   "pagina": 6,
+   "status": "cumprida",
+   "explicacao": "O Sistema Nacional de Cultura, previsto na Constituição desde 2012, foi regulamentado por lei em 2024.",
+   "evidencias": [
+    {
+     "titulo": "Lei 14.835/2024 (marco regulatório do Sistema Nacional de Cultura)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l14835.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-08",
+   "tema": "Moradia",
+   "promessa": "Programa amplo de acesso à moradia",
+   "trecho": "Voltaremos a ter um amplo programa de acesso à moradia, com mecanismos de financiamento adequados a cada tipo de público.",
+   "pagina": 7,
+   "status": "cumprida",
+   "explicacao": "O Minha Casa, Minha Vida foi recriado por lei em 2023.",
+   "evidencias": [
+    {
+     "titulo": "Lei 14.620/2023 (Programa Minha Casa, Minha Vida)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14620.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-09",
+   "tema": "Segurança",
+   "promessa": "Implementar e aprimorar o Sistema Único de Segurança Pública",
+   "trecho": "O governo federal vai implementar e aprimorar o Sistema Único de Segurança Pública, modernizando estratégias, instrumentos e mecanismos de governança e gestão.",
+   "pagina": 7,
+   "status": "em_andamento",
+   "explicacao": "A PEC 18/2025 (a “PEC da Segurança”) foi aprovada na Câmara e enviada ao Senado em março de 2026; ainda não virou emenda constitucional.",
+   "evidencias": [
+    {
+     "titulo": "Câmara — PEC 18/2025, situação",
+     "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2500080"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-10",
+   "tema": "Mulheres",
+   "promessa": "Salário igual para trabalho igual entre homens e mulheres",
+   "trecho": "salários iguais para trabalhos iguais em todas as profissões",
+   "pagina": 8,
+   "status": "cumprida",
+   "explicacao": "Lei de 2023 obriga igualdade salarial e transparência de salários nas empresas.",
+   "evidencias": [
+    {
+     "titulo": "Lei 14.611/2023 (igualdade salarial)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14611.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-11",
+   "tema": "Igualdade racial",
+   "promessa": "Manter e ampliar cotas na universidade e em concursos",
+   "trecho": "Asseguraremos a continuidade das políticas de cotas sociais e raciais na educação superior e nos concursos públicos federais, bem como sua ampliação para outras políticas públicas.",
+   "pagina": 8,
+   "status": "cumprida",
+   "explicacao": "A Lei de Cotas nas universidades foi renovada em 2023 e a de concursos foi renovada e ampliada (de 20% para 30%) em 2025.",
+   "evidencias": [
+    {
+     "titulo": "Lei 14.723/2023 (atualiza a Lei de Cotas no ensino superior)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14723.htm"
+    },
+    {
+     "titulo": "Lei 15.142/2025 (cotas em concursos federais)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/lei/l15142.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-12",
+   "tema": "Contas públicas",
+   "promessa": "Revogar o teto de gastos e criar novo regime fiscal",
+   "trecho": "é preciso revogar o teto de gastos e rever o atual regime fiscal brasileiro, atualmente disfuncional e sem credibilidade.",
+   "pagina": 10,
+   "status": "cumprida",
+   "explicacao": "O teto de gastos foi substituído pelo “novo arcabouço fiscal” em 2023.",
+   "evidencias": [
+    {
+     "titulo": "Emenda Constitucional 126/2022",
+     "url": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc126.htm"
+    },
+    {
+     "titulo": "Lei Complementar 200/2023 (novo regime fiscal)",
+     "url": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp200.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-13",
+   "tema": "Impostos",
+   "promessa": "Reforma tributária que simplifique e reduza impostos sobre o consumo",
+   "trecho": "Proporemos uma reforma tributária solidária, justa e sustentável, que simplifique tributos e em que os pobres paguem menos e os ricos paguem mais.",
+   "pagina": 11,
+   "status": "parcialmente",
+   "explicacao": "A reforma que unifica impostos sobre o consumo foi aprovada (Emenda 132/2023 e Lei Complementar 214/2025), com transição até 2033. Se o consumo pagará menos imposto ainda não dá para medir.",
+   "evidencias": [
+    {
+     "titulo": "Emenda Constitucional 132/2023 (reforma tributária)",
+     "url": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc132.htm"
+    },
+    {
+     "titulo": "Lei Complementar 214/2025 (regulamenta IBS e CBS)",
+     "url": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-14",
+   "tema": "Impostos",
+   "promessa": "Fazer os muito ricos pagarem imposto de renda",
+   "trecho": "Vamos fazer os muito ricos pagarem imposto de renda",
+   "pagina": 11,
+   "status": "cumprida",
+   "explicacao": "Leis passaram a tributar fundos exclusivos e offshores (2023) e criaram imposto mínimo para altas rendas, junto com isenção para quem ganha menos (2025).",
+   "evidencias": [
+    {
+     "titulo": "Lei 14.754/2023 (fundos exclusivos e offshores)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14754.htm"
+    },
+    {
+     "titulo": "Lei 15.270/2025 (tributação mínima de altas rendas)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/lei/l15270.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-15",
+   "tema": "Alimentos",
+   "promessa": "Política nacional de abastecimento com estoques reguladores",
+   "trecho": "Vamos estabelecer uma política nacional de abastecimento, que inclui a retomada dos estoques reguladores",
+   "pagina": 11,
+   "status": "parcialmente",
+   "explicacao": "A Política Nacional de Abastecimento Alimentar foi criada por decreto em 2023. Não achamos dado oficial consolidado sobre a retomada dos estoques reguladores.",
+   "evidencias": [
+    {
+     "titulo": "Decreto 11.820/2023 (Política Nacional de Abastecimento Alimentar)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11820.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-16",
+   "tema": "Combustíveis",
+   "promessa": "Nova política de preços de combustíveis",
+   "trecho": "O país precisa de uma transição para uma nova política de preços dos combustíveis e do gás, que considere os custos nacionais",
+   "pagina": 11,
+   "status": "cumprida",
+   "explicacao": "Em maio de 2023 a Petrobras deixou de seguir obrigatoriamente o preço de paridade de importação (PPI).",
+   "evidencias": [
+    {
+     "titulo": "Agência Petrobras — nova estratégia comercial de diesel e gasolina (16/05/2023)",
+     "url": "https://agencia.petrobras.com.br/w/petrobras-aprova-estrategia-comercial-de-diesel-e-gasolina"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-17",
+   "tema": "Economia",
+   "promessa": "Renegociar dívidas das famílias",
+   "trecho": "vamos promover a renegociação das dívidas das famílias e das pequenas e médias empresas por meio dos bancos públicos e incentivos aos bancos privados",
+   "pagina": 12,
+   "status": "cumprida",
+   "explicacao": "O programa Desenrola Brasil foi criado por lei em 2023.",
+   "evidencias": [
+    {
+     "titulo": "Lei 14.690/2023 (Desenrola Brasil)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14690.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-18",
+   "tema": "Indústria",
+   "promessa": "Nova política industrial",
+   "trecho": "A principal missão da política industrial será promover o engajamento da indústria na transição tecnológica, ambiental e social.",
+   "pagina": 12,
+   "status": "em_andamento",
+   "explicacao": "A política Nova Indústria Brasil foi lançada em janeiro de 2024, com metas até 2033.",
+   "evidencias": [
+    {
+     "titulo": "MDIC — Brasil ganha nova política industrial (jan/2024)",
+     "url": "https://www.gov.br/mdic/pt-br/assuntos/noticias/2024/janeiro/brasil-ganha-nova-politica-industrial-com-metas-e-acoes-para-o-desenvolvimento-ate-2033"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-19",
+   "tema": "Obras",
+   "promessa": "Retomar obras paralisadas",
+   "trecho": "Retomaremos obras importantes que foram paralisadas pelo atual governo",
+   "pagina": 14,
+   "status": "em_andamento",
+   "explicacao": "Lei de 2023 criou um pacto para retomar obras paradas de escolas e saúde; a retomada segue em execução.",
+   "evidencias": [
+    {
+     "titulo": "Lei 14.719/2023 (Pacto Nacional pela Retomada de Obras)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14719.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-20",
+   "tema": "Estatais",
+   "promessa": "Ser contra a privatização da Petrobras e da PPSA",
+   "trecho": "Opomo-nos fortemente à privatização, em curso, da Petrobras e da Pré-Sal Petróleo S.A. (PPSA).",
+   "pagina": 14,
+   "status": "cumprida",
+   "explicacao": "Decreto de abril de 2023 tirou a PPSA da lista de privatizações (PND/PPI).",
+   "evidencias": [
+    {
+     "titulo": "Decreto 11.478/2023 (exclui empresas do Programa Nacional de Desestatização)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11478.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-21",
+   "tema": "Estatais",
+   "promessa": "Ser contra a privatização dos Correios",
+   "trecho": "Opomo-nos à privatização dos Correios",
+   "pagina": 15,
+   "status": "cumprida",
+   "explicacao": "O mesmo decreto de 2023 tirou os Correios da lista de privatizações.",
+   "evidencias": [
+    {
+     "titulo": "Decreto 11.478/2023",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11478.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-22",
+   "tema": "Internet",
+   "promessa": "Internet de qualidade em todo o território",
+   "trecho": "Iniciaremos um grande processo de transformação digital no país, assegurando internet de qualidade em todo território e para todos e todas.",
+   "pagina": 15,
+   "status": "em_andamento",
+   "explicacao": "Em 2023 foi criada a estratégia Escolas Conectadas; a meta de internet para todos ainda não foi atingida.",
+   "evidencias": [
+    {
+     "titulo": "Decreto 11.713/2023 (Estratégia Nacional de Escolas Conectadas)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11713.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-23",
+   "tema": "Meio ambiente",
+   "promessa": "Combate ao desmatamento ilegal e desmatamento líquido zero",
+   "trecho": "Nosso compromisso é com o combate implacável ao desmatamento ilegal e promoção do desmatamento líquido zero",
+   "pagina": 17,
+   "status": "em_andamento",
+   "explicacao": "Segundo o INPE, o desmatamento na Amazônia caiu para 5.731 km² em 2025 (12% a menos que em 2024). Ainda não é zero.",
+   "evidencias": [
+    {
+     "titulo": "INPE — Prodes: 5.731 km² de desmatamento na Amazônia em 2025",
+     "url": "https://www.gov.br/inpe/pt-br/assuntos/ultimas-noticias/sistema-do-inpe-aponta-5-731-km2-de-desmatamento-na-amazonia-em-2025"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-24",
+   "tema": "Política externa",
+   "promessa": "Fortalecer Mercosul, Unasul, Celac e Brics",
+   "trecho": "É fortalecer novamente o Mercosul, a Unasul, a Celac e os Brics.",
+   "pagina": 18,
+   "status": "cumprida",
+   "explicacao": "O Brasil voltou à Unasul em 2023 (decreto que promulga o tratado).",
+   "evidencias": [
+    {
+     "titulo": "Decreto 11.475/2023 (Tratado da Unasul)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11475.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-25",
+   "tema": "Participação social",
+   "promessa": "Restaurar conselhos e instâncias de participação extintos",
+   "trecho": "Precisamos retomar o processo coletivo e participativo de construção de políticas públicas por meio da restauração de todas as instâncias de participação social extintas pelo atual governo",
+   "pagina": 19,
+   "status": "cumprida",
+   "explicacao": "Em 2023 foi revogado o decreto de 2019 que extinguiu colegiados, e conselhos como o Consea foram recriados.",
+   "evidencias": [
+    {
+     "titulo": "Decreto 11.371/2023 (revoga o Decreto 9.759/2019)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11371.htm"
+    },
+    {
+     "titulo": "Decreto 11.421/2023 (Consea)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11421.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "l22-26",
+   "tema": "Participação social",
+   "promessa": "Participação popular na elaboração do orçamento",
+   "trecho": "Constituiremos novas instâncias de participação popular direta para assegurar ainda maior participação social, inclusive na elaboração do orçamento federal",
+   "pagina": 19,
+   "status": "cumprida",
+   "explicacao": "O Plano Plurianual 2024–2027 foi feito com consulta pública (“PPA Participativo”), como registra a própria lei do PPA.",
+   "evidencias": [
+    {
+     "titulo": "Lei 14.802/2024 (PPA 2024–2027; diretrizes “validados por processo de participação social”)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l14802.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}

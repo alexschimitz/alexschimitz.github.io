@@ -1,0 +1,339 @@
+{
+ "ano": 2010,
+ "cargo": "presidente",
+ "uf": "BR",
+ "sq": "280000000005",
+ "pessoa": {
+  "nome": "Dilma",
+  "nome_completo": "Dilma Vana Rousseff",
+  "partido": "PT",
+  "id_politico": "brzqzaahbs"
+ },
+ "mandato": {
+  "inicio": "2011-01-01",
+  "fim": "2014-12-31",
+  "situacao": "encerrado",
+  "nota": "Avaliado pelo que aconteceu durante o mandato (2011–2014)."
+ },
+ "plano": {
+  "titulo": "Diretrizes do Programa 2011/2014 (Dilma Rousseff)",
+  "paginas": 23,
+  "arquivo": "2010BR280000000005.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2010/14417/BR/280000000005",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2010_BR.zip"
+ },
+ "revisado": "2026-10-08",
+ "aviso_texto": "O PDF entregue ao TSE é digitalizado; corrigimos só erros evidentes de leitura (ex.: “Famnia” → “Família”).",
+ "resumo": [
+  {
+   "t": "Manter a valorização do salário mínimo e os programas de transferência de renda.",
+   "p": 3
+  },
+  {
+   "t": "Reforma tributária para simplificar tributos e desonerar a folha.",
+   "p": 5
+  },
+  {
+   "t": "Pré-sal com Fundo Social e conclusão das obras do rio São Francisco.",
+   "p": 7
+  },
+  {
+   "t": "Educação: erradicar o analfabetismo e ampliar bolsas no exterior.",
+   "p": 10
+  },
+  {
+   "t": "Saúde: regulamentar a Emenda 29 e ampliar profissionais no SUS.",
+   "p": 11
+  },
+  {
+   "t": "Cultura: Sistema Nacional de Cultura e Vale Cultura.",
+   "p": 14
+  },
+  {
+   "t": "Direitos humanos: Comissão da Verdade e ações afirmativas.",
+   "p": 16
+  },
+  {
+   "t": "Reforma política com financiamento público e piso nacional para policiais.",
+   "p": 19
+  }
+ ],
+ "promessas": [
+  {
+   "id": "d10-01",
+   "tema": "Renda e trabalho",
+   "promessa": "Manter a valorização do salário mínimo",
+   "trecho": "manutenção da política de valorização do salário mínimo",
+   "pagina": 3,
+   "status": "cumprida",
+   "explicacao": "Lei de 2011 fixou a regra de reajuste pela inflação mais o crescimento do PIB até 2015.",
+   "evidencias": [
+    {
+     "titulo": "Lei 12.382/2011",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12382.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "d10-02",
+   "tema": "Assistência",
+   "promessa": "Transição do Bolsa Família para a Renda Básica de Cidadania",
+   "trecho": "transição do Bolsa Família para a Renda Básica de Cidadania - RBC, incondicional, como um direito de todos",
+   "pagina": 3,
+   "status": "nao_cumprida",
+   "explicacao": "A Renda Básica de Cidadania (lei de 2004) não foi implantada; em 2021 o STF reconheceu a omissão do governo federal.",
+   "evidencias": [
+    {
+     "titulo": "Lei 10.835/2004 (Renda Básica de Cidadania)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l10.835.htm"
+    },
+    {
+     "titulo": "STF — notícia sobre o Mandado de Injunção 7300 (2021)",
+     "url": "https://noticias.stf.jus.br/postsnoticias/stf-determina-que-governo-implemente-o-programa-de-renda-basica-de-cidadania-a-partir-de-2022/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "d10-03",
+   "tema": "Impostos",
+   "promessa": "Reforma tributária: simplificar tributos e desonerar a folha",
+   "trecho": "priorizar uma Reforma Tributária para o aumento da competitividade das nossas empresas. Essa reforma deverá simplificar os tributos, desonerar a folha de salários",
+   "pagina": 5,
+   "status": "parcialmente",
+   "explicacao": "Houve desoneração da folha para alguns setores (2011), mas a reforma que simplifica tributos não foi aprovada no mandato.",
+   "evidencias": [
+    {
+     "titulo": "Lei 12.546/2011 (desoneração da folha para setores)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12546.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "d10-04",
+   "tema": "Infraestrutura",
+   "promessa": "Concluir as obras do Projeto São Francisco",
+   "trecho": "conclusão das obras do Projeto São Francisco",
+   "pagina": 7,
+   "status": "nao_cumprida",
+   "explicacao": "O primeiro eixo da transposição (Eixo Leste) só foi inaugurado em março de 2017, após o mandato.",
+   "evidencias": [
+    {
+     "titulo": "Agência Brasil — Temer espera concluir transposição do São Francisco (mar/2017)",
+     "url": "https://agenciabrasil.ebc.com.br/politica/noticia/2017-03/temer-espera-concluir-transposicao-do-rio-sao-francisco-ate-o-fim-de-seu"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "d10-05",
+   "tema": "Educação",
+   "promessa": "Erradicar o analfabetismo",
+   "trecho": "erradicação do analfabetismo no país",
+   "pagina": 10,
+   "status": "nao_cumprida",
+   "explicacao": "Segundo o IBGE, a taxa de analfabetismo (15 anos ou mais) ainda era de 8,3% em 2014.",
+   "evidencias": [
+    {
+     "titulo": "IBGE — PNAD 2014 (analfabetismo de 8,3%)",
+     "url": "https://agenciadenoticias.ibge.gov.br/agencia-sala-de-imprensa/2013-agencia-de-noticias/releases/9638-pnad-2014-populacao-desocupada-cresce-mas-tendencia-de-reducao-da-desigualdade-se-mantem"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "d10-06",
+   "tema": "Educação",
+   "promessa": "Ampliar bolsas de estudo no exterior",
+   "trecho": "ampliar programas de bolsas de estudos que garantam a formação de quadros em centros de excelência no exterior",
+   "pagina": 11,
+   "status": "cumprida",
+   "explicacao": "O programa Ciência sem Fronteiras foi criado em 2011.",
+   "evidencias": [
+    {
+     "titulo": "Decreto 7.642/2011 (Ciência sem Fronteiras)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/decreto/d7642.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "d10-07",
+   "tema": "Saúde",
+   "promessa": "Regulamentar a Emenda 29 (mínimo de gastos com saúde)",
+   "trecho": "priorizar a regulamentação e fiscalização da aplicação da Emenda constitucional 29/2000",
+   "pagina": 11,
+   "status": "cumprida",
+   "explicacao": "A Emenda 29 foi regulamentada por lei complementar em janeiro de 2012.",
+   "evidencias": [
+    {
+     "titulo": "Lei Complementar 141/2012",
+     "url": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp141.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "d10-08",
+   "tema": "Saúde",
+   "promessa": "Atender plenamente a necessidade de profissionais de saúde",
+   "trecho": "atender plenamente às necessidades qualitativas e quantitativas de recursos humanos do setor de saúde no Brasil, inclusive com a ampliação do aparelho formador",
+   "pagina": 12,
+   "status": "parcialmente",
+   "explicacao": "O programa Mais Médicos foi criado em 2013; não há registro oficial de que a falta de profissionais tenha sido resolvida.",
+   "evidencias": [
+    {
+     "titulo": "Lei 12.871/2013 (Mais Médicos)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12871.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "d10-09",
+   "tema": "Cultura",
+   "promessa": "Implementar o Plano e o Sistema Nacional de Cultura",
+   "trecho": "implementação do Plano Nacional de Cultura e do Sistema Nacional de Cultura",
+   "pagina": 14,
+   "status": "parcialmente",
+   "explicacao": "O Sistema Nacional de Cultura entrou na Constituição em 2012, mas só foi regulamentado por lei em 2024.",
+   "evidencias": [
+    {
+     "titulo": "Emenda Constitucional 71/2012",
+     "url": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc71.htm"
+    },
+    {
+     "titulo": "Lei 12.343/2010 (Plano Nacional de Cultura, anterior ao mandato)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/lei/l12343.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "d10-10",
+   "tema": "Cultura",
+   "promessa": "Vale Cultura",
+   "trecho": "expansão dos programas de estímulo ao consumo e difusão de bens culturais, como o Vale Cultura",
+   "pagina": 14,
+   "status": "cumprida",
+   "explicacao": "O Vale-Cultura foi criado por lei em 2012.",
+   "evidencias": [
+    {
+     "titulo": "Lei 12.761/2012",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12761.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "d10-11",
+   "tema": "Direitos humanos",
+   "promessa": "Abrir os arquivos e implementar a Comissão da Verdade",
+   "trecho": "abertura dos arquivos e implementação da Comissão da Verdade",
+   "pagina": 16,
+   "status": "cumprida",
+   "explicacao": "Em 2011 foram aprovadas a Lei da Comissão Nacional da Verdade e a Lei de Acesso à Informação.",
+   "evidencias": [
+    {
+     "titulo": "Lei 12.528/2011 (Comissão Nacional da Verdade)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12528.htm"
+    },
+    {
+     "titulo": "Lei 12.527/2011 (Lei de Acesso à Informação)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "d10-12",
+   "tema": "Igualdade racial",
+   "promessa": "Ampliar ações afirmativas",
+   "trecho": "ampliar ações afirmativas no setor educacional e em outras esferas da sociedade",
+   "pagina": 16,
+   "status": "cumprida",
+   "explicacao": "Foram aprovadas a Lei de Cotas nas universidades federais (2012) e a de cotas em concursos federais (2014).",
+   "evidencias": [
+    {
+     "titulo": "Lei 12.711/2012",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12711.htm"
+    },
+    {
+     "titulo": "Lei 12.990/2014",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l12990.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "d10-13",
+   "tema": "Educação",
+   "promessa": "Reforma do ensino médio",
+   "trecho": "promover uma reforma político-pedagógica no ensino médio",
+   "pagina": 17,
+   "status": "nao_cumprida",
+   "explicacao": "A reforma do ensino médio só foi aprovada em 2017, após o mandato.",
+   "evidencias": [
+    {
+     "titulo": "Lei 13.415/2017 (reforma do ensino médio, após o mandato)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13415.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "d10-14",
+   "tema": "Juventude",
+   "promessa": "Instituir um Sistema Nacional de Juventude",
+   "trecho": "Instituir um Sistema Nacional de Juventude, financiado de maneira regular e permanente",
+   "pagina": 17,
+   "status": "parcialmente",
+   "explicacao": "O Estatuto da Juventude (2013) criou o sistema, mas ele só foi regulamentado em 2018.",
+   "evidencias": [
+    {
+     "titulo": "Lei 12.852/2013 (Estatuto da Juventude)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12852.htm"
+    },
+    {
+     "titulo": "Decreto 9.306/2018 (regulamentação, após o mandato)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/decreto/d9306.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "d10-15",
+   "tema": "Reforma política",
+   "promessa": "Reforma política com financiamento público de campanhas",
+   "trecho": "uma reforma política capaz de dar mais transparência aos partidos políticos e aos processos eleitorais, com financiamento público de campanhas eleitorais",
+   "pagina": 19,
+   "status": "nao_cumprida",
+   "explicacao": "Não houve reforma política com financiamento público no mandato; o fundo público de campanhas só foi criado em 2017.",
+   "evidencias": [
+    {
+     "titulo": "Lei 13.487/2017 (cria o fundo eleitoral, após o mandato)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13487.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "d10-16",
+   "tema": "Segurança",
+   "promessa": "Fundo de Segurança Pública e piso nacional dos policiais até 2016",
+   "trecho": "criar o Fundo Constitucional de Segurança Pública para, progressivamente, instituir e subsidiar o piso salarial nacional das policias civis e militares até 2016",
+   "pagina": 21,
+   "status": "nao_cumprida",
+   "explicacao": "O piso nacional dos policiais não foi criado; a PEC 300/2008 ainda tramita na Câmara.",
+   "evidencias": [
+    {
+     "titulo": "Câmara — PEC 300/2008, situação",
+     "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=414367"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}

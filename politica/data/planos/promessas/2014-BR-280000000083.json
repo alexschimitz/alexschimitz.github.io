@@ -1,0 +1,162 @@
+{
+ "ano": 2014,
+ "cargo": "presidente",
+ "uf": "BR",
+ "sq": "280000000083",
+ "pessoa": {
+  "nome": "Dilma",
+  "nome_completo": "Dilma Vana Rousseff",
+  "partido": "PT",
+  "id_politico": "brzqzaahbs"
+ },
+ "mandato": {
+  "inicio": "2015-01-01",
+  "fim": "2016-08-31",
+  "situacao": "interrompido",
+  "nota": "Afastada em 12/05/2016 e afastada definitivamente em 31/08/2016 (impeachment). Avaliamos só o que aconteceu até essa data; metas com prazo depois disso não foram avaliadas."
+ },
+ "plano": {
+  "titulo": "Mais Mudanças, Mais Futuro — Programa de Governo (Dilma 2014)",
+  "paginas": 25,
+  "arquivo": "2014BR280000000083.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2014/680/BR/280000000083",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2014_BR.zip"
+ },
+ "revisado": "2026-10-08",
+ "resumo": [
+  {
+   "t": "Educação: usar o dinheiro do pré-sal para cumprir o PNE.",
+   "p": 17
+  },
+  {
+   "t": "Pré-escola universal até 2016 e mais 100 mil bolsas do Ciência sem Fronteiras.",
+   "p": 18
+  },
+  {
+   "t": "Reforma política com plebiscito.",
+   "p": 18
+  },
+  {
+   "t": "Combate à corrupção com reforma do processo penal.",
+   "p": 19
+  },
+  {
+   "t": "Sistema Nacional de Participação Popular.",
+   "p": 20
+  },
+  {
+   "t": "Mulheres e igualdade racial: Casa da Mulher Brasileira e cotas no serviço público.",
+   "p": 21
+  },
+  {
+   "t": "Internet barata e rápida para todos; expansão do Mais Médicos e das UPAs.",
+   "p": 21
+  },
+  {
+   "t": "Olimpíadas 2016: Brasil entre os 10 primeiros (e 5 nas Paralimpíadas).",
+   "p": 24
+  }
+ ],
+ "promessas": [
+  {
+   "id": "d14-01",
+   "tema": "Reforma política",
+   "promessa": "Reforma política com plebiscito",
+   "trecho": "Para assegurá-la será imprescindível a participação popular, por meio de um plebiscito que defina a posição majoritária sobre os principais temas.",
+   "pagina": 18,
+   "status": "nao_cumprida",
+   "explicacao": "Não houve plebiscito; a mudança eleitoral de 2015 foi feita só pelo Congresso.",
+   "evidencias": [
+    {
+     "titulo": "Lei 13.165/2015 (minirreforma eleitoral, sem plebiscito)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13165.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "d14-02",
+   "tema": "Justiça",
+   "promessa": "Reforma do processo penal contra a impunidade",
+   "trecho": "Combater a impunidade de corruptores e de corruptos, por meio de mudanças na nossa legislação, especialmente por meio de uma reforma de nosso processo penal",
+   "pagina": 19,
+   "status": "nao_cumprida",
+   "explicacao": "O novo Código de Processo Penal (PL 8045/2010) não foi aprovado; ainda tramita na Câmara.",
+   "evidencias": [
+    {
+     "titulo": "Câmara — PL 8045/2010 (novo Código de Processo Penal), situação",
+     "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=490263"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "d14-03",
+   "tema": "Participação social",
+   "promessa": "Institucionalizar o Sistema Nacional de Participação Popular",
+   "trecho": "soma-se o Sistema Nacional de Participação Popular, que terá a função de consolidar as formas de participação colocadas em prática nos governos Lula e Dilma e institucionalizá-las.",
+   "pagina": 20,
+   "status": "nao_cumprida",
+   "explicacao": "Não foi aprovada lei sobre o tema; seguiu valendo só o decreto de maio de 2014 (anterior ao mandato), revogado em 2019.",
+   "evidencias": [
+    {
+     "titulo": "Decreto 8.243/2014 (Política Nacional de Participação Social)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/decreto/d8243.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "d14-04",
+   "tema": "Meio ambiente",
+   "promessa": "Engajar o Brasil nas negociações do clima de 2015",
+   "trecho": "O Brasil se engajará fortemente nas negociações climáticas internacionais que terão lugar em 2015",
+   "pagina": 17,
+   "status": "cumprida",
+   "explicacao": "O Brasil assinou o Acordo de Paris em 22/04/2016, ainda no mandato.",
+   "evidencias": [
+    {
+     "titulo": "Decreto 9.073/2017 (promulga o Acordo de Paris; registra a assinatura em 22/04/2016)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/decreto/d9073.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "d14-05",
+   "tema": "Esporte",
+   "promessa": "Brasil entre os 10 primeiros nas Olimpíadas e 5 nas Paralimpíadas de 2016",
+   "trecho": "o desafio de proporcionar condições para que o Brasil figure, em 2016, entre os dez primeiros colocados nos Jogos Olímpicos e entre os cinco primeiros nos Jogos Paraolímpicos.",
+   "pagina": 24,
+   "status": "nao_cumprida",
+   "explicacao": "O Brasil ficou em 13º nos Jogos Olímpicos e em 8º nos Paralímpicos do Rio 2016.",
+   "evidencias": [
+    {
+     "titulo": "Câmara — Comissão do Esporte faz balanço da Rio 2016",
+     "url": "https://www2.camara.leg.br/atividade-legislativa/comissoes/comissoes-permanentes/cespo/noticias/comissao-do-esporte-faz-balanco-dos-jogos-olimpicos-rio-2016"
+    },
+    {
+     "titulo": "Agência Brasil — Brasil fica em 8º na Paralimpíada",
+     "url": "https://agenciabrasil.ebc.com.br/rio-2016/noticia/2016-09/brasil-aumenta-numero-de-medalhas-mas-fica-em-oitavo-lugar-na-paralimpiada"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "d14-06",
+   "tema": "Cultura",
+   "promessa": "Fortalecer o Sistema Nacional de Cultura",
+   "trecho": "O Sistema Nacional de Cultura continuará sendo fortalecido",
+   "pagina": 23,
+   "status": "sem_como_verificar",
+   "explicacao": "A promessa é genérica e não tem meta medível; não há como dizer se foi cumprida.",
+   "evidencias": [
+    {
+     "titulo": "Emenda Constitucional 71/2012 (base do sistema)",
+     "url": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc71.htm"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}

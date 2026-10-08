@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0d0c">
+  <meta name="description" content="Planos de governo entregues ao TSE por candidatos a presidente, governador e prefeito, com link oficial, e o acompanhamento das promessas dos eleitos: o que foi cumprido, em parte ou não, sempre com a fonte.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%2362f58b%22/%3E%3Cpath d=%22M9 16l5 5 9-11%22 stroke=%22%23071009%22 stroke-width=%223.4%22 fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E">
+  <title>Planos de governo: o que foi prometido e o que foi feito — Política em dados abertos</title>
+  <script>try{var t=localStorage.getItem('as-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" href="../data/planos/promessas/index.json" as="fetch" crossorigin>
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="planos.css">
+</head>
+<body class="politica planos-page">
+  <a class="skip-link" href="#resumo">Pular para o conteúdo</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../" aria-label="AS Alexsander Schimitz — página inicial">
+        <span class="brand-mark">AS</span>
+        <span class="brand-name">Alexsander Schimitz</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+        <span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Páginas de política">
+        <a href="/politica/">Painel</a>
+        <a href="/politica/gastos/" data-page="gastos">Gastos</a>
+        <a href="/politica/economia/" data-page="economia">Economia</a>
+        <a href="/politica/planos/" data-page="planos" aria-current="page">Planos</a>
+        <a href="/politica/mapa/" data-page="mapa">Mapa</a>
+        <a href="/politica/politicos/" data-page="politicos">Políticos</a>
+        <a href="/politica/governo/" data-page="governo">Governo</a>
+        <a href="/politica/propostas/" data-page="propostas">Propostas</a>
+        <a href="/politica/#parlamentares">Congresso</a>
+        <span class="nav-sep" aria-hidden="true"></span>
+        <button class="theme-toggle" type="button" aria-label="Alternar tema claro ou escuro" title="Tema">◐</button>
+        <a class="nav-cta" href="/">← Site</a>
+      </nav>
+    </div>
+  </header>
+  <main id="conteudo">
+    <nav class="pol-subnav" aria-label="Atalhos desta página">
+      <a href="#resumo">Resumo</a>
+      <a href="#promessas">Promessas</a>
+      <a href="#avaliados">Planos avaliados</a>
+      <a href="#todos">Todos os planos</a>
+      <a href="#antes">Antes de 2010</a>
+      <a href="#como">Como avaliamos</a>
+      <a href="#fontes">Fontes</a>
+    </nav>
+
+    <section class="pol-hero container" aria-labelledby="pl-title">
+      <div class="eyebrow"><span class="status-dot"></span> Planos de governo · documentos entregues ao TSE</div>
+      <h1 id="pl-title">Planos de governo: <span>o que foi prometido e o que foi feito.</span></h1>
+      <p class="hero-lead">Todo candidato a presidente, governador ou prefeito precisa entregar à Justiça Eleitoral um plano com suas propostas. Aqui você encontra o plano oficial de cada um e, para quem foi eleito, uma lista de promessas com o que aconteceu depois, sempre com a página do plano e a fonte oficial.</p>
+      <dl class="pol-stats" aria-live="polite">
+        <div><dt>Promessas acompanhadas</dt><dd id="st-prom">—</dd></div>
+        <div><dt>Cumpridas (total ou em parte)</dt><dd id="st-cump">—</dd></div>
+        <div><dt>Planos no índice (pres. e gov.)</dt><dd id="st-planos">—</dd></div>
+        <div><dt>Última revisão</dt><dd id="st-rev" class="mono">—</dd></div>
+      </dl>
+    </section>
+
+    <section class="section pol-section" id="resumo" aria-labelledby="resumo-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Resumo</div>
+        <div class="projects-heading"><div>
+          <h2 id="resumo-title">Quanto de cada plano virou realidade</h2>
+          <p>Cada barra mostra as promessas que escolhemos acompanhar em cada plano, separadas pelo que aconteceu. É uma amostra das promessas mais concretas, não o plano inteiro. Toque em um nome para ver as promessas.</p>
+        </div></div>
+        <div class="pl-legenda" id="legenda"></div>
+        <ul class="pl-placar" id="placar" aria-live="polite"><li class="skeleton" style="height:160px"></li></ul>
+        <p class="note-sm">Mandato em curso: o resultado ainda pode mudar. Mandato interrompido: só contamos o que aconteceu até a saída do cargo.</p>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="promessas" aria-labelledby="prom-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Promessas</div>
+        <div class="projects-heading"><div>
+          <h2 id="prom-title">Promessa por promessa</h2>
+          <p>Cada item traz a frase exata do plano, a página, o que aconteceu e o documento oficial que comprova. Use os filtros para ver um político, um assunto ou um resultado.</p>
+        </div></div>
+        <div class="pol-filters pl-filtros" role="search">
+          <div class="field field-search"><label for="f-busca">Buscar nas promessas</label><input id="f-busca" type="search" placeholder="Ex.: salário mínimo, previdência, Petrobras" autocomplete="off"></div>
+          <div class="field"><label for="f-plano">Plano</label><select id="f-plano"><option value="">Todos</option></select></div>
+          <div class="field"><label for="f-status">Resultado</label><select id="f-status"><option value="">Todos</option></select></div>
+          <div class="field"><label for="f-tema">Assunto</label><select id="f-tema"><option value="">Todos</option></select></div>
+          <button class="btn btn-ghost btn-reset" type="button" id="f-limpar">Limpar</button>
+        </div>
+        <p class="pol-count" id="prom-conta" aria-live="polite"></p>
+        <ol class="pl-lista" id="prom-lista"><li class="skeleton" style="height:220px"></li></ol>
+        <button class="btn btn-ghost pl-mais" type="button" id="prom-mais" hidden>Mostrar mais</button>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="avaliados" aria-labelledby="av-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Planos avaliados</div>
+        <div class="projects-heading"><div>
+          <h2 id="av-title">O que cada plano prometia, em poucas palavras</h2>
+          <p>Resumo de cada plano acompanhado, com a página de onde saiu cada ponto. O resumo descreve o que está escrito, sem julgar se a ideia é boa ou ruim.</p>
+        </div></div>
+        <div class="pl-planos" id="planos-av"><div class="skeleton" style="height:260px"></div></div>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="todos" aria-labelledby="todos-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Todos os planos</div>
+        <div class="projects-heading"><div>
+          <h2 id="todos-title">Encontre o plano de qualquer candidato</h2>
+          <p>Índice dos planos entregues ao TSE desde 2010: presidente e governador (todos os candidatos) e prefeito (todas as cidades). O link abre a página oficial da candidatura no TSE, onde fica o PDF.</p>
+        </div></div>
+        <div class="pol-filters pl-filtros-idx" role="search">
+          <div class="field field-search"><label for="i-nome">Nome do candidato ou cidade</label><input id="i-nome" type="search" placeholder="Digite um nome" autocomplete="off"></div>
+          <div class="field"><label for="i-cargo">Cargo</label><select id="i-cargo">
+            <option value="1">Presidente</option><option value="3">Governador</option><option value="11">Prefeito</option></select></div>
+          <div class="field"><label for="i-ano">Eleição</label><select id="i-ano"></select></div>
+          <div class="field"><label for="i-uf">Estado</label><select id="i-uf"></select></div>
+          <div class="field"><label for="i-partido">Partido</label><select id="i-partido"><option value="">Todos</option></select></div>
+          <div class="field"><label for="i-res">Resultado</label><select id="i-res">
+            <option value="">Todos</option><option value="E">Só eleitos</option><option value="ET">Eleitos e no 2º turno</option></select></div>
+        </div>
+        <p class="pol-count" id="idx-conta" aria-live="polite"></p>
+        <div class="table-wrap"><table class="data-table tabela-cards pl-idx" id="idx">
+          <caption class="sr-only">Planos de governo entregues ao TSE</caption>
+          <thead><tr><th scope="col">Eleição</th><th scope="col">Candidato</th><th scope="col">Partido</th><th scope="col">Resultado</th><th scope="col">Plano de governo</th></tr></thead>
+          <tbody id="idx-body"><tr><td colspan="5"><div class="skeleton" style="height:120px"></div></td></tr></tbody>
+        </table></div>
+        <button class="btn btn-ghost pl-mais" type="button" id="idx-mais" hidden>Mostrar mais</button>
+        <p class="note-sm" id="idx-nota"></p>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="antes" aria-labelledby="antes-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Antes de 2010</div>
+        <div class="projects-heading"><div>
+          <h2 id="antes-title">E os presidentes eleitos de 1989 a 2006?</h2>
+          <p>A entrega do plano de governo à Justiça Eleitoral só virou obrigatória com a Lei 12.034/2009, a partir da eleição de 2010. Por isso o TSE não tem plano oficial arquivado das eleições anteriores.</p>
+        </div></div>
+        <div class="table-wrap"><table class="data-table tabela-cards" id="antes-tab">
+          <caption class="sr-only">Presidentes eleitos de 1989 a 2006</caption>
+          <thead><tr><th scope="col">Eleição</th><th scope="col">Eleito</th><th scope="col">Plano oficial no TSE</th></tr></thead>
+          <tbody id="antes-body"></tbody>
+        </table></div>
+        <p class="note-sm">Planos dessas campanhas existem em acervos de partidos, fundações e bibliotecas, mas não são documentos oficiais da Justiça Eleitoral; por isso não avaliamos promessas dessas eleições aqui. Fonte da regra: <a href="https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2009/lei/l12034.htm" target="_blank" rel="noreferrer">Lei 12.034/2009</a> (incluiu o inciso IX no § 1º do art. 11 da Lei 9.504/1997).</p>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="como" aria-labelledby="como-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Como avaliamos</div>
+        <div class="projects-heading"><div>
+          <h2 id="como-title">Regras iguais para todos</h2>
+          <p>As mesmas regras valem para qualquer partido. Quando há dúvida, escolhemos o resultado mais cauteloso.</p>
+        </div></div>
+        <dl class="pl-regras" id="regras"></dl>
+        <ul class="pl-metodo">
+          <li><b>Só promessas concretas.</b> Escolhemos frases que dizem o que seria feito (uma lei, um programa, uma meta com número ou prazo). Frases genéricas, sem como medir, ficam de fora ou entram como “Sem como verificar”.</li>
+          <li><b>Frase exata e página.</b> O trecho é copiado do PDF entregue ao TSE. A página é a do PDF (a 1ª página do arquivo é a página 1). Em PDFs digitalizados corrigimos só erros evidentes de leitura.</li>
+          <li><b>Fonte oficial.</b> Cada resultado tem pelo menos um link para lei no Planalto, tramitação na Câmara ou no Senado, dado de órgão público (IBGE, INPE, Tesouro) ou comunicado oficial.</li>
+          <li><b>Dentro do mandato.</b> Contamos o que aconteceu durante o mandato daquela eleição. Se algo só aconteceu depois, a promessa conta como não cumprida naquele mandato, e a explicação diz quando aconteceu.</li>
+          <li><b>Uma amostra, não o plano todo.</b> A lista não mede o governo inteiro. Um plano com mais itens “não cumpridos” aqui não quer dizer que o governo foi pior; quer dizer só o que está escrito em cada item.</li>
+          <li><b>Erros podem ser corrigidos.</b> Cada item tem a data da última revisão. Se encontrar um erro, a fonte está ao lado para conferir.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="fontes" aria-labelledby="fontes-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Fontes e limites</div>
+        <div class="projects-heading"><div><h2 id="fontes-title">De onde vêm os dados</h2>
+          <p>O índice é montado automaticamente a partir dos dados abertos do TSE. As avaliações das promessas são feitas à mão, uma a uma, e citam a fonte.</p></div></div>
+        <ul class="pl-fontes" id="fontes-list"></ul>
+        <p class="note-sm" id="fontes-gaps"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container pol-footer">
+      <div>
+        <p><strong>Fontes:</strong>
+          <a href="https://dadosabertos.tse.jus.br/" target="_blank" rel="noreferrer">TSE — Portal de Dados Abertos</a>,
+          <a href="https://divulgacandcontas.tse.jus.br/divulga/" target="_blank" rel="noreferrer">TSE — DivulgaCandContas</a>,
+          <a href="https://www.planalto.gov.br/ccivil_03/" target="_blank" rel="noreferrer">Planalto — Legislação</a>,
+          <a href="https://www.camara.leg.br/" target="_blank" rel="noreferrer">Câmara</a> e
+          <a href="https://www12.senado.leg.br/" target="_blank" rel="noreferrer">Senado</a>.</p>
+        <p>Página independente e apartidária. As avaliações descrevem fatos documentados e não dizem se uma proposta é boa ou ruim.</p>
+      </div>
+      <div class="pol-footer-links">
+        <p>© <span id="year"></span> Alexsander Schimitz.</p>
+        <a href="/politica/">Painel de política</a>
+        <a href="/politica/politicos/">Políticos</a>
+        <a href="/">← Página inicial</a>
+        <a href="#top">Voltar ao topo ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../scripts/home.js"></script>
+  <script src="../base.js"></script>
+  <script src="planos.js"></script>
+</body>
+</html>
