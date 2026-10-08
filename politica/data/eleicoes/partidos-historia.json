@@ -1,0 +1,116 @@
+{
+ "nota": "Partidos mudam de nome, se juntam (fusão) ou um absorve o outro (incorporação). Datas aproximadas pela decisão do partido e aprovação do TSE. Lista dos casos que aparecem nos números desta página.",
+ "eventos": [
+  [
+   "1993",
+   "PDS e PDC se juntam e formam o PPR."
+  ],
+  [
+   "1995",
+   "PPR e PP se juntam e formam o PPB."
+  ],
+  [
+   "2000",
+   "PRN (partido pelo qual Collor se elegeu em 1989) passa a se chamar PTC."
+  ],
+  [
+   "2003",
+   "PPB passa a se chamar PP (desde 2017 usa o nome Progressistas)."
+  ],
+  [
+   "2006",
+   "PL e Prona se juntam e formam o PR."
+  ],
+  [
+   "2007",
+   "PFL passa a se chamar Democratas (DEM)."
+  ],
+  [
+   "2017",
+   "PTN vira Podemos; PT do B vira Avante."
+  ],
+  [
+   "2017–2018",
+   "PMDB volta a se chamar MDB; PSDC vira DC (Democracia Cristã); PEN vira Patriota."
+  ],
+  [
+   "2019",
+   "PR volta a se chamar PL; PRB vira Republicanos; PPS vira Cidadania. PHS é incorporado pelo Podemos, PRP pelo Patriota e PPL pelo PCdoB."
+  ],
+  [
+   "2022",
+   "DEM e PSL se juntam e formam o União Brasil. PTC vira Agir. Começam as federações: partidos que concorrem juntos e atuam como um só bloco por pelo menos 4 anos (ex.: PT, PCdoB e PV; PSDB e Cidadania; PSOL e Rede)."
+  ],
+  [
+   "2023",
+   "PROS é incorporado pelo Solidariedade; PSC é incorporado pelo Podemos; PTB e Patriota se juntam e formam o PRD; PMN passa a se chamar Mobiliza."
+  ],
+  [
+   "2025",
+   "O TSE aprova o registro de um partido novo, o Missão (nº 14), em 4 de novembro, e a troca de nome do PMB (Partido da Mulher Brasileira, nº 35) para Democrata, em 2 de dezembro."
+  ]
+ ],
+ "linhagem": {
+  "MDB": [
+   "PMDB"
+  ],
+  "PP": [
+   "PPB",
+   "PPR",
+   "PDS"
+  ],
+  "UNIÃO": [
+   "DEM",
+   "PFL",
+   "PSL"
+  ],
+  "PL": [
+   "PR",
+   "PRONA"
+  ],
+  "REPUBLICANOS": [
+   "PRB"
+  ],
+  "CIDADANIA": [
+   "PPS"
+  ],
+  "PODE": [
+   "PTN",
+   "PHS",
+   "PSC"
+  ],
+  "PRD": [
+   "PTB",
+   "PATRIOTA",
+   "PEN",
+   "PRP"
+  ],
+  "AVANTE": [
+   "PT do B"
+  ],
+  "DC": [
+   "PSDC"
+  ],
+  "AGIR": [
+   "PTC",
+   "PRN"
+  ],
+  "SOLIDARIEDADE": [
+   "PROS"
+  ],
+  "PC do B": [
+   "PPL"
+  ],
+  "MOBILIZA": [
+   "PMN"
+  ],
+  "DEMOCRATA": [
+   "PMB"
+  ]
+ },
+ "fontes": [
+  "https://www.tse.jus.br/partidos/partidos-registrados-no-tse",
+  "https://www.tse.jus.br/comunicacao/noticias/2025/Dezembro/partido-da-mulher-brasileira-pmb-passara-a-se-chamar-democrata",
+  "https://www.tse.jus.br/comunicacao/noticias/2025/Novembro/tse-aprova-registro-e-homologa-estatuto-do-partido-missao"
+ ]
+}
