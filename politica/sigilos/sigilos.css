@@ -1,0 +1,15 @@
+.sig-list .item h3 { font-size: 1.1rem; }
+.sig-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+@media (max-width: 760px) { .sig-grid { grid-template-columns: 1fr; } }
+.sig-grid > div { padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--bg-soft); min-width: 0; }
+.sig-grid h4 { font-family: "DM Mono", monospace; font-size: 0.7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+.sig-grid p { margin-top: 4px !important; color: var(--text) !important; font-size: 0.9rem !important; line-height: 1.55; }
+.sig-grid .rev { grid-column: 1 / -1; border-color: rgba(98, 245, 139, 0.3); }
+html[data-theme="light"] .sig-grid .rev { border-color: rgba(10, 120, 50, 0.3); }
+.sig-fontes { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 12px; }
+.sig-fontes a { font-size: 0.84rem; font-weight: 700; border-bottom: 1px solid var(--line-strong); }
+.sig-fontes a:hover { color: var(--accent); border-color: var(--accent); }
+.howto { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 10px; }
+.howto li { padding: 14px 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
+.howto b { display: block; }
+.howto span { display: block; margin-top: 4px; color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
