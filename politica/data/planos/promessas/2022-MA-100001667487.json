@@ -1,0 +1,158 @@
+{
+ "ano": 2022,
+ "cargo": "governador",
+ "uf": "MA",
+ "sq": "100001667487",
+ "pessoa": {
+  "nome": "Carlos Brandão",
+  "nome_completo": "Carlos Orleans Brandão Júnior",
+  "partido": "PSB",
+  "id_politico": "k5ibarnfh6"
+ },
+ "mandato": {
+  "inicio": "2023-01-01",
+  "fim": "2026-12-31",
+  "situacao": "em curso",
+  "nota": "Mandato ainda em curso: o status vale até a data da revisão e pode mudar."
+ },
+ "plano": {
+  "titulo": "Diretrizes para um Plano de Governo 2023–2026",
+  "paginas": 33,
+  "arquivo": "2022MA100001667487.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/MA/100001667487",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2022_MA.zip"
+ },
+ "revisado": "2026-10-08",
+ "resumo": [
+  {
+   "t": "Gestão: Plano Maranhão 2050 e serviços digitais para o cidadão.",
+   "p": 3
+  },
+  {
+   "t": "Oportunidades: apoio à agricultura familiar, ao turismo e às rodovias estaduais.",
+   "p": 5
+  },
+  {
+   "t": "Sustentabilidade: Maranhão Verde, plantio de mudas e habitação.",
+   "p": 13
+  },
+  {
+   "t": "Educação, ciência e esporte: IEMA, escolas em tempo integral e Bolsa Atleta.",
+   "p": 18
+  },
+  {
+   "t": "Saúde: mais policlínicas e telemedicina.",
+   "p": 25
+  },
+  {
+   "t": "Segurança: mais efetivo, perícia no interior e videomonitoramento.",
+   "p": 28
+  },
+  {
+   "t": "Inclusão: Restaurantes Populares, Cheque Minha Casa e Casa da Mulher Maranhense.",
+   "p": 30
+  }
+ ],
+ "promessas": [
+  {
+   "id": "ma22-01",
+   "tema": "Infraestrutura",
+   "promessa": "Fazer o projeto de duplicação da MA-204",
+   "trecho": "Elaborar o projeto de duplicação da MA 204.",
+   "pagina": 17,
+   "status": "cumprida",
+   "explicacao": "O plano prometia elaborar o projeto. Em maio de 2025 o governo autorizou o início das obras de duplicação da MA-204 (4ª etapa da Avenida Metropolitana), o que indica que o projeto foi feito. A página do portal do Governo do Maranhão estava fora do ar quando revisamos (período eleitoral); o título e o endereço são os oficiais.",
+   "evidencias": [
+    {
+     "titulo": "Governo do Maranhão — Governador autoriza início da duplicação da MA-204, quarta etapa da Avenida Metropolitana (mai/2025)",
+     "url": "https://www.ma.gov.br/noticias/governador-brandao-autoriza-inicio-da-duplicacao-da-ma-204-quarta-etapa-da-avenida-metropolitana-na-grande-ilha"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "ma22-02",
+   "tema": "Saúde",
+   "promessa": "Abrir mais policlínicas estaduais",
+   "trecho": "Ampliar a rede estadual de Policlínicas, priorizado os municípios sede das regiões administrativas do Estado.",
+   "pagina": 25,
+   "status": "cumprida",
+   "explicacao": "A Policlínica de São José de Ribamar, nova unidade da rede estadual, começou a funcionar em abril de 2024.",
+   "evidencias": [
+    {
+     "titulo": "Maranhão Parcerias (MAPA) — Policlínica de São José de Ribamar completa um mês de funcionamento (mai/2024)",
+     "url": "https://mapa.ma.gov.br/noticias/com-recursos-doados-pela-mapa-policlinica-de-sao-jose-de-ribamar-amplia-sala-de-fisioterapia-e-garante-novos-atendimentos"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "ma22-03",
+   "tema": "Esporte",
+   "promessa": "Bolsa Atleta para mais gente e por até 2 anos",
+   "trecho": "Ampliar o programa Bolsa Atleta, voltado a alunos do Ensino Fundamental, Médio e Superior, de forma a contemplar mais beneficiários e ampliar o prazo da bolsa para 2 (dois) anos.",
+   "pagina": 24,
+   "status": "cumprida",
+   "explicacao": "Em julho de 2025 a Assembleia Legislativa aprovou a medida provisória do governo que aumenta o prazo da Bolsa Atleta de um para até dois anos.",
+   "evidencias": [
+    {
+     "titulo": "Assembleia Legislativa do Maranhão — Alema aprova MP que amplia prazo de concessão da Bolsa-Atleta (jul/2025)",
+     "url": "https://www.al.ma.leg.br/sitealema/alema-aprova-mp-que-amplia-duracao-do-programa-bolsa-atleta-no-maranhao/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "ma22-04",
+   "tema": "Assistência social",
+   "promessa": "Abrir mais Restaurantes Populares",
+   "trecho": "Ampliar a rede de Restaurantes Populares.",
+   "pagina": 30,
+   "status": "cumprida",
+   "explicacao": "Em outubro de 2025 o governo informou a entrega do 200º equipamento da rede de Restaurantes Populares. A página do portal do Governo do Maranhão estava fora do ar quando revisamos (período eleitoral); o título e o endereço são os oficiais.",
+   "evidencias": [
+    {
+     "titulo": "Governo do Maranhão — Governo inaugura o Restaurante Popular de número 200 em São Luís (out/2025)",
+     "url": "https://www.ma.gov.br/noticias/governo-inaugura-o-restaurante-popular-de-numero-200-em-sao-luis"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "ma22-05",
+   "tema": "Mulheres",
+   "promessa": "Levar a Casa da Mulher Maranhense a mais cidades",
+   "trecho": "Ampliar os serviços da Casa da Mulher Maranhense com instalação nos municípios",
+   "pagina": 31,
+   "status": "cumprida",
+   "explicacao": "Novas unidades foram abertas, como a de Balsas, em maio de 2025, feita pelo governo do estado com a prefeitura.",
+   "evidencias": [
+    {
+     "titulo": "Prefeitura de Balsas — Governo do Maranhão e Prefeitura inauguram a Casa da Mulher Maranhense (mai/2025)",
+     "url": "https://www.balsas.ma.gov.br/informa/24/governo-do-maranh-o-e-prefeitura-de-balsas-inaugur"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "ma22-06",
+   "tema": "Segurança",
+   "promessa": "Mais câmeras de videomonitoramento",
+   "trecho": "Ampliar os investimentos em tecnologia para instalação de câmeras do sistema de videomonitoramento integrado nas principais ruas e avenidas.",
+   "pagina": 29,
+   "status": "cumprida",
+   "explicacao": "Segundo a Secretaria de Segurança, o parque de videomonitoramento chegou a cerca de 400 câmeras, com leitura de placas e inteligência artificial; o governo informou um aumento de 45% no número de câmeras do Ciops.",
+   "evidencias": [
+    {
+     "titulo": "SSP-MA — Segurança Pública usa inteligência artificial para ampliar monitoramento urbano",
+     "url": "https://www.ssp.ma.gov.br/seguranca-publica-usa-inteligencia-artificial-para-ampliar-monitoramento-urbano-e-recupera-mais-de-200-veiculos-com-restricao-policial-2/"
+    },
+    {
+     "titulo": "Governo do Maranhão — Ciops amplia em 45% o número de câmeras de videomonitoramento",
+     "url": "https://www.ma.gov.br/noticias/ciops-amplia-em-45-o-numero-de-cameras-de-videomonitoramento-e-reforca-seguranca-maranhense"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}

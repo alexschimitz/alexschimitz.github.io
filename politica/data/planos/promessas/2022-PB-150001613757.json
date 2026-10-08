@@ -1,0 +1,90 @@
+{
+ "ano": 2022,
+ "cargo": "governador",
+ "uf": "PB",
+ "sq": "150001613757",
+ "pessoa": {
+  "nome": "João",
+  "nome_completo": "João Azevedo Lins Filho",
+  "partido": "PSB",
+  "id_politico": "psavdjngvx"
+ },
+ "mandato": {
+  "inicio": "2023-01-01",
+  "fim": "2026-12-31",
+  "situacao": "em curso",
+  "nota": "João Azevêdo renunciou em abril de 2026 para disputar as eleições; o vice Lucas Ribeiro, eleito na mesma chapa, tomou posse como governador (fonte: Governo da Paraíba). Avaliamos o governo da chapa eleita até a data da revisão; o status pode mudar até o fim do mandato."
+ },
+ "plano": {
+  "titulo": "Plano de governo — Coligação Juntos pela Paraíba (2023–2026)",
+  "paginas": 13,
+  "arquivo": "2022PB150001613757.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/PB/150001613757",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2022_PB.zip"
+ },
+ "revisado": "2026-10-08",
+ "resumo": [
+  {
+   "t": "Boa governança: educação, saúde, segurança, assistência social e transparência.",
+   "p": 2
+  },
+  {
+   "t": "Sustentabilidade e empreendedorismo: água, rodovias, meio ambiente e porto de Cabedelo.",
+   "p": 7
+  },
+  {
+   "t": "Desenvolvimento: agricultura familiar, turismo, indústria e inovação.",
+   "p": 10
+  }
+ ],
+ "promessas": [
+  {
+   "id": "pb22-01",
+   "tema": "Assistência social",
+   "promessa": "Levar o Cidade Madura a mais cidades",
+   "trecho": "Expandir o programa Cidade Madura no território paraibano.",
+   "pagina": 5,
+   "status": "cumprida",
+   "explicacao": "Novos condomínios Cidade Madura, para pessoas idosas, foram entregues durante o mandato, como o de Mamanguape, em julho de 2025, com cerca de 40 moradias.",
+   "evidencias": [
+    {
+     "titulo": "Cehap-PB — Cehap entrega Condomínio Cidade Madura em Mamanguape (jul/2025)",
+     "url": "https://cehap.pb.gov.br/sitecehap/cehap-entrega-condominio-cidade-madura-chaves-do-pph-e-escrituras-na-cidade-de-mamanguape/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pb22-02",
+   "tema": "Esporte",
+   "promessa": "Mais centros olímpicos de esporte nas regiões",
+   "trecho": "Ampliar Centros Olímpicos de formação poliesportiva nas diversas regiões da Paraíba.",
+   "pagina": 7,
+   "status": "em_andamento",
+   "explicacao": "A Vila Olímpica do Brejo Paraibano, em Guarabira, foi entregue em março de 2026. Não encontramos fonte oficial sobre novas unidades em outras regiões.",
+   "evidencias": [
+    {
+     "titulo": "Suplan-PB — Vila Olímpica do Brejo Paraibano é inaugurada em Guarabira (mar/2026)",
+     "url": "https://suplan.pb.gov.br/noticias/vila-olimpica-do-brejo-paraibano-e-inaugurada-e-se-consolida-como-novo-polo-de-esporte-e-lazer-em-guarabira"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pb22-03",
+   "tema": "Economia",
+   "promessa": "Criar um terminal de múltiplos usos no porto de Cabedelo",
+   "trecho": "Implantar Terminal de Múltiplos Usos no Complexo Portuário de Cabedelo.",
+   "pagina": 9,
+   "status": "nao_cumprida",
+   "explicacao": "Até a data da revisão, o site oficial do porto ainda lista o Terminal de Múltiplos Usos (TMU) entre as áreas disponíveis para arrendamento, ou seja, o terminal ainda não foi implantado. O porto recebeu outras obras de modernização.",
+   "evidencias": [
+    {
+     "titulo": "Porto de Cabedelo — Áreas e instalações arrendadas",
+     "url": "https://portodecabedelo.pb.gov.br/areas-e-instalacoes-arrendadas/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}

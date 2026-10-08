@@ -1,0 +1,190 @@
+{
+ "ano": 2022,
+ "cargo": "governador",
+ "uf": "ES",
+ "sq": "80001649123",
+ "pessoa": {
+  "nome": "Renato Casagrande",
+  "nome_completo": "José Renato Casagrande",
+  "partido": "PSB",
+  "id_politico": "cbuxuraivn"
+ },
+ "mandato": {
+  "inicio": "2023-01-01",
+  "fim": "2026-12-31",
+  "situacao": "em curso",
+  "nota": "Renato Casagrande deixou o cargo em abril de 2026 para disputar o Senado; o vice Ricardo Ferraço, eleito na mesma chapa, tomou posse como governador (fonte: Governo do ES). Avaliamos o governo da chapa eleita até a data da revisão; o status pode mudar até o fim do mandato."
+ },
+ "plano": {
+  "titulo": "Programa de Governo 2023/2026 — Novas ideias para novos desafios",
+  "paginas": 150,
+  "arquivo": "2022ES80001649123.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/ES/80001649123",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2022_ES.zip"
+ },
+ "revisado": "2026-10-08",
+ "resumo": [
+  {
+   "t": "Saúde: abrir o Hospital Geral de Cariacica e o Complexo de Saúde do Norte.",
+   "p": 28
+  },
+  {
+   "t": "Educação: tempo integral em todos os municípios e escolas mais bem equipadas.",
+   "p": 46
+  },
+  {
+   "t": "Esporte: Centro de Excelência para Pessoas com Deficiência.",
+   "p": 74
+  },
+  {
+   "t": "Mobilidade: Terceira Ponte com mais faixas, volta do transporte aquaviário e Transcol.",
+   "p": 104
+  },
+  {
+   "t": "Aeroportos: terminal de Linhares e obras no aeroporto de Cachoeiro.",
+   "p": 109
+  }
+ ],
+ "promessas": [
+  {
+   "id": "es22-01",
+   "tema": "Saúde",
+   "promessa": "Abrir o Hospital Geral de Cariacica",
+   "trecho": "Inaugurar o Hospital Geral de Cariacica.",
+   "pagina": 28,
+   "status": "em_andamento",
+   "explicacao": "O hospital está em construção; o DER-ES abriu licitação para uma nova etapa da obra. Não encontramos registro oficial de inauguração até a data da revisão. As notícias do portal do Governo do ES estavam fora do ar quando revisamos (período eleitoral); o título e o endereço são os oficiais.",
+   "evidencias": [
+    {
+     "titulo": "DER-ES — Governo lança edital para nova etapa da construção do Hospital Geral de Cariacica",
+     "url": "https://der.es.gov.br/Not%C3%ADcia/governo-lanca-edital-para-nova-etapa-da-construcao-do-hospital-geral-de-cariacica"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "es22-02",
+   "tema": "Saúde",
+   "promessa": "Criar o Complexo de Saúde do Norte do Estado",
+   "trecho": "Implantar o Complexo de Saúde do Norte do Estado.",
+   "pagina": 28,
+   "status": "em_andamento",
+   "explicacao": "O complexo, em São Mateus, está em obras. Não encontramos registro oficial de inauguração até a data da revisão. As notícias do portal do Governo do ES estavam fora do ar quando revisamos (período eleitoral); o título e o endereço são os oficiais.",
+   "evidencias": [
+    {
+     "titulo": "Sesa-ES — Maior investimento estadual: complexo de saúde marca nova fase na saúde do Norte do Estado",
+     "url": "https://saude.es.gov.br/Not%C3%ADcia/maior-investimento-estadual-complexo-de-saude-marca-nova-fase-na-saude-do-norte-do-estado"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "es22-03",
+   "tema": "Educação",
+   "promessa": "Tempo integral em todos os municípios",
+   "trecho": "Universalizar a oferta de matrículas em tempo integral nos municípios capixabas, ampliando o número de escolas e vagas",
+   "pagina": 46,
+   "status": "em_andamento",
+   "explicacao": "A Secretaria da Educação informou mais 30 escolas estaduais de tempo integral em 2025. Não encontramos fonte oficial de que todos os municípios já tenham essa oferta. As notícias do portal do Governo do ES estavam fora do ar quando revisamos (período eleitoral); o título e o endereço são os oficiais.",
+   "evidencias": [
+    {
+     "titulo": "Sedu-ES — Rede estadual de ensino terá mais 30 escolas de tempo integral em 2025",
+     "url": "https://sedu.es.gov.br/Not%C3%ADcia/rede-estadual-de-ensino-tera-mais-30-escolas-de-tempo-integral-em-2025"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "es22-04",
+   "tema": "Esporte",
+   "promessa": "Construir o Centro de Excelência para Pessoas com Deficiência",
+   "trecho": "Construir o Centro de Excelência para Pessoas com Deﬁciência.",
+   "pagina": 74,
+   "status": "cumprida",
+   "explicacao": "O Centro de Excelência de Esportes para Pessoas com Deficiência foi inaugurado em Vitória em março de 2025. As notícias do portal do Governo do ES estavam fora do ar quando revisamos (período eleitoral); o título e o endereço são os oficiais.",
+   "evidencias": [
+    {
+     "titulo": "Governo do ES — Governo do Estado inaugura Centro de Excelência de Esportes para Pessoas com Deficiência (mar/2025)",
+     "url": "https://www.es.gov.br/Noticia/governo-do-estado-inaugura-centro-de-excelencia-de-esportes-para-pessoas-com-deficiencia"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "es22-05",
+   "tema": "Mobilidade",
+   "promessa": "Mais faixas na Terceira Ponte",
+   "trecho": "assim como será realizada a ampliação de faixas de rolamento na ponte, ampliando sua capacidade de transporte",
+   "pagina": 104,
+   "status": "cumprida",
+   "explicacao": "Segundo a Ceturb, a ampliação do número de faixas da Terceira Ponte foi inaugurada em 27 de agosto de 2023, junto com a Ciclovia da Vida.",
+   "evidencias": [
+    {
+     "titulo": "Ceturb-ES — Ciclovia da Vida",
+     "url": "https://ceturb.es.gov.br/ciclovia-da-vida"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "es22-06",
+   "tema": "Mobilidade",
+   "promessa": "Trazer de volta o transporte aquaviário",
+   "trecho": "a retomada do serviço de transporte aquaviário é demanda antiga de toda a população da RMGV",
+   "pagina": 104,
+   "status": "cumprida",
+   "explicacao": "O novo sistema aquaviário da Grande Vitória foi inaugurado e é operado pela Ceturb. As notícias do portal do Governo do ES estavam fora do ar quando revisamos (período eleitoral); o título e o endereço são os oficiais.",
+   "evidencias": [
+    {
+     "titulo": "Governo do ES — Governo do Estado inaugura novo sistema aquaviário",
+     "url": "https://www.es.gov.br/Noticia/governo-do-estado-inaugura-novo-sistema-aquaviario"
+    },
+    {
+     "titulo": "Ceturb-ES — Aquaviário",
+     "url": "https://ceturb.es.gov.br/aquaviario"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "es22-07",
+   "tema": "Infraestrutura",
+   "promessa": "Abrir o novo terminal do aeroporto de Linhares",
+   "trecho": "Inaugurar o Terminal de Passageiros do Aeroporto de Linhares.",
+   "pagina": 109,
+   "status": "cumprida",
+   "explicacao": "O novo terminal de passageiros do aeroporto de Linhares foi inaugurado em abril de 2023. As notícias do portal do Governo do ES estavam fora do ar quando revisamos (período eleitoral); o título e o endereço são os oficiais.",
+   "evidencias": [
+    {
+     "titulo": "Governo do ES — Novo Aeroporto Regional de Linhares é inaugurado (abr/2023)",
+     "url": "https://www.es.gov.br/Noticia/novo-aeroporto-regional-de-linhares-e-inaugurado-pelo-governo-do-estado"
+    },
+    {
+     "titulo": "Ministério de Portos e Aeroportos — Inauguração do novo terminal de passageiros do Aeroporto de Linhares (abr/2023)",
+     "url": "https://www.gov.br/portos-e-aeroportos/pt-br/assuntos/noticias/2023/04/ministro-marcio-franca-inaugura-novo-terminal-de-passageiros-do-aeroporto-de-linhares-es"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "es22-08",
+   "tema": "Infraestrutura",
+   "promessa": "Fazer as obras do aeroporto de Cachoeiro",
+   "trecho": "Executar as obras do Aeroporto de Cachoeiro (Pista e Terminal de passageiros).",
+   "pagina": 109,
+   "status": "cumprida",
+   "explicacao": "A reforma e ampliação do aeroporto de Cachoeiro de Itapemirim foi inaugurada em abril de 2026. O Ministério Público de Contas apontou possível prejuízo nas obras e pediu devolução de valores; o caso está em análise no Tribunal de Contas. As notícias do portal do Governo do ES estavam fora do ar quando revisamos (período eleitoral); o título e o endereço são os oficiais.",
+   "evidencias": [
+    {
+     "titulo": "Governo do ES — Governo do Estado inaugura reforma e ampliação do Aeroporto de Cachoeiro de Itapemirim",
+     "url": "https://www.es.gov.br/Noticia/governo-do-estado-inaugura-reforma-e-ampliacao-do-aeroporto-de-cachoeiro-de-itapemirim"
+    },
+    {
+     "titulo": "Ministério Público de Contas do ES — Aponta prejuízo em obras do Aeroporto de Cachoeiro (mar/2026)",
+     "url": "https://www.mpc.es.gov.br/2026/03/mpc-es-aponta-prejuizo-de-r-368-milhoes-em-obras-do-aeroporto-de-cachoeiro-de-itapemirim-e-pede-devolucao-de-valores/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}
