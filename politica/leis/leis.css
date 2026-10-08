@@ -1,0 +1,31 @@
+.lei-side { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 12px; margin-top: 14px; }
+@media (max-width: 760px) { .lei-side { grid-template-columns: 1fr; } }
+.lei-box { padding: 14px 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); min-width: 0; }
+.lei-box h3 { font-size: 0.78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); font-family: "DM Mono", monospace; font-weight: 500; }
+.lei-box p, .lei-box li { margin-top: 6px; color: var(--text); font-size: 0.92rem; line-height: 1.55; }
+.lei-box ul { margin: 8px 0 0; padding-left: 1.1em; }
+.lei-box li + li { margin-top: 8px; }
+.lei-box .quem { display: block; color: var(--muted); font-size: 0.78rem; }
+.arg-pro { border-left: 3px solid var(--good); }
+.arg-con { border-left: 3px solid var(--bad); }
+.lei-back { margin-bottom: 12px; }
+.lei-pessoa-box { margin-top: 16px; display: grid; gap: 10px; }
+.sug { list-style: none; display: grid; gap: 6px; }
+.sug button { text-align: left; min-height: 48px; padding: 8px 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--panel); color: var(--text); font: inherit; cursor: pointer; }
+.sug button small { display: block; color: var(--muted); }
+.voto-tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: end; margin: 12px 0; }
+.voto-tools .field { flex: 1 1 140px; }
+.voto-list { list-style: none; display: grid; gap: 6px; max-height: 520px; overflow: auto; }
+.voto-list li { display: grid; grid-template-columns: minmax(0,1fr) auto auto; gap: 8px; align-items: center; padding: 8px 10px; border: 1px solid var(--line); border-radius: 12px; font-size: 0.88rem; }
+.voto-list a { font-weight: 700; }
+.voto-list small { color: var(--muted); }
+.partidos { list-style: none; display: grid; gap: 6px; margin-top: 8px; }
+.partidos li { display: grid; grid-template-columns: 64px minmax(0,1fr); gap: 8px; align-items: center; font-size: 0.8rem; }
+.stack { display: flex; height: 10px; border-radius: 999px; overflow: hidden; background: var(--bg-soft); }
+.stack i { display: block; height: 100%; }
+.lei-card { cursor: pointer; }
+.lei-card h3 { font-size: 1.05rem; }
+@media (max-width: 420px) {
+  .voto-list li { grid-template-columns: minmax(0,1fr) auto; }
+  .voto-list small.uf { display: none; }
+}

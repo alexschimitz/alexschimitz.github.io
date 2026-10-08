@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0d0c">
+  <meta name="description" content="O que as principais leis desde 1988 mudam, quem criou, quem votou a favor e contra, e quando um político votou diferente do que assinou.">
+  <title>Leis que mudaram o país — Política em dados abertos</title>
+  <script>try{var t=localStorage.getItem('as-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="leis.css">
+</head>
+<body class="politica">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../" aria-label="AS Alexsander Schimitz — página inicial">
+        <span class="brand-mark">AS</span>
+        <span class="brand-name">Alexsander Schimitz</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+        <span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Páginas de política">
+        <a href="/politica/">Painel</a>
+        <a href="/politica/gastos/" data-page="gastos">Gastos</a>
+        <a href="/politica/economia/" data-page="economia">Economia</a>
+        <a href="/politica/planos/" data-page="planos">Planos</a>
+        <a href="/politica/mapa/" data-page="mapa">Mapa</a>
+        <a href="/politica/politicos/" data-page="politicos">Políticos</a>
+        <a href="/politica/governo/" data-page="governo">Governo</a>
+        <a href="/politica/propostas/" data-page="propostas">Propostas</a>
+        <a href="/politica/leis/" data-page="leis" aria-current="page">Leis</a>
+        <a href="/politica/sigilos/" data-page="sigilos">Sigilos</a>
+        <a href="/politica/#parlamentares">Congresso</a>
+        <span class="nav-sep" aria-hidden="true"></span>
+        <button class="theme-toggle" type="button" aria-label="Alternar tema claro ou escuro" title="Tema">◐</button>
+        <a class="nav-cta" href="/">← Site</a>
+      </nav>
+    </div>
+  </header>
+  <main id="conteudo">
+
+        <nav class="pol-subnav" aria-label="Atalhos desta página">
+          <a href="#lista">As leis</a>
+          <a href="#como-votou">Como votou</a>
+          <a href="#coerencia">Votou diferente</a>
+          <a href="#metodo">Como medimos</a>
+          <a href="#fontes">Fontes</a>
+        </nav>
+        <section class="pol-hero container">
+          <p class="pol-crumbs"><a href="/politica/">Painel</a> <span aria-hidden="true">›</span> Leis</p>
+          <div class="eyebrow"><span class="status-dot"></span> Leis e emendas desde 1988 · sem rótulo de boa ou ruim</div>
+          <h1 id="leis-title">Leis que mudaram o país. <span>Quem criou e quem votou.</span></h1>
+          <p class="hero-lead">Uma seleção das leis e emendas que mais mudaram a vida das pessoas desde a Constituição de 1988. Para cada uma: o que o texto faz, quem é atingido, os argumentos dos dois lados (com a fonte) e o voto nominal de cada deputado e senador, quando o Congresso publicou.</p>
+          <dl class="pol-stats">
+            <div><dt>Leis e emendas nesta página</dt><dd id="st-n">—</dd></div>
+            <div><dt>Com voto nominal</dt><dd id="st-v">—</dd></div>
+            <div><dt>Casos de voto diferente</dt><dd id="st-c">—</dd></div>
+            <div><dt>Atualizado em</dt><dd id="st-d" class="mono">—</dd></div>
+          </dl>
+        </section>
+
+        <section class="section pol-section" id="lista">
+          <div class="container">
+            <div class="section-kicker">A seleção</div>
+            <div class="projects-heading"><div>
+              <h2>O que cada lei faz</h2>
+              <p>Esta página não diz se a lei foi boa ou ruim. Mostra o que o texto muda, quem ganha e quem paga o custo, e o que cada lado argumentou, sempre com a fonte. Toque numa lei para ver os votos.</p>
+            </div></div>
+            <form class="pol-filters auto" id="f-leis" role="search" onsubmit="return false">
+              <div class="field field-search"><label for="q">Buscar</label><input id="q" type="search" placeholder="Ex.: previdência, ficha limpa, 14.133" autocomplete="off"></div>
+              <div class="field"><label for="f-tema">Tema</label><select id="f-tema"><option value="">Todos</option></select></div>
+              <div class="field"><label for="f-gov">Governo</label><select id="f-gov"><option value="">Todos</option></select></div>
+              <div class="field"><label for="f-ano">Ano</label><select id="f-ano"><option value="">Todos</option></select></div>
+              <div class="field"><label for="f-casa">Voto nominal</label><select id="f-casa"><option value="">Com ou sem</option><option value="c">Tem voto da Câmara</option><option value="s">Tem voto do Senado</option><option value="0">Sem voto nominal publicado</option></select></div>
+            </form>
+            <p class="pol-count" id="leis-count" aria-live="polite"></p>
+            <ul class="items" id="leis-list"></ul>
+          </div>
+        </section>
+
+        <section class="section pol-section pol-alt" id="detalhe" hidden tabindex="-1">
+          <div class="container" id="detalhe-box"></div>
+        </section>
+
+        <section class="section pol-section" id="como-votou">
+          <div class="container">
+            <div class="section-kicker">Por pessoa</div>
+            <div class="projects-heading"><div>
+              <h2>Como votou fulano</h2>
+              <p>Digite o nome de um deputado ou senador e veja o voto dele em cada lei desta página. O voto é o da votação principal do texto (não o de cada destaque).</p>
+            </div></div>
+            <form class="pol-filters auto" role="search" onsubmit="return false">
+              <div class="field field-search"><label for="q-pessoa">Nome</label><input id="q-pessoa" type="search" placeholder="Ex.: Tabata Amaral, Eduardo Braga" autocomplete="off"></div>
+              <div class="field"><label for="f-ufpessoa">Estado</label><select id="f-ufpessoa"><option value="">Todos</option></select></div>
+            </form>
+            <div id="pessoa-box" class="lei-pessoa-box"></div>
+          </div>
+        </section>
+
+        <section class="section pol-section pol-alt" id="coerencia">
+          <div class="container">
+            <div class="section-kicker">Disse uma coisa, votou outra</div>
+            <div class="projects-heading"><div>
+              <h2>Quando o voto foi diferente do que a pessoa assinou ou do que o partido pediu</h2>
+              <p>Só entram casos que dá para provar com o registro oficial. Mudar de ideia é legítimo: um projeto pode ter sido alterado, ou a pessoa pode ter se convencido. Aqui a gente só mostra a diferença, com data e link.</p>
+            </div></div>
+            <div class="kpis" id="coer-kpis"></div>
+            <form class="pol-filters auto" id="f-coer" role="search" onsubmit="return false" style="margin-top:16px">
+              <div class="field field-search"><label for="q-coer">Nome</label><input id="q-coer" type="search" placeholder="Filtrar por nome" autocomplete="off"></div>
+              <div class="field"><label for="f-tipo">Tipo</label><select id="f-tipo">
+                <option value="">Todos os tipos</option>
+                <option value="a">Assinou e votou contra</option>
+                <option value="b">Votou contra a orientação do partido</option>
+                <option value="c">Mudou do 1º para o 2º turno</option>
+              </select></div>
+              <div class="field"><label for="f-onde">Onde</label><select id="f-onde">
+                <option value="leis">Nestas leis</option>
+                <option value="tudo">Em toda a Câmara, desde 2001</option>
+              </select></div>
+            </form>
+            <p class="pol-count" id="coer-count"></p>
+            <ul class="items" id="coer-list"></ul>
+            <p class="more-wrap"><button class="button" type="button" id="coer-more" hidden>Mostrar mais</button></p>
+          </div>
+        </section>
+
+        <section class="section pol-section" id="metodo">
+          <div class="container">
+            <div class="section-kicker">O método</div>
+            <h2>Como a comparação é feita, igual para todo mundo</h2>
+            <div class="pol-grid" style="margin-top:18px">
+              <article class="pol-card"><h3>1. Assinou e votou contra</h3><p>A pessoa é autora ou coautora da proposta (lista oficial de autores) e votou <b>não</b> na votação que aprovou o texto da mesma proposta. Não conta voto em destaque, em requerimento nem em texto já reescrito por um relator (substitutivo), porque aí a pessoa pode estar defendendo o texto original.</p></article>
+              <article class="pol-card"><h3>2. Contra a orientação do partido</h3><p>Na hora da votação, a liderança do partido registra uma orientação oficial (sim ou não). Conta quando o deputado votou o contrário. “Liberado” e “obstrução” não entram, porque não são um sim ou um não.</p></article>
+              <article class="pol-card"><h3>3. Mudou de turno</h3><p>Em emendas à Constituição há dois turnos. Conta quem votou sim num e não no outro. As duas datas aparecem no cartão.</p></article>
+              <article class="pol-card"><h3>O que não entra</h3><p>Post em rede social, entrevista e promessa de campanha não entram: não há como conferir de forma igual para todos. Promessa de plano de governo só entraria se o texto do plano e o voto fossem sobre o mesmo assunto, com os dois documentos linkados. Enquanto essa base não está pronta, esse tipo fica de fora.</p></article>
+            </div>
+            <p class="note">Voto nominal com o nome de cada um existe nos dados abertos da Câmara a partir de 2003 (2001 e 2002 têm poucas votações). Antes disso, o voto geralmente só está no Diário da Câmara, e esta página não o reconstrói. Quando não há voto nominal, o cartão da lei diz isso.</p>
+          </div>
+        </section>
+
+        <section class="section pol-section pol-alt" id="fontes">
+          <div class="container">
+            <div class="section-kicker">Fontes</div>
+            <h2>De onde vem cada número</h2>
+            <ul class="items" style="margin-top:18px">
+              <li class="item"><h3>Câmara dos Deputados</h3><p>Proposições, autores, votações, votos e orientações de bancada. Dados abertos, sem chave.</p><a class="ext" href="https://dadosabertos.camara.leg.br/swagger/api.html" target="_blank" rel="noreferrer">dadosabertos.camara.leg.br</a></li>
+              <li class="item"><h3>Senado Federal</h3><p>Processos, autoria, norma gerada e votações nominais do plenário.</p><a class="ext" href="https://legis.senado.leg.br/dadosabertos/api-docs/swagger-ui/index.html" target="_blank" rel="noreferrer">legis.senado.leg.br/dadosabertos</a></li>
+              <li class="item"><h3>Planalto</h3><p>O texto da lei ou da emenda, quando a página oficial foi encontrada.</p><a class="ext" href="https://www.planalto.gov.br/ccivil_03/leis/principal2005.htm" target="_blank" rel="noreferrer">planalto.gov.br</a></li>
+            </ul>
+            <p class="note">Os resumos em linguagem simples foram escritos à mão a partir da ementa e do texto oficial, e cada afirmação de polêmica (STF, veto, referendo) tem link. Se o link não confirmar, a frase não entra. A lista completa e o script estão em <span class="mono">scripts/politica/leis/</span>.</p>
+          </div>
+        </section>
+
+  </main>
+  <footer class="site-footer">
+    <div class="container pol-footer">
+      <div>
+        <p>Página independente e apartidária. Os textos explicam o que o documento oficial diz e não dizem se a lei ou o sigilo foi bom ou ruim.</p>
+      </div>
+      <div class="pol-footer-links">
+        <p>© <span id="year"></span> Alexsander Schimitz.</p>
+        <a href="/politica/">Painel de política</a>
+        <a href="/politica/leis/">Leis</a>
+        <a href="/politica/sigilos/">Sigilos</a>
+        <a href="#top">Voltar ao topo ↑</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../../scripts/home.js"></script>
+  <script src="../base.js"></script>
+  <script src="leis.js"></script>
+</body>
+</html>

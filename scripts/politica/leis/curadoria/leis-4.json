@@ -1,0 +1,419 @@
+[
+ {
+  "id": "reforma-ensino-medio",
+  "norma": "LEI-13415-2017",
+  "nome": "Reforma do Ensino Médio",
+  "tema": "educacao",
+  "muda": "Aumentou a carga para 1.000 horas anuais e criou itinerários (áreas de escolha dos alunos), reduzindo disciplinas obrigatórias. Começou como medida provisória (MP 746/2016). Foi revista em 2024 (Lei 14.945).",
+  "ganha": "Segundo os defensores, alunos, com mais escolha e mais horas de aula.",
+  "custo": "Segundo críticos, disciplinas como sociologia, artes e educação física perderam espaço.",
+  "favor": [
+   [
+    "Governo Temer",
+    "O ensino médio tinha alta evasão e precisava mudar."
+   ]
+  ],
+  "contra": [
+   [
+    "Estudantes e entidades de educação",
+    "Foi feita por medida provisória, sem debate, e enfraquecia a formação geral."
+   ]
+  ]
+ },
+ {
+  "id": "terceirizacao",
+  "norma": "LEI-13429-2017",
+  "nome": "Lei da Terceirização",
+  "tema": "trabalho",
+  "muda": "Permitiu terceirizar atividades da empresa e mudou as regras do trabalho temporário. O projeto era de 1998 e foi votado na Câmara em 2017. Em 2018 o STF decidiu que terceirizar até a atividade principal é permitido (ADPF 324).",
+  "ganha": "Empresas, com mais flexibilidade.",
+  "custo": "Trabalhadores terceirizados costumam ganhar menos e ter mais rotatividade.",
+  "favor": [
+   [
+    "Empresas e governo Temer",
+    "Modernizar a contratação e gerar empregos."
+   ]
+  ],
+  "contra": [
+   [
+    "Centrais sindicais",
+    "Precariza o trabalho e enfraquece sindicatos."
+   ]
+  ],
+  "polemica": [
+   [
+    "STF considerou válida a terceirização da atividade-fim (ADPF 324).",
+    "https://portal.stf.jus.br/processos/listarProcessos.asp?classe=ADPF&numeroProcesso=324"
+   ]
+  ]
+ },
+ {
+  "id": "reforma-trabalhista",
+  "norma": "LEI-13467-2017",
+  "nome": "Reforma Trabalhista",
+  "tema": "trabalho",
+  "muda": "Mudou a CLT: o combinado em acordo coletivo pode prevalecer sobre a lei em vários pontos, trabalho intermitente, home office, fim da contribuição sindical obrigatória e limites para indenizações trabalhistas.",
+  "ganha": "Segundo o governo, empresas e quem estava sem emprego.",
+  "custo": "Segundo os sindicatos, trabalhadores perderam proteções e fonte de financiamento dos sindicatos.",
+  "favor": [
+   [
+    "Governo Temer e a CNI",
+    "Regras de 1943 não acompanharam o mercado e geravam insegurança jurídica."
+   ]
+  ],
+  "contra": [
+   [
+    "Centrais sindicais e oposição",
+    "Retirou direitos e não criou os empregos prometidos."
+   ]
+  ],
+  "polemica": [
+   [
+    "O STF manteve o fim da contribuição obrigatória (ADI 5794) e o trabalho intermitente (ADIs 5826, 5829 e 6154).",
+    "https://portal.stf.jus.br/processos/listarProcessos.asp?classe=ADI&numeroProcesso=5794"
+   ]
+  ]
+ },
+ {
+  "id": "migracao",
+  "norma": "LEI-13445-2017",
+  "nome": "Lei de Migração",
+  "tema": "direitos",
+  "muda": "Substituiu o Estatuto do Estrangeiro, de 1980. Trata imigrantes como pessoas com direitos (trabalho, saúde, educação) e não como questão de segurança nacional.",
+  "ganha": "Imigrantes, refugiados e brasileiros no exterior.",
+  "custo": "Serviços públicos passam a atender mais pessoas.",
+  "favor": [
+   [
+    "Defensores de direitos humanos",
+    "A lei antiga era da ditadura e tratava estrangeiro como ameaça."
+   ]
+  ],
+  "contra": [
+   [
+    "Críticos",
+    "Regras brandas de entrada e regularização."
+   ]
+  ]
+ },
+ {
+  "id": "lgpd",
+  "norma": "LEI-13709-2018",
+  "nome": "Lei Geral de Proteção de Dados (LGPD)",
+  "tema": "internet",
+  "muda": "Regras para empresas e governos usarem dados pessoais: precisam de base legal, a pessoa pode pedir para ver, corrigir ou apagar seus dados, e vazamentos devem ser comunicados. Criou a ANPD.",
+  "ganha": "Qualquer pessoa cujos dados são coletados.",
+  "custo": "Empresas e órgãos públicos, com custos de adequação e multas.",
+  "favor": [
+   [
+    "Defensores da privacidade",
+    "O Brasil precisava de regra própria, como a europeia."
+   ]
+  ],
+  "contra": [
+   [
+    "Empresas, na tramitação",
+    "Custos e insegurança sobre o que é permitido."
+   ]
+  ]
+ },
+ {
+  "id": "fim-das-saidinhas",
+  "norma": "LEI-14843-2024",
+  "nome": "Fim das saidinhas de presos",
+  "tema": "seguranca",
+  "muda": "Acabou com a saída temporária de presos do regime semiaberto para visitar a família em feriados (continua só para estudar) e passou a exigir exame criminológico para o preso mudar de regime. Também ampliou o uso de tornozeleira.",
+  "ganha": "Segundo os defensores, a segurança da população, com menos presos fora das prisões.",
+  "custo": "Segundo críticos, presos e famílias, com menos vínculo e mais dificuldade de ressocialização; e os estados, com custo do exame criminológico.",
+  "favor": [
+   [
+    "Bancada da segurança pública e a maioria do Congresso",
+    "Crimes cometidos por presos durante as saídas."
+   ]
+  ],
+  "contra": [
+   [
+    "Defensores de direitos humanos e o governo, que vetou o fim das visitas à família",
+    "O vínculo familiar reduz a reincidência. O Congresso derrubou o veto em 2024."
+   ]
+  ]
+ },
+ {
+  "id": "lei-anticrime",
+  "norma": "LEI-13964-2019",
+  "nome": "Pacote Anticrime",
+  "tema": "seguranca",
+  "muda": "Mudou regras penais: juiz das garantias (quem autoriza a investigação não julga), regras mais rígidas para soltar presos, execução da pena depois de condenação por tribunal, e novas regras para delação e bens apreendidos.",
+  "ganha": "Segundo os defensores, a sociedade, com resposta mais rápida ao crime.",
+  "custo": "Segundo críticos, investigados e o direito de defesa.",
+  "favor": [
+   [
+    "Ministério da Justiça (Sérgio Moro enviou o projeto) e a bancada da segurança",
+    "Endurecer a resposta ao crime organizado."
+   ]
+  ],
+  "contra": [
+   [
+    "Defensores de garantias e parte da oposição",
+    "Risco de condenações precipitadas e de enfraquecer a defesa."
+   ]
+  ],
+  "polemica": [
+   [
+    "O STF adiou várias vezes o juiz das garantias e fixou regras para ele em 2023 (ADIs 6298, 6299, 6300 e 6305).",
+    "https://portal.stf.jus.br/processos/listarProcessos.asp?classe=ADI&numeroProcesso=6298"
+   ]
+  ]
+ },
+ {
+  "id": "abuso-de-autoridade",
+  "norma": "LEI-13869-2019",
+  "nome": "Lei de Abuso de Autoridade",
+  "tema": "seguranca",
+  "muda": "Define crimes de abuso de autoridade de juízes, promotores, policiais e servidores, como prender sem motivo legal ou divulgar gravação para expor a pessoa.",
+  "ganha": "Cidadãos contra abusos de agentes do Estado.",
+  "custo": "Juízes, promotores e policiais passam a responder criminalmente por esses atos.",
+  "favor": [
+   [
+    "Congresso, com o relator deputado Paulo Teixeira",
+    "Limitar abusos vistos em investigações recentes."
+   ]
+  ],
+  "contra": [
+   [
+    "Associações de juízes, promotores e policiais",
+    "A lei intimida quem combate o crime. O presidente Bolsonaro vetou 33 trechos; o Congresso derrubou 18 vetos."
+   ]
+  ]
+ },
+ {
+  "id": "liberdade-economica",
+  "norma": "LEI-13874-2019",
+  "nome": "Lei da Liberdade Econômica",
+  "tema": "economia",
+  "muda": "Facilitou abrir e manter negócios: atividades de baixo risco sem licença prévia, dispensa de alvará para quem trabalha em casa e carteira de trabalho só digital.",
+  "ganha": "Pequenos empreendedores.",
+  "custo": "Menos controle prévio do poder público sobre atividades.",
+  "favor": [
+   [
+    "Governo Bolsonaro e entidades empresariais",
+    "Reduzir burocracia."
+   ]
+  ],
+  "contra": [
+   [
+    "Críticos",
+    "Menos fiscalização pode prejudicar consumidores e trabalhadores."
+   ]
+  ]
+ },
+ {
+  "id": "previdencia-2019",
+  "norma": "EMC-103-2019",
+  "nome": "Reforma da Previdência de 2019",
+  "tema": "trabalho",
+  "muda": "Criou idade mínima para se aposentar pelo INSS (65 anos homens, 62 mulheres), com tempo mínimo de contribuição, e novas regras de transição. Estados e municípios ficaram de fora do texto final e fizeram suas próprias reformas.",
+  "ganha": "Segundo o governo, as contas públicas e as próximas gerações.",
+  "custo": "Trabalhadores, que se aposentam mais tarde e, em vários casos, com valor menor.",
+  "favor": [
+   [
+    "Governo Bolsonaro e o relator deputado Samuel Moreira",
+    "Sem a reforma, o déficit da Previdência cresceria."
+   ]
+  ],
+  "contra": [
+   [
+    "Oposição (PT, PSOL, PCdoB e outros) e centrais sindicais",
+    "Cortou direitos de quem ganha menos e poupou grupos com mais força política."
+   ]
+  ],
+  "efeitos": [
+   [
+    "O governo estimou economia de cerca de R$ 800 bilhões em 10 anos na proposta enviada; o texto aprovado foi menor. Acompanhe a dívida na página Economia.",
+    "/politica/economia/#outros"
+   ]
+  ]
+ },
+ {
+  "id": "marco-saneamento",
+  "norma": "LEI-14026-2020",
+  "nome": "Marco do Saneamento",
+  "tema": "infra",
+  "muda": "Exigiu licitação para novos contratos de água e esgoto, metas de universalização até 2033 (99% de água e 90% de esgoto) e fim de contratos sem licitação. A ANA passou a editar normas de referência.",
+  "ganha": "Segundo os defensores, a população sem água tratada ou esgoto.",
+  "custo": "Empresas estaduais de saneamento perderam a renovação automática de contratos.",
+  "favor": [
+   [
+    "Governo Bolsonaro e o setor privado",
+    "Atrair investimento privado para universalizar o saneamento."
+   ]
+  ],
+  "contra": [
+   [
+    "Empresas estaduais, prefeitos e parte da oposição",
+    "Privatização indireta e risco para cidades pequenas, menos lucrativas."
+   ]
+  ],
+  "polemica": [
+   [
+    "Decretos de 2020 e 2023 mudaram as regras dos contratos; o tema foi ao STF (ADI 6492 e outras).",
+    "https://portal.stf.jus.br/processos/listarProcessos.asp?classe=ADI&numeroProcesso=6492"
+   ]
+  ]
+ },
+ {
+  "id": "autonomia-bc",
+  "norma": "LCP-179-2021",
+  "nome": "Autonomia do Banco Central",
+  "tema": "economia",
+  "muda": "O presidente e os diretores do Banco Central passam a ter mandato fixo de 4 anos, que não coincide com o do presidente da República, e só podem ser demitidos em casos previstos em lei. A meta de inflação continua sendo definida pelo governo.",
+  "ganha": "Segundo os defensores, a estabilidade da moeda, com menos pressão política sobre os juros.",
+  "custo": "O governo eleito tem menos poder imediato sobre a política de juros.",
+  "favor": [
+   [
+    "Congresso e o governo Bolsonaro, que sancionou",
+    "Proteger o Banco Central de pressões de curto prazo."
+   ]
+  ],
+  "contra": [
+   [
+    "Parte da oposição",
+    "Juros altos sem controle democrático afetam emprego e dívida."
+   ]
+  ]
+ },
+ {
+  "id": "privatizacao-eletrobras",
+  "norma": "LEI-14182-2021",
+  "nome": "Privatização da Eletrobras",
+  "tema": "infra",
+  "muda": "A União deixou de ser controladora da Eletrobras: a empresa emitiu novas ações e a participação da União foi diluída. A lei incluiu obrigações como contratar termelétricas e reservar energia para o Norte.",
+  "ganha": "Segundo o governo, a empresa e o consumidor, com gestão privada e dinheiro para investir.",
+  "custo": "A União perdeu o controle da empresa; críticos apontam que obrigações incluídas na lei (como contratar termelétricas) podem encarecer a conta de luz.",
+  "favor": [
+   [
+    "Governo Bolsonaro",
+    "A Eletrobras precisava de capital e de gestão sem interferência política."
+   ]
+  ],
+  "contra": [
+   [
+    "Oposição e sindicatos",
+    "Venda de controle de empresa estratégica por preço baixo e com jabutis."
+   ]
+  ]
+ },
+ {
+  "id": "licitacoes-2021",
+  "norma": "LEI-14133-2021",
+  "nome": "Nova Lei de Licitações",
+  "tema": "contas",
+  "muda": "Substituiu as leis 8.666/1993, 10.520/2002 e 12.462/2011. Compras públicas com mais modalidades (incluindo diálogo competitivo), seguro-garantia em obras e preferência por pagamento por resultado.",
+  "ganha": "Órgãos públicos e empresas, com regras unificadas.",
+  "custo": "Adaptação de todos os órgãos; a lei antiga conviveu até 2023.",
+  "favor": [
+   [
+    "Congresso",
+    "Uma lei só, mais moderna, no lugar de três."
+   ]
+  ],
+  "contra": [
+   [
+    "Críticos",
+    "Texto longo e complexo, com risco de continuar lento."
+   ]
+  ]
+ },
+ {
+  "id": "improbidade-2021",
+  "norma": "LEI-14230-2021",
+  "nome": "Reforma da Lei de Improbidade (2021)",
+  "tema": "transparencia",
+  "muda": "Passou a exigir dolo (intenção) para punir improbidade; erro sem má-fé deixa de ser improbidade. Também mudou prazos de prescrição e quem pode processar (o Ministério Público).",
+  "ganha": "Gestores que cometem erros sem intenção de lesar o Estado.",
+  "custo": "Segundo o Ministério Público, menos casos puníveis e ações antigas atingidas.",
+  "favor": [
+   [
+    "Prefeitos, gestores e a maioria do Congresso",
+    "A lei de 1992 punia erro honesto e afastava gente boa da gestão."
+   ]
+  ],
+  "contra": [
+   [
+    "Ministério Público e entidades de controle",
+    "Enfraqueceu o combate à corrupção e anistiou casos em andamento."
+   ]
+  ],
+  "polemica": [
+   [
+    "Em 2022 o STF decidiu que a nova lei vale para casos antigos, mas manteve ações já com prova de má-fé e devolveu a legitimidade a algumas entidades (ADI 7042 e 7043).",
+    "https://portal.stf.jus.br/processos/listarProcessos.asp?classe=ADI&numeroProcesso=7042"
+   ]
+  ],
+  "relacionadas": [
+   "improbidade-1992"
+  ]
+ },
+ {
+  "id": "marco-legal-startups",
+  "norma": "LCP-182-2021",
+  "nome": "Marco Legal das Startups",
+  "tema": "economia",
+  "muda": "Regras para startups e investidores-anjo (que não respondem pelas dívidas da empresa) e um jeito simplificado de o governo contratar soluções inovadoras.",
+  "ganha": "Startups e quem investe nelas.",
+  "custo": "Menos garantias para quem contrata essas empresas.",
+  "favor": [
+   [
+    "Setor de tecnologia e o relator",
+    "Segurança jurídica para investir."
+   ]
+  ],
+  "contra": [
+   [
+    "Críticos",
+    "Benefícios concentrados e pouca proteção a trabalhadores dessas empresas."
+   ]
+  ]
+ },
+ {
+  "id": "auxilio-brasil",
+  "norma": "LEI-14284-2021",
+  "nome": "Auxílio Brasil",
+  "tema": "assistencia",
+  "muda": "Substituiu o Bolsa Família em novembro de 2021, com benefício mínimo maior e novas parcelas. Foi substituído de volta pelo Bolsa Família em 2023 (Lei 14.601).",
+  "ganha": "Famílias de baixa renda, com valor maior.",
+  "custo": "Gasto maior da União.",
+  "favor": [
+   [
+    "Governo Bolsonaro",
+    "Benefício maior e novos programas, como o Auxílio Gás."
+   ]
+  ],
+  "contra": [
+   [
+    "Oposição e técnicos de assistência social",
+    "Faltava regra de permanência e fonte permanente de dinheiro; parte do aumento veio de crédito extraordinário."
+   ]
+  ]
+ },
+ {
+  "id": "pec-da-transicao",
+  "norma": "EMC-126-2022",
+  "nome": "PEC da Transição",
+  "tema": "contas",
+  "muda": "Abriu espaço de cerca de R$ 145 bilhões fora do teto de gastos em 2023, principalmente para manter o Bolsa Família em R$ 600 e recompor verbas de saúde e educação. Também alongou prazos do teto até a nova regra fiscal.",
+  "ganha": "Beneficiários de programas sociais e áreas que tiveram verba recomposta.",
+  "custo": "Mais gasto público e mais dívida, segundo críticos.",
+  "favor": [
+   [
+    "Governo eleito (Lula) e a base que aprovou",
+    "Sem a emenda, o Bolsa Família cairia em janeiro de 2023."
+   ]
+  ],
+  "contra": [
+   [
+    "Oposição e economistas",
+    "Furo no teto logo no início do governo, sem uma regra nova no lugar."
+   ]
+  ]
+ }
+]
