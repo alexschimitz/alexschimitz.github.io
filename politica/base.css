@@ -535,3 +535,10 @@ html[data-theme="light"] .map-frame .state, html[data-theme="light"] .map-frame 
 .map-frame svg { max-height: 72vh; }
 .min-more { margin-top: 10px; }
 .projects-heading p a { color: var(--accent); border-bottom: 1px solid currentColor; font-weight: 700; }
+
+/* fotos de políticos: imagem oficial ou iniciais */
+.pol-foto, .mp-avatar, .pp-avatar, .pol-foto-ini {
+  display: inline-grid; place-items: center; flex: 0 0 auto; overflow: hidden; object-fit: cover; object-position: center top;
+  border-radius: 14px; background: var(--accent-soft); color: var(--accent); font-weight: 800; letter-spacing: -0.03em;
+}
+.pol-foto-ini { font-family: "DM Mono", monospace; }

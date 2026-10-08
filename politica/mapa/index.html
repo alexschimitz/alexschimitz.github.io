@@ -53,6 +53,7 @@
       <a href="#dinheiro">Dinheiro</a>
       <a href="#comparar">Comparar</a>
       <a href="#ranking">Ranking</a>
+      <a href="#congresso">Congresso</a>
       <a href="#fontes">Fontes</a>
     </nav>
 
@@ -60,32 +61,46 @@
       <nav class="pol-crumbs" aria-label="Você está em"><a href="/politica/">Painel de política</a><span aria-hidden="true">›</span><span>Mapa</span></nav>
       <h1 id="mp-title">Seu estado e sua cidade, <span>em linguagem simples.</span></h1>
       <p class="hero-lead">Toque num estado e depois numa cidade. Você vê quem governa agora, quem já governou, quanto a prefeitura e o estado arrecadam e no que gastam: saúde, escola, segurança, salários de servidores, obras e dívidas. Tudo vem de fontes oficiais (TSE, IBGE e Tesouro Nacional), sem opinião.</p>
-      <form class="mp-search" role="search" onsubmit="return false">
-        <label for="mp-q">Buscar cidade ou estado</label>
-        <div class="mp-search-box">
-          <input id="mp-q" type="search" placeholder="Ex.: Porto Alegre, Bahia, Campinas" autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-controls="mp-sugg" aria-expanded="false" role="combobox">
-          <ul id="mp-sugg" class="mp-sugg" role="listbox" hidden></ul>
-        </div>
-      </form>
     </section>
 
     <section class="pol-section mp-explore" id="explorar" aria-labelledby="ex-title" tabindex="-1">
       <div class="container">
         <h2 id="ex-title" class="visually-hidden">Mapa interativo</h2>
+        <form class="mp-search" role="search" onsubmit="return false">
+          <label for="mp-q">Buscar cidade ou estado</label>
+          <div class="mp-search-box">
+            <input id="mp-q" type="search" placeholder="Ex.: Porto Alegre, Bahia, Campinas" autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-controls="mp-sugg" aria-expanded="false" role="combobox">
+            <ul id="mp-sugg" class="mp-sugg" role="listbox" hidden></ul>
+          </div>
+        </form>
         <div class="mp-layout">
           <div class="mp-mapcol">
             <div class="mp-toolbar">
               <nav class="mp-crumbs" id="mp-crumbs" aria-label="Nível do mapa"></nav>
               <div class="mp-paint">
-                <label for="mp-color">Pintar por</label>
+                <label for="mp-color">Colorir o mapa por</label>
                 <select id="mp-color">
                   <option value="">Só o mapa</option>
-                  <option value="pc">Gasto por habitante</option>
-                  <option value="saude">% do gasto em saúde</option>
-                  <option value="educacao">% do gasto em educação</option>
-                  <option value="pessoal">% do gasto com pessoal</option>
-                  <option value="invest">% do gasto em obras e equipamentos</option>
-                  <option value="partido">Partido de quem governa</option>
+                  <optgroup label="Gente e renda">
+                    <option value="pop">População</option>
+                    <option value="pibpc">PIB por pessoa</option>
+                    <option value="pib">PIB (tamanho da economia)</option>
+                    <option value="idhm">IDHM (desenvolvimento humano)</option>
+                  </optgroup>
+                  <optgroup label="Contas do governo local">
+                    <option value="pc">Gasto por habitante</option>
+                    <option value="saude">% do gasto em saúde</option>
+                    <option value="educacao">% do gasto em educação</option>
+                    <option value="pessoal">% do gasto com pessoal</option>
+                    <option value="invest">% do gasto em obras e equipamentos</option>
+                  </optgroup>
+                  <optgroup label="Dinheiro federal e eleições">
+                    <option value="bf">Bolsa Família por morador</option>
+                    <option value="emenda">Emendas recebidas por morador</option>
+                    <option value="partido">Partido de quem governa</option>
+                    <option value="pres22">Presidente 2022 (2º turno)</option>
+                    <option value="pres26">Presidente 2026 (1º turno)</option>
+                  </optgroup>
                 </select>
                 <label for="mp-color-year" class="visually-hidden">Ano das contas</label>
                 <select id="mp-color-year" aria-label="Ano das contas"></select>
@@ -103,6 +118,7 @@
               </div>
               <div class="mp-tip" id="mp-tip" role="status" aria-live="polite" hidden></div>
               <p class="mp-loading" id="mp-loading" hidden>Carregando…</p>
+              <button type="button" class="mp-peek" id="mp-peek" aria-controls="mp-drawer" aria-expanded="false" hidden><span class="mp-peek-name">Brasil</span><span class="mp-peek-sub">Toque para ver o resumo</span></button>
             </div>
             <div class="mp-legend" id="mp-legend" aria-live="polite"></div>
             <div class="mp-pickers">
@@ -115,9 +131,13 @@
                 <select id="mp-city" disabled><option value="">Escolha um estado antes</option></select>
               </div>
             </div>
-            <p class="note-sm">No celular: toque para escolher; use + e − para aproximar e arraste com um dedo quando estiver aproximado. Desenho das fronteiras: malhas oficiais do IBGE.</p>
+            <p class="note-sm mp-hint">No celular: toque num estado e depois numa cidade. Aproxime com dois dedos (ou com + e −) e arraste para mover. A ficha do lugar abre embaixo da tela. Desenho das fronteiras: malhas oficiais do IBGE.</p>
           </div>
-          <aside class="mp-sheet" id="mp-sheet" aria-live="polite" aria-label="Resumo do lugar escolhido"></aside>
+          <div class="mp-drawer" id="mp-drawer">
+            <div class="mp-drawer-bar"><span class="mp-drawer-grip" aria-hidden="true"></span><button type="button" class="mp-drawer-close" id="mp-drawer-close">Fechar ✕</button></div>
+            <aside class="mp-sheet" id="mp-sheet" aria-live="polite" aria-label="Resumo do lugar escolhido"></aside>
+          </div>
+          <div class="mp-scrim" id="mp-scrim" hidden></div>
         </div>
       </div>
     </section>
@@ -201,6 +221,15 @@
       </div>
     </section>
 
+    
+    <section class="pol-section" id="congresso" aria-labelledby="cg-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Congresso</div>
+        <h2 id="cg-title">Deputados e senadores <span class="acc">deste estado</span></h2>
+        <p class="lead-simples">Quem representa o estado hoje na Câmara e no Senado, com a foto oficial. Escolha um estado no mapa.</p>
+        <div id="cg-body"><p class="state-empty">Escolha um estado no mapa.</p></div>
+      </div>
+    </section>
     <section class="pol-section pol-alt" id="fontes" aria-labelledby="ft-title" tabindex="-1">
       <div class="container">
         <div class="section-kicker">Fontes e limites</div>
@@ -217,7 +246,10 @@
           <a href="https://servicodados.ibge.gov.br/api/docs/malhas?versao=3" target="_blank" rel="noreferrer">IBGE (malhas, localidades e população)</a>,
           <a href="https://dadosabertos.tse.jus.br/" target="_blank" rel="noreferrer">TSE (candidatos e eleitos)</a>,
           <a href="https://apidatalake.tesouro.gov.br/docs/siconfi/" target="_blank" rel="noreferrer">Tesouro Nacional — SICONFI (contas anuais, 2013 em diante)</a>,
-          <a href="https://www.tesourotransparente.gov.br/publicacoes/finbra-dados-contabeis-dos-municipios-1989-a-2012" target="_blank" rel="noreferrer">Tesouro Nacional — FINBRA (1989 a 2012)</a> e
+          <a href="https://www.tesourotransparente.gov.br/publicacoes/finbra-dados-contabeis-dos-municipios-1989-a-2012" target="_blank" rel="noreferrer">Tesouro Nacional — FINBRA (1989 a 2012)</a>,
+          <a href="https://sidra.ibge.gov.br/tabela/5938" target="_blank" rel="noreferrer">IBGE (PIB dos Municípios)</a>,
+          <a href="https://www.atlasbrasil.org.br/" target="_blank" rel="noreferrer">Atlas Brasil / PNUD (IDHM)</a>,
+          <a href="https://portaldatransparencia.gov.br/emendas" target="_blank" rel="noreferrer">Portal da Transparência (emendas)</a> e
           <a href="https://www3.bcb.gov.br/sgspub" target="_blank" rel="noreferrer">Banco Central (IPCA)</a>.</p>
         <p>Página independente e apartidária. Os números aparecem como as prefeituras e os estados declararam ao Tesouro; erros ou atrasos podem vir das fontes.</p>
       </div>

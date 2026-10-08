@@ -171,12 +171,39 @@
 
   function cargosOf(mask) { const r = []; for (const c of [1, 2, 3, 4, 5, 6, 7, 8, 11, 12, 13]) if (mask & (1 << c)) r.push(c); return r; }
 
+  let fotoIdx = null;
+  function fotoIndex() { return fotoIdx || (fotoIdx = getJSON('fotos/idx.json').catch(() => ({}))); }
+  function fotoOf(code) {
+    if (!code) return null;
+    if (code[0] === 'c') return ['https://www.camara.leg.br/internet/deputado/bandep/' + code.slice(1) + '.jpg', 'Câmara dos Deputados'];
+    if (code[0] === 's') return ['https://www.senado.leg.br/senadores/img/fotos-oficiais/senador' + code.slice(1) + '.jpg', 'Senado Federal'];
+    return null;
+  }
+  function fillFoto(id, nome) {
+    if (!window.PolFoto) return;
+    fotoIndex().then((ix) => {
+      const f = fotoOf(ix[id]); const el = document.querySelector('.pm-foto-box[data-foto="' + id + '"]');
+      if (f && el) el.innerHTML = PolFoto.html(f[0], nome, f[1], 'pm-foto');
+    });
+  }
+  function fillListFotos() {
+    if (!window.PolFoto) return;
+    fotoIndex().then((ix) => {
+      document.querySelectorAll('#pp-list [data-foto]:not([data-done])').forEach((el) => {
+        el.dataset.done = '1';
+        const f = fotoOf(ix[el.dataset.foto]);
+        if (f) el.innerHTML = PolFoto.html(f[0], el.closest('button')?.querySelector('h3')?.textContent || '', f[1], 'pp-avatar');
+      });
+    });
+  }
+
   function card(r) {
     const cs = cargosOf(r[COLS.mask]);
     const muns = String(r[COLS.muns] || '').split('|').filter(Boolean);
     const where = muns.length ? munName(muns[muns.length - 1]) + (muns.length > 1 ? ` e mais ${muns.length - 1}` : '') : '';
     const fl = r[COLS.fl];
     return `<li><button type="button" class="pp-card" data-id="${esc(r[0])}">
+      <span class="pp-avatar-box" data-foto="${esc(r[0])}">${window.PolFoto ? PolFoto.html('', r[COLS.nome], '', 'pp-avatar') : ''}</span>
       <h3>${esc(r[COLS.nome])}</h3>
       <div class="pp-meta">${cs.map((c) => `<span class="chip">${esc(cargoN(c))}</span>`).join('')}${fl & 1 ? '<span class="chip cur">com mandato agora</span>' : ''}${fl & 4 ? '<span class="chip fut">eleito p/ 2027</span>' : ''}${fl & 2 ? '<span class="chip warn">possível duplicata</span>' : ''}</div>
       <div class="pp-sub">${r[COLS.lp] ? esc(r[COLS.lp]) + ' · ' : ''}${r[COLS.a0] ? `${r[COLS.a0]}–${Math.min(r[COLS.a1], 9999)}` : ''}${where ? ' · ' + esc(where) : ''}</div>
@@ -189,12 +216,14 @@
     const scope = F.uf.value ? UFS[F.uf.value] : (F.all.checked ? 'todo o Brasil, todos os cargos' : 'Brasil — cargos federais e estaduais');
     $('#pp-count').textContent = n ? `${nf.format(n)} ${n === 1 ? 'pessoa encontrada' : 'pessoas encontradas'} (${scope}).` : `Ninguém encontrado com esses filtros (${scope}).${!F.uf.value && !F.all.checked ? ' Prefeitos e vereadores aparecem quando você escolhe um estado.' : ''}`;
     $('#pp-list').innerHTML = S.filtered.slice(0, S.shown).map(card).join('');
+    fillListFotos();
     $('#pp-more').hidden = n <= S.shown;
     $('#pp-more').textContent = `Mostrar mais (${nf.format(Math.min(PAGE, n - S.shown))} de ${nf.format(n - S.shown)} restantes)`;
   }
   $('#pp-more').addEventListener('click', () => {
     const start = S.shown; S.shown += PAGE;
     $('#pp-list').insertAdjacentHTML('beforeend', S.filtered.slice(start, S.shown).map(card).join(''));
+    fillListFotos();
     $('#pp-more').hidden = S.filtered.length <= S.shown;
     $('#pp-more').textContent = `Mostrar mais (${nf.format(Math.min(PAGE, S.filtered.length - S.shown))} de ${nf.format(S.filtered.length - S.shown)} restantes)`;
     const b = $('#pp-list').children[start]?.querySelector('button'); if (b) b.focus({ preventScroll: true });
@@ -240,6 +269,7 @@
         S.gastosKeys = new Set(((gi && gi.pessoas) || []).map((r) => r[0] + '-' + r[1]));
       }
       $('#pm-body').innerHTML = p ? profile(p) : '<p class="err">Pessoa não encontrada. O código pode ter mudado numa atualização; use a busca.</p>';
+      if (p) fillFoto(S.curId, p.n);
       $('#pm-title')?.focus({ preventScroll: true });
     } catch (e) {
       $('#pm-body').innerHTML = `<p class="err">Não foi possível carregar os dados agora (${esc(e.message)}). Tente de novo em instantes.</p>`;
@@ -337,7 +367,9 @@
       const ok = 'EQMV'.includes(res);
       return `<tr><td>${ano}${sup ? '<br><span class="muted">suplementar</span>' : ''}</td><td>${esc(cargoN(c, g))}</td><td>${esc(locName(c, loc))}</td><td>${esc(part || '—')}</td><td class="num">${v1 != null ? nf.format(v1) : '—'}${v2 != null ? `<br><span class="muted">2º t.: ${nf.format(v2)}</span>` : ''}</td><td class="${ok ? 'res-ok' : res === 'S' ? 'res-sup' : ''}">${esc(RES[res] || res)}</td></tr>`;
     }).join('');
+    const foto = `<div class="pm-foto-box" data-foto="${esc(p.i)}">${window.PolFoto ? PolFoto.html('', p.n, '', 'pm-foto') : ''}</div>`;
     return `<div class="pm-head">
+        ${foto}
         <h2 id="pm-title" tabindex="-1">${esc(p.n)}</h2>
         ${p.nc && fold(p.nc) !== fold(p.n) ? `<p class="muted">Nome completo: ${esc(p.nc)}</p>` : ''}
         <div class="pp-meta">${cur.length ? '<span class="chip cur">com mandato agora</span>' : ''}${fut.length ? '<span class="chip fut">eleito para mandato que começa em 2027</span>' : ''}<span class="chip">código ${esc(p.i)}</span></div>

@@ -1,0 +1,12 @@
+{
+ "gerado_em": "2026-10-08",
+ "n": 3441,
+ "camara": 3149,
+ "senado": 478,
+ "fontes": [
+  "Câmara dos Deputados — https://www.camara.leg.br/internet/deputado/bandep/{id}.jpg (foto oficial; conferida em 08/10/2026)",
+  "Senado Federal — https://www.senado.leg.br/senadores/img/fotos-oficiais/senador{codigo}.jpg (foto oficial; conferida em 08/10/2026)"
+ ],
+ "formato": "idx.json = {id da pessoa: \"c<id Câmara>\" ou \"s<código Senado>\"}. URL: c → https://www.camara.leg.br/internet/deputado/bandep/<id>.jpg; s → https://www.senado.leg.br/senadores/img/fotos-oficiais/senador<código>.jpg. Só entra quem tem foto que abre (conferido com HEAD).",
+ "nota": "Cobre deputados federais e senadores que a Câmara ou o Senado fotografaram, inclusive quem já saiu. Prefeitos, vereadores e deputados estaduais não têm foto oficial estável; aparecem com as iniciais."
+}

@@ -158,3 +158,31 @@
       .observe(document.body, { childList: true, subtree: true });
   }
 })();
+
+/* Fotos de políticos (fontes oficiais) com iniciais quando a imagem não abre.
+   PolFoto.html(src, nome, crédito, classe) devolve <img> preguiçosa ou <span> com as iniciais. */
+(function () {
+  "use strict";
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function initials(n) {
+    var p = String(n || "?").replace(/\(.*?\)/g, "").trim().split(/\s+/).filter(function (w) { return w.length > 2 || /^[A-ZÁ-Ú]/.test(w); });
+    return ((p[0] || "?").charAt(0) + (p.length > 1 ? p[p.length - 1].charAt(0) : "")).toUpperCase();
+  }
+  function html(src, nome, credito, cls) {
+    cls = cls || "pol-foto";
+    var ini = '<span class="' + esc(cls) + ' pol-foto-ini" aria-hidden="true">' + esc(initials(nome)) + "</span>";
+    if (!src) return ini;
+    var alt = "Foto de " + (nome || "") + (credito ? " (" + credito + ")" : "");
+    return '<img class="' + esc(cls) + '" src="' + esc(src) + '" alt="' + esc(alt) + '" title="' + esc(credito ? "Foto: " + credito : "") + '" loading="lazy" decoding="async" referrerpolicy="no-referrer" data-ini="' + esc(initials(nome)) + '">';
+  }
+  document.addEventListener("error", function (e) {
+    var img = e.target;
+    if (!img || img.tagName !== "IMG" || !img.hasAttribute("data-ini")) return;
+    var s = document.createElement("span");
+    s.className = img.className + " pol-foto-ini";
+    s.setAttribute("aria-hidden", "true");
+    s.textContent = img.getAttribute("data-ini");
+    img.replaceWith(s);
+  }, true);
+  window.PolFoto = { html: html, initials: initials };
+})();

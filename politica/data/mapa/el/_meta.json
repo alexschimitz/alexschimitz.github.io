@@ -1,0 +1,52 @@
+{
+ "2022": {
+  "ano": 2022,
+  "arquivo_gerado_em": "08/10/2026",
+  "baixado_em": "2026-10-08",
+  "candidatos": [
+   {
+    "nr": 13,
+    "partido": "PT",
+    "urna": "Lula",
+    "votos_brasil": 60193094
+   },
+   {
+    "nr": 22,
+    "partido": "PL",
+    "urna": "Jair Bolsonaro",
+    "votos_brasil": 58061090
+   }
+  ],
+  "cargo": "Presidente",
+  "fonte": "TSE — votação por município e zona, 2022 (2º turno)",
+  "outros_brasil": 0,
+  "turno": 2,
+  "url": "https://dadosabertos.tse.jus.br/dataset/resultados-2022",
+  "votos_validos_brasil": 118254184
+ },
+ "2026": {
+  "ano": 2026,
+  "arquivo_gerado_em": "08/10/2026",
+  "baixado_em": "2026-10-08",
+  "candidatos": [
+   {
+    "nr": 22,
+    "partido": "PL",
+    "urna": "Flavio Bolsonaro",
+    "votos_brasil": 55960603
+   },
+   {
+    "nr": 13,
+    "partido": "PT",
+    "urna": "Lula",
+    "votos_brasil": 53722151
+   }
+  ],
+  "cargo": "Presidente",
+  "fonte": "TSE — votação por município e zona, 2026 (1º turno)",
+  "outros_brasil": 9287152,
+  "turno": 1,
+  "url": "https://dadosabertos.tse.jus.br/dataset/resultados-2026",
+  "votos_validos_brasil": 118969906
+ }
+}

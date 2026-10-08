@@ -78,6 +78,18 @@ jobs:
       - name: Índices, agregados e brasil.json
         run: python3 scripts/politica/mapa/build_index.py
 
+      - name: PIB, IDHM, emendas por cidade e votos (fontes oficiais)
+        continue-on-error: true
+        timeout-minutes: 25
+        run: |
+          pip install --quiet remotezip openpyxl
+          # às segundas refaz tudo; nos outros dias só as emendas (mudam mais)
+          if [ "$(date -u +%u)" = "1" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            python3 scripts/politica/mapa/indicadores_build.py
+          else
+            python3 scripts/politica/mapa/indicadores_build.py --emendas || true
+          fi
+
       - name: Commit dos dados (se houver mudança)
         run: |
           git config user.name "github-actions[bot]"

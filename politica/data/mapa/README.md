@@ -84,3 +84,16 @@ anos pela inflação (a correção anual com hiperinflação não é confiável)
 - SICONFI aceita ~1 consulta por segundo. A cópia das contas 2013+ de todas as prefeituras é feita aos poucos (estados e capitais primeiro, depois as maiores cidades). Enquanto não termina, a página busca os anos que faltam direto na API do Tesouro no navegador (CORS liberado para `alexschimitz.github.io`).
 - Valores são os declarados pelos próprios governos e podem ter erros de preenchimento; percentuais de saúde/educação aqui **não** são os mínimos constitucionais (que usam outra base de cálculo).
 - Portal da Transparência: ~60 consultas/min de dia e 300/min de madrugada; uma consulta por cidade, mês e programa. Os 12 meses mais recentes de todas as cidades ficam prontos primeiro; o histórico desde 2004 vai sendo completado a cada execução do workflow. A soma por estado só aparece para meses em que todas as cidades do estado já foram copiadas.
+
+## Indicadores extras (`ind/` e `el/`, a partir de 08/10/2026)
+
+Gerados por `scripts/politica/mapa/indicadores_build.py` no mesmo workflow do mapa.
+
+| Caminho | Conteúdo |
+|---|---|
+| `ind/{UF}.json` | `m.{ibge}` = PIB em mil R$ correntes, um número por ano de `ind/_meta.json` → `pib.anos` (IBGE/SIDRA 5938, 2002–2023). `pib_uf` = o mesmo para o estado. `idhm.{ibge}.{ano}` = `[IDHM, educação, longevidade, renda]` nos Censos 1991, 2000 e 2010 (Atlas Brasil / PNUD, IPEA, FJP). `em.{ibge}.{ano}` = `[empenhado, pago]` em emendas com aquela cidade (Portal da Transparência, 2014–). |
+| `ind/_uf.json` | Os mesmos números somados por estado, para pintar o mapa do Brasil sem baixar 27 arquivos. |
+| `ind/_idhm_uf.json` | IDHM dos estados e do Brasil. |
+| `el/{UF}.json` | Votos para presidente por cidade: `2022` (2º turno) e `2026` (1º turno) = `[votos do 1º da lista nacional, votos do 2º, votos válidos]`. Os nomes estão em `el/_meta.json`. |
+
+Fotos de deputados e senadores: `politica/data/politicos/fotos/idx.json` (ver `_meta.json`).

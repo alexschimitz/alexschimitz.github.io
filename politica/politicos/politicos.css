@@ -121,3 +121,14 @@ html[data-theme="light"] .chip.cur { border-color: rgba(31, 157, 75, 0.4); }
   #cov-table th, #cov-table td { padding: 8px 6px; font-size: 0.8rem; }
   #cov-table thead th { letter-spacing: 0; }
 }
+
+/* foto no resultado e no perfil */
+.pp-card { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 12px; }
+.pp-avatar-box { grid-row: 1 / span 4; align-self: center; }
+.pp-avatar, .pp-avatar.pol-foto-ini { width: 52px; height: 64px; font-size: 0.95rem; border-radius: 12px; }
+.pm-head { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 16px; align-items: start; }
+.pm-foto-box { grid-row: 1 / span 4; }
+.pm-foto, .pm-foto.pol-foto-ini { width: 104px; height: 132px; font-size: 1.6rem; border-radius: 16px; }
+@media (max-width: 480px) {
+  .pm-foto, .pm-foto.pol-foto-ini { width: 76px; height: 96px; }
+}

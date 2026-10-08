@@ -99,7 +99,8 @@
 
   // ---------- estado ----------
   var S = { base: null, mun: {}, ufs: {}, meta: null, uf: null, m: null, colorBy: "", colorYear: null,
-            vb: null, full: null, view: "br", pages: {}, live: {}, ufsAlex: null };
+            vb: null, full: null, view: "br", pages: {}, live: {}, ufsAlex: null,
+            ind: {}, el: {}, indMeta: null, elMeta: null, idhmUF: null, popUF: {}, fedUF: {} };
 
   // ---------- carga inicial ----------
   Promise.all([getJSON("municipios.json"), getJSON("geo/br.json"), tryJSON("brasil.json"),
@@ -156,8 +157,8 @@
     });
     ufSel.addEventListener("change", function () { if (ufSel.value) openUF(ufSel.value); else goBR(); });
     $("#mp-city").addEventListener("change", function (e) { if (e.target.value) openCity(+e.target.value); else if (S.uf) openUF(S.uf); });
-    $("#mp-color").addEventListener("change", function (e) { S.colorBy = e.target.value; paint(); });
-    $("#mp-color-year").addEventListener("change", function (e) { S.colorYear = +e.target.value; paint(); });
+    $("#mp-color").addEventListener("change", function (e) { S.colorBy = e.target.value; $("#mp-color-year").dataset.kind = ""; paint(); });
+    $("#mp-color-year").addEventListener("change", function (e) { S.colorYear = +e.target.value; e.target.dataset.kind = S.colorBy; paint(); });
     $$(".mp-zoom button").forEach(function (b) {
       b.addEventListener("click", function () {
         var z = b.getAttribute("data-zoom");
@@ -165,9 +166,24 @@
       });
     });
     setupPan();
+    var peek = $("#mp-peek"), drawer = $("#mp-drawer"), scrim = $("#mp-scrim");
+    if (peek) peek.addEventListener("click", function () { openDrawer(true); });
+    $("#mp-drawer-close").addEventListener("click", function () { openDrawer(false); });
+    scrim.addEventListener("click", function () { openDrawer(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && drawer.classList.contains("is-open")) openDrawer(false); });
+    drawer.addEventListener("click", function (e) { if (e.target.closest(".mp-actions a[href^='#']")) openDrawer(false); });
+    var setTop = function () {
+      var h = $(".site-header"), sn = $(".pol-subnav"), t = 0;
+      if (h) t += h.getBoundingClientRect().height;
+      if (sn && getComputedStyle(sn).position === "sticky") t += sn.getBoundingClientRect().height;
+      document.documentElement.style.setProperty("--mp-top", Math.round(t) + "px");
+    };
+    setTop(); window.addEventListener("resize", setTop);
     setupSearch($("#mp-q"), $("#mp-sugg"), function (it) {
+      S.userPick = it.type !== "uf";
       if (it.type === "uf") openUF(it.uf); else openCity(it.id);
-      $("#mp-q").value = ""; scrollToEl($("#explorar"));
+      S.userPick = false;
+      $("#mp-q").value = ""; $("#mp-q").blur(); scrollToEl($("#explorar"));
     });
     $$("#cmp-form .mp-ac").forEach(function (box) {
       var inp = $("input", box);
@@ -290,7 +306,9 @@
     svg.addEventListener("click", function (e) {
       if (moved) { e.stopPropagation(); e.preventDefault(); return; }
       var p = e.target.closest(".mp-shape"); if (!p) return;
+      S.userPick = true;
       if (p.dataset.uf) openUF(p.dataset.uf); else if (p.dataset.m) openCity(+p.dataset.m);
+      S.userPick = false;
     }, true);
     svg.addEventListener("wheel", function (e) {
       if (!e.ctrlKey && !e.metaKey) return;
@@ -396,6 +414,170 @@
     p.parentNode.appendChild(p);
   }
 
+
+  var NOYEAR = { partido: 1, pop: 1, pres22: 1, pres26: 1 };
+  var EXTRA = { pop: 1, pib: 1, pibpc: 1, idhm: 1, emenda: 1, bf: 1, pres22: 1, pres26: 1 };
+  function syncYearOptions(kind) {
+    var sel = $("#mp-color-year");
+    sel.hidden = !!NOYEAR[kind];
+    if (NOYEAR[kind]) return;
+    var list = kind === "idhm" ? [2010, 2000, 1991]
+      : (kind === "pib" || kind === "pibpc") ? (((S.indMeta || {}).pib || {}).anos || []).slice().reverse()
+      : (kind === "emenda") ? (((S.indMeta || {}).emendas || {}).anos || []).slice().reverse()
+      : null;
+    if (!list || !list.length) return;
+    var cur = +sel.value, known = sel.dataset.kind === kind;
+    if (known) { S.colorYear = cur; return; }
+    var pick = kind === "idhm" ? 2010 : list[0];
+    fillYears(sel, list, pick);
+    sel.dataset.kind = kind;
+    S.colorYear = +sel.value;
+  }
+  var IND_YEARS = null;
+  function rangeYears(a, b) { var o = []; for (var y = b; y >= a; y--) o.push(y); return o; }
+  function fillIndYears(list) {
+    var sel = $("#mp-color-year"), cur = +sel.value;
+    if (JSON.stringify(IND_YEARS) === JSON.stringify(list) && sel.options.length === list.length) return;
+    IND_YEARS = list.slice();
+    var pick = list.indexOf(cur) >= 0 ? cur : list[list.length - 1];
+    if (S.colorBy === "idhm") pick = 2010;
+    fillYears(sel, list.slice().sort(function (a, b) { return b - a; }), pick);
+    S.colorYear = +sel.value;
+  }
+  function ensureExtra() {
+    if (S._extra) return S._extra;
+    S._extra = Promise.all([tryJSON("ind/_meta.json"), tryJSON("ind/_uf.json"), tryJSON("ind/_idhm_uf.json"), tryJSON("el/_meta.json"),
+      fetch("../data/deputados.json").then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
+      fetch("../data/senadores.json").then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; })]).then(function (r) {
+      S.indMeta = r[0] || {}; S.ufSum = r[1] || {}; S.idhmUF = r[2] || {}; S.elMeta = r[3] || {}; S.deps = r[4] || []; S.sens = r[5] || [];
+    });
+    return S._extra;
+  }
+  function loadInd(uf) { if (S.ind[uf]) return Promise.resolve(S.ind[uf]); return tryJSON("ind/" + uf + ".json").then(function (d) { S.ind[uf] = d || {}; return S.ind[uf]; }); }
+  function loadEl(uf) { if (S.el[uf]) return Promise.resolve(S.el[uf]); return tryJSON("el/" + uf + ".json").then(function (d) { S.el[uf] = d || {}; return S.el[uf]; }); }
+  function loadPop(uf) { if (S.popUF[uf]) return Promise.resolve(S.popUF[uf]); return tryJSON("pop/" + uf + ".json").then(function (d) { S.popUF[uf] = d || {}; return S.popUF[uf]; }); }
+  function loadFed(uf) { if (S.fedUF[uf]) return Promise.resolve(S.fedUF[uf]); return tryJSON("fed/" + uf + ".json").then(function (d) { S.fedUF[uf] = d || {}; return S.fedUF[uf]; }); }
+  function popYear(series, ano0, y) { if (!series) return null; var i = y - ano0; return (i >= 0 && i < series.length && series[i]) ? series[i] : null; }
+  function pibAt(series, anos, y) { if (!series || !anos) return null; var i = anos.indexOf(y); return i < 0 ? null : series[i]; }
+  function qcut(arr) {
+    var a = arr.filter(function (v) { return v != null && isFinite(v); }).sort(function (x, y) { return x - y; });
+    if (!a.length) return null;
+    return { lo: a[Math.floor(a.length * 0.05)], hi: a[Math.min(a.length - 1, Math.floor(a.length * 0.95))], n: a.length };
+  }
+  function paintScale(shapes, vals, fmt, legText, emptyText) {
+    var leg = $("#mp-legend"), cut = qcut(Object.keys(vals).map(function (k) { return vals[k]; }));
+    if (!cut) { leg.innerHTML = '<span class="muted">' + emptyText + "</span>"; highlight(); return; }
+    shapes.forEach(function (p) {
+      var v = vals[p.dataset.uf || p.dataset.m];
+      if (v != null && isFinite(v)) {
+        var t = cut.hi > cut.lo ? Math.max(0, Math.min(1, (v - cut.lo) / (cut.hi - cut.lo))) : 0.5;
+        p.style.fill = scaleColor(t);
+        p.setAttribute("data-tip", tipBase(p) + "<span>" + esc(fmt(v)) + "</span>");
+      } else { p.style.fill = "var(--bg-soft)"; p.setAttribute("data-tip", tipBase(p) + "<span>Sem dado</span>"); }
+    });
+    leg.innerHTML = '<span class="grad">' + esc(fmt(cut.lo)) + '<b style="background:linear-gradient(90deg,' + scaleColor(0) + "," + scaleColor(1) + ')"></b>' + esc(fmt(cut.hi)) + "</span><span>" + legText + '</span><span><i style="background:var(--bg-soft)"></i>sem dados</span>';
+    highlight();
+  }
+  function paintCats(shapes, vals, legend) {
+    var leg = $("#mp-legend"), cats = {}, order = [];
+    Object.keys(vals).forEach(function (k) { var c = vals[k]; if (!c) return; if (!cats[c.key]) { cats[c.key] = { n: 0, color: c.color, label: c.label }; order.push(c.key); } cats[c.key].n++; });
+    shapes.forEach(function (p) {
+      var v = vals[p.dataset.uf || p.dataset.m];
+      if (v) { p.style.fill = v.color; p.setAttribute("data-tip", tipBase(p) + "<span>" + esc(v.tip) + "</span>"); }
+      else { p.style.fill = "var(--bg-soft)"; p.setAttribute("data-tip", tipBase(p) + "<span>Sem dado</span>"); }
+    });
+    leg.innerHTML = order.map(function (k) { var c = cats[k]; return '<span><i style="background:' + c.color + '"></i>' + esc(c.label) + " (" + c.n + ")</span>"; }).join("") + '<span class="muted">' + legend + "</span>";
+    highlight();
+  }
+  function extraVals(kind, y, isBR, view) {
+    var anos = (S.indMeta.pib || {}).anos || [];
+    function eachUF(fn) {
+      var vals = {};
+      (S.base.ufs).forEach(function (u) { var v = fn(u.uf); if (v != null) vals[u.uf] = v; });
+      return Promise.resolve(vals);
+    }
+    if (kind === "pop") {
+      if (isBR) return eachUF(function (uf) { var p = (S.ufSum.pop || {})[uf]; return p ? p.v[p.v.length - 1] : (S.ufs[uf].pop || null); });
+      return loadPop(view).then(function (d) { var vals = {}; Object.keys(d.m || {}).forEach(function (id) { var s = d.m[id]; vals[id] = s[s.length - 1]; }); return vals; });
+    }
+    if (kind === "pib" || kind === "pibpc") {
+      if (isBR) return eachUF(function (uf) {
+        var v = pibAt((S.ufSum.pib || {})[uf], anos, y); if (v == null) return null;
+        if (kind === "pib") return v * 1000;
+        var p = popYear(((S.ufSum.pop || {})[uf] || {}).v, ((S.ufSum.pop || {})[uf] || {}).ano0, y);
+        return p ? v * 1000 / p : null;
+      });
+      return Promise.all([loadInd(view), loadPop(view)]).then(function (r) {
+        var vals = {}, pop = r[1] || {};
+        Object.keys((r[0].m) || {}).forEach(function (id) {
+          var v = pibAt(r[0].m[id], anos, y); if (v == null) return;
+          if (kind === "pib") { vals[id] = v * 1000; return; }
+          var p = popYear(pop.m && pop.m[id], pop.ano0, y);
+          if (p) vals[id] = v * 1000 / p;
+        });
+        return vals;
+      });
+    }
+    if (kind === "idhm") {
+      if (isBR) return eachUF(function (uf) { var a = (((S.idhmUF || {}).uf || {})[uf] || {})[y]; return a ? a[0] : null; });
+      return loadInd(view).then(function (d) { var vals = {}; Object.keys(d.idhm || {}).forEach(function (id) { var a = d.idhm[id][y]; if (a) vals[id] = a[0]; }); return vals; });
+    }
+    if (kind === "emenda") {
+      if (isBR) return eachUF(function (uf) {
+        var e = ((S.ufSum.em || {})[uf] || {})[y]; if (!e) return null;
+        var p = popYear(((S.ufSum.pop || {})[uf] || {}).v, ((S.ufSum.pop || {})[uf] || {}).ano0, y) || (S.ufs[uf].pop);
+        return p ? e[1] / p : null;
+      });
+      return Promise.all([loadInd(view), loadPop(view)]).then(function (r) {
+        var vals = {}, pop = r[1] || {};
+        Object.keys((r[0].em) || {}).forEach(function (id) { var e = r[0].em[id][y]; if (!e) return; var p = popYear(pop.m && pop.m[id], pop.ano0, y); if (p) vals[id] = e[1] / p; });
+        return vals;
+      });
+    }
+    if (kind === "bf") {
+      function lastPaid(e) {
+        if (!e || !e.rf) return null;
+        var best = null;
+        Object.keys(e.rf).forEach(function (yy) { (e.rf[yy].v || []).forEach(function (v, i) { if (v > 0 && (!best || +yy * 12 + i >= best.k)) best = { k: +yy * 12 + i, v: v, y: +yy }; }); });
+        return best;
+      }
+      if (isBR) {
+        return Promise.all(S.base.ufs.map(function (u) { return loadFed(u.uf); })).then(function () {
+          var vals = {};
+          S.base.ufs.forEach(function (u) {
+            var F = S.fedUF[u.uf]; if (!F) return; var sum = 0, ok = true, yUsed = null;
+            Object.keys(S.mun).forEach(function (id) {
+              if (S.mun[id].uf !== u.uf) return;
+              var b = lastPaid(F.m && F.m[id]);
+              if (!b) { ok = false; return; }
+              sum += b.v; yUsed = b.y;
+            });
+            var p = (S.ufSum.pop && S.ufSum.pop[u.uf]) ? S.ufSum.pop[u.uf].v.slice().reverse().filter(Boolean)[0] : u.pop;
+            if (ok && p) vals[u.uf] = sum / p;
+          });
+          return vals;
+        });
+      }
+      return Promise.all([loadFed(view), loadPop(view)]).then(function (r) {
+        var vals = {}, F = r[0] || {}, pop = r[1] || {};
+        Object.keys(F.m || {}).forEach(function (id) { var b = lastPaid(F.m[id]); if (!b) return; var p = popYear(pop.m && pop.m[id], pop.ano0, b.y) || (S.mun[+id] && S.mun[+id].pop); if (p) vals[id] = b.v / p; });
+        return vals;
+      });
+    }
+    if (kind === "pres22" || kind === "pres26") {
+      var key = kind === "pres22" ? "2022" : "2026", info = (S.elMeta || {})[key] || {}, cs = info.candidatos || [{}, {}];
+      function cat(row) {
+        if (!row || !row[2]) return null;
+        var a = row[0], b = row[1], tot = row[2], win = a >= b ? 0 : 1, share = Math.max(a, b) / tot;
+        return { key: String(win), color: win ? "#8aa0ff" : "#62f58b", label: (cs[win] || {}).urna || (win ? "2º" : "1º"),
+          tip: ((cs[win] || {}).urna || "") + " " + pct(100 * share) + " dos votos válidos (" + ((cs[0] || {}).partido || "") + " " + pct(100 * a / tot) + " · " + ((cs[1] || {}).partido || "") + " " + pct(100 * b / tot) + ")" };
+      }
+      if (isBR) return Promise.resolve((function () { var vals = {}; Object.keys(((S.ufSum.el || {})[key]) || {}).forEach(function (uf) { var c = cat(S.ufSum.el[key][uf]); if (c) vals[uf] = c; }); return vals; })());
+      return loadEl(view).then(function (d) { var vals = {}; Object.keys((d[key]) || {}).forEach(function (id) { var c = cat(d[key][id]); if (c) vals[id] = c; }); return vals; });
+    }
+    return Promise.resolve({});
+  }
+
   // ---------- pintura (mapa colorido) ----------
   function partyColors(list) {
     var cnt = {}; list.forEach(function (p) { if (p) cnt[p] = (cnt[p] || 0) + 1; });
@@ -423,10 +605,35 @@
   function tipBase(p) { return (p.getAttribute("data-tip") || "").split("</b>")[0] + "</b>"; }
   function paint() {
     var kind = S.colorBy, y = S.colorYear, shapes = $$("#mp-g .mp-shape"), leg = $("#mp-legend");
-    $("#mp-color-year").hidden = !kind || kind === "partido";
+    $("#mp-color-year").hidden = !kind || NOYEAR[kind];
     shapes.forEach(function (p) { p.style.fill = ""; p.setAttribute("data-tip", tipBase(p)); });
     if (!kind) { leg.innerHTML = ""; highlight(); return Promise.resolve(); }
     var isBR = S.view === "br", view = S.view, job;
+    if (EXTRA[kind]) {
+      return ensureExtra().then(function () {
+        if (S.view !== view || S.colorBy !== kind) return;
+        syncYearOptions(kind);
+        return extraVals(kind, S.colorYear, isBR, view);
+      }).then(function (vals) {
+        if (!vals || S.view !== view || S.colorBy !== kind) return;
+        var y = S.colorYear;
+        if (kind === "pres22" || kind === "pres26") {
+          var info = (S.elMeta || {})[kind === "pres22" ? "2022" : "2026"] || {};
+          paintCats(shapes, vals, esc((info.fonte || "TSE")) + ". A cor mostra quem teve mais votos; não é opinião.");
+          return;
+        }
+        var fmt = (kind === "pop") ? int : (kind === "idhm") ? function (v) { return f3(v) + " (" + idhmFaixa(v) + ")"; } : function (v) { return money(v); };
+        var txt = {
+          pop: "Habitantes (IBGE, estimativa mais recente)",
+          pib: "PIB a preços correntes, " + y + " (IBGE)",
+          pibpc: "PIB por pessoa, " + y + " (IBGE)",
+          idhm: "IDHM do Censo de " + y + " (Atlas Brasil / PNUD, IPEA e FJP). De 0 a 1.",
+          emenda: "Emendas pagas por morador em " + y + ", só as com cidade informada (Portal da Transparência)",
+          bf: "Bolsa Família pago no mês mais recente disponível, por morador (Portal da Transparência)"
+        }[kind];
+        paintScale(shapes, vals, fmt, esc(txt), "Sem dados para este recorte.");
+      });
+    }
     if (kind === "partido") {
       job = isBR
         ? Promise.all(S.base.ufs.map(function (u) { return tryJSON("pol/uf/" + u.uf + ".json"); })).then(function (docs) {
@@ -531,7 +738,7 @@
     var p = S.view !== m.uf ? drawUF(m.uf) : Promise.resolve();
     S.uf = m.uf; S.m = id;
     $("#mp-uf").value = m.uf; fillCities(m.uf); $("#mp-city").value = String(id);
-    p.then(function () { highlight(); zoomToShape(id); });
+    p.then(function () { highlight(); zoomToShape(id); if (S.userPick) openDrawer(true); });
     crumbs(); setURL();
     renderPlace();
   }
@@ -675,6 +882,18 @@
     return a;
   }
   function ymd() { var d = new Date(); return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
+  function loadFotos(uf) {
+    if (S.fotos && S.fotos[uf]) return Promise.resolve(S.fotos[uf]);
+    S.fotos = S.fotos || {};
+    return tryJSON("pol/fotos-" + uf + ".json").then(function (d) { S.fotos[uf] = d || {}; return S.fotos[uf]; });
+  }
+  function fotoDe(uf, id) { var c = S.fotos && S.fotos[uf] && id && S.fotos[uf][id]; return c ? fotoOfMap(c) : null; }
+  function fotoOfMap(code) {
+    if (!code) return null;
+    if (code.charAt(0) === "c") return ["https://www.camara.leg.br/internet/deputado/bandep/" + code.slice(1) + ".jpg", "Câmara dos Deputados"];
+    if (code.charAt(0) === "s") return ["https://www.senado.leg.br/senadores/img/fotos-oficiais/senador" + code.slice(1) + ".jpg", "Senado Federal"];
+    return null;
+  }
   function personLink(id, text) {
     if (S.pages.politicos && id) return '<a href="../politicos/?id=' + encodeURIComponent(id) + '">' + esc(text) + "</a>";
     return esc(text);
@@ -682,11 +901,61 @@
   function mandText(m) { return m.inicio && m.fim ? m.inicio + " a " + m.fim : String(m.ano); }
 
   // ---------- painel lateral + seções ----------
+  function fotoHTML(src, name, credit, cls) {
+    if (window.PolFoto) return window.PolFoto.html(src, name, credit, cls);
+    return '<span class="' + cls + '">' + esc((name || "?").charAt(0)) + "</span>";
+  }
+  function renderCongresso(P) {
+    var box = $("#cg-body"); if (!box) return;
+    if (!P || P.kind !== "uf") { box.innerHTML = '<p class="state-empty">Escolha um estado no mapa para ver deputados e senadores.</p>'; return; }
+    ensureExtra().then(function () {
+      if (!S.P || S.P.uf !== P.uf) return;
+      var deps = (S.deps || []).filter(function (d) { return d.uf === P.uf; });
+      var sens = (S.sens || []).filter(function (d) { return d.uf === P.uf && d.part !== "Suplente"; });
+      function card(d, casa) {
+        var foto = fotoHTML(d.f, d.n, casa === "c" ? "Câmara dos Deputados" : "Senado Federal", "mp-avatar");
+        var href = casa === "c" ? "https://www.camara.leg.br/deputados/" + d.id : (d.url || "https://www25.senado.leg.br/web/senadores/");
+        return '<a class="mp-face" href="' + esc(href) + '" target="_blank" rel="noopener">' + foto + '<span><b>' + esc(d.n) + '</b><small>' + esc(d.p) + "</small></span></a>";
+      }
+      box.innerHTML = '<h3 class="mp-h3">Senadores de ' + esc(P.nome) + " (" + sens.length + ')</h3><div class="mp-faces">' + sens.map(function (d) { return card(d, "s"); }).join("") + "</div>" +
+        '<h3 class="mp-h3">Deputados federais de ' + esc(P.nome) + " (" + deps.length + ')</h3><div class="mp-faces">' + deps.map(function (d) { return card(d, "c"); }).join("") + "</div>" +
+        '<p class="note-sm">Fotos oficiais da <a href="https://www.camara.leg.br/" target="_blank" rel="noopener">Câmara</a> e do <a href="https://www12.senado.leg.br/" target="_blank" rel="noopener">Senado</a>, de quem está em exercício. Se uma foto não abrir, aparecem as iniciais.</p>';
+    });
+  }
+  function loadPlaceExtra(P, key) {
+    ensureExtra().then(function () { return P.kind === "m" ? Promise.all([loadInd(P.uf), loadEl(P.uf), loadPop(P.uf)]) : Promise.all([loadEl(P.uf)]); }).then(function () {
+      if (key !== placeKey()) return;
+      var bits = placeFacts(P);
+      var box = $("#mp-extra"); if (box && bits) box.innerHTML = bits;
+    });
+  }
+  function f3(v) { return v == null ? "—" : Number(v).toFixed(3).replace(".", ","); }
+  // faixas oficiais do PNUD para o IDHM
+  function idhmFaixa(v) { return v >= 0.8 ? "muito alto" : v >= 0.7 ? "alto" : v >= 0.6 ? "médio" : v >= 0.5 ? "baixo" : "muito baixo"; }
+  function placeFacts(P) {
+    var anos = ((S.indMeta || {}).pib || {}).anos || [], h = [];
+    if (P.kind === "m") {
+      var ind = (S.ind[P.uf] || {}), id = String(P.id);
+      var series = (ind.m || {})[id], y = anos[anos.length - 1], v = series ? series[series.length - 1] : null;
+      var pop = S.popUF[P.uf], pv = pop && popYear(pop.m && pop.m[id], pop.ano0, y);
+      if (v != null) h.push("<div><dt>PIB em " + y + "</dt><dd>" + money(v * 1000) + "<small>" + (pv ? money(v * 1000 / pv) + " por pessoa" : "IBGE") + "</small></dd></div>");
+      var idhm = ((ind.idhm || {})[id] || {})["2010"];
+      if (idhm) h.push("<div><dt>IDHM 2010</dt><dd>" + f3(idhm[0]) + "<small>" + idhmFaixa(idhm[0]) + " · educação " + f3(idhm[1]) + ", renda " + f3(idhm[3]) + "</small></dd></div>");
+      var el = ((S.el[P.uf] || {})["2022"] || {})[id], info = (S.elMeta || {})["2022"];
+      if (el && info) { var w = el[0] >= el[1] ? 0 : 1; h.push("<div><dt>Presidente 2022</dt><dd>" + esc(info.candidatos[w].urna.split(" ").slice(-1)[0]) + " " + pct(100 * Math.max(el[0], el[1]) / el[2]) + "<small>2º turno, votos válidos</small></dd></div>"); }
+    } else {
+      var iu = ((S.idhmUF || {}).uf || {})[P.uf]; if (iu && iu["2010"]) h.push("<div><dt>IDHM 2010</dt><dd>" + f3(iu["2010"][0]) + "<small>" + idhmFaixa(iu["2010"][0]) + " · Brasil: " + f3(((S.idhmUF.br || {})["2010"] || [])[0]) + "</small></dd></div>");
+      var pe = ((S.ufSum || {}).pib || {})[P.uf]; if (pe) { var yy = anos[anos.length - 1]; h.push("<div><dt>PIB estadual em " + yy + "</dt><dd>" + money(pe[pe.length - 1] * 1000) + "<small>IBGE, preços correntes</small></dd></div>"); }
+    }
+    return h.join("");
+  }
   function renderBrasil() {
     var nm = S.meta.nacional_municipios || {}, ne = S.meta.nacional_estados || {};
     var y = lastFullYear(), a = nm[y] || {};
     var ye = Object.keys(ne).filter(function (k) { return ne[k] && ne[k].n >= 27; }).sort().pop(), e = ne[ye] || {};
     var popBR = S.base.ufs.reduce(function (s, u) { return s + (u.pop || 0); }, 0);
+    setPeek("Brasil", "toque num estado ou");
+    renderCongresso(null);
     $("#mp-sheet").innerHTML = '<div class="role">Brasil</div><h3>27 estados e ' + int(S.base.municipios.length) + " cidades</h3>" +
       '<p class="meta">' + int(popBR) + " habitantes (estimativa IBGE)</p>" +
       '<dl class="mp-facts">' +
@@ -717,7 +986,7 @@
       }) : Promise.resolve();
       extra.then(function () {
         if (key !== placeKey()) return;
-        renderSheet(P); renderGov(P); setupMoneyFilters(P); renderMoney(); fillLive(P);
+        renderSheet(P); renderGov(P); renderCongresso(P); setupMoneyFilters(P); renderMoney(); fillLive(P); loadPlaceExtra(P, key);
         var a = $("#cmp-a");
         if (!a.dataset.key || a.dataset.auto === "1") {
           a.value = P.nome + (P.kind === "m" ? " (" + P.uf + ")" : ""); a.dataset.key = key; a.dataset.auto = "1";
@@ -745,6 +1014,18 @@
     var cur = ps.filter(function (m) { return isoFromBr(m.inicio) <= today; }).pop();
     return cur || ps[ps.length - 1];
   }
+  function isMobile() { return window.matchMedia && matchMedia("(max-width: 980px)").matches; }
+  function openDrawer(open) {
+    var d = $("#mp-drawer"), peek = $("#mp-peek"), scrim = $("#mp-scrim");
+    if (!isMobile()) return;
+    d.classList.toggle("is-open", open); scrim.hidden = !open;
+    peek.setAttribute("aria-expanded", open ? "true" : "false");
+    if (open) { var c = $("#mp-drawer-close"); if (c) c.focus({ preventScroll: true }); } else if (!peek.hidden) peek.focus({ preventScroll: true });
+  }
+  function setPeek(name, sub) {
+    var b = $("#mp-peek"); if (!b) return;
+    b.hidden = false; $(".mp-peek-name", b).textContent = name; $(".mp-peek-sub", b).textContent = (sub ? sub + " · " : "") + "toque para ver o resumo";
+  }
   function renderSheet(P) {
     var y = latestYear(P), c = y ? P.anos[y] : null, cur = currentExec(P);
     var role = P.kind === "uf" ? "Estado · " + (S.ufs[P.uf].regiao || "") : (P.m.cap ? "Capital de " + S.ufs[P.uf].nome : "Cidade · " + S.ufs[P.uf].nome);
@@ -761,6 +1042,7 @@
     var pc = c && c.d ? (c.pop || popOf(P, y)) : null;
     var u = MOEDA[y] || "R$";
     var f = (c && c.f) || {};
+    setPeek(P.nome, role);
     var sheet = $("#mp-sheet");
     sheet.innerHTML = '<div class="role">' + esc(role) + "</div><h3>" + esc(P.nome) + "</h3>" +
       '<p class="meta">' + (P.pop ? int(P.pop) + " habitantes (IBGE 2025)" : "") + "</p>" +
@@ -770,15 +1052,16 @@
            (c.f ? "<div><dt>Saúde e educação</dt><dd>" + pct(100 * ((f["10"] || 0) + (f["12"] || 0)) / c.d) + "<small>do total gasto em " + y + "</small></dd></div>" : "")
          : "<div><dt>Contas</dt><dd>Sem dados ainda<small>veja a seção Dinheiro</small></dd></div>") +
       (function () { var fd = fedData(P), L = fd && fd.last.rf; return L ? "<div><dt>" + esc(rfName(L.y)) + " em " + MES[L.m] + "/" + L.y + "</dt><dd>" + money(L.v) + "<small>" + int(L.q) + " famílias (pago pelo governo federal)</small></dd></div>" : ""; })() +
-      "</dl>" +
+      "</dl>" + '<dl id="mp-extra" class="mp-facts">' + (S.indMeta ? placeFacts(P) : "") + "</dl>" +
       '<div class="mp-actions"><a class="primary" href="#governo">Quem governa</a><a href="#dinheiro">Gastos</a>' +
       (P.kind === "m" ? '<a href="https://cidades.ibge.gov.br/brasil/' + P.uf.toLowerCase() + "/" + slug(P.nome) + '/panorama" target="_blank" rel="noopener">IBGE Cidades ↗</a>' : "") + "</div>";
   }
 
   // ---------- quem governa ----------
   function personCard(role, m, note, warn) {
-    var v = m.vice;
-    return '<article class="mp-person' + (warn ? " is-warn" : "") + '"><div class="role">' + esc(role) + "</div>" +
+    var v = m.vice, f = fotoDe(S.uf, m.id);
+    var img = window.PolFoto ? '<span class="mp-ph">' + PolFoto.html(f && f[0], m.nome, f && f[1], "mp-avatar") + "</span>" : "";
+    return '<article class="mp-person' + (warn ? " is-warn" : "") + '">' + img + '<div class="role">' + esc(role) + "</div>" +
       "<h3>" + personLink(m.id, m.nome) + "</h3>" +
       "<p>" + esc(m.nome_completo || "") + " · <b>" + esc(m.partido) + "</b></p>" +
       "<p>Mandato: " + esc(mandText(m)) + (m.tipo && m.tipo !== "ordinária" ? " (eleição " + esc(m.tipo) + ")" : "") + "</p>" +
@@ -797,6 +1080,9 @@
       '<div class="table-wrap"><table class="data-table tabela-cards mp-timeline"><thead><tr><th>Eleição</th><th>Eleito(a)</th><th>Partido</th><th>Vice</th><th>Mandato</th><th>Vez no cargo</th></tr></thead><tbody>' + rows + "</tbody></table></div>";
   }
   function renderGov(P) {
+    loadFotos(P.uf).then(function () { if (S.P === P) paintGov(P); });
+  }
+  function paintGov(P) {
     var box = $("#gov-body"), h = [], today = ymd();
     var src = (P.pol && P.pol.fonte) || (P.ufPol && P.ufPol.fonte);
     if (P.kind === "uf") {
@@ -1171,6 +1457,11 @@
       ["Governador em exercício hoje", "Levantamento do G1 (setembro de 2026), arquivo ../data/ufs.json", (S.ufsAlex && S.ufsAlex.fonteGovernadores) || "https://g1.globo.com/", "Retrato de 2026"],
       ["Contas das prefeituras 1989–2012", "Tesouro Nacional — FINBRA (Finanças do Brasil)", "https://www.tesourotransparente.gov.br/publicacoes/finbra-dados-contabeis-dos-municipios-1989-a-2012", "1989–2012"],
       ["Contas de prefeituras e estados 2013 em diante", "Tesouro Nacional — SICONFI, Declaração de Contas Anuais (DCA), API aberta", "https://apidatalake.tesouro.gov.br/docs/siconfi/", "2013–" + lastDCAYear()],
+      ["PIB dos municípios e estados", "IBGE — PIB dos Municípios, SIDRA tabela 5938", "https://sidra.ibge.gov.br/tabela/5938", "2002–2023 (o IBGE publica com cerca de 2 anos de atraso)"],
+      ["IDHM", "Atlas do Desenvolvimento Humano no Brasil (PNUD, IPEA e Fundação João Pinheiro)", "https://www.atlasbrasil.org.br/acervo/biblioteca", "Censos de 1991, 2000 e 2010"],
+      ["Emendas recebidas pela cidade", "Portal da Transparência (CGU) — emendas parlamentares", "https://portaldatransparencia.gov.br/emendas", "2014–2026, só as com cidade informada"],
+      ["Votos para presidente por cidade", "TSE — votação por município e zona", "https://dadosabertos.tse.jus.br/", "2022 (2º turno) e 2026 (1º turno)"],
+      ["Fotos de deputados e senadores", "Câmara dos Deputados e Senado Federal (fotos oficiais de quem está em exercício)", "https://dadosabertos.camara.leg.br/", "legislatura atual"],
       ["Correção pela inflação", "Banco Central — SGS série 433 (IPCA mensal)", "https://www3.bcb.gov.br/sgspub/", "1995 em diante"]
     ];
     var cov = (S.meta && S.meta.cobertura_municipios) || {};
@@ -1187,7 +1478,9 @@
       "<li>Os valores são os que os próprios governos declararam ao Tesouro. Algumas prefeituras deixam de entregar contas em certos anos; esses anos aparecem como “sem dados”.</li>" +
       "<li>De 1989 a 1993 a moeda era outra e a inflação passava de 1.000% ao ano; esses anos só aparecem em valores da época. Entre 1989 e 1993 algumas cidades não foram encontradas nos arquivos históricos.</li>" +
       "<li>As contas de 2013 em diante das cidades do interior estão sendo copiadas do Tesouro aos poucos (limite de 1 consulta por segundo). Enquanto isso, ao abrir uma cidade, o site busca os anos que faltam direto na API do Tesouro.</li>" +
-      "<li>Cores de partido no mapa só servem para separar partidos e não representam nenhuma opinião.</li></ul>" +
+      "<li>Cores de partido e de resultado eleitoral no mapa só separam os lados e não representam nenhuma opinião.</li>" +
+      "<li>O IDHM municipal oficial existe só para os Censos de 1991, 2000 e 2010. Cidades criadas depois não têm valor.</li>" +
+      "<li>As emendas do mapa são só as que o Portal da Transparência marca com uma cidade. Emendas para o estado inteiro, para vários municípios ou sem local ficam de fora, então o total daqui é menor que o total nacional.</li></ul>" +
       '<details class="mp-more"><summary>Quantas prefeituras têm contas em cada ano</summary><div class="table-wrap"><table class="data-table"><thead><tr><th>Ano</th><th class="num">Com contas</th><th class="num">Sem entrega</th><th>Base</th></tr></thead><tbody>' + covRows + "</tbody></table></div></details>";
   }
 })();
