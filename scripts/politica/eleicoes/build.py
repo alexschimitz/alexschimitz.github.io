@@ -448,8 +448,8 @@ def junta_siglas(data, nomes, pend):
 def partidos(ano):
     pf = partido_file(ano)
     cf = munzona_cand_file(ano, presidente=False)
-    if not pf:
-        log("sem votacao_partido", ano)
+    if not pf or not cf:
+        log("sem votacao_partido ou votacao_candidato", ano, "- mantém o arquivo atual")
         return None
     cs = cols(pf)
     nom = "QT_VOTOS_NOMINAIS_VALIDOS" if "QT_VOTOS_NOMINAIS_VALIDOS" in cs else "QT_VOTOS_NOMINAIS"
