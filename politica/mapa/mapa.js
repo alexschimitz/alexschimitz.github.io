@@ -1090,7 +1090,7 @@
       var cur = gs.filter(function (m) { return m.ano <= 2022; }).pop();
       var next = gs.filter(function (m) { return m.ano >= 2026; });
       h.push('<div class="mp-people">');
-      if (cur) h.push(personCard("Governador(a) eleito(a) em " + cur.ano, cur, "Mandato até a posse dos eleitos de 2026, em 6 de janeiro de 2027."));
+      if (cur) h.push(personCard("Governador(a) eleito(a) em " + cur.ano, cur, "Mandato até a posse dos eleitos de 2026, em 6 de janeiro de 2027." + (cur.ano >= 2010 ? ' <a href="/politica/planos/#plano=' + cur.ano + "-" + esc(P.uf) + '">Plano de governo e promessas</a>' : "")));
       var alex = S.ufsAlex && (S.ufsAlex.ufs || []).filter(function (u) { return u.uf === P.uf; })[0];
       if (alex && alex.governador && cur && norm(cur.nome_completo + " " + cur.nome).indexOf(norm(alex.governador).split(" ").pop()) < 0) {
         h.push('<article class="mp-person is-warn"><div class="role">Em exercício hoje</div><h3>' + esc(alex.governador) + "</h3><p>Assumiu o governo durante o mandato (por exemplo, o vice que assume quando o titular sai para concorrer ou renuncia).</p>" +

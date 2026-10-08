@@ -97,6 +97,48 @@ def main():
     with open(os.path.join(DIR, "index.json"), "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
     print(f"{len(planos)} planos, {sum(total.values())} promessas:", dict(total))
+    por_politico({planoKeyOf(d) for d in planos})
+
+
+def planoKeyOf(d):
+    return f"{d['ano']}-{d['uf']}-{d['sq']}"
+
+
+def por_politico(com_promessas):
+    """Índice pessoa -> planos (para o link no perfil de políticos). Fatias por 2 letras do código."""
+    base = os.path.join(ROOT, "politica", "data", "planos")
+    try:
+        with open(os.path.join(base, "gerais.json"), encoding="utf-8") as f:
+            ger = json.load(f)
+    except FileNotFoundError:
+        print("gerais.json ausente; por_politico não gerado")
+        return
+    idx = {}
+    def add(pid, item):
+        if pid:
+            idx.setdefault(pid, []).append(item)
+    for r in ger["rows"]:  # ano,cargo,uf,nome_urna,nome,partido,numero,resultado,sq,arquivos,kb,id
+        uf = "BR" if r[1] == 1 else r[2]
+        k = f"{r[0]}-{uf}-{r[8]}"
+        add(r[11], [r[0], r[1], uf, "Brasil" if r[1] == 1 else r[2], r[8], 1 if r[9] else 0, r[7], k if k in com_promessas else ""])
+    for fn in sorted(glob.glob(os.path.join(base, "pref", "[0-9]*", "*.json"))):
+        with open(fn, encoding="utf-8") as f:
+            d = json.load(f)
+        for r in d["rows"]:  # ue,ibge,municipio,nome_urna,partido,numero,resultado,sq,arquivos,kb,id
+            k = f"{d['ano']}-{d['uf']}-{r[7]}"
+            add(r[10], [d["ano"], 11, r[0], f"{r[2]} ({d['uf']})", r[7], 1 if r[8] else 0, r[6], k if k in com_promessas else ""])
+    out = os.path.join(base, "por_politico")
+    os.makedirs(out, exist_ok=True)
+    for old in glob.glob(os.path.join(out, "*.json")):
+        os.remove(old)
+    shards = {}
+    for pid, lst in idx.items():
+        lst.sort(key=lambda x: (-x[0], x[1]))
+        shards.setdefault(pid[:2], {})[pid] = lst
+    for sh, d in shards.items():
+        with open(os.path.join(out, sh + ".json"), "w", encoding="utf-8") as f:
+            json.dump({"d": ger.get("divulga", {}), "p": d}, f, ensure_ascii=False, separators=(",", ":"))
+    print(f"por_politico: {len(idx)} pessoas em {len(shards)} arquivos")
 
 
 if __name__ == "__main__":

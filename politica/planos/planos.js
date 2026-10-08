@@ -134,6 +134,7 @@
   function initPromessas(d) {
     PROM = d; PLANOS = d.planos;
     PLANOS.forEach(function (p) { temPromessa[planoKey(p)] = true; });
+    setTimeout(abrirHash, 0);
     var tot = 0, cump = 0;
     PLANOS.forEach(function (p) { tot += p.promessas.length; cump += p.contagem.cumprida + p.contagem.parcialmente; });
     $("st-prom").textContent = num(tot);
@@ -295,6 +296,23 @@
       " não têm PDF no pacote do TSE (por exemplo, o pacote de 2012 do Rio Grande do Norte veio quase vazio). Quando o plano não está no pacote, a página oficial da candidatura no TSE ainda pode ter o documento. Índice gerado em " + dataBR(META.geradoEm) + ".";
   }
 
+  // Link direto: #plano=ANO-UF-SQ (um plano) ou #plano=ANO-UF (governador eleito nesse ano; BR = presidente).
+  // Se o plano tem promessas acompanhadas, abre a lista; senão, filtra o índice.
+  var pendHash = 2;
+  function abrirHash() {
+    if (--pendHash > 0) return;
+    var m = /^#plano=([0-9]{4})-([A-Z]{2})(?:-([0-9]+))?$/.exec(location.hash);
+    if (!m) return;
+    var ano = +m[1], uf = m[2], sq = m[3];
+    var p = (PLANOS || []).filter(function (x) { return x.ano === ano && x.uf === uf && (sq ? x.sq === sq : x.cargo !== "prefeito"); })[0];
+    if (p) { verPlano(planoKey(p)); return; }
+    if (!GER || uf === "BR" && sq) return;
+    $("i-cargo").value = uf === "BR" ? "1" : "3"; setUFs();
+    if (uf !== "BR") $("i-uf").value = uf;
+    setAnos(); $("i-ano").value = String(ano); $("i-res").value = sq ? "" : "E";
+    atualizarIndice(true).then(function () { var s = $("todos"); s.scrollIntoView({ block: "start" }); s.focus({ preventScroll: true }); });
+  }
+
   function init() {
     var y = $("year"); if (y && !y.textContent) y.textContent = new Date().getFullYear();
     renderAntes();
@@ -303,7 +321,7 @@
       erro($("prom-lista"), ""); erro($("planos-av"), "");
     });
     Promise.all([getJSON(D + "meta.json"), getJSON(D + "gerais.json")]).then(function (a) {
-      META = a[0]; GER = a[1]; initIndice(); renderFontes();
+      META = a[0]; GER = a[1]; initIndice(); renderFontes(); abrirHash();
     }).catch(function () { erro($("idx-body").parentNode.parentNode, "Não foi possível carregar o índice agora. Tente recarregar a página."); });
   }
   init();

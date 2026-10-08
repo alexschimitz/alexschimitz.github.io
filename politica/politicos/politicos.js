@@ -179,6 +179,22 @@
     if (code[0] === 's') return ['https://www.senado.leg.br/senadores/img/fotos-oficiais/senador' + code.slice(1) + '.jpg', 'Senado Federal'];
     return null;
   }
+  // Plano de governo entregue ao TSE (presidente, governador, prefeito; 2010+) — ver ../planos/
+  function fillPlanos(id) {
+    getJSON(`../planos/por_politico/${id.slice(0, 2)}.json`).then((d) => {
+      const lst = (d.p || {})[id], box = document.getElementById('pm-links');
+      if (!lst || !box || S.curId !== id) return;
+      const CN = { 1: 'Presidente', 3: 'Governador', 11: 'Prefeito' };
+      const html = lst.slice(0, 4).map(([ano, c, ue, loc, sq, arq, res, k]) => {
+        const eid = d.d && d.d[ano];
+        const dv = eid ? `https://divulgacandcontas.tse.jus.br/divulga/#/candidato/${ano}/${eid}/${ue}/${sq}` : '';
+        const t = `${CN[c] || ''}${c === 1 ? '' : ' ' + loc}, ${ano}`;
+        return (k ? `<a href="/politica/planos/#plano=${esc(k)}" title="${esc(t)}">Promessas do plano ${ano}</a>` : '') +
+          (dv && arq ? `<a href="${esc(dv)}" target="_blank" rel="noreferrer" title="${esc(t)}">Plano de governo ${ano} (TSE) ↗</a>` : '');
+      }).join('');
+      if (html) { box.insertAdjacentHTML('beforeend', html); box.hidden = false; }
+    }).catch(() => {});
+  }
   function fillFoto(id, nome) {
     if (!window.PolFoto) return;
     fotoIndex().then((ix) => {
@@ -269,7 +285,7 @@
         S.gastosKeys = new Set(((gi && gi.pessoas) || []).map((r) => r[0] + '-' + r[1]));
       }
       $('#pm-body').innerHTML = p ? profile(p) : '<p class="err">Pessoa não encontrada. O código pode ter mudado numa atualização; use a busca.</p>';
-      if (p) fillFoto(S.curId, p.n);
+      if (p) { fillFoto(S.curId, p.n); fillPlanos(S.curId); }
       $('#pm-title')?.focus({ preventScroll: true });
     } catch (e) {
       $('#pm-body').innerHTML = `<p class="err">Não foi possível carregar os dados agora (${esc(e.message)}). Tente de novo em instantes.</p>`;
@@ -373,7 +389,7 @@
         <h2 id="pm-title" tabindex="-1">${esc(p.n)}</h2>
         ${p.nc && fold(p.nc) !== fold(p.n) ? `<p class="muted">Nome completo: ${esc(p.nc)}</p>` : ''}
         <div class="pp-meta">${cur.length ? '<span class="chip cur">com mandato agora</span>' : ''}${fut.length ? '<span class="chip fut">eleito para mandato que começa em 2027</span>' : ''}<span class="chip">código ${esc(p.i)}</span></div>
-        ${links.length ? `<div class="pm-links">${links.join('')}</div>` : ''}
+        <div class="pm-links" id="pm-links"${links.length ? '' : ' hidden'}>${links.join('')}</div>
       </div>
       ${pm.length ? `<div class="pm-warn"><b>Possivelmente a mesma pessoa:</b> ${pm.join('; ')}. Os registros ficam separados porque a fonte não permite confirmar.</div>` : ''}
       <div class="pm-sec"><h3>Resumo</h3>
