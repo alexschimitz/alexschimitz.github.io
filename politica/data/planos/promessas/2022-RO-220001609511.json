@@ -1,0 +1,98 @@
+{
+ "ano": 2022,
+ "cargo": "governador",
+ "uf": "RO",
+ "sq": "220001609511",
+ "pessoa": {
+  "nome": "Coronel Marcos Rocha",
+  "nome_completo": "Marcos José Rocha dos Santos",
+  "partido": "UNIÃO",
+  "id_politico": "swfy6vnful"
+ },
+ "mandato": {
+  "inicio": "2023-01-01",
+  "fim": "2026-12-31",
+  "situacao": "em curso",
+  "nota": "Mandato ainda em curso: o status vale até a data da revisão e pode mudar."
+ },
+ "plano": {
+  "titulo": "Plano de Governo — Coronel Marcos Rocha 2023/2026",
+  "paginas": 22,
+  "arquivo": "2022RO220001609511.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/RO/220001609511",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2022_RO.zip"
+ },
+ "revisado": "2026-10-08",
+ "resumo": [
+  {
+   "t": "Compromissos: novo Hospital de Urgência e Emergência, Guajará-Mirim e uma Secretaria do Interior.",
+   "p": 3
+  },
+  {
+   "t": "Saúde: concluir e reformar hospitais e fortalecer a atenção primária.",
+   "p": 8
+  },
+  {
+   "t": "Educação: concurso para professores, alfabetização na idade certa e ensino médio integral.",
+   "p": 11
+  },
+  {
+   "t": "Segurança: inteligência, tecnologia e plano para o sistema prisional.",
+   "p": 12
+  },
+  {
+   "t": "Infraestrutura: rodovias, pontes de concreto e asfalto nas cidades.",
+   "p": 19
+  }
+ ],
+ "promessas": [
+  {
+   "id": "ro22-01",
+   "tema": "Saúde",
+   "promessa": "Terminar o Hospital de Urgência e Emergência (Heuro), em Porto Velho",
+   "trecho": "Conclusão do Hospital de Urgência e Emergência de Rondônia",
+   "pagina": 8,
+   "status": "em_andamento",
+   "explicacao": "O hospital ainda não foi entregue. O governo desistiu de construir um prédio novo e decidiu comprar um imóvel já pronto; em setembro de 2025 a Assembleia aprovou R$ 67 milhões para essa compra.",
+   "evidencias": [
+    {
+     "titulo": "Assembleia Legislativa de Rondônia — Heuro: Alero aprova R$ 67 milhões para aquisição de prédio (set/2025)",
+     "url": "https://www.al.ro.leg.br/noticias/heuro-alero-aprova-r-67-milhoes-para-aquisicao-de-predio-para-o-futuro-hospital"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "ro22-02",
+   "tema": "Saúde",
+   "promessa": "Terminar o Hospital Regional de Guajará-Mirim",
+   "trecho": "Conclusão do Hospital Regional de Guajará-Mirim",
+   "pagina": 8,
+   "status": "cumprida",
+   "explicacao": "O novo Hospital Regional de Guajará-Mirim foi inaugurado em março de 2025. As notícias do portal do Governo de Rondônia estavam suspensas quando revisamos (legislação eleitoral); o título e o endereço são os oficiais.",
+   "evidencias": [
+    {
+     "titulo": "Governo de Rondônia — Novo hospital de Guajará-Mirim é inaugurado e já está em pleno funcionamento (mar/2025)",
+     "url": "https://rondonia.ro.gov.br/novo-hospital-de-guajara-mirim-e-inaugurado-pelo-governo-de-ro-e-ja-esta-em-pleno-funcionamento/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "ro22-03",
+   "tema": "Educação",
+   "promessa": "Fazer concurso público para professores",
+   "trecho": "Abertura de concurso público para contratação de professores e técnicos",
+   "pagina": 11,
+   "status": "cumprida",
+   "explicacao": "O edital do concurso público para professores da rede estadual foi publicado em janeiro de 2026.",
+   "evidencias": [
+    {
+     "titulo": "Governo de Rondônia — Edital nº 1/2026/SEGEP-GCP: abertura de concurso público Seduc-RO, Professor Classe C (jan/2026)",
+     "url": "https://rondonia.ro.gov.br/publicacao/6-1-2026-edital-n-1-2026-segep-gcp-abertura-concurso-publico-seduc-ro-professor-classe-c-graduacoes-diversas/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}

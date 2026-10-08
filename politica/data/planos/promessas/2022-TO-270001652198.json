@@ -1,0 +1,114 @@
+{
+ "ano": 2022,
+ "cargo": "governador",
+ "uf": "TO",
+ "sq": "270001652198",
+ "pessoa": {
+  "nome": "Wanderlei Barbosa",
+  "nome_completo": "Wanderlei Barbosa Castro",
+  "partido": "REPUBLICANOS",
+  "id_politico": "5rend65gei"
+ },
+ "mandato": {
+  "inicio": "2023-01-01",
+  "fim": "2026-12-31",
+  "situacao": "em curso",
+  "nota": "Mandato ainda em curso: o status vale até a data da revisão e pode mudar."
+ },
+ "plano": {
+  "titulo": "Plano de Governo 2023/2026 — Wanderlei Barbosa",
+  "paginas": 39,
+  "arquivo": "2022TO270001652198.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/TO/270001652198",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2022_TO.zip"
+ },
+ "revisado": "2026-10-08",
+ "resumo": [
+  {
+   "t": "Gestão: governo simples, moderno e com mais tecnologia.",
+   "p": 8
+  },
+  {
+   "t": "Saúde: Hospital da Mulher, mais cirurgias eletivas e telemedicina.",
+   "p": 19
+  },
+  {
+   "t": "Assistência social: cartão social, loteria estadual e Secretaria da Mulher.",
+   "p": 21
+  },
+  {
+   "t": "Educação: concluir escolas em obras.",
+   "p": 27
+  },
+  {
+   "t": "Infraestrutura: ponte de Porto Nacional, duplicação de rodovias e asfalto.",
+   "p": 28
+  }
+ ],
+ "promessas": [
+  {
+   "id": "to22-01",
+   "tema": "Infraestrutura",
+   "promessa": "Terminar a nova ponte de Porto Nacional",
+   "trecho": "tem-se como meta a conclusão da ponte de Porto Nacional",
+   "pagina": 28,
+   "status": "cumprida",
+   "explicacao": "A nova ponte de Porto Nacional foi inaugurada em junho de 2024. As notícias do portal do Governo do Tocantins estavam suspensas quando revisamos (período eleitoral); o título e o endereço são os oficiais.",
+   "evidencias": [
+    {
+     "titulo": "Governo do Tocantins — Governador inaugura nova ponte de Porto Nacional (jun/2024)",
+     "url": "https://www.to.gov.br/secom/noticias/governador-wanderlei-barbosa-inaugura-nova-ponte-de-porto-nacional-obra-marca-momento-historico-no-tocantins/7hfp5sod06n0"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "to22-02",
+   "tema": "Infraestrutura",
+   "promessa": "Duplicar a TO-080 entre Palmas e Paraíso do Tocantins",
+   "trecho": "a duplicação da TO 080, que liga Palmas a Paraíso do Tocantins",
+   "pagina": 28,
+   "status": "em_andamento",
+   "explicacao": "O governo assinou um plano de investimento de R$ 250 milhões para duplicar a ponte Palmas–Luzimangues e um trecho da TO-080, e a obra da ponte está em andamento. Não encontramos fonte oficial de que a duplicação de todo o trecho até Paraíso tenha começado. As notícias do portal do Governo do Tocantins estavam suspensas quando revisamos (período eleitoral); o título e o endereço são os oficiais.",
+   "evidencias": [
+    {
+     "titulo": "Governo do Tocantins — Plano de investimento de R$ 250 milhões para duplicação da ponte Palmas–Luzimangues e de trecho da TO-080",
+     "url": "https://www.to.gov.br/secom/noticias/governador-wanderlei-barbosa-assina-plano-de-investimento-no-valor-de-r-250-milhoes-para-duplicacao-da-ponte-palmas-luzimangues-e-de-trecho-da-to-080/26mg35ze1b1"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "to22-03",
+   "tema": "Mulheres",
+   "promessa": "Criar a Secretaria da Mulher",
+   "trecho": "CRIAR A SECRETARIA DA MULHER",
+   "pagina": 21,
+   "status": "cumprida",
+   "explicacao": "A Lei nº 4.151, de abril de 2023, criou a Secretaria da Mulher na estrutura do governo.",
+   "evidencias": [
+    {
+     "titulo": "Assembleia Legislativa do Tocantins — Lei nº 4.151, de 28 de abril de 2023",
+     "url": "https://www.al.to.leg.br/arquivos/lei_4151-2023_63459.PDF"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "to22-04",
+   "tema": "Saúde",
+   "promessa": "Construir o Hospital da Mulher",
+   "trecho": "HOSPITAL DA MULHER",
+   "pagina": 19,
+   "status": "em_andamento",
+   "explicacao": "O governo autorizou as obras do Hospital da Mulher e Maternidade Estadual, em Palmas, com investimento de R$ 299 milhões. Não encontramos registro oficial de inauguração até a data da revisão. As notícias do portal do Governo do Tocantins estavam suspensas quando revisamos (período eleitoral); o título e o endereço são os oficiais.",
+   "evidencias": [
+    {
+     "titulo": "Governo do Tocantins — Governador autoriza obras do Hospital da Mulher, com entrega prevista em 18 meses",
+     "url": "https://www.to.gov.br/secom/noticias/com-investimento-de-r-299-milhoes-governador-wanderlei-barbosa-autoriza-obras-do-hospital-da-mulher-com-entrega-prevista-em-18-meses/39e68wr21v0p"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}
