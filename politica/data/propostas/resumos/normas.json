@@ -792,5 +792,38 @@
 "c:2430143",
 "PLP 68/2024"
 ]
+},
+"n:LEI-15211-2025": {
+"nome": "ECA Digital (Estatuto Digital da Criança e do Adolescente)",
+"ps": "Proteger crianças e adolescentes na internet, em aplicativos, redes sociais e jogos.",
+"cf": "Plataformas usadas por menores de 18 anos devem vir com a configuração mais protetora por padrão e ferramentas de supervisão para os pais (limite de tempo, controle de compras e de contatos). Sites com conteúdo proibido para menores precisam verificar a idade de verdade, sem bastar a autodeclaração. Contas de quem tem até 16 anos devem ser ligadas à conta de um responsável, as “caixas de recompensa” (loot boxes) ficam proibidas em jogos para esse público e é vedado usar o perfil de crianças para direcionar publicidade. Multas chegam a 10% do faturamento no Brasil (ou até R$ 50 milhões por infração). Começou a valer em 17/03/2026.",
+"data": "2025-09-17",
+"idSenado": 41465823,
+"origem": [
+"s:154901",
+"PL 2628/2022"
+]
+},
+"n:LEI-15358-2026": {
+"nome": "Marco Legal do Combate ao Crime Organizado (Lei Raul Jungmann)",
+"ps": "Endurecer a punição de facções criminosas violentas e milícias e tirar delas dinheiro e bens.",
+"cf": "Cria o crime de “domínio social estruturado”: usar violência para controlar territórios, bloquear a polícia, atacar presídios, bancos ou serviços essenciais, com pena de 20 a 40 anos, aumentada para líderes e financiadores. Esses crimes ficam hediondos, sem fiança, anistia ou liberdade condicional, e líderes cumprem pena em presídio federal de segurança máxima. A lei amplia o bloqueio e a perda de bens (inclusive sem condenação, quando a origem ilícita for clara), cria bancos de dados nacional e estaduais sobre facções e obriga bancos a bloquear contas de bets ilegais.",
+"data": "2026-03-24",
+"idSenado": 42931693,
+"origem": [
+"c:2579832",
+"PL 5582/2025"
+]
+},
+"n:LCP-225-2026": {
+"nome": "Código de Defesa do Contribuinte",
+"ps": "Definir direitos e deveres de quem paga impostos na relação com a Receita e os fiscos estaduais e municipais, e punir o “devedor contumaz”.",
+"cf": "O fisco deve presumir a boa-fé, explicar as regras de forma clara, avisar sobre pendências e permitir que o contribuinte se regularize antes de ser multado; o contribuinte pode recorrer pelo menos uma vez e não precisa entregar documentos que o fisco já tem. Quem deixa de pagar impostos de forma grande, repetida e sem justificativa (no nível federal, dívida a partir de R$ 15 milhões e maior que o patrimônio) pode ser declarado devedor contumaz e perder benefícios fiscais, ser impedido de participar de licitações e ter o cadastro declarado inapto. Também cria programas de conformidade (Confia, Sintonia e OEA) com vantagens para bons pagadores.",
+"data": "2026-01-08",
+"idSenado": 41964432,
+"origem": [
+"c:2559194",
+"PLP 125/2022"
+]
 }
 }

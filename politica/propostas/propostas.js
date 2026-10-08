@@ -59,6 +59,13 @@
     return s;
   }
 
+  /* ---------- regras extras de resumo automático (padrões muito comuns) ---------- */
+  function regraExtra(e) {
+    var m = /^Abre cr[ée]dito extraordin[áa]rio,? em favor d[eoa]s? (.+?),? no valor (?:global )?de (R\$ ?[\d.,]+)/i.exec(String(e || ""));
+    if (m) { var org = m[1], val = m[2].replace(/[,.]$/, ""); if (/^Minist/i.test(org)) org = "o " + org; return { ps: "Libera " + val + " a mais no Orçamento da União para " + org + ", como crédito extraordinário (a Constituição só permite esse tipo de crédito para despesas urgentes e imprevisíveis, como guerra ou calamidade pública)" }; }
+    return null;
+  }
+
   /* ---------- cartão ---------- */
   function resumoDe(it) { var h = S.resumos[it[0]]; return h && h.ps ? h : null; }
   function cartao(it, ano) {
@@ -66,7 +73,7 @@
     var tp = TIPOS[it[1]];
     if (rs) { ps = rs.ps; cf = rs.cf || "O texto oficial disponível não deixa claro como a proposta funcionaria na prática. Veja o texto oficial abaixo."; }
     else {
-      var a = SIMP ? SIMP.simplificar(it[9], it[1]) : null;
+      var a = regraExtra(it[9]) || (SIMP ? SIMP.simplificar(it[9], it[1]) : null);
       ps = (a && a.ps) || it[9];
       var lc = SIMP ? SIMP.leisCitadas(it[9]).filter(function (l) { return l.nome && ps.indexOf(l.nome) < 0; }).map(function (l) { return l.nome; }) : [];
       cf = [tp ? "É " + tp[1] + "." : "", lc.length ? "Pelo resumo oficial, mexe em " + lc.join(" e ") + "." : "", "Este resumo automático usa só a ementa oficial; para conhecer os detalhes de como funcionaria, veja o texto oficial."].filter(Boolean).join(" ");
