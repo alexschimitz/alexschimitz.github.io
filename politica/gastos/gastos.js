@@ -270,6 +270,30 @@
   function lastFullYear() { const ys = serieYears(); for (let i = ys.length - 1; i >= 0; i--) { if (!serieYear(ys[i]).partial) return ys[i]; } return ys[ys.length - 1]; }
   const periodoCurto = (p) => { const m = /([A-ZÇ]+) DE (\d{4})/.exec(p || ''); return m ? `jan–${m[1].slice(0, 3).toLowerCase()}/${m[2]}` : p; };
 
+  // ================================================================ POR GOVERNO
+  const GOVERNOS = [
+    ['Fernando Henrique Cardoso (1º mandato)', 1995, 1998], ['Fernando Henrique Cardoso (2º mandato)', 1999, 2002],
+    ['Lula (1º mandato)', 2003, 2006], ['Lula (2º mandato)', 2007, 2010], ['Dilma Rousseff (1º mandato)', 2011, 2014],
+    ['Dilma Rousseff (2º mandato)', 2015, 2015], ['Dilma Rousseff até maio, Michel Temer depois', 2016, 2016],
+    ['Michel Temer', 2017, 2018], ['Jair Bolsonaro', 2019, 2022], ['Lula (3º mandato)', 2023, 2026],
+  ];
+  function initGovernos() {
+    const tb = $('#gov-table tbody'); if (!tb) return;
+    const rows = GOVERNOS.map(([nome, a, b]) => {
+      let tot = 0; let totF = 0; let pp = 0; let n = 0; let parcial = null; const fun = {};
+      for (let y = a; y <= b; y++) {
+        const d = serieYear(y); const f = fator(y); if (!d || !f) continue;
+        tot += d.sem * f;
+        if (d.partial) parcial = y; else { n++; totF += d.sem * f; pp += pop(y) ? (d.sem * f) / pop(y) : 0; }
+        d.funcs.forEach((x) => { const k = x.name; if (/encargos especiais/i.test(k)) return; fun[k] = (fun[k] || 0) + x.v * f; });
+      }
+      if (!n && parcial === null) return null;
+      const top = Object.entries(fun).sort((x, y) => y[1] - x[1]).slice(0, 3).map(([k]) => k).join(', ');
+      return `<tr><td class="txt"><b>${esc(nome)}</b>${parcial ? `<small>em curso: ${parcial} só até ${esc(periodoCurto(serieYear(parcial).periodo).split('–')[1] || '')}; as médias usam só os anos completos</small>` : ''}</td><td>${a}${b > a ? '–' + b : ''}</td><td>${brl(tot)}</td><td><b>${n ? brl(totF / n) : '—'}</b></td><td>${n ? brl(pp / n) : '—'}</td><td class="txt">${esc(top)}<small>sem "encargos especiais" (dívida e repasses)</small></td></tr>`;
+    }).filter(Boolean);
+    tb.innerHTML = rows.join('') || '<tr class="empty"><td colspan="6">Sem dados.</td></tr>';
+  }
+
   // ================================================================ VISÃO GERAL
   function initVisao() {
     const ys = serieYears().filter((y) => y >= REAL_FROM);
@@ -943,7 +967,7 @@
     fetch('/politica/paginas.json', { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : {})).then((j) => { S.pages = (j && j.paginas) || {}; }).catch(() => { S.pages = {}; });
     Object.assign(S, { idx, serie, res, fontes, meta, parlIdx, parlRes, cart, presHist, emRes, emAut, viagRes, pport });
     const run = (name, fn) => { try { fn(); } catch (e) { console.warn(name, e); const sec = document.getElementById(name); if (sec) { const p = document.createElement('p'); p.className = 'g-note warn'; p.textContent = 'Não foi possível montar esta seção agora. Tente recarregar a página.'; $('.container', sec).appendChild(p); } } };
-    if (idx && serie) { run('visao', initVisao); run('areas', initAreas); }
+    if (idx && serie) { run('visao', initVisao); run('visao', initGovernos); run('areas', initAreas); }
     if (idx && res) run('orgaos', initOrgaos);
     if (idx && res) run('presidencia', initPresidencia);
     run('presidencia', initViagens); if (idx) run('presidencia', initPport);
