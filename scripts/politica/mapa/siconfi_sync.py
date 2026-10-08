@@ -180,7 +180,11 @@ def needs(doc, y, key):
     ys = str(y)
     if ys in a and a[ys]:
         # reconfere o último ano a cada 30 dias (retificações)
-        if y >= last_year() and v.get(ys, "") < (dt.date.today() - dt.timedelta(days=30)).isoformat():
+        if ys not in v:
+            # sem registro de conferência (ex.: primeira execução no GitHub Actions): conta a partir de hoje
+            STATE.setdefault(key, {})[ys] = today()
+            return False
+        if y >= last_year() and v[ys] < (dt.date.today() - dt.timedelta(days=30)).isoformat():
             return True
         return False
     if ys in a and not a[ys]:
