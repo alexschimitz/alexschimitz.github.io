@@ -598,6 +598,19 @@ def build_people(groups, R, O, dep, legs, leg_uf, sen, cong, aj, mun, possiveis,
             if 1 <= len(cands) <= 3:
                 for j in cands:
                     poss[i].add((j, 'nome')); poss[j].add((i, 'nome'))
+    # (c) mesmo nome completo no mesmo município/estado e mesmo cargo, sem eleições em comum (ex.: nascimento divergente na fonte)
+    by_loc = defaultdict(set)
+    for i, P in out_people.items():
+        for e in P['e']:
+            for nn in P['_names']:
+                by_loc[(nn, e[1] if e[1] not in (12, 13) else 11, e[2])].add(i)
+    for key, ids in by_loc.items():
+        if 2 <= len(ids) <= 3:
+            ids = sorted(ids)
+            for a in ids:
+                for b in ids:
+                    if a < b and not ({e[0] for e in out_people[a]['e']} & {e[0] for e in out_people[b]['e']}):
+                        poss[a].add((b, 'nome')); poss[b].add((a, 'nome'))
     for i, s in poss.items():
         out_people[i]['pm'] = sorted([j, w] for j, w in s)[:6]
 

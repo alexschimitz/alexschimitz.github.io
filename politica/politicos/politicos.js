@@ -410,6 +410,22 @@
     return segs;
   }
 
+  // Mesmo nome completo no mesmo estado (o id do mapa junta homônimos): lista para escolher
+  async function chooseAmong(ids) {
+    lastFocus = document.activeElement;
+    if (!modal.open) { try { modal.showModal(); } catch (_) { modal.setAttribute('open', ''); } }
+    const ps = await Promise.all(ids.map((i) => getJSON(`p/${i.slice(0, 2)}.json`).then((sh) => [i, sh[i]]).catch(() => [i, null])));
+    if (!S.mun) S.mun = await getJSON('municipios.json').catch(() => ({}));
+    const desc = (p) => {
+      const ms = mandates(p).filter((m) => m.c !== 9 && m.c !== 10);
+      return ms.map((m) => `${cargoN(m.c, p.g)} · ${locName(m.c, m.l, m.mn)} · ${periodo(m)}`).slice(0, 4).join('; ');
+    };
+    $('#pm-body').innerHTML = `<div class="pm-head"><h2 id="pm-title" tabindex="-1">Qual destas pessoas?</h2>
+      <p class="muted">O link veio do mapa, que identifica políticos pelo nome completo e estado. Há ${ids.length} registros com esse mesmo nome neste estado: podem ser homônimos ou a mesma pessoa em eleições que a fonte não permite ligar com certeza. Escolha um:</p></div>
+      <ul class="pm-mand">${ps.map(([i, p]) => p ? `<li><div class="t"><button type="button" class="linkish" data-id="${esc(i)}"><b>${esc(p.n)}</b></button><span class="muted">código ${esc(i)}</span></div><p>${esc(desc(p) || 'sem mandatos')}</p></li>` : '').join('')}</ul>`;
+    $('#pm-title')?.focus({ preventScroll: true });
+  }
+
   // ---------- ranking ----------
   let rank = null;
   async function initRanking() {
@@ -491,7 +507,9 @@
       const mu = /-([a-z]{2})$/.exec(qid || '');
       if (!to && mu) {
         const m = await getJSON(`mapa_ids/${mu[1].toUpperCase()}.json`).catch(() => ({}));
-        const v = m[qid]; to = Array.isArray(v) ? v[0] : v || null;
+        const v = m[qid];
+        if (Array.isArray(v) && v.length > 1) { history.replaceState(null, '', location.pathname + location.search); await chooseAmong(v); return; }
+        to = Array.isArray(v) ? v[0] : v || null;
       }
       history.replaceState(null, '', location.pathname + location.search + (to ? '#p/' + to : ''));
       if (!to) $('#pp-count').insertAdjacentHTML('beforeend', ' <span class="err">O político do link não foi encontrado; use a busca.</span>');
