@@ -1,0 +1,154 @@
+{
+ "ano": 2022,
+ "cargo": "governador",
+ "uf": "PA",
+ "sq": "140001651993",
+ "pessoa": {
+  "nome": "Helder",
+  "nome_completo": "Helder Zahluth Barbalho",
+  "partido": "MDB",
+  "id_politico": "zz2ki445xp"
+ },
+ "mandato": {
+  "inicio": "2023-01-01",
+  "fim": "2026-12-31",
+  "situacao": "em curso",
+  "nota": "Helder Barbalho deixou o cargo em 02/04/2026 para disputar outra eleição; a vice Hana Ghassan, eleita na mesma chapa, assumiu. Avaliamos o governo da chapa eleita até a data da revisão; o status pode mudar até o fim do mandato."
+ },
+ "plano": {
+  "titulo": "Plano de governo 2023-2026 — Pra seguir em frente",
+  "paginas": 25,
+  "arquivo": "2022PA140001651993.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/PA/140001651993",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2022_PA.zip"
+ },
+ "revisado": "2026-10-08",
+ "resumo": [
+  {
+   "t": "Balanço da gestão anterior: escolas reconstruídas, creches, hospitais e policlínicas.",
+   "p": 4
+  },
+  {
+   "t": "Educação: seguir com o Creches por Todo o Pará, ampliar o tempo integral e as escolas técnicas.",
+   "p": 7
+  },
+  {
+   "t": "Saúde: concluir hospitais regionais, o Hospital da Mulher e policlínicas; construir o Hospital do Coração.",
+   "p": 9
+  },
+  {
+   "t": "Segurança: 3 novas bases fluviais e delegacias móveis nos rios.",
+   "p": 12
+  },
+  {
+   "t": "Meio ambiente e economia: plano de bioeconomia e Parque de Bioeconomia em Belém.",
+   "p": 15
+  },
+  {
+   "t": "Juventude: mais escolas em tempo integral e qualificação.",
+   "p": 19
+  }
+ ],
+ "promessas": [
+  {
+   "id": "pa22-01",
+   "tema": "Saúde",
+   "promessa": "Concluir o Hospital da Mulher, em Belém",
+   "trecho": "CONCLUIR O HOSPITAL PÚBLICO DA MULHER NOSSA SENHORA DE NAZARÉ – para atendimento nas áreas de mastologia e ginecologia",
+   "pagina": 9,
+   "status": "cumprida",
+   "explicacao": "O Hospital da Mulher, em Belém, foi entregue em março de 2025.",
+   "evidencias": [
+    {
+     "titulo": "Sespa — Governo do Pará entrega primeiro hospital público do Norte com atendimento exclusivo para mulheres (mar/2025)",
+     "url": "https://www.saude.pa.gov.br/governo-do-para-entrega-primeiro-hospital-publico-do-norte-com-atendimento-exclusivo-para-mulheres/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pa22-02",
+   "tema": "Saúde",
+   "promessa": "Concluir os hospitais regionais de Tucuruí, Ourilândia do Norte, Oriximiná e Rio Maria",
+   "trecho": "Concluir os Hospitais Regionais de Tucuruí, Ourilândia do Norte na PA 279, Oriximiná e Rio Maria",
+   "pagina": 9,
+   "status": "em_andamento",
+   "explicacao": "Os hospitais de Rio Maria e Oriximiná foram entregues em 2024. Não encontramos fonte oficial sobre a conclusão dos de Tucuruí e Ourilândia do Norte.",
+   "evidencias": [
+    {
+     "titulo": "Sespa — Com os hospitais regionais, Governo do Pará facilita acesso à saúde",
+     "url": "https://www.saude.pa.gov.br/com-os-hospitais-regionais-governo-do-para-facilita-acesso-a-saude-na-rede-publica/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pa22-03",
+   "tema": "Saúde",
+   "promessa": "Concluir as policlínicas de Altamira, Breves, Marabá e Santarém",
+   "trecho": "Concluir as Policlínicas de Altamira, Breves, Marabá e Santarém, e implantar nas demais Regiões de Integração do Estado.",
+   "pagina": 9,
+   "status": "em_andamento",
+   "explicacao": "As policlínicas de Marabá (abril de 2025) e Santarém foram entregues. Até a revisão, não encontramos fonte oficial sobre a entrega das de Altamira e Breves.",
+   "evidencias": [
+    {
+     "titulo": "Sespa — Governo do Pará entrega Policlínica/Natea Carajás em Marabá (abr/2025)",
+     "url": "https://www.saude.pa.gov.br/governo-do-para-entrega-policlinica-natea-carajas-em-maraba/"
+    },
+    {
+     "titulo": "Sespa — Governo do Pará entrega Policlínica e Natea em Santarém",
+     "url": "https://www.saude.pa.gov.br/governo-do-para-entrega-policlinica-e-natea-em-santarem-e-amplia-acesso-a-saude-publica-no-baixo-amazonas/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pa22-04",
+   "tema": "Segurança",
+   "promessa": "Criar 3 bases fluviais (Óbidos, Abaetetuba e Itaituba)",
+   "trecho": "Criar 3 novas bases integradas fluviais: Óbidos, Abaetetuba e Itaituba.",
+   "pagina": 12,
+   "status": "em_andamento",
+   "explicacao": "A base fluvial de Óbidos (Candiru) foi entregue em setembro de 2024. Não encontramos fonte oficial sobre a entrega das bases de Abaetetuba e Itaituba.",
+   "evidencias": [
+    {
+     "titulo": "Agência Pará — Governo do Pará entrega nova Base Fluvial Candiru em Óbidos (set/2024)",
+     "url": "https://www.agenciapara.com.br/pauta/9190/governo-do-para-entrega-nova-base-fluvial-candiru-e-lanchas-em-obidos-no-baixo-amazonas"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pa22-05",
+   "tema": "Economia",
+   "promessa": "Entregar o Parque de Bioeconomia e Inovação da Amazônia, em Belém",
+   "trecho": "entregar o Parque de Bioeconomia e Inovação da Amazônia, em Belém",
+   "pagina": 15,
+   "status": "cumprida",
+   "explicacao": "O Parque de Bioeconomia e Inovação da Amazônia foi entregue em Belém em outubro de 2025.",
+   "evidencias": [
+    {
+     "titulo": "Agência Pará — Governo do Pará entrega o Parque de Bioeconomia e Inovação da Amazônia (em inglês, out/2025)",
+     "url": "https://agenciapara.com.br/news/71342/on-the-eve-of-cop30-the-government-of-para-delivers-the-amazon-bioeconomy-and-innovation-park-a-world-pioneer"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "pa22-06",
+   "tema": "Educação",
+   "promessa": "Seguir com o programa Creches por Todo o Pará",
+   "trecho": "Continuar a execução do programa “CRECHES POR TODO O PARÁ”",
+   "pagina": 7,
+   "status": "cumprida",
+   "explicacao": "O programa continuou durante o mandato, com creches entregues em vários municípios.",
+   "evidencias": [
+    {
+     "titulo": "Agência Pará — Programa Creches por Todo o Pará chega a Redenção",
+     "url": "https://agenciapara.com.br/noticia/64407/programa-creches-por-todo-o-para-chega-a-redencao-beneficiando-criancas-de-0-a-5-anos"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}

@@ -1,0 +1,70 @@
+{
+ "ano": 2022,
+ "cargo": "governador",
+ "uf": "SC",
+ "sq": "240001611127",
+ "pessoa": {
+  "nome": "Jorginho Mello",
+  "nome_completo": "Jorginho dos Santos Mello",
+  "partido": "PL",
+  "id_politico": "p6svayedpd"
+ },
+ "mandato": {
+  "inicio": "2023-01-01",
+  "fim": "2026-12-31",
+  "situacao": "em curso",
+  "nota": "Mandato ainda em curso: o status vale até a data da revisão e pode mudar."
+ },
+ "plano": {
+  "titulo": "Programa de Governo: Caminhos de SC — Jorginho Mello (agosto de 2022)",
+  "paginas": 69,
+  "arquivo": "2022SC240001611127.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/SC/240001611127",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2022_SC.zip"
+ },
+ "revisado": "2026-10-08",
+ "resumo": [
+  {
+   "t": "Gestão: eficiência no gasto e descentralização das políticas públicas.",
+   "p": 5
+  },
+  {
+   "t": "Educação: valorizar o professor e ampliar o ensino técnico.",
+   "p": 8
+  },
+  {
+   "t": "Saúde: fortalecer a rede hospitalar e apoiar os municípios na média e alta complexidade.",
+   "p": 12
+  },
+  {
+   "t": "Sistema prisional: mais vagas e trabalho dos presos.",
+   "p": 21
+  },
+  {
+   "t": "Energia: programa de rede trifásica no campo pela Celesc.",
+   "p": 35
+  },
+  {
+   "t": "Idosos: criar uma secretaria executiva para a pessoa idosa.",
+   "p": 48
+  }
+ ],
+ "promessas": [
+  {
+   "id": "sc22-01",
+   "tema": "Energia",
+   "promessa": "Programa Santa Catarina Trifásico: 12 mil km de rede trifásica",
+   "trecho": "Será criado o “Programa Santa Catarina Trifásico”, onde o Estado, através da Celesc, irá realizar o maior investimento da sua história na rede de energia rural. Serão investidos R$ 1,5 bilhões na implantação 12 mil quilômetros de linhas trifásicas.",
+   "pagina": 35,
+   "status": "parcialmente",
+   "explicacao": "O programa de rede trifásica rural foi criado, mas com meta menor: a Celesc prevê 1.000 km até 2026 e já tinha entregue mais de 790 km em 2025, longe dos 12 mil km do plano.",
+   "evidencias": [
+    {
+     "titulo": "Celesc — Retrospectiva 2025: parceria entre Governo do Estado e Celesc",
+     "url": "https://www.celesc.com.br/listagem-noticias/retrospectiva-2025-com-mais-de-r-3-5-bilhoes-ja-investidos-parceria-entre-governo-do-estado-e-celesc-transforma-o-sistema-eletrico-de-sc"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}

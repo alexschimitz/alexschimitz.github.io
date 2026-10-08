@@ -1,0 +1,118 @@
+{
+ "ano": 2022,
+ "cargo": "governador",
+ "uf": "GO",
+ "sq": "90001646326",
+ "pessoa": {
+  "nome": "Ronaldo Caiado",
+  "nome_completo": "Ronaldo Ramos Caiado",
+  "partido": "UNIÃO",
+  "id_politico": "dhnbm6vn67"
+ },
+ "mandato": {
+  "inicio": "2023-01-01",
+  "fim": "2026-12-31",
+  "situacao": "em curso",
+  "nota": "Ronaldo Caiado renunciou em 31/03/2026 para disputar a Presidência; o vice Daniel Vilela, eleito na mesma chapa, assumiu (fonte: Governo de Goiás). Avaliamos o governo da chapa eleita até a data da revisão; o status pode mudar até o fim do mandato."
+ },
+ "plano": {
+  "titulo": "Plano de Governo Estado de Goiás 2023/2026",
+  "paginas": 75,
+  "arquivo": "2022GO90001646326.pdf",
+  "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/GO/90001646326",
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2022_GO.zip"
+ },
+ "revisado": "2026-10-08",
+ "resumo": [
+  {
+   "t": "Gestão: capacitar servidores e combater a corrupção com ouvidorias.",
+   "p": 6
+  },
+  {
+   "t": "Saúde: construir o Hospital Estadual do Câncer, novas policlínicas e terminar o hospital de Águas Lindas.",
+   "p": 11
+  },
+  {
+   "t": "Educação: 20% das matrículas em tempo integral e ampliar o Bolsa Estudo.",
+   "p": 17
+  },
+  {
+   "t": "Segurança: mais estrutura para as polícias e os bombeiros.",
+   "p": 24
+  },
+  {
+   "t": "Assistência social: continuar o Goiás Social.",
+   "p": 25
+  },
+  {
+   "t": "Trabalho e renda: qualificação profissional e Escola Goiana de Construção Civil.",
+   "p": 29
+  }
+ ],
+ "promessas": [
+  {
+   "id": "go22-01",
+   "tema": "Saúde",
+   "promessa": "Implantar o Hospital Estadual do Câncer de Goiás",
+   "trecho": "Implantar o Hospital Estadual do Câncer de Goiás",
+   "pagina": 11,
+   "status": "parcialmente",
+   "explicacao": "O Complexo Oncológico de Referência (Cora) foi inaugurado em setembro de 2025, começando pelo atendimento de crianças e adolescentes. O plano descrevia um hospital de câncer para todas as idades e de grande porte; não encontramos fonte oficial de que ele já atenda adultos.",
+   "evidencias": [
+    {
+     "titulo": "Governo de Goiás — Inauguração do Complexo Oncológico de Referência (Cora) (set/2025)",
+     "url": "https://goias.gov.br/saude/governo-de-goias-inaugura-complexo-oncologico-de-referencia-do-estado-de-goias-cora-25-09-2025/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "go22-02",
+   "tema": "Saúde",
+   "promessa": "Terminar e abrir o Hospital Estadual de Águas Lindas",
+   "trecho": "Finalizar e implantar o Hospital Estadual de Águas Lindas de Goiás",
+   "pagina": 12,
+   "status": "cumprida",
+   "explicacao": "O Hospital Estadual de Águas Lindas foi inaugurado em junho de 2024.",
+   "evidencias": [
+    {
+     "titulo": "Seinfra-GO — Hospital Estadual de Águas Lindas é inaugurado",
+     "url": "https://goias.gov.br/seinfra/hospital-estadual-de-aguas-lindas-e-inaugurado/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "go22-03",
+   "tema": "Educação",
+   "promessa": "Chegar a 20% das matrículas em tempo integral",
+   "trecho": "Ampliar escolas em tempo integral, para alcançarmos 20% das matrículas, entre Ensino Médio e Ensino Fundamental II",
+   "pagina": 17,
+   "status": "cumprida",
+   "explicacao": "Segundo a Secretaria da Educação, com dados do Censo Escolar 2024, 20,9% das matrículas do ensino médio estadual e 20,9% das do ensino fundamental da rede pública eram em tempo integral.",
+   "evidencias": [
+    {
+     "titulo": "Seduc-GO — Censo 2024: Goiás consolida avanços no tempo integral (abr/2025)",
+     "url": "https://goias.gov.br/educacao/censo-2024-goias-amplia-cobertura-da-rede-estadual-e-consolida-avancos-no-ensino-fundamental-e-medio-em-tempo-integral/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  },
+  {
+   "id": "go22-04",
+   "tema": "Educação",
+   "promessa": "Levar o Bolsa Estudo aos alunos do 9º ano",
+   "trecho": "Ampliar o público-alvo do programa Bolsa Estudo de forma a garantir a entrada no programa de estudantes a partir do 9º Ano do Ensino Fundamental",
+   "pagina": 17,
+   "status": "cumprida",
+   "explicacao": "Segundo a Secretaria da Educação, o Bolsa Estudo atende todos os alunos do 9º ano do ensino fundamental e do ensino médio da rede estadual.",
+   "evidencias": [
+    {
+     "titulo": "Seduc-GO — Programa Bolsa Estudo: sobre o programa",
+     "url": "https://goias.gov.br/educacao/programa-bolsa-estudo-sobre-o-programa-2/"
+    }
+   ],
+   "revisado": "2026-10-08"
+  }
+ ]
+}
