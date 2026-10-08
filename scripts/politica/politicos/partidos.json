@@ -1,0 +1,238 @@
+{
+ "fonte": {
+  "nome": "TSE — Partidos políticos registrados (histórico de cada legenda)",
+  "url": "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+ },
+ "nota": "Partidos mudam de nome, se fundem (dois viram um) ou são incorporados (um entra no outro). Aqui estão as mudanças principais desde 1988, em linguagem simples. Federações (como Brasil da Esperança ou PSDB Cidadania) não são fusões: cada partido continua existindo. Mudanças recentes podem demorar a aparecer aqui; a referência é o TSE.",
+ "familias": [
+  {
+   "id": "mdb",
+   "nome": "MDB",
+   "siglas": [
+    "PMDB",
+    "MDB"
+   ],
+   "texto": "O PMDB foi criado em 1980 e voltou a se chamar MDB em 2017. É o mesmo partido."
+  },
+  {
+   "id": "uniao",
+   "nome": "União Brasil",
+   "siglas": [
+    "PFL",
+    "DEM",
+    "PSL",
+    "UNIÃO"
+   ],
+   "texto": "O PFL virou DEM (Democratas) em 2007. Em 2022, DEM e PSL se fundiram e formaram o União Brasil."
+  },
+  {
+   "id": "pp",
+   "nome": "Progressistas (PP)",
+   "siglas": [
+    "PDS",
+    "PDC",
+    "PPR",
+    "PP",
+    "PPB"
+   ],
+   "texto": "PDS e PDC se juntaram no PPR (1993). PPR e o antigo PP formaram o PPB (1995), que passou a se chamar PP em 2003 (marca “Progressistas”)."
+  },
+  {
+   "id": "pl",
+   "nome": "PL",
+   "siglas": [
+    "PL",
+    "PRONA",
+    "PR",
+    "PST",
+    "PGT"
+   ],
+   "texto": "O antigo PL absorveu PST e PGT (2003) e se fundiu com o PRONA em 2006, formando o PR. Em 2019, o PR voltou a se chamar PL."
+  },
+  {
+   "id": "prd",
+   "nome": "PRD",
+   "siglas": [
+    "PTB",
+    "PEN",
+    "PATRIOTA",
+    "PRP",
+    "PAN",
+    "PRD"
+   ],
+   "texto": "O PEN virou Patriota em 2018 e incorporou o PRP em 2019. O PTB incorporou o PAN (2007) e o antigo PSD (2003). Em 2023, PTB e Patriota se fundiram no PRD."
+  },
+  {
+   "id": "podemos",
+   "nome": "Podemos",
+   "siglas": [
+    "PTN",
+    "PODE",
+    "PHS",
+    "PSC"
+   ],
+   "texto": "O PTN virou Podemos (PODE) em 2017 e incorporou o PHS (2019) e o PSC (2023)."
+  },
+  {
+   "id": "cidadania",
+   "nome": "Cidadania",
+   "siglas": [
+    "PPS",
+    "CIDADANIA"
+   ],
+   "texto": "O PPS nasceu em 1992 a partir do antigo PCB e passou a se chamar Cidadania em 2019."
+  },
+  {
+   "id": "agir",
+   "nome": "Agir",
+   "siglas": [
+    "PRN",
+    "PTC",
+    "AGIR"
+   ],
+   "texto": "O PRN (partido de Collor em 1989) virou PTC em 2000 e Agir em 2022."
+  },
+  {
+   "id": "dc",
+   "nome": "Democracia Cristã",
+   "siglas": [
+    "PSDC",
+    "DC"
+   ],
+   "texto": "O PSDC passou a se chamar Democracia Cristã (DC) em 2017."
+  },
+  {
+   "id": "avante",
+   "nome": "Avante",
+   "siglas": [
+    "PTdoB",
+    "AVANTE"
+   ],
+   "texto": "O PT do B passou a se chamar Avante em 2017."
+  },
+  {
+   "id": "republicanos",
+   "nome": "Republicanos",
+   "siglas": [
+    "PRB",
+    "REPUBLICANOS"
+   ],
+   "texto": "O PRB passou a se chamar Republicanos em 2019."
+  },
+  {
+   "id": "solidariedade",
+   "nome": "Solidariedade",
+   "siglas": [
+    "SD",
+    "SOLIDARIEDADE",
+    "PROS"
+   ],
+   "texto": "O Solidariedade (antes sigla SD) incorporou o PROS em 2023."
+  },
+  {
+   "id": "pcdob",
+   "nome": "PCdoB",
+   "siglas": [
+    "PCdoB",
+    "PPL"
+   ],
+   "texto": "O PCdoB incorporou o PPL em 2019."
+  },
+  {
+   "id": "psd",
+   "nome": "PSD (2011)",
+   "siglas": [
+    "PSD"
+   ],
+   "texto": "O PSD atual foi criado em 2011. Não é o mesmo PSD que existiu de 1987 a 2003 (esse foi incorporado pelo PTB). Nos dados do TSE, os dois aparecem com a mesma sigla “PSD”; o ano da eleição diz qual é."
+  },
+  {
+   "id": "pt",
+   "nome": "PT",
+   "siglas": [
+    "PT"
+   ],
+   "texto": "Fundado em 1980. Mesma sigla desde então."
+  },
+  {
+   "id": "psdb",
+   "nome": "PSDB",
+   "siglas": [
+    "PSDB"
+   ],
+   "texto": "Fundado em 1988 por políticos que saíram do PMDB. Mesma sigla desde então."
+  },
+  {
+   "id": "pdt",
+   "nome": "PDT",
+   "siglas": [
+    "PDT"
+   ],
+   "texto": "Fundado em 1979/1980. Mesma sigla desde então."
+  },
+  {
+   "id": "psb",
+   "nome": "PSB",
+   "siglas": [
+    "PSB"
+   ],
+   "texto": "Refundado em 1985. Mesma sigla desde então."
+  },
+  {
+   "id": "psol",
+   "nome": "PSOL",
+   "siglas": [
+    "PSOL"
+   ],
+   "texto": "Registrado em 2005."
+  },
+  {
+   "id": "novo",
+   "nome": "Novo",
+   "siglas": [
+    "NOVO"
+   ],
+   "texto": "Registrado em 2015."
+  },
+  {
+   "id": "rede",
+   "nome": "Rede",
+   "siglas": [
+    "REDE"
+   ],
+   "texto": "Registrado em 2015."
+  },
+  {
+   "id": "pv",
+   "nome": "PV",
+   "siglas": [
+    "PV"
+   ],
+   "texto": "Registrado nos anos 1990. Mesma sigla desde então."
+  },
+  {
+   "id": "pmn",
+   "nome": "PMN",
+   "siglas": [
+    "PMN"
+   ],
+   "texto": "Mesma sigla desde os anos 1980."
+  },
+  {
+   "id": "prtb",
+   "nome": "PRTB",
+   "siglas": [
+    "PRTB"
+   ],
+   "texto": "Mesma sigla desde os anos 1990."
+  }
+ ],
+ "regras": [
+  {
+   "sigla": "PSD",
+   "ate_ano": 2010,
+   "familia": "prd",
+   "texto": "Antes de 2011, “PSD” é o antigo Partido Social Democrático (1987–2003), incorporado pelo PTB."
+  }
+ ]
+}

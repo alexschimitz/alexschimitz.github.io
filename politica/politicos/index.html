@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0d0c">
+  <meta name="description" content="Quantos mandatos teve cada político desde 1988: presidente, governadores, senadores, deputados, prefeitos e vereadores, com votos, partidos e fontes oficiais (TSE, Câmara e Senado).">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%2362f58b%22/%3E%3Cpath d=%22M8 24V14M14 24V9M20 24V12M26 24V17%22 stroke=%22%23071009%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3C/svg%3E">
+  <title>Políticos e mandatos desde 1988 — Política em dados abertos</title>
+  <script>try{var t=localStorage.getItem('as-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="politicos.css">
+</head>
+<body class="politica politicos">
+  <a class="skip-link" href="#busca">Pular para a busca</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../" aria-label="Voltar à página inicial">
+        <span class="brand-mark">AS</span>
+        <span class="brand-name">Alexsander Schimitz</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+        <span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Páginas de política">
+        <a href="/politica/">Painel</a>
+        <a href="/politica/gastos/" data-page="gastos">Gastos</a>
+        <a href="/politica/#mapa" data-page="mapa">Mapa</a>
+        <a href="/politica/politicos/" data-page="politicos" aria-current="page">Políticos</a>
+        <a href="/politica/#executivo" data-page="governo">Governo</a>
+        <a href="/politica/#proposicoes">Propostas</a>
+        <a href="/politica/#parlamentares">Congresso</a>
+        <span class="nav-sep" aria-hidden="true"></span>
+        <button class="theme-toggle" type="button" aria-label="Alternar tema claro ou escuro" title="Tema">◐</button>
+        <a class="nav-cta" href="/">← Site</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <nav class="pol-subnav" aria-label="Atalhos desta página">
+      <a href="#busca">Buscar</a>
+      <a href="#ranking">Quem teve mais mandatos</a>
+      <a href="#entenda">Entenda os cargos</a>
+      <a href="#partidos">Partidos que mudaram</a>
+      <a href="#fontes">Fontes e limites</a>
+    </nav>
+
+    <section class="pol-hero container" aria-labelledby="pp-title">
+      <div class="eyebrow"><span class="status-dot"></span> Políticos · mandatos desde 1988</div>
+      <h1 id="pp-title">Quantos mandatos cada político já teve, <span>e onde.</span></h1>
+      <p class="hero-lead">
+        Presidente, governadores, senadores, deputados, prefeitos e vereadores eleitos desde a Constituição de 1988:
+        cada mandato com cargo, lugar, período, partido da época e votos. Tudo vem do TSE, da Câmara e do Senado.
+      </p>
+      <dl class="pol-stats" aria-live="polite">
+        <div><dt>Pessoas com mandato</dt><dd id="st-pessoas">—</dd></div>
+        <div><dt>Mandatos registrados</dt><dd id="st-mandatos">—</dd></div>
+        <div><dt>Eleições cobertas</dt><dd id="st-anos" class="mono">—</dd></div>
+        <div><dt>Dados gerados em</dt><dd id="st-upd" class="mono">—</dd></div>
+      </dl>
+    </section>
+
+    <section class="pol-section pp-busca" id="busca" aria-labelledby="busca-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Buscar</div>
+        <h2 id="busca-title">Ache um político</h2>
+        <p class="section-sub muted">Digite um nome ou use os filtros. Para ver prefeitos e vereadores, escolha um estado (ou marque a busca nacional completa).</p>
+
+        <form class="pp-filters" id="pp-form" role="search" aria-label="Filtros de políticos" autocomplete="off">
+          <div class="field pp-q">
+            <label for="f-q">Nome</label>
+            <input id="f-q" name="q" type="search" placeholder="Ex.: Ulysses, Marina, Tiririca…" enterkeyhint="search">
+          </div>
+          <div class="field">
+            <label for="f-uf">Onde</label>
+            <select id="f-uf" name="uf"><option value="">Brasil (cargos federais e estaduais)</option></select>
+          </div>
+          <div class="field">
+            <label for="f-mun">Cidade</label>
+            <input id="f-mun" name="mun" list="l-mun" placeholder="Escolha um estado primeiro" disabled>
+            <datalist id="l-mun"></datalist>
+          </div>
+          <div class="field">
+            <label for="f-cargo">Cargo</label>
+            <select id="f-cargo" name="cargo"><option value="">Todos os cargos</option></select>
+          </div>
+          <div class="field">
+            <label for="f-part">Partido</label>
+            <select id="f-part" name="partido"><option value="">Todos os partidos</option></select>
+          </div>
+          <div class="field">
+            <label for="f-min">Nº de mandatos</label>
+            <select id="f-min" name="min">
+              <option value="">Qualquer</option><option value="2">2 ou mais</option><option value="3">3 ou mais</option>
+              <option value="6">Mais de 5</option><option value="8">8 ou mais</option><option value="11">Mais de 10</option>
+            </select>
+          </div>
+          <div class="field pp-period">
+            <label for="f-de">Período com mandato</label>
+            <div class="pp-two">
+              <select id="f-de" name="de" aria-label="De (ano)"><option value="">de</option></select>
+              <select id="f-ate" name="ate" aria-label="Até (ano)"><option value="">até</option></select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-ord">Ordenar por</label>
+            <select id="f-ord" name="ord">
+              <option value="nome">Nome (A–Z)</option><option value="mandatos">Mais mandatos</option>
+              <option value="anos">Mais anos com mandato</option><option value="recente">Mandato mais recente</option>
+            </select>
+          </div>
+          <div class="pp-checks">
+            <label class="pp-check"><input type="checkbox" id="f-cur" name="cur"> Só quem está com mandato agora</label>
+            <label class="pp-check"><input type="checkbox" id="f-all" name="all"> Buscar prefeitos e vereadores no Brasil todo <span class="muted" id="all-size"></span></label>
+          </div>
+          <button class="button button-ghost btn-reset" type="reset" id="f-reset">Limpar filtros</button>
+        </form>
+
+        <div id="pp-city" class="pp-city" hidden></div>
+        <p class="pol-count" id="pp-count" aria-live="polite">Carregando…</p>
+        <ol class="pp-list" id="pp-list" aria-label="Resultados"></ol>
+        <div class="pp-more-wrap"><button class="button button-ghost" type="button" id="pp-more" hidden>Mostrar mais</button></div>
+      </div>
+    </section>
+
+    <section class="pol-section pol-alt" id="ranking" aria-labelledby="rank-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Rankings</div>
+        <h2 id="rank-title">Quem teve mais mandatos</h2>
+        <p class="section-sub muted">Conta cada mandato iniciado desde 1988 (inclui vice e mandato-tampão; não inclui quem foi eleito agora para começar em 2027). Empates são desfeitos pelos anos com mandato.</p>
+        <div class="tabs" role="tablist" aria-label="Ranking por cargo" id="rank-tabs"></div>
+        <ol class="pp-rank" id="rank-list" aria-live="polite"><li class="skeleton"></li><li class="skeleton"></li></ol>
+      </div>
+    </section>
+
+    <section class="pol-section" id="entenda" aria-labelledby="ent-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Entenda</div>
+        <h2 id="ent-title">Os cargos, sem juridiquês</h2>
+        <div class="table-wrap">
+          <table class="data-table pp-cargos">
+            <caption class="sr-only">O que faz cada cargo, quanto dura o mandato e como é a eleição</caption>
+            <thead><tr><th scope="col">Cargo</th><th scope="col">O que faz</th><th scope="col">Mandato</th><th scope="col">Como é eleito</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Presidente</th><td>Chefia o governo federal: escolhe ministros, executa o orçamento, sanciona ou veta leis e comanda as Forças Armadas.</td><td>4 anos (o eleito em 1989 teve 5)</td><td>Maioria absoluta dos votos válidos; se ninguém passar de 50%, há 2º turno.</td></tr>
+              <tr><th scope="row">Vice-presidente</th><td>Substitui o presidente em viagens e impedimentos e assume se o cargo ficar vago (como Itamar em 1992 e Temer em 2016).</td><td>4 anos</td><td>Na mesma chapa do presidente.</td></tr>
+              <tr><th scope="row">Governador</th><td>Chefia o governo do estado: polícias, escolas e hospitais estaduais, estradas estaduais.</td><td>4 anos</td><td>Como o presidente, com 2º turno se preciso. Vice na mesma chapa.</td></tr>
+              <tr><th scope="row">Senador</th><td>Representa o estado no Senado: vota leis, aprova autoridades (como ministros do STF) e julga o presidente num impeachment.</td><td>8 anos</td><td>3 por estado. A cada 4 anos, renova 1/3 ou 2/3 das vagas. Ganha quem tem mais votos. Cada um é eleito com 2 suplentes.</td></tr>
+              <tr><th scope="row">Deputado federal</th><td>Cria e vota leis na Câmara, fiscaliza o governo e autoriza a abertura de impeachment.</td><td>4 anos</td><td>Sistema proporcional: 513 vagas divididas entre os estados pela população (de 8 a 70 por estado).</td></tr>
+              <tr><th scope="row">Deputado estadual / distrital</th><td>Faz as leis do estado (no DF, distrital), aprova o orçamento estadual e fiscaliza o governador.</td><td>4 anos</td><td>Sistema proporcional.</td></tr>
+              <tr><th scope="row">Prefeito</th><td>Governa a cidade: postos de saúde, escolas municipais, coleta de lixo, transporte, obras.</td><td>4 anos</td><td>Mais votos vence; 2º turno só em cidades com mais de 200 mil eleitores. Vice na mesma chapa.</td></tr>
+              <tr><th scope="row">Vereador</th><td>Faz as leis da cidade, aprova o orçamento municipal e fiscaliza o prefeito.</td><td>4 anos</td><td>Sistema proporcional; o número de vagas depende da população (de 9 a 55).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pp-explain">
+          <details class="pol-card" open>
+            <summary>O que é suplente?</summary>
+            <p>É quem fica na fila para assumir a vaga se o titular sair (licença, virar ministro ou secretário, renúncia, cassação ou morte).</p>
+            <p>Para deputados e vereadores, os suplentes são os mais votados do mesmo partido (ou coligação/federação) que não se elegeram, na ordem dos votos. No Senado, cada senador é eleito junto com 2 suplentes escolhidos pela chapa, que não recebem votos próprios.</p>
+            <p class="note-sm">Aqui, suplente de senador só conta como mandato quando assumiu de fato (dado do Senado). Para deputado federal, a Câmara diz quem exerceu. Para deputado estadual e vereador não existe dado aberto nacional de quem assumiu.</p>
+          </details>
+          <details class="pol-card">
+            <summary>Reeleição: o que pode e o que não pode</summary>
+            <p>Desde a Emenda Constitucional 16, de 1997, presidente, governador e prefeito podem ser reeleitos <b>uma vez seguida</b>. O primeiro foi Fernando Henrique Cardoso, em 1998. Depois de dois mandatos seguidos no mesmo cargo, é preciso ficar um mandato fora dele.</p>
+            <p>Deputados, senadores e vereadores sempre puderam se reeleger quantas vezes quiserem. Por isso há vereadores com 7 ou 8 mandatos.</p>
+          </details>
+          <details class="pol-card">
+            <summary>O que mudou com a Constituição de 1988</summary>
+            <p>A Constituição foi promulgada em 5 de outubro de 1988. Ela trouxe de volta a eleição direta para presidente (a primeira foi em 1989), criou o 2º turno para presidente, governador e prefeito de cidade grande, tornou o voto facultativo aos 16 e 17 anos e deu mais autonomia a estados e municípios.</p>
+            <p>O mandato de presidente era de 5 anos e passou a 4 em 1994. A partir de 2027, o presidente toma posse em 5 de janeiro e os governadores em 6 de janeiro (Emenda Constitucional 111, de 2021).</p>
+          </details>
+          <details class="pol-card">
+            <summary>Como contamos os mandatos</summary>
+            <p>Cada eleição ganha conta como <b>1 mandato</b>, inclusive como vice e em eleição suplementar (mandato-tampão). Mandatos exercidos como suplente contam quando a Câmara ou o Senado registram que a pessoa assumiu. Quem foi eleito em 2026 aparece como “começa em 2027” e ainda não entra na conta.</p>
+            <p><b>Anos com mandato</b> soma o tempo em que a pessoa teve pelo menos um mandato, sem contar duas vezes os períodos sobrepostos, pelo calendário oficial do cargo. Licenças, cassações e renúncias só aparecem quando a fonte oficial registra (Senado, Câmara e Presidência).</p>
+          </details>
+          <details class="pol-card">
+            <summary>“Possivelmente a mesma pessoa”: por que aparece?</summary>
+            <p>O TSE não traz CPF nem data de nascimento nos dados de 1989, 1990 e parte de 1996. Quando dois registros têm o mesmo nome no mesmo estado, mas não dá para provar que são a mesma pessoa, eles ficam separados e ganham este aviso, com link de um para o outro. Preferimos não juntar no chute.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="pol-section pol-alt" id="partidos" aria-labelledby="part-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Partidos</div>
+        <h2 id="part-title">Partidos que mudaram de nome ou se juntaram</h2>
+        <p class="section-sub muted" id="part-note"></p>
+        <div class="pp-parties" id="part-list"><div class="skeleton"></div></div>
+      </div>
+    </section>
+
+    <section class="pol-section" id="fontes" aria-labelledby="fon-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Fontes e limites</div>
+        <h2 id="fon-title">De onde vêm os dados e o que falta</h2>
+        <div class="pp-sources">
+          <div class="pol-card"><h3>Cobertura por cargo</h3><div class="table-wrap"><table class="data-table" id="cov-table"><thead><tr><th scope="col">Cargo</th><th scope="col">Mandatos</th><th scope="col">Desde</th><th scope="col">Até</th></tr></thead><tbody></tbody></table></div></div>
+          <div class="pol-card"><h3>Fontes oficiais</h3><ul class="pp-ul" id="src-list"></ul></div>
+          <div class="pol-card pp-gaps"><h3>O que ainda falta</h3><ul class="pp-ul" id="gap-list"></ul></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="pol-modal pp-modal" id="pp-modal" aria-labelledby="pm-title">
+    <div class="pol-modal-inner">
+      <button class="profile-close" type="button" id="pm-close" aria-label="Fechar">✕</button>
+      <div id="pm-body"></div>
+    </div>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="container pol-footer">
+      <div>
+        <p><strong>Fontes:</strong>
+          <a href="https://dadosabertos.tse.jus.br/" target="_blank" rel="noreferrer">TSE — Portal de Dados Abertos</a> (candidatos e votação, 1989–2026),
+          <a href="https://dadosabertos.camara.leg.br/" target="_blank" rel="noreferrer">Dados Abertos da Câmara dos Deputados</a> e
+          <a href="https://legis.senado.leg.br/dadosabertos/" target="_blank" rel="noreferrer">Dados Abertos do Senado Federal</a>.
+          Presidência: Biblioteca da Presidência, Câmara e Senado (links em cada mandato).</p>
+        <p><strong>Privacidade:</strong> o TSE publica CPF e data de nascimento dos candidatos. Usamos esses dados só para juntar registros da mesma pessoa durante o processamento; eles não são publicados aqui. Cada pessoa recebe um código próprio, sem relação com documentos.</p>
+        <p>Página independente e apartidária. As informações são exibidas como publicadas pelas fontes; erros ou atrasos podem vir delas. Atualização automática mensal. Dados gerados em <span id="ft-upd" class="mono">—</span>.</p>
+      </div>
+      <div class="pol-footer-links">
+        <p>© <span id="year"></span> Alexsander Schimitz.</p>
+        <a href="/politica/">Painel de política</a>
+        <a href="/">← Página inicial</a>
+        <a href="#top">Voltar ao topo ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../scripts/home.js"></script>
+  <script src="../base.js"></script>
+  <script src="politicos.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+name: politica-politicos
+
+# Diretório de políticos e mandatos (/politica/politicos/).
+# Uma vez por mês: baixa TSE (candidatos + votação), Câmara e Senado, refaz a ligação de identidades
+# e publica politica/data/politicos/. Só faz commit se os dados mudarem.
+# CPF/título/data de nascimento do TSE ficam só no disco temporário do runner (nunca no repositório nem no cache).
+
+on:
+  schedule:
+    - cron: "23 9 4 * *"   # dia 4 de cada mês, 06:23 (Brasília)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: politica-politicos
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      POL_RAW: ${{ runner.temp }}/pol-raw
+      TZ: America/Sao_Paulo
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Dependências
+        run: pip install duckdb==1.5.6
+
+      # Cache só das respostas públicas da Câmara/Senado (acelera; nada pessoal do TSE vai para o cache)
+      - name: Cache das APIs do Congresso
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/pol-raw/api
+          key: pol-politicos-api-${{ github.run_id }}
+          restore-keys: pol-politicos-api-
+
+      - name: TSE (baixa, extrai e resume ano a ano)
+        run: python scripts/politica/politicos/tse_stage.py --download
+
+      - name: Câmara e Senado
+        env:
+          POL_REFRESH: "1"
+        run: python scripts/politica/politicos/fetch_congresso.py
+
+      - name: Monta os dados publicados
+        run: python scripts/politica/politicos/build.py
+
+      - name: Commit (só se mudou)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A politica/data/politicos
+          if git diff --cached --quiet; then
+            echo "Sem mudanças."
+            exit 0
+          fi
+          git commit -m "politica/politicos: atualiza mandatos ($(date '+%Y-%m-%d'))"
+          for i in 1 2 3; do
+            git pull --rebase && git push && exit 0
+            sleep 10
+          done
+          exit 1

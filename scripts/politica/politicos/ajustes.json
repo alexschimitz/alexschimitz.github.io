@@ -1,0 +1,165 @@
+{
+ "nota": "Ajustes manuais e documentados para a Presidência e a Vice-Presidência da República, onde o TSE só registra a eleição (não registra posse, renúncia, impeachment ou sucessão). Cada item cita a fonte oficial. 'refs' diz como achar a pessoa nos dados: pelo nome parlamentar no Senado ou pela candidatura no TSE (ano, cargo, nome completo).",
+ "pessoas": [
+  {
+   "nome": "José Sarney",
+   "refs": [
+    {
+     "senado": "José Sarney"
+    }
+   ],
+   "mandatos": [
+    {
+     "cargo": 1,
+     "inicio": "1985-03-15",
+     "fim": "1990-03-15",
+     "r": "A",
+     "nota": "Eleito vice-presidente pelo Colégio Eleitoral (eleição indireta, janeiro de 1985) na chapa de Tancredo Neves. Assumiu a Presidência em 15/03/1985 e foi efetivado após a morte de Tancredo (21/04/1985). Estava no cargo quando a Constituição de 1988 foi promulgada.",
+     "fonte": "https://www.gov.br/secretariageral/pt-br/centrais-de-conteudo/biblioteca-da-pr/galeria-dos-ex-presidentes/jose_sarney"
+    }
+   ]
+  },
+  {
+   "nome": "Fernando Collor",
+   "refs": [
+    {
+     "tse": [
+      1989,
+      1,
+      "FERNANDO AFFONSO COLLOR DE MELLO"
+     ]
+    },
+    {
+     "senado": "Fernando Collor"
+    }
+   ],
+   "mandatos": [
+    {
+     "cargo": 1,
+     "eleicao": 1989,
+     "inicio": "1990-03-15",
+     "fim": "1992-12-29",
+     "nota": "Primeiro presidente eleito pelo voto direto depois da Constituição de 1988. Afastado em 02/10/1992, quando o Senado abriu o processo de impeachment; renunciou em 29/12/1992, antes do julgamento final. O Senado o declarou inabilitado para funções públicas por 8 anos.",
+     "fonte": "https://www2.camara.leg.br/atividade-legislativa/plenario/discursos/escrevendohistoria/destaque-de-materias/20-anos-do-impeachment"
+    }
+   ]
+  },
+  {
+   "nome": "Itamar Franco",
+   "refs": [
+    {
+     "senado": "Itamar Franco"
+    }
+   ],
+   "mandatos": [
+    {
+     "cargo": 2,
+     "eleicao": 1989,
+     "inicio": "1990-03-15",
+     "fim": "1992-12-29",
+     "r": "V",
+     "nota": "Eleito vice-presidente na chapa de Fernando Collor em 1989. Assumiu a Presidência interinamente em 02/10/1992, com o afastamento de Collor.",
+     "fonte": "https://www2.camara.leg.br/atividade-legislativa/plenario/discursos/escrevendohistoria/destaque-de-materias/20-anos-do-impeachment"
+    },
+    {
+     "cargo": 1,
+     "inicio": "1992-12-29",
+     "fim": "1995-01-01",
+     "r": "A",
+     "nota": "Tomou posse como presidente em 29/12/1992, após a renúncia de Collor, para completar o mandato até 1º/01/1995.",
+     "fonte": "https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=14742&download=true"
+    }
+   ]
+  },
+  {
+   "nome": "Dilma Rousseff",
+   "refs": [
+    {
+     "tse": [
+      2014,
+      1,
+      "DILMA VANA ROUSSEFF"
+     ]
+    }
+   ],
+   "mandatos": [
+    {
+     "cargo": 1,
+     "eleicao": 2014,
+     "inicio": "2015-01-01",
+     "fim": "2016-08-31",
+     "nota": "Afastada em 12/05/2016, quando o Senado abriu o processo de impeachment; perdeu o mandato no julgamento de 31/08/2016 (61 votos a 20), mas manteve os direitos políticos.",
+     "fonte": "https://www12.senado.leg.br/noticias/materias/2016/08/31/dilma-rousseff-perde-o-mandato-e-temer-e-confirmado-presidente"
+    }
+   ]
+  },
+  {
+   "nome": "Michel Temer",
+   "refs": [
+    {
+     "tse": [
+      2014,
+      2,
+      "MICHEL MIGUEL ELIAS TEMER LULIA"
+     ]
+    }
+   ],
+   "mandatos": [
+    {
+     "cargo": 2,
+     "eleicao": 2014,
+     "inicio": "2015-01-01",
+     "fim": "2016-08-31",
+     "r": "V",
+     "nota": "Vice-presidente reeleito em 2014. Exerceu a Presidência interinamente a partir de 12/05/2016, com o afastamento de Dilma Rousseff.",
+     "fonte": "https://www12.senado.leg.br/noticias/materias/2016/08/31/dilma-rousseff-perde-o-mandato-e-temer-e-confirmado-presidente"
+    },
+    {
+     "cargo": 1,
+     "inicio": "2016-08-31",
+     "fim": "2019-01-01",
+     "r": "A",
+     "nota": "Tomou posse como presidente em 31/08/2016 para completar o mandato até 31/12/2018.",
+     "fonte": "https://www12.senado.leg.br/noticias/materias/2016/08/31/dilma-rousseff-perde-o-mandato-e-temer-e-confirmado-presidente"
+    }
+   ]
+  },
+  {
+   "nome": "Marco Maciel",
+   "refs": [
+    {
+     "tse": [
+      1994,
+      2,
+      "MARCO ANTONIO DE OLIVEIRA MACIEL"
+     ]
+    },
+    {
+     "senado": "Marco Maciel"
+    }
+   ],
+   "mandatos": [
+    {
+     "cargo": 2,
+     "eleicao": 1994,
+     "inicio": "1995-01-01",
+     "fim": "1999-01-01",
+     "r": "V",
+     "partido": "PFL",
+     "nota": "Eleito vice-presidente na chapa de Fernando Henrique Cardoso em 1994. O arquivo do TSE de 1994 não liga o vice ao titular (sem resultado para o vice); o mandato vem da Biblioteca da Presidência.",
+     "fonte": "https://www.biblioteca.presidencia.gov.br/presidencia/ex-presidentes/fernando-henrique-cardoso/vice-presidente"
+    },
+    {
+     "cargo": 2,
+     "eleicao": 1998,
+     "inicio": "1999-01-01",
+     "fim": "2003-01-01",
+     "r": "V",
+     "partido": "PFL",
+     "nota": "Reeleito vice-presidente na chapa de Fernando Henrique Cardoso em 1998. O arquivo do TSE de 1998 não liga o vice ao titular; o mandato vem da Biblioteca da Presidência.",
+     "fonte": "https://www.biblioteca.presidencia.gov.br/presidencia/ex-presidentes/fernando-henrique-cardoso/vice-presidente"
+    }
+   ]
+  }
+ ]
+}
