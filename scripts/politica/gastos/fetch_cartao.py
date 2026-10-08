@@ -21,6 +21,7 @@ os.makedirs(RAWC, exist_ok=True)
 NOW = datetime.date.today()
 DELAY = float(os.environ.get('CPGF_DELAY', '12'))
 MAX_DL = int(os.environ.get('CPGF_MAX_DOWNLOADS', '400'))
+BUDGET_S = float(os.environ.get('CPGF_BUDGET_S', '0') or 0)  # 0 = sem limite de tempo
 
 class Blocked(Exception):
     pass
@@ -253,7 +254,7 @@ def main():
         presidencia_hist()
     except Exception as e:
         print('  AVISO: planilha da Presidência falhou:', e, flush=True)
-    dl = 0; blocked = False
+    dl = 0; blocked = False; t0 = time.time()
     recent = set()
     # sempre refaz os 3 meses mais recentes (o Portal publica com atraso e pode corrigir)
     allm = list(months())
@@ -266,7 +267,7 @@ def main():
         if ym in recent and os.path.exists(p) and time.time() - os.path.getmtime(p) > 86400 * 3:
             os.remove(p)
         cached = os.path.exists(p) and os.path.getsize(p) > 100
-        if not cached and (blocked or dl >= MAX_DL):
+        if not cached and (blocked or dl >= MAX_DL or (BUDGET_S and time.time() - t0 > BUDGET_S)):
             continue
         try:
             path = fetch_month(ym)

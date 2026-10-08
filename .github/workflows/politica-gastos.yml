@@ -49,10 +49,11 @@ jobs:
         run: python3 scripts/politica/gastos/fetch_parl.py
 
       - name: Cartão corporativo (CPGF)
-        timeout-minutes: 15
+        timeout-minutes: 32
         continue-on-error: true
         env:
           CPGF_MAX_DOWNLOADS: ${{ github.event.inputs.cpgf_max || '20' }}
+          CPGF_BUDGET_S: "1500"
           CPGF_DELAY: "20"
         run: python3 scripts/politica/gastos/fetch_cartao.py
 
