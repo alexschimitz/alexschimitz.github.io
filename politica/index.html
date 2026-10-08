@@ -34,7 +34,7 @@
         <a href="/politica/">Painel</a>
         <a href="/politica/gastos/" data-page="gastos">Gastos</a>
         <a href="/politica/mapa/" data-page="mapa">Mapa</a>
-        <a href="/politica/#parlamentares" data-page="politicos">Políticos</a>
+        <a href="/politica/politicos/" data-page="politicos">Políticos</a>
         <a href="/politica/governo/" data-page="governo">Governo</a>
         <a href="/politica/propostas/" data-page="propostas">Propostas</a>
         <a href="/politica/#parlamentares">Congresso</a>
@@ -100,7 +100,7 @@
             <span class="entry-txt"><strong data-soon>Mapa do Brasil</strong>
             <span>Toque no seu estado ou cidade: quem governa, quem é o prefeito e como estão as contas do estado e da prefeitura.</span></span>
             <span class="entry-go" aria-hidden="true">→</span></a></li>
-          <li><a class="entry" href="#parlamentares" data-page="politicos">
+          <li><a class="entry" href="/politica/politicos/" data-page="politicos">
             <span class="entry-ico" aria-hidden="true">☰</span>
             <span class="entry-txt"><strong data-soon>Políticos e mandatos</strong>
             <span>Busque qualquer político e veja quantos mandatos teve, em quais cargos, por quais partidos e em que anos.</span></span>
@@ -148,25 +148,47 @@
     <section class="section pol-section" id="mapa" aria-labelledby="map-title">
       <div class="container">
         <div class="section-kicker">Mapa</div>
-        <div class="projects-heading">
-          <div>
-            <h2 id="map-title">Mapa do Brasil, estado por estado</h2>
-            <p>Toque num estado ou busque um município para ver quem governa. No <a href="/politica/mapa/">mapa completo</a> você vê também as contas do estado e da prefeitura.</p>
+        <div class="map-teaser">
+          <a class="map-teaser-img" href="/politica/mapa/" aria-label="Abrir o mapa do Brasil">
+            <img class="only-dark" src="img/mapa-previa-dark.webp" alt="" width="554" height="560" loading="lazy" decoding="async">
+            <img class="only-light" src="img/mapa-previa-light.webp" alt="" width="554" height="560" loading="lazy" decoding="async">
+          </a>
+          <div class="map-teaser-txt">
+            <h2 id="map-title">Mapa do Brasil: seu estado e sua cidade</h2>
+            <p>Escolha um estado ou digite o nome da cidade. Você vê quem governa (governador e prefeito), quanto o estado e a prefeitura arrecadam e gastam, e o que chega de programas federais — tudo com a fonte oficial.</p>
+            <p><a class="button button-primary" href="/politica/mapa/">Abrir o mapa →</a></p>
+            <h3 class="h-sm" id="uf-links-t">Ou vá direto para um estado</h3>
+            <ul class="uf-links" aria-labelledby="uf-links-t">
+            <li><a href="/politica/mapa/?uf=AC" title="Acre"><b>AC</b><span>Acre</span></a></li>
+            <li><a href="/politica/mapa/?uf=AL" title="Alagoas"><b>AL</b><span>Alagoas</span></a></li>
+            <li><a href="/politica/mapa/?uf=AP" title="Amapá"><b>AP</b><span>Amapá</span></a></li>
+            <li><a href="/politica/mapa/?uf=AM" title="Amazonas"><b>AM</b><span>Amazonas</span></a></li>
+            <li><a href="/politica/mapa/?uf=BA" title="Bahia"><b>BA</b><span>Bahia</span></a></li>
+            <li><a href="/politica/mapa/?uf=CE" title="Ceará"><b>CE</b><span>Ceará</span></a></li>
+            <li><a href="/politica/mapa/?uf=DF" title="Distrito Federal"><b>DF</b><span>Distrito Federal</span></a></li>
+            <li><a href="/politica/mapa/?uf=ES" title="Espírito Santo"><b>ES</b><span>Espírito Santo</span></a></li>
+            <li><a href="/politica/mapa/?uf=GO" title="Goiás"><b>GO</b><span>Goiás</span></a></li>
+            <li><a href="/politica/mapa/?uf=MA" title="Maranhão"><b>MA</b><span>Maranhão</span></a></li>
+            <li><a href="/politica/mapa/?uf=MT" title="Mato Grosso"><b>MT</b><span>Mato Grosso</span></a></li>
+            <li><a href="/politica/mapa/?uf=MS" title="Mato Grosso do Sul"><b>MS</b><span>Mato Grosso do Sul</span></a></li>
+            <li><a href="/politica/mapa/?uf=MG" title="Minas Gerais"><b>MG</b><span>Minas Gerais</span></a></li>
+            <li><a href="/politica/mapa/?uf=PR" title="Paraná"><b>PR</b><span>Paraná</span></a></li>
+            <li><a href="/politica/mapa/?uf=PB" title="Paraíba"><b>PB</b><span>Paraíba</span></a></li>
+            <li><a href="/politica/mapa/?uf=PA" title="Pará"><b>PA</b><span>Pará</span></a></li>
+            <li><a href="/politica/mapa/?uf=PE" title="Pernambuco"><b>PE</b><span>Pernambuco</span></a></li>
+            <li><a href="/politica/mapa/?uf=PI" title="Piauí"><b>PI</b><span>Piauí</span></a></li>
+            <li><a href="/politica/mapa/?uf=RN" title="Rio Grande do Norte"><b>RN</b><span>Rio Grande do Norte</span></a></li>
+            <li><a href="/politica/mapa/?uf=RS" title="Rio Grande do Sul"><b>RS</b><span>Rio Grande do Sul</span></a></li>
+            <li><a href="/politica/mapa/?uf=RJ" title="Rio de Janeiro"><b>RJ</b><span>Rio de Janeiro</span></a></li>
+            <li><a href="/politica/mapa/?uf=RO" title="Rondônia"><b>RO</b><span>Rondônia</span></a></li>
+            <li><a href="/politica/mapa/?uf=RR" title="Roraima"><b>RR</b><span>Roraima</span></a></li>
+            <li><a href="/politica/mapa/?uf=SC" title="Santa Catarina"><b>SC</b><span>Santa Catarina</span></a></li>
+            <li><a href="/politica/mapa/?uf=SE" title="Sergipe"><b>SE</b><span>Sergipe</span></a></li>
+            <li><a href="/politica/mapa/?uf=SP" title="São Paulo"><b>SP</b><span>São Paulo</span></a></li>
+            <li><a href="/politica/mapa/?uf=TO" title="Tocantins"><b>TO</b><span>Tocantins</span></a></li>
+            </ul>
           </div>
         </div>
-        <form class="pol-filters" onsubmit="return false" aria-label="Buscar município">
-          <div class="field field-search">
-            <label for="mun-q">Município</label>
-            <input id="mun-q" type="search" placeholder="Ex.: Porto Alegre, Recife, Oiapoque" autocomplete="off" enterkeyhint="search">
-          </div>
-        </form>
-        <div class="uf-chips" id="uf-chips" role="group" aria-label="Estados"></div>
-        <div class="map-layout">
-          <div class="map-frame" id="br-map"></div>
-          <div class="sheet" id="uf-sheet" aria-live="polite"><p class="muted">Escolha um estado no mapa.</p></div>
-        </div>
-        <p class="note" id="uf-note"></p>
-        <p class="more-link" data-page-reveal="mapa"><a href="/politica/mapa/">Abrir o mapa completo, com as contas do estado e da prefeitura →</a></p>
       </div>
     </section>
 
@@ -373,7 +395,7 @@
 
   <script src="../scripts/home.js"></script>
   <script src="base.js"></script>
-  <script src="brasil.js"></script>
+  <script src="gabinete.js"></script>
   <script src="simples.js"></script>
   <script src="politica.js"></script>
 </body>

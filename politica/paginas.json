@@ -3,7 +3,7 @@
   "paginas": {
     "gastos": true,
     "mapa": true,
-    "politicos": false,
+    "politicos": true,
     "governo": true,
     "propostas": true
   }

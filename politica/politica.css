@@ -45,3 +45,22 @@
   .entry { min-height: 0; padding: 16px; grid-template-columns: 44px minmax(0, 1fr) 16px; gap: 12px; }
   .entry-ico { width: 44px; height: 44px; border-radius: 13px; font-size: 1rem; }
 }
+
+/* Prévia do mapa (o mapa completo fica em /politica/mapa/) */
+.map-teaser { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 32px; align-items: center; }
+.map-teaser-img { display: block; padding: 14px; border: 1px solid var(--line); border-radius: 24px; background: var(--panel); transition: border-color .18s ease; }
+.map-teaser-img:hover, .map-teaser-img:focus-visible { border-color: var(--accent); }
+.map-teaser-img img { display: block; width: 100%; height: auto; }
+html[data-theme="light"] .only-dark, html:not([data-theme="light"]) .only-light { display: none; }
+.map-teaser-txt h2 { font-size: clamp(1.9rem, 3.8vw, 3.1rem); line-height: 1.08; letter-spacing: -0.045em; }
+.map-teaser-txt > p { margin-top: 12px; color: var(--muted); }
+.map-teaser-txt .button { margin-top: 6px; }
+.uf-links { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); gap: 6px; }
+.uf-links a { display: flex; align-items: center; gap: 8px; min-height: 40px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 12px; font-size: 0.84rem; color: var(--muted); }
+.uf-links a:hover, .uf-links a:focus-visible { color: var(--text); border-color: var(--accent); }
+.uf-links b { font-family: "DM Mono", monospace; font-size: 0.74rem; color: var(--accent); min-width: 22px; }
+.uf-links span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 860px) {
+  .map-teaser { grid-template-columns: 1fr; gap: 20px; }
+  .map-teaser-img { max-width: 320px; margin-inline: auto; width: 100%; }
+}

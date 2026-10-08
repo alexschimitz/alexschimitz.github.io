@@ -110,4 +110,23 @@
     }, { rootMargin: "-45% 0px -50% 0px" });
     Object.keys(map).forEach(function (id) { io.observe(document.getElementById(id)); });
   }
+
+  // Tabelas com rolagem horizontal precisam ser alcançáveis pelo teclado
+  function tableWraps() {
+    document.querySelectorAll(".table-wrap:not([tabindex])").forEach(function (w) {
+      w.setAttribute("tabindex", "0");
+      if (!w.hasAttribute("role")) w.setAttribute("role", "region");
+      if (!w.hasAttribute("aria-label") && !w.hasAttribute("aria-labelledby")) {
+        var cap = w.querySelector("caption"), h = w.closest("section, .pol-card");
+        var t = (cap && cap.textContent) || (h && h.querySelector("h2, h3") && h.querySelector("h2, h3").textContent) || "Tabela";
+        w.setAttribute("aria-label", t.trim().slice(0, 80));
+      }
+    });
+  }
+  tableWraps();
+  if ("MutationObserver" in window) {
+    var tq = null;
+    new MutationObserver(function () { if (!tq) tq = setTimeout(function () { tq = null; tableWraps(); }, 150); })
+      .observe(document.body, { childList: true, subtree: true });
+  }
 })();
