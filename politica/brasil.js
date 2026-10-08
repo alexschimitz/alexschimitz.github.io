@@ -52,7 +52,7 @@
     const mins = data.ministros || [];
     const grid = $("#min-grid");
     const count = $("#min-count");
-    const LIMIT = 9;
+    const LIMIT = 8;
     let showAll = false;
     const moreBtn = document.createElement("button");
     moreBtn.type = "button";
