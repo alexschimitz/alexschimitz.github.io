@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0d0c">
+  <meta name="description" content="Governo federal em linguagem simples: presidente, vice, todos os ministérios e o que cada um faz, presidentes desde 1985, leis, medidas provisórias, decretos e vetos de cada governo, e a eleição de 2026 — com fontes oficiais.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%2362f58b%22/%3E%3Cpath d=%22M8 24V14M14 24V9M20 24V12M26 24V17%22 stroke=%22%23071009%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3C/svg%3E">
+  <title>Governo federal e presidentes — Política em dados abertos</title>
+  <script>try{var t=localStorage.getItem('as-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" href="../data/governo/atual.json" as="fetch" crossorigin>
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="governo.css">
+</head>
+<body class="politica gov-page">
+  <a class="skip-link" href="#agora">Pular para o conteúdo</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../" aria-label="Voltar à página inicial">
+        <span class="brand-mark">AS</span>
+        <span class="brand-name">Alexsander Schimitz</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+        <span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-nav" data-pol-nav aria-label="Páginas de política"></nav>
+    </div>
+  </header>
+  <main id="conteudo">
+    <nav class="pol-subnav" aria-label="Atalhos desta página">
+      <a href="#agora">Governo agora</a>
+      <a href="#ministerios">Ministérios</a>
+      <a href="#eleicoes">Eleições 2026</a>
+      <a href="#presidentes">Presidentes</a>
+      <a href="#atos">Leis, MPs e decretos</a>
+      <a href="#como">Como ler</a>
+      <a href="#fontes">Fontes</a>
+    </nav>
+
+    <section class="pol-hero container" aria-labelledby="gov-title">
+      <div class="eyebrow"><span class="status-dot"></span> Poder Executivo federal · dados oficiais</div>
+      <h1 id="gov-title">Governo federal, <span>explicado sem complicação.</span></h1>
+      <p class="hero-lead">Quem é o presidente, quem comanda cada ministério e o que cada um faz. Todos os presidentes desde 1985, como cada mandato terminou e as leis, medidas provisórias, decretos e vetos de cada governo, com o texto oficial a um toque.</p>
+      <dl class="pol-stats" aria-live="polite">
+        <div><dt>Presidente</dt><dd id="st-pres">—</dd></div>
+        <div><dt>Ministérios</dt><dd id="st-min">—</dd></div>
+        <div><dt>Mandato até</dt><dd id="st-ate">—</dd></div>
+        <div><dt>Conferido em</dt><dd id="st-upd" class="mono">—</dd></div>
+      </dl>
+    </section>
+
+    <section class="section pol-section" id="agora" aria-labelledby="agora-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Governo agora</div>
+        <div class="projects-heading"><div>
+          <h2 id="agora-title">Quem governa o Brasil hoje</h2>
+          <p>O presidente chefia o governo e o Estado; o vice substitui o presidente em viagens, doenças ou se o cargo ficar vago. Os ministros são escolhidos e podem ser trocados pelo presidente a qualquer momento.</p>
+        </div></div>
+        <div id="gov-topo" class="gov-topo" aria-live="polite"><div class="skeleton" style="height:220px"></div></div>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="ministerios" aria-labelledby="min-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Ministérios</div>
+        <div class="projects-heading"><div>
+          <h2 id="min-title">Cada ministério, quem comanda e o que faz</h2>
+          <p id="min-nota">Ministérios são as “áreas” do governo federal: cada um cuida de um assunto e tem um ministro escolhido pelo presidente.</p>
+        </div></div>
+        <div class="pol-filters gov-filters">
+          <div class="field field-search"><label for="min-q">Buscar ministério ou ministro</label><input id="min-q" type="search" placeholder="Ex.: saúde, educação, nome do ministro" autocomplete="off"></div>
+          <div class="field"><label for="min-p">Partido do ministro</label><select id="min-p"><option value="">Todos</option></select></div>
+        </div>
+        <p class="pol-count" id="min-count" aria-live="polite"></p>
+        <ul class="gov-min" id="min-list"></ul>
+        <details class="gov-div" id="min-div"><summary>Diferenças entre as fontes (o que conferimos)</summary><div></div></details>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="eleicoes" aria-labelledby="ele-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Eleições 2026</div>
+        <div class="projects-heading"><div>
+          <h2 id="ele-title">Eleição para presidente</h2>
+          <p>Números oficiais do Tribunal Superior Eleitoral (TSE), sem arredondar e sem pesquisa de opinião. O percentual é sobre os votos válidos (sem brancos e nulos), como o TSE divulga.</p>
+        </div></div>
+        <div id="ele-2026" aria-live="polite"><div class="skeleton" style="height:200px"></div></div>
+        <div class="gov-hist">
+          <h3 class="h-md">Eleições presidenciais anteriores</h3>
+          <div class="tabs" role="tablist" aria-label="Ano da eleição" id="ele-anos"></div>
+          <div id="ele-hist" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="presidentes" aria-labelledby="pres-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Presidentes desde 1985</div>
+        <div class="projects-heading"><div>
+          <h2 id="pres-title">Todos os presidentes da Nova República</h2>
+          <p>Do restante do mandato de José Sarney (a Constituição atual é de 1988) até hoje: partido, vice, como chegou ao cargo, como o mandato terminou e o que foi assinado em cada governo.</p>
+        </div></div>
+        <ol class="gov-pres" id="pres-list"><li class="skeleton" style="height:260px"></li></ol>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="atos" aria-labelledby="atos-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Leis, MPs, decretos e vetos</div>
+        <div class="projects-heading"><div>
+          <h2 id="atos-title">O que cada governo assinou</h2>
+          <p>Escolha o tipo, o presidente e o ano. Cada item mostra o resumo oficial (ementa), um resumo simples quando existe e o link para o texto oficial.</p>
+        </div></div>
+        <div class="tabs" role="tablist" aria-label="Tipo de ato" id="atos-tipos"></div>
+        <p class="note-sm" id="atos-explica"></p>
+        <div class="pol-filters gov-filters">
+          <div class="field"><label for="atos-pres">Presidente</label><select id="atos-pres"><option value="">Todos</option></select></div>
+          <div class="field"><label for="atos-ano">Ano</label><select id="atos-ano"></select></div>
+          <div class="field field-search"><label for="atos-q">Buscar no ano escolhido</label><input id="atos-q" type="search" placeholder="Ex.: saúde, salário mínimo, 14.133" autocomplete="off"></div>
+          <div class="field" id="atos-sit-wrap" hidden><label for="atos-sit">Situação</label><select id="atos-sit"><option value="">Todas</option></select></div>
+        </div>
+        <p class="pol-count" id="atos-count" aria-live="polite"></p>
+        <ul class="items gov-atos" id="atos-list"></ul>
+        <div class="more-wrap"><button class="button" type="button" id="atos-more" hidden>Mostrar mais</button></div>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="como" aria-labelledby="como-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Como ler</div>
+        <div class="projects-heading"><div><h2 id="como-title">Palavras que aparecem nesta página</h2></div></div>
+        <dl class="gov-gloss">
+          <div><dt>Lei ordinária</dt><dd>A lei “comum”. É aprovada pela maioria dos deputados e senadores presentes e depois sancionada (assinada) pelo presidente.</dd></div>
+          <div><dt>Lei complementar</dt><dd>Lei sobre temas que a Constituição manda tratar assim (como impostos e finanças públicas). Precisa do voto da maioria absoluta: metade mais um de todos os deputados e senadores.</dd></div>
+          <div><dt>Emenda constitucional</dt><dd>Muda a Constituição. Precisa de 3/5 dos votos em dois turnos na Câmara e no Senado e é promulgada pelo próprio Congresso — o presidente não assina nem pode vetar.</dd></div>
+          <div><dt>Medida provisória (MP)</dt><dd>Ato do presidente com força de lei, para casos urgentes. Vale na hora, mas o Congresso tem até 120 dias para aprovar (vira lei), mudar ou deixar perder a validade.</dd></div>
+          <div><dt>Decreto</dt><dd>Ato do presidente para organizar o governo e detalhar como uma lei será cumprida. Não pode criar obrigação que a lei não prevê.</dd></div>
+          <div><dt>Veto</dt><dd>Quando o presidente recusa um projeto aprovado pelo Congresso, todo (veto total) ou só alguns trechos (veto parcial). O Congresso pode manter o veto ou derrubá-lo, com a maioria absoluta de deputados e de senadores.</dd></div>
+          <div><dt>Impeachment</dt><dd>Processo em que o presidente pode perder o cargo por crime de responsabilidade. A Câmara autoriza (2/3 dos deputados) e o Senado julga (2/3 dos senadores para condenar).</dd></div>
+          <div><dt>Vice em exercício</dt><dd>Quando o presidente viaja ou se afasta, o vice assume temporariamente e pode assinar atos. Nesta página esses atos contam para o titular, exceto nos afastamentos por impeachment.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="fontes" aria-labelledby="fontes-title" tabindex="-1">
+      <div class="container">
+        <div class="section-kicker">Fontes e limites</div>
+        <div class="projects-heading"><div><h2 id="fontes-title">De onde vêm os dados</h2></div></div>
+        <div class="gov-fontes" id="fontes-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container pol-footer">
+      <div>
+        <p><strong>Fontes:</strong>
+          <a href="https://www.gov.br/planalto/pt-br/conheca-a-presidencia/ministros-e-ministras" target="_blank" rel="noreferrer">Planalto (ministros)</a>,
+          <a href="https://www.gov.br/secretariageral/pt-br/centrais-de-conteudo/biblioteca-da-pr/galeria-dos-ex-presidentes" target="_blank" rel="noreferrer">Biblioteca da Presidência</a>,
+          <a href="https://legis.senado.leg.br/dadosabertos/" target="_blank" rel="noreferrer">Dados Abertos do Senado (legislação, MPs e vetos)</a>,
+          <a href="https://dadosabertos.camara.leg.br/" target="_blank" rel="noreferrer">Dados Abertos da Câmara</a>,
+          <a href="https://normas.leg.br/" target="_blank" rel="noreferrer">Normas.leg.br</a>,
+          <a href="https://resultados.tse.jus.br/" target="_blank" rel="noreferrer">TSE — resultados</a> e
+          <a href="https://dadosabertos.tse.jus.br/" target="_blank" rel="noreferrer">TSE — dados abertos</a>;
+          conferência com <a href="https://www.wikidata.org/" target="_blank" rel="noreferrer">Wikidata</a> e Wikipédia. Fotos: Wikimedia Commons (autor e licença em cada foto).</p>
+        <p>Página independente e apartidária. Os textos simples não substituem o texto oficial e não expressam opinião. Atualização automática diária dos atos e da eleição; a lista de ministros é conferida manualmente.</p>
+      </div>
+      <div class="pol-footer-links">
+        <p>© <span id="year"></span> Alexsander Schimitz.</p>
+        <a href="/politica/">Painel de política</a>
+        <a href="/politica/propostas/">Propostas</a>
+        <a href="/">← Página inicial</a>
+        <a href="#top">Voltar ao topo ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../scripts/home.js"></script>
+  <script src="../base.js"></script>
+  <script src="../propostas/simplifica.js"></script>
+  <script src="governo.js"></script>
+</body>
+</html>

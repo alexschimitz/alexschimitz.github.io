@@ -1,0 +1,897 @@
+{
+ "_sobre": "Composição atual do governo federal, conferida pelo fluxo Governo & Propostas. Nomes e cargos: página oficial do Planalto. Datas de posse e partidos: cruzamento do arquivo politica/data/governo.json (enviado em 06/10/2026), Wikidata e Wikipédia; divergências listadas em \"divergencias\".",
+ "verificadoEm": "2026-10-08",
+ "fontes": [
+  {
+   "nome": "Presidência da República — Ministros e Ministras (página atualizada em 05/05/2026, consultada em 08/10/2026)",
+   "url": "https://www.gov.br/planalto/pt-br/conheca-a-presidencia/ministros-e-ministras"
+  },
+  {
+   "nome": "Wikidata — cargos (P39) e partidos (P102), consultado em 08/10/2026",
+   "url": "https://www.wikidata.org/"
+  },
+  {
+   "nome": "Wikipédia — Lista de membros do gabinete de Lula (2023–presente), consultada em 08/10/2026",
+   "url": "https://pt.wikipedia.org/wiki/Lista_de_membros_do_gabinete_de_Lula_(2023%E2%80%93presente)"
+  },
+  {
+   "nome": "Constituição Federal, art. 82, e Emenda Constitucional nº 111/2021 (data de posse)",
+   "url": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc111.htm"
+  }
+ ],
+ "presidente": {
+  "nome": "Luiz Inácio Lula da Silva",
+  "partido": "PT",
+  "cargo": "Presidente da República",
+  "desde": "2023-01-01",
+  "desdeTexto": "1º de janeiro de 2023",
+  "mandatoAte": "Posse do sucessor em 5 de janeiro de 2027 (EC 111/2021)",
+  "foto": "lula",
+  "url": "https://www.gov.br/planalto/pt-br"
+ },
+ "vice": {
+  "nome": "Geraldo Alckmin",
+  "partido": "PSB",
+  "cargo": "Vice-presidente da República",
+  "desde": "2023-01-01",
+  "desdeTexto": "1º de janeiro de 2023",
+  "foto": "alckmin",
+  "url": "https://www.gov.br/planalto/pt-br/vice-presidencia"
+ },
+ "ministerios": [
+  {
+   "orgao": "Casa Civil",
+   "oQueFaz": "Coordena o trabalho dos ministérios, acompanha os principais programas do governo e analisa os atos que o presidente vai assinar.",
+   "cargo": "Ministra de Estado da Casa Civil da Presidência da República",
+   "nome": "Miriam Belchior",
+   "nomeCompleto": "Miriam Belchior",
+   "partido": "PT",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "",
+   "desdeTexto": "",
+   "desdeFontes": {
+    "arquivo": "2026-04-02",
+    "wikipedia": "2026-04-03"
+   },
+   "desdeStatus": "diverge",
+   "site": "https://www.gov.br/casacivil",
+   "wikidata": "Q10330636"
+  },
+  {
+   "orgao": "Secretaria-Geral da Presidência",
+   "oQueFaz": "Faz a ponte entre o governo e a sociedade civil (movimentos sociais, ONGs, conselhos) e cuida da participação social.",
+   "cargo": "Ministro de Estado da Secretaria-Geral da Presidência da República",
+   "nome": "Guilherme Boulos",
+   "nomeCompleto": "Guilherme Castro Boulos",
+   "partido": "PSOL",
+   "partidoFontes": [
+    "Wikipédia",
+    "Wikidata"
+   ],
+   "desde": "",
+   "desdeTexto": "",
+   "desdeFontes": {
+    "arquivo": "2025-10-20",
+    "wikipedia": "2025-10-29"
+   },
+   "desdeStatus": "diverge",
+   "site": "https://www.gov.br/secretariageral",
+   "wikidata": "Q20045809"
+  },
+  {
+   "orgao": "Secretaria de Relações Institucionais",
+   "oQueFaz": "Cuida da articulação política do governo com o Congresso, os estados e os municípios.",
+   "cargo": "Ministro de Estado da Secretaria de Relações Institucionais da Presidência da República",
+   "nome": "José Guimarães",
+   "nomeCompleto": "José Nobre Guimarães",
+   "partido": "PT",
+   "partidoFontes": [
+    "Wikipédia",
+    "Wikidata"
+   ],
+   "desde": "2026-04-14",
+   "desdeTexto": "14 de abril de 2026",
+   "desdeFontes": {
+    "arquivo": "2026-04-14",
+    "wikipedia": "2026-04-14"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/sri",
+   "wikidata": "Q10310206"
+  },
+  {
+   "orgao": "Secretaria de Comunicação Social",
+   "oQueFaz": "Cuida da comunicação do governo: divulgação, publicidade oficial e canais de informação ao público.",
+   "cargo": "Ministro de Estado da Secretaria de Comunicação Social da Presidência da República",
+   "nome": "Sidônio Palmeira",
+   "nomeCompleto": "Sidônio Palmeira",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2025-01-07",
+   "desdeTexto": "7 de janeiro de 2025",
+   "desdeFontes": {
+    "arquivo": "2025-01-07",
+    "wikipedia": "2025-01-07"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/secom",
+   "wikidata": "Q131840556"
+  },
+  {
+   "orgao": "Gabinete de Segurança Institucional",
+   "oQueFaz": "Cuida da segurança do presidente, do vice e dos palácios e coordena temas de inteligência e segurança da informação.",
+   "cargo": "Ministro de Estado Chefe do Gabinete de Segurança Institucional da Presidência da República",
+   "nome": "Marcos Amaro",
+   "nomeCompleto": "Marcos Antonio Amaro dos Santos",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2023-05-04",
+   "desdeTexto": "4 de maio de 2023",
+   "desdeFontes": {
+    "arquivo": "2023-05-04",
+    "wikipedia": "2023-05-04",
+    "wikidata": "2023-05-05"
+   },
+   "desdeStatus": "maioria",
+   "site": "https://www.gov.br/gsi",
+   "wikidata": "Q59572093"
+  },
+  {
+   "orgao": "Advocacia-Geral da União",
+   "oQueFaz": "Defende o governo federal na Justiça e dá orientação jurídica aos órgãos federais.",
+   "cargo": "Advogado-Geral da União",
+   "nome": "Jorge Messias",
+   "nomeCompleto": "Jorge Rodrigo Araújo Messias",
+   "partido": "PT",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2023-01-01",
+   "desdeTexto": "1º de janeiro de 2023",
+   "desdeFontes": {
+    "arquivo": "2023-01-01",
+    "wikipedia": "2023-01-01",
+    "wikidata": "2023-01-01"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/agu",
+   "wikidata": "Q115950187"
+  },
+  {
+   "orgao": "Controladoria-Geral da União",
+   "oQueFaz": "Fiscaliza o uso do dinheiro público federal, combate a corrupção e cuida da transparência e das ouvidorias.",
+   "cargo": "Ministro de Estado da Controladoria-Geral da União",
+   "nome": "Vinícius Marques de Carvalho",
+   "nomeCompleto": "Vinícius Marques de Carvalho",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2023-01-01",
+   "desdeTexto": "1º de janeiro de 2023",
+   "desdeFontes": {
+    "arquivo": "2023-01-01",
+    "wikipedia": "2023-01-01",
+    "wikidata": "2023-01-01"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/cgu",
+   "wikidata": "Q115950553"
+  },
+  {
+   "orgao": "Agricultura e Pecuária",
+   "oQueFaz": "Cuida da política agrícola, da defesa sanitária de animais e plantas e do apoio à produção rural.",
+   "cargo": "Ministro de Estado da Agricultura e Pecuária",
+   "nome": "André de Paula",
+   "nomeCompleto": "André Carlos Alves de Paula Filho",
+   "partido": "PSD",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2026-04-01",
+   "desdeTexto": "1º de abril de 2026",
+   "desdeFontes": {
+    "arquivo": "2026-04-01",
+    "wikipedia": "2026-04-01"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/agricultura",
+   "wikidata": "Q16490361"
+  },
+  {
+   "orgao": "Cidades",
+   "oQueFaz": "Cuida de moradia (como o Minha Casa, Minha Vida), saneamento, mobilidade urbana e desenvolvimento das cidades.",
+   "cargo": "Ministro de Estado das Cidades",
+   "nome": "Vladimir Lima",
+   "nomeCompleto": "Antonio Vladimir Moura Lima",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2026-04-02",
+   "desdeTexto": "2 de abril de 2026",
+   "desdeFontes": {
+    "arquivo": "2026-04-02",
+    "wikipedia": "2026-04-02"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/cidades",
+   "wikidata": ""
+  },
+  {
+   "orgao": "Ciência, Tecnologia e Inovação",
+   "oQueFaz": "Cuida da pesquisa científica, da inovação e de órgãos como o CNPq.",
+   "cargo": "Ministra de Estado da Ciência, Tecnologia e Inovação",
+   "nome": "Luciana Santos",
+   "nomeCompleto": "Luciana Barbosa de Oliveira Santos",
+   "partido": "PCdoB",
+   "partidoFontes": [
+    "Wikipédia",
+    "Wikidata"
+   ],
+   "desde": "2023-01-01",
+   "desdeTexto": "1º de janeiro de 2023",
+   "desdeFontes": {
+    "arquivo": "2023-01-01",
+    "wikipedia": "2023-01-01",
+    "wikidata": "2023-01-01"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/mcti",
+   "wikidata": "Q10320247"
+  },
+  {
+   "orgao": "Comunicações",
+   "oQueFaz": "Cuida das políticas de telecomunicações, internet, rádio, TV e serviços postais (Correios).",
+   "cargo": "Ministro de Estado das Comunicações",
+   "nome": "Frederico de Siqueira Filho",
+   "nomeCompleto": "Frederico de Siqueira Filho",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2025-04-24",
+   "desdeTexto": "24 de abril de 2025",
+   "desdeFontes": {
+    "arquivo": "2025-04-24",
+    "wikipedia": "2025-04-24"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/mcom",
+   "wikidata": "Q134109651"
+  },
+  {
+   "orgao": "Cultura",
+   "oQueFaz": "Apoia a produção cultural, protege o patrimônio histórico e cuida das leis de incentivo à cultura.",
+   "cargo": "Ministra de Estado da Cultura",
+   "nome": "Margareth Menezes",
+   "nomeCompleto": "Margareth Menezes da Purificação Costa",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2023-01-01",
+   "desdeTexto": "1º de janeiro de 2023",
+   "desdeFontes": {
+    "arquivo": "2023-01-01",
+    "wikipedia": "2023-01-01",
+    "wikidata": "2023-01-01"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/cultura",
+   "wikidata": "Q273347"
+  },
+  {
+   "orgao": "Defesa",
+   "oQueFaz": "Comanda as Forças Armadas (Marinha, Exército e Aeronáutica) e cuida da defesa do país.",
+   "cargo": "Ministro de Estado da Defesa",
+   "nome": "José Múcio",
+   "nomeCompleto": "José Mucio Monteiro Filho",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2023-01-01",
+   "desdeTexto": "1º de janeiro de 2023",
+   "desdeFontes": {
+    "arquivo": "2023-01-01",
+    "wikipedia": "2023-01-01",
+    "wikidata": "2023-01-01"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/defesa",
+   "wikidata": "Q10310181"
+  },
+  {
+   "orgao": "Desenvolvimento Agrário e Agricultura Familiar",
+   "oQueFaz": "Cuida da reforma agrária e do apoio à agricultura familiar.",
+   "cargo": "Ministra de Estado do Desenvolvimento Agrário e Agricultura Familiar",
+   "nome": "Fernanda Machiaveli",
+   "nomeCompleto": "Fernanda Machiaveli Morão de Oliveira",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2026-04-01",
+   "desdeTexto": "1º de abril de 2026",
+   "desdeFontes": {
+    "arquivo": "2026-04-01",
+    "wikipedia": "2026-04-01"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/mda",
+   "wikidata": "Q140667830"
+  },
+  {
+   "orgao": "Desenvolvimento e Assistência Social, Família e Combate à Fome",
+   "oQueFaz": "Cuida da assistência social, do Bolsa Família e das políticas de combate à fome.",
+   "cargo": "Ministro de Estado do Desenvolvimento e Assistência Social, Família e Combate à Fome",
+   "nome": "Wellington Dias",
+   "nomeCompleto": "José Wellington Barroso de Araujo Dias",
+   "partido": "PT",
+   "partidoFontes": [
+    "Wikipédia",
+    "Wikidata"
+   ],
+   "desde": "2023-01-01",
+   "desdeTexto": "1º de janeiro de 2023",
+   "desdeFontes": {
+    "arquivo": "2023-01-01",
+    "wikipedia": "2023-01-01",
+    "wikidata": "2023-01-01"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/mds",
+   "wikidata": "Q7981381"
+  },
+  {
+   "orgao": "Desenvolvimento, Indústria, Comércio e Serviços",
+   "oQueFaz": "Cuida da política industrial, do comércio exterior e do setor de serviços.",
+   "cargo": "Ministro de Estado do Desenvolvimento, Indústria, Comércio e Serviços",
+   "nome": "Márcio Elias Rosa",
+   "nomeCompleto": "Márcio Fernando Elias Rosa",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2026-04-03",
+   "desdeTexto": "3 de abril de 2026",
+   "desdeFontes": {
+    "arquivo": "2026-04-03",
+    "wikipedia": "2026-04-03"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/mdic",
+   "wikidata": "Q61000504"
+  },
+  {
+   "orgao": "Direitos Humanos e da Cidadania",
+   "oQueFaz": "Promove e protege direitos de grupos como crianças, idosos, pessoas com deficiência e população LGBTQIA+, e recebe denúncias pelo Disque 100.",
+   "cargo": "Ministra de Estado dos Direitos Humanos e da Cidadania",
+   "nome": "Janine Mello",
+   "nomeCompleto": "Janine Mello dos Santos",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2026-04-01",
+   "desdeTexto": "1º de abril de 2026",
+   "desdeFontes": {
+    "arquivo": "2026-04-01",
+    "wikipedia": "2026-04-01"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/mdh",
+   "wikidata": "Q140671194"
+  },
+  {
+   "orgao": "Educação",
+   "oQueFaz": "Cuida da política nacional de educação, das universidades e institutos federais, do Enem e de programas como Fies e ProUni.",
+   "cargo": "Ministro de Estado da Educação",
+   "nome": "Leonardo Barchini",
+   "nomeCompleto": "Leonardo Osvaldo Barchini Rosa",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2026-04-02",
+   "desdeTexto": "2 de abril de 2026",
+   "desdeFontes": {
+    "arquivo": "2026-04-02",
+    "wikipedia": "2026-04-02",
+    "wikidata": "2026-04-02"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/mec",
+   "wikidata": "Q138845804"
+  },
+  {
+   "orgao": "Empreendedorismo, da Microempresa e da Empresa de Pequeno Porte",
+   "oQueFaz": "Apoia micro e pequenas empresas, microempreendedores individuais (MEI) e o empreendedorismo.",
+   "cargo": "Ministro de Estado do Empreendedorismo, da Microempresa e da Empresa de Pequeno Porte",
+   "nome": "Paulo Henrique Pereira",
+   "nomeCompleto": "Paulo Henrique Rodrigues Pereira",
+   "partido": "",
+   "partidoFontes": [],
+   "desde": "2026-04-22",
+   "desdeTexto": "22 de abril de 2026",
+   "desdeFontes": {
+    "arquivo": "2026-04-22",
+    "wikipedia": "2026-04-22"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/memp",
+   "wikidata": ""
+  },
+  {
+   "orgao": "Esporte",
+   "oQueFaz": "Cuida das políticas de esporte e lazer, do incentivo ao esporte e do apoio a atletas.",
+   "cargo": "Ministro de Estado do Esporte",
+   "nome": "Paulo Henrique Perna Cordeiro",
+   "nomeCompleto": "Paulo Henrique Perna Cordeiro",
+   "partido": "",
+   "partidoFontes": [],
+   "desde": "2026-04-01",
+   "desdeTexto": "1º de abril de 2026",
+   "desdeFontes": {
+    "arquivo": "2026-04-01",
+    "wikipedia": "2026-04-01"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/esporte",
+   "wikidata": ""
+  },
+  {
+   "orgao": "Fazenda",
+   "oQueFaz": "Cuida da economia, dos impostos (Receita Federal), da dívida pública e das contas do governo.",
+   "cargo": "Ministro de Estado da Fazenda",
+   "nome": "Dario Durigan",
+   "nomeCompleto": "Dario Carnevalli Durigan",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "",
+   "desdeTexto": "",
+   "desdeFontes": {
+    "arquivo": "2026-03-20",
+    "wikipedia": "2026-03-19"
+   },
+   "desdeStatus": "diverge",
+   "site": "https://www.gov.br/fazenda",
+   "wikidata": "Q138701904"
+  },
+  {
+   "orgao": "Gestão e da Inovação em Serviços Públicos",
+   "oQueFaz": "Cuida dos servidores federais, dos concursos, dos imóveis da União e da digitalização dos serviços públicos (gov.br).",
+   "cargo": "Ministra de Estado da Gestão e da Inovação em Serviços Públicos",
+   "nome": "Esther Dweck",
+   "nomeCompleto": "Esther Dweck",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2023-01-01",
+   "desdeTexto": "1º de janeiro de 2023",
+   "desdeFontes": {
+    "arquivo": "2023-01-01",
+    "wikipedia": "2023-01-01",
+    "wikidata": "2023-01-01"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/gestao",
+   "wikidata": "Q96140229"
+  },
+  {
+   "orgao": "Igualdade Racial",
+   "oQueFaz": "Cria e coordena políticas de combate ao racismo e de promoção da igualdade racial.",
+   "cargo": "Ministra de Estado da Igualdade Racial",
+   "nome": "Rachel Barros",
+   "nomeCompleto": "Rachel Barros de Oliveira",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2026-04-01",
+   "desdeTexto": "1º de abril de 2026",
+   "desdeFontes": {
+    "arquivo": "2026-04-01",
+    "wikipedia": "2026-04-01"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/igualdaderacial",
+   "wikidata": "Q99612231"
+  },
+  {
+   "orgao": "Integração e do Desenvolvimento Regional",
+   "oQueFaz": "Cuida da redução das desigualdades entre regiões, da defesa civil em desastres e de obras de segurança hídrica.",
+   "cargo": "Ministro de Estado da Integração e do Desenvolvimento Regional",
+   "nome": "Waldez Góes",
+   "nomeCompleto": "Antônio Waldez Góes da Silva",
+   "partido": "PDT",
+   "partidoFontes": [
+    "Wikipédia",
+    "Wikidata"
+   ],
+   "desde": "2023-01-01",
+   "desdeTexto": "1º de janeiro de 2023",
+   "desdeFontes": {
+    "arquivo": "2023-01-01",
+    "wikipedia": "2023-01-01",
+    "wikidata": "2023-01-01"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/mdr",
+   "wikidata": "Q9095459"
+  },
+  {
+   "orgao": "Justiça e Segurança Pública",
+   "oQueFaz": "Cuida da segurança pública, da Polícia Federal e da Polícia Rodoviária Federal, do sistema prisional federal e da defesa do consumidor.",
+   "cargo": "Ministro de Estado da Justiça e Segurança Pública",
+   "nome": "Wellington César Lima e Silva",
+   "nomeCompleto": "Wellington César Lima e Silva",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2026-01-13",
+   "desdeTexto": "13 de janeiro de 2026",
+   "desdeFontes": {
+    "arquivo": "2026-01-13",
+    "wikipedia": "2026-01-13"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/mj",
+   "wikidata": "Q23893528"
+  },
+  {
+   "orgao": "Meio Ambiente e Mudança do Clima",
+   "oQueFaz": "Cuida da proteção ambiental, do combate ao desmatamento, das políticas de clima e de órgãos como Ibama e ICMBio.",
+   "cargo": "Ministro de Estado do Meio Ambiente e Mudança do Clima",
+   "nome": "João Paulo Capobianco",
+   "nomeCompleto": "João Paulo Ribeiro Capobianco",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2026-04-01",
+   "desdeTexto": "1º de abril de 2026",
+   "desdeFontes": {
+    "arquivo": "2026-04-01",
+    "wikipedia": "2026-04-01"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/mma",
+   "wikidata": "Q109776001"
+  },
+  {
+   "orgao": "Minas e Energia",
+   "oQueFaz": "Cuida da política de energia elétrica, petróleo, gás e mineração.",
+   "cargo": "Ministro de Estado de Minas e Energia",
+   "nome": "Alexandre Silveira",
+   "nomeCompleto": "Alexandre Silveira de Oliveira",
+   "partido": "PSD",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2023-01-01",
+   "desdeTexto": "1º de janeiro de 2023",
+   "desdeFontes": {
+    "arquivo": "2023-01-01",
+    "wikipedia": "2023-01-01",
+    "wikidata": "2023-01-01"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/mme",
+   "wikidata": "Q16336362"
+  },
+  {
+   "orgao": "Mulheres",
+   "oQueFaz": "Cria políticas para as mulheres, como o combate à violência contra a mulher (Ligue 180) e a igualdade no trabalho.",
+   "cargo": "Ministra de Estado das Mulheres",
+   "nome": "Márcia Lopes",
+   "nomeCompleto": "Márcia Helena Carvalho Lopes",
+   "partido": "PT",
+   "partidoFontes": [
+    "Wikipédia",
+    "Wikidata"
+   ],
+   "desde": "2025-05-05",
+   "desdeTexto": "5 de maio de 2025",
+   "desdeFontes": {
+    "arquivo": "2025-05-05",
+    "wikipedia": "2025-05-05"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/mulheres",
+   "wikidata": "Q10334261"
+  },
+  {
+   "orgao": "Pesca e Aquicultura",
+   "oQueFaz": "Cuida da pesca e da criação de peixes e outros animais aquáticos (aquicultura).",
+   "cargo": "Ministro de Estado da Pesca e Aquicultura",
+   "nome": "Rivetla Edipo Cruz",
+   "nomeCompleto": "Rivetla Edipo Araujo Cruz",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2026-04-01",
+   "desdeTexto": "1º de abril de 2026",
+   "desdeFontes": {
+    "arquivo": "2026-04-01",
+    "wikipedia": "2026-04-01"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/mpa",
+   "wikidata": ""
+  },
+  {
+   "orgao": "Planejamento e Orçamento",
+   "oQueFaz": "Prepara o orçamento federal e o planejamento dos gastos e investimentos do governo.",
+   "cargo": "Ministro de Estado do Planejamento e Orçamento",
+   "nome": "Bruno Moretti",
+   "nomeCompleto": "Bruno Moretti",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2026-04-01",
+   "desdeTexto": "1º de abril de 2026",
+   "desdeFontes": {
+    "arquivo": "2026-04-01",
+    "wikipedia": "2026-04-01"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/planejamento",
+   "wikidata": ""
+  },
+  {
+   "orgao": "Portos e Aeroportos",
+   "oQueFaz": "Cuida dos portos, dos aeroportos e da aviação civil.",
+   "cargo": "Ministro de Estado de Portos e Aeroportos",
+   "nome": "Tomé Franca",
+   "nomeCompleto": "Tomé Monteiro da Franca",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2026-04-01",
+   "desdeTexto": "1º de abril de 2026",
+   "desdeFontes": {
+    "arquivo": "2026-04-01",
+    "wikipedia": "2026-04-01"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/portos-e-aeroportos",
+   "wikidata": "Q140680182"
+  },
+  {
+   "orgao": "Povos Indígenas",
+   "oQueFaz": "Cuida das políticas para os povos indígenas, incluindo a Funai e a proteção dos territórios indígenas.",
+   "cargo": "Ministro de Estado dos Povos Indígenas",
+   "nome": "Eloy Terena",
+   "nomeCompleto": "Luiz Henrique Eloy Amado",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2026-04-01",
+   "desdeTexto": "1º de abril de 2026",
+   "desdeFontes": {
+    "arquivo": "2026-04-01",
+    "wikipedia": "2026-04-01",
+    "wikidata": "2026-03-31"
+   },
+   "desdeStatus": "maioria",
+   "site": "https://www.gov.br/povosindigenas",
+   "wikidata": "Q65166940"
+  },
+  {
+   "orgao": "Previdência Social",
+   "oQueFaz": "Cuida da Previdência Social e do INSS, que paga aposentadorias, pensões e auxílios.",
+   "cargo": "Ministro de Estado da Previdência Social",
+   "nome": "Wolney Queiroz",
+   "nomeCompleto": "Wolney Queiroz Maciel",
+   "partido": "PDT",
+   "partidoFontes": [
+    "Wikipédia",
+    "Wikidata"
+   ],
+   "desde": "2025-05-02",
+   "desdeTexto": "2 de maio de 2025",
+   "desdeFontes": {
+    "arquivo": "2025-05-02",
+    "wikipedia": "2025-05-02"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/previdencia",
+   "wikidata": "Q10393971"
+  },
+  {
+   "orgao": "Relações Exteriores",
+   "oQueFaz": "Cuida da política externa e da diplomacia (o Itamaraty), incluindo embaixadas e consulados.",
+   "cargo": "Ministro de Estado das Relações Exteriores",
+   "nome": "Mauro Vieira",
+   "nomeCompleto": "Mauro Luiz Iecker Vieira",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2023-01-01",
+   "desdeTexto": "1º de janeiro de 2023",
+   "desdeFontes": {
+    "arquivo": "2023-01-01",
+    "wikipedia": "2023-01-01",
+    "wikidata": "2023-01-01"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/mre",
+   "wikidata": "Q18708068"
+  },
+  {
+   "orgao": "Saúde",
+   "oQueFaz": "Coordena o SUS, as campanhas de vacinação e os programas nacionais de saúde.",
+   "cargo": "Ministro de Estado da Saúde",
+   "nome": "Alexandre Padilha",
+   "nomeCompleto": "Alexandre Rocha Santos Padilha",
+   "partido": "PT",
+   "partidoFontes": [
+    "Wikipédia",
+    "Wikidata"
+   ],
+   "desde": "2025-03-10",
+   "desdeTexto": "10 de março de 2025",
+   "desdeFontes": {
+    "arquivo": "2025-03-10",
+    "wikipedia": "2025-03-10"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/saude",
+   "wikidata": "Q4163528"
+  },
+  {
+   "orgao": "Trabalho e Emprego",
+   "oQueFaz": "Cuida das relações de trabalho, da fiscalização trabalhista, do seguro-desemprego e da carteira de trabalho.",
+   "cargo": "Ministro de Estado do Trabalho e Emprego",
+   "nome": "Luiz Marinho",
+   "nomeCompleto": "Luiz Marinho",
+   "partido": "PT",
+   "partidoFontes": [
+    "Wikipédia",
+    "Wikidata"
+   ],
+   "desde": "2023-01-01",
+   "desdeTexto": "1º de janeiro de 2023",
+   "desdeFontes": {
+    "arquivo": "2023-01-01",
+    "wikipedia": "2023-01-01",
+    "wikidata": "2023-01-01"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/trabalho-e-emprego",
+   "wikidata": "Q10320792"
+  },
+  {
+   "orgao": "Transportes",
+   "oQueFaz": "Cuida das rodovias e ferrovias federais e do transporte terrestre e por rios.",
+   "cargo": "Ministro de Estado dos Transportes",
+   "nome": "George Santoro",
+   "nomeCompleto": "George Santoro",
+   "partido": "",
+   "partidoFontes": [],
+   "desde": "2026-04-01",
+   "desdeTexto": "1º de abril de 2026",
+   "desdeFontes": {
+    "arquivo": "2026-04-01",
+    "wikipedia": "2026-04-01"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/transportes",
+   "wikidata": "Q116159639"
+  },
+  {
+   "orgao": "Turismo",
+   "oQueFaz": "Promove o turismo no Brasil e apoia o setor.",
+   "cargo": "Ministro de Estado do Turismo",
+   "nome": "Gustavo Feliciano",
+   "nomeCompleto": "Gustavo Costa Feliciano",
+   "partido": "Sem partido",
+   "partidoFontes": [
+    "Wikipédia"
+   ],
+   "desde": "2025-12-23",
+   "desdeTexto": "23 de dezembro de 2025",
+   "desdeFontes": {
+    "arquivo": "2025-12-23",
+    "wikipedia": "2025-12-23"
+   },
+   "desdeStatus": "confere",
+   "site": "https://www.gov.br/turismo",
+   "wikidata": "Q137562818"
+  }
+ ],
+ "divergencias": [
+  {
+   "orgao": "Casa Civil",
+   "campo": "desde",
+   "valores": {
+    "arquivo": "2026-04-02",
+    "wikipedia": "2026-04-03"
+   },
+   "nota": "As fontes consultadas trazem datas diferentes para o início no cargo. A data oficial é a da publicação da nomeação no Diário Oficial da União (não consultado nesta checagem)."
+  },
+  {
+   "orgao": "Secretaria-Geral da Presidência",
+   "campo": "desde",
+   "valores": {
+    "arquivo": "2025-10-20",
+    "wikipedia": "2025-10-29"
+   },
+   "nota": "As fontes consultadas trazem datas diferentes para o início no cargo. A data oficial é a da publicação da nomeação no Diário Oficial da União (não consultado nesta checagem)."
+  },
+  {
+   "orgao": "Gabinete de Segurança Institucional",
+   "campo": "desde",
+   "valores": {
+    "arquivo": "2023-05-04",
+    "wikipedia": "2023-05-04",
+    "wikidata": "2023-05-05"
+   },
+   "nota": "As fontes consultadas trazem datas diferentes para o início no cargo. A data oficial é a da publicação da nomeação no Diário Oficial da União (não consultado nesta checagem)."
+  },
+  {
+   "orgao": "Fazenda",
+   "campo": "desde",
+   "valores": {
+    "arquivo": "2026-03-20",
+    "wikipedia": "2026-03-19"
+   },
+   "nota": "As fontes consultadas trazem datas diferentes para o início no cargo. A data oficial é a da publicação da nomeação no Diário Oficial da União (não consultado nesta checagem)."
+  },
+  {
+   "orgao": "Povos Indígenas",
+   "campo": "desde",
+   "valores": {
+    "arquivo": "2026-04-01",
+    "wikipedia": "2026-04-01",
+    "wikidata": "2026-03-31"
+   },
+   "nota": "As fontes consultadas trazem datas diferentes para o início no cargo. A data oficial é a da publicação da nomeação no Diário Oficial da União (não consultado nesta checagem)."
+  },
+  {
+   "orgao": "Desenvolvimento Agrário e Agricultura Familiar",
+   "campo": "nome",
+   "valores": {
+    "arquivo": "Fernanda Machiavelli",
+    "planalto": "Fernanda Machiaveli Morão de Oliveira"
+   },
+   "nota": "Grafia corrigida conforme a página oficial do Planalto (Machiaveli, com um “l”)."
+  },
+  {
+   "orgao": "Empreendedorismo, da Microempresa e da Empresa de Pequeno Porte",
+   "campo": "nome",
+   "valores": {
+    "planalto": "Paulo Henrique Rodrigues Pereira",
+    "wikipedia": "lista também Tadeu Alencar como “em exercício” desde 3/4/2026"
+   },
+   "nota": "Usado o nome da página oficial do Planalto."
+  },
+  {
+   "orgao": "Presidência",
+   "campo": "fim do mandato",
+   "valores": {
+    "arquivo": "posse do sucessor em 1º de janeiro de 2027",
+    "constituicao": "5 de janeiro de 2027 (art. 82 da Constituição, com a redação da EC 111/2021, e art. 4º da EC 111/2021)"
+   },
+   "nota": "A Emenda Constitucional 111/2021 mudou a posse presidencial para 5 de janeiro a partir dos eleitos em 2026; o mandato atual vai até a posse do sucessor, em 5 de janeiro de 2027."
+  }
+ ],
+ "nota": "São 38 órgãos com status de ministério na lista oficial do Planalto: 5 da própria Presidência (Casa Civil, Secretaria-Geral, Relações Institucionais, Comunicação Social e GSI), a AGU, a CGU e 31 ministérios. Trocas podem acontecer antes desta página ser atualizada; a lista oficial é a do Planalto."
+}

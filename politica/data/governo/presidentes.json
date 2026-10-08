@@ -1,0 +1,473 @@
+{
+ "_sobre": "Presidentes desde 1985 (inclui o restante do mandato de José Sarney, durante o qual a Constituição de 1988 foi promulgada). \"exercicio\" = períodos em que a pessoa efetivamente exerceu a Presidência, usados para atribuir leis, MPs e decretos pela data de assinatura (atos assinados por vice em exercício durante viagens do titular contam para o titular). Fotos: Wikimedia Commons, com autor e licença.",
+ "verificadoEm": "2026-10-08",
+ "fontes": [
+  [
+   "Biblioteca da Presidência da República — galeria dos ex-presidentes",
+   "https://www.gov.br/secretariageral/pt-br/centrais-de-conteudo/biblioteca-da-pr/galeria-dos-ex-presidentes"
+  ],
+  [
+   "Wikidata — cargos (P39) e fotos (P18)",
+   "https://www.wikidata.org/"
+  ],
+  [
+   "Wikimedia Commons — autoria e licença das fotos",
+   "https://commons.wikimedia.org/"
+  ]
+ ],
+ "nota": "As datas de início e fim seguem a Biblioteca da Presidência. Atenção: o Wikidata registra o fim do mandato de Collor em 02/10/1992 (data do afastamento); aqui usamos 29/12/1992 (renúncia), como a Biblioteca da Presidência.",
+ "presidentes": [
+  {
+   "id": "sarney",
+   "nome": "José Sarney",
+   "nomeCompleto": "José Sarney de Araújo Costa",
+   "partido": "PMDB",
+   "wikidata": "Q244997",
+   "inicio": "1985-03-15",
+   "fim": "1990-03-15",
+   "exercicio": [
+    [
+     "1985-03-15",
+     "1990-03-14"
+    ]
+   ],
+   "vice": null,
+   "viceNota": "Não houve vice: Sarney era o vice eleito e assumiu a Presidência.",
+   "eleicao": "Eleição indireta pelo Colégio Eleitoral, em 15/01/1985, como vice na chapa de Tancredo Neves.",
+   "como": "Terminou o mandato e passou o cargo a Fernando Collor em 15/03/1990.",
+   "contexto": "Assumiu em 15/03/1985 como vice em exercício, porque o presidente eleito, Tancredo Neves, ficou doente antes da posse; tornou-se presidente com a morte de Tancredo, em 21/04/1985. A Constituição atual foi promulgada durante seu governo, em 05/10/1988. Os números de leis e medidas desta página contam todo o mandato.",
+   "fontes": [
+    [
+     "Biblioteca da Presidência — galeria dos ex-presidentes",
+     "https://www.gov.br/secretariageral/pt-br/centrais-de-conteudo/biblioteca-da-pr/galeria-dos-ex-presidentes"
+    ]
+   ],
+   "chave": [
+    "n:LEI-7716-1989",
+    "n:LEI-7783-1989",
+    "n:LEI-7853-1989",
+    "n:LEI-7802-1989",
+    "n:LEI-7998-1990"
+   ],
+   "foto": {
+    "arquivo": "img/sarney.jpg",
+    "autor": "Autor não identificado",
+    "licenca": "CC BY 3.0 br",
+    "licencaUrl": "https://creativecommons.org/licenses/by/3.0/br/deed.en",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Foto_Oficial_Sarney_EBC.jpg"
+   }
+  },
+  {
+   "id": "collor",
+   "nome": "Fernando Collor",
+   "nomeCompleto": "Fernando Affonso Collor de Mello",
+   "partido": "PRN",
+   "wikidata": "Q236503",
+   "inicio": "1990-03-15",
+   "fim": "1992-12-29",
+   "exercicio": [
+    [
+     "1990-03-15",
+     "1992-10-01"
+    ]
+   ],
+   "vice": "Itamar Franco",
+   "eleicao": "Primeira eleição direta para presidente desde 1960, em dois turnos (1989).",
+   "como": "Saiu antes do fim do mandato. Em 29/09/1992 a Câmara autorizou a abertura do processo de impeachment (crime de responsabilidade) e Collor foi afastado do cargo em 02/10/1992. Em 29/12/1992, durante a sessão de julgamento no Senado, renunciou ao mandato. O Senado concluiu o julgamento e o declarou inabilitado para funções públicas por oito anos.",
+   "contexto": "Durante o afastamento (02/10 a 29/12/1992), o vice Itamar Franco exerceu a Presidência; por isso os atos desse período contam para Itamar nesta página.",
+   "fontes": [
+    [
+     "Biblioteca da Presidência — Fernando Collor",
+     "https://www.gov.br/secretariageral/pt-br/centrais-de-conteudo/biblioteca-da-pr/galeria-dos-ex-presidentes/collor"
+    ]
+   ],
+   "chave": [
+    "n:LEI-8069-1990",
+    "n:LEI-8078-1990",
+    "n:LEI-8080-1990",
+    "n:LEI-8112-1990",
+    "n:LEI-8031-1990",
+    "n:LEI-8213-1991",
+    "n:LEI-8313-1991",
+    "n:LEI-8429-1992"
+   ],
+   "foto": {
+    "arquivo": "img/collor.jpg",
+    "autor": "Ubirajara Dettimar/Presidência da República",
+    "licenca": "CC BY-SA 2.0",
+    "licencaUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Foto_oficial_do_presidente_Fernando_Collor_de_Melo._(38405801411).jpg"
+   },
+   "viceFoto": {
+    "arquivo": "img/itamar.jpg",
+    "autor": "Renato Araújo/Arquivo/Agência Brasil",
+    "licenca": "CC BY 3.0 br",
+    "licencaUrl": "https://creativecommons.org/licenses/by/3.0/br/deed.en",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Itamar_Franco_-_Ag%C3%AAncia_Brasil_(cropped).jpg"
+   }
+  },
+  {
+   "id": "itamar",
+   "nome": "Itamar Franco",
+   "nomeCompleto": "Itamar Augusto Cautiero Franco",
+   "partido": "Sem partido",
+   "partidoNota": "Foi eleito vice na chapa do PRN em 1989 e deixou o partido em maio de 1992, antes de assumir a Presidência (FGV CPDOC).",
+   "wikidata": "Q485946",
+   "inicio": "1992-12-29",
+   "fim": "1995-01-01",
+   "exercicio": [
+    [
+     "1992-10-02",
+     "1994-12-31"
+    ]
+   ],
+   "vice": null,
+   "viceNota": "Não houve vice: Itamar era o vice e assumiu a Presidência.",
+   "eleicao": "Eleito vice-presidente em 1989, na chapa de Fernando Collor.",
+   "como": "Terminou o mandato e passou o cargo a Fernando Henrique Cardoso em 01/01/1995.",
+   "contexto": "Exerceu a Presidência de forma interina a partir de 02/10/1992 e tornou-se presidente com a renúncia de Collor, em 29/12/1992. O Plano Real foi lançado em seu governo, em 1994.",
+   "fontes": [
+    [
+     "Biblioteca da Presidência — galeria dos ex-presidentes",
+     "https://www.gov.br/secretariageral/pt-br/centrais-de-conteudo/biblioteca-da-pr/galeria-dos-ex-presidentes"
+    ],
+    [
+     "FGV CPDOC — Atlas Histórico do Brasil: Itamar Franco",
+     "https://atlas.fgv.br/verbete/2142"
+    ]
+   ],
+   "chave": [
+    "n:LEI-8666-1993",
+    "n:LEI-8742-1993",
+    "n:LEI-8880-1994",
+    "n:LEI-8906-1994"
+   ],
+   "foto": {
+    "arquivo": "img/itamar.jpg",
+    "autor": "Renato Araújo/Arquivo/Agência Brasil",
+    "licenca": "CC BY 3.0 br",
+    "licencaUrl": "https://creativecommons.org/licenses/by/3.0/br/deed.en",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Itamar_Franco_-_Ag%C3%AAncia_Brasil_(cropped).jpg"
+   }
+  },
+  {
+   "id": "fhc",
+   "nome": "Fernando Henrique Cardoso",
+   "nomeCompleto": "Fernando Henrique Cardoso",
+   "partido": "PSDB",
+   "wikidata": "Q230578",
+   "inicio": "1995-01-01",
+   "fim": "2003-01-01",
+   "exercicio": [
+    [
+     "1995-01-01",
+     "2002-12-31"
+    ]
+   ],
+   "vice": "Marco Maciel (PFL)",
+   "eleicao": "Eleito em 1994 no 1º turno e reeleito em 1998 no 1º turno — a reeleição passou a ser permitida pela Emenda Constitucional 16/1997.",
+   "como": "Cumpriu os dois mandatos e passou o cargo a Luiz Inácio Lula da Silva em 01/01/2003.",
+   "contexto": "",
+   "fontes": [
+    [
+     "Biblioteca da Presidência — galeria dos ex-presidentes",
+     "https://www.gov.br/secretariageral/pt-br/centrais-de-conteudo/biblioteca-da-pr/galeria-dos-ex-presidentes"
+    ]
+   ],
+   "chave": [
+    "n:LEI-9069-1995",
+    "n:LEI-9394-1996",
+    "n:LCP-87-1996",
+    "n:EMC-16-1997",
+    "n:LEI-9472-1997",
+    "n:LEI-9478-1997",
+    "n:LEI-9503-1997",
+    "n:LEI-9605-1998",
+    "n:LEI-9656-1998",
+    "n:EMC-19-1998",
+    "n:EMC-20-1998",
+    "n:LEI-9787-1999",
+    "n:LCP-101-2000",
+    "n:EMC-32-2001",
+    "n:LEI-10406-2002"
+   ],
+   "foto": {
+    "arquivo": "img/fhc.jpg",
+    "autor": "Governo do Estado de São Paulo",
+    "licenca": "CC BY 2.0",
+    "licencaUrl": "https://creativecommons.org/licenses/by/2.0",
+    "pagina": "https://commons.wikimedia.org/wiki/File:FHC_2019.jpg"
+   },
+   "viceFoto": {
+    "arquivo": "img/marco-maciel.jpg",
+    "autor": "Wilson Dias/ABr",
+    "licenca": "CC BY 3.0 br",
+    "licencaUrl": "https://creativecommons.org/licenses/by/3.0/br/deed.en",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Marco_Maciel.jpg"
+   }
+  },
+  {
+   "id": "lula12",
+   "nome": "Luiz Inácio Lula da Silva",
+   "nomeCompleto": "Luiz Inácio Lula da Silva",
+   "partido": "PT",
+   "wikidata": "Q37181",
+   "foto": {
+    "arquivo": "img/lula.jpg",
+    "autor": "Palácio do Planalto from Brasilia, Brasil",
+    "licenca": "CC BY 2.0",
+    "licencaUrl": "https://creativecommons.org/licenses/by/2.0",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Foto_oficial_de_Luiz_In%C3%A1cio_Lula_da_Silva_(estreita).jpg"
+   },
+   "inicio": "2003-01-01",
+   "fim": "2011-01-01",
+   "exercicio": [
+    [
+     "2003-01-01",
+     "2010-12-31"
+    ]
+   ],
+   "vice": "José Alencar (PL; depois PRB)",
+   "eleicao": "Eleito em 2002 e reeleito em 2006, nos dois casos no 2º turno.",
+   "como": "Cumpriu os dois mandatos e passou o cargo a Dilma Rousseff em 01/01/2011.",
+   "contexto": "",
+   "fontes": [
+    [
+     "Biblioteca da Presidência — galeria dos ex-presidentes",
+     "https://www.gov.br/secretariageral/pt-br/centrais-de-conteudo/biblioteca-da-pr/galeria-dos-ex-presidentes"
+    ]
+   ],
+   "chave": [
+    "n:EMC-41-2003",
+    "n:LEI-10741-2003",
+    "n:LEI-10826-2003",
+    "n:LEI-10836-2004",
+    "n:EMC-45-2004",
+    "n:LEI-11096-2005",
+    "n:LEI-11340-2006",
+    "n:LEI-11343-2006",
+    "n:LCP-123-2006",
+    "n:LEI-11977-2009",
+    "n:LCP-135-2010",
+    "n:LEI-12288-2010",
+    "n:LEI-12305-2010"
+   ],
+   "viceFoto": {
+    "arquivo": "img/jose-alencar.jpg",
+    "autor": "Ricardo Stuckert/PR",
+    "licenca": "Attribution",
+    "licencaUrl": "",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Jose_alencar_23_out_2007.jpg"
+   }
+  },
+  {
+   "id": "dilma",
+   "nome": "Dilma Rousseff",
+   "nomeCompleto": "Dilma Vana Rousseff",
+   "partido": "PT",
+   "wikidata": "Q40722",
+   "inicio": "2011-01-01",
+   "fim": "2016-08-31",
+   "exercicio": [
+    [
+     "2011-01-01",
+     "2016-05-11"
+    ]
+   ],
+   "vice": "Michel Temer (PMDB)",
+   "eleicao": "Eleita em 2010 e reeleita em 2014, nos dois casos no 2º turno.",
+   "como": "Saiu antes do fim do segundo mandato, por impeachment. Em 17/04/2016 a Câmara autorizou o processo por crime de responsabilidade, ligado à abertura de créditos suplementares por decreto sem autorização do Congresso e a atrasos em repasses a um banco público no Plano Safra (as chamadas “pedaladas fiscais”). O Senado abriu o processo e a afastou em 12/05/2016. Em 31/08/2016, o Senado a condenou por 61 votos a 20 e ela perdeu o cargo; em votação separada, a proibição de exercer funções públicas não teve os votos necessários e não foi aplicada.",
+   "contexto": "Durante o afastamento (12/05 a 31/08/2016), o vice Michel Temer exerceu a Presidência; por isso os atos desse período contam para Temer nesta página.",
+   "fontes": [
+    [
+     "Senado Federal — Agência Senado (cobertura do processo de impeachment, 2016)",
+     "https://www12.senado.leg.br/noticias/"
+    ],
+    [
+     "Câmara dos Deputados — Agência Câmara (votação de 17/04/2016)",
+     "https://www.camara.leg.br/noticias/"
+    ]
+   ],
+   "chave": [
+    "n:LEI-12527-2011",
+    "n:LEI-12651-2012",
+    "n:LEI-12711-2012",
+    "n:EMC-72-2013",
+    "n:LEI-12846-2013",
+    "n:LEI-12850-2013",
+    "n:LEI-12965-2014",
+    "n:LEI-13005-2014",
+    "n:LEI-13104-2015",
+    "n:LEI-13105-2015",
+    "n:LCP-150-2015",
+    "n:LEI-13146-2015"
+   ],
+   "foto": {
+    "arquivo": "img/dilma.jpg",
+    "autor": "Vice-Presidência da República",
+    "licenca": "CC BY 2.0",
+    "licencaUrl": "https://creativecommons.org/licenses/by/2.0",
+    "pagina": "https://commons.wikimedia.org/wiki/File:04-06-2024_Reuni%C3%A3o_com_a_Presidente_do_Novo_Banco_de_Desenvolvimento_Dilma_Rousseff_(53769684843)_(cropped).jpg"
+   },
+   "viceFoto": {
+    "arquivo": "img/temer.jpg",
+    "autor": "Beto Barata/PR",
+    "licenca": "CC BY 2.0",
+    "licencaUrl": "https://creativecommons.org/licenses/by/2.0",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Presidente_Michel_Temer_(foto_oficial)_-_cortada.jpg"
+   }
+  },
+  {
+   "id": "temer",
+   "nome": "Michel Temer",
+   "nomeCompleto": "Michel Miguel Elias Temer Lulia",
+   "partido": "PMDB (renomeado MDB em 2017)",
+   "wikidata": "Q463533",
+   "inicio": "2016-08-31",
+   "fim": "2019-01-01",
+   "exercicio": [
+    [
+     "2016-05-12",
+     "2018-12-31"
+    ]
+   ],
+   "vice": null,
+   "viceNota": "Não houve vice: Temer era o vice e assumiu a Presidência.",
+   "eleicao": "Eleito vice-presidente em 2010 e 2014, na chapa de Dilma Rousseff.",
+   "como": "Terminou o mandato e passou o cargo a Jair Bolsonaro em 01/01/2019.",
+   "contexto": "Exerceu a Presidência de forma interina a partir de 12/05/2016 e tornou-se presidente em 31/08/2016, com a condenação de Dilma Rousseff pelo Senado.",
+   "fontes": [
+    [
+     "Biblioteca da Presidência — galeria dos ex-presidentes",
+     "https://www.gov.br/secretariageral/pt-br/centrais-de-conteudo/biblioteca-da-pr/galeria-dos-ex-presidentes"
+    ]
+   ],
+   "chave": [
+    "n:LEI-13303-2016",
+    "n:EMC-95-2016",
+    "n:LEI-13415-2017",
+    "n:LEI-13429-2017",
+    "n:LEI-13445-2017",
+    "n:LEI-13467-2017",
+    "n:EMC-97-2017",
+    "n:LEI-13709-2018"
+   ],
+   "foto": {
+    "arquivo": "img/temer.jpg",
+    "autor": "Beto Barata/PR",
+    "licenca": "CC BY 2.0",
+    "licencaUrl": "https://creativecommons.org/licenses/by/2.0",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Presidente_Michel_Temer_(foto_oficial)_-_cortada.jpg"
+   }
+  },
+  {
+   "id": "bolsonaro",
+   "nome": "Jair Bolsonaro",
+   "nomeCompleto": "Jair Messias Bolsonaro",
+   "partido": "PSL (eleito); sem partido de nov/2019 a nov/2021; PL a partir de nov/2021",
+   "wikidata": "Q10304982",
+   "inicio": "2019-01-01",
+   "fim": "2023-01-01",
+   "exercicio": [
+    [
+     "2019-01-01",
+     "2022-12-31"
+    ]
+   ],
+   "vice": "Hamilton Mourão (PRTB)",
+   "eleicao": "Eleito em 2018 no 2º turno; candidato à reeleição em 2022, não foi reeleito.",
+   "como": "Terminou o mandato em 01/01/2023; o sucessor, Luiz Inácio Lula da Silva, tomou posse nesse dia.",
+   "contexto": "",
+   "fontes": [
+    [
+     "Biblioteca da Presidência — galeria dos ex-presidentes",
+     "https://www.gov.br/secretariageral/pt-br/centrais-de-conteudo/biblioteca-da-pr/galeria-dos-ex-presidentes"
+    ],
+    [
+     "TSE — resultados das eleições de 2018 e 2022 (dados abertos)",
+     "https://dadosabertos.tse.jus.br/"
+    ]
+   ],
+   "chave": [
+    "n:EMC-103-2019",
+    "n:LEI-13874-2019",
+    "n:LEI-13964-2019",
+    "n:LEI-13979-2020",
+    "n:LEI-13982-2020",
+    "n:LEI-14026-2020",
+    "n:EMC-108-2020",
+    "n:LEI-14113-2020",
+    "n:LCP-179-2021",
+    "n:EMC-111-2021",
+    "n:LEI-14133-2021",
+    "n:LEI-14300-2022"
+   ],
+   "foto": {
+    "arquivo": "img/bolsonaro.jpg",
+    "autor": "Palácio do Planalto from Brasilia, Brasil",
+    "licenca": "CC BY 2.0",
+    "licencaUrl": "https://creativecommons.org/licenses/by/2.0",
+    "pagina": "https://commons.wikimedia.org/wiki/File:31_01_2022_Jair_Bolsonaro_(51853892252).jpg"
+   },
+   "viceFoto": {
+    "arquivo": "img/mourao.jpg",
+    "autor": "Alan Santos/PR",
+    "licenca": "CC BY 2.0",
+    "licencaUrl": "https://creativecommons.org/licenses/by/2.0",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Hamilton_Mour%C3%A3o_em_25_de_junho_de_2019_(2;_recorte).jpg"
+   }
+  },
+  {
+   "id": "lula3",
+   "nome": "Luiz Inácio Lula da Silva",
+   "nomeCompleto": "Luiz Inácio Lula da Silva",
+   "partido": "PT",
+   "wikidata": "Q37181",
+   "foto": {
+    "arquivo": "img/lula.jpg",
+    "autor": "Palácio do Planalto from Brasilia, Brasil",
+    "licenca": "CC BY 2.0",
+    "licencaUrl": "https://creativecommons.org/licenses/by/2.0",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Foto_oficial_de_Luiz_In%C3%A1cio_Lula_da_Silva_(estreita).jpg"
+   },
+   "inicio": "2023-01-01",
+   "fim": null,
+   "exercicio": [
+    [
+     "2023-01-01",
+     "2027-01-04"
+    ]
+   ],
+   "vice": "Geraldo Alckmin (PSB)",
+   "eleicao": "Eleito em 2022 no 2º turno, para um terceiro mandato (não seguido).",
+   "como": "Mandato em curso. Vai até a posse do sucessor, em 5 de janeiro de 2027 (Emenda Constitucional 111/2021). Lula disputa a reeleição em 2026.",
+   "contexto": "",
+   "fontes": [
+    [
+     "Presidência da República",
+     "https://www.gov.br/planalto/pt-br"
+    ],
+    [
+     "EC 111/2021 (data de posse)",
+     "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc111.htm"
+    ]
+   ],
+   "chave": [
+    "n:LEI-14601-2023",
+    "n:LEI-14611-2023",
+    "n:LEI-14663-2023",
+    "n:LCP-200-2023",
+    "n:EMC-132-2023",
+    "n:LEI-14790-2023",
+    "n:LCP-214-2025"
+   ],
+   "viceFoto": {
+    "arquivo": "img/alckmin.jpg",
+    "autor": "Ricardo Stuckert",
+    "licenca": "CC BY-SA 4.0",
+    "licencaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "pagina": "https://commons.wikimedia.org/wiki/File:08.08.2026_-_FOTOS_OFICIAIS_-_55450293534.jpg"
+   }
+  }
+ ]
+}

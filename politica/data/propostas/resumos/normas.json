@@ -1,0 +1,680 @@
+{
+"_sobre": "Resumos em linguagem simples escritos à mão a partir do texto oficial de leis, leis complementares e emendas constitucionais muito citadas. Chave n:TIPO-número-ano (LEI, LCP, EMC). \"ps\" = Pra que serve; \"cf\" = Como funciona. Não substituem o texto oficial, que pode ter sido alterado por leis posteriores.",
+"revisadoEm": "2026-10-08",
+"n:LEI-7716-1989": {
+"nome": "Lei do Racismo",
+"ps": "Define como crime o preconceito de raça ou de cor e diz qual é a punição.",
+"cf": "Quem impede alguém de entrar em lugar, de conseguir emprego, de estudar ou de ser atendido por causa da raça ou da cor comete crime, com pena de prisão. Leis posteriores ampliaram a lei para etnia, religião e procedência nacional, e a injúria racial (ofensa racista contra uma pessoa) passou a ser tratada nela em 2023.",
+"data": "1989-01-05",
+"idSenado": 549592
+},
+"n:LEI-7783-1989": {
+"nome": "Lei de Greve",
+"ps": "Regula o direito de greve dos trabalhadores do setor privado.",
+"cf": "Diz como a greve deve ser avisada (com antecedência mínima), o que é proibido durante a greve e quais serviços são essenciais — como hospitais, água, energia e transporte coletivo — que precisam continuar funcionando em parte durante a paralisação.",
+"data": "1989-06-28",
+"idSenado": 549659
+},
+"n:LEI-7853-1989": {
+"nome": "Lei de apoio às pessoas com deficiência",
+"ps": "Garante apoio e direitos às pessoas com deficiência e cria regras para a integração delas na sociedade.",
+"cf": "Define deveres do poder público em saúde, educação, trabalho e acessibilidade para pessoas com deficiência e torna crime negar matrícula, emprego ou atendimento por causa da deficiência. O Ministério Público pode entrar na Justiça para defender esses direitos.",
+"data": "1989-10-24",
+"idSenado": 549729
+},
+"n:LEI-7802-1989": {
+"nome": "Antiga Lei dos Agrotóxicos",
+"ps": "Regulava a pesquisa, a produção, a venda, o uso e o descarte de agrotóxicos.",
+"cf": "Exigia registro do produto no governo antes da venda, receita de profissional para comprar e regras para embalagem, rótulo e destino das embalagens vazias. Foi revogada e substituída pela Lei 14.785/2023.",
+"data": "1989-07-11",
+"idSenado": 549678
+},
+"n:LEI-7998-1990": {
+"nome": "Lei do Seguro-Desemprego e do FAT",
+"ps": "Regula o seguro-desemprego e o abono salarial e cria o Fundo de Amparo ao Trabalhador (FAT).",
+"cf": "O trabalhador demitido sem justa causa pode receber algumas parcelas de seguro-desemprego, conforme o tempo de trabalho. O FAT é o fundo, abastecido pelo PIS/Pasep, que paga esses benefícios e financia programas de emprego.",
+"data": "1990-01-11",
+"idSenado": 549874
+},
+"n:LEI-8069-1990": {
+"nome": "Estatuto da Criança e do Adolescente (ECA)",
+"ps": "Reúne os direitos de crianças (até 12 anos incompletos) e adolescentes (de 12 a 18 anos) e as regras para protegê-los.",
+"cf": "Garante direito à vida, saúde, educação, convivência familiar e proteção contra violência e trabalho infantil. Cria os Conselhos Tutelares em cada município. Adolescentes que cometem atos infracionais recebem medidas socioeducativas (como prestação de serviços ou internação de até 3 anos), e não as penas de adultos.",
+"data": "1990-07-13",
+"idSenado": 549945,
+"origem": [
+"s:29333",
+"PLS 193/1989"
+]
+},
+"n:LEI-8078-1990": {
+"nome": "Código de Defesa do Consumidor (CDC)",
+"ps": "Protege quem compra produtos ou contrata serviços.",
+"cf": "Obriga o fornecedor a dar informação clara, proíbe propaganda enganosa e cláusulas abusivas e garante troca ou conserto de produto com defeito. Em compras feitas fora da loja (internet, telefone) o consumidor pode desistir em até 7 dias. Criou base para os Procons atuarem.",
+"data": "1990-09-11",
+"idSenado": 549954,
+"origem": [
+"s:27247",
+"PLS 97/1989"
+]
+},
+"n:LEI-8080-1990": {
+"nome": "Lei Orgânica da Saúde (SUS)",
+"ps": "Organiza o Sistema Único de Saúde (SUS).",
+"cf": "Define que a saúde é direito de todos e dever do Estado, com atendimento gratuito, universal e integral. Diz o que cabem à União, aos estados e aos municípios, e como o SUS cuida de vigilância sanitária, vacinação, remédios e atendimento.",
+"data": "1990-09-19",
+"idSenado": 549956
+},
+"n:LEI-8112-1990": {
+"nome": "Estatuto dos Servidores Públicos Federais",
+"ps": "Define os direitos e deveres dos servidores públicos civis da União.",
+"cf": "Trata de concurso, posse, estabilidade, salário, férias, licenças, aposentadoria (com mudanças feitas depois por emendas) e punições, que vão de advertência até demissão após processo administrativo.",
+"data": "1990-12-11",
+"idSenado": 549988
+},
+"n:LEI-8031-1990": {
+"nome": "Programa Nacional de Desestatização",
+"ps": "Criou o programa para vender empresas e participações do governo federal à iniciativa privada.",
+"cf": "Definiu como escolher as empresas a serem privatizadas e como fazer os leilões, com uma comissão para conduzir o processo. Foi substituída depois pela Lei 9.491/1997, que manteve o programa.",
+"data": "1990-04-12",
+"idSenado": 549907
+},
+"n:LEI-8213-1991": {
+"nome": "Lei dos Benefícios da Previdência Social",
+"ps": "Define os benefícios pagos pelo INSS.",
+"cf": "Lista quem tem direito e como se calculam aposentadorias, pensão por morte, auxílio por incapacidade (antigo auxílio-doença), salário-maternidade e outros benefícios. Várias regras foram mudadas depois, principalmente pela Reforma da Previdência de 2019.",
+"data": "1991-07-24",
+"idSenado": 550089
+},
+"n:LEI-8313-1991": {
+"nome": "Lei Rouanet (Lei de Incentivo à Cultura)",
+"ps": "Criou o Programa Nacional de Apoio à Cultura (Pronac) para financiar projetos culturais.",
+"cf": "Empresas e pessoas podem patrocinar projetos culturais aprovados pelo governo e descontar parte do valor do Imposto de Renda devido. O projeto precisa ser aprovado antes e prestar contas depois.",
+"data": "1991-12-23",
+"idSenado": 550189
+},
+"n:LEI-8429-1992": {
+"nome": "Lei de Improbidade Administrativa",
+"ps": "Pune agentes públicos que agem de forma desonesta com o dinheiro ou o patrimônio público.",
+"cf": "Considera improbidade o enriquecimento ilícito, o prejuízo aos cofres públicos e a violação de princípios da administração. As punições incluem devolver o dinheiro, multa, perda do cargo e suspensão dos direitos políticos. Em 2021 a Lei 14.230 mudou a lei e passou a exigir intenção (dolo) para haver punição.",
+"data": "1992-06-02",
+"idSenado": 550305
+},
+"n:LEI-8666-1993": {
+"nome": "Antiga Lei de Licitações",
+"ps": "Definia como o governo devia comprar e contratar obras e serviços.",
+"cf": "Exigia licitação pública, com modalidades como concorrência, tomada de preços e convite, e tratava de contratos e punições. Foi substituída pela Nova Lei de Licitações (Lei 14.133/2021), que passou a valer sozinha em 30/12/2023.",
+"data": "1993-06-21",
+"idSenado": 550542
+},
+"n:LEI-8742-1993": {
+"nome": "Lei Orgânica da Assistência Social (Loas)",
+"ps": "Organiza a assistência social pública para quem precisa, independentemente de ter contribuído com o INSS.",
+"cf": "Criou o Benefício de Prestação Continuada (BPC): um salário mínimo por mês para idosos a partir de 65 anos e pessoas com deficiência de família de baixa renda. Organiza também os serviços de assistência social, depois estruturados no SUAS.",
+"data": "1993-12-07",
+"idSenado": 550618
+},
+"n:LEI-8880-1994": {
+"nome": "Lei da URV (Plano Real)",
+"ps": "Criou a Unidade Real de Valor (URV), etapa de transição para a nova moeda do Plano Real.",
+"cf": "Durante alguns meses de 1994, preços e salários passaram a ser expressos em URV, que era corrigida todo dia, enquanto o cruzeiro real continuava circulando. Em 1º de julho de 1994 a URV virou o Real.",
+"data": "1994-05-27",
+"idSenado": 550756
+},
+"n:LEI-8906-1994": {
+"nome": "Estatuto da Advocacia e da OAB",
+"ps": "Regula a profissão de advogado e a Ordem dos Advogados do Brasil (OAB).",
+"cf": "Exige inscrição na OAB (com o Exame de Ordem) para advogar, lista direitos dos advogados — como sigilo da relação com o cliente — e deveres éticos, e define as punições aplicadas pela OAB.",
+"data": "1994-07-04",
+"idSenado": 550782
+},
+"n:LEI-9069-1995": {
+"nome": "Lei do Plano Real",
+"ps": "Consolidou as regras do Real como moeda nacional.",
+"cf": "Definiu o Real como moeda, as regras de emissão pelo Banco Central, a conversão de contratos e preços da moeda antiga e limites para correção de valores, para manter a inflação sob controle.",
+"data": "1995-06-29",
+"idSenado": 550945
+},
+"n:LEI-9394-1996": {
+"nome": "Lei de Diretrizes e Bases da Educação (LDB)",
+"ps": "Organiza toda a educação no Brasil, da creche à universidade.",
+"cf": "Define as etapas (educação infantil, ensino fundamental, ensino médio e ensino superior), carga horária mínima, quem faz o quê entre União, estados e municípios, formação de professores e financiamento. Foi alterada muitas vezes, como na reforma do ensino médio.",
+"data": "1996-12-20",
+"idSenado": 551270
+},
+"n:LCP-87-1996": {
+"nome": "Lei Kandir",
+"ps": "Regula o ICMS, imposto estadual sobre circulação de mercadorias e alguns serviços.",
+"cf": "Define regras gerais do ICMS para todos os estados e isentou do imposto as exportações de produtos primários e semielaborados. Previa compensação da União aos estados pela perda de arrecadação, tema de disputa por muitos anos.",
+"data": "1996-09-13",
+"idSenado": 572842
+},
+"n:EMC-16-1997": {
+"nome": "Emenda da Reeleição",
+"ps": "Permitiu a reeleição para presidente, governadores e prefeitos.",
+"cf": "Esses cargos passaram a poder ser exercidos por dois mandatos seguidos. Quem quiser disputar a reeleição não precisa deixar o cargo antes da eleição.",
+"data": "1997-06-04",
+"idSenado": 540603
+},
+"n:LEI-9472-1997": {
+"nome": "Lei Geral de Telecomunicações",
+"ps": "Organiza os serviços de telefonia e telecomunicações e cria a Anatel.",
+"cf": "Abriu o setor para empresas privadas, com concessões e autorizações, e criou a Agência Nacional de Telecomunicações (Anatel) para regular e fiscalizar as operadoras e proteger o usuário.",
+"data": "1997-07-16",
+"idSenado": 551348
+},
+"n:LEI-9478-1997": {
+"nome": "Lei do Petróleo",
+"ps": "Organiza a exploração de petróleo e gás e cria a ANP.",
+"cf": "Acabou com o monopólio da Petrobras na exploração: outras empresas podem atuar por concessão, após leilão. Criou a Agência Nacional do Petróleo (ANP) e o Conselho Nacional de Política Energética.",
+"data": "1997-08-06",
+"idSenado": 551354
+},
+"n:LEI-9503-1997": {
+"nome": "Código de Trânsito Brasileiro (CTB)",
+"ps": "Reúne as regras de trânsito para motoristas, pedestres e ciclistas.",
+"cf": "Define regras de circulação, carteira de habilitação, sistema de pontos na CNH, infrações, multas e crimes de trânsito, como dirigir embriagado. Foi alterado várias vezes, por exemplo pela Lei Seca.",
+"data": "1997-09-23",
+"idSenado": 551379
+},
+"n:LEI-9605-1998": {
+"nome": "Lei de Crimes Ambientais",
+"ps": "Define punições para quem prejudica o meio ambiente.",
+"cf": "Pessoas e empresas que desmatam, poluem, maltratam animais ou caçam e pescam ilegalmente podem receber multas, penas de prisão ou prestação de serviços. Empresas também podem ser punidas.",
+"data": "1998-02-12",
+"idSenado": 551481
+},
+"n:LEI-9656-1998": {
+"nome": "Lei dos Planos de Saúde",
+"ps": "Define regras para os planos de saúde privados.",
+"cf": "Cria coberturas mínimas obrigatórias, regras de carência, limites para reajuste por idade e proíbe recusar cliente por doença preexistente (com regras de cobertura temporária). A fiscalização ficou com a ANS, criada em 2000.",
+"data": "1998-06-03",
+"idSenado": 551532,
+"origem": [
+"s:27148",
+"PLS 93/1993"
+]
+},
+"n:EMC-19-1998": {
+"nome": "Reforma Administrativa de 1998",
+"ps": "Mudou regras da administração pública e dos servidores.",
+"cf": "Incluiu a eficiência entre os princípios da administração, criou o teto salarial no serviço público, permitiu perda da estabilidade por mau desempenho (com avaliação definida em lei) e aumentou o estágio probatório para 3 anos.",
+"data": "1998-06-04",
+"idSenado": 540612,
+"origem": [
+"c:169506",
+"PEC 173/1995"
+]
+},
+"n:EMC-20-1998": {
+"nome": "Reforma da Previdência de 1998",
+"ps": "Mudou as regras de aposentadoria do INSS e dos servidores.",
+"cf": "Trocou a aposentadoria por tempo de serviço pela aposentadoria por tempo de contribuição e criou regras de transição. Para servidores, passou a exigir idade mínima.",
+"data": "1998-12-15",
+"idSenado": 540615
+},
+"n:LEI-9787-1999": {
+"nome": "Lei dos Genéricos",
+"ps": "Criou os medicamentos genéricos no Brasil.",
+"cf": "Genérico é o remédio com o mesmo princípio ativo, dose e efeito do de marca, vendido pelo nome da substância depois que a patente acaba. Precisa de testes aprovados pela Anvisa e costuma ser mais barato.",
+"data": "1999-02-10",
+"idSenado": 551663
+},
+"n:LCP-101-2000": {
+"nome": "Lei de Responsabilidade Fiscal (LRF)",
+"ps": "Obriga União, estados e municípios a controlar gastos e dívidas.",
+"cf": "Limita o gasto com pessoal (por exemplo, até 50% da receita na União e 60% nos estados e municípios), exige metas fiscais e proíbe criar despesa sem dizer de onde virá o dinheiro. Quem descumpre fica sujeito a punições e a restrições de repasses.",
+"data": "2000-05-04",
+"idSenado": 572856
+},
+"n:EMC-32-2001": {
+"nome": "Emenda das Medidas Provisórias",
+"ps": "Mudou as regras das medidas provisórias (MPs) e acabou com as reedições sem limite.",
+"cf": "A MP vale por 60 dias, prorrogáveis por mais 60. Se não for votada em 45 dias, passa a trancar a pauta da Casa onde está. Se o Congresso não aprovar no prazo, ela perde a validade e não pode ser reeditada no mesmo ano. Também proibiu MP sobre alguns temas, como direito penal e eleitoral.",
+"data": "2001-09-11",
+"idSenado": 540635,
+"origem": [
+"c:14784",
+"PEC 472/1997"
+]
+},
+"n:LEI-10406-2002": {
+"nome": "Código Civil",
+"ps": "Reúne as regras do dia a dia entre pessoas e empresas.",
+"cf": "Trata de contratos, propriedade, família, casamento, herança, empresas e responsabilidade por danos. Substituiu o Código Civil de 1916 e começou a valer em janeiro de 2003.",
+"data": "2002-01-10",
+"idSenado": 552282
+},
+"n:EMC-41-2003": {
+"nome": "Reforma da Previdência de 2003",
+"ps": "Mudou as regras de aposentadoria dos servidores públicos.",
+"cf": "Acabou com a aposentadoria pelo último salário (integralidade) e com o reajuste igual ao dos ativos (paridade) para quem entrasse depois e criou contribuição de aposentados e pensionistas sobre o valor que passa de certo limite.",
+"data": "2003-12-19",
+"idSenado": 540644
+},
+"n:LEI-10741-2003": {
+"nome": "Estatuto da Pessoa Idosa",
+"ps": "Garante direitos às pessoas com 60 anos ou mais.",
+"cf": "Dá prioridade no atendimento, gratuidade no transporte coletivo urbano a partir de 65 anos, vagas reservadas, desconto de pelo menos 50% em eventos culturais e esportivos e proteção contra abandono e violência, com punições para quem desrespeita.",
+"data": "2003-10-01",
+"idSenado": 552617
+},
+"n:LEI-10826-2003": {
+"nome": "Estatuto do Desarmamento",
+"ps": "Define regras para ter e portar armas de fogo.",
+"cf": "Reorganizou o cadastro nacional de armas (Sinarm), exige requisitos como idade mínima, exames e comprovação para comprar arma e restringe o porte (andar armado). Também define crimes como porte ilegal. O plebiscito de 2005 manteve a venda de armas permitida.",
+"data": "2003-12-22",
+"idSenado": 552702,
+"origem": [
+"c:125878",
+"PL 1555/2003"
+]
+},
+"n:LEI-10836-2004": {
+"nome": "Lei do Bolsa Família (2004)",
+"ps": "Criou o programa Bolsa Família, de transferência de renda para famílias pobres.",
+"cf": "Juntou programas anteriores (como Bolsa Escola e Auxílio-Gás) e pagava benefícios mensais a famílias de baixa renda, com condições como frequência escolar e vacinação dos filhos. Foi substituída em 2021 pelo Auxílio Brasil e o Bolsa Família foi recriado pela Lei 14.601/2023.",
+"data": "2004-01-09",
+"idSenado": 552712
+},
+"n:EMC-45-2004": {
+"nome": "Reforma do Judiciário",
+"ps": "Mudou o funcionamento da Justiça.",
+"cf": "Criou o Conselho Nacional de Justiça (CNJ), para fiscalizar o Judiciário, e o Conselho Nacional do Ministério Público. Criou a súmula vinculante do STF e incluiu na Constituição o direito a um processo com duração razoável.",
+"data": "2004-12-08",
+"idSenado": 540648
+},
+"n:LEI-11096-2005": {
+"nome": "Lei do ProUni",
+"ps": "Criou o Programa Universidade para Todos (ProUni).",
+"cf": "Faculdades particulares que aderem recebem isenção de impostos e, em troca, oferecem bolsas integrais e parciais para estudantes de baixa renda vindos de escola pública (ou bolsistas de escola particular), com vagas reservadas para pessoas com deficiência, pretos, pardos e indígenas.",
+"data": "2005-01-13",
+"idSenado": 570545
+},
+"n:LEI-11340-2006": {
+"nome": "Lei Maria da Penha",
+"ps": "Combate a violência doméstica e familiar contra a mulher.",
+"cf": "Define as formas de violência (física, psicológica, sexual, patrimonial e moral), cria medidas protetivas de urgência — como afastar o agressor de casa — e juizados especializados. O nome homenageia Maria da Penha Maia Fernandes, vítima de violência doméstica.",
+"data": "2006-08-07",
+"idSenado": 572125
+},
+"n:LEI-11343-2006": {
+"nome": "Lei de Drogas",
+"ps": "Define a política sobre drogas e os crimes ligados a elas.",
+"cf": "Para quem usa, prevê advertência, prestação de serviços e medidas educativas, sem prisão. Para o tráfico, prevê prisão de 5 a 15 anos. A lei não define a quantidade que separa uso de tráfico; em 2024 o STF fixou um critério para a maconha.",
+"data": "2006-08-23",
+"idSenado": 572128,
+"origem": [
+"s:50227",
+"PLS 115/2002"
+]
+},
+"n:LCP-123-2006": {
+"nome": "Estatuto da Micro e Pequena Empresa (Simples Nacional)",
+"ps": "Simplifica impostos e burocracia para micro e pequenas empresas.",
+"cf": "Criou o Simples Nacional, que junta vários impostos em uma guia única com alíquotas menores, conforme o faturamento. Depois, a lei também criou a figura do Microempreendedor Individual (MEI).",
+"data": "2006-12-14",
+"idSenado": 572878
+},
+"n:LEI-11977-2009": {
+"nome": "Lei do Minha Casa, Minha Vida (2009)",
+"ps": "Criou o programa Minha Casa, Minha Vida, de moradia para famílias de baixa e média renda.",
+"cf": "O governo subsidia parte do valor do imóvel e o financiamento conforme a renda da família. A lei também trata de regularização de terrenos ocupados. O programa foi recriado em 2023 pela Lei 14.620.",
+"data": "2009-07-07",
+"idSenado": 580200
+},
+"n:LCP-135-2010": {
+"nome": "Lei da Ficha Limpa",
+"ps": "Impede que pessoas condenadas ou que cometeram certas irregularidades se candidatem.",
+"cf": "Fica inelegível por 8 anos quem foi condenado por órgão colegiado (mais de um juiz) por crimes como corrupção, quem teve mandato cassado ou renunciou para fugir de cassação, entre outros casos. Nasceu de um projeto de iniciativa popular com mais de 1,3 milhão de assinaturas.",
+"data": "2010-06-04",
+"idSenado": 572890
+},
+"n:LEI-12288-2010": {
+"nome": "Estatuto da Igualdade Racial",
+"ps": "Busca garantir igualdade de oportunidades para a população negra e combater a discriminação.",
+"cf": "Prevê ações em saúde, educação, cultura, trabalho e acesso à terra, defesa de religiões de matriz africana e políticas de ação afirmativa.",
+"data": "2010-07-20",
+"idSenado": 575930,
+"origem": [
+"s:58268",
+"PLS 213/2003"
+]
+},
+"n:LEI-12305-2010": {
+"nome": "Política Nacional de Resíduos Sólidos",
+"ps": "Define regras para o lixo e o reaproveitamento de materiais.",
+"cf": "Divide a responsabilidade pelo lixo entre governo, empresas e consumidores, cria a logística reversa (fabricantes recolhem embalagens e produtos como pilhas e pneus) e mandou acabar com os lixões, com prazos depois prorrogados.",
+"data": "2010-08-02",
+"idSenado": 575947,
+"origem": [
+"s:1711",
+"PLS 354/1989"
+]
+},
+"n:LEI-12527-2011": {
+"nome": "Lei de Acesso à Informação (LAI)",
+"ps": "Garante a qualquer pessoa o direito de pedir informações aos órgãos públicos.",
+"cf": "Qualquer pessoa pode pedir, sem explicar o motivo. O órgão tem até 20 dias para responder, prorrogáveis por mais 10. Só podem ser negadas informações classificadas como sigilosas ou pessoais, e o órgão tem que justificar a recusa.",
+"data": "2011-11-18",
+"idSenado": 584383
+},
+"n:LEI-12651-2012": {
+"nome": "Código Florestal",
+"ps": "Define regras para proteger a vegetação nativa em propriedades rurais.",
+"cf": "Obriga a manter Áreas de Preservação Permanente (margens de rios, topos de morros) e uma Reserva Legal (de 20% a 80% do imóvel, conforme a região). Criou o Cadastro Ambiental Rural (CAR) e regras para recuperar áreas desmatadas.",
+"data": "2012-05-25",
+"idSenado": 589574
+},
+"n:LEI-12711-2012": {
+"nome": "Lei de Cotas",
+"ps": "Reserva vagas nas universidades e institutos federais para alunos de escola pública.",
+"cf": "Metade das vagas vai para estudantes que fizeram o ensino médio em escola pública, com parte delas para pessoas de baixa renda e para pretos, pardos, indígenas e pessoas com deficiência, conforme a população de cada estado. Revisada em 2023, quando quilombolas foram incluídos.",
+"data": "2012-08-29",
+"idSenado": 588087
+},
+"n:EMC-72-2013": {
+"nome": "PEC das Domésticas",
+"ps": "Ampliou os direitos dos trabalhadores domésticos.",
+"cf": "Garantiu jornada de 8 horas por dia e 44 por semana, hora extra, adicional noturno e FGTS, entre outros direitos. Parte deles foi regulamentada pela Lei Complementar 150/2015.",
+"data": "2013-04-02",
+"idSenado": 540675
+},
+"n:LEI-12846-2013": {
+"nome": "Lei Anticorrupção (Lei da Empresa Limpa)",
+"ps": "Pune empresas que praticam corrupção contra a administração pública.",
+"cf": "A empresa responde mesmo que não se prove a intenção dos donos, com multa de até 20% do faturamento bruto e outras punições. Criou o acordo de leniência, em que a empresa colabora com as investigações em troca de punição menor.",
+"data": "2013-08-01",
+"idSenado": 591294
+},
+"n:LEI-12850-2013": {
+"nome": "Lei das Organizações Criminosas",
+"ps": "Define o que é organização criminosa e meios de investigá-la.",
+"cf": "Organização criminosa é um grupo de 4 ou mais pessoas organizado para cometer crimes graves. A lei regula a colaboração premiada (delação), a infiltração de agentes e a ação controlada da polícia.",
+"data": "2013-08-02",
+"idSenado": 591298,
+"origem": [
+"s:77859",
+"PLS 150/2006"
+]
+},
+"n:LEI-12965-2014": {
+"nome": "Marco Civil da Internet",
+"ps": "Define direitos e deveres para o uso da internet no Brasil.",
+"cf": "Garante a neutralidade da rede (o provedor não pode discriminar conteúdos), proteção da privacidade e regras para guarda de registros. Em regra, plataformas só respondiam por conteúdo de terceiros após ordem judicial; em 2025 o STF ampliou essa responsabilidade em alguns casos.",
+"data": "2014-04-23",
+"idSenado": 584776
+},
+"n:LEI-13005-2014": {
+"nome": "Plano Nacional de Educação (PNE 2014–2024)",
+"ps": "Fixou 20 metas para a educação brasileira por 10 anos.",
+"cf": "Entre as metas: universalizar a pré-escola e o ensino fundamental, acabar com o analfabetismo, ampliar o ensino em tempo integral e chegar a 10% do PIB investido em educação. O prazo foi prorrogado até a aprovação de um novo plano.",
+"data": "2014-06-25",
+"idSenado": 584816
+},
+"n:LEI-13104-2015": {
+"nome": "Lei do Feminicídio",
+"ps": "Tornou o feminicídio uma forma mais grave de homicídio.",
+"cf": "Feminicídio é matar uma mulher por ser mulher (por violência doméstica ou menosprezo à condição de mulher). Em 2024 a Lei 14.994 o transformou em crime próprio, com pena de 20 a 40 anos.",
+"data": "2015-03-09",
+"idSenado": 584916,
+"origem": [
+"s:113728",
+"PLS 292/2013"
+]
+},
+"n:LEI-13105-2015": {
+"nome": "Código de Processo Civil (CPC)",
+"ps": "Define as regras dos processos na Justiça cível.",
+"cf": "Trata de como se entra com uma ação, prazos (contados em dias úteis), audiências de conciliação, provas, recursos e execução das decisões. Substituiu o código de 1973 e passou a valer em 2016.",
+"data": "2015-03-16",
+"idSenado": 584917,
+"origem": [
+"s:97249",
+"PLS 166/2010"
+]
+},
+"n:LCP-150-2015": {
+"nome": "Lei dos Empregados Domésticos",
+"ps": "Regulamentou os direitos dos trabalhadores domésticos garantidos pela EC 72/2013.",
+"cf": "Tornou obrigatório o FGTS para domésticos, criou o Simples Doméstico (guia única para o patrão recolher impostos e contribuições), regras de jornada, hora extra, banco de horas e seguro-desemprego.",
+"data": "2015-06-01",
+"idSenado": 572905,
+"origem": [
+"s:113104",
+"PLS 224/2013"
+]
+},
+"n:LEI-13146-2015": {
+"nome": "Lei Brasileira de Inclusão (Estatuto da Pessoa com Deficiência)",
+"ps": "Garante direitos e inclusão das pessoas com deficiência.",
+"cf": "Exige acessibilidade em prédios, transportes e sites, proíbe escolas de cobrar valor extra por aluno com deficiência e torna crime a discriminação. Garante o direito de casar e decidir sobre a própria vida.",
+"data": "2015-07-06",
+"idSenado": 584958,
+"origem": [
+"s:54729",
+"PLS 6/2003"
+]
+},
+"n:LEI-13303-2016": {
+"nome": "Lei das Estatais",
+"ps": "Define regras de gestão para empresas públicas e de economia mista.",
+"cf": "Exige requisitos técnicos e impõe restrições para indicar diretores e conselheiros (por exemplo, para quem teve atuação recente em partido ou campanha), regras de transparência e de compras próprias para essas empresas.",
+"data": "2016-06-30",
+"idSenado": 602528,
+"origem": [
+"s:122838",
+"PLS 555/2015"
+]
+},
+"n:EMC-95-2016": {
+"nome": "Teto de Gastos",
+"ps": "Limitou o crescimento das despesas do governo federal.",
+"cf": "Por até 20 anos, o gasto federal de cada ano só poderia crescer pela inflação do ano anterior. Saúde e educação tinham regras próprias. Foi substituído pelo novo arcabouço fiscal (LC 200/2023).",
+"data": "2016-12-15",
+"idSenado": 540698
+},
+"n:LEI-13415-2017": {
+"nome": "Reforma do Ensino Médio",
+"ps": "Mudou a organização do ensino médio.",
+"cf": "Ampliou a carga horária e dividiu o currículo em uma parte comum (Base Nacional Comum Curricular) e itinerários formativos à escolha do aluno. Foi revista em 2024 pela Lei 14.945.",
+"data": "2017-02-16",
+"idSenado": 602639
+},
+"n:LEI-13429-2017": {
+"nome": "Lei da Terceirização",
+"ps": "Ampliou a terceirização de serviços e mudou o trabalho temporário.",
+"cf": "Empresas podem contratar outra empresa para prestar serviços; a Reforma Trabalhista, no mesmo ano, deixou claro que isso vale inclusive para a atividade principal. A contratante responde de forma subsidiária (paga se a terceirizada não pagar) por direitos trabalhistas. O contrato temporário pode durar até 180 dias, prorrogáveis por mais 90.",
+"data": "2017-03-31",
+"idSenado": 17672582
+},
+"n:LEI-13445-2017": {
+"nome": "Lei de Migração",
+"ps": "Define direitos e deveres de migrantes e visitantes no Brasil.",
+"cf": "Trata o migrante como sujeito de direitos, combate a discriminação, define tipos de visto e regras de entrada, residência, naturalização e saída. Substituiu o Estatuto do Estrangeiro de 1980.",
+"data": "2017-05-24",
+"idSenado": 17696552,
+"origem": [
+"s:113700",
+"PLS 288/2013"
+]
+},
+"n:LEI-13467-2017": {
+"nome": "Reforma Trabalhista",
+"ps": "Mudou várias regras da CLT sobre trabalho e Justiça do Trabalho.",
+"cf": "Permite que acordos coletivos valham mais que a lei em vários temas, criou o trabalho intermitente, regulou o teletrabalho, acabou com a contribuição sindical obrigatória e mudou regras de férias, jornada e processos trabalhistas.",
+"data": "2017-07-13",
+"idSenado": 17728053
+},
+"n:EMC-97-2017": {
+"nome": "Cláusula de desempenho e fim das coligações",
+"ps": "Mudou regras de partidos e eleições.",
+"cf": "Proibiu coligações nas eleições para deputados e vereadores a partir de 2020 e criou uma cláusula de desempenho: partidos que não alcançam um mínimo de votos ou de deputados eleitos perdem acesso ao fundo partidário e ao tempo de TV.",
+"data": "2017-10-04",
+"idSenado": 26247394,
+"origem": [
+"s:126473",
+"PEC 36/2016"
+]
+},
+"n:LEI-13709-2018": {
+"nome": "Lei Geral de Proteção de Dados (LGPD)",
+"ps": "Protege os dados pessoais das pessoas.",
+"cf": "Empresas e governo só podem usar dados pessoais com uma base legal (como o consentimento) e para fins claros. A pessoa pode pedir acesso, correção e exclusão dos seus dados. A ANPD fiscaliza e pode aplicar multas de até 2% do faturamento, limitadas a R$ 50 milhões por infração.",
+"data": "2018-08-14",
+"idSenado": 27457334
+},
+"n:EMC-103-2019": {
+"nome": "Reforma da Previdência de 2019",
+"ps": "Mudou as regras de aposentadoria do INSS e dos servidores federais.",
+"cf": "Criou idade mínima para se aposentar: 65 anos para homens e 62 para mulheres, em regra, com tempo mínimo de contribuição. Mudou o cálculo do benefício e as alíquotas de contribuição e criou regras de transição para quem já trabalhava.",
+"data": "2019-11-12",
+"idSenado": 31727296
+},
+"n:LEI-13874-2019": {
+"nome": "Lei da Liberdade Econômica",
+"ps": "Reduz burocracia para empreender.",
+"cf": "Atividades de baixo risco podem funcionar sem alvará ou licença prévia, a carteira de trabalho passou a ser digital e a lei trouxe regras para limitar exigências do governo sobre empresas.",
+"data": "2019-09-20",
+"idSenado": 31412289
+},
+"n:LEI-13964-2019": {
+"nome": "Pacote Anticrime",
+"ps": "Mudou leis penais e de processo penal.",
+"cf": "Aumentou o tempo máximo de cumprimento de pena para 40 anos, endureceu regras para progressão de regime, criou o acordo de não persecução penal e a figura do juiz das garantias (que o STF validou com ajustes em 2023).",
+"data": "2019-12-24",
+"idSenado": 31865675
+},
+"n:LEI-13979-2020": {
+"nome": "Lei de medidas contra a covid-19",
+"ps": "Definiu medidas que o poder público podia adotar contra a pandemia de covid-19.",
+"cf": "Permitiu isolamento, quarentena, vacinação compulsória (que não significa vacinar à força), depois o uso obrigatório de máscaras, e compras emergenciais sem licitação durante a emergência de saúde pública.",
+"data": "2020-02-06",
+"idSenado": 31933184
+},
+"n:LEI-13982-2020": {
+"nome": "Lei do Auxílio Emergencial",
+"ps": "Criou o auxílio emergencial durante a pandemia de covid-19.",
+"cf": "Pagou R$ 600 por mês (R$ 1.200 para mães chefes de família) a trabalhadores informais, autônomos, desempregados e MEIs de baixa renda, inicialmente por 3 meses, depois prorrogado.",
+"data": "2020-04-02",
+"idSenado": 32045742,
+"origem": [
+"c:2163972",
+"PL 9236/2017"
+]
+},
+"n:LEI-14026-2020": {
+"nome": "Novo Marco do Saneamento",
+"ps": "Atualizou as regras do saneamento básico.",
+"cf": "Estabeleceu meta de 99% da população com água tratada e 90% com coleta e tratamento de esgoto até 2033, exigiu licitação para contratar empresas de saneamento e deu à ANA o papel de criar normas de referência para o setor.",
+"data": "2020-07-15",
+"idSenado": 32462863,
+"origem": [
+"c:2213200",
+"PL 4162/2019"
+]
+},
+"n:EMC-108-2020": {
+"nome": "Novo Fundeb permanente",
+"ps": "Tornou permanente o Fundeb, principal fundo de financiamento da educação básica.",
+"cf": "O fundo reúne parte dos impostos de estados e municípios e redistribui conforme o número de alunos. A complementação da União subiu gradualmente de 10% para 23% até 2026.",
+"data": "2020-08-26",
+"idSenado": 32602027,
+"origem": [
+"c:1198512",
+"PEC 15/2015"
+]
+},
+"n:LEI-14113-2020": {
+"nome": "Lei do Novo Fundeb",
+"ps": "Regulamentou o novo Fundeb criado pela EC 108/2020.",
+"cf": "Define como o dinheiro do fundo é dividido entre estados e municípios, os critérios da complementação da União e a regra de que pelo menos 70% vá para pagar profissionais da educação.",
+"data": "2020-12-25",
+"idSenado": 32999206
+},
+"n:LCP-179-2021": {
+"nome": "Autonomia do Banco Central",
+"ps": "Deu autonomia ao Banco Central.",
+"cf": "O presidente e os diretores do Banco Central passam a ter mandatos fixos de 4 anos, não coincidentes com o do presidente da República, e só podem ser demitidos em casos previstos na lei. O objetivo principal do BC é manter a inflação sob controle.",
+"data": "2021-02-24",
+"idSenado": 33254508,
+"origem": [
+"s:135147",
+"PLP 19/2019"
+]
+},
+"n:EMC-111-2021": {
+"nome": "Reforma eleitoral de 2021",
+"ps": "Mudou regras eleitorais e a data de posse do presidente e dos governadores.",
+"cf": "A posse do presidente passou para 5 de janeiro e a dos governadores para 6 de janeiro, valendo a partir da eleição de 2026. Votos dados a mulheres e a pessoas negras contam em dobro na divisão do fundo partidário e eleitoral (em eleições de 2022 a 2030).",
+"data": "2021-09-28",
+"idSenado": 34969552
+},
+"n:LEI-14133-2021": {
+"nome": "Nova Lei de Licitações",
+"ps": "Define como o governo compra produtos e contrata obras e serviços.",
+"cf": "Substituiu a Lei 8.666/1993 e outras. Criou o diálogo competitivo, o Portal Nacional de Contratações Públicas e regras de planejamento e de combate a fraudes. Passou a valer sozinha a partir de 30/12/2023.",
+"data": "2021-04-01",
+"idSenado": 33382036,
+"origem": [
+"s:115926",
+"PLS 559/2013"
+]
+},
+"n:LEI-14300-2022": {
+"nome": "Marco Legal da Geração Distribuída",
+"ps": "Define regras para quem gera a própria energia, como com painéis solares.",
+"cf": "Quem gera energia em casa ou na empresa pode trocar o excedente por créditos na conta de luz. A lei criou uma transição para cobrar gradualmente pelo uso da rede de distribuição de quem passou a gerar a partir de 2023.",
+"data": "2022-01-06",
+"idSenado": 35420157
+},
+"n:LEI-14601-2023": {
+"nome": "Lei do novo Bolsa Família (2023)",
+"ps": "Recriou o Bolsa Família, programa de transferência de renda para famílias pobres.",
+"cf": "Paga no mínimo R$ 600 por família, mais R$ 150 por criança de 0 a 6 anos e R$ 50 por gestante, criança ou adolescente de 7 a 18 anos. As famílias precisam cumprir condições como frequência escolar, vacinação e pré-natal.",
+"data": "2023-06-19",
+"idSenado": 37200398
+},
+"n:LEI-14611-2023": {
+"nome": "Lei da Igualdade Salarial",
+"ps": "Obriga salário igual para mulheres e homens que fazem o mesmo trabalho.",
+"cf": "Empresas com 100 ou mais empregados devem publicar relatórios de transparência salarial. Quem paga menos às mulheres pela mesma função pode ser multado e deve pagar a diferença.",
+"data": "2023-07-03",
+"idSenado": 37349718
+},
+"n:LEI-14663-2023": {
+"nome": "Lei da valorização do salário mínimo",
+"ps": "Define a regra de reajuste do salário mínimo.",
+"cf": "O mínimo passou a R$ 1.320 em maio de 2023. Pela lei, a cada ano ele é corrigido pela inflação (INPC) mais o crescimento do PIB de dois anos antes. A lei também ampliou a faixa de isenção do Imposto de Renda.",
+"data": "2023-08-28",
+"idSenado": 37536044
+},
+"n:LCP-200-2023": {
+"nome": "Novo Arcabouço Fiscal",
+"ps": "Substituiu o teto de gastos por uma nova regra para as contas do governo federal.",
+"cf": "Os gastos podem crescer, acima da inflação, até 70% do crescimento da receita, dentro de uma faixa de 0,6% a 2,5% ao ano. O governo precisa cumprir metas de resultado primário; se não cumprir, o crescimento do gasto no ano seguinte fica menor.",
+"data": "2023-08-30",
+"idSenado": 37553820
+},
+"n:EMC-132-2023": {
+"nome": "Reforma Tributária",
+"ps": "Muda os impostos sobre o consumo.",
+"cf": "Cinco tributos (PIS, Cofins, IPI, ICMS e ISS) serão substituídos aos poucos por um IVA dual: a CBS (federal) e o IBS (estados e municípios), além de um Imposto Seletivo sobre produtos prejudiciais à saúde e ao meio ambiente. A transição vai de 2026 a 2033.",
+"data": "2023-12-20",
+"idSenado": 37959796
+},
+"n:LEI-14790-2023": {
+"nome": "Lei das Apostas Esportivas (bets)",
+"ps": "Regula as apostas de quota fixa, como as apostas esportivas online.",
+"cf": "As empresas de apostas precisam de autorização do Ministério da Fazenda, pagar outorga e tributos e seguir regras de publicidade e de proteção ao apostador. Menores de 18 anos são proibidos de apostar.",
+"data": "2023-12-29",
+"idSenado": 38067061
+},
+"n:LCP-214-2025": {
+"nome": "Regulamentação da Reforma Tributária",
+"ps": "Detalha como funcionarão os novos impostos sobre consumo (IBS, CBS e Imposto Seletivo).",
+"cf": "Define alíquotas reduzidas para setores como saúde, educação e alimentos, a cesta básica nacional com alíquota zero, a devolução de imposto (cashback) para famílias de baixa renda e as regras da transição de 2026 a 2033.",
+"data": "2025-01-16",
+"idSenado": 40180341
+}
+}
