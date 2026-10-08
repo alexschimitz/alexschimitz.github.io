@@ -1,4 +1,9 @@
 {
   "nota": "Subpáginas de /politica/ já publicadas. true = link do menu e dos cartões vai para /politica/<nome>/. Mantido pelo painel (base.js).",
-  "paginas": { "gastos": false, "mapa": false, "politicos": false, "governo": false }
+  "paginas": {
+    "gastos": true,
+    "mapa": false,
+    "politicos": false,
+    "governo": false
+  }
 }
