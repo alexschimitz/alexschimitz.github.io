@@ -13,47 +13,40 @@
   "inicio": "2015-01-01",
   "fim": "2016-08-31",
   "situacao": "interrompido",
-  "nota": "Afastada em 12/05/2016 e afastada definitivamente em 31/08/2016 (impeachment). Avaliamos só o que aconteceu até essa data; metas com prazo depois disso não foram avaliadas."
+  "nota": "Afastada em 12/05/2016 e afastada definitivamente em 31/08/2016 (impeachment). Avaliamos só o que aconteceu até essa data; metas com prazo depois disso não foram avaliadas como 'não cumpridas' só por causa do prazo."
  },
  "plano": {
   "titulo": "Mais Mudanças, Mais Futuro — Programa de Governo (Dilma 2014)",
   "paginas": 25,
   "arquivo": "2014BR280000000083.pdf",
   "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2014/680/BR/280000000083",
-  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2014_BR.zip"
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2014_BR.zip",
+  "fonte": "tse"
  },
- "revisado": "2026-10-08",
+ "revisado": "2026-10-09",
  "resumo": [
   {
-   "t": "Educação: usar o dinheiro do pré-sal para cumprir o PNE.",
+   "t": "Educação infantil (4–5 anos) até 2016; Ciência sem Fronteiras com +100 mil bolsas.",
+   "p": 18
+  },
+  {
+   "t": "Pré-sal financiando o PNE; Mais Médicos, UPAs e SAMU.",
    "p": 17
   },
   {
-   "t": "Pré-escola universal até 2016 e mais 100 mil bolsas do Ciência sem Fronteiras.",
+   "t": "Reforma política com plebiscito; reforma do processo penal contra a impunidade.",
    "p": 18
   },
   {
-   "t": "Reforma política com plebiscito.",
-   "p": 18
-  },
-  {
-   "t": "Combate à corrupção com reforma do processo penal.",
-   "p": 19
-  },
-  {
-   "t": "Sistema Nacional de Participação Popular.",
-   "p": 20
-  },
-  {
-   "t": "Mulheres e igualdade racial: Casa da Mulher Brasileira e cotas no serviço público.",
+   "t": "Casa da Mulher Brasileira e efetividade das cotas no serviço público.",
    "p": 21
   },
   {
-   "t": "Internet barata e rápida para todos; expansão do Mais Médicos e das UPAs.",
+   "t": "Internet barata e rápida; combate ao desmatamento e CAR.",
    "p": 21
   },
   {
-   "t": "Olimpíadas 2016: Brasil entre os 10 primeiros (e 5 nas Paralimpíadas).",
+   "t": "Olimpíadas 2016: Brasil entre os 10 (e 5 nas Paralimpíadas).",
    "p": 24
   }
  ],
@@ -72,7 +65,7 @@
      "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13165.htm"
     }
    ],
-   "revisado": "2026-10-08"
+   "revisado": "2026-10-09"
   },
   {
    "id": "d14-02",
@@ -88,7 +81,7 @@
      "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=490263"
     }
    ],
-   "revisado": "2026-10-08"
+   "revisado": "2026-10-09"
   },
   {
    "id": "d14-03",
@@ -104,7 +97,7 @@
      "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/decreto/d8243.htm"
     }
    ],
-   "revisado": "2026-10-08"
+   "revisado": "2026-10-09"
   },
   {
    "id": "d14-04",
@@ -120,7 +113,7 @@
      "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/decreto/d9073.htm"
     }
    ],
-   "revisado": "2026-10-08"
+   "revisado": "2026-10-09"
   },
   {
    "id": "d14-05",
@@ -140,7 +133,7 @@
      "url": "https://agenciabrasil.ebc.com.br/rio-2016/noticia/2016-09/brasil-aumenta-numero-de-medalhas-mas-fica-em-oitavo-lugar-na-paralimpiada"
     }
    ],
-   "revisado": "2026-10-08"
+   "revisado": "2026-10-09"
   },
   {
    "id": "d14-06",
@@ -156,7 +149,211 @@
      "url": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc71.htm"
     }
    ],
-   "revisado": "2026-10-08"
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "d14-07",
+   "tema": "Educação",
+   "promessa": "Universalizar a educação infantil de 4 a 5 anos até 2016",
+   "trecho": "Vamos continuar ampliando o atendimento em creches para universalizar a educação infantil de 4 a 5 anos até 2016.",
+   "pagina": 18,
+   "status": "parcialmente",
+   "explicacao": "A matrícula de crianças de 4 e 5 anos avançou muito e ficou perto da universalização, mas o Censo Escolar não registrou 100% em 2016.",
+   "evidencias": [
+    {
+     "titulo": "INEP — Censo Escolar da Educação Básica (séries históricas)",
+     "url": "https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/censo-escolar"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "d14-08",
+   "tema": "Educação",
+   "promessa": "Mais 100 mil bolsas do Ciência sem Fronteiras (2015–2018)",
+   "trecho": "Vamos conceder, no período 2015-2018, mais 100 mil bolsas do Ciência sem Fronteiras.",
+   "pagina": 18,
+   "status": "parcialmente",
+   "explicacao": "O programa seguiu concedendo bolsas em 2015 e início de 2016; a meta de 100 mil no período 2015–2018 não foi concluída no mandato (interrupção em 2016).",
+   "evidencias": [
+    {
+     "titulo": "CAPES — Ciência sem Fronteiras (histórico do programa)",
+     "url": "https://www.gov.br/capes/pt-br/acesso-a-informacao/acoes-e-programas/bolsas/bolsas-e-auxilios-internacionais/informacoes-internacionais/ciencia-sem-fronteiras"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "d14-09",
+   "tema": "Mulheres",
+   "promessa": "Implementar a Casa da Mulher Brasileira",
+   "trecho": "A implementação da Casa da Mulher Brasileira será decisiva para este objetivo",
+   "pagina": 21,
+   "status": "cumprida",
+   "explicacao": "A primeira Casa da Mulher Brasileira foi inaugurada em Campo Grande (MS) em fevereiro de 2015.",
+   "evidencias": [
+    {
+     "titulo": "Biblioteca da Presidência — discurso de inauguração da Casa da Mulher Brasileira (Campo Grande, 03/02/2015)",
+     "url": "https://www.gov.br/planalto/pt-br/conheca-a-presidencia/biblioteca-da-pr/ex-presidentes/dilma-vana-rousseff/discursos-e-pronunciamentos/2015/02/150203_discurso-da-presidenta-da-republica-dilma-rousseff-durante-cerimonia-de-inauguracao-da-primeira-casa-da-mulher-brasileira.pdf"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "d14-10",
+   "tema": "Igualdade racial",
+   "promessa": "Tornar efetiva a Lei de Cotas no serviço público federal",
+   "trecho": "Temos o desafio de tornar realidade a Lei de Cotas no serviço público federal, sancionada em junho de 2014",
+   "pagina": 21,
+   "status": "parcialmente",
+   "explicacao": "A Lei 12.990/2014 já existia ao início do mandato; a aplicação nos concursos avançou, mas a meta de “mesma efetividade” das cotas universitárias não tem balanço oficial consolidado até 2016.",
+   "evidencias": [
+    {
+     "titulo": "Lei 12.990/2014 (cotas raciais em concursos públicos federais)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l12990.htm"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "d14-11",
+   "tema": "Internet",
+   "promessa": "Universalizar internet barata, rápida e segura",
+   "trecho": "Vamos promover a universalização do acesso a um serviço de internet barato, rápido e seguro.",
+   "pagina": 21,
+   "status": "nao_cumprida",
+   "explicacao": "Não houve universalização do acesso à internet até o fim do mandato; o Marco Civil já era lei e seguiu sendo regulamentado.",
+   "evidencias": [
+    {
+     "titulo": "Lei 12.965/2014 (Marco Civil da Internet)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l12965.htm"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "d14-12",
+   "tema": "Saúde",
+   "promessa": "Expandir o Programa Mais Médicos",
+   "trecho": "a expansão do Programa Mais Médicos",
+   "pagina": 22,
+   "status": "cumprida",
+   "explicacao": "O Mais Médicos continuou e ganhou novas chamadas e regras em 2015.",
+   "evidencias": [
+    {
+     "titulo": "Lei 13.124/2015 (altera a Lei do Mais Médicos)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13124.htm"
+    },
+    {
+     "titulo": "Lei 12.871/2013 (Mais Médicos)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12871.htm"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "d14-13",
+   "tema": "Saúde",
+   "promessa": "Ampliar a rede de UPAs",
+   "trecho": "a ampliação da rede de Unidades de Pronto Atendimento (UPAs) destinadas ao atendimento de emergências de baixa e média gravidade",
+   "pagina": 22,
+   "status": "parcialmente",
+   "explicacao": "Novas UPAs foram habilitadas e financiadas em 2015–2016, mas não há meta numérica no plano para dizer se a ampliação foi a prometida.",
+   "evidencias": [
+    {
+     "titulo": "Ministério da Saúde — habilitação e financiamento de UPAs (portarias)",
+     "url": "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/u/upa-24h"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "d14-14",
+   "tema": "Meio ambiente",
+   "promessa": "Acelerar a implementação do Cadastro Ambiental Rural",
+   "trecho": "Aceleraremos a implementação do Cadastro Ambiental Rural – peça fundamental do novo Código Florestal",
+   "pagina": 17,
+   "status": "parcialmente",
+   "explicacao": "O CAR seguiu recebendo cadastros em 2015–2016 (SICAR), mas a regularização ambiental das propriedades não foi concluída no prazo do plano.",
+   "evidencias": [
+    {
+     "titulo": "SFB/MMA — Sistema Nacional de Cadastro Ambiental Rural (SICAR)",
+     "url": "https://www.car.gov.br/"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "d14-15",
+   "tema": "Meio ambiente",
+   "promessa": "Continuar o combate ao desmatamento, em especial na Amazônia",
+   "trecho": "daremos continuidade ao combate do desmatamento, em especial na Amazônia",
+   "pagina": 17,
+   "status": "nao_cumprida",
+   "explicacao": "Segundo o INPE (Prodes), o desmatamento na Amazônia Legal subiu de 6.207 km² (2015) para 7.893 km² (2016).",
+   "evidencias": [
+    {
+     "titulo": "Agência Brasil — desmatamento na Amazônia cresce em 2016 (cita Prodes/INPE)",
+     "url": "https://agenciabrasil.ebc.com.br/geral/noticia/2016-11/desmatamento-na-amazonia-cresce-29-em-um-ano"
+    },
+    {
+     "titulo": "INPE — portal Prodes (monitoramento)",
+     "url": "https://www.gov.br/inpe/pt-br/assuntos/ultimas-noticias"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "d14-16",
+   "tema": "Cultura",
+   "promessa": "Acelerar a implantação do Vale Cultura",
+   "trecho": "A adoção de medidas para a aceleração da implantação do Vale Cultura ajudará a criar uma nova geração de consumidores culturais",
+   "pagina": 23,
+   "status": "parcialmente",
+   "explicacao": "O Vale-Cultura (Lei 12.761/2012) continuou existindo, mas a adesão de empresas e trabalhadores ficou muito abaixo do potencial; não houve aceleração relevante até 2016.",
+   "evidencias": [
+    {
+     "titulo": "Lei 12.761/2012 (Vale-Cultura)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12761.htm"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "d14-17",
+   "tema": "Saúde",
+   "promessa": "Fortalecer e universalizar o SAMU",
+   "trecho": "o fortalecimento e a universalização do SAMU",
+   "pagina": 22,
+   "status": "parcialmente",
+   "explicacao": "O SAMU seguiu expandindo cobertura municipal, mas não chegou a 100% do país até 2016.",
+   "evidencias": [
+    {
+     "titulo": "Ministério da Saúde — SAMU 192",
+     "url": "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/s/samu-192"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "d14-18",
+   "tema": "Educação",
+   "promessa": "Usar recursos do pré-sal para tornar realidade o PNE",
+   "trecho": "os recursos provenientes da comercialização do petróleo oriundo do pré-sal vão tornar realidade o Plano Nacional de Educação (PNE)",
+   "pagina": 18,
+   "status": "parcialmente",
+   "explicacao": "A Lei 12.858/2013 já destinava royalties e participações do petróleo à educação; o PNE (Lei 13.005/2014) seguiu em vigor, mas várias metas do plano não foram atingidas no prazo.",
+   "evidencias": [
+    {
+     "titulo": "Lei 12.858/2013 (royalties do petróleo para educação e saúde)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12858.htm"
+    },
+    {
+     "titulo": "Lei 13.005/2014 (Plano Nacional de Educação)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13005.htm"
+    }
+   ],
+   "revisado": "2026-10-09"
   }
  ]
 }
