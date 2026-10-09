@@ -3,7 +3,7 @@
 Usado por `/politica/planos/`. Duas partes bem separadas:
 
 1. **Índice (automático)**: quem entregou plano de governo ao TSE, desde 2010.
-2. **Promessas (curadoria manual)**: para alguns eleitos, uma lista de promessas do plano com o que aconteceu depois, sempre com o trecho, a página e uma fonte oficial.
+2. **Promessas (curadoria manual)**: para alguns eleitos, uma lista de promessas do plano com o que aconteceu depois, sempre com o trecho, a página e uma fonte oficial. Presidentes de 2010+ usam o PDF do TSE (`plano.fonte: "tse"`). Lula 2002 e FHC 1994 usam acervo de campanha (`plano.fonte: "arquivo"`, `sq` sintético `ARQUIVO{ano}`); a UI deixa isso explícito.
 
 Nenhum PDF é copiado para este repositório. O link aponta para a página oficial da candidatura no TSE (DivulgaCandContas), onde está o PDF, e o nome do arquivo dentro do pacote de dados abertos do TSE.
 

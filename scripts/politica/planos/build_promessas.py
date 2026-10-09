@@ -82,7 +82,7 @@ def main():
     ordem = {"presidente": 0, "governador": 1, "prefeito": 2}
     planos.sort(key=lambda d: (-d["ano"], ordem[d["cargo"]], d["uf"]))
     out = {
-        "_sobre": "Avaliações de promessas dos planos de governo entregues ao TSE. Curadoria manual; cada item cita o trecho, a página e uma fonte oficial.",
+        "_sobre": "Avaliações de promessas de planos de governo (TSE desde 2010; alguns presidentes anteriores via acervo, com plano.fonte=arquivo). Curadoria manual; cada item cita o trecho, a página e uma fonte oficial.",
         "status": {
             "cumprida": "Cumprida",
             "parcialmente": "Parcialmente",

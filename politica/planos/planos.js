@@ -20,10 +20,22 @@
   var PERFIL = "/politica/politicos/#p/";
   var DIVULGA = "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/";
   var ZIP = "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_";
+  /* Antes de 2010: TSE não arquiva plano. Quando há avaliação por acervo, k aponta para o JSON. */
   var ANTES = [
-    [2006, "Lula", "PT", "dmrffhxtzv"], [2002, "Lula", "PT", "dmrffhxtzv"],
-    [1998, "Fernando Henrique Cardoso", "PSDB", "sdtgfbjdym"], [1994, "Fernando Henrique Cardoso", "PSDB", "sdtgfbjdym"],
-    [1989, "Fernando Collor", "PRN", "vc64qekiw2"]
+    {ano:2006, nome:"Lula", partido:"PT", id:"dmrffhxtzv", status:"sem_pdf_paginado",
+     nota:"Há programa de campanha (“Lula de Novo com a Força do Povo”) na Fundação Perseu Abramo; ainda sem curadoria página a página aqui."},
+    {ano:2002, nome:"Lula", partido:"PT", id:"dmrffhxtzv", status:"arquivo", k:"2002-BR-ARQUIVO2002",
+     nota:"Avaliado a partir do PDF de campanha em acervo (não é plano do TSE)."},
+    {ano:1998, nome:"Fernando Henrique Cardoso", partido:"PSDB", id:"sdtgfbjdym", status:"sem_pdf_paginado",
+     nota:"Programa “Avança Brasil” existe em bibliotecas (ENAP/IBGE); PDF público paginado estável ainda não entrou na curadoria."},
+    {ano:1994, nome:"Fernando Henrique Cardoso", partido:"PSDB", id:"sdtgfbjdym", status:"arquivo", k:"1994-BR-ARQUIVO1994",
+     nota:"Avaliado a partir do resumo contemporâneo de “Mãos à Obra, Brasil” (Folha, 1994) e citações da Fundação FHC."},
+    {ano:1989, nome:"Fernando Collor", partido:"PRN", id:"vc64qekiw2", status:"sem_pdf_paginado",
+     nota:"O livreto “Projeto Brasil Novo” está no Museu da República; não há PDF público paginado confiável para citar página a página. Não inventamos promessas."},
+    {ano:null, nome:"Itamar Franco", partido:"—", id:"", status:"sem_campanha",
+     nota:"Assumiu após o impeachment de Collor (1992); não houve eleição presidencial nem plano de campanha próprio."},
+    {ano:null, nome:"José Sarney", partido:"—", id:"", status:"sem_campanha",
+     nota:"Presidente por sucessão (1985–1990), antes da eleição direta de 1989; fora do recorte de planos de campanha pós-1988."}
   ];
 
   var $ = function (id) { return document.getElementById(id); };
@@ -96,7 +108,9 @@
         "<h3>" + esc(x.promessa) + "</h3>" +
         '<p class="pl-quem">' + (p.pessoa.id_politico ? '<a href="' + PERFIL + esc(p.pessoa.id_politico) + '">' + esc(p.pessoa.nome) + "</a>" : esc(p.pessoa.nome)) +
         " · " + esc(p.pessoa.partido) + " · " + esc(CARGO[p.cargo]) + (p.cargo !== "presidente" ? " (" + esc(p.uf) + ")" : "") + " · plano de " + p.ano + "</p>" +
-        '<blockquote class="pl-trecho"><p>“' + esc(x.trecho) + '”</p><footer>Plano de governo, ' + ext(p.plano.divulga, "página " + x.pagina + " do PDF entregue ao TSE") + "</footer></blockquote>" +
+        '<blockquote class="pl-trecho"><p>“' + esc(x.trecho) + '”</p><footer>' + (p.plano.fonte === "arquivo"
+          ? ("Acervo de campanha (não é plano do TSE), " + ext(p.plano.divulga, "página " + x.pagina + " da fonte"))
+          : ("Plano de governo, " + ext(p.plano.divulga, "página " + x.pagina + " do PDF entregue ao TSE"))) + "</footer></blockquote>" +
         '<p class="pl-expl"><b>O que aconteceu:</b> ' + esc(x.explicacao) + "</p>" +
         '<ul class="pl-ev">' + x.evidencias.map(function (e) { return "<li>" + ext(e.url, esc(e.titulo)) + "</li>"; }).join("") + "</ul>" +
         '<p class="pl-rev">Revisado em ' + dataBR(x.revisado) + "</p></li>";
@@ -119,9 +133,12 @@
         (p.mandato.nota ? '<p class="note-sm">' + esc(p.mandato.nota) + "</p>" : "") +
         barra(c, tot) + '<div class="pl-cts">' + contagemTxt(c) + "</div>" +
         '<div class="pl-acoes"><button type="button" class="btn btn-primary pl-ver" data-k="' + esc(planoKey(p)) + '">Ver as ' + tot + " promessas</button>" +
-        ext(pl.divulga, "Plano no site do TSE", "btn btn-ghost") +
+        ext(pl.divulga, pl.fonte === "arquivo" ? "Abrir fonte do acervo" : "Plano no site do TSE", "btn btn-ghost") +
         (p.pessoa.id_politico ? '<a class="btn btn-ghost" href="' + PERFIL + esc(p.pessoa.id_politico) + '">Perfil</a>' : "") + "</div>" +
-        '<p class="note-sm">Arquivo original: <span class="mono">' + esc(pl.arquivo) + "</span>, dentro do " + ext(pl.zip, "pacote de dados abertos do TSE" + (zipTam ? " (" + mb(zipTam) + ")" : "")) + ".</p></article>";
+        (pl.fonte === "arquivo"
+          ? '<p class="note-sm"><b>Fonte de acervo (não é plano do TSE).</b> ' + esc(pl.fonte_nota || "") + ' Arquivo: <span class="mono">' + esc(pl.arquivo) + "</span>.</p>"
+          : '<p class="note-sm">Arquivo original: <span class="mono">' + esc(pl.arquivo) + "</span>, dentro do " + ext(pl.zip, "pacote de dados abertos do TSE" + (zipTam ? " (" + mb(zipTam) + ")" : "")) + ".</p>") +
+        "</article>";
     }).join("");
   }
 
@@ -279,7 +296,21 @@
 
   function renderAntes() {
     $("antes-body").innerHTML = ANTES.map(function (a) {
-      return "<tr><td>" + a[0] + "</td><td>" + (a[3] ? '<a href="' + PERFIL + a[3] + '">' + esc(a[1]) + "</a>" : esc(a[1])) + " (" + esc(a[2]) + ')</td><td><span class="muted">Não há plano oficial arquivado no TSE</span></td></tr>';
+      var eleicao = a.ano ? a.ano : "—";
+      var quem = a.id ? '<a href="' + PERFIL + a.id + '">' + esc(a.nome) + "</a>" : esc(a.nome);
+      if (a.partido && a.partido !== "—") quem += " (" + esc(a.partido) + ")";
+      var cel;
+      if (a.status === "arquivo" && a.k) {
+        cel = '<button type="button" class="linkish pl-ver" data-k="' + esc(a.k) + '">Ver promessas (fonte de acervo)</button>' +
+          '<p class="note-sm" style="margin:0.35rem 0 0">' + esc(a.nota) + "</p>";
+      } else if (a.status === "sem_campanha") {
+        cel = '<span class="muted">Sem plano de campanha à Presidência</span>' +
+          '<p class="note-sm" style="margin:0.35rem 0 0">' + esc(a.nota) + "</p>";
+      } else {
+        cel = '<span class="muted">Plano oficial não arquivado no TSE</span>' +
+          '<p class="note-sm" style="margin:0.35rem 0 0">' + esc(a.nota) + "</p>";
+      }
+      return "<tr><td>" + eleicao + "</td><td>" + quem + "</td><td>" + cel + "</td></tr>";
     }).join("");
   }
 
