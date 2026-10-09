@@ -1,0 +1,273 @@
+{
+ "ano": 2002,
+ "cargo": "presidente",
+ "uf": "BR",
+ "sq": "ARQUIVO2002",
+ "pessoa": {
+  "nome": "Lula",
+  "nome_completo": "Luiz Inácio Lula da Silva",
+  "partido": "PT",
+  "id_politico": "dmrffhxtzv"
+ },
+ "mandato": {
+  "inicio": "2003-01-01",
+  "fim": "2006-12-31",
+  "situacao": "encerrado",
+  "nota": "Avaliado pelo que aconteceu no 1º mandato (2003–2006). Fonte do plano: acervo de campanha, não TSE."
+ },
+ "plano": {
+  "titulo": "Um Brasil para Todos — Programa de Governo 2002 (Coligação Lula Presidente)",
+  "paginas": 72,
+  "arquivo": "plano2002-lula.pdf",
+  "divulga": "https://www1.uol.com.br/fernandorodrigues/arquivos/eleicoes02/plano2002-lula.pdf",
+  "zip": "",
+  "fonte": "arquivo",
+  "fonte_nota": "Documento de campanha preservado em acervo (não é plano entregue ao TSE). A obrigatoriedade do plano na Justiça Eleitoral começou em 2010 (Lei 12.034/2009). Cópia também na Fundação Perseu Abramo."
+ },
+ "revisado": "2026-10-09",
+ "aviso_texto": "Este plano NÃO está no arquivo do TSE. Usamos o PDF de campanha de 2002 preservado em acervo jornalístico/partidário. Cada trecho cita a página desse PDF.",
+ "resumo": [
+  {
+   "t": "Unificar programas de renda (Bolsa Escola e outros) e avançar rumo à renda mínima.",
+   "p": 41
+  },
+  {
+   "t": "Projeto Fome Zero, com cartão de alimentação para famílias muito pobres.",
+   "p": 42
+  },
+  {
+   "t": "Reforma da Previdência com sistema básico universal e complementar facultativo.",
+   "p": 17
+  },
+  {
+   "t": "Reforma tributária: fim da cumulatividade, IVA/ICMS simplificado.",
+   "p": 16
+  },
+  {
+   "t": "Acelerar a reforma agrária e apoiar a agricultura familiar.",
+   "p": 21
+  },
+  {
+   "t": "Revigorar o Mercosul; valorizar o salário mínimo.",
+   "p": 5
+  }
+ ],
+ "promessas": [
+  {
+   "id": "l02-01",
+   "tema": "Fome e assistência",
+   "promessa": "Criar o Projeto Fome Zero, com cartão de alimentação",
+   "trecho": "O Projeto Fome Zero inclui, além de medidas estruturais, uma política de apoio efetivo à agricultura familiar […] Para atacar de imediato o problema da fome será fornecido “o cartão de alimentação” para as famílias muito pobres",
+   "pagina": 42,
+   "status": "cumprida",
+   "explicacao": "O programa Fome Zero foi lançado em 2003; o Cartão Alimentação e, em seguida, o Bolsa Família passaram a transferir renda para compra de alimentos.",
+   "evidencias": [
+    {
+     "titulo": "Medida Provisória 132/2003 (cria o Programa Bolsa Família — conversão na Lei 10.836/2004)",
+     "url": "https://www.planalto.gov.br/ccivil_03/mpv/antigas_2003/132.htm"
+    },
+    {
+     "titulo": "Lei 10.836/2004 (Bolsa Família)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l10.836.htm"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "l02-02",
+   "tema": "Assistência",
+   "promessa": "Revisar e unificar Bolsa Escola e outros programas de renda",
+   "trecho": "O Programa Bolsa Escola e os demais programas de complementação de renda (Bolsa Alimentação, PETI e outros já descritos) voltados ao mesmo público-alvo e com o mesmo critério de seleção serão revistos, com o objetivo de evitar superposição",
+   "pagina": 41,
+   "status": "cumprida",
+   "explicacao": "Em 2004 a Lei do Bolsa Família unificou Bolsa Escola, Bolsa Alimentação, Cartão Alimentação e Auxílio-Gás.",
+   "evidencias": [
+    {
+     "titulo": "Lei 10.836/2004 (cria o Programa Bolsa Família)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l10.836.htm"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "l02-03",
+   "tema": "Assistência",
+   "promessa": "Avançar rumo a uma renda básica de cidadania",
+   "trecho": "A renda mínima que nosso governo vai propor deve ser vista como um passo na direção da implementação – quando houver condições fiscais – de uma renda básica de cidadania.",
+   "pagina": 42,
+   "status": "parcialmente",
+   "explicacao": "A Lei 10.835/2004 instituiu a Renda Básica de Cidadania, mas ela não foi implantada de forma universal; o Bolsa Família ficou como o programa concreto de transferência de renda.",
+   "evidencias": [
+    {
+     "titulo": "Lei 10.835/2004 (Renda Básica de Cidadania)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l10.835.htm"
+    },
+    {
+     "titulo": "Lei 10.836/2004 (Bolsa Família)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l10.836.htm"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "l02-04",
+   "tema": "Previdência",
+   "promessa": "Reformar a Previdência dos servidores (sistema público + complementar)",
+   "trecho": "Além de planejar e dar início à discussão de um novo sistema previdenciário brasileiro […] em complemento ao sistema público universalizado […] haverá o sistema de planos complementares de aposentadorias",
+   "pagina": 17,
+   "status": "cumprida",
+   "explicacao": "A Emenda 41/2003 reformou a previdência dos servidores; a previdência complementar do serviço público federal veio com a Lei 12.618/2012 (após o 1º mandato, mas a reforma de 2003 é o marco do período).",
+   "evidencias": [
+    {
+     "titulo": "Emenda Constitucional 41/2003 (reforma da Previdência)",
+     "url": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc41.htm"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "l02-05",
+   "tema": "Impostos",
+   "promessa": "Reforma tributária: fim da cumulatividade e IVA/ICMS simplificado",
+   "trecho": "Desoneração da produção, com o fim da cumulatividade das contribuições (PIS, Cofins, CPMF); Simplificação do ICMS, transformando-o em IVA",
+   "pagina": 16,
+   "status": "nao_cumprida",
+   "explicacao": "Não houve reforma tributária ampla no 1º mandato; a unificação do IVA só veio com a Emenda 132/2023.",
+   "evidencias": [
+    {
+     "titulo": "Emenda Constitucional 132/2023 (reforma tributária — após o mandato)",
+     "url": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc132.htm"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "l02-06",
+   "tema": "Agricultura",
+   "promessa": "Acelerar a reforma agrária",
+   "trecho": "Realizar a Reforma Agrária no Brasil, de forma a contribuir para a geração de empregos e renda no setor primário.",
+   "pagina": 21,
+   "status": "parcialmente",
+   "explicacao": "Houve aceleração dos assentamentos nos primeiros anos (INCRA), mas a meta estrutural de transformar a estrutura fundiária ficou incompleta.",
+   "evidencias": [
+    {
+     "titulo": "INCRA — histórico de assentamentos (dados abertos / séries)",
+     "url": "https://www.gov.br/incra/pt-br/assuntos/reforma-agraria"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "l02-07",
+   "tema": "Renda e trabalho",
+   "promessa": "Valorizar o salário mínimo (ganhos reais)",
+   "trecho": "nosso governo trabalhará com um programa de reajuste progressivo do poder de compra do salário mínimo.",
+   "pagina": 30,
+   "status": "cumprida",
+   "explicacao": "Entre 2003 e 2006 o salário mínimo teve aumentos reais acima da inflação (série Ipeadata/Dieese).",
+   "evidencias": [
+    {
+     "titulo": "Decreto 5.159/2004 (reajuste do salário mínimo)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/decreto/d5159.htm"
+    },
+    {
+     "titulo": "Lei 10.888/2004 (política de salário mínimo no período)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l10.888.htm"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "l02-08",
+   "tema": "Política externa",
+   "promessa": "Revigorar o Mercosul",
+   "trecho": "É necessário revigorar o Mercosul, transformando-o em uma zona de convergência de políticas industriais, agrícolas, comerciais, científicas e tecnológicas, educacionais e culturais.",
+   "pagina": 5,
+   "status": "parcialmente",
+   "explicacao": "O Brasil reforçou a prioridade ao Mercosul na política externa, mas a zona de livre comércio plena e a união aduaneira sem falhas não foram concluídas.",
+   "evidencias": [
+    {
+     "titulo": "MRE — Mercosul (histórico da política externa)",
+     "url": "https://www.gov.br/mre/pt-br/assuntos/mercosul"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "l02-09",
+   "tema": "Educação",
+   "promessa": "Ampliar a merenda escolar, inclusive em creches",
+   "trecho": "a ampliação da merenda escolar, atingindo todas as crianças que freqüentam escolas públicas, inclusive creches",
+   "pagina": 43,
+   "status": "cumprida",
+   "explicacao": "O PNAE foi fortalecido; a Lei 11.947/2009 consolidou a alimentação escolar (marco posterior que sistematiza a política expandida no período).",
+   "evidencias": [
+    {
+     "titulo": "Lei 11.947/2009 (alimentação escolar / PNAE)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2009/lei/l11947.htm"
+    },
+    {
+     "titulo": "FNDE — Programa Nacional de Alimentação Escolar",
+     "url": "https://www.gov.br/fnde/pt-br/acesso-a-informacao/acoes-e-programas/programas/pnae"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "l02-10",
+   "tema": "Saúde",
+   "promessa": "Garantir acesso universal, equânime e integral à saúde (SUS)",
+   "trecho": "nosso governo trabalhará para garantir acesso universal, equânime e integral às ações e serviços de saúde, assim como a políticas sociais e econômicas que reduzam o risco de adoecimento e que promovam a qualidade de vida.",
+   "pagina": 46,
+   "status": "parcialmente",
+   "explicacao": "O SUS e a atenção básica (Saúde da Família) foram priorizados no mandato, com expansão de equipes; o acesso integral e equânime permanece incompleto (filas, desigualdade regional e financiamento).",
+   "evidencias": [
+    {
+     "titulo": "Ministério da Saúde — Atenção Primária / Saúde da Família",
+     "url": "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/s/saude-da-familia"
+    },
+    {
+     "titulo": "Lei 8.080/1990 (SUS — base legal vigente)",
+     "url": "https://www.planalto.gov.br/ccivil_03/leis/l8080.htm"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "l02-11",
+   "tema": "Moradia",
+   "promessa": "Projeto Moradia: priorizar construção de moradias e reduzir o déficit habitacional",
+   "trecho": "O novo governo mobilizará a sociedade civil pelo direito à moradia digna, buscando assentar as bases para a superação do enorme déficit habitacional que atinge principalmente os mais necessitados e suas famílias. […] Priorizar o estímulo à construção de moradias, aquecendo a indústria da construção civil",
+   "pagina": 59,
+   "status": "parcialmente",
+   "explicacao": "Houve criação do Ministério das Cidades (2003) e ações de habitação/saneamento, mas o grande programa de massa Minha Casa, Minha Vida só veio em 2009 (2º mandato).",
+   "evidencias": [
+    {
+     "titulo": "Lei 10.683/2003 (organização da Presidência; cria o Ministério das Cidades)",
+     "url": "https://www.planalto.gov.br/ccivil_03/leis/2003/l10.683.htm"
+    },
+    {
+     "titulo": "Lei 11.977/2009 (Minha Casa, Minha Vida — após o 1º mandato)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2009/lei/l11977.htm"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "l02-12",
+   "tema": "Economia",
+   "promessa": "Crescimento do PIB de pelo menos 4% ao ano como meta do combate à fome",
+   "trecho": "Articuladas com uma política econômica que garanta uma expansão do Produto Interno Bruto de, pelo menos, 4% ao ano",
+   "pagina": 42,
+   "status": "parcialmente",
+   "explicacao": "O PIB cresceu acima de 4% em 2004 (5,8%) e 2005 ficou abaixo; a média do mandato não manteve ‘pelo menos 4%’ em todos os anos.",
+   "evidencias": [
+    {
+     "titulo": "IBGE — Contas Nacionais (PIB)",
+     "url": "https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais.html"
+    }
+   ],
+   "revisado": "2026-10-09"
+  }
+ ]
+}

@@ -1,0 +1,217 @@
+{
+ "ano": 1994,
+ "cargo": "presidente",
+ "uf": "BR",
+ "sq": "ARQUIVO1994",
+ "pessoa": {
+  "nome": "Fernando Henrique Cardoso",
+  "nome_completo": "Fernando Henrique Cardoso",
+  "partido": "PSDB",
+  "id_politico": "sdtgfbjdym"
+ },
+ "mandato": {
+  "inicio": "1995-01-01",
+  "fim": "1998-12-31",
+  "situacao": "encerrado",
+  "nota": "Avaliado pelo 1º mandato (1995–1998). Fonte: resumo contemporâneo do programa “Mãos à Obra, Brasil” (Folha, 28/08/1994) e citações do acervo da Fundação FHC; não é plano do TSE."
+ },
+ "plano": {
+  "titulo": "Mãos à Obra, Brasil — proposta de governo (FHC 1994)",
+  "paginas": 1,
+  "arquivo": "maos-a-obra-brasil-1994",
+  "divulga": "https://www1.folha.uol.com.br/fsp/1994/8/28/caderno_especial/30.html",
+  "zip": "",
+  "fonte": "arquivo",
+  "fonte_nota": "Documento de campanha preservado em acervo (não é plano entregue ao TSE). A obrigatoriedade do plano na Justiça Eleitoral começou em 2010 (Lei 12.034/2009). Aqui usamos o resumo dos principais pontos publicado pela Folha de S.Paulo em 28/08/1994 (caderno especial), porque o PDF completo paginado do livrinho de campanha não está no TSE. Quando há página do livro original, citamos o acervo da Fundação FHC."
+ },
+ "revisado": "2026-10-09",
+ "aviso_texto": "Plano NÃO arquivado no TSE. Os trechos abaixo vêm do resumo contemporâneo do programa “Mãos à Obra, Brasil” (Folha, 28/08/1994). A “página 1” indica esse resumo (não o PDF do TSE). Citações com página do livro usam o acervo da Fundação FHC.",
+ "resumo": [
+  {
+   "t": "Cinco prioridades: emprego, agricultura, segurança, educação e saúde.",
+   "p": 1
+  },
+  {
+   "t": "Reforma agrária: assentar 40, 60, 80 e 100 mil famílias nos quatro anos.",
+   "p": 1
+  },
+  {
+   "t": "Educação: vagas para todas as crianças de 7 a 14 anos; avaliação escolar.",
+   "p": 1
+  },
+  {
+   "t": "Saúde: consolidar o SUS; regular o sistema privado.",
+   "p": 1
+  },
+  {
+   "t": "Segurança: criar a Secretaria Nacional de Segurança Pública.",
+   "p": 1
+  },
+  {
+   "t": "Privatizações e concessões como fonte de investimento.",
+   "p": 1
+  }
+ ],
+ "promessas": [
+  {
+   "id": "f94-01",
+   "tema": "Reforma agrária",
+   "promessa": "Assentar 280 mil famílias em quatro anos (40+60+80+100 mil)",
+   "trecho": "Assentar 40 mil famílias no primeiro ano de governo; 60 mil no segundo, 80 mil no terceiro e 100 mil famílias no quarto ano",
+   "pagina": 1,
+   "status": "nao_cumprida",
+   "explicacao": "O ritmo de assentamentos do INCRA no 1º mandato ficou abaixo da escada de 40/60/80/100 mil famílias por ano prometida no programa.",
+   "evidencias": [
+    {
+     "titulo": "Folha — principais pontos do programa FHC (28/08/1994)",
+     "url": "https://www1.folha.uol.com.br/fsp/1994/8/28/caderno_especial/30.html"
+    },
+    {
+     "titulo": "INCRA — reforma agrária (séries de assentamentos)",
+     "url": "https://www.gov.br/incra/pt-br/assuntos/reforma-agraria"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "f94-02",
+   "tema": "Educação",
+   "promessa": "Garantir vagas para todas as crianças de 7 a 14 anos",
+   "trecho": "Garantir vagas para todas as crianças de 7 a 14 anos e para todos no segundo grau",
+   "pagina": 1,
+   "status": "parcialmente",
+   "explicacao": "O FUNDEF (Emenda 14/1996 e Lei 9.424/1996) financiou a expansão do ensino fundamental; a universalização avançou, mas o ensino médio (“segundo grau”) não ficou universal no mandato.",
+   "evidencias": [
+    {
+     "titulo": "Emenda Constitucional 14/1996 (FUNDEF)",
+     "url": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc14.htm"
+    },
+    {
+     "titulo": "Lei 9.424/1996 (regulamenta o FUNDEF)",
+     "url": "https://www.planalto.gov.br/ccivil_03/leis/l9424.htm"
+    },
+    {
+     "titulo": "Fundação FHC — programa de governo e educação (citação p. 111 do livro)",
+     "url": "https://fundacaofhc.org.br/linhasdotempo/programa-de-governo-fhc/"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "f94-03",
+   "tema": "Educação",
+   "promessa": "Criar sistema de avaliação do desempenho escolar",
+   "trecho": "Criar um sistema de informações sobre o desempenho escolar",
+   "pagina": 1,
+   "status": "cumprida",
+   "explicacao": "O Saeb foi consolidado e o Enem foi criado em 1998 (portaria do MEC).",
+   "evidencias": [
+    {
+     "titulo": "INEP — histórico do Saeb",
+     "url": "https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/saeb"
+    },
+    {
+     "titulo": "INEP — Enem (criado em 1998)",
+     "url": "https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "f94-04",
+   "tema": "Saúde",
+   "promessa": "Consolidar o Sistema Único de Saúde",
+   "trecho": "Consolidar o Sistema Único de Saúde",
+   "pagina": 1,
+   "status": "parcialmente",
+   "explicacao": "O SUS ganhou regulamentação importante (NOB 1996 e normas do período), mas “consolidar” é meta contínua; o sistema seguiu com subfinanciamento e cobertura desigual.",
+   "evidencias": [
+    {
+     "titulo": "Folha — pontos do programa (saúde)",
+     "url": "https://www1.folha.uol.com.br/fsp/1994/8/28/caderno_especial/30.html"
+    },
+    {
+     "titulo": "Ministério da Saúde — histórico do SUS",
+     "url": "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/s/sus"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "f94-05",
+   "tema": "Segurança",
+   "promessa": "Criar a Secretaria Nacional de Segurança Pública",
+   "trecho": "Criação da Secretaria Nacional de Segurança Pública para articular a atuação das polícias dos três níveis de governo",
+   "pagina": 1,
+   "status": "cumprida",
+   "explicacao": "A Secretaria Nacional de Segurança Pública (Senasp) foi criada em 1997 no Ministério da Justiça.",
+   "evidencias": [
+    {
+     "titulo": "MJSP — Secretaria Nacional de Segurança Pública (histórico institucional)",
+     "url": "https://www.gov.br/mj/pt-br/assuntos/sua-seguranca/seguranca-publica"
+    },
+    {
+     "titulo": "Folha — pontos do programa (segurança)",
+     "url": "https://www1.folha.uol.com.br/fsp/1994/8/28/caderno_especial/30.html"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "f94-06",
+   "tema": "Economia",
+   "promessa": "Usar privatizações e concessões para financiar investimentos",
+   "trecho": "Financiar o programa de emprego com fundos sociais públicos, de privatização, empréstimos nacionais e internacionais de longo prazo, e investimentos públicos através de concessões ou parcerias com a iniciativa privada",
+   "pagina": 1,
+   "status": "cumprida",
+   "explicacao": "O Programa Nacional de Desestatização seguiu ativo (telecom, energia, mineração); a Lei Geral de Telecomunicações (9.472/1997) estruturou as privatizações do setor.",
+   "evidencias": [
+    {
+     "titulo": "Lei 9.472/1997 (Lei Geral de Telecomunicações)",
+     "url": "https://www.planalto.gov.br/ccivil_03/leis/l9472.htm"
+    },
+    {
+     "titulo": "Lei 9.491/1997 (reestrutura o Programa Nacional de Desestatização)",
+     "url": "https://www.planalto.gov.br/ccivil_03/leis/l9491.htm"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "f94-07",
+   "tema": "Saúde",
+   "promessa": "Estender a regulação do sistema privado de saúde",
+   "trecho": "Extensão da regulação do sistema privado de saúde",
+   "pagina": 1,
+   "status": "cumprida",
+   "explicacao": "A Lei 9.656/1998 regulou os planos de saúde e criou a base da ANS (organizacionalmente consolidada em seguida).",
+   "evidencias": [
+    {
+     "titulo": "Lei 9.656/1998 (planos e seguros privados de saúde)",
+     "url": "https://www.planalto.gov.br/ccivil_03/leis/l9656.htm"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "f94-08",
+   "tema": "Educação",
+   "promessa": "Universalizar o acesso ao ensino fundamental com prioridade federal de estímulo",
+   "trecho": "A prioridade fundamental da política educacional no Governo Fernando Henrique consistirá em incentivar a universalização do acesso ao primeiro grau e melhorar a qualidade do atendimento escolar",
+   "pagina": 1,
+   "status": "cumprida",
+   "explicacao": "Com o FUNDEF e a política do MEC, a matrícula no ensino fundamental avançou de forma documentada na segunda metade dos anos 1990.",
+   "evidencias": [
+    {
+     "titulo": "Fundação FHC — citação do programa (p. 111)",
+     "url": "https://fundacaofhc.org.br/linhasdotempo/programa-de-governo-fhc/"
+    },
+    {
+     "titulo": "Emenda Constitucional 14/1996 (FUNDEF)",
+     "url": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc14.htm"
+    }
+   ],
+   "revisado": "2026-10-09"
+  }
+ ]
+}
