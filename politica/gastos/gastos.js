@@ -583,7 +583,7 @@
     sortableTable($('#cartao-table'), CART, () => renderCart());
     const load = async () => {
       tbody.innerHTML = '<tr class="empty"><td colspan="4">Carregando…</td></tr>';
-      try { CART.data = await getJSON(`cartao/ano/${sel.value}.json`); renderCart(); showCartDetail(CART.sel || Object.keys(CART.data.orgaos_superiores)[0]); } catch (e) { tbody.innerHTML = '<tr class="empty"><td colspan="4">Não foi possível carregar.</td></tr>'; }
+      try { CART.data = await getJSON(`cartao/ano/${sel.value}.json`); renderCart(); showCartDetail(CART.sel || Object.keys(CART.data.orgaos_superiores)[0]); } catch (e) { tbody.innerHTML = '<tr class="empty"><td colspan="4">Não foi possível carregar este ano. Tente de novo ou escolha outro ano.</td></tr>'; }
     };
     sel.addEventListener('change', load); $('#cartao-q').addEventListener('input', debounce(renderCart, 150));
     rowKeys(tbody, (k) => { CART.sel = k; $$('#cartao-table tbody tr').forEach((tr) => tr.classList.toggle('sel', tr.dataset.key === k)); showCartDetail(k); if (window.innerWidth < 980) $('#cartao-detail').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
@@ -605,7 +605,7 @@
     $('#cartao-note').textContent = miss > 0 ? `Atenção: ${y} tem ${d.meses_disponiveis.length} de 12 meses nos nossos dados${y === new Date().getFullYear() ? ' (ano em curso)' : ''}. O Portal da Transparência bloqueia downloads automáticos rápidos, então a rotina completa os meses aos poucos.` : '';
     $('#cartao-note').classList.toggle('warn', miss > 0);
     const tbody = $('#cartao-table tbody');
-    tbody.innerHTML = rows.length ? rows.map((r) => `<tr tabindex="0" data-key="${esc(r.k)}" class="${CART.sel === r.k ? 'sel' : ''}"><td class="txt">${esc(r.n)}<small>${nf0.format(r.q)} transações</small></td><td><b>${brl(r.v)}</b></td><td>${brl(r.saque)}</td><td>${r.sig ? brl(r.sig) : '—'}</td></tr>`).join('') : '<tr class="empty"><td colspan="4">Nenhum órgão encontrado.</td></tr>';
+    tbody.innerHTML = rows.length ? rows.map((r) => `<tr tabindex="0" data-key="${esc(r.k)}" class="${CART.sel === r.k ? 'sel' : ''}"><td class="txt">${esc(r.n)}<small>${nf0.format(r.q)} transações</small></td><td><b>${brl(r.v)}</b></td><td>${brl(r.saque)}</td><td>${r.sig ? brl(r.sig) : '—'}</td></tr>`).join('') : '<tr class="empty"><td colspan="4">Nenhum órgão com essa busca. Apague o texto ou troque o ano.</td></tr>';
   }
   const fmtCNPJ = (c) => (c ? 'CNPJ ' + c.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5') : '');
   function showCartDetail(k) {

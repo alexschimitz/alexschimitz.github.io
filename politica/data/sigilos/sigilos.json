@@ -30,7 +30,7 @@
   "quem": "Presidência da República, com base no art. 24, § 2º, da Lei de Acesso à Informação, que manda manter o sigilo até o fim do mandato.",
   "quando": "Com o fim dos mandatos, a Secretaria-Geral da Presidência publicou em janeiro de 2023 uma planilha com os gastos de 2003 a 2022. Os gastos do mandato atual continuam reservados até o fim do mandato, pela mesma regra.",
   "revelado": "Cada gasto, com data, fornecedor e valor, dos governos Lula (1 e 2), Dilma, Temer e Bolsonaro. A CGU registrou que as notas fiscais de 2019 a 2022 existem só em papel. Os números estão organizados na nossa página de gastos.",
-  "aqui": ["Ver os gastos do cartão da Presidência", "/politica/gastos/"],
+  "aqui": ["Ver os números do cartão da Presidência", "/politica/gastos/#presidencia"],
   "fontes": [["Parecer CGU 48/2023 (cita a planilha e as notas)", "https://www.gov.br/cgu/pt-br/assuntos/noticias/2023/02/mais-sete-recursos-sobre-sigilos-a-informacoes-publicas-sao-analisados-pela-cgu/parecer-5.pdf"], ["Secretaria-Geral: informações classificadas e desclassificadas", "https://www.gov.br/secretariageral/pt-br/acesso-a-informacao/informacoes-classificadas-e-desclassificadas"]]},
 
  {"id": "visitas-planalto", "titulo": "Quem entra e sai do Palácio do Planalto e das residências oficiais", "status": "revisto",

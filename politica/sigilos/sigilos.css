@@ -13,3 +13,6 @@ html[data-theme="light"] .sig-grid .rev { border-color: rgba(10, 120, 50, 0.3); 
 .howto li { padding: 14px 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
 .howto b { display: block; }
 .howto span { display: block; margin-top: 4px; color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
+
+/* UX: filter hint */
+#sig-howto { margin: -4px 0 14px; }

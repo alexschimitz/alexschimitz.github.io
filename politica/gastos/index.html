@@ -231,7 +231,7 @@
           </div>
           <div class="g-card">
             <h3 class="g-h3">Cartão corporativo da Presidência</h3>
-            <p class="g-sub">Compras e saques com o Cartão de Pagamento do Governo Federal feitos pela Presidência. Parte é <b>sigilosa</b> por lei (segurança do presidente), e aparece sem detalhe.</p>
+            <p class="g-sub">É o cartão oficial usado pela Presidência para compras e saques urgentes. Parte fica <b>sigilosa</b> por lei (segurança do presidente) e aparece só o valor, sem fornecedor. Em 2023 o governo liberou a planilha de 2003–2022 — veja o caso em <a class="linkish" href="/politica/sigilos/#cartao-presidencia">Sigilos</a>.</p>
             <div class="g-chart" id="chart-pres-cartao" role="img" aria-label="Cartão corporativo da Presidência por ano"></div>
             <p class="g-chart-note" id="pres-cartao-note"></p>
           </div>
@@ -256,8 +256,8 @@
             <p class="g-chart-note">Fonte: Portal da Transparência (CGU), API de dados, despesas por órgão (órgão superior 20000), desde 2014.</p>
           </div>
         </div>
-        <h3 class="g-h3">Cartão da Presidência por mandato (2003–2022, dados liberados em 2023)</h3>
-        <p class="g-sub">Planilha oficial divulgada pelo governo em 2023, quando esses gastos deixaram de ser sigilosos. Valores corrigidos pelo IPCA, ano a ano.</p>
+        <h3 class="g-h3" id="mandatos-cartao">Cartão da Presidência por mandato (2003–2022)</h3>
+        <p class="g-sub">Planilha oficial liberada em 2023, quando esses gastos deixaram de ser sigilosos (<a class="linkish" href="/politica/sigilos/#cartao-presidencia">como o sigilo caiu</a>). Valores corrigidos pelo IPCA, ano a ano. Ordenado do mandato com maior média mensal.</p>
         <div class="g-card g-table-wrap">
           <table class="g-table tabela-cards" id="mand-table">
             <caption class="sr-only">Cartão corporativo da Presidência por mandato</caption>
@@ -277,11 +277,13 @@
         <div class="section-kicker">Cartão corporativo · todo o governo federal</div>
         <div class="g-heading">
           <h2 id="cartao-title">Cartão corporativo de todos os órgãos</h2>
-          <p>O Cartão de Pagamento do Governo Federal serve para pequenas despesas urgentes (material, conserto, viagem). Fonte: Portal da Transparência (CGU), arquivos mensais.</p>
+          <p><b>O que é:</b> um cartão oficial (CPGF) que ministérios e órgãos usam para gastos pequenos e urgentes — material, conserto, combustível, viagem. Não é o cartão pessoal de ninguém. Parte do gasto da Presidência pode ficar em <b>sigilo</b> (só o valor aparece); o caso da liberação de 2003–2022 está em <a class="linkish" href="/politica/sigilos/#cartao-presidencia">Sigilos</a>.</p>
+          <p>Fonte: Portal da Transparência (CGU), arquivos mensais desde 2013.</p>
         </div>
+        <p class="g-note" id="cartao-howto">Como usar: o ano já começa no último completo; a lista vem do maior gasto para o menor. Busque o nome do órgão e toque numa linha para ver fornecedores e o mês a mês.</p>
         <div class="g-controls">
-          <label class="g-field">Ano <select id="cartao-year" aria-label="Ano"></select></label>
-          <label class="g-field g-grow">Buscar <input id="cartao-q" type="search" placeholder="ex.: Polícia Federal, Educação" aria-label="Buscar órgão"></label>
+          <label class="g-field">Ano <select id="cartao-year" aria-label="Ano do cartão"></select></label>
+          <label class="g-field g-grow">Buscar órgão <input id="cartao-q" type="search" placeholder="ex.: Polícia Federal, Educação" aria-label="Buscar órgão"></label>
         </div>
         <dl class="g-kpis g-kpis-sm" id="cartao-kpis"></dl>
         <p class="g-note" id="cartao-note"></p>
@@ -299,8 +301,8 @@
             </table>
           </div>
           <div class="g-card g-sticky" id="cartao-detail">
-            <h3 class="g-h3">Toque num órgão</h3>
-            <p class="g-sub">Para ver onde o cartão mais foi usado (maiores fornecedores).</p>
+            <h3 class="g-h3">Toque num órgão à esquerda</h3>
+            <p class="g-sub">Abre o detalhe: gasto por mês, unidades e onde o cartão mais foi usado (maiores fornecedores).</p>
           </div>
         </div>
         <div class="g-card">
@@ -476,7 +478,7 @@
           <details><summary>O que a cota parlamentar paga e o que fica de fora</summary>
             <p>Paga despesas do mandato com nota fiscal: escritório no estado, passagens, combustível, aluguel de carro, divulgação, telefone etc. O limite mensal varia por estado. <b>Não</b> inclui salário (subsídio), verba de gabinete para assessores, auxílio-moradia, apartamento funcional nem gastos da administração da Câmara ou do Senado (esses estão no orçamento da União, na função "Legislativa").</p></details>
           <details><summary>Gasto sigiloso no cartão corporativo</summary>
-            <p>A lei permite manter em sigilo gastos ligados à segurança do presidente, do vice e de suas famílias, e algumas operações de investigação. Nesses casos o Portal da Transparência mostra só o valor, sem fornecedor. O governo pode divulgar esses dados depois, como fez em 2023 com os anos de 2003 a 2022.</p></details>
+            <p>A lei permite manter em sigilo gastos ligados à segurança do presidente, do vice e de suas famílias, e algumas operações de investigação. Nesses casos o Portal da Transparência mostra só o valor, sem fornecedor. O governo pode divulgar esses dados depois, como fez em 2023 com os anos de 2003 a 2022 — veja o caso em <a class="linkish" href="/politica/sigilos/#cartao-presidencia">Sigilos derrubados</a>.</p></details>
         </div>
 
         <h3 class="g-h3" id="lacunas">Lacunas e mudanças de método</h3>

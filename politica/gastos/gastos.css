@@ -207,3 +207,6 @@ html.g-modal-open, html.g-modal-open body { overflow: hidden; }
   .g-table.tabela-cards tbody tr:hover { background: var(--panel); }
 }
 .g-heading p a { color: var(--accent); border-bottom: 1px solid currentColor; font-weight: 700; }
+
+/* UX: hint always visible above cartão filters */
+#cartao-howto { margin: 0 0 14px; }
