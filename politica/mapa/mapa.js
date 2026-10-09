@@ -619,7 +619,13 @@
         var y = S.colorYear;
         if (kind === "pres22" || kind === "pres26") {
           var info = (S.elMeta || {})[kind === "pres22" ? "2022" : "2026"] || {};
-          paintCats(shapes, vals, esc((info.fonte || "TSE")) + ". A cor mostra quem teve mais votos; não é opinião.");
+          var cs = info.candidatos || [];
+          var totBits = cs.map(function (c) {
+            return c.votos_brasil ? esc((c.urna || "").split(" ").slice(-1)[0]) + " " + int(c.votos_brasil) : null;
+          }).filter(Boolean).join(" · ");
+          var leg = (totBits ? totBits + " (sem votos do exterior). " : "Sem votos do exterior. ") +
+            '<a href="/politica/eleicoes/">Total oficial com exterior</a>. A cor mostra quem teve mais votos; não é opinião.';
+          paintCats(shapes, vals, leg);
           return;
         }
         var fmt = (kind === "pop") ? int : (kind === "idhm") ? function (v) { return f3(v) + " (" + idhmFaixa(v) + ")"; } : function (v) { return money(v); };
@@ -1460,7 +1466,7 @@
       ["PIB dos municípios e estados", "IBGE — PIB dos Municípios, SIDRA tabela 5938", "https://sidra.ibge.gov.br/tabela/5938", "2002–2023 (o IBGE publica com cerca de 2 anos de atraso)"],
       ["IDHM", "Atlas do Desenvolvimento Humano no Brasil (PNUD, IPEA e Fundação João Pinheiro)", "https://www.atlasbrasil.org.br/acervo/biblioteca", "Censos de 1991, 2000 e 2010"],
       ["Emendas recebidas pela cidade", "Portal da Transparência (CGU) — emendas parlamentares", "https://portaldatransparencia.gov.br/emendas", "2014–2026, só as com cidade informada"],
-      ["Votos para presidente por cidade", "TSE — votação por município e zona", "https://dadosabertos.tse.jus.br/", "2022 (2º turno) e 2026 (1º turno)"],
+      ["Votos para presidente por cidade", "TSE — votação por município e zona (sem votos do exterior; total oficial em /politica/eleicoes/)", "https://dadosabertos.tse.jus.br/", "2022 (2º turno) e 2026 (1º turno)"],
       ["Fotos de deputados e senadores", "Câmara dos Deputados e Senado Federal (fotos oficiais de quem está em exercício)", "https://dadosabertos.camara.leg.br/", "legislatura atual"],
       ["Correção pela inflação", "Banco Central — SGS série 433 (IPCA mensal)", "https://www3.bcb.gov.br/sgspub/", "1995 em diante"]
     ];
@@ -1479,6 +1485,7 @@
       "<li>De 1989 a 1993 a moeda era outra e a inflação passava de 1.000% ao ano; esses anos só aparecem em valores da época. Entre 1989 e 1993 algumas cidades não foram encontradas nos arquivos históricos.</li>" +
       "<li>As contas de 2013 em diante das cidades do interior estão sendo copiadas do Tesouro aos poucos (limite de 1 consulta por segundo). Enquanto isso, ao abrir uma cidade, o site busca os anos que faltam direto na API do Tesouro.</li>" +
       "<li>Cores de partido e de resultado eleitoral no mapa só separam os lados e não representam nenhuma opinião.</li>" +
+      "<li>Os votos para presidente no mapa somam só estados e DF (sem votos do exterior). O total oficial, com exterior, está em <a href=\"/politica/eleicoes/\">Eleições</a>.</li>" +
       "<li>O IDHM municipal oficial existe só para os Censos de 1991, 2000 e 2010. Cidades criadas depois não têm valor.</li>" +
       "<li>As emendas do mapa são só as que o Portal da Transparência marca com uma cidade. Emendas para o estado inteiro, para vários municípios ou sem local ficam de fora, então o total daqui é menor que o total nacional.</li></ul>" +
       '<details class="mp-more"><summary>Quantas prefeituras têm contas em cada ano</summary><div class="table-wrap"><table class="data-table"><thead><tr><th>Ano</th><th class="num">Com contas</th><th class="num">Sem entrega</th><th>Base</th></tr></thead><tbody>' + covRows + "</tbody></table></div></details>";
