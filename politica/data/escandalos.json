@@ -1,0 +1,719 @@
+{
+  "_sobre": "Linha do tempo factual de escândalos, crises, impeachments e investigações ligados à Presidência da República (Sarney a Lula 3). Não julga se alguém é 'bom' ou 'ruim': só registra o que aconteceu, quem estava envolvido, o status conhecido e fontes. Crises econômicas e desastres entram quando marcaram o mandato, mesmo sem processo judicial.",
+  "revisado": "2026-10-09",
+  "aviso": "Lista selecionada dos casos mais documentados. Não é completa. Quando o status judicial mudou com o tempo, a nota explica. 'Condenado' pode ser decisão do Senado (impeachment), do TSE (inelegibilidade) ou de tribunal criminal — a nota diz qual.",
+  "status": {
+    "condenado": "Houve condenação ou sanção final conhecida (Senado, TSE, STF ou outro tribunal).",
+    "arquivado": "Arquivado, absolvido, anulado ou a Câmara/Senado barraram o processo.",
+    "em_curso": "Ainda há investigação ou julgamento em andamento.",
+    "sem_conclusao": "Não há decisão final pública, ou o fato é crise/desastre (não é processo)."
+  },
+  "presidentes": [
+    {
+      "id": "sarney",
+      "nome": "José Sarney",
+      "nome_completo": "José Sarney de Araújo Costa",
+      "partido": "PMDB",
+      "inicio": "1985-03-15",
+      "fim": "1990-03-15",
+      "id_politico": "4fgbagx54w",
+      "eleicao": "Vice na chapa de Tancredo (eleição indireta de 1985); assumiu a Presidência.",
+      "nota": "Não foi eleito presidente em eleição direta depois de 1988. Entra porque a Constituição de 1988 foi promulgada no mandato dele.",
+      "casos": [
+        {
+          "id": "sarney-hiperinflacao",
+          "ano": 1986,
+          "titulo": "Hiperinflação e planos econômicos",
+          "o_que": "A inflação disparou e o governo tentou vários planos (Cruzado, Bresser, Verão) que congelavam preços e salários; a crise marcou o fim da década.",
+          "envolvidos": "José Sarney; equipe econômica",
+          "status": "sem_conclusao",
+          "tipo": "crise",
+          "fontes": [
+            {
+              "titulo": "BCB — séries históricas de inflação (IPCA/INPC)",
+              "url": "https://www.bcb.gov.br/estatisticas"
+            },
+            {
+              "titulo": "IBGE — IPCA histórico",
+              "url": "https://www.ibge.gov.br/estatisticas/economicas/precos-e-custos/9256-indice-nacional-de-precos-ao-consumidor-amplo.html"
+            }
+          ],
+          "ano_fim": 1989,
+          "status_nota": "Crise econômica, não processo judicial."
+        },
+        {
+          "id": "sarney-constituicao",
+          "ano": 1988,
+          "titulo": "Promulgação da Constituição de 1988",
+          "o_que": "Em 5 de outubro de 1988 foi promulgada a Constituição atual, que reorganizou o país depois da ditadura e fixou as regras da Nova República.",
+          "envolvidos": "Assembleia Nacional Constituinte; José Sarney (promulgação)",
+          "status": "sem_conclusao",
+          "tipo": "crise",
+          "fontes": [
+            {
+              "titulo": "Planalto — Constituição de 1988",
+              "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+            },
+            {
+              "titulo": "Câmara — história da Constituinte",
+              "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/Constituicoes_Brasileiras/constituicao-cidada"
+            }
+          ],
+          "status_nota": "Marco institucional do período; não é escândalo. Entra para situar o tempo."
+        },
+        {
+          "id": "sarney-constituinte-crise",
+          "ano": 1989,
+          "titulo": "Greves e crise final do mandato",
+          "o_que": "No fim do mandato, greves, falta de popularidade e a transição para a primeira eleição direta marcaram um período de tensão política e social.",
+          "envolvidos": "José Sarney; movimentos sindicais; Congresso",
+          "status": "sem_conclusao",
+          "tipo": "crise",
+          "fontes": [
+            {
+              "titulo": "FGV CPDOC — verbete José Sarney",
+              "url": "https://www18.fgv.br/cpdoc/acervo/dicionarios/verbete-biografico"
+            },
+            {
+              "titulo": "Biblioteca da Presidência — Galeria Sarney",
+              "url": "https://www.gov.br/secretariageral/pt-br/centrais-de-conteudo/biblioteca-da-pr/galeria-dos-ex-presidentes/jose_sarney"
+            }
+          ],
+          "status_nota": "Crise política de fim de mandato; não é processo judicial."
+        }
+      ]
+    },
+    {
+      "id": "collor",
+      "nome": "Fernando Collor",
+      "nome_completo": "Fernando Affonso Collor de Mello",
+      "partido": "PRN",
+      "inicio": "1990-03-15",
+      "fim": "1992-12-29",
+      "id_politico": "vc64qekiw2",
+      "eleicao": "Eleito em 1989 no 2º turno (primeira eleição direta desde 1960).",
+      "nota": "Renunciou em 29/12/1992, durante o julgamento do impeachment; o Senado mesmo assim aplicou a inabilitação por 8 anos.",
+      "casos": [
+        {
+          "id": "collor-confisco",
+          "ano": 1990,
+          "titulo": "Plano Collor e bloqueio da poupança",
+          "o_que": "No começo do mandato, o governo bloqueou grande parte do dinheiro das contas e da poupança para tentar segurar a inflação; a medida gerou crise e processos na Justiça.",
+          "envolvidos": "Fernando Collor; equipe econômica (Zélia Cardoso de Mello)",
+          "status": "sem_conclusao",
+          "tipo": "crise",
+          "fontes": [
+            {
+              "titulo": "Planalto — Medida Provisória 168/1990 (contexto do plano)",
+              "url": "https://www.planalto.gov.br/ccivil_03/mpv/1990-1995/168.htm"
+            },
+            {
+              "titulo": "BCB — histórico monetário",
+              "url": "https://www.bcb.gov.br/"
+            }
+          ],
+          "status_nota": "Crise econômica e política; não há uma única 'condenação' do presidente por esse fato."
+        },
+        {
+          "id": "collor-cpi",
+          "ano": 1992,
+          "titulo": "CPI do PC e denúncia de Pedro Collor",
+          "o_que": "O irmão Pedro Collor denunciou o esquema à imprensa; a CPI do Congresso confirmou indícios e abriu caminho para o pedido de impeachment.",
+          "envolvidos": "Pedro Collor; Paulo César Farias; Congresso",
+          "status": "sem_conclusao",
+          "tipo": "escandalo",
+          "fontes": [
+            {
+              "titulo": "Câmara — memória do impeachment (20 anos)",
+              "url": "https://www2.camara.leg.br/atividade-legislativa/plenario/discursos/escrevendohistoria/destaque-de-materias/20-anos-do-impeachment"
+            },
+            {
+              "titulo": "Senado — processo Diversos 12/1992",
+              "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/2390"
+            }
+          ],
+          "status_nota": "Etapa investigativa do Congresso; a sanção final está no item do impeachment."
+        },
+        {
+          "id": "collor-pc",
+          "ano": 1992,
+          "titulo": "Esquema PC Farias e impeachment",
+          "o_que": "A CPI apontou um esquema de corrupção ligado a Paulo César Farias (PC); a Câmara abriu o impeachment e o Senado condenou Collor à inabilitação por 8 anos, depois da renúncia.",
+          "envolvidos": "Fernando Collor; Paulo César Farias; Congresso Nacional",
+          "status": "condenado",
+          "tipo": "impeachment",
+          "fontes": [
+            {
+              "titulo": "Senado — Resolução nº 101/1992 (sanções do impeachment)",
+              "url": "https://www2.camara.leg.br/legin/fed/ressen/1992/resolucao-101-30-dezembro-1992-480215-publicacaooriginal-1-pl.html"
+            },
+            {
+              "titulo": "TSE — julgado histórico Collor",
+              "url": "https://www.tse.jus.br/jurisprudencia/julgados-historicos/collor"
+            }
+          ],
+          "status_nota": "Sanção política do Senado (inelegibilidade/inabilitação por 8 anos). Em processo criminal separado, o STF absolveu Collor em 2014 de acusações ligadas ao esquema PC."
+        }
+      ]
+    },
+    {
+      "id": "itamar",
+      "nome": "Itamar Franco",
+      "nome_completo": "Itamar Augusto Cautiero Franco",
+      "partido": "PMDB (eleito vice pelo PRN)",
+      "inicio": "1992-12-29",
+      "fim": "1995-01-01",
+      "id_politico": "uu3zdsla4n",
+      "eleicao": "Eleito vice em 1989; assumiu após a renúncia/impeachment de Collor.",
+      "nota": "Não foi eleito presidente titular. Mandato de transição até a posse de FHC.",
+      "casos": [
+        {
+          "id": "itamar-anoes",
+          "ano": 1993,
+          "titulo": "CPI dos Anões do Orçamento",
+          "o_que": "Uma CPI mostrou um esquema de emendas e verbas no Orçamento da União envolvendo deputados; vários parlamentares foram cassados ou processados.",
+          "envolvidos": "Parlamentares da Câmara; período do governo Itamar",
+          "status": "condenado",
+          "tipo": "escandalo",
+          "fontes": [
+            {
+              "titulo": "Câmara — memória da CPI do Orçamento",
+              "url": "https://www2.camara.leg.br/atividade-legislativa/comissoes/comissoes-temporarias/parlamentar-de-inquerito"
+            },
+            {
+              "titulo": "Folha — cobertura histórica dos Anões do Orçamento",
+              "url": "https://www1.folha.uol.com.br/folha/brasil/ult96u348099.shtml"
+            }
+          ],
+          "ano_fim": 1994,
+          "status_nota": "Condenações e cassações atingiram parlamentares. Itamar não foi réu desse esquema."
+        },
+        {
+          "id": "itamar-plano-real",
+          "ano": 1994,
+          "titulo": "Lançamento do Plano Real",
+          "o_que": "O governo lançou o Real e conseguiu derrubar a hiperinflação; o plano foi o fato econômico central do mandato.",
+          "envolvidos": "Itamar Franco; Fernando Henrique Cardoso (Fazenda)",
+          "status": "sem_conclusao",
+          "tipo": "crise",
+          "fontes": [
+            {
+              "titulo": "Planalto — Lei 9.069/1995 (Plano Real)",
+              "url": "https://www.planalto.gov.br/ccivil_03/leis/l9069.htm"
+            },
+            {
+              "titulo": "BCB — o Real",
+              "url": "https://www.bcb.gov.br/cedulasemoedas/real"
+            }
+          ],
+          "status_nota": "Não é escândalo; entra como a grande crise/virada econômica do período."
+        }
+      ]
+    },
+    {
+      "id": "fhc",
+      "nome": "Fernando Henrique Cardoso",
+      "nome_completo": "Fernando Henrique Cardoso",
+      "partido": "PSDB",
+      "inicio": "1995-01-01",
+      "fim": "2003-01-01",
+      "id_politico": "sdtgfbjdym",
+      "eleicao": "Eleito em 1994 e reeleito em 1998 (1º turno).",
+      "nota": null,
+      "casos": [
+        {
+          "id": "fhc-reeleicao",
+          "ano": 1997,
+          "titulo": "Denúncias de compra de votos da reeleição",
+          "o_que": "Veículos de imprensa e uma CPI trataram de denúncias de compra de votos de deputados para aprovar a emenda da reeleição; alguns parlamentares foram citados, sem condenação criminal firme do presidente.",
+          "envolvidos": "Deputados citados na imprensa/CPI; governo FHC",
+          "status": "sem_conclusao",
+          "tipo": "escandalo",
+          "fontes": [
+            {
+              "titulo": "Planalto — Emenda Constitucional 16/1997 (reeleição)",
+              "url": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc16.htm"
+            },
+            {
+              "titulo": "Folha — cobertura das denúncias de 1997",
+              "url": "https://www1.folha.uol.com.br/fsp/brasil/fc140502.htm"
+            }
+          ],
+          "status_nota": "Não há condenação criminal do presidente FHC por esse episódio. O status reflete a falta de conclusão judicial contra ele."
+        },
+        {
+          "id": "fhc-crise-cambial",
+          "ano": 1999,
+          "titulo": "Crise cambial e maxidesvalorização",
+          "o_que": "O Real sofreu forte pressão e o governo deixou a moeda flutuar; o dólar disparou e o país pediu ajuda ao FMI.",
+          "envolvidos": "Fernando Henrique Cardoso; equipe econômica",
+          "status": "sem_conclusao",
+          "tipo": "crise",
+          "fontes": [
+            {
+              "titulo": "BCB — regime de câmbio flutuante (1999)",
+              "url": "https://www.bcb.gov.br/"
+            },
+            {
+              "titulo": "FMI — programa Brasil 1998/1999",
+              "url": "https://www.imf.org/en/Countries/BRA"
+            }
+          ],
+          "status_nota": "Crise econômica, não processo judicial."
+        },
+        {
+          "id": "fhc-apagao",
+          "ano": 2001,
+          "titulo": "Apagão e racionamento de energia",
+          "o_que": "Uma crise hídrica e de planejamento levou ao racionamento de energia elétrica em boa parte do país.",
+          "envolvidos": "Governo FHC; setor elétrico",
+          "status": "sem_conclusao",
+          "tipo": "desastre",
+          "fontes": [
+            {
+              "titulo": "ANEEL — histórico do setor elétrico",
+              "url": "https://www.aneel.gov.br/"
+            },
+            {
+              "titulo": "G1 — memória do apagão de 2001",
+              "url": "https://g1.globo.com/economia/noticia/2011/05/ha-10-anos-brasil-sofria-com-apagao-e-racionamento-de-energia.html"
+            }
+          ],
+          "status_nota": "Crise de infraestrutura; não é condenação judicial do presidente."
+        },
+        {
+          "id": "fhc-sudam",
+          "ano": 2001,
+          "titulo": "Escândalos na Sudam/Sudene",
+          "o_que": "Denúncias de desvio de verbas de desenvolvimento regional (Sudam e Sudene) levaram a CPIs e à extinção das autarquias, substituídas por novas agências.",
+          "envolvidos": "Gestores e políticos regionais; governo FHC",
+          "status": "sem_conclusao",
+          "tipo": "escandalo",
+          "fontes": [
+            {
+              "titulo": "Planalto — medidas de reestruturação (histório Sudam/Sudene)",
+              "url": "https://www.planalto.gov.br/"
+            },
+            {
+              "titulo": "Folha — cobertura da CPI da Sudam",
+              "url": "https://www1.folha.uol.com.br/folha/brasil/"
+            }
+          ],
+          "status_nota": "Houve investigações e mudanças institucionais. FHC não foi condenado criminalmente por esse episódio."
+        }
+      ]
+    },
+    {
+      "id": "lula12",
+      "nome": "Lula (1º e 2º mandatos)",
+      "nome_completo": "Luiz Inácio Lula da Silva",
+      "partido": "PT",
+      "inicio": "2003-01-01",
+      "fim": "2011-01-01",
+      "id_politico": "dmrffhxtzv",
+      "eleicao": "Eleito em 2002 e reeleito em 2006 (2º turno).",
+      "nota": "Os dois primeiros mandatos juntos. O terceiro mandato (2023–) está em 'Lula 3'.",
+      "casos": [
+        {
+          "id": "lula-mensalao",
+          "ano": 2005,
+          "titulo": "Mensalão (Ação Penal 470)",
+          "o_que": "O STF julgou um esquema de pagamento mensal a parlamentares em troca de apoio; condenou líderes do PT e aliados (Dirceu, Genoino, Delúbio e outros). Lula não foi réu nessa ação.",
+          "envolvidos": "José Dirceu; José Genoino; Delúbio Soares; Marcos Valério; outros; governo Lula",
+          "status": "condenado",
+          "tipo": "escandalo",
+          "fontes": [
+            {
+              "titulo": "STF — AP 470: penas de José Dirceu",
+              "url": "https://noticias.stf.jus.br/postsnoticias/ap-470-plenario-fixa-penas-de-jose-dirceu/"
+            },
+            {
+              "titulo": "STF — AP 470: núcleo político",
+              "url": "https://noticias.stf.jus.br/postsnoticias/ap-470-stf-fixa-penas-do-nucleo-politico-e-inicia-analise-de-dosimetria-quanto-ao-nucleo-financeiro/"
+            }
+          ],
+          "ano_fim": 2012,
+          "status_nota": "Condenações no STF contra integrantes do núcleo político e financeiro. Lula não figurou como réu na AP 470."
+        },
+        {
+          "id": "lula-mensalao-dem",
+          "ano": 2006,
+          "titulo": "Mensalão do DEM (e esquemas paralelos)",
+          "o_que": "Outras denúncias de compra de apoio parlamentar em partidos da oposição também chegaram à Justiça; o tema mostrou que o problema não era de um único partido.",
+          "envolvidos": "Parlamentares de vários partidos",
+          "status": "sem_conclusao",
+          "tipo": "escandalo",
+          "fontes": [
+            {
+              "titulo": "STF — notícias sobre ações conexas ao mensalão",
+              "url": "https://portal.stf.jus.br/"
+            },
+            {
+              "titulo": "Folha — cobertura do mensalão do DEM",
+              "url": "https://www1.folha.uol.com.br/poder/"
+            }
+          ],
+          "status_nota": "Vários processos e resultados diferentes; não há um único veredito que feche o tema."
+        },
+        {
+          "id": "lula-sanguessugas",
+          "ano": 2006,
+          "titulo": "Máfia das ambulâncias (Sanguessugas)",
+          "o_que": "A PF descobriu um esquema de superfaturamento na compra de ambulâncias com emendas parlamentares; dezenas de parlamentares foram citados.",
+          "envolvidos": "Parlamentares de vários partidos; fornecedores",
+          "status": "sem_conclusao",
+          "tipo": "escandalo",
+          "fontes": [
+            {
+              "titulo": "Câmara — CPI das Ambulâncias",
+              "url": "https://www.camara.leg.br/"
+            },
+            {
+              "titulo": "G1 — memória dos Sanguessugas",
+              "url": "https://g1.globo.com/politica/"
+            }
+          ],
+          "status_nota": "Vários processos com resultados diferentes. Lula não foi réu desse esquema."
+        }
+      ]
+    },
+    {
+      "id": "dilma",
+      "nome": "Dilma Rousseff",
+      "nome_completo": "Dilma Vana Rousseff",
+      "partido": "PT",
+      "inicio": "2011-01-01",
+      "fim": "2016-08-31",
+      "id_politico": "brzqzaahbs",
+      "eleicao": "Eleita em 2010 e reeleita em 2014 (2º turno).",
+      "nota": "Afastada em 12/05/2016 e destituída em 31/08/2016 pelo Senado (impeachment).",
+      "casos": [
+        {
+          "id": "dilma-pasadena",
+          "ano": 2014,
+          "titulo": "Compra da refinaria de Pasadena",
+          "o_que": "A compra de uma refinaria da Petrobras nos EUA por valor muito acima do de mercado virou símbolo de má gestão e foi investigada na Lava Jato e no TCU.",
+          "envolvidos": "Petrobras; gestores; período em que Dilma presidiu o Conselho da Petrobras (antes) e depois como presidente",
+          "status": "sem_conclusao",
+          "tipo": "escandalo",
+          "fontes": [
+            {
+              "titulo": "TCU — fiscalizações Petrobras",
+              "url": "https://portal.tcu.gov.br/"
+            },
+            {
+              "titulo": "Folha — cobertura Pasadena",
+              "url": "https://www1.folha.uol.com.br/poder/"
+            }
+          ],
+          "status_nota": "Investigações e críticas de órgãos de controle; não há condenação criminal da presidente Dilma especificamente por Pasadena nesta lista."
+        },
+        {
+          "id": "dilma-lava-jato",
+          "ano": 2014,
+          "titulo": "Operação Lava Jato na Petrobras",
+          "o_que": "A operação da Polícia Federal e da Justiça Federal revelou um grande esquema de propina e superfaturamento na Petrobras, com políticos e empreiteiras; o caso dominou a política nos anos seguintes.",
+          "envolvidos": "Diretores da Petrobras; empreiteiras; políticos de vários partidos; período Dilma (e depois)",
+          "status": "sem_conclusao",
+          "tipo": "escandalo",
+          "fontes": [
+            {
+              "titulo": "PF — Operação Lava Jato (histórico institucional)",
+              "url": "https://www.gov.br/pf/pt-br"
+            },
+            {
+              "titulo": "STF — decisões posteriores sobre a Lava Jato",
+              "url": "https://portal.stf.jus.br/"
+            }
+          ],
+          "ano_fim": 2021,
+          "status_nota": "Houve muitas condenações e depois anulações/revisões no STF. O status geral do conjunto é 'sem uma conclusão única e estável'. Dilma não foi condenada criminalmente nesse bloco como presidente."
+        },
+        {
+          "id": "dilma-mariana",
+          "ano": 2015,
+          "titulo": "Desastre de Mariana (barragem da Samarco)",
+          "o_que": "O rompimento da barragem de Fundão (Samarco/Vale/BHP) matou 19 pessoas e causou um dos maiores desastres ambientais do país, no meio do mandato.",
+          "envolvidos": "Samarco; Vale; BHP; governo federal (resposta e fiscalização)",
+          "status": "em_curso",
+          "tipo": "desastre",
+          "fontes": [
+            {
+              "titulo": "MPF — caso Samarco/Mariana",
+              "url": "https://www.mpf.mp.br/"
+            },
+            {
+              "titulo": "G1 — cobertura do desastre de Mariana",
+              "url": "https://g1.globo.com/mg/minas-gerais/desastre-ambiental-em-mariana/"
+            }
+          ],
+          "status_nota": "Processos civis e criminais contra empresas e pessoas seguem com desdobramentos. Não é condenação da presidente."
+        },
+        {
+          "id": "dilma-impeachment",
+          "ano": 2016,
+          "titulo": "Impeachment (pedaladas fiscais)",
+          "o_que": "O Senado julgou Dilma por crime de responsabilidade ligado a atrasos em pagamentos a bancos públicos ('pedaladas') e créditos sem autorização do Congresso; ela perdeu o cargo. A inabilitação por 8 anos foi rejeitada.",
+          "envolvidos": "Dilma Rousseff; Senado Federal; Câmara dos Deputados",
+          "status": "condenado",
+          "tipo": "impeachment",
+          "fontes": [
+            {
+              "titulo": "Senado — Resolução nº 35/2016",
+              "url": "https://www2.camara.leg.br/legin/fed/ressen/2016/resolucao-35-31-agosto-2016-783556-publicacaooriginal-151006-pl.html"
+            },
+            {
+              "titulo": "Senado — notícia da perda do mandato",
+              "url": "https://www12.senado.leg.br/noticias/materias/2016/08/31/dilma-rousseff-perde-o-mandato-e-temer-e-confirmado-presidente"
+            }
+          ],
+          "status_nota": "Condenação política do Senado: perda do cargo. Não houve inabilitação para função pública."
+        }
+      ]
+    },
+    {
+      "id": "temer",
+      "nome": "Michel Temer",
+      "nome_completo": "Michel Miguel Elias Temer Lulia",
+      "partido": "PMDB (MDB)",
+      "inicio": "2016-08-31",
+      "fim": "2019-01-01",
+      "id_politico": "bqqgni2zir",
+      "eleicao": "Eleito vice em 2010 e 2014; assumiu após o impeachment de Dilma.",
+      "nota": null,
+      "casos": [
+        {
+          "id": "temer-cunha",
+          "ano": 2016,
+          "titulo": "Prisão e cassação de Eduardo Cunha",
+          "o_que": "O presidente da Câmara, aliado-chave na votação do impeachment de Dilma, foi afastado pelo STF e cassado; o episódio marcou o início do governo Temer.",
+          "envolvidos": "Eduardo Cunha; STF; Câmara; governo Temer",
+          "status": "condenado",
+          "tipo": "escandalo",
+          "fontes": [
+            {
+              "titulo": "STF — afastamento de Eduardo Cunha",
+              "url": "https://portal.stf.jus.br/"
+            },
+            {
+              "titulo": "Câmara — cassação de Eduardo Cunha",
+              "url": "https://www.camara.leg.br/noticias/"
+            }
+          ],
+          "status_nota": "Condenações e cassação atingiram Cunha. Temer não foi réu desse processo."
+        },
+        {
+          "id": "temer-joesley",
+          "ano": 2017,
+          "titulo": "Delação da JBS e denúncias da PGR",
+          "o_que": "O empresário Joesley Batista entregou um áudio com Temer; a PGR denunciou o presidente. A Câmara rejeitou as duas denúncias e impediu o STF de processá-lo enquanto ele era presidente.",
+          "envolvidos": "Michel Temer; Joesley Batista; Rodrigo Rocha Loures; PGR; Câmara",
+          "status": "arquivado",
+          "tipo": "escandalo",
+          "fontes": [
+            {
+              "titulo": "Câmara — rejeição da 1ª denúncia (ago/2017)",
+              "url": "https://www.camara.leg.br/noticias/"
+            },
+            {
+              "titulo": "Câmara — não autoriza processo (2ª denúncia, out/2017)",
+              "url": "https://www.camara.leg.br/noticias/526078-CAMARA-NAO-AUTORIZA-PROCESSO-POR-ORGANIZACAO-CRIMINOSA-CONTRA-TEMER-E-DOIS-MINISTROS"
+            }
+          ],
+          "status_nota": "Arquivado na prática para o período do mandato: a Câmara não autorizou o STF a processar. Depois da Presidência, outros capítulos judiciais tiveram rumos próprios."
+        },
+        {
+          "id": "temer-jbs-audio",
+          "ano": 2017,
+          "titulo": "Gravação de Joesley ('Joesley Day')",
+          "o_que": "A divulgação do áudio e da delação da J&F gerou crise política imediata, queda na bolsa e troca na cúpula da Polícia Federal e da PGR nos meses seguintes.",
+          "envolvidos": "Michel Temer; J&F/JBS; mercado financeiro",
+          "status": "sem_conclusao",
+          "tipo": "crise",
+          "fontes": [
+            {
+              "titulo": "Agência Brasil — rejeição da denúncia",
+              "url": "https://agenciabrasil.ebc.com.br/politica/noticia/2017-08/com-172-votos-denuncia-contra-temer-e-rejeitada-na-camara"
+            },
+            {
+              "titulo": "G1 — cobertura do Joesley Day",
+              "url": "https://g1.globo.com/politica/"
+            }
+          ],
+          "status_nota": "Crise política; o desfecho judicial das denúncias está no item anterior."
+        }
+      ]
+    },
+    {
+      "id": "bolsonaro",
+      "nome": "Jair Bolsonaro",
+      "nome_completo": "Jair Messias Bolsonaro",
+      "partido": "PSL (eleito); depois PL",
+      "inicio": "2019-01-01",
+      "fim": "2023-01-01",
+      "id_politico": "myzenkbdb2",
+      "eleicao": "Eleito em 2018 no 2º turno; perdeu a reeleição em 2022.",
+      "nota": "Alguns fatos abaixo tiveram decisão depois do fim do mandato, mas se referem a atos do período ou da campanha de 2022.",
+      "casos": [
+        {
+          "id": "bolso-brumadinho",
+          "ano": 2019,
+          "titulo": "Desastre de Brumadinho",
+          "o_que": "O rompimento da barragem da Vale em Brumadinho (MG) matou 270 pessoas no primeiro mês do mandato; o governo federal atuou na resposta e na fiscalização depois do desastre.",
+          "envolvidos": "Vale; ANM; governo federal",
+          "status": "em_curso",
+          "tipo": "desastre",
+          "fontes": [
+            {
+              "titulo": "MPF — caso Brumadinho",
+              "url": "https://www.mpf.mp.br/"
+            },
+            {
+              "titulo": "G1 — cobertura de Brumadinho",
+              "url": "https://g1.globo.com/mg/minas-gerais/barra-de-mineracao-se-rompe-em-brumadinho/"
+            }
+          ],
+          "status_nota": "Processos contra a empresa e pessoas físicas seguem. Não é condenação do presidente."
+        },
+        {
+          "id": "bolso-orcamento-secreto",
+          "ano": 2019,
+          "titulo": "Orçamento secreto (emendas de relator)",
+          "o_que": "Um modelo de emendas do relator do Orçamento concentrou bilhões sem dizer claramente qual político pedia o dinheiro; o STF considerou o modelo inconstitucional em 2022.",
+          "envolvidos": "Congresso Nacional; Executivo no governo Bolsonaro",
+          "status": "condenado",
+          "tipo": "escandalo",
+          "fontes": [
+            {
+              "titulo": "STF — decisões sobre emendas de relator (RP-9)",
+              "url": "https://portal.stf.jus.br/"
+            },
+            {
+              "titulo": "G1 — STF e o orçamento secreto",
+              "url": "https://g1.globo.com/politica/noticia/2022/12/19/stf-forma-maioria-para-tornar-inconstitucionais-emendas-do-relator.ghtml"
+            }
+          ],
+          "ano_fim": 2022,
+          "status_nota": "O STF derrubou o modelo. Não é condenação criminal pessoal do presidente; é decisão sobre a regra do Orçamento."
+        },
+        {
+          "id": "bolso-covid",
+          "ano": 2020,
+          "titulo": "Gestão da pandemia de Covid-19 e CPI",
+          "o_que": "A pandemia matou centenas de milhares de pessoas no Brasil; o Senado instalou uma CPI (2021) que apontou falhas e pediu responsabilização de autoridades, inclusive do presidente.",
+          "envolvidos": "Jair Bolsonaro; Ministério da Saúde; CPI da Covid (Senado)",
+          "status": "sem_conclusao",
+          "tipo": "escandalo",
+          "fontes": [
+            {
+              "titulo": "Senado — CPI da Pandemia",
+              "url": "https://legis.senado.leg.br/comissoes/comissao?0&codcol=2441"
+            },
+            {
+              "titulo": "OMS / Ministério da Saúde — dados da Covid",
+              "url": "https://covid.saude.gov.br/"
+            }
+          ],
+          "ano_fim": 2021,
+          "status_nota": "A CPI concluiu relatório político-investigativo. Processos e pedidos de responsabilização tiveram caminhos diferentes; não há aqui uma condenação criminal única e fechada do presidente por esse conjunto."
+        },
+        {
+          "id": "bolso-inelegibilidade",
+          "ano": 2022,
+          "titulo": "Inelegibilidade (reunião com embaixadores)",
+          "o_que": "O TSE declarou Bolsonaro inelegível por 8 anos (a partir de 2022) por abuso de poder político e uso indevido dos meios de comunicação na reunião com embaixadores sobre as urnas.",
+          "envolvidos": "Jair Bolsonaro; TSE",
+          "status": "condenado",
+          "tipo": "escandalo",
+          "fontes": [
+            {
+              "titulo": "TSE — notícia da inelegibilidade (30/06/2023)",
+              "url": "https://www.tse.jus.br/comunicacao/noticias/2023/Junho/por-maioria-de-votos-tse-declara-bolsonaro-inelegivel-por-8-anos"
+            },
+            {
+              "titulo": "TSE — AIJE 0600814-85.2022.6.00.0000",
+              "url": "https://www.tse.jus.br/"
+            }
+          ],
+          "ano_fim": 2023,
+          "status_nota": "Sanção eleitoral do TSE (inelegibilidade). Não é o mesmo que condenação criminal."
+        },
+        {
+          "id": "bolso-joias",
+          "ano": 2023,
+          "titulo": "Joias sauditas e presentes da Presidência",
+          "o_que": "A Receita reteve joias dadas pela Arábia Saudita à Presidência; a PF investigou se houve tentativa de trazer o bem sem declarar e desviar do acervo público.",
+          "envolvidos": "Jair Bolsonaro; assessores; Receita Federal; PF",
+          "status": "em_curso",
+          "tipo": "escandalo",
+          "fontes": [
+            {
+              "titulo": "PF / Receita — caso das joias (cobertura oficial via imprensa)",
+              "url": "https://g1.globo.com/politica/noticia/2023/03/07/joias-sauditas-entenda-o-caso.ghtml"
+            },
+            {
+              "titulo": "Estadão — investigação das joias",
+              "url": "https://www.estadao.com.br/"
+            }
+          ],
+          "ano_fim": 2026,
+          "status_nota": "Investigação e desdobramentos após o mandato. Status pode mudar; na revisão desta página ainda não havia condenação criminal transitada em julgado listada aqui."
+        }
+      ]
+    },
+    {
+      "id": "lula3",
+      "nome": "Lula (3º mandato)",
+      "nome_completo": "Luiz Inácio Lula da Silva",
+      "partido": "PT",
+      "inicio": "2023-01-01",
+      "fim": null,
+      "id_politico": "dmrffhxtzv",
+      "eleicao": "Eleito em 2022 no 2º turno.",
+      "nota": "Mandato em curso. Itens abaixo podem mudar de status.",
+      "casos": [
+        {
+          "id": "lula3-lava-jato-contexto",
+          "ano": 2021,
+          "titulo": "Condenações da Lava Jato contra Lula anuladas",
+          "o_que": "Antes do 3º mandato, o STF anulou condenações da Lava Jato contra Lula (por questões de foro e imparcialidade do juízo), o que devolveu seus direitos políticos e permitiu a candidatura de 2022.",
+          "envolvidos": "Luiz Inácio Lula da Silva; STF; 13ª Vara Federal de Curitiba",
+          "status": "arquivado",
+          "tipo": "escandalo",
+          "fontes": [
+            {
+              "titulo": "STF — decisões sobre anulação / foro da Lava Jato",
+              "url": "https://portal.stf.jus.br/"
+            },
+            {
+              "titulo": "TSE — registro da candidatura 2022",
+              "url": "https://divulgacandcontas.tse.jus.br/divulga/"
+            }
+          ],
+          "ano_fim": 2022,
+          "status_nota": "Arquivado/anulado no sentido de que as condenações não valem. Entra aqui porque explica o retorno à elegibilidade; o fato jurídico é anterior à posse de 2023."
+        },
+        {
+          "id": "lula3-8jan",
+          "ano": 2023,
+          "titulo": "Ataques de 8 de janeiro em Brasília",
+          "o_que": "Em 8/01/2023, grupos invadiram e depredaram o Congresso, o Palácio do Planalto e o STF. O STF já condenou milhares de envolvidos; investigações sobre organizadores e autoridades seguem.",
+          "envolvidos": "Manifestantes e investigados; autoridades de segurança; Jair Bolsonaro (investigado em frentes conexas); governo Lula (resposta)",
+          "status": "em_curso",
+          "tipo": "crise",
+          "fontes": [
+            {
+              "titulo": "STF — balanço de atos antidemocráticos",
+              "url": "https://noticias.stf.jus.br/postsnoticias/stf-divulga-balanco-atualizado-sobre-investigacoes-e-condenacoes-por-atos-antidemocraticos/"
+            },
+            {
+              "titulo": "Agência Brasil — condenações do 8/01",
+              "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-01/stf-condenou-1399-pessoas-por-atos-golpistas-179-estao-presas"
+            }
+          ],
+          "status_nota": "Há muitas condenações de participantes. A responsabilização de lideranças políticas e militares ainda tinha frentes em curso na revisão desta página."
+        }
+      ]
+    }
+  ]
+}

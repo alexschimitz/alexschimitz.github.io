@@ -10,6 +10,7 @@
     "propostas": true,
     "leis": true,
     "sigilos": true,
-    "eleicoes": true
+    "eleicoes": true,
+    "escandalos": true
   }
 }

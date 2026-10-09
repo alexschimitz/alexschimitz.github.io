@@ -18,23 +18,47 @@
   var UFS = "AC AL AM AP BA CE DF ES GO MA MG MS MT PA PB PE PI PR RJ RN RO RR RS SC SE SP TO".split(" ");
   var GERAIS = [2026, 2022, 2018, 2014, 2010], MUNIC = [2024, 2020, 2016, 2012];
   var PERFIL = "/politica/politicos/#p/";
+  var ESC = "/politica/escandalos/";
+  /* id_politico or nome → âncora em /politica/escandalos/ */
+  function escandaloHref(p) {
+    if (p.cargo !== "presidente" && p.cargo !== 1) return "";
+    var map = {
+      dmrffhxtzv: p.ano >= 2022 ? "lula3" : "lula12",
+      myzenkbdb2: "bolsonaro",
+      brzqzaahbs: "dilma",
+      sdtgfbjdym: "fhc",
+      vc64qekiw2: "collor",
+      bqqgni2zir: "temer",
+      uu3zdsla4n: "itamar",
+      "4fgbagx54w": "sarney"
+    };
+    var id = p.pessoa && p.pessoa.id_politico;
+    var key = id && map[id] ? map[id] : "";
+    if (!key && p.pessoa && /lula/i.test(p.pessoa.nome || "")) key = p.ano >= 2022 ? "lula3" : "lula12";
+    if (!key && p.pessoa && /bolsonaro/i.test(p.pessoa.nome || "")) key = "bolsonaro";
+    if (!key && p.pessoa && /dilma/i.test(p.pessoa.nome || "")) key = "dilma";
+    if (!key && p.pessoa && /cardoso|henrique/i.test(p.pessoa.nome || "")) key = "fhc";
+    if (!key && p.pessoa && /collor/i.test(p.pessoa.nome || "")) key = "collor";
+    return key ? ESC + "#p-" + key : ESC;
+  }
+
   var DIVULGA = "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/";
   var ZIP = "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_";
   /* Antes de 2010: TSE não arquiva plano. Quando há avaliação por acervo, k aponta para o JSON. */
   var ANTES = [
-    {ano:2006, nome:"Lula", partido:"PT", id:"dmrffhxtzv", status:"sem_pdf_paginado",
+    {ano:2006, nome:"Lula", partido:"PT", id:"dmrffhxtzv", esc:"lula12", status:"sem_pdf_paginado",
      nota:"Há programa de campanha (“Lula de Novo com a Força do Povo”) na Fundação Perseu Abramo; ainda sem curadoria página a página aqui."},
-    {ano:2002, nome:"Lula", partido:"PT", id:"dmrffhxtzv", status:"arquivo", k:"2002-BR-ARQUIVO2002",
+    {ano:2002, nome:"Lula", partido:"PT", id:"dmrffhxtzv", esc:"lula12", status:"arquivo", k:"2002-BR-ARQUIVO2002",
      nota:"Avaliado a partir do PDF de campanha em acervo (não é plano do TSE)."},
-    {ano:1998, nome:"Fernando Henrique Cardoso", partido:"PSDB", id:"sdtgfbjdym", status:"sem_pdf_paginado",
+    {ano:1998, nome:"Fernando Henrique Cardoso", partido:"PSDB", id:"sdtgfbjdym", esc:"fhc", status:"sem_pdf_paginado",
      nota:"Programa “Avança Brasil” existe em bibliotecas (ENAP/IBGE); PDF público paginado estável ainda não entrou na curadoria."},
-    {ano:1994, nome:"Fernando Henrique Cardoso", partido:"PSDB", id:"sdtgfbjdym", status:"arquivo", k:"1994-BR-ARQUIVO1994",
+    {ano:1994, nome:"Fernando Henrique Cardoso", partido:"PSDB", id:"sdtgfbjdym", esc:"fhc", status:"arquivo", k:"1994-BR-ARQUIVO1994",
      nota:"Avaliado a partir do resumo contemporâneo de “Mãos à Obra, Brasil” (Folha, 1994) e citações da Fundação FHC."},
-    {ano:1989, nome:"Fernando Collor", partido:"PRN", id:"vc64qekiw2", status:"sem_pdf_paginado",
+    {ano:1989, nome:"Fernando Collor", partido:"PRN", id:"vc64qekiw2", esc:"collor", status:"sem_pdf_paginado",
      nota:"O livreto “Projeto Brasil Novo” está no Museu da República; não há PDF público paginado confiável para citar página a página. Não inventamos promessas."},
-    {ano:null, nome:"Itamar Franco", partido:"—", id:"", status:"sem_campanha",
+    {ano:null, nome:"Itamar Franco", partido:"—", id:"uu3zdsla4n", esc:"itamar", status:"sem_campanha",
      nota:"Assumiu após o impeachment de Collor (1992); não houve eleição presidencial nem plano de campanha próprio."},
-    {ano:null, nome:"José Sarney", partido:"—", id:"", status:"sem_campanha",
+    {ano:null, nome:"José Sarney", partido:"—", id:"4fgbagx54w", esc:"sarney", status:"sem_campanha",
      nota:"Presidente por sucessão (1985–1990), antes da eleição direta de 1989; fora do recorte de planos de campanha pós-1988."}
   ];
 
@@ -134,7 +158,8 @@
         barra(c, tot) + '<div class="pl-cts">' + contagemTxt(c) + "</div>" +
         '<div class="pl-acoes"><button type="button" class="btn btn-primary pl-ver" data-k="' + esc(planoKey(p)) + '">Ver as ' + tot + " promessas</button>" +
         ext(pl.divulga, pl.fonte === "arquivo" ? "Abrir fonte do acervo" : "Plano no site do TSE", "btn btn-ghost") +
-        (p.pessoa.id_politico ? '<a class="btn btn-ghost" href="' + PERFIL + esc(p.pessoa.id_politico) + '">Perfil</a>' : "") + "</div>" +
+        (p.pessoa.id_politico ? '<a class="btn btn-ghost" href="' + PERFIL + esc(p.pessoa.id_politico) + '">Perfil</a>' : "") +
+        ((p.cargo === "presidente" || p.cargo === 1) ? '<a class="btn btn-ghost" href="' + esc(escandaloHref(p)) + '">Escândalos e crises</a>' : "") + "</div>" +
         (pl.fonte === "arquivo"
           ? '<p class="note-sm"><b>Fonte de acervo (não é plano do TSE).</b> ' + esc(pl.fonte_nota || "") + ' Arquivo: <span class="mono">' + esc(pl.arquivo) + "</span>.</p>"
           : '<p class="note-sm">Arquivo original: <span class="mono">' + esc(pl.arquivo) + "</span>, dentro do " + ext(pl.zip, "pacote de dados abertos do TSE" + (zipTam ? " (" + mb(zipTam) + ")" : "")) + ".</p>") +
@@ -310,7 +335,8 @@
         cel = '<span class="muted">Plano oficial não arquivado no TSE</span>' +
           '<p class="note-sm" style="margin:0.35rem 0 0">' + esc(a.nota) + "</p>";
       }
-      return "<tr><td>" + eleicao + "</td><td>" + quem + "</td><td>" + cel + "</td></tr>";
+      var escLink = a.esc ? ' · <a href="' + ESC + "#p-" + a.esc + '">Escândalos e crises</a>' : "";
+      return "<tr><td>" + eleicao + "</td><td>" + quem + "</td><td>" + cel + escLink + "</td></tr>";
     }).join("");
   }
 

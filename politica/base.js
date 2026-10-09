@@ -19,6 +19,7 @@
     { href: ROOT + "#proposicoes", label: "Propostas", page: "propostas" },
     { href: ROOT + "leis/", label: "Leis", page: "leis" },
     { href: ROOT + "sigilos/", label: "Sigilos", page: "sigilos" },
+    { href: ROOT + "escandalos/", label: "Escândalos", page: "escandalos" },
     { href: ROOT + "#parlamentares", label: "Congresso" }
   ];
   var body = document.body;
@@ -47,10 +48,10 @@
   }
 
   // Menus escritos à mão em cada página: acrescenta "Leis" e "Sigilos" depois de "Propostas" se faltarem
-  if (nav && !nav.querySelector('a[data-page="leis"]')) {
+  if (nav && (!nav.querySelector('a[data-page="leis"]') || !nav.querySelector('a[data-page="escandalos"]'))) {
     var prop = nav.querySelector('a[data-page="propostas"]');
     if (prop) {
-      [["sigilos", "Sigilos"], ["leis", "Leis"]].forEach(function (p) {
+      [["escandalos", "Escândalos"], ["sigilos", "Sigilos"], ["leis", "Leis"]].forEach(function (p) {
         var a = document.createElement("a");
         a.href = ROOT + p[0] + "/"; a.setAttribute("data-page", p[0]); a.textContent = p[1];
         a.addEventListener("click", function () { var t = document.querySelector(".menu-toggle"); if (t && t.getAttribute("aria-expanded") === "true") t.click(); });

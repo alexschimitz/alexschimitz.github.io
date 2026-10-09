@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0d0c">
+  <meta name="description" content="Linha do tempo factual de escândalos, crises e impeachments dos presidentes do Brasil desde Sarney até Lula 3, com status e fontes oficiais. Sem julgamento moral.">
+  <title>Escândalos e crises dos presidentes — Política em dados abertos</title>
+  <script>try{var t=localStorage.getItem('as-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="escandalos.css">
+</head>
+<body class="politica">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../" aria-label="AS Alexsander Schimitz — página inicial">
+        <span class="brand-mark">AS</span>
+        <span class="brand-name">Alexsander Schimitz</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+        <span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Páginas de política">
+        <a href="/politica/">Painel</a>
+        <a href="/politica/gastos/" data-page="gastos">Gastos</a>
+        <a href="/politica/economia/" data-page="economia">Economia</a>
+        <a href="/politica/planos/" data-page="planos">Planos</a>
+        <a href="/politica/mapa/" data-page="mapa">Mapa</a>
+        <a href="/politica/eleicoes/" data-page="eleicoes">Eleições</a>
+        <a href="/politica/politicos/" data-page="politicos">Políticos</a>
+        <a href="/politica/governo/" data-page="governo">Governo</a>
+        <a href="/politica/propostas/" data-page="propostas">Propostas</a>
+        <a href="/politica/leis/" data-page="leis">Leis</a>
+        <a href="/politica/sigilos/" data-page="sigilos">Sigilos</a>
+        <a href="/politica/escandalos/" data-page="escandalos" aria-current="page">Escândalos</a>
+        <a href="/politica/#parlamentares">Congresso</a>
+        <span class="nav-sep" aria-hidden="true"></span>
+        <button class="theme-toggle" type="button" aria-label="Alternar tema claro ou escuro" title="Tema">◐</button>
+        <a class="nav-cta" href="/">← Site</a>
+      </nav>
+    </div>
+  </header>
+  <main id="conteudo">
+    <nav class="pol-subnav" aria-label="Atalhos desta página">
+      <a href="#aviso">Como ler</a>
+      <a href="#linha">Linha do tempo</a>
+      <a href="#por-presidente">Por presidente</a>
+      <a href="#fontes">Fontes</a>
+    </nav>
+
+    <section class="pol-hero container">
+      <p class="pol-crumbs"><a href="/politica/">Painel</a> <span aria-hidden="true">›</span> <a href="/politica/planos/">Planos</a> <span aria-hidden="true">›</span> Escândalos e crises</p>
+      <div class="eyebrow"><span class="status-dot"></span> Presidentes · 1985 a 2026 · só fatos documentados</div>
+      <h1>Escândalos e crises. <span>O que aconteceu em cada mandato.</span></h1>
+      <p class="hero-lead">Uma linha do tempo seca: ano, o que foi, quem estava no meio, se acabou em condenação, arquivamento ou ainda está em aberto — e o link da fonte. Sem dizer se o presidente é “bom” ou “ruim”.</p>
+      <dl class="pol-stats">
+        <div><dt>Casos nesta página</dt><dd id="st-n">—</dd></div>
+        <div><dt>Presidentes</dt><dd id="st-p">—</dd></div>
+        <div><dt>Com sanção final</dt><dd id="st-c">—</dd></div>
+        <div><dt>Atualizado em</dt><dd id="st-a" class="mono">—</dd></div>
+      </dl>
+    </section>
+
+    <section class="section pol-section" id="aviso" aria-labelledby="aviso-title">
+      <div class="container">
+        <div class="section-kicker">Antes de ler</div>
+        <div class="projects-heading"><div>
+          <h2 id="aviso-title">Como ler esta página</h2>
+          <p>Pense nisto como um painel de notícias oficiais, não como um tribunal popular.</p>
+        </div></div>
+        <ol class="howto">
+          <li><b>1. Só fato</b><span>Cada cartão diz o que aconteceu em uma frase simples. Se o status judicial mudou depois (por exemplo, condenação anulada), a nota explica.</span></li>
+          <li><b>2. Os quatro status</b><span><b>Condenado</b> = houve sanção final conhecida (Senado, TSE, STF…). <b>Arquivado</b> = absolvido, anulado ou barrado. <b>Em curso</b> = ainda anda. <b>Sem conclusão</b> = crise/desastre ou processo sem fecho claro.</span></li>
+          <li><b>3. Nem tudo é crime</b><span>Apagão, hiperinflação e desastres entram porque marcaram o mandato — mesmo sem processo contra o presidente.</span></li>
+          <li><b>4. Amostra</b><span>Não está tudo. Priorizamos casos com fonte oficial ou de grande imprensa. Se faltar um caso importante, a lista pode crescer.</span></li>
+        </ol>
+        <p class="note-sm" id="aviso-txt"></p>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="linha" aria-labelledby="linha-title">
+      <div class="container">
+        <div class="section-kicker">Linha do tempo</div>
+        <div class="projects-heading"><div>
+          <h2 id="linha-title">Do mais antigo ao mais recente</h2>
+          <p>Filtre por presidente, tipo ou status. No celular, cada caso vira um cartão completo, sem rolagem pro lado.</p>
+        </div></div>
+        <form class="pol-filters esc-filtros" role="search" onsubmit="return false">
+          <div class="field field-search"><label for="q">Buscar</label><input id="q" type="search" placeholder="Ex.: mensalão, impeachment, joias" autocomplete="off"></div>
+          <div class="field"><label for="f-pres">Presidente</label><select id="f-pres"><option value="">Todos</option></select></div>
+          <div class="field"><label for="f-status">Status</label><select id="f-status"><option value="">Todos</option></select></div>
+          <div class="field"><label for="f-tipo">Tipo</label><select id="f-tipo"><option value="">Todos</option>
+            <option value="escandalo">Escândalo / investigação</option>
+            <option value="impeachment">Impeachment</option>
+            <option value="crise">Crise</option>
+            <option value="desastre">Desastre</option>
+          </select></div>
+          <button class="btn btn-ghost btn-reset" type="button" id="f-limpar">Limpar</button>
+        </form>
+        <p class="pol-count" id="count" aria-live="polite"></p>
+        <ol class="esc-lista" id="lista"></ol>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="por-presidente" aria-labelledby="pp-title">
+      <div class="container">
+        <div class="section-kicker">Por presidente</div>
+        <div class="projects-heading"><div>
+          <h2 id="pp-title">Atalho para cada mandato</h2>
+          <p>Também dá para chegar aqui a partir dos cartões de <a class="linkish" href="/politica/planos/">Planos de governo</a>.</p>
+        </div></div>
+        <ul class="esc-pres" id="pres-lista"></ul>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="fontes" aria-labelledby="fontes-title">
+      <div class="container">
+        <div class="section-kicker">Fontes e limites</div>
+        <div class="projects-heading"><div>
+          <h2 id="fontes-title">De onde vem</h2>
+          <p>Preferência por STF, TSE, Senado, Câmara, TCU, CGU, Planalto, Diário Oficial e reportagens de G1, Folha, Estadão, BBC Brasil e Agência Brasil.</p>
+        </div></div>
+        <ul class="pl-fontes" id="fontes-list">
+          <li>Cada cartão tem 1 ou 2 links. Se o link oficial mudou de endereço, use a busca do próprio órgão.</li>
+          <li>Promessas de campanha ficam em <a href="/politica/planos/">Planos</a>. Sigilos derrubados em <a href="/politica/sigilos/">Sigilos</a>. Gastos do cartão em <a href="/politica/gastos/#cartao">Gastos</a>.</li>
+          <li>Lacunas conhecidas: casos só estaduais, processos ainda sob segredo de Justiça e episódios sem fonte pública estável ficam de fora.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container pol-footer">
+      <div>
+        <p><strong>Fontes:</strong> STF, TSE, Senado, Câmara, TCU, Planalto e reportagens citadas em cada item.</p>
+        <p>Página independente e apartidária. Descreve fatos documentados; não recomenda voto nem julga caráter.</p>
+      </div>
+      <div class="pol-footer-links">
+        <p>© <span id="year"></span> Alexsander Schimitz.</p>
+        <a href="/politica/planos/">Planos de governo</a>
+        <a href="/politica/sigilos/">Sigilos</a>
+        <a href="/politica/">Painel</a>
+        <a href="#top">Voltar ao topo ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../scripts/home.js"></script>
+  <script src="../base.js"></script>
+  <script src="escandalos.js"></script>
+</body>
+</html>
