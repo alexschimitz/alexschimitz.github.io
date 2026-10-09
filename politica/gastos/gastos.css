@@ -221,3 +221,19 @@ html.g-modal-open, html.g-modal-open body { overflow: hidden; }
   .g-howto li { border: 0; border-radius: 0; }
   .g-howto li + li { border-top: 1px solid var(--line); }
 }
+
+/* Direto ao ponto — cartão corporativo */
+.bruto-box { margin: 0 0 18px; padding: 14px 16px; border: 1px solid rgba(98, 245, 139, 0.35); border-radius: 16px; background: var(--panel); min-width: 0; }
+html[data-theme="light"] .bruto-box { border-color: rgba(10, 120, 50, 0.35); }
+.bruto-head { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; margin-bottom: 8px; }
+.bruto-head b { font-size: 1rem; }
+.bruto-head span { color: var(--muted); font-size: 0.86rem; }
+.bruto-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.bruto-list li { position: relative; padding: 8px 10px 8px 28px; border-radius: 10px; background: var(--bg-soft); font-size: 0.92rem; line-height: 1.45; min-width: 0; overflow-wrap: anywhere; }
+.bruto-list li::before { content: "→"; position: absolute; left: 10px; top: 8px; color: var(--accent); font-weight: 700; }
+.bruto-list b { font-weight: 800; }
+.bruto-list a { color: var(--accent); font-weight: 700; }
+@media (max-width: 390px) {
+  .bruto-box { padding: 12px 12px; border-radius: 14px; }
+  .bruto-list li { font-size: 0.86rem; padding-left: 26px; }
+}

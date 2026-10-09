@@ -16,3 +16,22 @@ html[data-theme="light"] .sig-grid .rev { border-color: rgba(10, 120, 50, 0.3); 
 
 /* UX: filter hint */
 #sig-howto { margin: -4px 0 14px; }
+
+/* Direto ao ponto — resumo bruto no topo */
+.bruto-cards { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 12px; margin: 0; padding: 0; }
+.bruto-card { padding: 14px 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); min-width: 0; }
+.bruto-card-top { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 6px; }
+.bruto-ano { font-family: "DM Mono", monospace; font-size: 0.75rem; color: var(--muted); }
+.bruto-card h3 { font-size: 1rem; line-height: 1.35; margin: 0 0 10px; }
+.bruto-card h3 a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
+.bruto-card h3 a:hover { color: var(--accent); border-color: var(--accent); }
+.bruto-dl { display: grid; gap: 8px; margin: 0; }
+.bruto-dl > div { min-width: 0; }
+.bruto-dl dt { font-family: "DM Mono", monospace; font-size: 0.68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+.bruto-dl dd { margin: 2px 0 0; font-size: 0.9rem; line-height: 1.45; color: var(--text); }
+.bruto-loading, .bruto-card.err { color: var(--muted); }
+@media (max-width: 390px) {
+  .bruto-cards { gap: 10px; }
+  .bruto-card { padding: 12px 14px; border-radius: 14px; }
+  .bruto-dl dd { font-size: 0.86rem; }
+}

@@ -571,10 +571,49 @@
     } else tb.innerHTML = '<tr class="empty"><td colspan="6">Planilha indisponível.</td></tr>';
   }
 
+
+  function renderCartaoBruto() {
+    const box = $('#cartao-bruto'); if (!box || !S.cart) return;
+    const anos = S.cart.anos; const ys = Object.keys(anos).sort();
+    if (!ys.length) { box.querySelector('.bruto-list').innerHTML = '<li>Dados do cartão ainda não disponíveis.</li>'; return; }
+    let tot = 0, sig = 0; const org = {};
+    ys.forEach((y) => {
+      const a = anos[y]; tot += a.total; sig += (a.tipos && a.tipos.sigiloso) || 0;
+      (a.top_orgaos || []).forEach(([cod, nome, v]) => { if (!org[cod]) org[cod] = { n: nome, v: 0 }; org[cod].v += v; });
+    });
+    const tops = Object.values(org).sort((a, b) => b.v - a.v);
+    const y0 = ys[0], y1 = ys[ys.length - 1], m1 = anos[y1].meses;
+    const periodo = m1 < 12 ? `${y0} até ${MESES[m1 - 1]}/${y1}` : `${y0} a ${y1}`;
+    const shortOrg = (n) => n.replace(/^Ministério d[aeo]s?\s+/i, '').replace(/^Presidência da República$/i, 'Presidência');
+    const bullets = [
+      `De <b>${periodo}</b> o governo federal gastou <b>${brl(tot)}</b> no cartão corporativo (todos os órgãos).`,
+      `Quase metade ficou <b>sigilosa</b>: ${brl(sig)} (${pct(tot ? sig / tot : 0, 0)}) — você vê o valor, mas não a loja.`,
+    ];
+    if (tops.length >= 2) {
+      bullets.push(`Quem mais usou: <b>${esc(shortOrg(tops[0].n))}</b> (${brl(tops[0].v)}) e <b>${esc(shortOrg(tops[1].n))}</b> (${brl(tops[1].v)}).`);
+    } else if (tops[0]) {
+      bullets.push(`Quem mais usou: <b>${esc(shortOrg(tops[0].n))}</b> (${brl(tops[0].v)}).`);
+    }
+    const P = S.presHist;
+    if (P && P.total) {
+      const cats = Object.entries(P.subelementos || {}).sort((a, b) => b[1] - a[1]);
+      const hotel = cats.find(([k]) => /HOSPED/i.test(k));
+      let food = 0; cats.forEach(([k, v]) => { if (/ALIMENT/i.test(k)) food += v; });
+      let linha = `No cartão da Presidência liberado (2003–2022): <b>${brl(P.total)}</b>.`;
+      if (hotel) linha += ` Mais gasto: hotel (${brl(hotel[1])}, ${pct(hotel[1] / P.total, 0)})`;
+      if (food) linha += `${hotel ? ' e' : ' Mais gasto:'} comida (${brl(food)}, ${pct(food / P.total, 0)})`;
+      linha += '.';
+      bullets.push(linha);
+      bullets.push(`Esse detalhe da Presidência era secreto; liberaram em <b>janeiro de 2023</b>. O mandato atual continua em sigilo até acabar. <a class="linkish" href="/politica/sigilos/#cartao-presidencia">Ver o caso →</a>`);
+    }
+    box.innerHTML = `<div class="bruto-head"><b>Direto ao ponto</b><span>Abriu a página? Começa por aqui.</span></div><ul class="bruto-list">${bullets.map((b) => `<li>${b}</li>`).join('')}</ul>`;
+  }
+
   // ================================================================ CARTÃO (todos os órgãos)
   const CART = { sort: 'v', dir: -1, data: null, sel: null };
   function initCartao() {
     const anos = Object.keys(S.cart.anos).sort();
+    renderCartaoBruto();
     if (!anos.length) { $('#cartao-note').textContent = 'Dados do cartão ainda não disponíveis.'; return; }
     const sel = $('#cartao-year');
     const full = anos.filter((y) => S.cart.anos[y].meses === 12);
