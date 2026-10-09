@@ -64,9 +64,8 @@
       <div class="eyebrow"><span class="status-dot"></span> Gastos públicos · dados oficiais</div>
       <h1 id="g-title">Para onde vai o <span>dinheiro público federal.</span></h1>
       <p class="hero-lead">
-        Quanto o governo federal gasta, em quê, em qual ministério, quanto custa a Presidência e o cartão corporativo,
-        e quanto cada deputado e senador gastou da cota do mandato, de 1988 até hoje (até onde os dados oficiais abertos vão).
-        Tudo em linguagem simples, com a fonte oficial de cada número.
+        Quanto o governo federal gasta, em quê e em qual ministério; quanto custa a Presidência e o cartão oficial de compras;
+        e quanto cada deputado e senador usou da cota do mandato. De 1988 até hoje, com a fonte de cada número.
       </p>
       <dl class="g-kpis" id="hero-kpis" aria-live="polite">
         <div><dt>Gasto da União no ano</dt><dd>—</dd></div>
@@ -80,10 +79,10 @@
     <!-- ===================== VISÃO GERAL ===================== -->
     <section class="section g-section" id="visao" aria-labelledby="visao-title" tabindex="-1">
       <div class="container">
-        <div class="section-kicker">União · total por ano</div>
+        <div class="section-kicker">Governo federal · total por ano</div>
         <div class="g-heading">
           <h2 id="visao-title">Quanto o governo federal gastou em cada ano</h2>
-          <p>Despesa <b>liquidada</b> (serviço entregue ou benefício devido) dos Orçamentos Fiscal e da Seguridade Social, que reúnem os três Poderes da União. Fonte: Tesouro Nacional. Para ver se a economia do país cresceu no mesmo período, comparada com outros países, veja <a href="/politica/economia/">Economia</a>.</p>
+          <p>Aqui “gasto” é o dinheiro que o governo federal já deve pagar: o serviço foi feito ou o benefício é devido (na conta oficial isso se chama <b>liquidado</b>). Inclui os três Poderes. Fonte: Tesouro Nacional. Para ver se a economia cresceu no mesmo período, veja <a href="/politica/economia/">Economia</a>.</p>
         </div>
         <div class="g-controls" role="group" aria-label="Opções do gráfico de total por ano">
           <div class="g-seg" role="radiogroup" aria-label="Como mostrar os valores" data-seg="tot-mode">
@@ -91,7 +90,7 @@
             <button type="button" role="radio" aria-checked="false" data-v="nominal">Valor da época</button>
             <button type="button" role="radio" aria-checked="false" data-v="pc">Por brasileiro</button>
           </div>
-          <label class="g-check"><input type="checkbox" id="tot-refin"> Incluir a rolagem da dívida</label>
+          <label class="g-check"><input type="checkbox" id="tot-refin"> Incluir a troca de dívida velha por nova (rolagem)</label>
           <label class="g-field">De <select id="tot-from" aria-label="Ano inicial"></select></label>
           <label class="g-field">até <select id="tot-to" aria-label="Ano final"></select></label>
         </div>
@@ -106,10 +105,10 @@
         <div class="g-card">
           <div class="g-legend" id="legend-grupo"></div>
           <div class="g-chart g-chart-stack" id="chart-grupo" role="img" aria-label="Composição do gasto da União por tipo de despesa ao longo dos anos"></div>
-          <p class="g-chart-note">Sem a rolagem da dívida a partir de 1994. De 1980 a 1993 a planilha oficial não separa a rolagem, por isso a "amortização da dívida" aparece bem maior nesses anos. O último ano é parcial. Fonte: Tesouro Nacional (Despesa_Grupo).</p>
+          <p class="g-chart-note">Sem a troca de dívida velha por nova (rolagem) a partir de 1994. De 1980 a 1993 a planilha oficial não separa isso, então “pagamento da dívida” parece bem maior nesses anos. O último ano é parcial. Fonte: Tesouro Nacional.</p>
         </div>
         <h3 class="g-h3">Por governo (1995–hoje)</h3>
-        <p class="g-sub">Soma dos anos de cada mandato presidencial, corrigida pela inflação e sem a rolagem da dívida. Compare pela <b>média por ano</b>, porque os períodos têm tamanhos diferentes.</p>
+        <p class="g-sub">Soma dos anos de cada mandato, corrigida pela inflação e sem a troca de dívida velha por nova. Compare pela <b>média por ano</b>, porque os períodos têm tamanhos diferentes.</p>
         <div class="g-card g-table-wrap">
           <table class="g-table" id="gov-table">
             <caption class="sr-only">Gasto da União por governo</caption>
@@ -124,15 +123,15 @@
     <!-- ===================== ÁREAS ===================== -->
     <section class="section g-section" id="areas" aria-labelledby="areas-title" tabindex="-1">
       <div class="container">
-        <div class="section-kicker">União · por área</div>
+        <div class="section-kicker">Governo federal · por área</div>
         <div class="g-heading">
           <h2 id="areas-title">Em que áreas o dinheiro é gasto</h2>
-          <p>A lei classifica cada gasto numa <b>função</b> (saúde, educação, previdência…). Escolha o ano e toque numa área para ver a evolução.</p>
+          <p>Cada gasto entra numa <b>área</b> (saúde, educação, aposentadorias…). Escolha o ano e toque numa área para ver a evolução.</p>
         </div>
         <div class="g-controls" role="group" aria-label="Filtros de áreas">
           <label class="g-field">Ano <select id="area-year" aria-label="Ano"></select></label>
           <div class="g-seg" role="radiogroup" aria-label="Agrupar por" data-seg="area-dim">
-            <button type="button" role="radio" aria-checked="true" data-v="funcao">Por área (função)</button>
+            <button type="button" role="radio" aria-checked="true" data-v="funcao">Por área (saúde, educação…)</button>
             <button type="button" role="radio" aria-checked="false" data-v="grupo">Por tipo de gasto</button>
           </div>
           <div class="g-seg" role="radiogroup" aria-label="Unidade" data-seg="area-mode">
@@ -157,17 +156,17 @@
     <!-- ===================== ÓRGÃOS ===================== -->
     <section class="section g-section" id="orgaos" aria-labelledby="orgaos-title" tabindex="-1">
       <div class="container">
-        <div class="section-kicker">União · por ministério e órgão (2000–hoje)</div>
+        <div class="section-kicker">Governo federal · por ministério e órgão (2000–hoje)</div>
         <div class="g-heading">
           <h2 id="orgaos-title">Quanto cada ministério e órgão previu e gastou</h2>
           <p>Do orçamento aprovado no Congresso até o dinheiro pago. Fonte: Secretaria de Orçamento Federal (SIOP). Toque num órgão para ver em que ele mais gastou.</p>
         </div>
         <div class="g-controls" role="group" aria-label="Filtros de órgãos">
           <label class="g-field">Ano <select id="org-year" aria-label="Ano"></select></label>
-          <label class="g-field">Área <select id="org-fun" aria-label="Área (função)"><option value="">Todas</option></select></label>
+          <label class="g-field">Área <select id="org-fun" aria-label="Área do gasto"><option value="">Todas</option></select></label>
           <label class="g-field">Tipo <select id="org-gnd" aria-label="Tipo de gasto"><option value="">Todos</option></select></label>
           <label class="g-field g-grow">Buscar <input id="org-q" type="search" placeholder="ex.: Saúde, Educação, Presidência" aria-label="Buscar órgão"></label>
-          <label class="g-check"><input type="checkbox" id="org-refin"> Incluir a rolagem da dívida</label>
+          <label class="g-check"><input type="checkbox" id="org-refin"> Incluir a troca de dívida velha por nova (rolagem)</label>
         </div>
         <dl class="g-kpis g-kpis-sm" id="org-kpis"></dl>
         <div class="g-card g-table-wrap">
@@ -177,7 +176,7 @@
               <th scope="col" data-k="nome" class="txt">Órgão</th>
               <th scope="col" data-k="ini">Previsto <small>(lei aprovada)</small></th>
               <th scope="col" data-k="atu">Autorizado <small>(com mudanças)</small></th>
-              <th scope="col" data-k="liq" aria-sort="descending">Gasto <small>(liquidado)</small></th>
+              <th scope="col" data-k="liq" aria-sort="descending">Gasto</th>
               <th scope="col" data-k="pag">Pago no ano</th>
               <th scope="col" data-k="exec">% usado</th>
               <th scope="col" data-k="pc">Por brasileiro</th>
@@ -189,7 +188,7 @@
         <div class="g-card g-detail" id="org-detail" hidden></div>
 
         <h3 class="g-h3">Procurar um programa ou ação do orçamento</h3>
-        <p class="g-sub">Cada órgão divide o dinheiro em <b>ações</b> (ex.: "Benefícios previdenciários urbanos", "Bolsa Família"). Busque pelo nome no ano escolhido acima.</p>
+        <p class="g-sub">Cada órgão divide o dinheiro em <b>programas e ações</b> (ex.: “Bolsa Família”, “merenda escolar”, “vacina”). Busque pelo nome no ano escolhido acima.</p>
         <div class="g-controls"><label class="g-field g-grow">Ação <input id="acao-q" type="search" placeholder="ex.: Bolsa Família, merenda, vacina, rodovia" aria-label="Buscar ação do orçamento"></label></div>
         <div class="g-card g-table-wrap" id="acao-wrap" hidden>
           <table class="g-table" id="acao-table">
@@ -198,7 +197,7 @@
               <th scope="col" data-k="nome" class="txt">Ação</th>
               <th scope="col" data-k="org" class="txt">Órgão</th>
               <th scope="col" data-k="ini">Previsto</th>
-              <th scope="col" data-k="liq" aria-sort="descending">Gasto (liquidado)</th>
+              <th scope="col" data-k="liq" aria-sort="descending">Gasto</th>
               <th scope="col" data-k="pag">Pago</th>
             </tr></thead>
             <tbody></tbody>
@@ -217,7 +216,7 @@
         </div>
         <div class="g-grid-2">
           <div class="g-card">
-            <h3 class="g-h3">Orçamento gasto pela Presidência (liquidado)</h3>
+            <h3 class="g-h3">Quanto a Presidência gastou do orçamento</h3>
             <div class="g-seg g-seg-sm" role="radiogroup" aria-label="Unidade" data-seg="pres-mode">
               <button type="button" role="radio" aria-checked="true" data-v="real">Corrigido</button>
               <button type="button" role="radio" aria-checked="false" data-v="nominal">Valor da época</button>
@@ -226,7 +225,7 @@
             <p class="g-chart-note" id="pres-note"></p>
             <h4 id="pres-uos-title">O que estava dentro da Presidência</h4>
             <label class="g-field">Ano <select id="pres-year" class="g-inline-select"></select></label>
-            <p class="g-sub">Gasto (liquidado) por unidade do orçamento. É isso que explica os anos mais altos: em certos governos, secretarias com status de ministério ficavam dentro da Presidência.</p>
+            <p class="g-sub">Gasto por unidade do orçamento. Em certos governos, secretarias grandes ficavam dentro da Presidência — por isso o total sobe nesses anos.</p>
             <ol class="g-bars g-bars-sm" id="pres-uos"></ol>
           </div>
           <div class="g-card">
@@ -252,12 +251,12 @@
             <p class="g-sub">Outra conta oficial: o Portal soma pelo órgão que <b>executou</b> o gasto, por isso pode incluir dinheiro de outros ministérios que a Presidência pagou. Não some com o gráfico ao lado.</p>
             <label class="g-field">Ano <select id="pport-year" aria-label="Ano"></select></label>
             <div class="g-table-wrap"><table class="g-table" id="pport-table"><caption class="sr-only">Presidência por órgão segundo o Portal</caption>
-              <thead><tr><th scope="col" class="txt">Órgão</th><th scope="col">Gasto (liquidado)</th><th scope="col">Pago</th></tr></thead><tbody></tbody></table></div>
+              <thead><tr><th scope="col" class="txt">Órgão</th><th scope="col">Gasto</th><th scope="col">Pago</th></tr></thead><tbody></tbody></table></div>
             <p class="g-chart-note">Fonte: Portal da Transparência (CGU), API de dados, despesas por órgão (órgão superior 20000), desde 2014.</p>
           </div>
         </div>
         <h3 class="g-h3" id="mandatos-cartao">Cartão da Presidência por mandato (2003–2022)</h3>
-        <p class="g-sub">Planilha oficial liberada em 2023, quando esses gastos deixaram de ser sigilosos (<a class="linkish" href="/politica/sigilos/#cartao-presidencia">como o sigilo caiu</a>). Valores corrigidos pelo IPCA, ano a ano. Ordenado do mandato com maior média mensal.</p>
+        <p class="g-sub">Planilha oficial liberada em 2023, quando esses gastos deixaram de ser sigilosos (<a class="linkish" href="/politica/sigilos/#cartao-presidencia">como o sigilo caiu</a>). Valores corrigidos pela inflação (IPCA do IBGE), ano a ano. Ordenado do mandato com maior média mensal.</p>
         <div class="g-card g-table-wrap">
           <table class="g-table tabela-cards" id="mand-table">
             <caption class="sr-only">Cartão corporativo da Presidência por mandato</caption>
@@ -277,10 +276,14 @@
         <div class="section-kicker">Cartão corporativo · todo o governo federal</div>
         <div class="g-heading">
           <h2 id="cartao-title">Cartão corporativo de todos os órgãos</h2>
-          <p><b>O que é:</b> um cartão oficial (CPGF) que ministérios e órgãos usam para gastos pequenos e urgentes — material, conserto, combustível, viagem. Não é o cartão pessoal de ninguém. Parte do gasto da Presidência pode ficar em <b>sigilo</b> (só o valor aparece); o caso da liberação de 2003–2022 está em <a class="linkish" href="/politica/sigilos/#cartao-presidencia">Sigilos</a>.</p>
-          <p>Fonte: Portal da Transparência (CGU), arquivos mensais desde 2013.</p>
+          <p>O cartão de crédito oficial do governo federal. Abaixo, um guia rápido e depois a lista por órgão. Fonte: Portal da Transparência (CGU), desde 2013.</p>
         </div>
-        <p class="g-note" id="cartao-howto">Como usar: o ano já começa no último completo; a lista vem do maior gasto para o menor. Busque o nome do órgão e toque numa linha para ver fornecedores e o mês a mês.</p>
+        <ol class="howto g-howto" id="cartao-howto" aria-label="Como ler o cartão corporativo">
+          <li><b>1. O que é</b><span>Um cartão de crédito do governo (nome oficial: CPGF). Ministérios e órgãos usam para gastos pequenos e urgentes: material, conserto, combustível, viagem. <b>Não</b> é o cartão pessoal de ninguém.</span></li>
+          <li><b>2. Como funciona</b><span>O órgão compra ou saca com o cartão e o valor entra na conta pública. Parte do gasto da Presidência pode ficar em <b>sigilo</b> (aí aparece só o valor, sem fornecedor). O caso da liberação de 2003–2022 está em <a class="linkish" href="/politica/sigilos/#cartao-presidencia">Sigilos</a>.</span></li>
+          <li><b>3. O que você vê aqui</b><span>Quanto cada órgão gastou no ano, quanto foi em saque e quanto ficou sigiloso. Toque numa linha para ver o mês a mês e os maiores fornecedores.</span></li>
+          <li><b>4. Como ler os números</b><span>Exemplo: se a Polícia Federal aparece com R$ 2 milhões e “sigiloso” R$ 0, todo o gasto tem fornecedor publicado. Se a Presidência tem uma fatia sigilosa, esse pedaço não mostra <em>onde</em> foi gasto — só o total.</span></li>
+        </ol>
         <div class="g-controls">
           <label class="g-field">Ano <select id="cartao-year" aria-label="Ano do cartão"></select></label>
           <label class="g-field g-grow">Buscar órgão <input id="cartao-q" type="search" placeholder="ex.: Polícia Federal, Educação" aria-label="Buscar órgão"></label>
@@ -302,7 +305,7 @@
           </div>
           <div class="g-card g-sticky" id="cartao-detail">
             <h3 class="g-h3">Toque num órgão à esquerda</h3>
-            <p class="g-sub">Abre o detalhe: gasto por mês, unidades e onde o cartão mais foi usado (maiores fornecedores).</p>
+            <p class="g-sub">Aí você vê o gasto mês a mês e as lojas ou empresas onde o cartão mais foi usado.</p>
           </div>
         </div>
         <div class="g-card">
@@ -357,7 +360,7 @@
         <div class="section-kicker">Congresso · cota do mandato (2008–hoje)</div>
         <div class="g-heading">
           <h2 id="cong-title">Quanto cada deputado e senador gastou da cota</h2>
-          <p>A <b>cota parlamentar</b> (CEAP na Câmara, CEAPS no Senado) reembolsa gastos do mandato: escritório, passagens, combustível, divulgação… Não inclui salário, assessores nem apartamento funcional. Inclui quem já saiu do cargo.</p>
+          <p>A <b>cota do mandato</b> é um limite de dinheiro público que cada deputado (CEAP) e senador (CEAPS) pode usar e depois pedir reembolso: escritório, passagens, combustível, divulgação… Não inclui salário, assessores nem apartamento funcional. Inclui quem já saiu do cargo.</p>
         </div>
         <div class="g-controls" role="group" aria-label="Filtros da cota parlamentar">
           <div class="g-seg" role="radiogroup" aria-label="Casa" data-seg="cong-casa">
@@ -427,7 +430,7 @@
             <h3 class="g-h3">Pago por ano, por tipo de emenda</h3>
             <div class="g-legend" id="em-legend"></div>
             <div class="g-chart" id="chart-em" role="img" aria-label="Emendas pagas por ano e tipo"></div>
-            <p class="g-chart-note">"Pago" inclui o que foi pago depois, como restos a pagar. Valores da época. O ano em curso é parcial.</p>
+            <p class="g-chart-note">“Pago” inclui o que foi pago depois (contas do ano anterior, os “restos a pagar”). Valores da época. O ano em curso é parcial.</p>
           </div>
           <div class="g-card">
             <h3 class="g-h3">Em que áreas o dinheiro foi usado</h3>
@@ -463,10 +466,10 @@
         <div class="section-kicker">Em palavras simples</div>
         <div class="g-heading"><h2 id="ler-title">Como ler estes números</h2></div>
         <div class="g-glossary">
-          <details><summary>Previsto, autorizado, empenhado, liquidado e pago</summary>
-            <p><b>Previsto (dotação inicial):</b> o valor aprovado pelo Congresso na lei do orçamento (LOA).<br><b>Autorizado:</b> o previsto mais as mudanças feitas durante o ano (créditos extras ou cortes).<br><b>Empenhado:</b> o governo reservou o dinheiro para uma compra ou contrato.<br><b>Liquidado:</b> o serviço foi entregue ou o benefício é devido. É o que esta página chama de <b>gasto</b>.<br><b>Pago:</b> o dinheiro saiu do caixa. O que fica para pagar no ano seguinte vira <b>restos a pagar</b>.</p></details>
-          <details><summary>O que é a "rolagem da dívida"?</summary>
-            <p>Quando um título da dívida pública vence, o governo costuma emitir um título novo para pagar o antigo. Isso é o <b>refinanciamento</b>, ou rolagem: entra muito dinheiro no orçamento, mas é uma troca de dívida velha por dívida nova, não um serviço prestado à população. Por isso, por padrão, esta página mostra os totais <b>sem</b> a rolagem, como faz o Tesouro Nacional. Os juros e a parte da dívida paga com outros recursos continuam incluídos.</p></details>
+          <details><summary>Os 5 passos do dinheiro no orçamento</summary>
+            <p><b>Previsto:</b> o valor que o Congresso aprovou na lei do orçamento.<br><b>Autorizado:</b> o previsto mais aumentos ou cortes feitos no ano.<br><b>Reservado (empenhado):</b> o governo separou o dinheiro para uma compra ou contrato.<br><b>Gasto (liquidado):</b> o serviço já foi feito ou o benefício é devido. É o número que esta página mostra como <b>gasto</b>.<br><b>Pago:</b> o dinheiro saiu do caixa. O que fica para o ano seguinte vira <b>restos a pagar</b>.</p></details>
+          <details><summary>O que é a “troca de dívida” (rolagem)?</summary>
+            <p>Quando uma dívida do governo vence, ele costuma pegar um empréstimo novo para pagar o antigo. Isso se chama <b>rolagem</b> ou refinanciamento: o número no orçamento fica enorme, mas é só trocar uma dívida por outra — não é serviço à população. Por isso, por padrão, esta página mostra os totais <b>sem</b> essa troca, como faz o Tesouro Nacional. Os juros e a parte da dívida paga de verdade continuam no total.</p></details>
           <details><summary>Por que corrigir pela inflação?</summary>
             <p>R$ 100 em 2000 compravam muito mais do que R$ 100 hoje. Para comparar anos diferentes, multiplicamos o valor de cada ano pela inflação acumulada (IPCA, do IBGE) desde a média daquele ano até o mês mais recente disponível. Assim todos os valores ficam "em reais de hoje".</p></details>
           <details><summary>Por que antes de 1995 só aparecem porcentagens?</summary>
@@ -476,7 +479,7 @@
           <details><summary>O que é "por brasileiro"?</summary>
             <p>O valor dividido pela população do Brasil naquele ano (IBGE: Censos e estimativas oficiais; anos sem número oficial são interpolados). É só uma forma de dar escala: ninguém recebe esse valor diretamente.</p></details>
           <details><summary>O que a cota parlamentar paga e o que fica de fora</summary>
-            <p>Paga despesas do mandato com nota fiscal: escritório no estado, passagens, combustível, aluguel de carro, divulgação, telefone etc. O limite mensal varia por estado. <b>Não</b> inclui salário (subsídio), verba de gabinete para assessores, auxílio-moradia, apartamento funcional nem gastos da administração da Câmara ou do Senado (esses estão no orçamento da União, na função "Legislativa").</p></details>
+            <p>Paga gastos do mandato com nota fiscal: escritório no estado, passagens, combustível, aluguel de carro, divulgação, telefone etc. O limite mensal varia por estado. <b>Não</b> inclui salário, dinheiro para pagar assessores, auxílio-moradia, apartamento funcional nem o custo de manter a Câmara ou o Senado (isso entra no orçamento do governo federal, na área “Legislativa”).</p></details>
           <details><summary>Gasto sigiloso no cartão corporativo</summary>
             <p>A lei permite manter em sigilo gastos ligados à segurança do presidente, do vice e de suas famílias, e algumas operações de investigação. Nesses casos o Portal da Transparência mostra só o valor, sem fornecedor. O governo pode divulgar esses dados depois, como fez em 2023 com os anos de 2003 a 2022 — veja o caso em <a class="linkish" href="/politica/sigilos/#cartao-presidencia">Sigilos derrubados</a>.</p></details>
         </div>

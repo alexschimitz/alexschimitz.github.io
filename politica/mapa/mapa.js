@@ -228,7 +228,7 @@
     function close() { list.hidden = true; inp.setAttribute("aria-expanded", "false"); sel = -1; }
     function draw() {
       if (inp.value.trim().length < 2) { close(); return; }
-      if (!items.length) { list.innerHTML = '<li><button type="button" disabled>Nada encontrado</button></li>'; list.hidden = false; return; }
+      if (!items.length) { list.innerHTML = '<li><button type="button" disabled>Nenhum lugar com esse nome</button></li>'; list.hidden = false; return; }
       list.innerHTML = items.map(function (it, i) {
         return '<li><button type="button" role="option" data-i="' + i + '" aria-selected="' + (i === sel) + '"><span>' + esc(it.label) + "</span><small>" + esc(it.sub) + "</small></button></li>";
       }).join("");
@@ -633,7 +633,7 @@
           pop: "Habitantes (IBGE, estimativa mais recente)",
           pib: "PIB a preços correntes, " + y + " (IBGE)",
           pibpc: "PIB por pessoa, " + y + " (IBGE)",
-          idhm: "IDHM do Censo de " + y + " (Atlas Brasil / PNUD, IPEA e FJP). De 0 a 1.",
+          idhm: "IDH da cidade no Censo de " + y + " (qualidade de vida; Atlas Brasil). De 0 a 1.",
           emenda: "Emendas pagas por morador em " + y + ", só as com cidade informada (Portal da Transparência)",
           bf: "Bolsa Família pago no mês mais recente disponível, por morador (Portal da Transparência)"
         }[kind];
@@ -913,7 +913,7 @@
   }
   function renderCongresso(P) {
     var box = $("#cg-body"); if (!box) return;
-    if (!P || P.kind !== "uf") { box.innerHTML = '<p class="state-empty">Escolha um estado no mapa para ver deputados e senadores.</p>'; return; }
+    if (!P || P.kind !== "uf") { box.innerHTML = '<p class="state-empty">Toque num estado no mapa para ver deputados e senadores.</p>'; return; }
     ensureExtra().then(function () {
       if (!S.P || S.P.uf !== P.uf) return;
       var deps = (S.deps || []).filter(function (d) { return d.uf === P.uf; });
@@ -946,11 +946,11 @@
       var pop = S.popUF[P.uf], pv = pop && popYear(pop.m && pop.m[id], pop.ano0, y);
       if (v != null) h.push("<div><dt>PIB em " + y + "</dt><dd>" + money(v * 1000) + "<small>" + (pv ? money(v * 1000 / pv) + " por pessoa" : "IBGE") + "</small></dd></div>");
       var idhm = ((ind.idhm || {})[id] || {})["2010"];
-      if (idhm) h.push("<div><dt>IDHM 2010</dt><dd>" + f3(idhm[0]) + "<small>" + idhmFaixa(idhm[0]) + " · educação " + f3(idhm[1]) + ", renda " + f3(idhm[3]) + "</small></dd></div>");
+      if (idhm) h.push("<div><dt>IDH 2010</dt><dd>" + f3(idhm[0]) + "<small>" + idhmFaixa(idhm[0]) + " · educação " + f3(idhm[1]) + ", renda " + f3(idhm[3]) + "</small></dd></div>");
       var el = ((S.el[P.uf] || {})["2022"] || {})[id], info = (S.elMeta || {})["2022"];
       if (el && info) { var w = el[0] >= el[1] ? 0 : 1; h.push("<div><dt>Presidente 2022</dt><dd>" + esc(info.candidatos[w].urna.split(" ").slice(-1)[0]) + " " + pct(100 * Math.max(el[0], el[1]) / el[2]) + "<small>2º turno, votos válidos</small></dd></div>"); }
     } else {
-      var iu = ((S.idhmUF || {}).uf || {})[P.uf]; if (iu && iu["2010"]) h.push("<div><dt>IDHM 2010</dt><dd>" + f3(iu["2010"][0]) + "<small>" + idhmFaixa(iu["2010"][0]) + " · Brasil: " + f3(((S.idhmUF.br || {})["2010"] || [])[0]) + "</small></dd></div>");
+      var iu = ((S.idhmUF || {}).uf || {})[P.uf]; if (iu && iu["2010"]) h.push("<div><dt>IDH 2010</dt><dd>" + f3(iu["2010"][0]) + "<small>" + idhmFaixa(iu["2010"][0]) + " · Brasil: " + f3(((S.idhmUF.br || {})["2010"] || [])[0]) + "</small></dd></div>");
       var pe = ((S.ufSum || {}).pib || {})[P.uf]; if (pe) { var yy = anos[anos.length - 1]; h.push("<div><dt>PIB estadual em " + yy + "</dt><dd>" + money(pe[pe.length - 1] * 1000) + "<small>IBGE, preços correntes</small></dd></div>"); }
     }
     return h.join("");
@@ -970,8 +970,8 @@
       "<div><dt>Cidade típica gasta por morador</dt><dd>" + money(a.despesa_pc_mediana) + "<small>mediana, " + y + "</small></dd></div>" +
       "<div><dt>Parte da cidade típica em saúde</dt><dd>" + pct(a.saude_pct_mediana) + "<small>educação: " + pct(a.educacao_pct_mediana) + "</small></dd></div></dl>" +
       '<p class="note-sm" style="margin-top:12px">Toque num estado no mapa, ou busque uma cidade no campo acima.</p>';
-    $("#gov-body").innerHTML = '<p class="state-empty">Escolha um estado ou uma cidade no mapa para ver governador(a), prefeito(a), vices e todos os eleitos desde 1994/1996.</p>';
-    $("#din-body").innerHTML = '<p class="state-empty">Escolha um estado ou uma cidade no mapa para ver receitas e gastos ano a ano.</p>';
+    $("#gov-body").innerHTML = '<p class="state-empty">Toque num estado ou numa cidade no mapa para ver quem governa e quem já governou.</p>';
+    $("#din-body").innerHTML = '<p class="state-empty">Toque num estado ou numa cidade no mapa para ver quanto entra e quanto sai, ano a ano.</p>';
     if (!$("#cmp-a").dataset.key) renderCompare();
   }
   function renderPlace() {

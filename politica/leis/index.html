@@ -58,10 +58,10 @@
           <p class="pol-crumbs"><a href="/politica/">Painel</a> <span aria-hidden="true">›</span> Leis</p>
           <div class="eyebrow"><span class="status-dot"></span> Leis e emendas desde 1988 · sem rótulo de boa ou ruim</div>
           <h1 id="leis-title">Leis que mudaram o país. <span>Quem criou e quem votou.</span></h1>
-          <p class="hero-lead">Uma seleção das leis e emendas que mais mudaram a vida das pessoas desde a Constituição de 1988. Para cada uma: o que o texto faz, quem é atingido, os argumentos dos dois lados (com a fonte) e o voto nominal de cada deputado e senador, quando o Congresso publicou.</p>
+          <p class="hero-lead">Uma seleção das leis e mudanças na Constituição que mais mexeram na vida das pessoas desde 1988. Em cada uma: o que o texto faz, quem é atingido, os argumentos dos dois lados (com a fonte) e — quando o Congresso publicou — o voto com o nome de cada deputado e senador.</p>
           <dl class="pol-stats">
             <div><dt>Leis e emendas nesta página</dt><dd id="st-n">—</dd></div>
-            <div><dt>Com voto nominal</dt><dd id="st-v">—</dd></div>
+            <div><dt>Com o nome de quem votou</dt><dd id="st-v">—</dd></div>
             <div><dt>Casos de voto diferente</dt><dd id="st-c">—</dd></div>
             <div><dt>Atualizado em</dt><dd id="st-d" class="mono">—</dd></div>
           </dl>
@@ -79,7 +79,7 @@
               <div class="field"><label for="f-tema">Tema</label><select id="f-tema"><option value="">Todos</option></select></div>
               <div class="field"><label for="f-gov">Governo</label><select id="f-gov"><option value="">Todos</option></select></div>
               <div class="field"><label for="f-ano">Ano</label><select id="f-ano"><option value="">Todos</option></select></div>
-              <div class="field"><label for="f-casa">Voto nominal</label><select id="f-casa"><option value="">Com ou sem</option><option value="c">Tem voto da Câmara</option><option value="s">Tem voto do Senado</option><option value="0">Sem voto nominal publicado</option></select></div>
+              <div class="field"><label for="f-casa">Lista de votos</label><select id="f-casa"><option value="">Com ou sem</option><option value="c">Tem o voto de cada deputado</option><option value="s">Tem o voto de cada senador</option><option value="0">Sem lista de nomes publicada</option></select></div>
             </form>
             <p class="pol-count" id="leis-count" aria-live="polite"></p>
             <ul class="items" id="leis-list"></ul>
@@ -95,7 +95,7 @@
             <div class="section-kicker">Por pessoa</div>
             <div class="projects-heading"><div>
               <h2>Como votou fulano</h2>
-              <p>Digite o nome de um deputado ou senador e veja o voto dele em cada lei desta página. O voto é o da votação principal do texto (não o de cada destaque).</p>
+              <p>Digite o nome de um deputado ou senador e veja o voto dele em cada lei desta página. Conta a votação principal do texto (não cada trecho votado em separado).</p>
             </div></div>
             <form class="pol-filters auto" role="search" onsubmit="return false">
               <div class="field field-search"><label for="q-pessoa">Nome</label><input id="q-pessoa" type="search" placeholder="Ex.: Tabata Amaral, Eduardo Braga" autocomplete="off"></div>
@@ -142,7 +142,7 @@
               <article class="pol-card"><h3>3. Mudou de turno</h3><p>Em emendas à Constituição há dois turnos. Conta quem votou sim num e não no outro. As duas datas aparecem no cartão.</p></article>
               <article class="pol-card"><h3>O que não entra</h3><p>Post em rede social, entrevista e promessa de campanha não entram: não há como conferir de forma igual para todos. Promessa de plano de governo só entraria se o texto do plano e o voto fossem sobre o mesmo assunto, com os dois documentos linkados. Enquanto essa base não está pronta, esse tipo fica de fora.</p></article>
             </div>
-            <p class="note">Voto nominal com o nome de cada um existe nos dados abertos da Câmara a partir de 2003 (2001 e 2002 têm poucas votações). Antes disso, o voto geralmente só está no Diário da Câmara, e esta página não o reconstrói. Quando não há voto nominal, o cartão da lei diz isso.</p>
+            <p class="note">A lista com o nome de quem votou existe nos dados abertos da Câmara a partir de 2003 (2001 e 2002 têm poucas). Antes disso, o voto costuma estar só no Diário da Câmara, e esta página não reconstrói. Quando não há lista, o cartão da lei avisa.</p>
           </div>
         </section>
 

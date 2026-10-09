@@ -354,12 +354,12 @@
       var y0 = 1990;
       chart(el, {
         y0: y0, y1: LAST, series: series, zero: true,
-        label: "PIB por pessoa em PPC, dólares internacionais de 2021, de 1990 a " + LAST,
+        label: "PIB por pessoa já ajustado pelos preços (PPC), dólares de 2021, de 1990 a " + LAST,
         fmt: function (v) { return usd(v); }, tick: function (v) { return v >= 1000 ? nf(v / 1000, 0) + " mil" : nf(v, 0); }
       });
-      legend($("#lg-pp"), series, '<span class="muted">Valores em dólares internacionais de 2021 (PPC) por pessoa, por ano.</span>');
+      legend($("#lg-pp"), series, '<span class="muted">Valores por pessoa, já ajustados pelos preços de cada país (PPC), em dólares de 2021.</span>');
       var b = series[0].vals, w = ser("WLD", "pcPpc"), yl = maxKey(b);
-      var t = "Em <b>" + yl + "</b>, cada brasileiro produziu em média o equivalente a <b>" + usd(b[yl]) + "</b> no ano (em PPC). ";
+      var t = "Em <b>" + yl + "</b>, cada brasileiro produziu em média o equivalente a <b>" + usd(b[yl]) + "</b> no ano (já ajustado pelos preços de cada país). ";
       if (b[y0] != null) t += "Em " + y0 + " eram " + usd(b[y0]) + ": alta de <b>" + pct((b[yl] / b[y0] - 1) * 100, 0) + "</b> descontada a inflação. ";
       if (w[yl] != null && w[y0] != null) t += "Na média do mundo, a alta foi de <b>" + pct((w[yl] / w[y0] - 1) * 100, 0) + "</b> (de " + usd(w[y0]) + " para " + usd(w[yl]) + "). ";
       if (w[yl] != null) t += "Hoje o brasileiro médio produz " + (b[yl] >= w[yl] ? "<b>" + pct((b[yl] / w[yl] - 1) * 100, 0) + " a mais</b> que" : "<b>" + pct((1 - b[yl] / w[yl]) * 100, 0) + " a menos</b> que") + " a média mundial.";
@@ -420,7 +420,7 @@
       chart($("#ch-fatia"), {
         y0: y0, y1: maxKey(proj) || LAST, series: [{ id: "BRA", label: "Brasil", color: "var(--accent)", type: "line", vals: act, proj: proj }],
         zero: true, projFrom: maxKey(proj) ? LAST + 1 : null,
-        label: "Fatia do Brasil no PIB mundial em PPC, % , de " + y0 + " a " + LAST,
+        label: "Fatia do Brasil em tudo o que o mundo produz (ajustado por preços), %, de " + y0 + " a " + LAST,
         fmt: function (v) { return pct(v, 2); }, tick: function (v) { return nf(v, t1(v)) + "%"; }
       });
       var cn = ser("CHN", "fatia"), us = ser("USA", "fatia");
@@ -440,10 +440,10 @@
         tipExtra: function (y) { var r = info[y]; return r ? r[1] + "º lugar entre " + r[2] + " países com dado" : ""; }
       });
       var a = rk[0], z = rk[rk.length - 1];
-      $("#rank-explica").innerHTML = "Em <b>" + a[0] + "</b> o Brasil era o <b>" + a[1] + "º</b> em PIB por pessoa (PPC) entre " + a[2] + " países, à frente de " + pct(a[3], 0) + " deles. Em <b>" + z[0] + "</b>, o <b>" + z[1] + "º</b> entre " + z[2] + ", à frente de " + pct(z[3], 0) + ". O número de países com dado muda de ano para ano, por isso vale olhar o percentual.";
+      $("#rank-explica").innerHTML = "Em <b>" + a[0] + "</b> o Brasil era o <b>" + a[1] + "º</b> em PIB por pessoa (já ajustado) entre " + a[2] + " países, à frente de " + pct(a[3], 0) + " deles. Em <b>" + z[0] + "</b>, o <b>" + z[1] + "º</b> entre " + z[2] + ", à frente de " + pct(z[3], 0) + ". O número de países com dado muda de ano para ano, por isso vale olhar o percentual.";
     }
     var cr = {}; (R.cres || []).forEach(function (r) { cr[r[0]] = r; });
-    var h = '<caption>Posição do Brasil entre os países com dado no Banco Mundial (1º = maior valor).</caption><thead><tr><th scope="col">Ano</th><th scope="col" class="num">PIB por pessoa (PPC)</th><th scope="col" class="num">À frente de</th><th scope="col" class="num">Crescimento do PIB</th><th scope="col" class="num">À frente de</th></tr></thead><tbody>';
+    var h = '<caption>Posição do Brasil entre os países com dado no Banco Mundial (1º = maior valor).</caption><thead><tr><th scope="col">Ano</th><th scope="col" class="num">PIB por pessoa (ajustado)</th><th scope="col" class="num">À frente de</th><th scope="col" class="num">Crescimento do PIB</th><th scope="col" class="num">À frente de</th></tr></thead><tbody>';
     var ys = Object.keys(info).concat(Object.keys(cr)).map(Number).filter(function (v, i, a) { return a.indexOf(v) === i && v >= 1988; }).sort(function (a, b) { return b - a; });
     ys.forEach(function (y) {
       var p = info[y], c = cr[y];
@@ -503,11 +503,11 @@
   // ---------- Outros sinais
   var OU = {
     infl: { key: "infl", nome: "Inflação", cap: 50, unit: "% ao ano",
-      def: "<b>Inflação</b> é quanto os preços ao consumidor subiram no ano. Aqui é a média do ano, do Banco Mundial (para o Brasil, calculada a partir do IPCA do IBGE), por isso pode diferir um pouco do IPCA de dezembro a dezembro, o número mais divulgado. Valores acima de 50% ficam no topo com um ▲ (passe o dedo ou o mouse para ver o número)." },
+      def: "<b>Inflação</b> é quanto os preços subiram, em média, no ano. Aqui usamos a média do Banco Mundial (no Brasil, a partir do IPCA do IBGE). Pode diferir um pouco do IPCA “de dezembro a dezembro”, o número que mais aparece no jornal. Valores acima de 50% ficam no topo com um ▲ (passe o dedo ou o mouse para ver o número)." },
     desemp: { key: "desemp", nome: "Desemprego", unit: "% da força de trabalho",
-      def: "<b>Desemprego</b> é a parte das pessoas que procuram trabalho e não encontram. Os números são estimativas da OIT publicadas pelo Banco Mundial, com o mesmo método para todos os países (para o Brasil, partem das pesquisas do IBGE). Por isso podem diferir um pouco da taxa da PNAD Contínua." },
+      def: "<b>Desemprego</b> é a parte das pessoas que procuram trabalho e não encontram. Os números usam o mesmo método em todos os países (OIT / Banco Mundial; no Brasil, partem das pesquisas do IBGE). Por isso podem diferir um pouco da taxa que o IBGE divulga no dia a dia." },
     divida: { key: "divida", nome: "Dívida bruta do governo", unit: "% do PIB", proj: true,
-      def: "<b>Dívida bruta do governo</b> é tudo o que o governo (União, estados e municípios) deve, comparado ao tamanho da economia. Fonte: FMI. Para o Brasil, o FMI usa um conceito um pouco mais amplo que o do Banco Central (inclui títulos do Tesouro que estão com o próprio Banco Central), por isso o número é maior que o divulgado no Brasil. Os anos depois de " + "{LAST}" + " são projeção." },
+      def: "<b>Dívida bruta do governo</b> é tudo o que o governo (federal, estados e municípios) deve, comparado ao tamanho da economia. Fonte: FMI. No Brasil o FMI conta um pouco a mais que o Banco Central, por isso o número aqui pode ser maior que o do noticiário. Os anos depois de " + "{LAST}" + " são previsão." },
     gini: { key: "gini", nome: "Desigualdade (índice de Gini)", unit: "de 0 a 100",
       def: "<b>Índice de Gini</b> mede a desigualdade de renda de 0 a 100: quanto mais alto, mais desigual. Fonte: Banco Mundial, a partir de pesquisas domiciliares de cada país (no Brasil, do IBGE). Nem todo país faz a pesquisa todo ano, por isso há lacunas e pontos soltos." }
   };
@@ -555,7 +555,7 @@
     items.push('<li><span class="k">A economia, desde 1988</span><span class="big">' + pct(tb, 0, true) + '</span><p>De 1988 a ' + LAST + ' a economia brasileira ficou <b>' + pct(tb, 0) + ' maior</b>, já descontada a inflação. A média do mundo cresceu <b>' + pct(tw, 0) + "</b> no mesmo período.</p></li>");
     items.push('<li><span class="k">Por pessoa, desde 1988</span><span class="big">' + pct(pb, 0, true) + '</span><p>Dividindo pela população, cada brasileiro produz em média <b>' + pct(pb, 0) + " a mais</b> que em 1988. Na média do mundo, a alta por pessoa foi de <b>" + pct(pw, 0) + "</b>.</p></li>");
     items.push('<li><span class="k">Ano a ano, contra o mundo</span><span class="big">' + cont.mais + " de " + n + ' anos</span><p>Em <b>' + cont.mais + "</b> dos " + n + " anos desde 1988 o Brasil cresceu mais que a média do mundo; em <b>" + cont.menos + "</b>, menos; em <b>" + cont.igual + "</b>, praticamente igual.</p></li>");
-    if (fat[1988] != null && fat[LAST] != null) items.push('<li><span class="k">Pedaço da economia mundial</span><span class="big">' + pct(fat[1988], 1) + " → " + pct(fat[LAST], 1) + '</span><p>Em 1988 o Brasil era ' + pct(fat[1988], 1) + " de tudo o que o mundo produzia (em PPC); em " + LAST + ", " + pct(fat[LAST], 1) + ".</p></li>");
+    if (fat[1988] != null && fat[LAST] != null) items.push('<li><span class="k">Pedaço da economia mundial</span><span class="big">' + pct(fat[1988], 1) + " → " + pct(fat[LAST], 1) + '</span><p>Em 1988 o Brasil era ' + pct(fat[1988], 1) + " de tudo o que o mundo produzia (já ajustado pelos preços); em " + LAST + ", " + pct(fat[LAST], 1) + ".</p></li>");
     if (rk.length) { var r0 = rk[0], r1 = rk[rk.length - 1]; items.push('<li><span class="k">Posição em PIB por pessoa</span><span class="big">' + r0[1] + "º → " + r1[1] + 'º</span><p>Entre os países do mundo, o Brasil era o ' + r0[1] + "º em " + r0[0] + " (de " + r0[2] + ") e é o " + r1[1] + "º em " + r1[0] + " (de " + r1[2] + "). Na lista, 1º é o país com maior PIB por pessoa.</p></li>"); }
     var concl = "Resposta curta: <b>sim, o Brasil cresceu</b> — a economia ficou " + pct(tb, 0) + " maior desde 1988 e a riqueza média por pessoa subiu " + pct(pb, 0) + ". ";
     concl += tb < tw ? "Mas <b>cresceu menos que a média do mundo</b> (" + pct(tw, 0) + "), por isso o pedaço do Brasil na economia mundial diminuiu." : "E <b>cresceu mais que a média do mundo</b> (" + pct(tw, 0) + ").";
@@ -567,7 +567,7 @@
     var ys = range(a + 1, LAST), gb = geo(br, ys), gw = geo(wd, ys);
     $("#st-media").innerHTML = pct(gb.media, 1) + ' <small class="muted" style="font-size:.5em;font-weight:600;letter-spacing:0">mundo: ' + pct(gw.media, 1) + "</small>";
     var pc = ser("BRA", "pcPpc"), yp = maxKey(pc);
-    $("#st-pc-t").textContent = "PIB por pessoa em " + yp + " (PPC)";
+    $("#st-pc-t").textContent = "PIB por pessoa em " + yp + " (ajustado)";
     $("#st-pc").textContent = "US$ " + nf(pc[yp] / 1000, 1) + " mil";
     $("#st-upd").textContent = dataBR(P.geradoEm);
   }

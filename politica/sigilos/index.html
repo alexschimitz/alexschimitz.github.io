@@ -47,8 +47,9 @@
   </header>
   <main id="conteudo">
     <nav class="pol-subnav" aria-label="Atalhos desta página">
+      <a href="#guia">Como ler</a>
       <a href="#casos">Os casos</a>
-      <a href="#entenda">Como funciona o sigilo</a>
+      <a href="#entenda">A lei do sigilo</a>
       <a href="#pedir">Como pedir</a>
       <a href="#fontes">Fontes</a>
     </nav>
@@ -56,7 +57,7 @@
       <p class="pol-crumbs"><a href="/politica/">Painel</a> <span aria-hidden="true">›</span> Sigilos</p>
       <div class="eyebrow"><span class="status-dot"></span> Lei de Acesso à Informação · casos de vários governos</div>
       <h1>Sigilos derrubados. <span>O que era segredo e o que foi revelado.</span></h1>
-      <p class="hero-lead"><b>O que é um sigilo:</b> às vezes o governo esconde um documento ou um gasto por um tempo — por segurança, investigação ou outro motivo previsto em lei. Nesta página estão casos em que esse segredo foi derrubado, a regra mudou, ou ainda vale. Em cada um: o que era secreto, quem decretou, quando caiu e o que os documentos oficiais mostraram. Sem especulação sobre o que ainda é sigiloso.</p>
+      <p class="hero-lead">Às vezes o governo esconde um documento ou um gasto por um tempo. Quando esse segredo cai (ou a regra muda), o que aparece fica aqui — com o link oficial. Sem chute sobre o que ainda é secreto.</p>
       <dl class="pol-stats">
         <div><dt>Casos nesta página</dt><dd id="st-n">—</dd></div>
         <div><dt>Derrubados</dt><dd id="st-d">—</dd></div>
@@ -65,20 +66,36 @@
       </dl>
     </section>
 
+    <section class="section pol-section pol-alt" id="guia" aria-labelledby="guia-title">
+      <div class="container">
+        <div class="section-kicker">Para quem está chegando agora</div>
+        <div class="projects-heading"><div>
+          <h2 id="guia-title">Como ler esta página em 4 passos</h2>
+          <p>Pense no sigilo como um envelope lacrado: o governo diz “isso ainda não pode ser visto”. Aqui mostramos envelopes que foram abertos (ou cuja regra mudou).</p>
+        </div></div>
+        <ol class="howto">
+          <li><b>1. O que é</b><span>Sigilo é quando um documento ou gasto fica escondido por um tempo — por segurança, investigação ou outro motivo previsto em lei. Não é “sumiu”: é “ainda não pode ver”.</span></li>
+          <li><b>2. Como funciona</b><span>A lei fixa prazos (ex.: até 5, 15 ou 25 anos). Quando o prazo acaba, ou um juiz / a CGU manda abrir, o conteúdo vira público. Qualquer pessoa também pode pedir acesso.</span></li>
+          <li><b>3. O que você vê aqui</b><span>Só casos com documento oficial. Em cada um: o que era secreto, quem decretou, quando caiu (ou se ainda vale) e o que os papéis mostraram. Sem opinião.</span></li>
+          <li><b>4. Como ler os números</b><span>Exemplo: o cartão da Presidência de 2003–2022 ficou em sigilo e depois foi liberado. Os <em>valores</em> desse cartão estão em <a class="linkish" href="/politica/gastos/#presidencia">Gastos → Presidência</a>; aqui está a história de <em>como o segredo caiu</em>.</span></li>
+        </ol>
+      </div>
+    </section>
+
     <section class="section pol-section" id="casos">
       <div class="container">
         <div class="section-kicker">Os casos</div>
         <div class="projects-heading"><div>
           <h2>O que era segredo</h2>
-          <p>Casos de governos diferentes, de Fernando Henrique a Lula 3. Cada afirmação tem um link para o documento oficial (CGU, STF, Planalto ou Presidência). Os números do cartão da Presidência estão em <a class="linkish" href="/politica/gastos/#presidencia">Gastos → Presidência</a>.</p>
+          <p>Casos de vários governos, de Fernando Henrique a Lula 3. Cada frase tem link para o documento oficial. Os valores do cartão da Presidência estão em <a class="linkish" href="/politica/gastos/#presidencia">Gastos → Presidência</a>.</p>
         </div></div>
         <form class="pol-filters auto" role="search" onsubmit="return false">
           <div class="field field-search"><label for="q">Buscar</label><input id="q" type="search" placeholder="Ex.: cartão, visitas, emendas" autocomplete="off"></div>
-          <div class="field"><label for="f-status">Situação</label><select id="f-status"><option value="">Todas</option><option value="derrubado">Derrubado</option><option value="revisto">Revisto (regra mudou)</option><option value="mantido">Ainda em sigilo</option></select></div>
+          <div class="field"><label for="f-status">Situação</label><select id="f-status"><option value="">Todas</option><option value="derrubado">Derrubado (já dá para ver)</option><option value="revisto">A regra mudou</option><option value="mantido">Ainda em sigilo</option></select></div>
           <div class="field"><label for="f-gov">Governo</label><select id="f-gov"><option value="">Todos</option></select></div>
         </form>
         <p class="pol-count" id="count" aria-live="polite"></p>
-        <p class="note" id="sig-howto">Como usar: filtre por situação ou governo, ou busque uma palavra (ex.: “cartão”). Os casos já vêm com os derrubados primeiro.</p>
+        <p class="note" id="sig-howto">Dica: busque “cartão” ou filtre por “Derrubado”. A lista já começa pelos casos abertos.</p>
         <ul class="items sig-list" id="lista"></ul>
       </div>
     </section>
@@ -87,12 +104,12 @@
       <div class="container">
         <div class="section-kicker">Entenda</div>
         <div class="projects-heading"><div>
-          <h2>Como funciona o sigilo no Brasil</h2>
-          <p>Desde 2012, a regra é: informação pública é de todos, e o sigilo é exceção. Qualquer pessoa pode pedir um documento a um órgão público sem explicar o motivo. O órgão tem 20 dias para responder (mais 10, se justificar). Se negar, cabe recurso. Isso vem da Lei de Acesso à Informação (Lei 12.527/2011).</p>
+          <h2>A lei por trás do sigilo</h2>
+          <p>Desde 2012, a regra é: informação pública é de todos, e esconder é a exceção. Qualquer pessoa pode pedir um documento sem dizer o motivo. O órgão tem até 20 dias para responder (mais 10, se justificar). Se negar, dá para recorrer. Isso está na Lei de Acesso à Informação (Lei 12.527/2011).</p>
         </div></div>
         <div class="table-wrap"><table class="data-table tabela-cards" id="niveis"><caption class="sr-only">Níveis de sigilo e prazos</caption>
           <thead><tr><th scope="col">Tipo</th><th scope="col">Prazo máximo</th><th scope="col">Onde está na lei</th><th scope="col">Exemplo</th></tr></thead><tbody></tbody></table></div>
-        <p class="note">Quando o prazo acaba, a informação vira pública automaticamente. A lista dos documentos classificados de cada órgão (assunto e prazo, sem o conteúdo) tem de ser publicada todo ano. Antes de 2012, documentos ultrassecretos podiam ficar fechados para sempre. Veja o caso “O fim do sigilo eterno”.</p>
+        <p class="note">Quando o prazo acaba, a informação vira pública sozinha. Todo ano cada órgão deve publicar a lista do que está secreto (assunto e prazo, sem o conteúdo). Antes de 2012, alguns documentos podiam ficar fechados para sempre. Veja o caso “O fim do sigilo eterno”.</p>
       </div>
     </section>
 

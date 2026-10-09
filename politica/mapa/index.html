@@ -62,7 +62,7 @@
     <section class="pol-hero container mp-hero" aria-labelledby="mp-title">
       <nav class="pol-crumbs" aria-label="Você está em"><a href="/politica/">Painel de política</a><span aria-hidden="true">›</span><span>Mapa</span></nav>
       <h1 id="mp-title">Seu estado e sua cidade, <span>em linguagem simples.</span></h1>
-      <p class="hero-lead">Toque num estado e depois numa cidade. Você vê quem governa agora, quem já governou, quanto a prefeitura e o estado arrecadam e no que gastam: saúde, escola, segurança, salários de servidores, obras e dívidas. Tudo vem de fontes oficiais (TSE, IBGE e Tesouro Nacional), sem opinião.</p>
+      <p class="hero-lead">Toque num estado e depois numa cidade. Você vê quem governa agora, quem já governou, quanto a prefeitura e o estado arrecadam e no que gastam — saúde, escola, segurança, salários, obras e dívidas. Dados oficiais (TSE, IBGE e Tesouro), sem opinião.</p>
     </section>
 
     <section class="pol-section mp-explore" id="explorar" aria-labelledby="ex-title" tabindex="-1">
@@ -85,9 +85,9 @@
                   <option value="">Só o mapa</option>
                   <optgroup label="Gente e renda">
                     <option value="pop">População</option>
-                    <option value="pibpc">PIB por pessoa</option>
-                    <option value="pib">PIB (tamanho da economia)</option>
-                    <option value="idhm">IDHM (desenvolvimento humano)</option>
+                    <option value="pibpc">PIB por pessoa (renda média)</option>
+                    <option value="pib">PIB (tamanho da economia local)</option>
+                    <option value="idhm">IDH da cidade (qualidade de vida)</option>
                   </optgroup>
                   <optgroup label="Contas do governo local">
                     <option value="pc">Gasto por habitante</option>
@@ -98,7 +98,7 @@
                   </optgroup>
                   <optgroup label="Dinheiro federal e eleições">
                     <option value="bf">Bolsa Família por morador</option>
-                    <option value="emenda">Emendas recebidas por morador</option>
+                    <option value="emenda">Emendas de parlamentares por morador</option>
                     <option value="partido">Partido de quem governa</option>
                     <option value="pres22">Presidente 2022 (2º turno)</option>
                     <option value="pres26">Presidente 2026 (1º turno)</option>
@@ -148,7 +148,7 @@
       <div class="container">
         <div class="section-kicker">Quem governa</div>
         <h2 id="gov-title">Quem governa agora e <span class="acc">quem já governou</span></h2>
-        <div id="gov-body"><p class="state-empty">Escolha um estado ou uma cidade no mapa.</p></div>
+        <div id="gov-body"><p class="state-empty">Toque num estado ou numa cidade no mapa para começar.</p></div>
       </div>
     </section>
 
@@ -160,7 +160,7 @@
           <div class="field"><label for="f-de">De</label><select id="f-de"></select></div>
           <div class="field"><label for="f-ate">Até</label><select id="f-ate"></select></div>
           <div class="field"><label for="f-ano">Ano em destaque</label><select id="f-ano"></select></div>
-          <div class="field"><label for="f-func">Área (função)</label><select id="f-func"><option value="">Todas as áreas</option></select></div>
+          <div class="field"><label for="f-func">Área do gasto</label><select id="f-func"><option value="">Todas as áreas</option></select></div>
           <div class="field"><label for="f-modo">Valores</label>
             <select id="f-modo">
               <option value="real">Corrigidos pela inflação</option>
@@ -172,7 +172,7 @@
               <option value="pc">Por habitante</option>
             </select></div>
         </form>
-        <div id="din-body"><p class="state-empty">Escolha um estado ou uma cidade no mapa.</p></div>
+        <div id="din-body"><p class="state-empty">Toque num estado ou numa cidade no mapa para começar.</p></div>
       </div>
     </section>
 
@@ -186,7 +186,7 @@
           <div class="field mp-ac"><label for="cmp-b">Segundo lugar</label><input id="cmp-b" type="search" autocomplete="off" placeholder="Cidade ou estado"><ul class="mp-sugg" hidden></ul></div>
           <div class="field"><label for="cmp-ano">Ano</label><select id="cmp-ano"></select></div>
         </form>
-        <div id="cmp-body"><p class="state-empty">Escolha dois lugares.</p></div>
+        <div id="cmp-body"><p class="state-empty">Escolha dois lugares para comparar.</p></div>
       </div>
     </section>
 
@@ -229,7 +229,7 @@
         <div class="section-kicker">Congresso</div>
         <h2 id="cg-title">Deputados e senadores <span class="acc">deste estado</span></h2>
         <p class="lead-simples">Quem representa o estado hoje na Câmara e no Senado, com a foto oficial. Escolha um estado no mapa.</p>
-        <div id="cg-body"><p class="state-empty">Escolha um estado no mapa.</p></div>
+        <div id="cg-body"><p class="state-empty">Toque num estado no mapa para ver os parlamentares.</p></div>
       </div>
     </section>
     <section class="pol-section pol-alt" id="fontes" aria-labelledby="ft-title" tabindex="-1">

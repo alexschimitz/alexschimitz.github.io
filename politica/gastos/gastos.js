@@ -90,7 +90,7 @@
     '3': ['Custeio e benefícios', 'Benefícios do INSS, Bolsa Família, repasses a estados e municípios, contas, serviços e manutenção'],
     '4': ['Investimentos', 'Obras e compra de equipamentos'],
     '5': ['Inversões financeiras', 'Empréstimos e participação em empresas (ex.: Fies, crédito rural, capital de estatais)'],
-    '6': ['Amortização da dívida', 'Pagamento do valor principal da dívida pública'],
+    '6': ['Pagamento da dívida', 'Devolver o valor emprestado (sem contar a troca de dívida velha por nova)'],
     '9': ['Reserva de contingência', 'Reserva para imprevistos'],
     '0': ['Não classificado', 'Reserva ou valor sem grupo definido'],
   };
@@ -102,7 +102,7 @@
     ['demais despesas correntes', 'Outros custeios', 'Bolsa Família, BPC, seguro-desemprego, manutenção de serviços, contas', '--g-c3'],
     ['investimentos', 'Investimentos', 'Obras e equipamentos', '--g-c7'],
     ['inversoes financeiras', 'Inversões financeiras', 'Empréstimos e participação em empresas (Fies, crédito, estatais)', '--g-c5'],
-    ['amortizacao da divida', 'Amortização da dívida', 'Pagamento do principal da dívida (sem a rolagem, a partir de 1994)', '--g-c9'],
+    ['amortizacao da divida', 'Pagamento da dívida', 'Devolver o valor emprestado (sem a troca de dívida velha por nova, a partir de 1994)', '--g-c9'],
     ['outras despesas de capital', 'Outras de capital', 'Outras despesas de capital (até 1994)', '--g-c8'],
   ];
   const GRUPO_BY = {}; GRUPOS.forEach((g) => { GRUPO_BY[g[0]] = g; });
@@ -308,12 +308,12 @@
         const base = refin ? s.tot : s.sem; let v = base;
         if (mode === 'real') v = base * fator(y);
         if (mode === 'pc') v = (base * fator(y)) / pop(y);
-        const t = `<b>${y}${s.partial ? ` (parcial: ${esc(periodoCurto(s.periodo))})` : ''}</b>${mode === 'pc' ? `${brl(v)} por brasileiro (corrigido)` : brl(v)}${mode !== 'nominal' ? `<br><small>valor da época: ${brl(base)}</small>` : ''}${refin ? `<br><small>rolagem da dívida: ${brl(s.refin * (mode === 'nominal' ? 1 : fator(y)))}</small>` : ''}`;
+        const t = `<b>${y}${s.partial ? ` (parcial: ${esc(periodoCurto(s.periodo))})` : ''}</b>${mode === 'pc' ? `${brl(v)} por brasileiro (corrigido)` : brl(v)}${mode !== 'nominal' ? `<br><small>valor da época: ${brl(base)}</small>` : ''}${refin ? `<br><small>troca de dívida (rolagem): ${brl(s.refin * (mode === 'nominal' ? 1 : fator(y)))}</small>` : ''}`;
         data.push({ x: s.partial ? `${y}*` : String(y), v, cls: s.partial ? 'partial' : '', tip: t });
       }
       barChart($('#chart-total'), data);
       const last = serieYear(serieYears().slice(-1)[0]);
-      $('#total-note').textContent = `${mode === 'nominal' ? 'Valores da época, sem correção.' : `Valores corrigidos pelo IPCA até ${ultimoMes()}.`} ${last.partial ? `* ${last.y} é parcial (${periodoCurto(last.periodo)}).` : ''} ${refin ? 'Inclui a rolagem (refinanciamento) da dívida.' : 'Sem a rolagem da dívida (troca de títulos velhos por novos).'} Antes de 1995 os totais não são comparáveis em reais (veja "Como ler"). Fonte: Tesouro Nacional, Despesas da União - Séries Históricas.`;
+      $('#total-note').textContent = `${mode === 'nominal' ? 'Valores da época, sem correção.' : `Valores corrigidos pela inflação (IPCA) até ${ultimoMes()}.`} ${last.partial ? `* ${last.y} é parcial (${periodoCurto(last.periodo)}).` : ''} ${refin ? 'Inclui a troca de dívida velha por nova (rolagem).' : 'Sem a troca de dívida velha por nova (rolagem).'} Antes de 1995 os totais não são comparáveis em reais (veja "Como ler"). Fonte: Tesouro Nacional.`;
     };
     bindSeg('tot-mode', draw); $('#tot-refin').addEventListener('change', draw); from.addEventListener('change', draw); to.addEventListener('change', draw);
     draw(); onResize(draw);
@@ -321,16 +321,16 @@
     const yf = lastFullYear(); const s = serieYear(yf); const s10 = serieYear(yf - 10);
     const real = s.sem * fator(yf); const pc = s.sem / pop(yf);
     const kp = $$('#hero-kpis > div dd');
-    kp[0].innerHTML = `${brl(s.sem)}<small>em ${yf}, sem a rolagem da dívida</small>`;
+    kp[0].innerHTML = `${brl(s.sem)}<small>em ${yf}, sem a troca de dívida</small>`;
     kp[1].innerHTML = `${brl(pc)}<small>no ano (${brl(pc / 12)} por mês)</small>`;
     kp[2].innerHTML = `${brl(s.sem / 365)}<small>em média, todo dia de ${yf}</small>`;
     kp[3].innerHTML = `${esc(periodoCurto(serieYear(serieYears().slice(-1)[0]).periodo).split('–')[1] || '')}<small>Tesouro; inflação até ${esc(ultimoMes())}</small>`;
     const prev = s10 ? s10.sem * fator(yf - 10) : null;
     const big = s.funcs.slice().sort((a, b) => b.v - a.v).slice(0, 3);
-    $('#total-simple').innerHTML = `<p>Em ${yf}, a União gastou <b>${brl(s.sem)}</b> (sem contar a rolagem da dívida). Dividido pela população, dá <b>${brl(pc)} por brasileiro</b> no ano, ou cerca de <b>${brl(pc / 12)} por mês</b>.</p>` +
+    $('#total-simple').innerHTML = `<p>Em ${yf}, o governo federal gastou <b>${brl(s.sem)}</b> (sem contar a troca de dívida velha por nova). Dividido pela população, dá <b>${brl(pc)} por brasileiro</b> no ano, ou cerca de <b>${brl(pc / 12)} por mês</b>.</p>` +
       (prev ? `<p>Descontada a inflação, isso é <b>${pct(Math.abs(real / prev - 1))}</b> ${real >= prev ? 'a mais' : 'a menos'} do que em ${yf - 10} (${brl(prev)} em reais de hoje).</p>` : '') +
-      `<p>As três maiores áreas foram ${big.map((f) => `<b>${esc(f.name)}</b> (${pct(f.v / s.sem)})`).join(', ')}. A rolagem da dívida, que fica fora desse total, somou mais ${brl(s.refin)}.</p>`;
-    $('#hero-note').textContent = 'Valores da época, sem correção. Gasto = despesa liquidada dos Orçamentos Fiscal e da Seguridade Social (três Poderes), sem a rolagem da dívida. População: IBGE.';
+      `<p>As três maiores áreas foram ${big.map((f) => `<b>${esc(f.name)}</b> (${pct(f.v / s.sem)})`).join(', ')}. A troca de dívida (rolagem), que fica fora desse total, somou mais ${brl(s.refin)}.</p>`;
+    $('#hero-note').textContent = 'Valores da época, sem correção. Gasto = o que o governo federal já deve pagar (conta oficial “liquidada”), dos três Poderes, sem a troca de dívida velha por nova. População: IBGE.';
 
     const all = Object.keys(S.serie.grupo).map(Number).sort((a, b) => a - b);
     const rows = all.map((y) => { const sy = serieYear(y); const r = { ...(sy ? sy.grupos : {}) }; r.__partial = sy && sy.partial; return r; });
@@ -352,7 +352,7 @@
       if (y < REAL_FROM && mode !== 'pct') { mode = 'pct'; note.push(`Para ${y} mostramos só a porcentagem: a moeda e a inflação da época não permitem converter para reais de hoje.`); }
       if (s.partial) note.push(`${y} é parcial (${periodoCurto(s.periodo)}).`);
       if (dim === 'funcao' && s.old) note.push('Até 1999 a lista de áreas era outra (por exemplo, Saúde e Saneamento juntos).');
-      if (dim === 'grupo' && y < 1994) note.push('Até 1993 a "amortização da dívida" inclui a rolagem, porque a planilha oficial não separa.');
+      if (dim === 'grupo' && y < 1994) note.push('Até 1993 o “pagamento da dívida” inclui a troca de dívida velha por nova, porque a planilha oficial não separa.');
       if (y < 1995) { const n = s.notas.filter((x) => /\$/.test(x)).join(' ').trim(); if (n) note.push('Nota da fonte: ' + n); }
       $('#area-note').textContent = note.join(' ');
       $('#area-note').classList.toggle('warn', note.length > 0);
@@ -456,7 +456,7 @@
     rows.sort(cmp(ORG.sort, ORG.dir));
     ORG.rows = rows;
     const partial = y === resYears().slice(-1)[0];
-    $('#org-kpis').innerHTML = `<div><dt>Previsto na lei (${y})</dt><dd>${brl(tot.ini)}</dd></div><div><dt>Autorizado</dt><dd>${brl(tot.atu)}</dd></div><div><dt>Gasto (liquidado)${partial ? ' até agora' : ''}</dt><dd>${brl(tot.liq)}<small>${pct(tot.atu ? tot.liq / tot.atu : 0)} do autorizado</small></dd></div><div><dt>Pago no ano</dt><dd>${brl(tot.pag)}<small>gasto: ${brl(tot.liq / pop(y))} por brasileiro</small></dd></div>`;
+    $('#org-kpis').innerHTML = `<div><dt>Previsto na lei (${y})</dt><dd>${brl(tot.ini)}</dd></div><div><dt>Autorizado</dt><dd>${brl(tot.atu)}</dd></div><div><dt>Gasto${partial ? ' até agora' : ''}</dt><dd>${brl(tot.liq)}<small>${pct(tot.atu ? tot.liq / tot.atu : 0)} do autorizado</small></dd></div><div><dt>Pago no ano</dt><dd>${brl(tot.pag)}<small>gasto: ${brl(tot.liq / pop(y))} por brasileiro</small></dd></div>`;
     const tbody = $('#org-table tbody');
     if (!rows.length) { tbody.innerHTML = '<tr class="empty"><td colspan="7">Nenhum órgão com esse filtro.</td></tr>'; return; }
     const lim = (ORG.all || q) ? rows.length : 15;
@@ -490,11 +490,11 @@
     const fItems = Object.entries(byF).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]).slice(0, 8).map(([k, v]) => ({ label: FUNCOES[k] ? FUNCOES[k][0] : k, v, txt: `${brl(v)} · ${pct(v / tF, 0)}` }));
     const gItems = Object.entries(byG).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]).map(([k, v]) => ({ label: GND[k] ? GND[k][0] : k, sub: GND[k] ? GND[k][1] : '', v, txt: `${brl(v)} · ${pct(v / tF, 0)}` }));
     box.innerHTML = `<button class="button button-ghost g-close" type="button">Fechar</button>
-      <h3 class="g-h3">${esc(nome)}</h3><p class="g-sub">Código ${esc(code)} · ${y}${fun ? ' · área: ' + esc(FUNCOES[fun][0]) : ''}${refin ? '' : ' · sem a rolagem da dívida'}</p>
+      <h3 class="g-h3">${esc(nome)}</h3><p class="g-sub">Código ${esc(code)} · ${y}${fun ? ' · área: ' + esc(FUNCOES[fun][0]) : ''}${refin ? '' : ' · sem a troca de dívida'}</p>
       <h4>Maiores ações em ${y}</h4>${acoesHtml}
       <div class="g-grid-2 g-detail-lists"><div><h4>Por área</h4><ol class="g-bars g-bars-sm" id="od-f"></ol></div><div><h4>Por tipo de gasto</h4><ol class="g-bars g-bars-sm" id="od-g"></ol></div></div>
-      <h4>Gasto (liquidado) por ano, corrigido pela inflação</h4><div class="g-chart" id="od-chart"></div>
-      <p class="g-chart-note">Série pelo código do órgão, sem a rolagem da dívida e sem os filtros acima. Quando um ministério é criado, fundido ou extinto, ele muda de código, e a série pode ter lacunas.</p>`;
+      <h4>Gasto por ano, corrigido pela inflação</h4><div class="g-chart" id="od-chart"></div>
+      <p class="g-chart-note">Série pelo código do órgão, sem a troca de dívida e sem os filtros acima. Quando um ministério muda de nome ou some, o código muda e a série pode ter buracos.</p>`;
     hbars($('#od-f'), fItems); hbars($('#od-g'), gItems);
     barChart($('#od-chart'), serie, { height: 200 });
     $('.g-close', box).addEventListener('click', () => { box.hidden = true; ORG.sel = null; $$('#org-table tbody tr').forEach((tr) => tr.classList.remove('sel')); });
@@ -536,7 +536,7 @@
       const data = ys.map((y) => { const o = S.res.anos[y].orgao['20000']; if (!o) return null; const v = mode === 'real' ? o[1] * fator(y) : o[1]; const last = y === ys[ys.length - 1]; return { x: last ? y + '*' : String(y), v, cls: last ? 'partial' : '', tip: `<b>${y}${last ? ' (parcial)' : ''}</b>${brl(v)}${mode === 'real' ? ' corrigidos' : ''}<br><small>previsto: ${brl(o[0])} · pago no ano: ${brl(o[2])} (época)</small>` }; }).filter(Boolean);
       barChart($('#chart-pres'), data, { height: 220 });
       const yf = S.serie ? lastFullYear() : ys[ys.length - 2]; const o = S.res.anos[yf] && S.res.anos[yf].orgao['20000'];
-      $('#pres-note').textContent = o ? `Em ${yf}, a Presidência gastou ${brl(o[1])} (liquidado), cerca de ${brl(o[1] / pop(yf))} por brasileiro. * Ano em curso, parcial. Fonte: SIOP, órgão 20000 (sem a rolagem da dívida).` : 'Fonte: SIOP, órgão 20000.';
+      $('#pres-note').textContent = o ? `Em ${yf}, a Presidência gastou ${brl(o[1])}, cerca de ${brl(o[1] / pop(yf))} por brasileiro. * Ano em curso, parcial. Fonte: SIOP (sem a troca de dívida).` : 'Fonte: SIOP.';
     };
     bindSeg('pres-mode', draw); draw(); onResize(draw);
     const py = $('#pres-year'); const pys = resYears().filter((y) => S.res.anos[y].orgao['20000']);
@@ -684,7 +684,7 @@
     const total = rows.reduce((s, r) => s + r.total, 0); const pa = rows.reduce((s, r) => s + r.anos, 0);
     $('#cong-kpis').innerHTML = `<div><dt>Total no período${cat ? ' (só a categoria)' : ''}</dt><dd>${brl(total)}<small>${a}–${b}, valores da época</small></dd></div><div><dt>Parlamentares</dt><dd>${nf0.format(rows.length)}</dd></div><div><dt>Média por parlamentar por ano</dt><dd>${brl(pa ? total / pa : 0)}<small>contando só anos com gasto</small></dd></div><div><dt>Maior total</dt><dd>${rows.length ? brl(Math.max(...rows.map((r) => r.total))) : '—'}</dd></div>`;
     const notes = [];
-    if (a <= 2008 && casa !== 's') notes.push('A Câmara tem poucos registros em 2008: a cota unificada (CEAP) começou em 2009.');
+    if (a <= 2008 && casa !== 's') notes.push('A Câmara tem poucos registros em 2008: a cota unificada do mandato (CEAP) começou em 2009.');
     if (b === CONG.maxY) notes.push(`${CONG.maxY} ainda está em andamento.`);
     notes.push('Valores reembolsados como publicados pelas casas (na Câmara, valor líquido depois das glosas).');
     $('#cong-note').textContent = notes.join(' ');
@@ -899,7 +899,7 @@
     const tu = Object.values(uf).reduce((s, v) => s + v, 0) || 1;
     hbars($('#em-uf'), Object.entries(uf).sort((x, y) => y[1] - x[1]).slice(0, 28).map(([k, v]) => ({ label: k, v, txt: `${brl(v)} · ${pct(v / tu, 0)}` })));
     const yl = R.anos[b] || R.anos[ys0()]; const rel = Object.entries((R.anos[2021] || {}).tipos || {}).find(([k]) => /^Relator/.test(k));
-    $('#em-simple').innerHTML = `<p>De ${a} a ${b}, o governo federal pagou <b>${brl(tp)}</b> em emendas parlamentares, cerca de <b>${brl(tp / yN)} por ano</b>. A maior parte foi para <b>${esc(topF[0] ? topF[0][0] : '—')}</b>${topF[1] ? ` e <b>${esc(topF[1][0])}</b>` : ''}. As emendas individuais de cada parlamentar têm valor garantido por lei; de 2020 a 2022 as "emendas de relator" (o chamado orçamento secreto) não mostravam quem pediu o dinheiro${rel ? ` (em 2021, ${brl(rel[1])} pagos)` : ''}.</p>`;
+    $('#em-simple').innerHTML = `<p>De ${a} a ${b}, o governo federal pagou <b>${brl(tp)}</b> em emendas de parlamentares (pedaços do orçamento que deputados e senadores indicam para uma cidade ou projeto), cerca de <b>${brl(tp / yN)} por ano</b>. A maior parte foi para <b>${esc(topF[0] ? topF[0][0] : '—')}</b>${topF[1] ? ` e <b>${esc(topF[1][0])}</b>` : ''}. As emendas de cada parlamentar têm valor garantido por lei; de 2020 a 2022 as “emendas de relator” (o chamado orçamento secreto) não mostravam quem pediu o dinheiro${rel ? ` (em 2021, ${brl(rel[1])} pagos)` : ''}.</p>`;
     void yl;
   }
   const ys0 = () => Object.keys(S.emRes.anos).sort()[0];
@@ -918,7 +918,7 @@
     box.innerHTML = `<div class="g-detail-head"><div><h3>${esc(D.nome)}</h3><p class="g-sub">Emendas de ${esc(ys[0])}${ys.length > 1 ? ' a ' + esc(ys[ys.length - 1]) : ''} · reservado ${brl(te)} · pago ${brl(tp)}${D.parlamentar ? ` · <a href="#p=${esc(D.parlamentar)}" data-person="${esc(D.parlamentar)}">ver a cota parlamentar</a>` : ''}</p>${D.parlamentar ? `<p class="g-links">${profileLinks(D.parlamentar)}</p>` : ''}</div><button class="button button-ghost g-close" type="button" aria-label="Fechar detalhe">Fechar</button></div>
       <h4>Pago por ano</h4><div class="g-chart" id="emd-years"></div>
       <div class="g-grid-2 g-detail-lists"><div><h4>Para onde foi (cidade ou estado)</h4><ol class="g-bars g-bars-sm" id="emd-loc"></ol></div><div><h4>Em que área</h4><ol class="g-bars g-bars-sm" id="emd-fun"></ol></div></div>
-      <p class="g-chart-note">"Pago" inclui restos a pagar pagos depois. Fonte: Portal da Transparência (CGU), emendas parlamentares.</p>`;
+      <p class="g-chart-note">“Pago” inclui contas de anos anteriores pagas depois (“restos a pagar”). Fonte: Portal da Transparência (CGU), emendas parlamentares.</p>`;
     barChart($('#emd-years'), ys.map((y) => ({ x: y, v: D.anos[y].pago, tip: `<b>${y}</b>pago ${brl(D.anos[y].pago)}<br><small>reservado ${brl(D.anos[y].emp)} · ${D.anos[y].n} registro(s)</small>` })), { height: 170 });
     hbars($('#emd-loc'), D.local.slice(0, 12).map(([k, v]) => ({ label: k, v, txt: `${brl(v)} · ${pct(v / tl, 0)}` })));
     hbars($('#emd-fun'), Object.entries(D.funcao).slice(0, 10).map(([k, v]) => ({ label: k, v, txt: `${brl(v)} · ${pct(v / tf, 0)}` })));
@@ -934,12 +934,12 @@
     $('#sources').innerHTML = keys.length ? keys.map((k) => { const f = F[k]; return `<li><a href="${esc(f.url)}" target="_blank" rel="noreferrer">${esc(f.nome)}</a>${f.cobertura ? ` — cobertura: ${esc(f.cobertura)}` : ''}${f.publicado_em ? ` — publicado em ${esc(f.publicado_em)}` : ''} — coletado em ${esc((f.coletado_em || '').split('-').reverse().join('/'))}${f.doc ? ` (<a href="${esc(f.doc)}" target="_blank" rel="noreferrer">documentação</a>)` : ''}.</li>`; }).join('') : '<li>Lista de fontes indisponível no momento.</li>';
     $('#ft-upd').textContent = (S.meta && S.meta.gerado_em) || '—';
     const gaps = [
-      'Antes de 1980 não há série oficial aberta de gastos da União; a série do Tesouro por função e por tipo começa em 1980. Valores em reais de hoje só a partir de 1995 (antes: cinco moedas e hiperinflação).',
+      'Antes de 1980 não há série oficial aberta de gastos do governo federal; a série do Tesouro por área e por tipo começa em 1980. Valores em reais de hoje só a partir de 1995 (antes: cinco moedas e hiperinflação).',
       'A lista de áreas (funções) mudou em 2000; a evolução de cada área começa nesse ano.',
       `O detalhamento por ministério, órgão e ação (SIOP) começa em ${S.res ? resYears()[0] : 2000}. Antes disso não há base aberta e estruturada com esse nível de detalhe.`,
-      'O ano em curso é parcial em todas as bases. No SIOP, "pago" é só o que foi pago do orçamento do próprio ano; pagamentos de anos anteriores (restos a pagar) ficam de fora.',
+      'O ano em curso é parcial em todas as bases. No SIOP, “pago” é só o que saiu do caixa do orçamento daquele ano; contas de anos anteriores (“restos a pagar”) ficam de fora.',
       'População: as estimativas do IBGE de 2001 a 2021 foram feitas antes do Censo 2022, que contou cerca de 10 milhões de pessoas a menos; por isso o valor "por brasileiro" dá um salto entre 2021 e 2022. Anos sem número oficial (1981–1990, 1992–1999, 2007, 2023) são interpolados entre dados oficiais.',
-      'Cota parlamentar: a Câmara começa em 2008 com poucos registros (a CEAP unificada começou em 2009); o Senado, em 2008. Antes disso não há dado aberto nesse formato. Gastos das lideranças partidárias na Câmara não entram no ranking por pessoa.',
+      'Cota do mandato: a Câmara começa em 2008 com poucos registros (a cota unificada CEAP começou em 2009); o Senado, em 2008. Antes disso não há dado aberto nesse formato. Gastos das lideranças partidárias na Câmara não entram no ranking por pessoa.',
       'Senado: o arquivo de despesas não traz partido nem UF; usamos a lista oficial de senadores (legislaturas 53 a 57), com a filiação mais recente.',
     ];
     const cm = (F.cpgf && F.cpgf.meses) || [];

@@ -62,11 +62,11 @@
     $("#leis-list").innerHTML = out.map(function (L) {
       var nv = (L.votacoes || []).length;
       var chips = '<span class="chip tema">' + esc(TEMAS[L.tema] || L.tema) + "</span>" +
-        (nv ? '<span class="chip casa">' + nv + (nv > 1 ? " votações nominais" : " votação nominal") + "</span>" : '<span class="chip">sem voto nominal publicado</span>');
+        (nv ? '<span class="chip casa">' + nv + (nv > 1 ? " listas de votos" : " lista de votos") + "</span>" : '<span class="chip">sem lista de nomes</span>');
       return '<li class="item lei-card"><div class="item-top"><span class="sig">' + esc(L.normaTxt || L.situacao || "") + "</span>" +
         (L.data ? "<span>" + fmtD(L.data) + "</span>" : "") + (L.governo ? "<span>Governo " + esc(L.governo) + "</span>" : (!L.norma ? '<span class="badge warn">Não virou lei</span>' : "")) + "</div>" +
         '<h3><a href="#lei/' + esc(L.id) + '">' + esc(L.nome) + "</a></h3><p>" + esc(L.muda) + '</p><div class="pc-tags">' + chips + "</div></li>";
-    }).join("") || '<li class="state-empty">Nenhuma lei com esses filtros.</li>';
+    }).join("") || '<li class="state-empty">Nenhuma lei com esse filtro. Tente outro tema ou ano.</li>';
   }
 
   // ---------- detalhe ----------
@@ -131,7 +131,7 @@
     var vs = L.votacoes || [];
     h += '<h3 class="h-md">Como votaram</h3>';
     if (!vs.length) {
-      h += '<p class="err">Não há voto nominal (com o nome de cada parlamentar) desta lei nos dados abertos da Câmara e do Senado. Isso é comum antes de 2001 ou quando a votação foi simbólica (sem registro de nomes). Veja a tramitação no link oficial acima.</p>';
+      h += '<p class="err">Não há lista com o nome de quem votou desta lei nos dados abertos da Câmara e do Senado. Isso é comum antes de 2001 ou quando a votação foi “de mão” (simbólica, sem registrar nomes). Veja o andamento no link oficial acima.</p>';
     } else {
       h += '<div class="voto-tools"><div class="field"><label for="uf-lei">Seu deputado ou senador votou? Escolha o estado</label><select id="uf-lei"><option value="">Escolha</option>' + UFS.map(function (u) { return "<option>" + u + "</option>"; }).join("") + '</select></div></div><div id="uf-res"></div>';
       h += '<ul class="items">' + vs.map(function (v, i) {
@@ -166,7 +166,7 @@
       var draw = function () {
         var fv = $(".fv", el).value, fu = $(".fu", el).value, fn = norm($(".fn", el).value);
         var r = rows.filter(function (x) { return (!fv || x[4] === fv || (fv === "X" && x[4] === "P")) && (!fu || x[3] === fu) && (!fn || norm(x[1]).indexOf(fn) >= 0); });
-        $(".voto-list", el).innerHTML = r.map(function (x) { return "<li><span>" + perfil(x[0], x[1]) + " <small>" + esc(x[2]) + '</small></span><small class="uf">' + esc(x[3] || "") + '</small><span class="vote-tag ' + x[4] + '">' + esc(VOTO_CURTO[x[4]] || x[4]) + "</span></li>"; }).join("") || '<li class="state-empty">Ninguém com esses filtros.</li>';
+        $(".voto-list", el).innerHTML = r.map(function (x) { return "<li><span>" + perfil(x[0], x[1]) + " <small>" + esc(x[2]) + '</small></span><small class="uf">' + esc(x[3] || "") + '</small><span class="vote-tag ' + x[4] + '">' + esc(VOTO_CURTO[x[4]] || x[4]) + "</span></li>"; }).join("") || '<li class="state-empty">Ninguém com esse filtro. Tente outro nome ou partido.</li>';
       };
       ["fv", "fu"].forEach(function (k) { $("." + k, el).addEventListener("change", draw); });
       $(".fn", el).addEventListener("input", draw);
@@ -199,7 +199,7 @@
     pbox.innerHTML = '<div class="skeleton"></div>';
     loadPessoas().then(function (j) {
       var r = j.p.filter(function (p) { return (!q || p.q.indexOf(q) >= 0) && (!uf || p[3] === uf); }).slice(0, 40);
-      if (!r.length) { pbox.innerHTML = '<p class="err">Ninguém com esse nome votou nas leis desta página. Lembre que antes de 2001 não há voto nominal nos dados abertos.</p>'; return; }
+      if (!r.length) { pbox.innerHTML = '<p class="err">Ninguém com esse nome aparece nas listas de votos desta página. Lembre: antes de 2001 quase não há nomes publicados nos dados abertos.</p>'; return; }
       if (r.length === 1) return mostraPessoa(r[0]);
       pbox.innerHTML = '<ul class="sug">' + r.map(function (p, i) { var n = p[5].replace(/\./g, "").length; return '<li><button type="button" data-i="' + i + '">' + esc(p[1]) + " <small>" + esc(p[2] || "") + (p[3] ? "-" + esc(p[3]) : "") + " · " + (p[0][0] === "c" ? "deputado(a)" : "senador(a)") + " · " + n + (n > 1 ? " votos" : " voto") + "</small></button></li>"; }).join("") + "</ul>";
       pbox.querySelectorAll("[data-i]").forEach(function (b) { b.addEventListener("click", function () { mostraPessoa(r[+b.getAttribute("data-i")]); }); });
@@ -263,7 +263,7 @@
       else txt = "Em " + what + ", votou " + vv(c.v1) + " no 1º turno (" + fmtD(c.dt1) + ") e " + vv(c.v) + " no 2º turno (" + fmtD(c.dt) + ").";
       return '<li class="item"><div class="item-top"><span class="sig">' + esc(TIPO[c.t]) + "</span><span>" + esc(c.casa === "s" ? "Senado" : "Câmara") + "</span><span>" + fmtD(c.dt) + "</span></div><h3>" + perfil(c.id, c.n) + ' <small class="muted">' + esc(c.p || "") + (c.uf ? "-" + esc(c.uf) : "") + "</small></h3><p>" + txt + "</p>" +
         '<div class="pf-links">' + (c.src ? '<a href="' + esc(c.src) + '" target="_blank" rel="noreferrer">Voto registrado ↗</a>' : "") + (c.url ? '<a href="' + esc(c.url) + '" target="_blank" rel="noreferrer">Proposta e autores ↗</a>' : "") + "</div></li>";
-    }).join("") || '<li class="state-empty">Nenhum caso com esses filtros.</li>';
+    }).join("") || '<li class="state-empty">Nenhum caso com esse filtro. Tente outro tipo ou nome.</li>';
     $("#coer-more").hidden = rows.length <= shown;
   }
 })();

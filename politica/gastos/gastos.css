@@ -209,4 +209,15 @@ html.g-modal-open, html.g-modal-open body { overflow: hidden; }
 .g-heading p a { color: var(--accent); border-bottom: 1px solid currentColor; font-weight: 700; }
 
 /* UX: hint always visible above cartão filters */
-#cartao-howto { margin: 0 0 14px; }
+
+/* Guia didático (cartão e afins) */
+.g-howto { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 10px; margin: 0 0 18px; padding: 0; }
+.g-howto li { padding: 14px 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); min-width: 0; }
+.g-howto b { display: block; font-size: 0.95rem; }
+.g-howto span { display: block; margin-top: 4px; color: var(--muted); font-size: 0.86rem; line-height: 1.5; }
+.g-howto a { color: var(--accent); }
+@media (max-width: 560px) {
+  .g-howto { gap: 0; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .g-howto li { border: 0; border-radius: 0; }
+  .g-howto li + li { border-top: 1px solid var(--line); }
+}
