@@ -20,7 +20,8 @@
   "paginas": 23,
   "arquivo": "2010BR280000000005.pdf",
   "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2010/14417/BR/280000000005",
-  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2010_BR.zip"
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2010_BR.zip",
+  "fonte": "tse"
  },
  "revisado": "2026-10-08",
  "aviso_texto": "O PDF entregue ao TSE é digitalizado; corrigimos só erros evidentes de leitura (ex.: “Famnia” → “Família”).",

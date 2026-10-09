@@ -20,9 +20,10 @@
   "paginas": 81,
   "arquivo": "2018BR280000614517.pdf",
   "divulga": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2018/2022802018/BR/280000614517",
-  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2018_BR.zip"
+  "zip": "https://cdn.tse.jus.br/estatistica/sead/odsele/proposta_governo/proposta_governo_2018_BR.zip",
+  "fonte": "tse"
  },
- "revisado": "2026-10-08",
+ "revisado": "2026-10-09",
  "resumo": [
   {
    "t": "Segurança: prender mais, maioridade penal aos 16 e mudar o Estatuto do Desarmamento.",
@@ -381,6 +382,58 @@
     }
    ],
    "revisado": "2026-10-08"
+  },
+  {
+   "id": "b18-20",
+   "tema": "Contas públicas",
+   "promessa": "Reduzir em 20% a dívida com privatizações e venda de ativos",
+   "trecho": "Estimamos reduzir em 20% o volume da dívida por meio de privatizações, concessões, venda de propriedades imobiliárias da União e devolução de recursos em instituições financeiras oficiais",
+   "pagina": 55,
+   "status": "nao_cumprida",
+   "explicacao": "A dívida bruta do governo geral não caiu cerca de 20% no mandato; privatizações e concessões ocorreram, mas sem essa redução da dívida.",
+   "evidencias": [
+    {
+     "titulo": "BCB — Dívida Líquida e Bruta do Governo Geral (séries SGS)",
+     "url": "https://www.bcb.gov.br/estatisticas/principaisindicadores"
+    },
+    {
+     "titulo": "Tesouro Nacional — Relatório Anual da Dívida",
+     "url": "https://www.tesourotransparente.gov.br/publicacoes/relatorio-anual-da-divida-rad"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "b18-21",
+   "tema": "Saúde",
+   "promessa": "Implantar o Prontuário Eletrônico Nacional Interligado",
+   "trecho": "O Prontuário Eletrônico Nacional Interligado será o pilar de uma saúde na base informatizada e perto de casa. Os postos, ambulatórios e hospitais devem ser informatizados com todos os dados do atendimento",
+   "pagina": 38,
+   "status": "parcialmente",
+   "explicacao": "Houve avanços no prontuário eletrônico e na Rede Nacional de Dados em Saúde, mas não um prontuário nacional único plenamente implantado até 2022.",
+   "evidencias": [
+    {
+     "titulo": "Ministério da Saúde — Rede Nacional de Dados em Saúde / Conecte SUS",
+     "url": "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/c/conecte-sus"
+    }
+   ],
+   "revisado": "2026-10-09"
+  },
+  {
+   "id": "b18-22",
+   "tema": "Impostos",
+   "promessa": "Criar mecanismos de imposto de renda negativo / renda mínima",
+   "trecho": "introdução de mecanismos capazes de criar um sistema de imposto de renda negativo na direção de uma renda mínima universal",
+   "pagina": 57,
+   "status": "nao_cumprida",
+   "explicacao": "Não foi criado um imposto de renda negativo. O Auxílio Brasil ampliou a transferência de renda, mas sem o mecanismo tributário prometido.",
+   "evidencias": [
+    {
+     "titulo": "Lei 14.284/2021 (Auxílio Brasil)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14284.htm"
+    }
+   ],
+   "revisado": "2026-10-09"
   }
  ]
 }
