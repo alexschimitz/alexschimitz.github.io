@@ -47,15 +47,20 @@
     });
   }
 
-  // Menus escritos à mão em cada página: acrescenta "Leis" e "Sigilos" depois de "Propostas" se faltarem
-  if (nav && (!nav.querySelector('a[data-page="leis"]') || !nav.querySelector('a[data-page="escandalos"]'))) {
+  // Menus escritos à mão: acrescenta só o que faltar (Leis / Sigilos / Escândalos), sem duplicar
+  if (nav) {
     var prop = nav.querySelector('a[data-page="propostas"]');
     if (prop) {
-      [["escandalos", "Escândalos"], ["sigilos", "Sigilos"], ["leis", "Leis"]].forEach(function (p) {
+      [["leis", "Leis"], ["sigilos", "Sigilos"], ["escandalos", "Escândalos"]].forEach(function (p) {
+        if (nav.querySelector('a[data-page="' + p[0] + '"]')) return;
         var a = document.createElement("a");
         a.href = ROOT + p[0] + "/"; a.setAttribute("data-page", p[0]); a.textContent = p[1];
         a.addEventListener("click", function () { var t = document.querySelector(".menu-toggle"); if (t && t.getAttribute("aria-expanded") === "true") t.click(); });
-        prop.insertAdjacentElement("afterend", a);
+        var after = nav.querySelector('a[data-page="escandalos"]') ||
+                    nav.querySelector('a[data-page="sigilos"]') ||
+                    nav.querySelector('a[data-page="leis"]') ||
+                    prop;
+        after.insertAdjacentElement("afterend", a);
       });
     }
   }
