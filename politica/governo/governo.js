@@ -104,7 +104,8 @@
         '<div class="kpis gov-ele-kpis"><div class="kpi"><b>' + nf(t.eleitorado) + '</b><span>eleitores</span></div><div class="kpi"><b>' + esc(t.comparecimentoPct) + '%</b><span>foram votar (' + nf(t.comparecimento) + ')</span></div><div class="kpi"><b>' + esc(t.abstencaoPct) + '%</b><span>não foram (abstenção)</span></div><div class="kpi"><b>' + esc(t.votos.brancosPct) + "% / " + esc(t.votos.nulosPct) + '%</b><span>brancos / nulos</span></div></div>' +
         '<p class="note-sm">Fonte: ' + ext(t.url, "arquivo oficial de resultados do TSE") + ".</p></div>";
     };
-    if (t2) h += turnoHTML(t2, "2º turno — " + dBR(e.datas.turno2));
+    var t2ok = t2 && t2.secoes && Number(t2.secoes.totalizadas) > 0;
+    if (t2ok) h += turnoHTML(t2, "2º turno — " + dBR(e.datas.turno2));
     else h += '<div class="note gov-ele-prox"><b>2º turno em ' + dExt(e.datas.turno2) + ".</b> " +
       (t1 ? esc(t1.candidatos.filter(function (c) { return /2º turno/i.test(c.situacao); }).map(function (c) { return titulo(c.nome) + " (" + c.partido + ")"; }).join(" e ")) + " disputam o segundo turno, porque nenhum candidato teve mais da metade dos votos válidos no 1º turno. " : "") +
       "Quem vencer toma posse em " + dExt(e.datas.posse) + ". Esta página mostra o resultado oficial do TSE assim que ele for divulgado.</div>";

@@ -24,9 +24,11 @@ async function turno(cd) {
     candidatos: cands, url,
   };
 }
+const temApuracao = (t) => !!(t && ((t.secoes && t.secoes.totalizadas > 0) || (t.votos && t.votos.validos > 0)));
 const old = await readJSON(join(GOV, 'eleicoes2026.json'), {});
 const t1 = await turno(6257) || old.t1 || null;
-const t2 = await turno(6258) || old.t2 || null;
+const raw2 = await turno(6258);
+const t2 = temApuracao(raw2) ? raw2 : (temApuracao(old.t2) ? old.t2 : null);
 const out = {
   _sobre: 'Eleição presidencial de 2026 — números oficiais de divulgação do TSE, sem alteração. Percentuais = votos válidos (como o TSE publica).',
   fonte: { nome: 'TSE — Resultados (divulgação oficial)', url: 'https://resultados.tse.jus.br/' },
