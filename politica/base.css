@@ -611,3 +611,11 @@ html[data-theme="light"] .map-frame .state, html[data-theme="light"] .map-frame 
 .vt-busca { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0; }
 .vt-busca input, .vt-busca select { min-height: 44px; padding: 6px 10px; font: inherit; color: var(--text); background: var(--panel); border: 1px solid var(--line-strong); border-radius: 10px; }
 #pfp .vote-item .item-top, #pfp .vote-item .note-sm, .vt-count, #vt-app .note-sm, #vt-app .item-top { color: var(--muted) !important; }
+
+/* Menu: a marca nunca encolhe/quebra; o que não cabe vai para "Mais" (base.js) */
+@media (min-width: 761px) {
+  .pol-nav-on .brand { flex: 0 0 auto; white-space: nowrap; }
+  .pol-nav-on .main-nav { flex: 0 1 auto; min-width: 0; }
+  .pol-nav-on .main-nav > * { flex: 0 0 auto; }
+  .nav-mais-lista a.nav-extra { font-size: 0.86rem; }
+}
