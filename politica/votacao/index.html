@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0d0c">
+  <meta name="description" content="Como cada deputado e senador votou numa votação nominal do Plenário: placar, votos por partido e por estado, com link para os dados oficiais.">
+  <title>Votação nominal — Política em dados abertos</title>
+  <script>try{var t=localStorage.getItem('as-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="../glossario.css">
+</head>
+<body class="politica">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../" aria-label="AS Alexsander Schimitz — página inicial">
+        <span class="brand-mark">AS</span>
+        <span class="brand-name">Alexsander Schimitz</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+        <span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Seções do portal de política">
+        <a href="/politica/">Início</a>
+        <a href="/politica/politicos/">Políticos</a>
+        <a href="/politica/gastos/">Gastos</a>
+        <a href="/politica/leis/">Votações e leis</a>
+        <a href="/politica/glossario/">Dicionário</a>
+        <a href="/politica/fontes/">Fontes</a>
+        <a class="nav-cta" href="/">← Site</a>
+      </nav>
+    </div>
+  </header>
+  <main id="conteudo">
+    <section class="pol-hero container">
+      <nav class="pol-crumbs" aria-label="Você está em"><a href="/politica/">Política</a> <span aria-hidden="true">›</span> <a href="/politica/votacao/">Votações nominais</a> <span aria-hidden="true">›</span> <span aria-current="page" id="vt-crumb">Lista</span></nav>
+      <div class="eyebrow"><span class="status-dot"></span> Votações nominais · Plenário · fontes oficiais</div>
+      <h1 id="vt-h1">Como cada parlamentar <span>votou.</span></h1>
+      <p class="hero-lead" id="vt-lead">Votações do Plenário da Câmara e do Senado em que o voto de cada parlamentar fica registrado com o nome.</p>
+    </section>
+    <section class="section pol-section" aria-labelledby="vt-h2">
+      <div class="container" id="vt-app" data-glossario-auto>
+        <h2 id="vt-h2" class="sr-only">Detalhes</h2>
+        <p id="vt-status" role="status" aria-live="polite" class="vt-count">Carregando…</p>
+        <div id="vt-body"><div class="skeleton" style="width:90%"></div><div class="skeleton" style="width:70%"></div></div>
+        <noscript><p>Esta página precisa de JavaScript. Os dados brutos estão em <a href="/politica/data/votos/idx.json">idx.json</a>.</p></noscript>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container pol-footer">
+      <div><p>Página independente e apartidária. As explicações são simplificadas; o texto oficial indicado em cada item é a referência.</p></div>
+      <div class="pol-footer-links">
+        <p>© <span id="year"></span> Alexsander Schimitz.</p>
+        <a href="/politica/">Início da política</a>
+        <a href="/politica/glossario/">Dicionário de termos</a>
+        <a href="/politica/fontes/">Fontes e metodologia</a>
+        <a href="#top">Voltar ao topo ↑</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../../scripts/home.js"></script>
+  <script src="../glossario.js"></script>
+  <script src="../base.js"></script>
+  <script src="../votos-lib.js"></script>
+  <script src="votacao.js"></script>
+</body>
+</html>

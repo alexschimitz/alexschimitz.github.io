@@ -532,7 +532,7 @@
   dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
   dlg.addEventListener('close', () => {
     hideTip(); currentKey = '';
-    if (location.hash.startsWith('#perfil/')) history.replaceState(history.state, '', location.pathname + location.search);
+    if (location.hash.startsWith('#perfil/')) { const u = new URL(location.href); ['vperiodo', 'vtipo', 'vtema'].forEach((k) => u.searchParams.delete(k)); history.replaceState(history.state, '', u.pathname + u.search); }
     lastFocus?.focus?.();
   });
   const skel = (n = 3) => Array.from({ length: n }, (_, i) => `<div class="skeleton" style="width:${90 - i * 15}%"></div>`).join('');
@@ -540,7 +540,7 @@
   const age = (iso) => { const m = String(iso || '').match(/^(\d{4})-(\d{2})-(\d{2})/); if (!m) return ''; const now = new Date(); let a = now.getFullYear() - +m[1]; if (now.getMonth() + 1 < +m[2] || (now.getMonth() + 1 === +m[2] && now.getDate() < +m[3])) a--; return `${fmtLocal(iso)} (${a} anos)`; };
   const failBox = (msg, link) => `<p class="err">${esc(msg)}${link ? ` <a href="${esc(link)}" target="_blank" rel="noreferrer">Ver na página oficial ↗</a>` : ''}</p>`;
   const loadParl = (c, id) => once(`parl-${c}-${id}`, () => data(`parl/${c}/${id}`));
-  const PF_TABS = [['resumo', 'Resumo'], ['gastos', 'Gastos'], ['projetos', 'Projetos'], ['votos', 'Votos']];
+  const PF_TABS = [['resumo', 'Resumo'], ['gastos', 'Gastos'], ['projetos', 'Projetos apresentados'], ['votos', 'Como votou']];
 
   function openProfile(c, id, opener, tab = 'resumo') {
     const p = state.byKey.get(`${c}/${id}`); if (!p) return;
@@ -689,46 +689,92 @@
       <p class="note">${casa === 'c' ? 'A API da Câmara lista propostas em que o(a) deputado(a) é autor(a) ou coautor(a), sem indicar quem é o autor principal; na autoria, o primeiro nome é o de quem assinou primeiro.' : '“1º autor(a)” indica que o nome aparece primeiro na autoria registrada pelo Senado.'} Requerimentos, indicações e outros tipos não entram na contagem. ${oficial ? `<a href="${esc(oficial)}" target="_blank" rel="noreferrer">Lista completa na página oficial ↗</a>` : ''}</p>`;
   }
 
-  // Votos
+  // Como votou (votações nominais do Plenário, dados em data/votos/)
+  const PV = window.PolVotos;
+  const VT_PARAMS = ['vperiodo', 'vtipo', 'vtema'];
+  const loadVIdx = () => once('vidx', () => data('votos/idx'));
+  const votoLink = (k) => `/politica/votacao/?id=${encodeURIComponent(k.replace(':', '-'))}`;
+  const fonteVotacao = (v) => {
+    const [c, id] = v.k.split(':');
+    if (c === 'c') return { url: `${CAMARA_API}/votacoes/${id}/votos`, rot: 'Dados oficiais da Câmara (JSON)', ficha: v.p ? propLinkCamara(v.p.id) : '' };
+    const d = String(v.dt).slice(0, 10); return { url: `${SENADO_API}/votacao?dataInicio=${d}&dataFim=${d}`, rot: 'Dados oficiais do Senado (votações do dia, JSON)', ficha: v.p ? materiaLinkSenado(v.p.id) : '' };
+  };
+  const catTag = (cat) => `<span class="vote-tag vc-${cat}">${esc(PV.rotulo(cat))}</span>`;
+  function vtFiltros() { const u = new URL(location.href); return { periodo: u.searchParams.get('vperiodo') || '', tipo: u.searchParams.get('vtipo') || '', tema: u.searchParams.get('vtema') || '' }; }
+  function vtSalvar(f) {
+    const u = new URL(location.href);
+    VT_PARAMS.forEach((k) => u.searchParams.delete(k));
+    if (f.periodo) u.searchParams.set('vperiodo', f.periodo); if (f.tipo) u.searchParams.set('vtipo', f.tipo); if (f.tema) u.searchParams.set('vtema', f.tema);
+    history.replaceState(history.state, '', u.pathname + u.search + u.hash);
+  }
   async function pfVotos(p, box, ok) {
-    const [V, VT] = await Promise.all([once('votacoes', () => data('votacoes')), once('votos', () => data('votos')), loadResumos().then((r) => { state.resumos = r; })]);
+    const [I, mine] = await Promise.all([
+      loadVIdx(),
+      data(`votos/${p.c}/${p.id}`).catch((e) => { if (/HTTP 404/.test(e.message)) return []; throw e; }),
+      loadResumos().then((r) => { state.resumos = r; }),
+    ]);
     if (!ok()) return;
-    const pa = participacao(p, V, VT);
-    const legSen = V.senado?.legenda || {};
-    const labelSen = (k) => S.VOTO_SENADO[k]?.[0] === 'v' ? S.VOTO_SENADO[k][1] : (legSen[k] || S.VOTO_SENADO[k]?.[1] || k);
-    if (!pa.total) { box.innerHTML = failBox('Sem votações nominais no período.'); return; }
-    const datas = pa.list.map((v) => String(v.dt).slice(0, 10)).sort();
-    const periodo = `de ${fmtLocal(datas[0], false)} a ${fmtLocal(datas[datas.length - 1], false)}`;
-    let resumo; let rows;
-    if (p.c === 'c') {
-      const c = pa.c;
-      const partes = [['S', 'Sim'], ['N', 'Não'], ['A', 'Abstenção'], ['O', 'Obstrução'], ['V', 'voto secreto'], ['P', 'presidindo a sessão']].filter(([k]) => c[k]).map(([k, l]) => `${c[k]} ${l}`);
-      resumo = `<p class="lead-simples">Nas ${pa.total} votações nominais mais recentes do Plenário da Câmara (${periodo}), ${esc(p.n)} registrou voto em <b>${pa.votou}</b>${pa.total ? ` (${pct((pa.votou / pa.total) * 100)})` : ''}.${partes.length ? ` Foram ${partes.join(', ')}.` : ''} Em ${c.x} não há voto registrado.</p>
-        <p class="note-sm">Isto não é a lista oficial de presença: “sem voto registrado” pode ser ausência, licença, missão oficial ou simplesmente não ter votado naquela rodada — a API de votos não informa o motivo.</p>`;
-      rows = pa.list.map((v, i) => ({ v, voto: pa.mine[i] }));
-    } else {
-      const g = pa.g; const det = Object.entries(pa.det).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${n} ${labelSen(k)}`).join(', ');
-      resumo = `<p class="lead-simples">Nas ${pa.total} votações nominais mais recentes do Plenário do Senado (${periodo}), ${esc(p.n)} registrou voto em <b>${g.v}</b> (${pct((g.v / pa.total) * 100)}).${det ? ` Registros: ${esc(det)}.` : ''}${g.sem ? ` Em ${g.sem} não há registro (por exemplo, quando ainda não estava no exercício do mandato).` : ''}</p>
-        <p class="note-sm">O Senado informa o motivo de quem não votou (licença, missão, atividade parlamentar etc.). Isto não substitui o registro oficial de presença nas sessões.</p>`;
-      rows = pa.list.map((v, i) => ({ v, voto: pa.mine[i] }));
+    const map = new Map(I.v.map((v) => [v.k, v]));
+    const linhas = mine.map(([id, cod]) => ({ v: map.get(`${p.c}:${id}`), cod, cat: PV.classificar(p.c, cod) })).filter((l) => l.v);
+    const cob = I.cobertura?.[p.c] || {};
+    const casaTxt = p.c === 'c' ? 'Câmara' : 'Senado';
+    const cobTxt = `Cobertura: votações nominais do Plenário ${p.c === 'c' ? 'da Câmara' : 'do Senado'} de ${esc(fmtLocal(cob.primeira, false))} a ${esc(fmtLocal(cob.ultima, false))} (${nf.format(cob.nominais || 0)} votações, desde ${esc(fmtLocal(cob.desde, false))}). Votações simbólicas, sem registro individual, não entram.`;
+    const termos = `<div class="terms">${terms(['nominal', 'abstencao', 'obstrucao', 'secreta'])}</div>`;
+    if (!linhas.length) {
+      box.innerHTML = `<h3 class="h-sm">Como votou</h3><p class="empty-state">Não há voto registrado de ${esc(p.n)} nas votações nominais coletadas. Isso pode acontecer, por exemplo, se o mandato começou depois do período coberto.</p><p class="note-sm">${cobTxt}</p>${termos}`;
+      return;
     }
-    const voteTag = (voto) => {
-      if (p.c === 'c') { const l = voto ? (VOTO_LABEL[voto] || voto) : 'Sem voto registrado'; return `<span class="vote-tag ${voto || 'X'}">${esc(l)}</span>`; }
-      const cls = voto === 'Sim' ? 'S' : voto === 'Não' ? 'N' : voto === 'Abstenção' ? 'A' : 'X';
-      return `<span class="vote-tag ${cls}">${esc(voto ? labelSen(voto) : 'Sem registro')}</span>`;
+    const cont = PV.contar(linhas);
+    const partic = linhas.filter((l) => PV.participou(l.cat)).length;
+    const resumo = PV.ORDEM.filter((k) => cont[k]).map((k) => `<li>${catTag(k)} <b>${nf.format(cont[k])}</b></li>`).join('');
+    const anos = [...new Set(linhas.map((l) => String(l.v.dt).slice(0, 4)))].sort().reverse();
+    const temas = [...new Set(linhas.flatMap((l) => l.v.t || []))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+    const f = vtFiltros();
+    const opt = (val, txt, sel) => `<option value="${esc(val)}"${sel === val ? ' selected' : ''}>${esc(txt)}</option>`;
+    box.innerHTML = `<h3 class="h-sm">Como votou</h3>
+      <p class="lead-simples">${esc(p.n)} tem registro em <b>${nf.format(linhas.length)}</b> votações nominais do Plenário ${p.c === 'c' ? 'da Câmara' : 'do Senado'} coletadas; participou (votou sim, não, abstenção, obstrução ou voto secreto) de <b>${nf.format(partic)}</b>.${p.c === 'c' ? ` No período houve ${nf.format(cob.nominais || 0)} votações nominais; a Câmara só lista quem registrou voto, então nas demais não dá para saber o motivo (ausência, licença ou ainda não estar no mandato).` : ''}</p>
+      <ul class="vt-resumo" aria-label="Contagem por tipo de registro">${resumo}</ul>
+      <details class="vt-expl"><summary>O que significa cada registro?</summary><ul>
+        <li><b><span data-termo="voto-sim-nao">Sim / Não</span></b>: a favor ou contra <i>o que estava em votação naquele momento</i> (pode ser um requerimento ou destaque, não o projeto inteiro).</li>
+        <li><b><span data-termo="abstencao">Abstenção</span></b>: participou, mas sem tomar lado. Conta para o quórum.</li>
+        <li><b><span data-termo="obstrucao">Obstrução</span></b>: posição de bancada para atrasar ou impedir a votação. Não é ausência nem abstenção.</li>
+        <li><b><span data-termo="votacao-secreta">Votou (voto secreto)</span></b>: participou, mas o voto não é revelado.</li>
+        <li><b><span data-termo="presente-sem-voto">Presidindo a sessão / Presente sem voto</span></b>: estava na sessão, mas não votou (quem preside normalmente não vota).</li>
+        <li><b><span data-termo="ausencia-votacao">Ausência justificada / Não compareceu</span></b>: não participou; o Senado informa se foi licença, missão oficial, atividade parlamentar ou não comparecimento.</li>
+      </ul><p class="note-sm">Esses registros não são equivalentes e não são somados como se fossem a mesma coisa.</p></details>
+      <form class="vt-filtros" role="search" aria-label="Filtrar votos">
+        <label>Período <select name="periodo">${opt('', 'Todo o período', f.periodo)}${opt('30d', 'Últimos 30 dias', f.periodo)}${opt('90d', 'Últimos 90 dias', f.periodo)}${opt('365d', 'Últimos 12 meses', f.periodo)}${anos.map((a) => opt(a, a, f.periodo)).join('')}</select></label>
+        <label>Registro <select name="tipo">${opt('', 'Todos', f.tipo)}${opt('participou', 'Participou da votação', f.tipo)}${opt('nao-participou', 'Não participou', f.tipo)}${PV.ORDEM.filter((k) => cont[k]).map((k) => opt(k, PV.rotulo(k), f.tipo)).join('')}</select></label>
+        <label>Tema <select name="tema">${opt('', 'Todos os temas', f.tema)}${temas.map((t) => opt(t, t, f.tema)).join('')}</select></label>
+        <button type="reset" class="button button-ghost">Limpar</button>
+      </form>
+      <p class="vt-count" role="status" aria-live="polite"></p>
+      <div class="vt-list"></div>
+      <p class="note-sm">${cobTxt} Atualizado em ${esc(fmtZoned(I.atualizadoEm))}. Fonte: ${p.c === 'c' ? 'API de Dados Abertos da Câmara (/votacoes e /votacoes/{id}/votos)' : 'Dados Abertos do Senado (/votacao)'}. <a href="/politica/fontes/#votos">Como os dados são coletados</a></p>${termos}`;
+    const hoje = new Date().toLocaleDateString('sv-SE', { timeZone: TZ });
+    const item = (l) => {
+      const v = l.v; const fo = fonteVotacao(v);
+      const rs = v.p ? state.resumos?.[`${p.c}:${v.p.id}`] : null;
+      const res = v.r === 'A' ? '<span class="badge ok">Aprovada</span>' : v.r === 'R' ? '<span class="badge no">Rejeitada</span>' : '';
+      return `<li class="item vote-item"><div class="item-top"><time datetime="${esc(String(v.dt).slice(0, 10))}">${esc(fmtLocal(v.dt, false))}</time>${v.p ? `<span class="sig">${esc(v.p.s)}</span>` : ''}${res}</div>
+        <div class="vote-mine"><span>Voto de ${esc(p.n)}:</span>${catTag(l.cat)}</div>
+        ${rs?.ps ? `<p><b>Em linguagem simples:</b> ${esc(rs.ps)}</p>` : v.p?.e ? `<p><b>Assunto (ementa oficial):</b> ${esc(v.p.e)}</p>` : ''}
+        <p class="note-sm"><b>O que foi votado:</b> ${esc(v.d)}</p>
+        ${v.t?.length ? `<p class="note-sm"><b>Tema:</b> ${esc(v.t.join(' · '))}</p>` : ''}
+        <p class="vt-links"><a href="${esc(votoLink(v.k))}">Ver todos os votos</a> <a class="ext" href="${esc(fo.url)}" target="_blank" rel="noreferrer">${fo.rot} ↗</a>${fo.ficha ? ` <a class="ext" href="${esc(fo.ficha)}" target="_blank" rel="noreferrer">${p.c === 'c' ? 'Ficha da proposta' : 'Matéria no Senado'} ↗</a>` : ''}</p></li>`;
     };
-    const li = ({ v, voto }) => {
-      const vs = p.c === 'c' ? votoSimplesCamara(v) : votoSimplesSenado(v);
-      const sig = p.c === 'c' ? v.pr?.s : v.s; const ementa = p.c === 'c' ? v.pr?.e : v.e;
-      const res = p.c === 'c' ? resultBadge(v.ap, v.d) : (v.r === 'A' ? '<span class="badge ok">Aprovada</span>' : v.r === 'R' ? '<span class="badge no">Rejeitada</span>' : '');
-      const card = p.c === 'c' ? (v.pr ? `<p class="pc-k">Sobre a proposta votada</p>${propCard({ casa: 'c', id: v.pr.id, sig, x: v.pr.x, ementa, st: v.pr.st, tr: v.pr.tr, votado: true })}` : '')
-        : (v.cm || ementa ? `<p class="pc-k">Sobre a proposta votada</p>${propCard({ casa: 's', id: v.cm, sig, x: v.x, ementa, st: v.st, votado: true })}` : '');
-      return `<li class="item vote-item"><div class="item-top"><time>${esc(fmtLocal(v.dt, false))}</time>${sig ? `<span class="sig">${esc(sig)}</span>` : ''}${res}</div>
-        <div class="vote-mine"><span>Voto de ${esc(p.n)}:</span>${voteTag(voto)}</div>
-        ${simplesBox({ linhas: vs.linhas, card, termos: vs.termos })}
-        <p class="note-sm"><b>Descrição oficial da votação:</b> ${esc(p.c === 'c' ? descLimpa(v.d) : v.d)}</p></li>`;
+    const form = box.querySelector('.vt-filtros');
+    const render = () => {
+      const g = { periodo: form.periodo.value, tipo: form.tipo.value, tema: form.tema.value };
+      vtSalvar(g);
+      const l = PV.filtrar(linhas, g, hoje);
+      box.querySelector('.vt-count').textContent = `${nf.format(l.length)} de ${nf.format(linhas.length)} votações`;
+      box.querySelector('.vt-list').innerHTML = l.length ? listHTML(l, item, '', 10) : '<p class="empty-state">Nenhuma votação com esses filtros. Experimente ampliar o período ou limpar os filtros.</p>';
     };
-    box.innerHTML = `${resumo}<div class="terms">${terms(['nominal', 'abstencao', 'obstrucao', 'secreta'])}</div>${listHTML(rows, li, '', 6)}`;
+    form.addEventListener('change', render);
+    form.addEventListener('submit', (e) => e.preventDefault());
+    form.addEventListener('reset', () => setTimeout(render));
+    render();
   }
 
   function routeHash() {

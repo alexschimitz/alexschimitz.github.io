@@ -94,11 +94,11 @@
             <button type="submit" class="button button-primary">Pesquisar</button>
           </div>
           <div class="busca-filtros">
-            <label>Mostrar <select id="busca-tipo" name="tipo"><option value="">Tudo</option><option value="politico">Parlamentares em exercício</option><option value="pagina">Páginas e assuntos</option><option value="termo">Termos do dicionário</option></select></label>
+            <label>Mostrar <select id="busca-tipo" name="tipo"><option value="">Tudo</option><option value="politico">Parlamentares em exercício</option><option value="pagina">Páginas e assuntos</option><option value="termo">Termos do dicionário</option><option value="votacao">Votações nominais</option></select></label>
             <label>Estado <select id="busca-uf" name="uf"><option value="">Todos</option></select></label>
             <label>Partido <select id="busca-partido" name="partido"><option value="">Todos</option></select></label>
           </div>
-          <p id="busca-dica" class="muted busca-dica">A busca ignora acentos e maiúsculas. Deputados e senadores em exercício, páginas do portal e termos do dicionário; para políticos de outros cargos e anos, use o link “Histórico” nos resultados.</p>
+          <p id="busca-dica" class="muted busca-dica">A busca ignora acentos e maiúsculas. Deputados e senadores em exercício, páginas do portal, termos do dicionário e votações nominais do Plenário; para políticos de outros cargos e anos, use o link “Histórico” nos resultados.</p>
         </form>
         <p id="busca-status" class="busca-status" role="status" aria-live="polite" tabindex="-1"><noscript>A busca precisa de JavaScript. Use os atalhos abaixo ou o menu.</noscript></p>
         <ul id="busca-res" class="busca-res" aria-label="Resultados da pesquisa"></ul>
@@ -431,7 +431,7 @@
   <dialog class="profile" id="profile" aria-labelledby="pf-name">
     <div class="profile-inner">
       <button class="profile-close" type="button" id="pf-close" aria-label="Fechar perfil">✕</button>
-      <div id="pf-body"></div>
+      <div id="pf-body" data-glossario-auto></div>
     </div>
   </dialog>
 
@@ -468,6 +468,7 @@
   <script src="base.js"></script>
   <script src="gabinete.js"></script>
   <script src="simples.js"></script>
+  <script src="votos-lib.js"></script>
   <script src="politica.js"></script>
   <script src="busca.js"></script>
 </body>

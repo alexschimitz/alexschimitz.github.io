@@ -575,3 +575,39 @@ html[data-theme="light"] .map-frame .state, html[data-theme="light"] .map-frame 
   .pol-nav-on .main-nav { gap: 8px; }
   .pol-nav-on .main-nav .nav-cta { display: none; } /* a marca "AS" já leva ao site */
 }
+
+/* ---- Como votou / página da votação (fase 4) ---- */
+.vote-tag[class*="vc-"] { white-space: normal; display: inline-block; }
+.vote-tag.vc-sim { color: var(--good); border-color: currentColor; }
+.vote-tag.vc-nao { color: var(--bad); border-color: currentColor; }
+.vote-tag.vc-abstencao { color: var(--warn); border-color: currentColor; }
+.vote-tag.vc-obstrucao { color: var(--text); border-color: currentColor; border-width: 2px; }
+.vote-tag.vc-secreto { color: var(--text); border-style: dotted; }
+.vote-tag.vc-presidindo, .vote-tag.vc-presente, .vote-tag.vc-ausente_just, .vote-tag.vc-ausente, .vote-tag.vc-sem_registro, .vote-tag.vc-outro { border-style: dashed; }
+.vt-resumo { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 14px; margin: 12px 0; padding: 0; }
+.vt-resumo li { display: flex; align-items: center; gap: 6px; }
+.vt-expl { margin: 12px 0; padding: 10px 14px; border: 1px solid var(--line); border-radius: 12px; }
+.vt-expl summary { cursor: pointer; font-weight: 700; min-height: 32px; }
+.vt-expl ul { margin: 8px 0 0 18px; display: grid; gap: 6px; }
+.vt-filtros { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) auto; gap: 10px; align-items: end; margin: 14px 0 6px; }
+.vt-filtros label { display: grid; gap: 4px; font-weight: 700; font-size: 0.85rem; }
+.vt-filtros select { min-height: 44px; padding: 6px 10px; font: inherit; color: var(--text); background: var(--panel); border: 1px solid var(--line-strong); border-radius: 10px; max-width: 100%; }
+.vt-filtros .button { min-height: 44px; }
+@media (max-width: 700px) { .vt-filtros { grid-template-columns: 1fr; } }
+.vt-count { color: var(--muted); margin: 6px 0; }
+.vt-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 8px; }
+.vt-links a { min-height: 24px; display: inline-flex; align-items: center; }
+.empty-state { padding: 14px 16px; border: 1px dashed var(--line-strong); border-radius: 12px; color: var(--muted); }
+.vt-tabela-wrap { overflow-x: auto; margin: 10px 0 18px; }
+.vt-tabela { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+.vt-tabela th, .vt-tabela td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
+.vt-tabela th:first-child, .vt-tabela td:first-child { text-align: left; }
+.vt-tabela caption { text-align: left; color: var(--muted); padding-bottom: 6px; }
+.vt-nomes { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 6px 14px; }
+.vt-nomes li { display: flex; justify-content: space-between; gap: 8px; border-bottom: 1px solid var(--line); padding: 4px 0; }
+.vt-placar { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
+.vt-placar li { padding: 10px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); }
+.vt-placar b { display: block; font-size: 1.4rem; }
+.vt-busca { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0; }
+.vt-busca input, .vt-busca select { min-height: 44px; padding: 6px 10px; font: inherit; color: var(--text); background: var(--panel); border: 1px solid var(--line-strong); border-radius: 10px; }
+#pfp .vote-item .item-top, #pfp .vote-item .note-sm, .vt-count, #vt-app .note-sm, #vt-app .item-top { color: var(--muted) !important; }

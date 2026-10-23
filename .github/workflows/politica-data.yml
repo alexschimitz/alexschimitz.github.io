@@ -16,7 +16,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 50
     steps:
       - uses: actions/checkout@v4
 
@@ -37,6 +37,12 @@ jobs:
           ENRICH_BUDGET_MS: '360000'
         run: node scripts/politica/enrich.mjs
 
+      - name: Votos nominais por parlamentar (Câmara e Senado, desde 01/02/2025)
+        # Incremental: reconsulta só os últimos ~10 dias; caches em politica/data/cache/votos-*.json
+        continue-on-error: true
+        timeout-minutes: 12
+        run: node scripts/politica/votos/build.mjs
+
       - name: Commit dos dados (se houver mudança)
         run: |
           git config user.name "github-actions[bot]"
@@ -50,8 +56,11 @@ jobs:
             exit 0
           fi
           git commit -m "politica: atualiza dados abertos ($(TZ=America/Sao_Paulo date '+%Y-%m-%d %H:%M') BRT)"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && break
+            echo "Push falhou (tentativa $i); tentando de novo em 15s"; sleep 15
+            [ "$i" = 4 ] && exit 1
+          done
           echo "CHANGED=true" >> "$GITHUB_ENV"
 
       - name: Solicitar build do GitHub Pages (legacy)
