@@ -13,6 +13,7 @@
     "eleicoes": true,
     "escandalos": true,
     "glossario": true,
-    "fontes": true
+    "fontes": true,
+    "checagens": true
   }
 }

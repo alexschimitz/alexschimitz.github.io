@@ -26,6 +26,7 @@
     { href: ROOT + "economia/", label: "Economia", page: "economia" },
     { href: ROOT + "mapa/", label: "Mapa", page: "mapa" },
     { href: ROOT + "sigilos/", label: "Sigilos", page: "sigilos" },
+    { href: ROOT + "checagens/", label: "Checagem de fatos", page: "checagens" },
     { href: ROOT + "glossario/", label: "Dicionário de termos" },
     { href: ROOT + "fontes/", label: "Fontes e metodologia" }
   ];

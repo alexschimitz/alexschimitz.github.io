@@ -69,6 +69,7 @@
     ["Mapa: seu estado e sua cidade", "/politica/mapa/", "Quem governa cada estado e município e como estão as contas.", "mapa estado cidade municipio prefeito governador contas"],
     ["Escândalos e crises", "/politica/escandalos/", "Casos documentados em cada mandato, com fontes.", "escandalo investigacao processo corrupcao crise"],
     ["Sigilos derrubados", "/politica/sigilos/", "Informações que estavam em sigilo e foram reveladas.", "sigilo 100 anos lai acesso informacao"],
+    ["Checagem de fatos", "/politica/checagens/", "Frases de políticos conferidas com fontes: verdadeiro, falso, enganoso e outros resultados.", "checagem fato fake news verdade mentira falso debate declaracao"],
     ["Dicionário de termos", "/politica/glossario/", "Mais de 100 palavras da política explicadas em linguagem simples.", "glossario dicionario termo significado o que e"],
     ["Fontes e metodologia", "/politica/fontes/", "De onde vêm os dados, quando são atualizados e como conferir.", "fonte metodologia dados oficiais api atualizacao"]
   ].map(function (p) { return { tipo: "pagina", titulo: p[0], url: p[1], sub: p[2], texto: p[3], partido: "", uf: "" }; });
