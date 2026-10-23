@@ -55,6 +55,7 @@
           <thead><tr><th scope="col">Assunto</th><th scope="col">Fonte oficial</th><th scope="col">Frequência</th></tr></thead>
           <tbody>
             <tr><th scope="row">Deputados, senadores, votações, projetos, notícias</th><td><a href="https://dadosabertos.camara.leg.br/" target="_blank" rel="noreferrer">Dados Abertos da Câmara</a>, <a href="https://www12.senado.leg.br/dados-abertos" target="_blank" rel="noreferrer">Dados Abertos do Senado</a></td><td>Diária (06:17, horário de Brasília)</td></tr>
+            <tr><th scope="row">Votos nominais de cada parlamentar (Plenário)</th><td><a href="https://dadosabertos.camara.leg.br/swagger/api.html" target="_blank" rel="noreferrer">API da Câmara</a> (<code>/votacoes</code>, <code>/votacoes/{id}/votos</code>), <a href="https://legis.senado.leg.br/dadosabertos/docs/" target="_blank" rel="noreferrer">API do Senado</a> (<code>/votacao</code>) — <a href="#votos">detalhes</a></td><td>Diária (06:17)</td></tr>
             <tr><th scope="row">Governo, normas e medidas provisórias</th><td><a href="https://www.planalto.gov.br/" target="_blank" rel="noreferrer">Planalto</a>, APIs da Câmara e do Senado</td><td>Diária (07:43)</td></tr>
             <tr><th scope="row">Mapa: estados e municípios</th><td><a href="https://servicodados.ibge.gov.br/api/docs/localidades" target="_blank" rel="noreferrer">IBGE</a>, <a href="https://siconfi.tesouro.gov.br/" target="_blank" rel="noreferrer">Siconfi (Tesouro)</a>, TSE</td><td>Diária (04:41)</td></tr>
             <tr><th scope="row">Gastos federais, cota parlamentar, emendas, viagens, cartão</th><td><a href="https://portaldatransparencia.gov.br/" target="_blank" rel="noreferrer">Portal da Transparência</a>, Tesouro, Câmara e Senado (CEAP/CEAPS)</td><td>Semanal (segunda, 04:17)</td></tr>
@@ -69,7 +70,21 @@
       </div>
     </section>
 
-    <section class="section pol-section pol-alt" id="salarios" aria-labelledby="f-sal">
+    <section class="section pol-section pol-alt" id="votos" aria-labelledby="f-votos">
+      <div class="container">
+        <h2 id="f-votos">Votos de cada parlamentar: como são coletados</h2>
+        <ul class="f-lista">
+          <li><strong>Cobertura:</strong> votações <span data-termo="votacao-nominal">nominais</span> do Plenário da Câmara e do Senado desde 01/02/2025 (início da 3ª sessão legislativa da 57ª legislatura). Votações de comissões e anteriores a essa data ainda não entram. Votações simbólicas não têm registro individual e por isso não aparecem.</li>
+          <li><strong>Câmara:</strong> a lista de votações do Plenário vem de <code>https://dadosabertos.camara.leg.br/api/v2/votacoes?idOrgao=180</code> (em janelas de até 85 dias, limite da API). Para cada votação é consultado <code>/votacoes/{id}/votos</code>; quando a resposta é vazia, a votação foi simbólica. O tema vem de <code>/proposicoes/{id}/temas</code>.</li>
+          <li><strong>Senado:</strong> <code>https://legis.senado.leg.br/dadosabertos/votacao?dataInicio=…&amp;dataFim=…</code> (janelas de 60 dias), que já traz o voto de cada senador. O tema vem da classificação do processo em <code>/dadosabertos/processo/{id}</code>.</li>
+          <li><strong>Registros diferentes não são somados:</strong> “Sim”, “Não”, “Abstenção”, “Obstrução”, voto secreto, presidência da sessão, presença sem voto, ausência justificada (licenças, missão, atividade parlamentar) e “não compareceu” aparecem separados. Na Câmara a API só lista quem registrou voto; quem não aparece fica como “sem voto registrado”, sem motivo conhecido, e <em>não</em> é contado como ausência.</li>
+          <li><strong>Arquivos:</strong> <a href="/politica/data/votos/idx.json">votos/idx.json</a> (índice e cobertura), <code>votos/v/{c|s}-{id}.json</code> (votos de uma votação: id, nome, partido, UF, código oficial) e <code>votos/{c|s}/{id}.json</code> (votos de um parlamentar). Código da coleta: <a href="https://github.com/alexschimitz/alexschimitz.github.io/tree/main/scripts/politica/votos" target="_blank" rel="noreferrer">scripts/politica/votos</a>.</li>
+          <li><strong>Limites:</strong> partido e UF são os informados pela fonte no dia da votação. A coleta faz no máximo 4 consultas simultâneas e repete a consulta em caso de falha; se uma fonte falhar, a página mantém os últimos dados válidos.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="salarios" aria-labelledby="f-sal">
       <div class="container">
         <h2 id="f-sal">Salários e benefícios: o que já existe e o que está em construção</h2>
         <p class="lead-simples">Esta seção ainda está <strong>em construção</strong>. Hoje o portal mostra:</p>
@@ -82,7 +97,7 @@
       </div>
     </section>
 
-    <section class="section pol-section" id="metodo" aria-labelledby="f-met">
+    <section class="section pol-section pol-alt" id="metodo" aria-labelledby="f-met">
       <div class="container">
         <h2 id="f-met">Como lemos os dados</h2>
         <ul class="f-lista">

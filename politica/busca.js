@@ -59,6 +59,7 @@
     ["Salários e benefícios", "/politica/fontes/#salarios", "O que já existe no portal sobre salários, auxílios e cotas, e o que ainda está em construção.", "salario subsidio remuneracao auxilio moradia beneficio recusou"],
     ["Votações e leis", "/politica/leis/", "Leis que mudaram o país, quem criou e quem votou.", "lei votacao votou voto aprovado rejeitado"],
     ["Votações recentes do Congresso", "/politica/#votacoes", "Como cada parlamentar votou nas votações nominais recentes.", "votacao voto nominal plenario"],
+    ["Votações nominais: como cada um votou", "/politica/votacao/", "Lista de votações nominais do Plenário da Câmara e do Senado, com placar por partido e estado.", "votacao voto nominal plenario placar partido estado"],
     ["Propostas do Congresso", "/politica/propostas/", "Projetos de lei, PECs e outras propostas explicadas em linguagem simples.", "projeto pl pec plp proposta medida provisoria"],
     ["Promessas e planos de governo", "/politica/planos/", "Planos entregues ao TSE e o que foi cumprido, com fonte.", "promessa plano governo campanha cumprida"],
     ["Eleições", "/politica/eleicoes/", "Resultados por região, estado e cidade, e votos por partido.", "eleicao resultado voto urna turno tse"],
@@ -73,7 +74,15 @@
   ].map(function (p) { return { tipo: "pagina", titulo: p[0], url: p[1], sub: p[2], texto: p[3], partido: "", uf: "" }; });
   function itemTermo(t) { return { tipo: "termo", titulo: t.nome, sub: t.explicacao, texto: (t.sinonimos || []).join(" ") + " " + t.categoria, url: "/politica/glossario/#" + t.id, id: t.id, partido: "", uf: "" }; }
 
-  var API = { norm: norm, tokens: tokens, pontuar: pontuar, buscar: buscar, itemPolitico: itemPolitico, itemTermo: itemTermo, PAGINAS: PAGINAS };
+  // Votação nominal do índice data/votos/idx.json
+  function itemVotacao(v) {
+    var casa = v.k.charAt(0) === "c" ? "Câmara" : "Senado";
+    var dt = String(v.dt || "").slice(0, 10).split("-").reverse().join("/");
+    var res = v.r === "A" ? " · aprovada" : v.r === "R" ? " · rejeitada" : "";
+    return { tipo: "votacao", titulo: (v.p ? v.p.s + " — " : "") + "votação de " + dt + " (" + casa + ")", sub: (v.p && v.p.e ? v.p.e : v.d) + res,
+      texto: [v.d, (v.t || []).join(" ")].join(" "), url: "/politica/votacao/?id=" + v.k.replace(":", "-"), partido: "", uf: "" };
+  }
+  var API = { itemVotacao: itemVotacao, norm: norm, tokens: tokens, pontuar: pontuar, buscar: buscar, itemPolitico: itemPolitico, itemTermo: itemTermo, PAGINAS: PAGINAS };
   if (typeof module === "object" && module.exports) { module.exports = API; return; }
   root.PolBusca = API;
 
@@ -85,7 +94,7 @@
   var ITENS = PAGINAS.slice(), falhas = [];
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function get(u) { return fetch(u).then(function (r) { if (!r.ok) throw new Error(u + " HTTP " + r.status); return r.json(); }); }
-  var ROT = { politico: "Político", pagina: "Página", termo: "Termo" };
+  var ROT = { politico: "Político", pagina: "Página", termo: "Termo", votacao: "Votação" };
 
   function lerURL() {
     var p = new URLSearchParams(location.search);
@@ -109,7 +118,7 @@
       var ico = it.tipo === "politico" && root.PolFoto ? root.PolFoto.html(it.foto, it.titulo, "", "busca-foto") : "";
       return '<li class="busca-item busca-' + it.tipo + '"><a href="' + esc(it.url) + '">' + ico + '<span class="busca-tag">' + ROT[it.tipo] + "</span><strong>" + esc(it.titulo) + "</strong><span>" + esc(it.sub) + "</span></a></li>";
     }).join("") + hist;
-    st.textContent = (r.length ? r.length + (r.length === 1 ? " resultado" : " resultados") + (r.length > N ? " (mostrando os " + N + " primeiros)" : "") : "Nenhum resultado entre parlamentares em exercício, páginas e termos.") +
+    st.textContent = (r.length ? r.length + (r.length === 1 ? " resultado" : " resultados") + (r.length > N ? " (mostrando os " + N + " primeiros)" : "") : "Nenhum resultado entre parlamentares em exercício, páginas, termos e votações.") +
       (falhas.length ? " Atenção: parte dos dados não carregou (" + falhas.join(", ") + "); os resultados podem estar incompletos." : "");
   }
   var tmr = null;
@@ -126,8 +135,9 @@
   var pDep = get("/politica/data/deputados.json").then(function (a) { return a.map(function (p) { return itemPolitico(p, "c"); }); }).catch(function () { falhas.push("deputados"); return []; });
   var pSen = get("/politica/data/senadores.json").then(function (a) { return a.map(function (p) { return itemPolitico(p, "s"); }); }).catch(function () { falhas.push("senadores"); return []; });
   var pGl = (root.PolGlossario ? root.PolGlossario.ready : get("/politica/data/glossario.json")).then(function (j) { return (j.termos || []).map(itemTermo); }).catch(function () { falhas.push("dicionário"); return []; });
-  Promise.all([pDep, pSen, pGl]).then(function (rs) {
-    ITENS = PAGINAS.concat(rs[0], rs[1], rs[2]);
+  var pVt = get("/politica/data/votos/idx.json").then(function (j) { return (j.v || []).map(itemVotacao); }).catch(function () { falhas.push("votações"); return []; });
+  Promise.all([pDep, pSen, pGl, pVt]).then(function (rs) {
+    ITENS = PAGINAS.concat(rs[0], rs[1], rs[2], rs[3]);
     var ufs = {}, parts = {};
     rs[0].concat(rs[1]).forEach(function (p) { if (p.uf) ufs[p.uf] = 1; if (p.partido) parts[p.partido] = 1; });
     F.uf.insertAdjacentHTML("beforeend", Object.keys(ufs).sort().map(function (u) { return "<option>" + esc(u) + "</option>"; }).join(""));

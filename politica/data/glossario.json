@@ -155,6 +155,23 @@
    "sinonimos": []
   },
   {
+   "id": "ausencia-votacao",
+   "nome": "Ausência em votação",
+   "categoria": "Processo legislativo",
+   "explicacao": "Quando o parlamentar não participa de uma votação nominal. No Senado, os dados indicam o motivo (licença, missão oficial, atividade parlamentar ou não comparecimento). Na Câmara, a lista de votos só traz quem votou, sem dizer o motivo de quem não aparece.",
+   "exemplo": "",
+   "diferencas": "Ausência não é abstenção nem obstrução: quem se abstém ou obstrui está participando da votação.",
+   "ressalvas": "Ausência numa votação não significa falta na sessão do dia: o parlamentar pode ter saído antes ou chegado depois.",
+   "fonte": {
+    "nome": "Dados Abertos do Senado Federal",
+    "url": "https://www12.senado.leg.br/dados-abertos"
+   },
+   "sinonimos": [
+    "ausente",
+    "não compareceu"
+   ]
+  },
+  {
    "id": "auxilio-moradia",
    "nome": "Auxílio-moradia",
    "categoria": "Salários e benefícios",
@@ -1732,6 +1749,24 @@
    ]
   },
   {
+   "id": "presente-sem-voto",
+   "nome": "Presente sem voto",
+   "categoria": "Processo legislativo",
+   "explicacao": "Situações em que o parlamentar estava na sessão mas não votou: por exemplo, quem preside a sessão (que pela regra não vota, salvo em empate ou votação secreta) ou quem registrou presença e não votou.",
+   "exemplo": "",
+   "diferencas": "Diferente de ausência (não estava) e de abstenção (votou, mas sem tomar lado).",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": [
+    "não votou",
+    "presidindo a sessão",
+    "art. 17"
+   ]
+  },
+  {
    "id": "prestacao-de-contas-eleitoral",
    "nome": "Prestação de contas de campanha",
    "categoria": "Eleições e partidos",
@@ -2589,6 +2624,23 @@
    "sinonimos": []
   },
   {
+   "id": "votacao-secreta",
+   "nome": "Votação secreta",
+   "categoria": "Processo legislativo",
+   "explicacao": "Votação em que se registra quem votou, mas não como votou. A Constituição prevê voto secreto em poucos casos, como na escolha de algumas autoridades pelo Senado.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "Nos dados, aparece “votou” sem indicar se foi sim ou não.",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "voto secreto",
+    "escrutínio secreto"
+   ]
+  },
+  {
    "id": "votacao-simbolica",
    "nome": "Votação simbólica",
    "categoria": "Processo legislativo",
@@ -2601,6 +2653,23 @@
     "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
    },
    "sinonimos": []
+  },
+  {
+   "id": "voto-sim-nao",
+   "nome": "Voto “sim” e voto “não”",
+   "categoria": "Processo legislativo",
+   "explicacao": "“Sim” é voto a favor do que está sendo votado naquele momento; “não” é voto contra. Atenção: o que se vota pode ser um requerimento, uma emenda ou um destaque, e não o projeto inteiro.",
+   "exemplo": "",
+   "diferencas": "Votar “sim” a um requerimento de retirada de pauta, por exemplo, é ser a favor de adiar, não a favor do projeto.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": [
+    "voto sim",
+    "voto não"
+   ]
   },
   {
    "id": "votos-validos",
