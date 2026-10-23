@@ -1,0 +1,28 @@
+.ck-h3 { font-size: 1.15rem; }
+.ck-aviso p { color: var(--text); line-height: 1.6; }
+.ck-aviso a, .ck-item a:not(.chip), .lead-simples a { text-decoration: underline; }
+.ck-filtros { margin: 16px 0 8px; }
+.ck-limpar { min-height: 44px; padding: 0 14px; border-radius: 12px; border: 1px solid var(--line-strong); background: transparent; color: var(--text); font: inherit; font-weight: 700; cursor: pointer; }
+.ck-limpar:focus-visible, .ck-det summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.ck-estado { margin: 16px 0; color: var(--muted); }
+.ck-estado.erro { color: var(--bad); }
+.ck-status { margin: 8px 0 12px; color: var(--muted); font-size: 0.9rem; }
+.ck-topo { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.ck-meta { color: var(--muted); font-size: 0.85rem; }
+.ck-frase { margin: 10px 0 0; padding: 8px 14px; border-left: 3px solid var(--accent); }
+.ck-frase p { color: var(--text) !important; font-size: 1rem !important; font-style: italic; }
+.ck-frase footer { color: var(--muted); font-size: 0.82rem; margin-top: 4px; }
+.ck-det { margin-top: 12px; }
+.ck-det summary { cursor: pointer; font-weight: 700; min-height: 44px; display: flex; align-items: center; }
+.ck-bloco { margin-top: 14px; }
+.ck-bloco h4 { font-size: 0.92rem; }
+.ck-bloco p, .ck-fontes { color: var(--text) !important; line-height: 1.6; overflow-wrap: anywhere; }
+.ck-fontes { padding-left: 20px; display: grid; gap: 6px; margin-top: 6px; }
+.ck-rodape { font-size: 0.8rem !important; margin-top: 14px !important; }
+.ck-temas { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px !important; }
+.ck-item { scroll-margin-top: 90px; }
+.badge.warn { color: #f5b942; }
+html[data-theme="light"] .badge.warn { color: #8a5a00; }
+.ck-legenda { display: grid; gap: 10px; margin-top: 16px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.ck-legenda div { padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
+.ck-legenda dd { margin-top: 6px; color: var(--muted); font-size: 0.88rem; line-height: 1.5; }

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0d0c">
+  <meta name="description" content="Checagens de afirmações de políticos brasileiros, com veredito, evidências a favor e contra, limitações e fontes para conferir.">
+  <title>Checagem de fatos — Política em dados abertos</title>
+  <script>try{var t=localStorage.getItem('as-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="../glossario.css">
+  <link rel="stylesheet" href="checagens.css">
+</head>
+<body class="politica">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../" aria-label="AS Alexsander Schimitz — página inicial">
+        <span class="brand-mark">AS</span>
+        <span class="brand-name">Alexsander Schimitz</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+        <span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Seções do portal de política">
+        <a href="/politica/">Início</a>
+        <a href="/politica/politicos/">Políticos</a>
+        <a href="/politica/gastos/">Gastos</a>
+        <a href="/politica/leis/">Votações e leis</a>
+        <a href="/politica/glossario/">Dicionário</a>
+        <a href="/politica/fontes/">Fontes</a>
+        <a class="nav-cta" href="/">← Site</a>
+      </nav>
+    </div>
+  </header>
+  <main id="conteudo">
+    <noscript><p class="pol-noscript container">Esta página carrega as checagens com JavaScript. Sem ele, você pode ler os dados brutos em <a href="/politica/data/checagens.json">checagens.json</a>.</p></noscript>
+    <section class="pol-hero container">
+      <nav class="pol-crumbs" aria-label="Você está em"><a href="/politica/">Política</a> <span aria-hidden="true">›</span> <span aria-current="page">Checagem de fatos</span></nav>
+      <div class="eyebrow"><span class="status-dot"></span> O que é verdade no que os políticos dizem</div>
+      <h1>Checagem de fatos <span>com fonte para conferir.</span></h1>
+      <p class="hero-lead">Frases de políticos de todos os partidos comparadas com dados oficiais e com checagens de agências independentes. O mesmo método vale para todos.</p>
+    </section>
+
+    <section class="section pol-section" id="aviso" aria-labelledby="ck-av">
+      <div class="container">
+        <div class="pol-card ck-aviso" role="note">
+          <h2 id="ck-av" class="ck-h3">Como estas checagens foram feitas</h2>
+          <p>As checagens foram <strong>pesquisadas e redigidas por um assistente automatizado</strong> a partir de fontes públicas (dados oficiais e agências de checagem como Aos Fatos e Agência Lupa) e <strong>não foram revisadas por especialistas humanos</strong>. Cada item mostra as fontes usadas e as limitações: confira antes de compartilhar. Achou um erro? Abra uma <a href="https://github.com/alexschimitz/alexschimitz.github.io/issues" target="_blank" rel="noreferrer">issue no GitHub</a> com o link da checagem.</p>
+          <p id="ck-atualizado" class="ck-meta"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="lista" aria-labelledby="ck-tit">
+      <div class="container">
+        <h2 id="ck-tit">Checagens publicadas</h2>
+        <form id="ck-form" class="pol-filters ck-filtros" role="search" hidden>
+          <div class="field field-search"><label for="ck-q">Buscar (nome, assunto ou frase)</label><input id="ck-q" type="search" autocomplete="off" placeholder="Ex.: PIB, Auxílio Brasil, Tebet"></div>
+          <div class="field"><label for="ck-veredito">Resultado</label><select id="ck-veredito"></select></div>
+          <div class="field"><label for="ck-autor">Quem disse</label><select id="ck-autor"></select></div>
+          <div class="field"><label for="ck-tema">Tema</label><select id="ck-tema"></select></div>
+          <button type="button" id="ck-limpar" class="ck-limpar">Limpar filtros</button>
+        </form>
+        <p id="ck-estado" class="ck-estado" data-carregando>Carregando checagens…</p>
+        <p id="ck-status" class="ck-status" role="status" aria-live="polite"></p>
+        <ul id="ck-lista" class="items ck-lista" data-glossario-auto></ul>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="vereditos" aria-labelledby="ck-ver">
+      <div class="container">
+        <h2 id="ck-ver">O que significa cada resultado</h2>
+        <p class="lead-simples">Não encontrar comprovação <strong>não</strong> é o mesmo que a frase ser falsa: nesse caso o resultado é “Não comprovada”. Investigação, acusação e condenação também são coisas diferentes (veja o <a href="/politica/glossario/">dicionário</a>).</p>
+        <dl id="ck-legenda" class="ck-legenda"></dl>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container pol-footer">
+      <div><p>Página independente e apartidária. As explicações são simplificadas; o texto oficial indicado em cada item é a referência.</p></div>
+      <div class="pol-footer-links">
+        <p>© <span id="year"></span> Alexsander Schimitz.</p>
+        <a href="/politica/">Início da política</a>
+        <a href="/politica/glossario/">Dicionário de termos</a>
+        <a href="/politica/fontes/">Fontes e metodologia</a>
+        <a href="#top">Voltar ao topo ↑</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../../scripts/home.js"></script>
+  <script src="../glossario.js"></script>
+  <script src="../base.js"></script>
+  <script src="checagens-lib.js"></script>
+  <script src="checagens.js"></script>
+</body>
+</html>

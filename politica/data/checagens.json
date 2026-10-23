@@ -1,0 +1,212 @@
+{
+ "nota": "Checagens de afirmações de políticos. Pesquisadas por assistente automatizado (Verificador Político), sem revisão de especialistas humanos. Lote 1: debates presidenciais de 2022.",
+ "atualizado": "2026-10-23",
+ "checagens": [
+  {
+   "id": "ciro-juros-divida-governos-pt-4-trilhoes",
+   "titulo": "Quanto os governos do PT gastaram com juros da dívida pública",
+   "afirmacao": "No período do PT, eles transferiram R$ 4 trilhões [em juros da dívida pública], dados do Tesouro Nacional.",
+   "autor": "Ciro Gomes (PDT)",
+   "data_afirmacao": "2022-09-29",
+   "contexto": "Debate da TV Globo do 1º turno, realizado na noite de 29/09/2022 (estendeu-se até a madrugada de 30/09), com sete candidatos à Presidência. Ciro respondia a Luiz Felipe d'Avila (Novo) ao criticar os governos Lula e Dilma.",
+   "link_original": "https://www.aosfatos.org/noticias/checamos-candidatos-presidencia-debate-globo/",
+   "veredito": "falsa",
+   "o_que_as_fontes_mostram": "Segundo dados do Tesouro Nacional enviados ao Aos Fatos, a soma das despesas com juros da dívida pública federal entre 2003 e 2015 (governos Lula e Dilma, até o último ano completo de Dilma) ficou bem abaixo de R$ 4 trilhões. Aos Fatos e o jornal O Povo, que reproduziu a checagem, classificaram a frase como falsa.",
+   "evidencias_favoraveis": "O pagamento de juros da dívida pública no período foi, de fato, uma despesa muito alta, na casa de trilhões de reais em valores nominais. A crítica de Ciro sobre o peso dos juros no orçamento tem base. O que não se sustenta é o valor citado.",
+   "evidencias_contrarias": "Pelos dados do Tesouro citados pelo Aos Fatos, o total do período ficou bem abaixo dos R$ 4 trilhões.",
+   "limitacoes": "O texto do Aos Fatos diz 'R$ 1,3 bilhão', o que parece ser erro de digitação por 'trilhão', já que a ordem de grandeza anual dos juros é de centenas de bilhões. Não reproduzimos a série do Tesouro de forma independente. O resultado também depende do critério (valores nominais ou corrigidos, juros nominais ou pagos). A frase foi retirada da transcrição do Aos Fatos, com o colchete explicativo do checador, e não foi conferida com o minuto exato do vídeo.",
+   "fontes": [
+    {
+     "titulo": "Aos Fatos – Checamos os candidatos à Presidência no debate da TV Globo",
+     "url": "https://www.aosfatos.org/noticias/checamos-candidatos-presidencia-debate-globo/",
+     "tipo": "checador"
+    },
+    {
+     "titulo": "O Povo – Checagem do debate presidencial da Globo",
+     "url": "https://www.opovo.com.br/eleicoes-2022/2022/09/30/checagem-saiba-o-que-foi-falso-ou-impreciso-no-debate-presidencial-da-globo.html",
+     "tipo": "imprensa"
+    }
+   ],
+   "temas": [
+    "economia",
+    "divida-publica",
+    "juros",
+    "gastos-publicos",
+    "debate-2022"
+   ],
+   "data_verificacao": "2026-10-23"
+  },
+  {
+   "id": "tebet-doencas-raras-30-milhoes",
+   "titulo": "Quantos brasileiros têm doenças raras",
+   "afirmacao": "As pessoas com doenças raras são esquecidas, e são no todo 30 milhões de brasileiros.",
+   "autor": "Simone Tebet (MDB)",
+   "data_afirmacao": "2022-09-29",
+   "contexto": "Debate da TV Globo do 1º turno, realizado na noite de 29/09/2022 (estendeu-se até a madrugada de 30/09), com sete candidatos à Presidência. Tebet falou ao responder sobre saúde, ao lado de Luiz Felipe d'Avila.",
+   "link_original": "https://www.aosfatos.org/noticias/checamos-candidatos-presidencia-debate-globo/",
+   "veredito": "falsa",
+   "o_que_as_fontes_mostram": "Segundo a Organização Pan-Americana da Saúde (Opas), cerca de 15 milhões de brasileiros têm alguma doença rara, a metade do número citado. O Ministério da Saúde define como rara a doença que afeta até 65 pessoas em cada 100 mil.",
+   "evidencias_favoraveis": "O tema é real e o número de pessoas afetadas é alto, na casa de milhões.",
+   "evidencias_contrarias": "A estimativa de referência (Opas) é de cerca de 15 milhões, ou seja, 30 milhões seria o dobro.",
+   "limitacoes": "Estimativas sobre doenças raras variam conforme a metodologia, pois são de 6 mil a 8 mil doenças e há subnotificação. Usamos a estimativa citada pelo checador. A frase vem da transcrição do Aos Fatos e não foi conferida com o minuto do vídeo.",
+   "fontes": [
+    {
+     "titulo": "Aos Fatos – Checamos os candidatos à Presidência no debate da TV Globo",
+     "url": "https://www.aosfatos.org/noticias/checamos-candidatos-presidencia-debate-globo/",
+     "tipo": "checador"
+    },
+    {
+     "titulo": "O Povo – Checagem do debate presidencial da Globo",
+     "url": "https://www.opovo.com.br/eleicoes-2022/2022/09/30/checagem-saiba-o-que-foi-falso-ou-impreciso-no-debate-presidencial-da-globo.html",
+     "tipo": "imprensa"
+    }
+   ],
+   "temas": [
+    "saude",
+    "politicas-publicas",
+    "debate-2022"
+   ],
+   "data_verificacao": "2026-10-23"
+  },
+  {
+   "id": "lula-22-milhoes-empregos-governos-pt",
+   "titulo": "Número de empregos criados nos governos do PT",
+   "afirmacao": "Por isso que geramos 22 milhões de empregos",
+   "autor": "Luiz Inácio Lula da Silva (PT)",
+   "data_afirmacao": "2022-10-28",
+   "contexto": "Debate da TV Globo do 2º turno, em 28/10/2022, entre Lula (PT) e Jair Bolsonaro (PL), mediado por William Bonner.",
+   "link_original": "https://www.agencialupa.org/jornalismo/2022/10/28/debate-globo-lula-bolsonaro-segundo-turno/",
+   "veredito": "parcialmente_verdadeira",
+   "o_que_as_fontes_mostram": "Pela RAIS (Ministério da Economia), o estoque de empregos formais cresceu 19,4 milhões entre 2002 e 2015. Pelo Caged, que cobre só o setor privado celetista, foram 14,1 milhões de vagas de jan/2003 a abr/2016. A Lupa classificou a frase como 'exagerada', porque o número está 11,9% acima do dado da RAIS.",
+   "evidencias_favoraveis": "Houve criação muito grande de empregos formais no período, cerca de 19,4 milhões pela RAIS, na mesma ordem de grandeza do número citado.",
+   "evidencias_contrarias": "Nenhuma das bases oficiais chega a 22 milhões. Além disso, em 2016 (ainda no governo Dilma) houve fechamento de vagas: 378 mil no Caged de jan a abr/2016.",
+   "limitacoes": "RAIS e Caged medem coisas diferentes e têm períodos diferentes. A categoria 'exagerado' da Lupa corresponde aqui a 'parcialmente verdadeira'. A frase foi conferida na transcrição da Lupa, não no minuto do vídeo.",
+   "fontes": [
+    {
+     "titulo": "Lupa – Checagem do debate Globo do 2º turno",
+     "url": "https://www.agencialupa.org/jornalismo/2022/10/28/debate-globo-lula-bolsonaro-segundo-turno/",
+     "tipo": "checador"
+    },
+    {
+     "titulo": "g1 – Íntegra do debate da Globo do 2º turno",
+     "url": "https://g1.globo.com/politica/eleicoes/2022/noticia/2022/10/28/debate-da-globo-do-2o-turno-para-presidente-veja-integra-em-videos.ghtml",
+     "tipo": "imprensa"
+    }
+   ],
+   "temas": [
+    "economia",
+    "emprego",
+    "debate-2022"
+   ],
+   "data_verificacao": "2026-10-23"
+  },
+  {
+   "id": "lula-pib-media-4-por-cento",
+   "titulo": "Crescimento médio do PIB no governo Lula (2003-2010)",
+   "afirmacao": "No meu governo, o PIB crescia em média 4%",
+   "autor": "Luiz Inácio Lula da Silva (PT)",
+   "data_afirmacao": "2022-10-28",
+   "contexto": "Debate da TV Globo do 2º turno, em 28/10/2022, entre Lula (PT) e Jair Bolsonaro (PL), mediado por William Bonner.",
+   "link_original": "https://www.agencialupa.org/jornalismo/2022/10/28/debate-globo-lula-bolsonaro-segundo-turno/",
+   "veredito": "verdadeira",
+   "o_que_as_fontes_mostram": "As Contas Nacionais do IBGE mostram as seguintes taxas de crescimento: 2003: 1,1%; 2004: 5,8%; 2005: 3,2%; 2006: 4,0%; 2007: 6,1%; 2008: 5,1%; 2009: -0,1%; 2010: 7,5%. A média anual é de cerca de 4%. A Lupa classificou a frase como verdadeira.",
+   "evidencias_favoraveis": "A média aritmética das taxas oficiais do IBGE de 2003 a 2010 é de aproximadamente 4,1%.",
+   "evidencias_contrarias": "Não há contradição nos dados. Um contexto relevante é que o período coincidiu com um ciclo internacional favorável de commodities, mas isso não altera o número.",
+   "limitacoes": "A frase compara um número, não diz o que causou o crescimento. A frase foi conferida na transcrição da Lupa.",
+   "fontes": [
+    {
+     "titulo": "Lupa – Checagem do debate Globo do 2º turno",
+     "url": "https://www.agencialupa.org/jornalismo/2022/10/28/debate-globo-lula-bolsonaro-segundo-turno/",
+     "tipo": "checador"
+    },
+    {
+     "titulo": "IBGE/SIDRA – Contas Nacionais Trimestrais",
+     "url": "https://sidra.ibge.gov.br/pesquisa/cnt/tabelas",
+     "tipo": "oficial"
+    }
+   ],
+   "temas": [
+    "economia",
+    "pib",
+    "debate-2022"
+   ],
+   "data_verificacao": "2026-10-23"
+  },
+  {
+   "id": "bolsonaro-pt-votou-contra-auxilio-brasil",
+   "titulo": "Como os deputados do PT votaram sobre o Auxílio Brasil",
+   "afirmacao": "Todos os deputados [do PT] votaram contra a criação do Auxílio Brasil",
+   "autor": "Jair Bolsonaro (PL)",
+   "data_afirmacao": "2022-10-28",
+   "contexto": "Debate da TV Globo do 2º turno, em 28/10/2022, entre Lula (PT) e Jair Bolsonaro (PL), mediado por William Bonner.",
+   "link_original": "https://www.agencialupa.org/jornalismo/2022/10/28/debate-globo-lula-bolsonaro-segundo-turno/",
+   "veredito": "falsa",
+   "o_que_as_fontes_mostram": "O Auxílio Brasil foi criado pela MP 1.061/2021, aprovada na Câmara sem votos contrários em 25/11/2021 (AFP). A MP 1.076/2021, que fixou o piso de R$ 400, foi aprovada em 27/04/2022 por 418 a 7, com orientação favorável do PT e votos favoráveis da bancada. Só a bancada do Novo votou contra (Lupa, com base no site da Câmara). O PT votou contra a PEC dos Precatórios, que o governo apresentava como necessária para financiar o benefício.",
+   "evidencias_favoraveis": "O PT de fato votou contra a PEC dos Precatórios, apresentada pelo governo como fonte de recursos do Auxílio Brasil. Isso pode explicar a confusão.",
+   "evidencias_contrarias": "Nas votações das medidas provisórias que criaram e ampliaram o Auxílio Brasil, o PT votou a favor.",
+   "limitacoes": "Votar contra a fonte de financiamento (PEC) não é o mesmo que votar contra a criação do programa. A frase foi conferida nas transcrições da Lupa e da AFP.",
+   "fontes": [
+    {
+     "titulo": "Lupa – Checagem do debate Globo do 2º turno",
+     "url": "https://www.agencialupa.org/jornalismo/2022/10/28/debate-globo-lula-bolsonaro-segundo-turno/",
+     "tipo": "checador"
+    },
+    {
+     "titulo": "AFP (via Folha PE) – Checagem do último debate do 2º turno",
+     "url": "https://www.folhape.com.br/politica/confira-checagem-do-ultimo-debate-presidencial-antes-do-segundo-turno/245167/",
+     "tipo": "checador"
+    },
+    {
+     "titulo": "Câmara dos Deputados – MP 1.076/2021",
+     "url": "https://www.camara.leg.br/propostas-legislativas/2311299",
+     "tipo": "oficial"
+    }
+   ],
+   "temas": [
+    "votacoes",
+    "programas-sociais",
+    "auxilio-brasil",
+    "debate-2022"
+   ],
+   "data_verificacao": "2026-10-23"
+  },
+  {
+   "id": "bolsonaro-senadores-pt-contra-reducao-icms-combustiveis",
+   "titulo": "Voto dos senadores do PT no projeto que limitou o ICMS sobre combustíveis",
+   "afirmacao": "A bancada inteira de senadores [do PT] votou contra a redução dos impostos da gasolina",
+   "autor": "Jair Bolsonaro (PL)",
+   "data_afirmacao": "2022-10-28",
+   "contexto": "Debate da TV Globo do 2º turno, em 28/10/2022, entre Lula (PT) e Jair Bolsonaro (PL), mediado por William Bonner.",
+   "link_original": "https://www.agencialupa.org/jornalismo/2022/10/28/debate-globo-lula-bolsonaro-segundo-turno/",
+   "veredito": "verdadeira",
+   "o_que_as_fontes_mostram": "Em 13/06/2022, o Senado aprovou o texto-base do PLP 18/2022, que limitou o ICMS sobre combustíveis, energia, transportes e telecomunicações, por 65 a 12. Segundo a Lupa, os sete senadores do PT votaram contra: Contarato, Humberto Costa, Jaques Wagner, Jean Paul Prates, Paim, Paulo Rocha e Rogério Carvalho.",
+   "evidencias_favoraveis": "O registro de votação do Senado mostra os votos contrários da bancada petista.",
+   "evidencias_contrarias": "Nenhuma contra o fato. Como contexto, a oposição justificou o voto com a perda de arrecadação de estados e municípios (saúde e educação), e a redução do ICMS foi um limite de alíquota, não um corte direto no preço.",
+   "limitacoes": "A conferência se refere à votação do texto-base no Senado e não a todas as votações sobre impostos de combustíveis. A frase foi conferida na transcrição da Lupa.",
+   "fontes": [
+    {
+     "titulo": "Lupa – Checagem do debate Globo do 2º turno",
+     "url": "https://www.agencialupa.org/jornalismo/2022/10/28/debate-globo-lula-bolsonaro-segundo-turno/",
+     "tipo": "checador"
+    },
+    {
+     "titulo": "Senado – PLP 18/2022 (votações)",
+     "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/153341",
+     "tipo": "oficial"
+    },
+    {
+     "titulo": "Agência Senado – Aprovado projeto que reduz imposto para baixar preço dos combustíveis",
+     "url": "https://www12.senado.leg.br/noticias/materias/2022/06/13/aprovado-projeto-que-reduz-imposto-para-baixar-preco-dos-combustiveis",
+     "tipo": "oficial"
+    }
+   ],
+   "temas": [
+    "votacoes",
+    "combustiveis",
+    "impostos",
+    "debate-2022"
+   ],
+   "data_verificacao": "2026-10-23"
+  }
+ ]
+}
