@@ -62,6 +62,32 @@
     document.addEventListener("click", function (e) { if (!e.target.closest(".nav-mais")) setMais(false); });
     nav.addEventListener("keydown", function (e) { if (e.key === "Escape" && mb.getAttribute("aria-expanded") === "true") { setMais(false); mb.focus(); } });
     nav.addEventListener("focusout", function (e) { if (e.relatedTarget && !e.relatedTarget.closest(".nav-mais")) setMais(false); });
+
+    // Menu "prioridade+": no desktop, itens que não cabem inteiros vão para o "Mais"
+    // (vale para qualquer fonte, zoom ou barra de rolagem; nada fica cortado ou sobreposto).
+    var wrap = nav.parentNode, brand = wrap.querySelector(".brand");
+    var principais = Array.prototype.slice.call(nav.querySelectorAll(":scope > a[href]:not(.nav-cta)"));
+    var maisBox = nav.querySelector(".nav-mais");
+    function cabe() {
+      var w = wrap.getBoundingClientRect(), b = brand ? brand.getBoundingClientRect().right : w.left;
+      var vis = Array.prototype.filter.call(nav.children, function (e) { return e.offsetParent !== null; });
+      if (!vis.length) return true;
+      return vis[0].getBoundingClientRect().left >= b + 16 && vis[vis.length - 1].getBoundingClientRect().right <= w.right + 0.5;
+    }
+    function ajustaMenu() {
+      principais.forEach(function (a) { a.classList.remove("nav-extra"); nav.insertBefore(a, maisBox); });
+      if (window.matchMedia("(max-width: 760px)").matches) return;
+      for (var i = principais.length - 1; i > 0 && !cabe(); i--) {
+        var a = principais[i]; a.classList.add("nav-extra"); ml.insertBefore(a, ml.firstChild);
+      }
+      if (typeof markCurrent === "function") markCurrent();
+    }
+    var tAj; function agenda() { clearTimeout(tAj); tAj = setTimeout(ajustaMenu, 60); }
+    window.addEventListener("resize", agenda);
+    if (window.ResizeObserver) { var roW = 0; new ResizeObserver(function () { var w = nav.scrollWidth + (brand ? brand.offsetWidth : 0); if (w !== roW) { roW = w; agenda(); } }).observe(nav); }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajustaMenu);
+    window.addEventListener("load", ajustaMenu);
+    setTimeout(ajustaMenu, 0);
   }
 
   // Trilha "Você está em" nas subpáginas que ainda não têm
