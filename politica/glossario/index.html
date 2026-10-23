@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0d0c">
+  <meta name="description" content="Dicionário de política em linguagem simples: mais de 100 termos sobre Congresso, orçamento, salários, eleições, justiça, licitações e transparência, com fonte oficial.">
+  <title>Dicionário de termos — Política em dados abertos</title>
+  <script>try{var t=localStorage.getItem('as-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="../glossario.css">
+  <style>
+    .gl-filtros { display: grid; grid-template-columns: auto 1fr auto minmax(180px, 260px); gap: 10px 12px; align-items: center; }
+    .gl-filtros input, .gl-filtros select { min-height: 48px; padding: 8px 12px; font: inherit; color: var(--text); background: var(--panel); border: 1px solid var(--line-strong); border-radius: 12px; }
+    .gl-filtros label { font-weight: 700; }
+    @media (max-width: 700px) { .gl-filtros { grid-template-columns: 1fr; } }
+    .gl-status { margin: 14px 0; color: var(--muted); }
+    .gl-lista { display: grid; gap: 22px; }
+    .gl-lista h3.gl-cat-t { font-size: 1.1rem; margin-top: 10px; color: var(--accent); }
+    .gl-item { padding: 16px 18px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); scroll-margin-top: 140px; }
+    .gl-item:target { border-color: var(--accent); }
+    .gl-item h4 { font-size: 1.05rem; }
+    .gl-item p { margin-top: 8px; line-height: 1.55; }
+    .gl-item .gl-cat { display: none; }
+    .gl-grupo { display: grid; gap: 10px; }
+  </style>
+</head>
+<body class="politica">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../" aria-label="AS Alexsander Schimitz — página inicial">
+        <span class="brand-mark">AS</span>
+        <span class="brand-name">Alexsander Schimitz</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+        <span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Seções do portal de política">
+        <a href="/politica/">Início</a>
+        <a href="/politica/politicos/">Políticos</a>
+        <a href="/politica/gastos/">Gastos</a>
+        <a href="/politica/leis/">Votações e leis</a>
+        <a href="/politica/glossario/">Dicionário</a>
+        <a href="/politica/fontes/">Fontes</a>
+        <a class="nav-cta" href="/">← Site</a>
+      </nav>
+    </div>
+  </header>
+  <main id="conteudo">
+    <section class="pol-hero container">
+      <nav class="pol-crumbs" aria-label="Você está em"><a href="/politica/">Política</a> <span aria-hidden="true">›</span> <span aria-current="page">Dicionário de termos</span></nav>
+      <div class="eyebrow"><span class="status-dot"></span> Dicionário · linguagem simples · fontes oficiais</div>
+      <h1>O que quer dizer cada palavra <span>da política.</span></h1>
+      <p class="hero-lead">Termos do Congresso, do orçamento, das eleições e da Justiça explicados sem juridiquês. Cada termo traz a fonte oficial para conferir. As explicações são simplificadas: em caso de dúvida, vale o texto da lei.</p>
+    </section>
+    <section class="section pol-section gl-page" aria-labelledby="gl-busca-t">
+      <div class="container">
+        <h2 id="gl-busca-t" class="sr-only">Pesquisar no dicionário</h2>
+        <form class="gl-filtros" id="gl-form" role="search" action="/politica/glossario/" method="get">
+          <label for="gl-q">Procure uma palavra</label>
+          <input id="gl-q" name="q" type="search" autocomplete="off" placeholder="Ex.: emenda Pix, foro, quórum, CPI">
+          <label for="gl-cat">Assunto</label>
+          <select id="gl-cat" name="cat"><option value="">Todos os assuntos</option></select>
+        </form>
+        <p id="gl-status" role="status" aria-live="polite" class="gl-status">Carregando o dicionário…</p>
+        <noscript><p>O dicionário precisa de JavaScript para ser exibido. O conteúdo completo também está em <a href="/politica/data/glossario.json">glossario.json</a>.</p></noscript>
+        <div id="gl-lista" class="gl-lista"></div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container pol-footer">
+      <div><p>Página independente e apartidária. As explicações são simplificadas; o texto oficial indicado em cada item é a referência.</p></div>
+      <div class="pol-footer-links">
+        <p>© <span id="year"></span> Alexsander Schimitz.</p>
+        <a href="/politica/">Início da política</a>
+        <a href="/politica/glossario/">Dicionário de termos</a>
+        <a href="/politica/fontes/">Fontes e metodologia</a>
+        <a href="#top">Voltar ao topo ↑</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../../scripts/home.js"></script>
+  <script src="../glossario.js"></script>
+  <script src="../base.js"></script>
+  <script src="glossario-pagina.js"></script>
+</body>
+</html>

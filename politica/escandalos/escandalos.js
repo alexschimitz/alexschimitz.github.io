@@ -139,7 +139,7 @@
     if ($("aviso-txt")) $("aviso-txt").textContent = DATA.aviso || "";
   }
 
-  fetch("../data/escandalos.json", { cache: "no-cache" })
+  fetch("../data/escandalos.json")
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(function (d) {
       DATA = d;

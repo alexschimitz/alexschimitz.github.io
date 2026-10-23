@@ -8,7 +8,7 @@
   const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
   const cache = new Map();
   const getJSON = (p) => {
-    if (!cache.has(p)) cache.set(p, fetch(D + p, { cache: 'no-cache' }).then((r) => { if (!r.ok) throw new Error(p + ': HTTP ' + r.status); return r.json(); }).catch((e) => { cache.delete(p); throw e; }));
+    if (!cache.has(p)) cache.set(p, fetch(D + p).then((r) => { if (!r.ok) throw new Error(p + ': HTTP ' + r.status); return r.json(); }).catch((e) => { cache.delete(p); throw e; }));
     return cache.get(p);
   };
   const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -1003,7 +1003,7 @@
       safe('emendas/resumo.json'), safe('emendas/autores.json'), safe('viagens/resumo.json'), safe('api/presidencia-por-orgao.json'),
     ]);
     safe('parl/politicos_ids.json').then((j) => { S.polIds = j; });
-    fetch('/politica/paginas.json', { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : {})).then((j) => { S.pages = (j && j.paginas) || {}; }).catch(() => { S.pages = {}; });
+    fetch('/politica/paginas.json').then((r) => (r.ok ? r.json() : {})).then((j) => { S.pages = (j && j.paginas) || {}; }).catch(() => { S.pages = {}; });
     Object.assign(S, { idx, serie, res, fontes, meta, parlIdx, parlRes, cart, presHist, emRes, emAut, viagRes, pport });
     const run = (name, fn) => { try { fn(); } catch (e) { console.warn(name, e); const sec = document.getElementById(name); if (sec) { const p = document.createElement('p'); p.className = 'g-note warn'; p.textContent = 'Não foi possível montar esta seção agora. Tente recarregar a página.'; $('.container', sec).appendChild(p); } } };
     if (idx && serie) { run('visao', initVisao); run('visao', initGovernos); run('areas', initAreas); }

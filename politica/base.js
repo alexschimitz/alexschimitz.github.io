@@ -1,36 +1,51 @@
 /* politica/base.js — comportamento comum das páginas de /politica/
    - marca no menu a página atual (aria-current="page")
-   - <nav id="main-nav" data-pol-nav> vazio recebe o menu padrão
+   - <nav id="main-nav"> recebe sempre o mesmo menu (categorias + "Mais"), em todas as páginas
+   - trilha "Você está em" e o dicionário de termos (glossario.js) entram automaticamente
    - links para subpáginas que ainda não existem ganham o selo "em breve"
    - atalhos .pol-subnav acompanham a seção visível
    Incluir depois de ../scripts/home.js (ou ../../scripts/home.js). */
 (function () {
   "use strict";
   var ROOT = "/politica/";
+  // Menu único de todas as páginas de /politica/ (categorias pensadas para quem não conhece política).
+  // Cada item aponta para uma página que existe; "page" liga o item ao paginas.json.
   var PAGES = [
-    { href: ROOT, label: "Painel" },
-    { href: ROOT + "#gastos", label: "Gastos", page: "gastos" },
-    { href: ROOT + "economia/", label: "Economia", page: "economia" },
-    { href: ROOT + "planos/", label: "Planos", page: "planos" },
-    { href: ROOT + "#mapa", label: "Mapa", page: "mapa" },
-    { href: ROOT + "eleicoes/", label: "Eleições", page: "eleicoes" },
-    { href: ROOT + "#parlamentares", label: "Políticos", page: "politicos" },
-    { href: ROOT + "#executivo", label: "Governo", page: "governo" },
-    { href: ROOT + "#proposicoes", label: "Propostas", page: "propostas" },
-    { href: ROOT + "leis/", label: "Leis", page: "leis" },
-    { href: ROOT + "sigilos/", label: "Sigilos", page: "sigilos" },
-    { href: ROOT + "escandalos/", label: "Escândalos", page: "escandalos" },
-    { href: ROOT + "#parlamentares", label: "Congresso" }
+    { href: ROOT, label: "Início" },
+    { href: ROOT + "politicos/", label: "Políticos", page: "politicos" },
+    { href: ROOT + "gastos/", label: "Gastos", page: "gastos" },
+    { href: ROOT + "leis/", label: "Votações e leis", page: "leis" },
+    { href: ROOT + "propostas/", label: "Propostas", page: "propostas" },
+    { href: ROOT + "planos/", label: "Promessas", page: "planos" },
+    { href: ROOT + "eleicoes/", label: "Partidos e eleições", page: "eleicoes" },
+    { href: ROOT + "escandalos/", label: "Investigações", page: "escandalos" }
   ];
+  var MAIS = [
+    { href: ROOT + "fontes/#salarios", label: "Salários e benefícios", path: ROOT + "fontes/", note: "em construção" },
+    { href: ROOT + "governo/", label: "Governo", page: "governo" },
+    { href: ROOT + "economia/", label: "Economia", page: "economia" },
+    { href: ROOT + "mapa/", label: "Mapa", page: "mapa" },
+    { href: ROOT + "sigilos/", label: "Sigilos", page: "sigilos" },
+    { href: ROOT + "glossario/", label: "Dicionário de termos" },
+    { href: ROOT + "fontes/", label: "Fontes e metodologia" }
+  ];
+  var LABEL_DE = {}; PAGES.concat(MAIS).forEach(function (p) { if (!/#/.test(p.href)) LABEL_DE[p.href] = p.label; });
+  LABEL_DE[ROOT + "escandalos/"] = "Escândalos e crises";
   var body = document.body;
   body.classList.add("pol-nav-on");
   var nav = document.getElementById("main-nav");
+  function fechaMenu() { var t = document.querySelector(".menu-toggle"); if (t && t.getAttribute("aria-expanded") === "true") t.click(); }
+  function link(p) { return '<a href="' + p.href + '"' + (p.page ? ' data-page="' + p.page + '"' : "") + ">" + p.label + (p.note ? ' <span class="nav-note">(' + p.note + ")</span>" : "") + "</a>"; }
 
-  if (nav && nav.hasAttribute("data-pol-nav") && !nav.querySelector("a")) {
-    var html = PAGES.map(function (p) { return '<a href="' + p.href + '"' + (p.page ? ' data-page="' + p.page + '"' : "") + ">" + p.label + "</a>"; }).join("");
+  if (nav) {
+    var html = PAGES.map(link).join("");
+    html += '<div class="nav-mais"><button type="button" class="nav-mais-btn" aria-expanded="false" aria-controls="nav-mais-lista">Mais <span aria-hidden="true">▾</span></button>' +
+      '<div class="nav-mais-lista" id="nav-mais-lista">' + MAIS.map(link).join("") + "</div></div>";
+    html += '<span class="nav-sep" aria-hidden="true"></span>';
     html += '<button class="theme-toggle" type="button" aria-label="Alternar tema claro ou escuro" title="Tema">◐</button>';
     html += '<a class="nav-cta" href="/">← Site</a>';
     nav.innerHTML = html;
+    nav.setAttribute("aria-label", "Seções do portal de política");
     // o home.js já rodou: religa tema e fechamento do menu nos links novos
     var tb = nav.querySelector(".theme-toggle");
     if (tb) tb.addEventListener("click", function () {
@@ -39,41 +54,31 @@
       d.setAttribute("data-theme", next);
       try { localStorage.setItem("as-theme", next); } catch (e) {}
     });
-    nav.querySelectorAll("a").forEach(function (a) {
-      a.addEventListener("click", function () {
-        var t = document.querySelector(".menu-toggle");
-        if (t && t.getAttribute("aria-expanded") === "true") t.click();
-      });
-    });
+    nav.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", fechaMenu); });
+    var mb = nav.querySelector(".nav-mais-btn"), ml = nav.querySelector(".nav-mais-lista");
+    function setMais(open) { mb.setAttribute("aria-expanded", open ? "true" : "false"); ml.classList.toggle("aberta", !!open); }
+    mb.addEventListener("click", function () { setMais(mb.getAttribute("aria-expanded") !== "true"); });
+    document.addEventListener("click", function (e) { if (!e.target.closest(".nav-mais")) setMais(false); });
+    nav.addEventListener("keydown", function (e) { if (e.key === "Escape" && mb.getAttribute("aria-expanded") === "true") { setMais(false); mb.focus(); } });
+    nav.addEventListener("focusout", function (e) { if (e.relatedTarget && !e.relatedTarget.closest(".nav-mais")) setMais(false); });
   }
 
-  // Menus escritos à mão: acrescenta só o que faltar (Leis / Sigilos / Escândalos), sem duplicar
-  if (nav) {
-    var prop = nav.querySelector('a[data-page="propostas"]');
-    if (prop) {
-      [["leis", "Leis"], ["sigilos", "Sigilos"], ["escandalos", "Escândalos"]].forEach(function (p) {
-        if (nav.querySelector('a[data-page="' + p[0] + '"]')) return;
-        var a = document.createElement("a");
-        a.href = ROOT + p[0] + "/"; a.setAttribute("data-page", p[0]); a.textContent = p[1];
-        a.addEventListener("click", function () { var t = document.querySelector(".menu-toggle"); if (t && t.getAttribute("aria-expanded") === "true") t.click(); });
-        var after = nav.querySelector('a[data-page="escandalos"]') ||
-                    nav.querySelector('a[data-page="sigilos"]') ||
-                    nav.querySelector('a[data-page="leis"]') ||
-                    prop;
-        after.insertAdjacentElement("afterend", a);
-      });
-    }
-  }
+  // Trilha "Você está em" nas subpáginas que ainda não têm
+  (function () {
+    var path = location.pathname.replace(/index\.html$/, "");
+    if (path === ROOT || document.querySelector(".pol-crumbs")) return;
+    var h1 = document.querySelector("main h1"); if (!h1) return;
+    var lab = LABEL_DE[path]; if (!lab) return;
+    var c = document.createElement("nav");
+    c.className = "pol-crumbs"; c.setAttribute("aria-label", "Você está em");
+    c.innerHTML = '<a href="' + ROOT + '">Política</a> <span aria-hidden="true">›</span> <span aria-current="page">' + lab + "</span>";
+    h1.parentNode.insertBefore(c, h1.previousElementSibling && h1.previousElementSibling.classList.contains("eyebrow") ? h1.previousElementSibling : h1);
+  })();
 
-  // Menus escritos à mão sem "Eleições": acrescenta depois de "Mapa"
-  if (nav && !nav.querySelector('a[data-page="eleicoes"]')) {
-    var mp = nav.querySelector('a[data-page="mapa"]');
-    if (mp) {
-      var ae = document.createElement("a");
-      ae.href = ROOT + "eleicoes/"; ae.setAttribute("data-page", "eleicoes"); ae.textContent = "Eleições";
-      ae.addEventListener("click", function () { var t = document.querySelector(".menu-toggle"); if (t && t.getAttribute("aria-expanded") === "true") t.click(); });
-      mp.insertAdjacentElement("afterend", ae);
-    }
+  // Dicionário de termos em todas as páginas (glossario.js + glossario.css)
+  if (!window.PolGlossario && !document.querySelector('script[src*="glossario.js"]')) {
+    var gl = document.createElement("link"); gl.rel = "stylesheet"; gl.href = ROOT + "glossario.css"; document.head.appendChild(gl);
+    var gs = document.createElement("script"); gs.src = ROOT + "glossario.js"; gs.async = false; document.body.appendChild(gs);
   }
 
   // Página atual
@@ -87,6 +92,8 @@
       var p = u.pathname.replace(/index\.html$/, "");
       if (p === here) a.setAttribute("aria-current", "page");
     });
+    var mb = nav.querySelector(".nav-mais-btn");
+    if (mb) mb.classList.toggle("tem-atual", !!nav.querySelector('.nav-mais-lista a[aria-current="page"]'));
   }
   if (nav) markCurrent();
 
@@ -117,7 +124,7 @@
     if (nav) markCurrent();
   }
   if (document.querySelector("[data-page], [data-page-reveal]")) {
-    fetch(ROOT + "paginas.json", { cache: "no-cache" })
+    fetch(ROOT + "paginas.json")
       .then(function (r) { return r.ok ? r.json() : {}; })
       .catch(function () { return {}; })
       .then(function (j) { applyPages((j && j.paginas) || {}); });

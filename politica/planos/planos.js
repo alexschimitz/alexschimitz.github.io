@@ -69,7 +69,7 @@
   function num(n) { return (n || 0).toLocaleString("pt-BR"); }
   function mb(b) { return b ? (b / 1048576).toLocaleString("pt-BR", { maximumFractionDigits: b > 1e8 ? 0 : 1 }) + " MB" : ""; }
   function ext(href, txt, cls) { return '<a' + (cls ? ' class="' + cls + '"' : "") + ' href="' + esc(href) + '" target="_blank" rel="noreferrer">' + txt + ' <span aria-hidden="true">↗</span></a>'; }
-  function getJSON(u) { return fetch(u, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(r.status + " " + u); return r.json(); }); }
+  function getJSON(u) { return fetch(u).then(function (r) { if (!r.ok) throw new Error(r.status + " " + u); return r.json(); }); }
   function erro(el, msg) { if (el) el.innerHTML = '<p class="err">' + esc(msg) + "</p>"; }
   function chip(st) { return '<span class="pl-st st-' + st + '">' + ST_TXT[st] + "</span>"; }
 
