@@ -95,7 +95,7 @@
     }).join("") || '<li class="bruto-card">Nenhum caso carregado.</li>';
   }
 
-  fetch("../data/sigilos/sigilos.json", { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (j) {
+  fetch("../data/sigilos/sigilos.json").then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (j) {
     CASOS = j.casos || [];
     CASOS.forEach(function (c) { c._q = norm([c.titulo, c.tema, c.segredo, c.quem, c.quando, c.revelado, (c.governos || []).join(" ")].join(" ")); });
     CASOS.sort(function (a, b) { return (a.status === "mantido") - (b.status === "mantido") || b.ano - a.ano; });

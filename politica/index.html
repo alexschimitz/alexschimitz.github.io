@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="politica.css">
 </head>
 <body class="politica">
-  <a class="skip-link" href="#comecar">Pular para o conteúdo</a>
+  <a class="skip-link" href="#busca">Pular para o conteúdo</a>
   <div class="ambient ambient-one" aria-hidden="true"></div>
   <div class="ambient ambient-two" aria-hidden="true"></div>
 
@@ -52,7 +52,9 @@
   </header>
 
   <main id="conteudo">
+    <noscript><p class="pol-noscript container">Esta página carrega os dados com JavaScript. Ative o JavaScript para ver os números e listas; as fontes oficiais estão em <a href="/politica/fontes/">Fontes e metodologia</a>.</p></noscript>
     <nav class="pol-subnav" aria-label="Atalhos desta página">
+      <a href="#busca">Pesquisar</a>
       <a href="#comecar">Começar</a>
       <a href="#executivo">Governo agora</a>
       <a href="#mapa">Mapa</a>
@@ -78,6 +80,39 @@
         <div><dt>Partidos representados</dt><dd id="st-part">—</dd></div>
         <div><dt>Atualizado em</dt><dd id="st-upd" class="mono">—</dd></div>
       </dl>
+      <p class="muted pol-stats-fonte">Fonte: <a href="https://dadosabertos.camara.leg.br/" target="_blank" rel="noreferrer">Dados Abertos da Câmara</a> e <a href="https://www12.senado.leg.br/dados-abertos" target="_blank" rel="noreferrer">do Senado</a>, baixados pela atualização automática diária. <a href="/politica/fontes/">Como os dados são obtidos</a>.</p>
+    </section>
+
+
+    <section class="section pol-section pol-busca" id="busca" aria-labelledby="busca-title">
+      <div class="container">
+        <h2 id="busca-title">O que você quer saber sobre a política?</h2>
+        <form id="busca-form" class="busca-form" role="search" action="/politica/" method="get">
+          <label for="busca-q" class="sr-only">Pesquisar por nome, sobrenome, partido, cargo, estado ou assunto</label>
+          <div class="busca-linha">
+            <input id="busca-q" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Ex.: nome de um deputado, PT, SP, cota parlamentar, PEC…" aria-describedby="busca-dica">
+            <button type="submit" class="button button-primary">Pesquisar</button>
+          </div>
+          <div class="busca-filtros">
+            <label>Mostrar <select id="busca-tipo" name="tipo"><option value="">Tudo</option><option value="politico">Parlamentares em exercício</option><option value="pagina">Páginas e assuntos</option><option value="termo">Termos do dicionário</option></select></label>
+            <label>Estado <select id="busca-uf" name="uf"><option value="">Todos</option></select></label>
+            <label>Partido <select id="busca-partido" name="partido"><option value="">Todos</option></select></label>
+          </div>
+          <p id="busca-dica" class="muted busca-dica">A busca ignora acentos e maiúsculas. Deputados e senadores em exercício, páginas do portal e termos do dicionário; para políticos de outros cargos e anos, use o link “Histórico” nos resultados.</p>
+        </form>
+        <p id="busca-status" class="busca-status" role="status" aria-live="polite" tabindex="-1"><noscript>A busca precisa de JavaScript. Use os atalhos abaixo ou o menu.</noscript></p>
+        <ul id="busca-res" class="busca-res" aria-label="Resultados da pesquisa"></ul>
+        <div class="busca-populares">
+          <span class="muted">Pesquisas populares:</span>
+          <a href="/politica/?q=cota+parlamentar" data-busca="cota parlamentar">Cota parlamentar</a>
+          <a href="/politica/?q=emendas" data-busca="emendas">Emendas</a>
+          <a href="/politica/?q=senador" data-busca="senador">Senadores</a>
+          <a href="/politica/?q=PEC" data-busca="PEC">O que é PEC</a>
+          <a href="/politica/?q=foro+privilegiado" data-busca="foro privilegiado">Foro privilegiado</a>
+          <a href="/politica/?q=sal%C3%A1rio" data-busca="salário">Salários</a>
+          <a href="/politica/glossario/">Dicionário completo</a>
+        </div>
+      </div>
     </section>
 
     <section class="section pol-section pol-start" id="comecar" aria-labelledby="start-title" tabindex="-1">
@@ -434,5 +469,6 @@
   <script src="gabinete.js"></script>
   <script src="simples.js"></script>
   <script src="politica.js"></script>
+  <script src="busca.js"></script>
 </body>
 </html>

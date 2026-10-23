@@ -104,7 +104,7 @@
 
   // ---------- carga inicial ----------
   Promise.all([getJSON("municipios.json"), getJSON("geo/br.json"), tryJSON("brasil.json"),
-               fetch("../paginas.json").then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; }),
+               fetch("/politica/paginas.json").then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; }),
                fetch("../data/ufs.json").then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })])
     .then(function (res) {
       S.base = res[0]; S.meta = res[2] || {}; S.pages = (res[3] && res[3].paginas) || {}; S.ufsAlex = res[4];

@@ -542,3 +542,36 @@ html[data-theme="light"] .map-frame .state, html[data-theme="light"] .map-frame 
   border-radius: 14px; background: var(--accent-soft); color: var(--accent); font-weight: 800; letter-spacing: -0.03em;
 }
 .pol-foto-ini { font-family: "DM Mono", monospace; }
+
+/* ===== Menu "Mais" e notas do menu (base.js) ===== */
+.nav-mais { position: relative; }
+.nav-mais-btn { font: inherit; color: var(--muted); background: none; border: 0; cursor: pointer; padding: 0; }
+.pol-nav-on .nav-mais-btn { font-size: 0.86rem; }
+.nav-mais-btn:hover, .nav-mais-btn[aria-expanded="true"], .nav-mais-btn.tem-atual { color: var(--text); }
+.nav-mais-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.nav-mais-lista { display: none; }
+.nav-mais-lista.aberta { position: absolute; right: 0; top: calc(100% + 12px); z-index: 60; min-width: 240px; display: grid; gap: 2px; padding: 8px;
+  background: var(--bg-soft, var(--bg)); border: 1px solid var(--line-strong); border-radius: 14px; box-shadow: 0 16px 40px rgba(0,0,0,.35); }
+.nav-mais-lista a { padding: 9px 12px; border-radius: 10px; }
+.nav-mais-lista a:hover, .nav-mais-lista a:focus-visible { background: var(--accent-soft); }
+.nav-note { color: var(--muted-2); font-size: .72rem; }
+@media (max-width: 760px) {
+  .nav-mais-btn { display: none; }
+  .nav-mais-lista, .nav-mais-lista.aberta { position: static; display: contents; box-shadow: none; border: 0; padding: 0; background: none; }
+}
+
+/* Aviso sem JavaScript */
+.pol-noscript { margin: 16px auto; padding: 12px 16px; border: 1px solid var(--line-strong); border-radius: 12px; }
+/* Menu unificado: nada de palavras quebradas no meio entre 761 e 1100px */
+@media (min-width: 761px) {
+  .pol-nav-on .main-nav a, .nav-mais-btn { white-space: nowrap; }
+}
+@media (min-width: 761px) and (max-width: 1100px) {
+  .pol-nav-on .brand-name { display: none; }
+  .pol-nav-on .main-nav { gap: 10px; }
+  .pol-nav-on .main-nav a, .pol-nav-on .nav-mais-btn { font-size: 0.76rem; }
+}
+@media (min-width: 761px) and (max-width: 900px) {
+  .pol-nav-on .main-nav { gap: 8px; }
+  .pol-nav-on .main-nav .nav-cta { display: none; } /* a marca "AS" já leva ao site */
+}

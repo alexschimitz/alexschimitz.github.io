@@ -9,7 +9,7 @@
   var dBR = function (iso) { if (!iso) return ""; var p = String(iso).slice(0, 10).split("-"); return p.length < 3 ? iso : p[2] + "/" + p[1] + "/" + p[0]; };
   var sentenca = function (s) { var t = String(s || "").trim(); return t && !/[.!?…]$/.test(t) ? t + "." : t; };
   var ext = function (url, txt) { return '<a class="ext" href="' + esc(url) + '" target="_blank" rel="noreferrer">' + esc(txt) + " ↗</a>"; };
-  function getJSON(u) { return fetch(u, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(u + " → HTTP " + r.status); return r.json(); }); }
+  function getJSON(u) { return fetch(u).then(function (r) { if (!r.ok) throw new Error(u + " → HTTP " + r.status); return r.json(); }); }
   var PS = window.PolSimples || {}, SIMP = window.PolSimplifica || null;
 
   var TIPOS = {

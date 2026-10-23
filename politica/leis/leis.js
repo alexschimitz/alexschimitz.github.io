@@ -18,7 +18,7 @@
   var Y = document.getElementById("year"); if (Y) Y.textContent = new Date().getFullYear();
 
   var LEIS = [], BY = {}, PESSOAS = null, COER = null, COERC = null;
-  function getJSON(u) { return fetch(u, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
+  function getJSON(u) { return fetch(u).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
 
   function anoDe(L) { return L.data ? +L.data.slice(0, 4) : (L.votacoes && L.votacoes[0] ? +L.votacoes[0].dt.slice(0, 4) : null); }
   function temVoto(L, casa) { return (L.votacoes || []).some(function (v) { return v.casa === casa && !v.secreta; }); }

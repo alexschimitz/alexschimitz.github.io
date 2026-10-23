@@ -1,0 +1,2624 @@
+{
+ "versao": 1,
+ "atualizadoEm": "2026-10-23",
+ "nota": "Glossário do portal de política. Fonte editável: tools-politica/glossario_src.py. Explicações em linguagem simples; a definição legal está na fonte indicada.",
+ "categorias": [
+  "Instituições",
+  "Orçamento e finanças públicas",
+  "Salários e benefícios",
+  "Eleições e partidos",
+  "Processo legislativo",
+  "Justiça e investigações",
+  "Economia e tributação",
+  "Administração pública",
+  "Licitações e contratos",
+  "Transparência e controle"
+ ],
+ "termos": [
+  {
+   "id": "absolvicao",
+   "nome": "Absolvição",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Decisão judicial que conclui que a pessoa não deve ser punida, por exemplo por falta de provas ou porque o fato não é crime.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Código de Processo Penal",
+    "url": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm"
+   },
+   "sinonimos": [
+    "absolvido"
+   ]
+  },
+  {
+   "id": "abstencao",
+   "nome": "Abstenção",
+   "categoria": "Processo legislativo",
+   "explicacao": "Quando o parlamentar participa da votação mas não vota nem a favor nem contra.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "acordo-de-leniencia",
+   "nome": "Acordo de leniência",
+   "categoria": "Transparência e controle",
+   "explicacao": "Acordo entre o poder público e uma empresa que admite participação em atos ilícitos e colabora com as investigações em troca de redução de penalidades.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei Anticorrupção (Lei 12.846/2013)",
+    "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12846.htm"
+   },
+   "sinonimos": [
+    "leniência"
+   ]
+  },
+  {
+   "id": "administracao-direta",
+   "nome": "Administração direta e indireta",
+   "categoria": "Administração pública",
+   "explicacao": "Administração direta: os próprios órgãos do governo, como ministérios e secretarias. Indireta: entidades criadas pelo governo com personalidade própria, como autarquias, fundações, empresas públicas e sociedades de economia mista.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "administração indireta",
+    "autarquia"
+   ]
+  },
+  {
+   "id": "aposentadoria-parlamentar",
+   "nome": "Aposentadoria de parlamentares",
+   "categoria": "Salários e benefícios",
+   "explicacao": "Parlamentares podem aderir a um plano de previdência próprio do Congresso ou ao regime geral (INSS). As regras mudaram ao longo do tempo, incluindo a reforma da Previdência de 2019.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "Cada caso depende da data de entrada no mandato e do plano escolhido.",
+   "fonte": {
+    "nome": "Emenda Constitucional 103/2019",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc103.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "arcabouco-fiscal",
+   "nome": "Arcabouço fiscal (regime fiscal sustentável)",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Conjunto de regras criado em 2023 que limita o crescimento das despesas federais e define metas para as contas públicas. Substituiu o antigo teto de gastos.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regime fiscal sustentável (LC 200/2023)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp200.htm"
+   },
+   "sinonimos": [
+    "arcabouço fiscal",
+    "novo arcabouço"
+   ]
+  },
+  {
+   "id": "arquivamento",
+   "nome": "Arquivamento",
+   "categoria": "Processo legislativo",
+   "explicacao": "Quando uma proposta para de tramitar e é guardada, por exemplo por rejeição, retirada pelo autor ou fim da legislatura.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "Em alguns casos a proposta pode ser desarquivada.",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": [
+    "arquivada",
+    "arquivado"
+   ]
+  },
+  {
+   "id": "arquivamento-inquerito",
+   "nome": "Arquivamento de investigação",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Encerramento de uma investigação sem acusação, por exemplo por falta de provas. Em certos casos pode ser reaberta se surgirem provas novas.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Código de Processo Penal",
+    "url": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "ata-de-registro-de-precos",
+   "nome": "Ata de registro de preços",
+   "categoria": "Licitações e contratos",
+   "explicacao": "Documento que registra preços de fornecedores para compras futuras, sem obrigar a administração a comprar.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei de Licitações (Lei 14.133/2021)",
+    "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "auxilio-moradia",
+   "nome": "Auxílio-moradia",
+   "categoria": "Salários e benefícios",
+   "explicacao": "Valor pago a parlamentares que não ocupam imóvel funcional em Brasília, para ajudar com moradia.",
+   "exemplo": "",
+   "diferencas": "Imóvel funcional é um apartamento do próprio Congresso cedido ao parlamentar; quem usa o imóvel não recebe o auxílio.",
+   "ressalvas": "Parlamentares podem abrir mão do auxílio; a recusa só pode ser afirmada quando houver registro oficial.",
+   "fonte": {
+    "nome": "Câmara dos Deputados — Cota parlamentar",
+    "url": "https://www.camara.leg.br/cota-parlamentar/"
+   },
+   "sinonimos": [
+    "auxílio moradia",
+    "imóvel funcional"
+   ]
+  },
+  {
+   "id": "acao-civil-publica",
+   "nome": "Ação civil pública",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Ação usada principalmente pelo Ministério Público para proteger interesses coletivos, como o patrimônio público e o meio ambiente.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei da Ação Civil Pública (Lei 7.347/1985)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l7347orig.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "adi",
+   "nome": "Ação Direta de Inconstitucionalidade (ADI)",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Ação no STF para pedir que uma lei ou ato normativo seja declarado contrário à Constituição.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei 9.868/1999 (ADI e ADC)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l9868.htm"
+   },
+   "sinonimos": [
+    "ADI",
+    "inconstitucional"
+   ]
+  },
+  {
+   "id": "acao-penal",
+   "nome": "Ação penal",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Processo criminal na Justiça, aberto quando a acusação é recebida. Termina com absolvição ou condenação.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Código de Processo Penal",
+    "url": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm"
+   },
+   "sinonimos": [
+    "processo criminal"
+   ]
+  },
+  {
+   "id": "acao-popular",
+   "nome": "Ação popular",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Ação que qualquer cidadão pode propor na Justiça para anular atos que prejudiquem o patrimônio público, a moralidade administrativa ou o meio ambiente.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei da Ação Popular (Lei 4.717/1965)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l4717.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "bancada",
+   "nome": "Bancada",
+   "categoria": "Instituições",
+   "explicacao": "Grupo de parlamentares de um mesmo partido, estado ou que defendem um mesmo tema.",
+   "exemplo": "Bancada do PT; bancada de São Paulo; bancada ruralista.",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "busca-e-apreensao",
+   "nome": "Busca e apreensão",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Medida autorizada por juiz para entrar em um local e recolher documentos ou objetos que possam servir de prova. Não significa culpa.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Código de Processo Penal",
+    "url": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "carga-tributaria",
+   "nome": "Carga tributária",
+   "categoria": "Economia e tributação",
+   "explicacao": "Total de tributos arrecadados no país em relação ao PIB.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Tesouro Transparente",
+    "url": "https://www.tesourotransparente.gov.br/"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "cargo-em-comissao",
+   "nome": "Cargo em comissão",
+   "categoria": "Salários e benefícios",
+   "explicacao": "Cargo de livre nomeação e exoneração, sem concurso, para funções de direção, chefia e assessoramento.",
+   "exemplo": "",
+   "diferencas": "Servidor efetivo entra por concurso público.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "cargo comissionado",
+    "comissionado"
+   ]
+  },
+  {
+   "id": "cartao-corporativo",
+   "nome": "Cartão de pagamento do governo (“cartão corporativo”)",
+   "categoria": "Salários e benefícios",
+   "explicacao": "Cartão usado por órgãos federais para pagar despesas de pequeno valor ou urgentes. Os gastos são publicados no Portal da Transparência, exceto os protegidos por sigilo legal.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Portal da Transparência (CGU)",
+    "url": "https://portaldatransparencia.gov.br/"
+   },
+   "sinonimos": [
+    "cartão corporativo",
+    "CPGF"
+   ]
+  },
+  {
+   "id": "cassacao",
+   "nome": "Cassação de mandato",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Perda do mandato decidida pela Casa legislativa (por exemplo, por quebra de decoro) ou pela Justiça Eleitoral (por exemplo, por abuso de poder na eleição).",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "cassação",
+    "perda de mandato",
+    "cassado"
+   ]
+  },
+  {
+   "id": "clausula-de-barreira",
+   "nome": "Cláusula de desempenho (cláusula de barreira)",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Regra que exige um mínimo de votos ou de deputados eleitos para o partido ter acesso ao Fundo Partidário e ao tempo gratuito de rádio e TV.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "cláusula de barreira"
+   ]
+  },
+  {
+   "id": "colaboracao-premiada",
+   "nome": "Colaboração premiada (delação)",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Acordo em que um investigado ou acusado fornece informações e provas em troca de benefícios, como redução de pena. O que o colaborador diz, sozinho, não basta para condenar alguém.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei 12.850/2013 (organizações criminosas)",
+    "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12850.htm"
+   },
+   "sinonimos": [
+    "delação premiada",
+    "delação",
+    "delator"
+   ]
+  },
+  {
+   "id": "coligacao",
+   "nome": "Coligação",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Aliança entre partidos para disputar uma eleição. Desde 2020 só é permitida em eleições majoritárias (presidente, governador, senador e prefeito).",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "comissao",
+   "nome": "Comissão",
+   "categoria": "Processo legislativo",
+   "explicacao": "Grupo menor de parlamentares que analisa projetos de um tema específico (por exemplo, saúde ou finanças) antes do plenário. Algumas comissões podem aprovar projetos sem passar pelo plenário.",
+   "exemplo": "",
+   "diferencas": "Comissões permanentes existem sempre; comissões temporárias são criadas para um assunto.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": [
+    "comissões"
+   ]
+  },
+  {
+   "id": "cpi",
+   "nome": "Comissão Parlamentar de Inquérito (CPI)",
+   "categoria": "Processo legislativo",
+   "explicacao": "Comissão temporária criada para investigar um fato determinado, por prazo certo. Tem poderes de investigação próprios das autoridades judiciais, como convocar testemunhas e pedir quebra de sigilo, mas não condena ninguém: envia as conclusões ao Ministério Público.",
+   "exemplo": "",
+   "diferencas": "CPI investiga; não julga nem aplica pena.",
+   "ressalvas": "Precisa da assinatura de pelo menos 1/3 dos membros da Casa.",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "CPI",
+    "CPMI"
+   ]
+  },
+  {
+   "id": "concurso-publico",
+   "nome": "Concurso público",
+   "categoria": "Administração pública",
+   "explicacao": "Seleção por provas, ou provas e títulos, exigida para ocupar cargos e empregos públicos efetivos.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "condenacao",
+   "nome": "Condenação",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Decisão judicial que reconhece a culpa e aplica uma pena. Pode ainda ser contestada por recursos até o trânsito em julgado.",
+   "exemplo": "",
+   "diferencas": "Condenação em primeira instância ou por órgão colegiado é diferente de condenação definitiva.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Código de Processo Penal",
+    "url": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm"
+   },
+   "sinonimos": [
+    "condenado"
+   ]
+  },
+  {
+   "id": "conflito-de-interesses",
+   "nome": "Conflito de interesses",
+   "categoria": "Administração pública",
+   "explicacao": "Situação em que um interesse particular de um agente público pode influenciar indevidamente suas decisões no cargo.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei de Conflito de Interesses (Lei 12.813/2013)",
+    "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12813.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "congresso-nacional",
+   "nome": "Congresso Nacional",
+   "categoria": "Instituições",
+   "explicacao": "Órgão que faz as leis federais e fiscaliza o governo. É formado por duas Casas: a Câmara dos Deputados e o Senado Federal.",
+   "exemplo": "",
+   "diferencas": "Congresso é o conjunto das duas Casas; Câmara e Senado são cada uma das Casas.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "Poder Legislativo federal"
+   ]
+  },
+  {
+   "id": "contingenciamento",
+   "nome": "Contingenciamento",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Bloqueio temporário de despesas previstas no orçamento quando a arrecadação fica abaixo do esperado, para cumprir a meta fiscal.",
+   "exemplo": "",
+   "diferencas": "Corte definitivo é diferente: o contingenciamento pode ser revertido.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei de Responsabilidade Fiscal (LC 101/2000)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp101.htm"
+   },
+   "sinonimos": [
+    "bloqueio de verbas"
+   ]
+  },
+  {
+   "id": "contrato-administrativo",
+   "nome": "Contrato administrativo",
+   "categoria": "Licitações e contratos",
+   "explicacao": "Acordo entre o poder público e um fornecedor, com regras especiais que dão à administração certas prerrogativas, como fiscalizar e alterar o contrato nos limites da lei.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei de Licitações (Lei 14.133/2021)",
+    "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm"
+   },
+   "sinonimos": [
+    "contrato"
+   ]
+  },
+  {
+   "id": "cgu",
+   "nome": "Controladoria-Geral da União (CGU)",
+   "categoria": "Instituições",
+   "explicacao": "Órgão do governo federal que faz auditoria interna, combate a corrupção, recebe denúncias e mantém o Portal da Transparência.",
+   "exemplo": "",
+   "diferencas": "A CGU faz controle interno (dentro do Executivo); o TCU faz controle externo (ligado ao Congresso).",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Controladoria-Geral da União",
+    "url": "https://www.gov.br/cgu/pt-br"
+   },
+   "sinonimos": [
+    "CGU"
+   ]
+  },
+  {
+   "id": "controle-externo",
+   "nome": "Controle externo e interno",
+   "categoria": "Transparência e controle",
+   "explicacao": "Controle externo: fiscalização feita pelo Legislativo com ajuda dos tribunais de contas. Controle interno: fiscalização feita dentro de cada Poder, como a CGU no Executivo federal.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "controle interno"
+   ]
+  },
+  {
+   "id": "convenio",
+   "nome": "Convênio",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Acordo pelo qual um órgão repassa dinheiro a outro órgão público ou entidade para realizar um projeto de interesse comum.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Portal da Transparência (CGU)",
+    "url": "https://portaldatransparencia.gov.br/"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "corrupcao",
+   "nome": "Corrupção (passiva e ativa)",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Corrupção passiva: o agente público pede ou recebe vantagem indevida por causa da função. Corrupção ativa: alguém oferece ou promete essa vantagem ao agente público.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Código Penal",
+    "url": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del2848compilado.htm"
+   },
+   "sinonimos": [
+    "corrupção passiva",
+    "corrupção ativa",
+    "propina"
+   ]
+  },
+  {
+   "id": "ceaps",
+   "nome": "Cota do Senado (CEAPS)",
+   "categoria": "Salários e benefícios",
+   "explicacao": "Equivalente da cota parlamentar no Senado: valor para despesas do mandato do senador, reembolsadas mediante comprovação.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Senado Federal — Transparência",
+    "url": "https://www12.senado.leg.br/transparencia"
+   },
+   "sinonimos": [
+    "CEAPS"
+   ]
+  },
+  {
+   "id": "ceap",
+   "nome": "Cota para o Exercício da Atividade Parlamentar (CEAP)",
+   "categoria": "Salários e benefícios",
+   "explicacao": "Valor mensal que cada deputado federal pode usar para pagar despesas do mandato, como passagens, combustível, escritório e divulgação, mediante reembolso com nota fiscal. O limite varia por estado.",
+   "exemplo": "",
+   "diferencas": "Não é salário e não paga assessores.",
+   "ressalvas": "Gastos são publicados nos Dados Abertos da Câmara; a ausência de gastos em um mês não significa, por si só, recusa do benefício.",
+   "fonte": {
+    "nome": "Câmara dos Deputados — Cota parlamentar",
+    "url": "https://www.camara.leg.br/cota-parlamentar/"
+   },
+   "sinonimos": [
+    "cota parlamentar",
+    "CEAP",
+    "cotão"
+   ]
+  },
+  {
+   "id": "camara-dos-deputados",
+   "nome": "Câmara dos Deputados",
+   "categoria": "Instituições",
+   "explicacao": "Casa do Congresso formada por 513 deputados federais, eleitos para representar a população de cada estado e do Distrito Federal. O número de deputados de cada estado depende da população, com mínimo de 8 e máximo de 70.",
+   "exemplo": "",
+   "diferencas": "Deputados representam o povo; senadores representam os estados.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "Câmara"
+   ]
+  },
+  {
+   "id": "dados-abertos",
+   "nome": "Dados abertos",
+   "categoria": "Transparência e controle",
+   "explicacao": "Dados públicos disponibilizados na internet em formato que pode ser lido por computador e reutilizado livremente.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Dados Abertos da Câmara dos Deputados",
+    "url": "https://dadosabertos.camara.leg.br/"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "decoro-parlamentar",
+   "nome": "Decoro parlamentar",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Conjunto de regras de comportamento exigidas dos parlamentares. Quebrar o decoro pode levar à perda do mandato, decidida pela própria Casa.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "quebra de decoro",
+    "Conselho de Ética"
+   ]
+  },
+  {
+   "id": "decreto",
+   "nome": "Decreto",
+   "categoria": "Administração pública",
+   "explicacao": "Ato do chefe do Executivo (presidente, governador ou prefeito), normalmente para regulamentar como uma lei será aplicada.",
+   "exemplo": "",
+   "diferencas": "Decreto não pode criar obrigações que a lei não prevê.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "denuncia",
+   "nome": "Denúncia",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Acusação formal feita pelo Ministério Público à Justiça contra uma pessoa por um crime. Se o juiz ou tribunal aceita a denúncia, a pessoa passa a ser ré.",
+   "exemplo": "",
+   "diferencas": "Na linguagem comum, “denúncia” também é qualquer relato de irregularidade; aqui é o termo jurídico.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Código de Processo Penal",
+    "url": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm"
+   },
+   "sinonimos": [
+    "denunciado"
+   ]
+  },
+  {
+   "id": "despesa-discricionaria",
+   "nome": "Despesa discricionária",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Gasto que o governo pode decidir fazer ou não, e em que valor, como muitos investimentos e custeio de programas.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Tesouro Transparente",
+    "url": "https://www.tesourotransparente.gov.br/"
+   },
+   "sinonimos": [
+    "despesas discricionárias"
+   ]
+  },
+  {
+   "id": "despesa-obrigatoria",
+   "nome": "Despesa obrigatória",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Gasto que o governo é obrigado a fazer por lei ou pela Constituição, como aposentadorias e salários de servidores.",
+   "exemplo": "",
+   "diferencas": "Despesa discricionária é aquela em que o governo tem escolha sobre quanto e onde gastar.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Tesouro Transparente",
+    "url": "https://www.tesourotransparente.gov.br/"
+   },
+   "sinonimos": [
+    "despesas obrigatórias"
+   ]
+  },
+  {
+   "id": "destaque",
+   "nome": "Destaque",
+   "categoria": "Processo legislativo",
+   "explicacao": "Pedido para votar separadamente um trecho do texto ou uma emenda, depois da votação principal.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "dispensa-de-licitacao",
+   "nome": "Dispensa de licitação",
+   "categoria": "Licitações e contratos",
+   "explicacao": "Situações previstas em lei em que a licitação seria possível, mas a lei permite contratar diretamente, como compras de pequeno valor ou emergências.",
+   "exemplo": "",
+   "diferencas": "Na inexigibilidade, a competição é inviável (por exemplo, fornecedor exclusivo).",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei de Licitações (Lei 14.133/2021)",
+    "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm"
+   },
+   "sinonimos": [
+    "dispensa",
+    "contratação direta"
+   ]
+  },
+  {
+   "id": "diaria",
+   "nome": "Diária",
+   "categoria": "Salários e benefícios",
+   "explicacao": "Valor pago a servidores e autoridades para cobrir hospedagem, alimentação e locomoção durante viagens a trabalho.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regime dos servidores federais (Lei 8.112/1990)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l8112cons.htm"
+   },
+   "sinonimos": [
+    "diárias"
+   ]
+  },
+  {
+   "id": "diario-oficial",
+   "nome": "Diário Oficial",
+   "categoria": "Administração pública",
+   "explicacao": "Publicação oficial onde leis, decretos, nomeações e contratos são divulgados. Muitos atos só passam a valer após a publicação.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Diário Oficial da União — Imprensa Nacional",
+    "url": "https://www.in.gov.br/"
+   },
+   "sinonimos": [
+    "DOU",
+    "Diário Oficial da União"
+   ]
+  },
+  {
+   "id": "deficit",
+   "nome": "Déficit e superávit",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Déficit: o governo gastou mais do que arrecadou no período. Superávit: arrecadou mais do que gastou.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Tesouro Transparente",
+    "url": "https://www.tesourotransparente.gov.br/"
+   },
+   "sinonimos": [
+    "déficit",
+    "superávit"
+   ]
+  },
+  {
+   "id": "divida-publica",
+   "nome": "Dívida pública",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Total que o governo deve a quem emprestou dinheiro a ele, principalmente por meio de títulos públicos.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Tesouro Transparente",
+    "url": "https://www.tesourotransparente.gov.br/"
+   },
+   "sinonimos": [
+    "dívida"
+   ]
+  },
+  {
+   "id": "emenda",
+   "nome": "Emenda (a um projeto)",
+   "categoria": "Processo legislativo",
+   "explicacao": "Proposta de mudança em um trecho de um projeto em discussão: acrescentar, retirar ou alterar partes do texto.",
+   "exemplo": "",
+   "diferencas": "Emenda a um projeto é diferente de emenda constitucional e de emenda parlamentar ao orçamento.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "emenda-parlamentar",
+   "nome": "Emenda parlamentar (ao orçamento)",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Parte do orçamento cujo destino é indicado por deputados e senadores, por exemplo para obras ou serviços em municípios.",
+   "exemplo": "Um deputado indica recursos para equipar um hospital da sua cidade.",
+   "diferencas": "Emendas individuais são de cada parlamentar; de bancada, dos parlamentares de um estado; de comissão, de uma comissão.",
+   "ressalvas": "Parte das emendas tem execução obrigatória pela Constituição. As regras mudaram várias vezes nos últimos anos.",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "emendas parlamentares",
+    "emenda individual",
+    "emenda de bancada"
+   ]
+  },
+  {
+   "id": "empenho",
+   "nome": "Empenho",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Primeira etapa da despesa pública: o governo reserva o dinheiro para um gasto específico.",
+   "exemplo": "",
+   "diferencas": "Empenhado: dinheiro reservado. Liquidado: serviço ou entrega conferidos. Pago: dinheiro efetivamente transferido.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei 4.320/1964 (normas de orçamento)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l4320.htm"
+   },
+   "sinonimos": [
+    "empenhado"
+   ]
+  },
+  {
+   "id": "estatal",
+   "nome": "Empresa estatal",
+   "categoria": "Administração pública",
+   "explicacao": "Empresa controlada pelo governo. Pode ser empresa pública (capital totalmente público) ou sociedade de economia mista (com sócios privados, mas controle público).",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei das Estatais (Lei 13.303/2016)",
+    "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/lei/l13303.htm"
+   },
+   "sinonimos": [
+    "estatais",
+    "empresa pública",
+    "sociedade de economia mista"
+   ]
+  },
+  {
+   "id": "pacto-federativo",
+   "nome": "Federação (pacto federativo)",
+   "categoria": "Instituições",
+   "explicacao": "Forma de organização do Brasil, em que União, estados, Distrito Federal e municípios têm autonomia e competências próprias definidas pela Constituição.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "pacto federativo",
+    "federação"
+   ]
+  },
+  {
+   "id": "federacao-partidaria",
+   "nome": "Federação partidária",
+   "categoria": "Eleições e partidos",
+   "explicacao": "União de dois ou mais partidos que atuam como se fossem um só, nas eleições e no Congresso, por pelo menos quatro anos.",
+   "exemplo": "",
+   "diferencas": "Coligação vale só para a eleição; federação dura no mínimo quatro anos.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei dos Partidos Políticos (Lei 9.096/1995)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l9096.htm"
+   },
+   "sinonimos": [
+    "federação"
+   ]
+  },
+  {
+   "id": "fidelidade-partidaria",
+   "nome": "Fidelidade partidária",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Regra segundo a qual o eleito pelo sistema proporcional que deixa o partido sem justa causa pode perder o mandato.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "Há exceções, como a janela partidária.",
+   "fonte": {
+    "nome": "Lei dos Partidos Políticos (Lei 9.096/1995)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l9096.htm"
+   },
+   "sinonimos": [
+    "infidelidade partidária"
+   ]
+  },
+  {
+   "id": "filiacao",
+   "nome": "Filiação partidária",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Vínculo formal de uma pessoa com um partido. É exigida para se candidatar.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei dos Partidos Políticos (Lei 9.096/1995)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l9096.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "foro-privilegiado",
+   "nome": "Foro por prerrogativa de função (“foro privilegiado”)",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Regra que determina que certas autoridades sejam julgadas, em alguns casos, diretamente por tribunais superiores. Deputados federais e senadores, por exemplo, são julgados pelo STF em crimes comuns.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "O alcance do foro foi redefinido pelo STF em mais de uma ocasião; verifique o entendimento vigente para cada caso.",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "foro privilegiado",
+    "foro especial"
+   ]
+  },
+  {
+   "id": "fundo-eleitoral",
+   "nome": "Fundo Eleitoral (FEFC)",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Fundo Especial de Financiamento de Campanha: dinheiro público distribuído aos partidos em anos de eleição para pagar campanhas.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei das Eleições (Lei 9.504/1997)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l9504.htm"
+   },
+   "sinonimos": [
+    "FEFC",
+    "fundão"
+   ]
+  },
+  {
+   "id": "fundo-partidario",
+   "nome": "Fundo Partidário",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Dinheiro público (e algumas multas e doações) distribuído todos os anos aos partidos para manter suas atividades.",
+   "exemplo": "",
+   "diferencas": "Fundo Eleitoral é usado só nas campanhas, em ano de eleição.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei dos Partidos Políticos (Lei 9.096/1995)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l9096.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "ibs-cbs",
+   "nome": "IBS e CBS",
+   "categoria": "Economia e tributação",
+   "explicacao": "Tributos criados pela reforma tributária. A CBS é federal e o IBS é de estados e municípios; ambos incidem sobre o consumo de bens e serviços.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei Complementar 214/2025 (IBS, CBS e Imposto Seletivo)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214.htm"
+   },
+   "sinonimos": [
+    "IBS",
+    "CBS",
+    "IVA dual"
+   ]
+  },
+  {
+   "id": "icms",
+   "nome": "ICMS",
+   "categoria": "Economia e tributação",
+   "explicacao": "Imposto estadual sobre circulação de mercadorias e alguns serviços. Será substituído gradualmente pelo IBS.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "ICMS"
+   ]
+  },
+  {
+   "id": "impeachment",
+   "nome": "Impeachment",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Processo para afastar e retirar do cargo o presidente da República e outras autoridades por crime de responsabilidade. No caso do presidente, a Câmara autoriza (2/3 dos deputados) e o Senado julga (condenação por 2/3 dos senadores).",
+   "exemplo": "",
+   "diferencas": "Crime de responsabilidade é uma infração político-administrativa, diferente de crime comum.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei 1.079/1950 (crimes de responsabilidade)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l1079.htm"
+   },
+   "sinonimos": [
+    "impedimento"
+   ]
+  },
+  {
+   "id": "imposto",
+   "nome": "Imposto",
+   "categoria": "Economia e tributação",
+   "explicacao": "Tributo pago ao governo que não está ligado a um serviço específico; o dinheiro financia as despesas gerais do Estado.",
+   "exemplo": "",
+   "diferencas": "Taxa está ligada a um serviço específico; contribuição tem destinação definida (como a previdência).",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "impostos"
+   ]
+  },
+  {
+   "id": "improbidade",
+   "nome": "Improbidade administrativa",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Ato desonesto ou ilegal contra a administração pública, como enriquecimento ilícito ou dano aos cofres públicos. É punido na esfera civil (multa, ressarcimento, perda da função, suspensão de direitos políticos), não na criminal.",
+   "exemplo": "",
+   "diferencas": "Ação de improbidade não é processo criminal.",
+   "ressalvas": "A lei foi profundamente alterada em 2021 (Lei 14.230/2021).",
+   "fonte": {
+    "nome": "Lei de Improbidade Administrativa (Lei 8.429/1992)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l8429.htm"
+   },
+   "sinonimos": [
+    "ato de improbidade"
+   ]
+  },
+  {
+   "id": "isencao-fiscal",
+   "nome": "Incentivo ou benefício fiscal",
+   "categoria": "Economia e tributação",
+   "explicacao": "Redução ou dispensa de tributo concedida por lei a um setor, região ou grupo. Representa receita que o governo deixa de arrecadar.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei de Responsabilidade Fiscal (LC 101/2000)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp101.htm"
+   },
+   "sinonimos": [
+    "isenção",
+    "renúncia fiscal",
+    "gasto tributário"
+   ]
+  },
+  {
+   "id": "inelegibilidade",
+   "nome": "Inelegibilidade",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Situação em que a pessoa fica proibida de se candidatar, por um período ou de forma permanente, nos casos previstos na Constituição e em lei complementar.",
+   "exemplo": "",
+   "diferencas": "Inelegível não pode se candidatar; perder o mandato é outra coisa.",
+   "ressalvas": "Os prazos e casos foram alterados por leis posteriores, como a Lei da Ficha Limpa. Consulte a redação vigente.",
+   "fonte": {
+    "nome": "Lei das Inelegibilidades (LC 64/1990)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp64.htm"
+   },
+   "sinonimos": [
+    "inelegível"
+   ]
+  },
+  {
+   "id": "inexigibilidade",
+   "nome": "Inexigibilidade de licitação",
+   "categoria": "Licitações e contratos",
+   "explicacao": "Contratação direta quando a competição é inviável, como no caso de fornecedor exclusivo ou artista consagrado.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei de Licitações (Lei 14.133/2021)",
+    "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "inflacao",
+   "nome": "Inflação",
+   "categoria": "Economia e tributação",
+   "explicacao": "Aumento geral dos preços ao longo do tempo, que reduz o poder de compra do dinheiro.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "IBGE Explica — Inflação",
+    "url": "https://www.ibge.gov.br/explica/inflacao.php"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "inquerito",
+   "nome": "Inquérito",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Investigação feita, em regra, pela polícia para apurar se um crime ocorreu e quem pode ser o autor. Ser investigado não significa ser culpado.",
+   "exemplo": "",
+   "diferencas": "Inquérito é investigação; ação penal é o processo em que há acusação formal.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Código de Processo Penal",
+    "url": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm"
+   },
+   "sinonimos": [
+    "inquérito policial",
+    "investigado",
+    "investigação"
+   ]
+  },
+  {
+   "id": "ipca",
+   "nome": "IPCA",
+   "categoria": "Economia e tributação",
+   "explicacao": "Índice Nacional de Preços ao Consumidor Amplo, calculado pelo IBGE. É o índice oficial de inflação do Brasil.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "IBGE Explica — Inflação",
+    "url": "https://www.ibge.gov.br/explica/inflacao.php"
+   },
+   "sinonimos": [
+    "IPCA"
+   ]
+  },
+  {
+   "id": "janela-partidaria",
+   "nome": "Janela partidária",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Período de 30 dias antes do prazo de filiação para a eleição em que deputados e vereadores podem trocar de partido sem perder o mandato, no fim do mandato vigente.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei dos Partidos Políticos (Lei 9.096/1995)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l9096.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "lavagem-de-dinheiro",
+   "nome": "Lavagem de dinheiro",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Crime de esconder ou disfarçar a origem ilegal de dinheiro ou bens para que pareçam legítimos.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei 9.613/1998 (lavagem de dinheiro)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l9613.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "legislatura",
+   "nome": "Legislatura",
+   "categoria": "Instituições",
+   "explicacao": "Período de quatro anos de trabalho do Congresso. A 57ª legislatura vai de 2023 a 2027.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "ficha-limpa",
+   "nome": "Lei da Ficha Limpa",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Lei de 2010 que ampliou os casos de inelegibilidade, incluindo condenações por órgão colegiado (mais de um juiz) por certos crimes, mesmo antes do fim de todos os recursos.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "Prazos e regras de contagem podem ter sido alterados posteriormente; consulte a redação vigente na LC 64/1990.",
+   "fonte": {
+    "nome": "Lei da Ficha Limpa (LC 135/2010)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp135.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "lai",
+   "nome": "Lei de Acesso à Informação (LAI)",
+   "categoria": "Transparência e controle",
+   "explicacao": "Lei que garante a qualquer pessoa o direito de pedir informações a órgãos públicos, sem precisar justificar. A regra é a publicidade; o sigilo é exceção.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei de Acesso à Informação (Lei 12.527/2011)",
+    "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm"
+   },
+   "sinonimos": [
+    "LAI",
+    "pedido de informação"
+   ]
+  },
+  {
+   "id": "ldo",
+   "nome": "Lei de Diretrizes Orçamentárias (LDO)",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Lei anual que define metas e prioridades e dá as regras para elaborar o orçamento do ano seguinte.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "LDO"
+   ]
+  },
+  {
+   "id": "lrf",
+   "nome": "Lei de Responsabilidade Fiscal (LRF)",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Lei que define regras para a gestão das contas públicas em todo o país, como limites de gasto com pessoal e de endividamento.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei de Responsabilidade Fiscal (LC 101/2000)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp101.htm"
+   },
+   "sinonimos": [
+    "LRF"
+   ]
+  },
+  {
+   "id": "loa",
+   "nome": "Lei Orçamentária Anual (LOA)",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Lei que estima as receitas e fixa as despesas do governo para um ano.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "LOA"
+   ]
+  },
+  {
+   "id": "licitacao",
+   "nome": "Licitação",
+   "categoria": "Licitações e contratos",
+   "explicacao": "Procedimento obrigatório para o poder público escolher quem vai fornecer bens, prestar serviços ou fazer obras, buscando a proposta mais vantajosa com igualdade entre os concorrentes.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei de Licitações (Lei 14.133/2021)",
+    "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm"
+   },
+   "sinonimos": [
+    "licitações"
+   ]
+  },
+  {
+   "id": "liminar",
+   "nome": "Liminar",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Decisão judicial provisória e urgente, tomada antes da decisão final do processo. Pode ser revista depois.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Supremo Tribunal Federal",
+    "url": "https://portal.stf.jus.br/"
+   },
+   "sinonimos": [
+    "decisão liminar",
+    "cautelar"
+   ]
+  },
+  {
+   "id": "liquidacao",
+   "nome": "Liquidação",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Etapa em que o governo confere se o bem foi entregue ou o serviço foi prestado e reconhece que deve pagar.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei 4.320/1964 (normas de orçamento)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l4320.htm"
+   },
+   "sinonimos": [
+    "liquidado"
+   ]
+  },
+  {
+   "id": "lideranca",
+   "nome": "Líder partidário",
+   "categoria": "Instituições",
+   "explicacao": "Parlamentar escolhido pela bancada de um partido ou bloco para falar em nome dela e orientar como votar.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": [
+    "líder",
+    "liderança"
+   ]
+  },
+  {
+   "id": "maioria-absoluta",
+   "nome": "Maioria absoluta",
+   "categoria": "Processo legislativo",
+   "explicacao": "Mais da metade de todos os membros de uma Casa, estejam presentes ou não: 257 deputados ou 41 senadores.",
+   "exemplo": "",
+   "diferencas": "Maioria simples considera apenas os presentes na votação.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "medida-provisoria",
+   "nome": "Medida Provisória (MP)",
+   "categoria": "Processo legislativo",
+   "explicacao": "Norma com força de lei editada pelo presidente em casos de relevância e urgência. Vale desde a publicação por 60 dias, prorrogáveis por mais 60. Se o Congresso não aprovar nesse prazo, perde a validade.",
+   "exemplo": "",
+   "diferencas": "A MP já vale antes de ser votada; um projeto de lei só vale depois de aprovado e sancionado.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "MP",
+    "MPV"
+   ]
+  },
+  {
+   "id": "mesa-diretora",
+   "nome": "Mesa Diretora",
+   "categoria": "Instituições",
+   "explicacao": "Grupo de parlamentares que dirige os trabalhos da Câmara ou do Senado: presidente, vice-presidentes e secretários. Decide, entre outras coisas, a administração da Casa.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": [
+    "Mesa"
+   ]
+  },
+  {
+   "id": "ministerio",
+   "nome": "Ministério",
+   "categoria": "Instituições",
+   "explicacao": "Órgão do governo federal que cuida de uma área, como saúde ou educação. É chefiado por um ministro escolhido pelo presidente.",
+   "exemplo": "",
+   "diferencas": "Ministro de um ministério (Executivo) é diferente de ministro do STF ou do TCU.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "ministerio-publico",
+   "nome": "Ministério Público",
+   "categoria": "Instituições",
+   "explicacao": "Instituição independente que defende a lei e os interesses da sociedade. Pode investigar, propor ações na Justiça e acusar pessoas em processos criminais.",
+   "exemplo": "",
+   "diferencas": "O Ministério Público acusa; quem julga é o juiz.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "MP",
+    "MPF",
+    "Ministério Público Federal"
+   ]
+  },
+  {
+   "id": "nepotismo",
+   "nome": "Nepotismo",
+   "categoria": "Administração pública",
+   "explicacao": "Nomeação de parentes de autoridades para cargos de confiança no serviço público. É proibida pela Súmula Vinculante 13 do STF.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "STF — Súmula Vinculante 13",
+    "url": "https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=26&sumula=1227"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "obstrucao",
+   "nome": "Obstrução",
+   "categoria": "Processo legislativo",
+   "explicacao": "Estratégia para atrasar ou impedir uma votação, por exemplo, deixando de registrar presença para dificultar o quórum.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "Na Câmara, o registro “obstrução” é uma opção do painel e não conta como presença para quórum.",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "orcamento-publico",
+   "nome": "Orçamento público",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Plano que prevê quanto o governo espera arrecadar e autoriza quanto pode gastar em cada área durante o ano. É aprovado por lei.",
+   "exemplo": "A LOA de cada ano define quanto vai para saúde, educação, previdência etc.",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei 4.320/1964 (normas de orçamento)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l4320.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "ouvidoria",
+   "nome": "Ouvidoria",
+   "categoria": "Administração pública",
+   "explicacao": "Canal para o cidadão enviar reclamações, denúncias, sugestões e elogios sobre serviços públicos. No governo federal, a plataforma é o Fala.BR.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei 13.460/2017 (direitos do usuário de serviço público)",
+    "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13460.htm"
+   },
+   "sinonimos": [
+    "Fala.BR"
+   ]
+  },
+  {
+   "id": "pagamento",
+   "nome": "Pagamento (despesa paga)",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Última etapa da despesa: o dinheiro sai efetivamente dos cofres públicos para o fornecedor ou beneficiário.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "Um valor empenhado num ano pode ser pago só no ano seguinte (restos a pagar).",
+   "fonte": {
+    "nome": "Lei 4.320/1964 (normas de orçamento)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l4320.htm"
+   },
+   "sinonimos": [
+    "pago"
+   ]
+  },
+  {
+   "id": "parecer",
+   "nome": "Parecer",
+   "categoria": "Processo legislativo",
+   "explicacao": "Documento com a análise e a recomendação do relator ou da comissão sobre um projeto.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "partido-politico",
+   "nome": "Partido político",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Associação de pessoas com ideias e objetivos políticos comuns, registrada no TSE. No Brasil, só é possível se candidatar filiado a um partido.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei dos Partidos Políticos (Lei 9.096/1995)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l9096.htm"
+   },
+   "sinonimos": [
+    "partido",
+    "legenda",
+    "sigla"
+   ]
+  },
+  {
+   "id": "passagens",
+   "nome": "Passagens oficiais",
+   "categoria": "Salários e benefícios",
+   "explicacao": "Bilhetes de viagem pagos com dinheiro público para deslocamentos a serviço.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Portal da Transparência (CGU)",
+    "url": "https://portaldatransparencia.gov.br/"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "peculato",
+   "nome": "Peculato",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Crime em que o funcionário público desvia ou se apropria de dinheiro ou bem público a que tem acesso por causa do cargo.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Código Penal",
+    "url": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del2848compilado.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "pib",
+   "nome": "PIB (Produto Interno Bruto)",
+   "categoria": "Economia e tributação",
+   "explicacao": "Soma de todos os bens e serviços finais produzidos no país em um período. É a principal medida do tamanho da economia.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "IBGE Explica — PIB",
+    "url": "https://www.ibge.gov.br/explica/pib.php"
+   },
+   "sinonimos": [
+    "PIB"
+   ]
+  },
+  {
+   "id": "ppa",
+   "nome": "Plano Plurianual (PPA)",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Lei que define objetivos e metas do governo para quatro anos.",
+   "exemplo": "",
+   "diferencas": "PPA: 4 anos; LDO: regras para o próximo orçamento; LOA: orçamento do ano.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "PPA"
+   ]
+  },
+  {
+   "id": "plebiscito-referendo",
+   "nome": "Plebiscito e referendo",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Consultas à população convocadas pelo Congresso. No plebiscito, a consulta ocorre antes da decisão; no referendo, depois, para confirmar ou rejeitar uma lei já aprovada.",
+   "exemplo": "Em 2005 houve referendo sobre a proibição do comércio de armas.",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei 9.709/1998 (plebiscito e referendo)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l9709.htm"
+   },
+   "sinonimos": [
+    "plebiscito",
+    "referendo"
+   ]
+  },
+  {
+   "id": "plenario",
+   "nome": "Plenário",
+   "categoria": "Processo legislativo",
+   "explicacao": "Reunião de todos os deputados ou de todos os senadores, onde ocorrem as principais votações.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "poder-executivo",
+   "nome": "Poder Executivo",
+   "categoria": "Instituições",
+   "explicacao": "Poder que administra o país, os estados e os municípios e executa as leis. É chefiado pelo presidente (no país), pelos governadores (estados) e pelos prefeitos (municípios).",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "Executivo"
+   ]
+  },
+  {
+   "id": "poder-judiciario",
+   "nome": "Poder Judiciário",
+   "categoria": "Instituições",
+   "explicacao": "Poder formado pelos juízes e tribunais, que julgam conflitos e aplicam as leis em casos concretos.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "Judiciário"
+   ]
+  },
+  {
+   "id": "policia-federal",
+   "nome": "Polícia Federal",
+   "categoria": "Instituições",
+   "explicacao": "Polícia ligada ao governo federal que investiga crimes contra a União, como desvio de dinheiro federal, além de outras atribuições previstas na Constituição.",
+   "exemplo": "",
+   "diferencas": "A polícia investiga; o Ministério Público decide se acusa; o juiz decide se condena.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Polícia Federal",
+    "url": "https://www.gov.br/pf/pt-br"
+   },
+   "sinonimos": [
+    "PF"
+   ]
+  },
+  {
+   "id": "portal-da-transparencia",
+   "nome": "Portal da Transparência",
+   "categoria": "Transparência e controle",
+   "explicacao": "Site da CGU que publica gastos, transferências, servidores, viagens e cartões do governo federal.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Portal da Transparência (CGU)",
+    "url": "https://portaldatransparencia.gov.br/"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "pncp",
+   "nome": "Portal Nacional de Contratações Públicas (PNCP)",
+   "categoria": "Licitações e contratos",
+   "explicacao": "Site oficial que reúne editais, contratos e atas de licitações de todo o país, criado pela nova Lei de Licitações.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Portal Nacional de Contratações Públicas",
+    "url": "https://www.gov.br/pncp/pt-br"
+   },
+   "sinonimos": [
+    "PNCP"
+   ]
+  },
+  {
+   "id": "pregao",
+   "nome": "Pregão",
+   "categoria": "Licitações e contratos",
+   "explicacao": "Modalidade de licitação para comprar bens e serviços comuns, em que vence o menor preço ou maior desconto, normalmente em disputa eletrônica.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei de Licitações (Lei 14.133/2021)",
+    "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm"
+   },
+   "sinonimos": [
+    "pregão eletrônico"
+   ]
+  },
+  {
+   "id": "prescricao",
+   "nome": "Prescrição",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Perda do direito do Estado de punir por ter passado o prazo previsto em lei. A prescrição não significa que a pessoa foi declarada inocente.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Código Penal",
+    "url": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del2848compilado.htm"
+   },
+   "sinonimos": [
+    "prescrito"
+   ]
+  },
+  {
+   "id": "prestacao-de-contas-eleitoral",
+   "nome": "Prestação de contas de campanha",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Relatório obrigatório que partidos e candidatos entregam à Justiça Eleitoral mostrando quanto arrecadaram e gastaram na campanha. Os dados são publicados pelo TSE.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei das Eleições (Lei 9.504/1997)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l9504.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "presuncao-de-inocencia",
+   "nome": "Presunção de inocência",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Princípio constitucional segundo o qual ninguém é considerado culpado até o trânsito em julgado de sentença penal condenatória.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "presunção de inocência"
+   ]
+  },
+  {
+   "id": "prisao-preventiva",
+   "nome": "Prisão preventiva",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Prisão decretada antes do julgamento, quando a lei permite, por exemplo para evitar fuga ou destruição de provas. Não é pena nem condenação.",
+   "exemplo": "",
+   "diferencas": "Prisão temporária tem prazo curto e serve à investigação.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Código de Processo Penal",
+    "url": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "pgr",
+   "nome": "Procurador-Geral da República (PGR)",
+   "categoria": "Instituições",
+   "explicacao": "Chefe do Ministério Público da União. É quem pode acusar no STF autoridades com foro nesse tribunal, como deputados federais e senadores. É indicado pelo presidente e aprovado pelo Senado.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "PGR",
+    "Procuradoria-Geral da República"
+   ]
+  },
+  {
+   "id": "pdl",
+   "nome": "Projeto de Decreto Legislativo (PDL)",
+   "categoria": "Processo legislativo",
+   "explicacao": "Proposta sobre assuntos de competência exclusiva do Congresso, que não passam por sanção do presidente, como aprovar tratados internacionais ou sustar atos do Executivo que passem dos limites legais.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": [
+    "PDL",
+    "decreto legislativo"
+   ]
+  },
+  {
+   "id": "projeto-de-lei",
+   "nome": "Projeto de Lei (PL)",
+   "categoria": "Processo legislativo",
+   "explicacao": "Proposta para criar, mudar ou revogar uma lei comum (ordinária). Para virar lei precisa ser aprovada pela Câmara e pelo Senado e sancionada pelo presidente.",
+   "exemplo": "",
+   "diferencas": "Uma lei ordinária é aprovada pela maioria dos presentes, desde que esteja presente a maioria dos membros.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": [
+    "PL",
+    "projeto de lei"
+   ]
+  },
+  {
+   "id": "plp",
+   "nome": "Projeto de Lei Complementar (PLP)",
+   "categoria": "Processo legislativo",
+   "explicacao": "Proposta de lei sobre assuntos que a Constituição manda regular por lei complementar. Precisa do voto da maioria absoluta de cada Casa (257 deputados e 41 senadores).",
+   "exemplo": "",
+   "diferencas": "Lei complementar exige maioria absoluta; lei ordinária, maioria simples.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "PLP",
+    "lei complementar"
+   ]
+  },
+  {
+   "id": "promulgacao",
+   "nome": "Promulgação",
+   "categoria": "Processo legislativo",
+   "explicacao": "Ato que declara que uma lei ou emenda existe e deve ser cumprida; em seguida vem a publicação no Diário Oficial.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "pec",
+   "nome": "Proposta de Emenda à Constituição (PEC)",
+   "categoria": "Processo legislativo",
+   "explicacao": "Proposta para mudar a Constituição. Precisa de 3/5 dos votos (308 deputados e 49 senadores), em dois turnos de votação em cada Casa. Não passa por sanção do presidente.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "Algumas regras não podem ser abolidas nem por emenda, as chamadas cláusulas pétreas (art. 60, §4º).",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "PEC",
+    "emenda constitucional"
+   ]
+  },
+  {
+   "id": "plano-de-governo",
+   "nome": "Proposta de governo (plano de governo)",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Documento que candidatos a presidente, governador e prefeito devem entregar ao TSE no registro de candidatura, com as propostas que pretendem cumprir.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "O documento não tem força legal de contrato; avaliar o cumprimento exige critérios verificáveis.",
+   "fonte": {
+    "nome": "Lei das Eleições (Lei 9.504/1997)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l9504.htm"
+   },
+   "sinonimos": [
+    "plano de governo",
+    "promessa de campanha"
+   ]
+  },
+  {
+   "id": "quociente-eleitoral",
+   "nome": "Quociente eleitoral",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Número de votos válidos dividido pelo número de vagas. Serve para calcular quantas cadeiras cada partido conquista na eleição proporcional.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Código Eleitoral (Lei 4.737/1965)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l4737compilado.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "quorum",
+   "nome": "Quórum",
+   "categoria": "Processo legislativo",
+   "explicacao": "Número mínimo de parlamentares presentes ou de votos exigido para abrir uma sessão ou aprovar uma proposta.",
+   "exemplo": "Para aprovar uma PEC na Câmara são necessários 308 votos favoráveis.",
+   "diferencas": "Maioria simples: mais da metade dos presentes. Maioria absoluta: mais da metade de todos os membros.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": [
+    "quorum"
+   ]
+  },
+  {
+   "id": "receita-publica",
+   "nome": "Receita pública",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Todo dinheiro que entra nos cofres públicos, como impostos, contribuições e transferências.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei 4.320/1964 (normas de orçamento)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l4320.htm"
+   },
+   "sinonimos": [
+    "receita"
+   ]
+  },
+  {
+   "id": "reforma-tributaria",
+   "nome": "Reforma tributária do consumo",
+   "categoria": "Economia e tributação",
+   "explicacao": "Mudança aprovada em 2023 que substitui gradualmente PIS, Cofins, IPI, ICMS e ISS por dois tributos sobre consumo (CBS e IBS) e cria o Imposto Seletivo.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "A transição ocorre ao longo de vários anos, conforme a Emenda 132/2023 e a Lei Complementar 214/2025.",
+   "fonte": {
+    "nome": "Emenda Constitucional 132/2023 (reforma tributária)",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc132.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "urgencia",
+   "nome": "Regime de urgência",
+   "categoria": "Processo legislativo",
+   "explicacao": "Procedimento que acelera um projeto, dispensando prazos e etapas, para que seja votado mais rápido no plenário.",
+   "exemplo": "",
+   "diferencas": "Aprovar a urgência não é aprovar o projeto.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": [
+    "urgência"
+   ]
+  },
+  {
+   "id": "registro-de-candidatura",
+   "nome": "Registro de candidatura",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Pedido feito à Justiça Eleitoral para que uma pessoa possa disputar a eleição. A Justiça verifica se ela cumpre as exigências e não é inelegível.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei das Eleições (Lei 9.504/1997)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l9504.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "relator",
+   "nome": "Relator",
+   "categoria": "Processo legislativo",
+   "explicacao": "Parlamentar escolhido para estudar um projeto e apresentar um parecer recomendando aprovar, alterar ou rejeitar.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": [
+    "relatoria",
+    "relatora"
+   ]
+  },
+  {
+   "id": "requerimento",
+   "nome": "Requerimento",
+   "categoria": "Processo legislativo",
+   "explicacao": "Pedido formal de um parlamentar ou partido, por exemplo para adiar uma votação ou pedir informações a um ministro.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "restos-a-pagar",
+   "nome": "Restos a pagar",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Despesas empenhadas num ano que não foram pagas até 31 de dezembro e ficam para os anos seguintes.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei 4.320/1964 (normas de orçamento)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l4320.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "resultado-primario",
+   "nome": "Resultado primário",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Diferença entre receitas e despesas do governo sem contar os juros da dívida. Positivo é superávit; negativo, déficit.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Tesouro Transparente",
+    "url": "https://www.tesourotransparente.gov.br/"
+   },
+   "sinonimos": [
+    "superávit primário",
+    "déficit primário"
+   ]
+  },
+  {
+   "id": "reu",
+   "nome": "Réu",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Pessoa que responde a um processo depois que a Justiça aceitou a acusação contra ela. Ser réu não é ser condenado.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Código de Processo Penal",
+    "url": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm"
+   },
+   "sinonimos": [
+    "ré",
+    "réu",
+    "tornou-se réu"
+   ]
+  },
+  {
+   "id": "sancao",
+   "nome": "Sanção",
+   "categoria": "Processo legislativo",
+   "explicacao": "Ato em que o presidente da República (ou governador ou prefeito) concorda com um projeto aprovado, que então vira lei.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "Se o presidente não se manifestar em 15 dias úteis, ocorre sanção tácita.",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "segundo-turno",
+   "nome": "Segundo turno",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Nova votação entre os dois mais votados quando nenhum candidato a presidente, governador ou prefeito (em cidades com mais de 200 mil eleitores) obtém mais da metade dos votos válidos.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "senado-federal",
+   "nome": "Senado Federal",
+   "categoria": "Instituições",
+   "explicacao": "Casa do Congresso formada por 81 senadores: três por estado e três pelo Distrito Federal, com mandato de oito anos.",
+   "exemplo": "O Senado aprova ou rejeita indicações do presidente para ministro do STF.",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "Senado"
+   ]
+  },
+  {
+   "id": "servidor-publico",
+   "nome": "Servidor público",
+   "categoria": "Administração pública",
+   "explicacao": "Pessoa que trabalha para o poder público em cargo efetivo (concurso) ou em comissão.",
+   "exemplo": "",
+   "diferencas": "Agente político (como parlamentar ou ministro) exerce mandato ou cargo de governo; não é servidor de carreira.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regime dos servidores federais (Lei 8.112/1990)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l8112cons.htm"
+   },
+   "sinonimos": [
+    "servidores"
+   ]
+  },
+  {
+   "id": "sessao-conjunta",
+   "nome": "Sessão conjunta",
+   "categoria": "Processo legislativo",
+   "explicacao": "Reunião de deputados e senadores juntos, usada para casos como analisar vetos e votar o orçamento.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "siconfi",
+   "nome": "Siconfi",
+   "categoria": "Transparência e controle",
+   "explicacao": "Sistema do Tesouro Nacional que recebe as informações contábeis e fiscais de União, estados e municípios.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Siconfi — Tesouro Nacional",
+    "url": "https://siconfi.tesouro.gov.br/"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "sigilo",
+   "nome": "Sigilo (informação classificada)",
+   "categoria": "Transparência e controle",
+   "explicacao": "Restrição de acesso a uma informação pública prevista em lei. Pela LAI, informações podem ser classificadas como reservadas (5 anos), secretas (15 anos) ou ultrassecretas (25 anos).",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "Há também sigilos previstos em outras leis, como o fiscal, o bancário e o de dados pessoais.",
+   "fonte": {
+    "nome": "Lei de Acesso à Informação (Lei 12.527/2011)",
+    "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm"
+   },
+   "sinonimos": [
+    "sigilo de 100 anos",
+    "informação sigilosa"
+   ]
+  },
+  {
+   "id": "sistema-majoritario",
+   "nome": "Sistema majoritário",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Forma de eleger presidente, governadores, senadores e prefeitos: vence quem tiver mais votos. Em alguns casos exige maioria absoluta dos votos válidos, com segundo turno.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "eleição majoritária"
+   ]
+  },
+  {
+   "id": "sistema-proporcional",
+   "nome": "Sistema proporcional",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Forma de eleger deputados e vereadores: as vagas são divididas entre partidos conforme os votos que receberam, e depois preenchidas pelos candidatos mais votados de cada partido.",
+   "exemplo": "",
+   "diferencas": "No sistema majoritário vence quem tem mais votos.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Código Eleitoral (Lei 4.737/1965)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l4737compilado.htm"
+   },
+   "sinonimos": [
+    "eleição proporcional"
+   ]
+  },
+  {
+   "id": "sobrepreco",
+   "nome": "Sobrepreço e superfaturamento",
+   "categoria": "Licitações e contratos",
+   "explicacao": "Sobrepreço: preço contratado acima do valor de mercado. Superfaturamento: dano efetivo aos cofres públicos, por exemplo por pagamento acima do devido ou por serviço não entregue.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei de Licitações (Lei 14.133/2021)",
+    "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm"
+   },
+   "sinonimos": [
+    "sobrepreço",
+    "superfaturamento"
+   ]
+  },
+  {
+   "id": "substitutivo",
+   "nome": "Substitutivo",
+   "categoria": "Processo legislativo",
+   "explicacao": "Nova versão completa do texto de um projeto, normalmente apresentada pelo relator, que substitui o texto original.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "subsidio",
+   "nome": "Subsídio (salário de agente político)",
+   "categoria": "Salários e benefícios",
+   "explicacao": "Nome oficial da remuneração mensal de parlamentares, ministros, presidente e outras autoridades. É pago em parcela única.",
+   "exemplo": "",
+   "diferencas": "Subsídio é o salário. Cota parlamentar, verba de gabinete e auxílios são valores separados, com regras próprias.",
+   "ressalvas": "O valor de deputados e senadores é fixado pelo próprio Congresso por decreto legislativo.",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "subsídio",
+    "salário do parlamentar"
+   ]
+  },
+  {
+   "id": "stj",
+   "nome": "Superior Tribunal de Justiça (STJ)",
+   "categoria": "Instituições",
+   "explicacao": "Tribunal que dá a palavra final sobre a interpretação das leis federais (fora as questões constitucionais). Também julga governadores em crimes comuns.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "STJ"
+   ]
+  },
+  {
+   "id": "suplente",
+   "nome": "Suplente",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Pessoa que assume a vaga quando o titular se afasta ou perde o mandato. Senadores são eleitos com dois suplentes; deputados têm como suplentes os mais votados não eleitos do partido ou federação.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "suplência"
+   ]
+  },
+  {
+   "id": "stf",
+   "nome": "Supremo Tribunal Federal (STF)",
+   "categoria": "Instituições",
+   "explicacao": "Tribunal mais alto do país, com 11 ministros. Sua função principal é guardar a Constituição: decide se leis e atos estão de acordo com ela e julga algumas autoridades, como o presidente e os parlamentares federais em crimes comuns.",
+   "exemplo": "",
+   "diferencas": "O STJ uniformiza a interpretação das leis federais; o STF cuida da Constituição.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Supremo Tribunal Federal",
+    "url": "https://portal.stf.jus.br/"
+   },
+   "sinonimos": [
+    "STF",
+    "Supremo"
+   ]
+  },
+  {
+   "id": "desemprego",
+   "nome": "Taxa de desocupação (desemprego)",
+   "categoria": "Economia e tributação",
+   "explicacao": "Percentual de pessoas que procuram trabalho e não encontram, em relação à força de trabalho. Medida pelo IBGE na PNAD Contínua.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "IBGE Explica — Desemprego",
+    "url": "https://www.ibge.gov.br/explica/desemprego.php"
+   },
+   "sinonimos": [
+    "desemprego",
+    "desocupação"
+   ]
+  },
+  {
+   "id": "selic",
+   "nome": "Taxa Selic",
+   "categoria": "Economia e tributação",
+   "explicacao": "Taxa básica de juros da economia, definida pelo Comitê de Política Monetária (Copom) do Banco Central. Influencia todos os outros juros.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Banco Central — Taxa Selic",
+    "url": "https://www.bcb.gov.br/controleinflacao/taxaselic"
+   },
+   "sinonimos": [
+    "Selic",
+    "Copom"
+   ]
+  },
+  {
+   "id": "aditivo",
+   "nome": "Termo aditivo",
+   "categoria": "Licitações e contratos",
+   "explicacao": "Documento que altera um contrato já assinado, por exemplo para mudar prazo, quantidade ou valor, dentro dos limites da lei.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei de Licitações (Lei 14.133/2021)",
+    "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm"
+   },
+   "sinonimos": [
+    "aditivo contratual"
+   ]
+  },
+  {
+   "id": "teto-de-gastos",
+   "nome": "Teto de gastos",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Regra criada em 2016 (Emenda Constitucional 95) que limitava o crescimento das despesas federais à inflação. Foi substituída pelo arcabouço fiscal em 2023.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Emenda Constitucional 95/2016",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc95.htm"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "teto-remuneratorio",
+   "nome": "Teto do funcionalismo",
+   "categoria": "Salários e benefícios",
+   "explicacao": "Limite máximo de remuneração no serviço público, igual ao subsídio dos ministros do STF.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "Verbas de natureza indenizatória não entram no cálculo do teto, o que permite valores totais maiores.",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "teto constitucional",
+    "abate-teto"
+   ]
+  },
+  {
+   "id": "tramitacao",
+   "nome": "Tramitação",
+   "categoria": "Processo legislativo",
+   "explicacao": "Caminho que uma proposta percorre desde a apresentação: comissões, plenário, envio à outra Casa e sanção ou veto.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "emenda-pix",
+   "nome": "Transferência especial (“emenda Pix”)",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Tipo de emenda individual em que o dinheiro é repassado diretamente ao estado ou município, sem convênio nem finalidade definida previamente. O apelido “emenda Pix” não é um nome oficial.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "As regras de transparência dessas transferências foram objeto de decisões recentes do STF.",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "emenda pix",
+    "transferência especial"
+   ]
+  },
+  {
+   "id": "transferencias-constitucionais",
+   "nome": "Transferências constitucionais",
+   "categoria": "Orçamento e finanças públicas",
+   "explicacao": "Parte dos impostos arrecadados pela União que a Constituição manda repassar a estados e municípios, como os fundos de participação (FPE e FPM).",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Tesouro Transparente",
+    "url": "https://www.tesourotransparente.gov.br/"
+   },
+   "sinonimos": [
+    "FPM",
+    "FPE",
+    "fundo de participação"
+   ]
+  },
+  {
+   "id": "transparencia-ativa",
+   "nome": "Transparência ativa e passiva",
+   "categoria": "Transparência e controle",
+   "explicacao": "Ativa: o órgão publica informações por iniciativa própria, sem precisar de pedido. Passiva: o órgão responde a pedidos feitos pelos cidadãos.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei de Acesso à Informação (Lei 12.527/2011)",
+    "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm"
+   },
+   "sinonimos": [
+    "transparência passiva"
+   ]
+  },
+  {
+   "id": "tcu",
+   "nome": "Tribunal de Contas da União (TCU)",
+   "categoria": "Instituições",
+   "explicacao": "Órgão que ajuda o Congresso a fiscalizar como o dinheiro federal é usado. Analisa contas, faz auditorias e pode aplicar multas. Apesar do nome, não faz parte do Poder Judiciário.",
+   "exemplo": "",
+   "diferencas": "Tribunais de contas dos estados e municípios fiscalizam o dinheiro estadual e municipal.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei Orgânica do TCU (Lei 8.443/1992)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l8443.htm"
+   },
+   "sinonimos": [
+    "TCU"
+   ]
+  },
+  {
+   "id": "tse",
+   "nome": "Tribunal Superior Eleitoral (TSE)",
+   "categoria": "Instituições",
+   "explicacao": "Órgão máximo da Justiça Eleitoral. Organiza as eleições nacionais, registra partidos, julga recursos sobre eleições e divulga resultados e dados de candidatos.",
+   "exemplo": "",
+   "diferencas": "Os Tribunais Regionais Eleitorais (TREs) cuidam das eleições em cada estado.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Tribunal Superior Eleitoral",
+    "url": "https://www.tse.jus.br/"
+   },
+   "sinonimos": [
+    "TSE",
+    "Justiça Eleitoral"
+   ]
+  },
+  {
+   "id": "tributo",
+   "nome": "Tributo",
+   "categoria": "Economia e tributação",
+   "explicacao": "Nome geral para valores obrigatórios cobrados pelo Estado: impostos, taxas e contribuições.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Código Tributário Nacional",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l5172compilado.htm"
+   },
+   "sinonimos": [
+    "tributos"
+   ]
+  },
+  {
+   "id": "transito-em-julgado",
+   "nome": "Trânsito em julgado",
+   "categoria": "Justiça e investigações",
+   "explicacao": "Momento em que não cabe mais recurso contra uma decisão judicial e ela se torna definitiva.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Código de Processo Penal",
+    "url": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm"
+   },
+   "sinonimos": [
+    "transitado em julgado",
+    "condenação definitiva"
+   ]
+  },
+  {
+   "id": "turno",
+   "nome": "Turno de votação",
+   "categoria": "Processo legislativo",
+   "explicacao": "Cada rodada de votação de uma proposta. PECs exigem dois turnos em cada Casa.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": [
+    "turnos"
+   ]
+  },
+  {
+   "id": "verba-de-gabinete",
+   "nome": "Verba de gabinete",
+   "categoria": "Salários e benefícios",
+   "explicacao": "Valor mensal que cada parlamentar tem para contratar assessores (secretários parlamentares). O dinheiro é pago diretamente aos funcionários, não ao parlamentar.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Câmara dos Deputados — Cota parlamentar",
+    "url": "https://www.camara.leg.br/cota-parlamentar/"
+   },
+   "sinonimos": [
+    "verba de gabinete",
+    "secretário parlamentar"
+   ]
+  },
+  {
+   "id": "verba-indenizatoria",
+   "nome": "Verba indenizatória",
+   "categoria": "Salários e benefícios",
+   "explicacao": "Dinheiro pago para ressarcir gastos feitos por causa do trabalho, e não como salário. Exemplo: reembolso de despesas do mandato.",
+   "exemplo": "",
+   "diferencas": "Verba indenizatória ressarce gastos; salário (subsídio) remunera o trabalho.",
+   "ressalvas": "Por ser indenizatória, não entra no teto do funcionalismo nem sofre desconto de imposto de renda como salário.",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "verbas indenizatórias",
+    "indenização"
+   ]
+  },
+  {
+   "id": "veto",
+   "nome": "Veto",
+   "categoria": "Processo legislativo",
+   "explicacao": "Recusa do presidente a um projeto aprovado, no todo ou em parte. O Congresso pode derrubar o veto pela maioria absoluta de deputados e senadores, em sessão conjunta.",
+   "exemplo": "",
+   "diferencas": "Veto parcial atinge só alguns trechos.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Constituição Federal de 1988",
+    "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+   },
+   "sinonimos": [
+    "vetar",
+    "vetado"
+   ]
+  },
+  {
+   "id": "votacao-nominal",
+   "nome": "Votação nominal",
+   "categoria": "Processo legislativo",
+   "explicacao": "Votação em que o voto de cada parlamentar fica registrado com seu nome. É o tipo que permite saber como cada um votou.",
+   "exemplo": "",
+   "diferencas": "Na votação simbólica não há registro individual.",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "votacao-simbolica",
+   "nome": "Votação simbólica",
+   "categoria": "Processo legislativo",
+   "explicacao": "Votação sem registro individual: quem preside pede que os favoráveis permaneçam como estão e proclama o resultado.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "Como não há registro, não é possível dizer como cada parlamentar votou.",
+   "fonte": {
+    "nome": "Regimento Interno da Câmara dos Deputados",
+    "url": "https://www2.camara.leg.br/atividade-legislativa/legislacao/regimento-interno-da-camara-dos-deputados"
+   },
+   "sinonimos": []
+  },
+  {
+   "id": "votos-validos",
+   "nome": "Votos válidos",
+   "categoria": "Eleições e partidos",
+   "explicacao": "Votos dados a candidatos ou partidos. Votos em branco e nulos não contam como válidos.",
+   "exemplo": "",
+   "diferencas": "",
+   "ressalvas": "",
+   "fonte": {
+    "nome": "Lei das Eleições (Lei 9.504/1997)",
+    "url": "https://www.planalto.gov.br/ccivil_03/leis/l9504.htm"
+   },
+   "sinonimos": [
+    "voto válido",
+    "voto branco",
+    "voto nulo"
+   ]
+  }
+ ]
+}

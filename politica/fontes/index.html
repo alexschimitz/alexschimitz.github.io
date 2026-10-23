@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0d0c">
+  <meta name="description" content="De onde vêm os dados do portal de política, quando são atualizados, como são lidos e o que ainda está em construção.">
+  <title>Fontes e metodologia — Política em dados abertos</title>
+  <script>try{var t=localStorage.getItem('as-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="../glossario.css">
+  <style>.f-lista { display: grid; gap: 8px; margin-top: 12px; padding-left: 20px; line-height: 1.55; } .f-lista a, #dados td a, #dados p a { text-decoration: underline; } #dados .table-wrap { margin-top: 16px; } #dados td, #dados th { padding: 10px; text-align: left; vertical-align: top; } #dados table { width: 100%; border-collapse: collapse; } #dados tr { border-bottom: 1px solid var(--line); }</style>
+</head>
+<body class="politica">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../" aria-label="AS Alexsander Schimitz — página inicial">
+        <span class="brand-mark">AS</span>
+        <span class="brand-name">Alexsander Schimitz</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+        <span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Seções do portal de política">
+        <a href="/politica/">Início</a>
+        <a href="/politica/politicos/">Políticos</a>
+        <a href="/politica/gastos/">Gastos</a>
+        <a href="/politica/leis/">Votações e leis</a>
+        <a href="/politica/glossario/">Dicionário</a>
+        <a href="/politica/fontes/">Fontes</a>
+        <a class="nav-cta" href="/">← Site</a>
+      </nav>
+    </div>
+  </header>
+  <main id="conteudo">
+    <noscript><p class="pol-noscript container">Esta página carrega os dados com JavaScript. Ative o JavaScript para ver os números e listas; as fontes oficiais estão em <a href="/politica/fontes/">Fontes e metodologia</a>.</p></noscript>
+    <section class="pol-hero container">
+      <nav class="pol-crumbs" aria-label="Você está em"><a href="/politica/">Política</a> <span aria-hidden="true">›</span> <span aria-current="page">Fontes e metodologia</span></nav>
+      <div class="eyebrow"><span class="status-dot"></span> Transparência sobre o próprio portal</div>
+      <h1>De onde vêm os dados <span>e como conferir.</span></h1>
+      <p class="hero-lead">Todas as fontes oficiais usadas, a frequência de atualização e as regras que seguimos para não distorcer o que os dados mostram.</p>
+    </section>
+    <section class="section pol-section" id="dados" aria-labelledby="f-dados">
+      <div class="container">
+        <h2 id="f-dados">De onde vêm os dados</h2>
+        <p class="lead-simples">Todos os números do portal são baixados de fontes oficiais por rotinas automáticas (GitHub Actions) e gravados como arquivos JSON em <code>/politica/data/</code>. O site não altera os valores: só organiza e explica. Cada página mostra a fonte e a data da atualização.</p>
+        <div class="table-wrap"><table class="tabela-cards">
+          <caption class="sr-only">Rotinas de atualização dos dados</caption>
+          <thead><tr><th scope="col">Assunto</th><th scope="col">Fonte oficial</th><th scope="col">Frequência</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Deputados, senadores, votações, projetos, notícias</th><td><a href="https://dadosabertos.camara.leg.br/" target="_blank" rel="noreferrer">Dados Abertos da Câmara</a>, <a href="https://www12.senado.leg.br/dados-abertos" target="_blank" rel="noreferrer">Dados Abertos do Senado</a></td><td>Diária (06:17, horário de Brasília)</td></tr>
+            <tr><th scope="row">Governo, normas e medidas provisórias</th><td><a href="https://www.planalto.gov.br/" target="_blank" rel="noreferrer">Planalto</a>, APIs da Câmara e do Senado</td><td>Diária (07:43)</td></tr>
+            <tr><th scope="row">Mapa: estados e municípios</th><td><a href="https://servicodados.ibge.gov.br/api/docs/localidades" target="_blank" rel="noreferrer">IBGE</a>, <a href="https://siconfi.tesouro.gov.br/" target="_blank" rel="noreferrer">Siconfi (Tesouro)</a>, TSE</td><td>Diária (04:41)</td></tr>
+            <tr><th scope="row">Gastos federais, cota parlamentar, emendas, viagens, cartão</th><td><a href="https://portaldatransparencia.gov.br/" target="_blank" rel="noreferrer">Portal da Transparência</a>, Tesouro, Câmara e Senado (CEAP/CEAPS)</td><td>Semanal (segunda, 04:17)</td></tr>
+            <tr><th scope="row">Economia (PIB, inflação, desemprego)</th><td>IBGE, Banco Central e bases internacionais citadas na página</td><td>Semanal (quarta, 05:37)</td></tr>
+            <tr><th scope="row">Políticos e mandatos (histórico)</th><td><a href="https://dadosabertos.tse.jus.br/" target="_blank" rel="noreferrer">Dados abertos do TSE</a>, Câmara e Senado</td><td>Mensal (dia 4)</td></tr>
+            <tr><th scope="row">Planos de governo</th><td><a href="https://divulgacandcontas.tse.jus.br/" target="_blank" rel="noreferrer">DivulgaCandContas (TSE)</a></td><td>Mensal (dia 3)</td></tr>
+            <tr><th scope="row">Eleições</th><td>Dados abertos do TSE</td><td>Mensal (dia 5) e diária na semana da eleição</td></tr>
+            <tr><th scope="row">Escândalos, sigilos e leis explicadas</th><td>Curadoria manual com link para documento oficial em cada item</td><td>Quando há revisão</td></tr>
+          </tbody>
+        </table></div>
+        <p class="muted" style="margin-top:10px">Os horários são os agendados; a execução real pode atrasar alguns minutos. O código das rotinas está em <a href="https://github.com/alexschimitz/alexschimitz.github.io/tree/main/scripts/politica" target="_blank" rel="noreferrer">scripts/politica</a> e <a href="https://github.com/alexschimitz/alexschimitz.github.io/tree/main/.github/workflows" target="_blank" rel="noreferrer">.github/workflows</a>.</p>
+      </div>
+    </section>
+
+    <section class="section pol-section pol-alt" id="salarios" aria-labelledby="f-sal">
+      <div class="container">
+        <h2 id="f-sal">Salários e benefícios: o que já existe e o que está em construção</h2>
+        <p class="lead-simples">Esta seção ainda está <strong>em construção</strong>. Hoje o portal mostra:</p>
+        <ul class="f-lista">
+          <li><strong>Disponível:</strong> gastos de cada deputado e senador com a <span data-termo="ceap">cota parlamentar</span> (reembolsos com nota fiscal) — <a href="/politica/gastos/#congresso">Gastos → Congresso</a>.</li>
+          <li><strong>Disponível:</strong> <span data-termo="emenda-parlamentar">emendas parlamentares</span>, viagens e <span data-termo="cartao-corporativo">cartão corporativo</span> do governo federal — <a href="/politica/gastos/">Gastos</a>.</li>
+          <li><strong>Ainda não disponível:</strong> <span data-termo="subsidio">subsídio</span> (salário), <span data-termo="auxilio-moradia">auxílio-moradia</span>, <span data-termo="verba-de-gabinete">verba de gabinete</span> e registros de recusa ou renúncia a benefícios, por parlamentar.</li>
+        </ul>
+        <p style="margin-top:12px"><strong>Regra que será seguida:</strong> o portal só dirá que um político “recusou” ou “abriu mão” de um benefício quando houver documento oficial que comprove. Não ter registro de gasto num mês <em>não</em> é a mesma coisa que recusar o benefício; nesses casos aparecerá “sem registro nos dados oficiais”.</p>
+      </div>
+    </section>
+
+    <section class="section pol-section" id="metodo" aria-labelledby="f-met">
+      <div class="container">
+        <h2 id="f-met">Como lemos os dados</h2>
+        <ul class="f-lista">
+          <li>Valores em reais são mostrados como publicados pela fonte, sem correção pela inflação, salvo quando a página disser o contrário.</li>
+          <li>Os “resumos automáticos” de projetos são gerados por regras fixas a partir da ementa oficial, sem interpretar. Os “resumos simplificados” foram escritos à mão a partir do texto oficial.</li>
+          <li>Investigação, denúncia, processo e condenação são situações diferentes. Veja no <a href="/politica/glossario/?cat=Justi%C3%A7a+e+investiga%C3%A7%C3%B5es">dicionário</a> o que cada uma significa.</li>
+          <li>Quando uma fonte está fora do ar, a página avisa e mostra a última versão baixada, com a data.</li>
+          <li>Erros ou atrasos podem vir das próprias fontes. Achou um erro? Abra uma <a href="https://github.com/alexschimitz/alexschimitz.github.io/issues" target="_blank" rel="noreferrer">issue no GitHub</a> com o link da página e da fonte.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container pol-footer">
+      <div><p>Página independente e apartidária. As explicações são simplificadas; o texto oficial indicado em cada item é a referência.</p></div>
+      <div class="pol-footer-links">
+        <p>© <span id="year"></span> Alexsander Schimitz.</p>
+        <a href="/politica/">Início da política</a>
+        <a href="/politica/glossario/">Dicionário de termos</a>
+        <a href="/politica/fontes/">Fontes e metodologia</a>
+        <a href="#top">Voltar ao topo ↑</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../../scripts/home.js"></script>
+  <script src="../glossario.js"></script>
+  <script src="../base.js"></script>
+</body>
+</html>

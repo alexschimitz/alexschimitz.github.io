@@ -549,7 +549,7 @@
     readURL();
     fillMunicipios();
     renderMeta(); renderParties();
-    fetch('/politica/paginas.json', { cache: 'no-cache' }).then((r) => r.ok ? r.json() : {}).then((j) => { S.pages = (j && j.paginas) || {}; }).catch(() => {});
+    fetch('/politica/paginas.json').then((r) => r.ok ? r.json() : {}).then((j) => { S.pages = (j && j.paginas) || {}; }).catch(() => {});
     await apply();
     initRanking();
     // links vindos do mapa: ?id=<id daqui> ou ?id=<slug-uf do mapa> (ver politica/data/mapa/README.md)

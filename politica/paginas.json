@@ -11,6 +11,8 @@
     "leis": true,
     "sigilos": true,
     "eleicoes": true,
-    "escandalos": true
+    "escandalos": true,
+    "glossario": true,
+    "fontes": true
   }
 }

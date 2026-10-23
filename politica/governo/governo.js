@@ -10,7 +10,7 @@
   var dExt = function (iso) { if (!iso) return ""; var p = iso.split("-"); return (+p[2] === 1 ? "1º" : +p[2]) + " de " + MES[+p[1] - 1] + " de " + p[0]; };
   var nf = function (n) { return Number(n || 0).toLocaleString("pt-BR"); };
   var numBR = function (n) { return Number(n).toLocaleString("pt-BR"); };
-  function getJSON(u) { return fetch(u, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(u + " → HTTP " + r.status); return r.json(); }); }
+  function getJSON(u) { return fetch(u).then(function (r) { if (!r.ok) throw new Error(u + " → HTTP " + r.status); return r.json(); }); }
   function erro(el, msg) { if (el) el.innerHTML = '<p class="err">' + esc(msg) + ' <a href="">Tentar de novo</a></p>'; }
   var ext = function (url, txt, cls) { return '<a class="ext' + (cls ? " " + cls : "") + '" href="' + esc(url) + '" target="_blank" rel="noreferrer">' + esc(txt) + " ↗</a>"; };
 

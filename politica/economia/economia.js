@@ -606,7 +606,7 @@
     $("#resumo-list").innerHTML = '<li class="err">Não foi possível carregar os dados agora. Tente recarregar a página.</li>';
   }
 
-  function get(n) { return fetch(D + n, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(n + " " + r.status); return r.json(); }); }
+  function get(n) { return fetch(D + n).then(function (r) { if (!r.ok) throw new Error(n + " " + r.status); return r.json(); }); }
   Promise.all([get("paises.json"), get("brasil.json"), get("ranking.json"), get("fontes.json").catch(function () { return {}; })]).then(function (res) {
     P = res[0]; B = res[1]; R = res[2]; F = res[3];
     P.paises.forEach(function (p) { NAMES[p.id] = p.nome; GRP[p.id] = p.grupo; });
